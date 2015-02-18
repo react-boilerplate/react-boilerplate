@@ -1,0 +1,28 @@
+{
+  "name": "flux-quickstart",
+  "version": "1.0.0",
+  "description": "Giving you a headstart with a basic react project setup",
+  "main": "js/app.js",
+  "dependencies": {
+    "flux": "^2.0.0",
+    "react": "^0.12.0"
+  },
+  "devDependencies": {
+    "browserify": "~6.2.0",
+    "envify": "~3.0.0",
+    "react": "^0.12.0",
+    "reactify": "^0.15",
+    "watchify": "~2.1.0"
+  },
+  "scripts": {
+    "start": "watchify -o js/bundle.js -v -d .",
+    "build": "browserify . | uglifyjs -cm > js/bundle.min.js"
+  },
+  "author": "Max Stoiber",
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
+  }
+}
