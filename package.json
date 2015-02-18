@@ -1,7 +1,7 @@
 {
-  "name": "flux-quickstart",
+  "name": "reactjs-boilerplate",
   "version": "1.0.0",
-  "description": "Giving you a headstart with a basic react project setup",
+  "description": "A basic setup for new React.js projects utilizing the Flux application architecture.",
   "main": "js/app.js",
   "dependencies": {
     "flux": "^2.0.0",
@@ -17,6 +17,10 @@
   "scripts": {
     "start": "watchify -o js/bundle.js -v -d .",
     "build": "browserify . | uglifyjs -cm > js/bundle.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mstoiber/react-boilerplate.git"
   },
   "author": "Max Stoiber",
   "browserify": {
