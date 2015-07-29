@@ -19,9 +19,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/mstoiber/react-boilerplate.git"
+    "url": "git://github.com/mxstbr/react-boilerplate.git"
   },
   "author": "Max Stoiber",
+  "license": "MIT",
   "browserify": {
     "transform": [
       "reactify",

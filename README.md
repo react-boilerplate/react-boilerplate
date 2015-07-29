@@ -11,3 +11,7 @@ Quick setup for new React.js projects utilizing the Flux application architectur
 3. Run `npm start` to start the local web server. *If you get an error at this stage, try running `npm install -g watchify` and see if it fixes the problem!*
 
 4. Go to `http://localhost:8000` and you should see the app running!
+
+## License
+
+This project is licensed under the MIT license. For more information see `LICENSE.md`.
