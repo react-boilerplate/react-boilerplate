@@ -1,32 +1,29 @@
 {
   "name": "reactjs-boilerplate",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A basic setup for new React.js projects utilizing the Flux application architecture.",
-  "main": "js/app.js",
   "dependencies": {
     "flux": "^2.0.0",
     "react": "^0.12.0"
   },
   "devDependencies": {
-    "browserify": "~6.2.0",
-    "envify": "~3.0.0",
-    "reactify": "^0.15",
-    "watchify": "~2.1.0",
-    "local-web-server": "0.5.20"
-  },
-  "scripts": {
-    "start": "watchify -o js/bundle.js -v -d . | ws"
+    "autoprefixer-core": "^5.2.1",
+    "cssnano": "^2.1.1",
+    "grunt": "^0.4.5",
+    "grunt-babel": "^5.0.1",
+    "grunt-browserify": "^4.0.0",
+    "grunt-contrib-connect": "^0.11.0",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-postcss": "^0.5.5",
+    "postcss-import": "^6.2.0",
+    "postcss-simple-vars": "^0.3.0",
+    "reactify": "^0.15"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/mxstbr/react-boilerplate.git"
   },
   "author": "Max Stoiber",
-  "license": "MIT",
-  "browserify": {
-    "transform": [
-      "reactify",
-      "envify"
-    ]
-  }
+  "license": "MIT"
 }
