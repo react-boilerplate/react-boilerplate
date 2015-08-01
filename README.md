@@ -18,15 +18,29 @@ To deploy the app, all you need to upload is `index.html`, `js/bundle.min.js` an
 
 The CSS modules found in the `css` subfolders all get imported into the `main.css` file, which get inlined and minified into the `compiled.css` file. To add/change the styling, either write the CSS into the appropriate module or make a new one and `@import` it in the `main.css` file at the appropriate place.
 
+### PostCSS
+
+The boilerplate uses PostCSS, and includes a few plugins by default:
+
+* `postcss-import`: Inlines @imported stylesheets to create one big stylesheet.
+
+* `postcss-simple-vars`: Makes it possible to use $variables in your CSS.
+
+* `autoprefixer-core`: Prefixes your CSS automatically, supporting the last two versions of all major browsers, 99%+ of users and IE 8.
+
+* `cssnano`: Optimizes your CSS file. For a full list of optimizations check [the offical website](http://cssnano.co/optimisations/).
+
+For a full, searchable catalog of plugins you can include go to [postcss.parts](http://postcss.parts).
+
 ### Folder Structure
+
+The boilerplate comes with a basic folder structure to keep the CSS files organised. This is what the folders are for:
 
 * `base`: Global styling, e.g. setting the box–model for all elements
 
 * `components`: Component specific styling, e.g. buttons, modals,...
 
 * `layout`: Global layouts, e.g. article, homepage,...
-
-* `themes`: If you need them put different themes into this folder
 
 * `utils`: Utility files, e.g. variables, mixins, functions,...
 
@@ -37,6 +51,8 @@ The CSS modules found in the `css` subfolders all get imported into the `main.cs
 Assuming they are `require()`'d somewhere, the JS files found in the `js` subfolders all get compiled into the `bundle.js` file, which gets minified into the `bundle.min.js` file.
 
 ### Folder Structure
+
+The folder structure of the JS files reflects the Flux methodology, so if you have worked with Flux before you will know what they are for. 
 
 * `actions`: Actions get dispatched with this/these utility module(s)
 

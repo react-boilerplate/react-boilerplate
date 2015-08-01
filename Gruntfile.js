@@ -4,70 +4,76 @@ module.exports = function(grunt) {
 	   	postcss: {
 	       	options: {
 		        map: {
-		            inline: false, // save all sourcemaps as separate files...
+		            inline: false, // Save all sourcemaps as separate files...
 		            annotation: 'css' // ...to the specified directory
 		        },
 		        processors: [
-		           	require('postcss-import')({ // import all the css files into main.css
-		           		from: "css/main.css"
+		           	require('postcss-import')({ // Import all the css files...
+		           		from: "css/main.css" // ...into main.css...
 		           	}),
-		           	require('postcss-simple-vars')(), // replace the variables
-		           	require('autoprefixer-core')({browsers: 'last 2 versions'}), // add vendor prefixes
-		           	require('cssnano')(), // and minify the result
+		           	require('postcss-simple-vars')(), // ...replace the variables...
+		           	require('autoprefixer-core')({browsers: ['last 2 versions', '> 1%', 'IE 8']}), // ...add vendor prefixes, supporting 99% of users, the last 2 major browser versions and IE 8...
+		           	require('cssnano')({ // ...and minify the result.
+	           			autoprefixer: false, // Don't run autoprefixer since we've already done that...
+	           			comments: {
+	           				removeAll: true // ...and remove all comments, even those marked important.s
+	           			}
+		           	})
 		        ]
 	       	},
 	       	dist: {
-	         	src: 'css/main.css',
-	         	dest: 'css/compiled.css'
+	         	src: 'css/main.css', // Compile main.css...
+	         	dest: 'css/compiled.css' // ...to compiled.css.
 	       	}
 	    },
 	    watch: {
 	      	css: {
-	      		files: ['css/*.css', 'css/*/*.css'], // if any of the .css files change
-	        	tasks: ['postcss'], // run the css task
+	      		files: ['css/*.css', 'css/*/*.css'], // If any of the .css files change...
+	        	tasks: ['postcss'], // ...run postcss.
 	        	options: {
 	        		spawn: false
 	        	},
 	      	},
 	      	scripts: {
-	      		files: ['js/*.js', 'js/*/*.js'], // if any of the .js files change
-	      		tasks: ['browserify', 'uglify'], // transform all the requires into js/bundle.js and then uglify js/bundle.js into js/bundle.min.js
+	      		files: ['js/*.js', 'js/*/*.js'], // If any of the .js files change...
+	      		tasks: ['browserify', 'uglify'], // ...run browserify and uglify.
 	      		options: {
 	      			spawn: false
 	      		}
 	      	}
 	    },
-	    connect: {
+	    connect: { // Start a server...
 	      	server: {
 	      		options: {
-      		        port: 8000
+      		        port: 8000 // ...running at http://localhost:8000
 	      		}
 	      	}
 	    },
-	    browserify: {
+	    browserify: { // Transform common.js require()'s into one file
 	    	client: {
-		    	src: 'js/app.js',
-		    	dest: 'js/bundle.js',
+		    	src: 'js/app.js', // From app.js...
+		    	dest: 'js/bundle.js', // ...to bundle.js.
 		    },
 	    	options: {
-	    		transform: ['reactify'] // transform jsx into js
+	    		transform: ['reactify'] // Transform JSX into normal JS
 	    	}
 	    },
-	    uglify: {
+	    uglify: { // Optimize the JS file, for a full list of things UglifyJS does look here: http://lisperator.net/uglifyjs/compress
 	        bundle: {
 	          	files: {
-		            'js/bundle.min.js': ['js/bundle.js']
+		            'js/bundle.min.js': ['js/bundle.js'] // Transform bundle.js into bundle.min.js
 		        }
 	        }
 	    }
 	});
 
+	// Load the tasks
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-postcss');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-browserify');
 	grunt.loadNpmTasks('grunt-babel');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
-	// Default task
+	// Set the default task to running a server and watching files
 	grunt.registerTask('default', ['connect', 'watch']);
 };
