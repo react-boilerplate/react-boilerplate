@@ -28,14 +28,14 @@ module.exports = function(grunt) {
 	    },
 	    watch: {
 	      	css: {
-	      		files: ['css/*.css', 'css/*/*.css'], // If any of the .css files change...
+	      		files: ['css/**/*.css'], // If any of the .css files change...
 	        	tasks: ['postcss'], // ...run postcss.
 	        	options: {
 	        		spawn: false
 	        	},
 	      	},
 	      	scripts: {
-	      		files: ['js/*.js', 'js/*/*.js'], // If any of the .js files change...
+	      		files: ['js/**/*.js'], // If any of the .js files change...
 	      		tasks: ['browserify', 'uglify'], // ...run browserify and uglify.
 	      		options: {
 	      			spawn: false
