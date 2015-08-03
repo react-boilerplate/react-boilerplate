@@ -49,6 +49,11 @@ module.exports = function(grunt) {
 	      		}
 	      	}
 	    },
+	    open: {
+	    	server: {
+	    		path: 'http://localhost:8000/' // Opens the website in your browser
+	    	}
+	    },
 	    browserify: { // Transform common.js require()'s into one file
 	    	client: {
 		    	src: 'js/app.js', // From app.js...
@@ -74,6 +79,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-browserify');
 	grunt.loadNpmTasks('grunt-babel');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-open');
 	// Set the default task to running a server and watching files
-	grunt.registerTask('default', ['connect', 'watch']);
+	grunt.registerTask('default', ['connect', 'open', 'watch']);
 };
