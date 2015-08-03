@@ -70,12 +70,12 @@ module.exports = function(grunt) {
 		        }
 	        }
 	    },
-	    copy: {
+	    copy: { // Copy files to build folder
 	    	build: {
 	    		files: [
-	    			{expand: true, src: 'css/compiled.css', dest: 'build'},
-	    			{expand: true, src: 'js/bundle.min.js', dest: 'build'},
-	    			{expand: true, src: '*', dest: 'build', filter: 'isFile'}
+	    			{expand: true, src: 'css/compiled.css', dest: 'build'}, // Copy CSS
+	    			{expand: true, src: 'js/bundle.min.js', dest: 'build'}, // Copy JS
+	    			{expand: true, src: '*', dest: 'build', filter: 'isFile'} // Copy the rest
 	    		]
 	    	}
 	    }
