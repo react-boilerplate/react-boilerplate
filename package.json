@@ -4,7 +4,7 @@
   "description": "A basic setup for new React.js projects utilizing the Flux application architecture.",
   "dependencies": {
     "flux": "^2.0.0",
-    "react": "^0.12.0"
+    "react": "^0.13.0"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
