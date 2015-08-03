@@ -6,13 +6,17 @@ To deploy the app, all you need to upload is `index.html`, `js/bundle.min.js` an
 
 ## Setup
 
-1. Clone this repo using `git clone git@github.com:mxstbr/react-boilerplate`
+1. Clone this repo using `git clone git@github.com:mxstbr/react-boilerplate`.
 
-2. Run `npm install` to install the dependencies.
+2. Delete the existing git repository by running `rm -rf .git`.
 
-3. Run `grunt` to start the local web server.
+3. Initialize a new git repository with `git init`, `git add .` and `git commit -m "Initial commit"`.
 
-4. Go to `http://localhost:8000` and you should see the app running!
+4. Run `npm install` to install the dependencies.
+
+5. Run `grunt` to start the local web server.
+
+6. Go to `http://localhost:8000` and you should see the app running!
 
 ## CSS Structure
 
