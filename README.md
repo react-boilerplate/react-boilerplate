@@ -18,6 +18,14 @@ To deploy the app, all you need to upload is `index.html`, `js/bundle.min.js` an
 
 6. Go to `http://localhost:8000` and you should see the app running!
 
+## Deploying
+
+Deploying in two simple steps:
+
+1. Run `grunt build`.
+
+2. Upload contents of the `build` folder to your webserver.
+
 ## CSS Structure
 
 The CSS modules found in the `css` subfolders all get imported into the `main.css` file, which get inlined and minified into the `compiled.css` file. To add/change the styling, either write the CSS into the appropriate module or make a new one and `@import` it in the `main.css` file at the appropriate place.

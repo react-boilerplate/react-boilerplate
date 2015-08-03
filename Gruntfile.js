@@ -69,6 +69,15 @@ module.exports = function(grunt) {
 		            'js/bundle.min.js': ['js/bundle.js'] // Transform bundle.js into bundle.min.js
 		        }
 	        }
+	    },
+	    copy: {
+	    	build: {
+	    		files: [
+	    			{expand: true, src: 'css/compiled.css', dest: 'build'},
+	    			{expand: true, src: 'js/bundle.min.js', dest: 'build'},
+	    			{expand: true, src: '*', dest: 'build', filter: 'isFile'}
+	    		]
+	    	}
 	    }
 	});
 
@@ -80,6 +89,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-babel');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-open');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 	// Set the default task to running a server and watching files
 	grunt.registerTask('default', ['connect', 'open', 'watch']);
+	grunt.registerTask('build', ['postcss', 'browserify', 'uglify', 'copy:build']);
 };
