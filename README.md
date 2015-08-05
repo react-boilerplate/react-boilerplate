@@ -1,6 +1,6 @@
 # React.js Boilerplate
 
-Quick setup for new React.js projects utilizing the Flux application architecture. It uses the Grunt task runner for PostCSS and browserify, which compile and minify all the CSS and JS automatically when you change something.
+Quick setup for new React.js projects utilizing the Redux application architecture. It uses the Grunt task runner for PostCSS and browserify, which compile and minify all the CSS and JS automatically when you change something.
 
 To deploy the app, all you need to upload is `index.html`, `js/bundle.min.js` and `css/compiled.css`.
 
@@ -68,7 +68,7 @@ Assuming they are `require()`'d somewhere, the JS files found in the `js` subfol
 
 ### Folder Structure
 
-The folder structure of the JS files reflects the Flux methodology, so if you have worked with Flux before you will know what they are for. 
+The folder structure of the JS files reflects the [Redux](https://github.com/gaearon/redux) methodology, which is an evolution of the ideas of Flux.
 
 * `actions`: Actions get dispatched with this/these utility module(s)
 
@@ -76,11 +76,7 @@ The folder structure of the JS files reflects the Flux methodology, so if you ha
 
 * `constants`: Actions need to be defined in this/these utility module(s).
 
-* `dispatcher`: Action Dispatchers live in this folder.
-
-* `stores`: The stores your app uses, actions get registered and data changes here.
-
-* `utils`: Miscellany functions used in several modules are defined here. E.g. `getFileSize()`
+* `reducers`: Reducers manage the state of an app. For a better introduction to reducers and Redux, watch [this talk](https://www.youtube.com/watch?v=xsSnOQynTHs) by @gaearon.
 
 ## License
 
