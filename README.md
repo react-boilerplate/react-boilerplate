@@ -42,6 +42,8 @@ The boilerplate uses PostCSS, and includes a few plugins by default:
 
 * `cssnano`: Optimizes your CSS file. For a full list of optimizations check [the offical website](http://cssnano.co/optimisations/).
 
+* `postcss-reporter`: Makes warnings by the above plugins visible in the console.
+
 For a full, searchable catalog of plugins you can include go to [postcss.parts](http://postcss.parts).
 
 ### Folder Structure

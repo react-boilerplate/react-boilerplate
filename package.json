@@ -19,6 +19,7 @@
     "grunt-open": "^0.2.3",
     "grunt-postcss": "^0.5.5",
     "postcss-import": "^6.2.0",
+    "postcss-reporter": "^0.4.0",
     "postcss-simple-vars": "^0.3.0",
     "reactify": "^0.15"
   },
