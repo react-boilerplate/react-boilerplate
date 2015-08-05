@@ -1,7 +1,11 @@
 {
-  	"extends": "airbnb",
+  	"extends": "./node_modules/eslint-config-airbnb/.eslintrc",
   	"ecmaFeatures": {
       	"forOf": true,
-      	"jsx": true
+      	"jsx": true,
+      	"es6": true
   	},
+  	"rules": {
+  		"comma-dangle": 0
+  	}
 }
