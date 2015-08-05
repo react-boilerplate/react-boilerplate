@@ -34,9 +34,11 @@ The CSS modules found in the `css` subfolders all get imported into the `main.cs
 
 The boilerplate uses PostCSS, and includes a few plugins by default:
 
-* `postcss-import`: Inlines @imported stylesheets to create one big stylesheet.
+* `postcss-import`: Inlines `@import`ed stylesheets to create one big stylesheet.
 
 * `postcss-simple-vars`: Makes it possible to use $variables in your CSS.
+
+* `postcss-focus`: Adds a `:focus` selector to every `:hover`.
 
 * `autoprefixer-core`: Prefixes your CSS automatically, supporting the last two versions of all major browsers, 99%+ of users and IE 8.
 

@@ -18,6 +18,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-open": "^0.2.3",
     "grunt-postcss": "^0.5.5",
+    "postcss-focus": "^0.1.1",
     "postcss-import": "^6.2.0",
     "postcss-reporter": "^0.4.0",
     "postcss-simple-vars": "^0.3.0",
