@@ -6,5 +6,6 @@ node_modules
 *.md
 *.json
 *.css
-webpack.config.js
+config.js
 server.js
+*.config.js

@@ -1,15 +1,20 @@
-import { DEFAULT_ACTION } from '../constants/AppConstants';
+import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from '../constants/AppConstants';
 import assign from 'react/lib/Object.assign';
 
 const initialState = {
-  someVariable: true
+  projectName: 'React.js Boilerplate',
+  ownerName: 'mxstbr'
 };
 
-export function defaultApp(state = initialState, action) {
+export function homeReducer(state = initialState, action) {
   switch (action.type) {
-  case DEFAULT_ACTION:
+  case CHANGE_OWNER_NAME:
     return assign({}, state, {
-      someVariable: action.elem
+      ownerName: action.name
+    });
+  case CHANGE_PROJECT_NAME:
+    return assign({}, state, {
+      projectName: action.name
     });
   default:
     return state;

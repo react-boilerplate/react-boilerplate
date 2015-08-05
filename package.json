@@ -1,11 +1,12 @@
 {
   "name": "reactjs-boilerplate",
-  "version": "1.1.0",
-  "description": "A basic setup for new React.js projects utilizing the Flux application architecture.",
+  "version": "2.0.0",
+  "description": "Quick setup for new React.js applications featuring Redux, hot–reloading, PostCSS, react-router and Mocha.",
   "dependencies": {
     "flux": "^2.0.0",
     "react": "^0.13.0",
     "react-redux": "^0.2.2",
+    "react-router": "^1.0.0-beta3",
     "redux": "^1.0.0-rc"
   },
   "devDependencies": {
@@ -18,6 +19,10 @@
     "eslint": "^1.0.0",
     "eslint-config-airbnb": "0.0.7",
     "eslint-plugin-react": "^3.2.0",
+    "expect": "^1.8.0",
+    "file-loader": "^0.8.4",
+    "html-webpack-plugin": "^1.6.1",
+    "mocha": "^2.2.5",
     "postcss-focus": "^0.1.1",
     "postcss-import": "^6.2.0",
     "postcss-loader": "^0.5.1",
@@ -33,7 +38,9 @@
     "url": "git://github.com/mxstbr/react-boilerplate.git"
   },
   "scripts": {
-    "start": "node server.js"
+    "test": "mocha --compilers js:babel/register --recursive",
+    "start": "node server.js",
+    "build": "webpack --config webpack.build.config.js --progress --colors -p"
   },
   "author": "Max Stoiber",
   "license": "MIT"
