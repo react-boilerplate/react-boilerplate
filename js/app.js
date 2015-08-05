@@ -1,7 +1,14 @@
-window.React = require('react');
-var App = require('./components/App.react');
+import React from 'react';
+import App from './components/App.react';
+import { combineReducers, createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { defaultApp } from './reducers/reducers';
+
+let store = createStore(defaultApp);
 
 React.render(
-	<App />,
+	<Provider store={store}>
+		{() => <App />}
+	</Provider>,
 	document.getElementById('app')
 );

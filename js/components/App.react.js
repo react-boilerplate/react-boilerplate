@@ -1,25 +1,29 @@
-var AppStore = require('../stores/AppStore');
-var AppActions = require('../actions/AppActions');
+import AppStore from '../stores/AppStore';
+import { defaultAction } from '../actions/AppActions';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-var App = React.createClass({
-	getInitialState: function() {
-		return AppStore.getData();
-	},
-	componentDidMount: function() {
-		AppStore.addChangeListener(this._onChange);
-	},
-	componentWillUnmount: function() {
-		AppStore.removeChangeListener(this._onChange);
-	},
-	render: function() {
-		AppActions.defaultAction(false);
+class App extends Component {
+	render() {
+		const { dispatch, someVariable } = this.props;
 		return(
-			<h1>Hello World! Default: { this.state.default.toString() }</h1>
+			<div>
+				<h1>Hello World! someVariable: { someVariable.toString() }</h1>
+				<button onClick={() => dispatch(defaultAction(!someVariable))} >
+					Toggle someVariable
+				</button>
+			</div>
 		);
-	},
-	_onChange: function() {
-	    this.setState(AppStore.getData());
 	}
-});
+}
 
-module.exports = App;
+// Which props do we want to inject, given the global state?
+// Note: use https://github.com/faassen/reselect for better performance.
+function select(state) {
+  return {
+    someVariable: state.someVariable
+  };
+}
+
+// Wrap the component to inject dispatch and state into it
+export default connect(select)(App);

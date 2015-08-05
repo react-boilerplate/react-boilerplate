@@ -66,7 +66,10 @@ module.exports = function(grunt) {
 		    	dest: 'js/bundle.js', // ...to bundle.js.
 		    },
 	    	options: {
-	    		transform: ['reactify'] // Transform JSX into normal JS
+	    		transform: [
+	    			'babelify',	// Transform ES6 to ES5...
+	    			'reactify'	// ...and JSX into normal JS
+	    		]
 	    	}
 	    },
 	    uglify: { // Optimize the JS file, for a full list of things UglifyJS does look here: http://lisperator.net/uglifyjs/compress
@@ -98,5 +101,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	// Set the default task to running a server and watching files
 	grunt.registerTask('default', ['connect', 'open', 'watch']);
+	grunt.registerTask('scripts', ['browserify', 'uglify']); // Convenience debugging task
 	grunt.registerTask('build', ['postcss', 'browserify', 'uglify', 'copy:build']);
 };

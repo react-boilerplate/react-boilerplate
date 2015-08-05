@@ -1,13 +1,5 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var AppConstants = require('../constants/AppConstants');
+import { DEFAULT_ACTION } from '../constants/AppConstants';
 
-var AppActions = {
-	defaultAction: function(elem) {
-		AppDispatcher.handleAction({
-			actionType: AppConstants.DEFAULT_ACTION,
-			elem: elem
-		});
-	}
-};
-
-module.exports = AppActions;
+export function defaultAction(elem) {
+  	return { type: DEFAULT_ACTION, elem };
+}
