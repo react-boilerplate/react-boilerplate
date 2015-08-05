@@ -1,4 +1,3 @@
-import AppStore from '../stores/AppStore';
 import { defaultAction } from '../actions/AppActions';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
