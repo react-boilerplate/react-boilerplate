@@ -40,7 +40,7 @@ The boilerplate uses PostCSS, and includes a few plugins by default:
 
 * `postcss-focus`: Adds a `:focus` selector to every `:hover`.
 
-* `autoprefixer-core`: Prefixes your CSS automatically, supporting the last two versions of all major browsers, 99%+ of users and IE 8.
+* `autoprefixer-core`: Prefixes your CSS automatically, supporting the last two versions of all major browsers and IE 8 and up.
 
 * `cssnano`: Optimizes your CSS file. For a full list of optimizations check [the offical website](http://cssnano.co/optimisations/).
 
