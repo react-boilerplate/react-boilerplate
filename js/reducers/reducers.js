@@ -1,5 +1,5 @@
 import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from '../constants/AppConstants';
-import assign from 'react/lib/Object.assign';
+const assign = Object.assign || require('object.assign');
 
 const initialState = {
   projectName: 'React.js Boilerplate',

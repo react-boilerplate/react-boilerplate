@@ -23,6 +23,7 @@
     "file-loader": "^0.8.4",
     "html-webpack-plugin": "^1.6.1",
     "mocha": "^2.2.5",
+    "object.assign": "^3.0.1",
     "postcss-focus": "^0.1.1",
     "postcss-import": "^6.2.0",
     "postcss-loader": "^0.5.1",
