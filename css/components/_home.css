@@ -14,6 +14,14 @@
 	text-align: center;
 }
 
+.btn {
+	background-color: skyblue;
+	padding: 0.5em;
+	color: #FEFEFE;
+	border-radius: 3px;
+	text-decoration: none;
+}
+
 .logo {
 	max-height: 5em;
 	margin: 0 auto;
