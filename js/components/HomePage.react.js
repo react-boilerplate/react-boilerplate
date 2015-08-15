@@ -8,7 +8,7 @@ class HomePage extends Component {
     const { dispatch, projectName, ownerName } = this.props;
     return (
 			<div className="wrapper">
-        <img className="logo" src={require('file!../../img/logo.png')} />
+        <img className="logo" src={require('../../img/logo.png')} />
 				<h1>Hello World!</h1>
         <h2>This is the demo for the <span className="home__text--red">{ projectName }</span> by <a href={'https://twitter.com/' + ownerName} >@{ ownerName }</a></h2>
         <label className="home__label">Change to your project name:

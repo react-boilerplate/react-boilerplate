@@ -20,6 +20,9 @@ module.exports = {
     	}, {
         test:   /\.css$/, // Transform all .css files required somewhere within an entry point...
         loader: "style-loader!css-loader!postcss-loader" // ...with PostCSS
+      }, {
+        test: /\.jpe?g$|\.gif$|\.png$/i,
+        loader: "url-loader?limit=10000"
       }
     ]
 	},

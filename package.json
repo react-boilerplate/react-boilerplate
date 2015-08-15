@@ -1,13 +1,13 @@
 {
   "name": "reactjs-boilerplate",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Quick setup for new React.js applications featuring Redux, hot–reloading, PostCSS, react-router and Mocha.",
   "dependencies": {
     "flux": "^2.0.0",
     "react": "^0.13.0",
     "react-redux": "^0.2.2",
     "react-router": "^1.0.0-beta3",
-    "redux": "^1.0.0-rc"
+    "redux": "^1.0.0"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
@@ -33,6 +33,7 @@
     "postcss-simple-vars": "^0.3.0",
     "react-hot-loader": "^1.2.8",
     "style-loader": "^0.12.3",
+    "url-loader": "^0.5.6",
     "webpack": "^1.10.5",
     "webpack-dev-server": "^1.10.1"
   },
@@ -43,7 +44,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel/register --recursive",
     "start": "node server.js",
-    "build": "webpack --config webpack.build.config.js --progress --colors -p"
+    "build": "rm -rf build | webpack --config webpack.build.config.js --progress --colors -p"
   },
   "author": "Max Stoiber",
   "license": "MIT"
