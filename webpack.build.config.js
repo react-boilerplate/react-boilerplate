@@ -64,8 +64,7 @@ module.exports = {
         minifyCSS: true,
         minifyURLs: true
       }
-    }),
-    new webpack.NoErrorsPlugin() // No assets get emitted that throw errors
+    })
   ],
   target: "web", // Make web variables accessible to webpack, e.g. window
 }

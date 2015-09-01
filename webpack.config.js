@@ -45,8 +45,7 @@ module.exports = {
 		];
 	},
 	plugins: [
-		new webpack.HotModuleReplacementPlugin(), // Make hot loading work
-		new webpack.NoErrorsPlugin() // No assets get emitted that throw errors
+		new webpack.HotModuleReplacementPlugin() // Make hot loading work
 	],
 	target: "web", // Make web variables accessible to webpack, e.g. window
 	stats: false, // Don't show stats in the console
