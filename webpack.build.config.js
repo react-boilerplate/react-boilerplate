@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var AppCachePlugin = require('appcache-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -21,6 +22,9 @@ module.exports = {
       }, {
         test: /\.jpe?g$|\.gif$|\.png$/i,
         loader: "url-loader?limit=10000"
+      }, {
+        test: /\.json$/,
+        loader: "json-loader"
       }
     ]
   },
@@ -64,6 +68,9 @@ module.exports = {
         minifyCSS: true,
         minifyURLs: true
       }
+    }),
+    new AppCachePlugin({
+      cache: ['index.html', 'js/bundle.js', 'serviceworker.js']
     })
   ],
   target: "web", // Make web variables accessible to webpack, e.g. window

@@ -1,3 +1,6 @@
+import 'file?name=[name].[ext]!../serviceworker.js';
+import 'file?name=[name].[ext]!../manifest.json';
+
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/serviceworker.js').then(function(registration) {
     // Registration was successful

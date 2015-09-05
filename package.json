@@ -9,6 +9,7 @@
     "redux": "^2.0.0"
   },
   "devDependencies": {
+    "appcache-webpack-plugin": "^0.2.0",
     "autoprefixer": "^6.0.0",
     "babel": "^5.8.21",
     "babel-core": "^5.8.20",
@@ -22,6 +23,7 @@
     "expect": "^1.8.0",
     "file-loader": "^0.8.4",
     "html-webpack-plugin": "^1.6.1",
+    "json-loader": "^0.5.2",
     "mocha": "^2.2.5",
     "object.assign": "^4.0.1",
     "postcss-focus": "^1.0.0",
