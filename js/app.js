@@ -1,3 +1,15 @@
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/serviceworker.js').then(function(registration) {
+    // Registration was successful
+    console.log('ServiceWorker registration successful with scope: ',    registration.scope);
+  }).catch(function(err) {
+    // registration failed :(
+    console.log('ServiceWorker registration failed: ', err);
+  });
+} else {
+  console.log('No ServiceWorker support :-(');
+}
+
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';

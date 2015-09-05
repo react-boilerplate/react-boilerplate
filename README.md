@@ -1,6 +1,6 @@
 # React.js Boilerplate
 
-Quick setup for new React.js applications featuring Redux, hot–reloading, PostCSS, react-router and Mocha.
+Quick setup for new offline–first React.js applications featuring Redux, hot–reloading, PostCSS, react-router, ServiceWorker, AppCache and Mocha.
 
 -----
 
@@ -15,6 +15,8 @@ Quick setup for new React.js applications featuring Redux, hot–reloading, Post
 - **Unit tests** should be an important part of every web application developers toolchain. [Mocha](https://github.com/mochajs/mocha) checks your application is working exactly how it should without you lifting a single finger. Congratulations, you just won a First Class ticket to world domaination, fasten your seat belt please!
 
 - [**react-router**](https://github.com/rackt/react-router) is used for routing in this boilerplate. Using the new, and currently unreleased, `1.0` version, react-router makes routing really easy to do and takes care of a lot of the work. Since the version is not officially out yet, the [documentation](https://github.com/rackt/react-router/blob/master/doc/00%20Guides/0%20Overview.md) is not fully finished, but by far finished enough to work for most needs.
+
+- [ServiceWorker](http://www.html5rocks.com/en/tutorials/service-worker/introduction/) and [AppCache](http://www.html5rocks.com/en/tutorials/appcache/beginner/) make it possible to use your application offline. As soon as the website has been opened once, it is cached and available without a network connection. [`manifest.json`](https://developer.chrome.com/multidevice/android/installtohomescreen) is specifically for Chrome on Android. Users can add the website to the homescreen and use it like a native app!
 
 ## Getting started
 
@@ -97,6 +99,10 @@ The folder structure of the JS files reflects how [Redux](https://github.com/gae
 ## Testing
 
 Unit tests live in the `test` directory, and are run with `npm test`. There are two files in there already, testing that the current AppActions and Reducers are working correctly. Should you be stuck and have no idea what is going on check out the official [Mocha documentation](http://mochajs.org)!
+
+## Offline usage
+
+To cache a file for offline use, add it to `app.appcache` and to the `urlsToCache` variable in the `serviceworker.js` file.
 
 ## License
 
