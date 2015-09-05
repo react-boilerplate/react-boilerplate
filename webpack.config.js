@@ -8,9 +8,8 @@ module.exports = {
 		path.resolve(__dirname, 'js/app.js') // Start with js/app.js...
 	],
 	output: { // ...and compile it into js/bundle.js
-		path: path.resolve(__dirname, 'js/'),
-    filename: "bundle.js",
-    publicPath: '/js/'
+		path: path.resolve(__dirname, 'build'),
+        filename: "js/bundle.js"
 	},
 	module: {
     loaders: [{
