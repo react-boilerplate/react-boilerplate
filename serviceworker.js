@@ -16,11 +16,12 @@ self.addEventListener('install', function(event) {
       });
 });
 
+// Set the callback when the files get fetched
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.match(event.request)
       .then(function(response) {
-        // Cache hit - return response
+        // Cached files available, return those
         if (response) {
           return response;
         }
@@ -31,9 +32,10 @@ self.addEventListener('fetch', function(event) {
         // to clone the response
         var fetchRequest = event.request.clone();
 
+        // Start request again since there are no files in the cache
         return fetch(fetchRequest).then(
           function(response) {
-            // Check if we received a valid response
+            // If response is invalid, throw error
             if(!response || response.status !== 200 || response.type !== 'basic') {
               return response;
             }
@@ -44,11 +46,13 @@ self.addEventListener('fetch', function(event) {
             // to clone it so we have 2 stream.
             var responseToCache = response.clone();
 
+            // Otherwise cache the downloaded files
             caches.open(CACHE_NAME)
               .then(function(cache) {
                 cache.put(event.request, responseToCache);
               });
 
+            // And return the network response
             return response;
           }
         );
