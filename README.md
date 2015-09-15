@@ -1,6 +1,6 @@
 # React.js Boilerplate
 
-Quick setup for new offline–first React.js applications featuring Redux, hot–reloading, PostCSS, react-router, ServiceWorker, AppCache and Mocha.
+Quick setup for new performance orientated, offline–first React.js applications featuring Redux, hot–reloading, PostCSS, react-router, ServiceWorker, AppCache, FontFaceObserver and Mocha.
 
 -----
 
@@ -98,9 +98,31 @@ The folder structure of the JS files reflects how [Redux](https://github.com/gae
 
 Unit tests live in the `test` directory, and are run with `npm test`. There are two files in there already, testing that the current AppActions and Reducers are working correctly. Should you be stuck and have no idea what is going on check out the official [Mocha documentation](http://mochajs.org)!
 
-## Offline usage
+## Opinionated features
 
-To cache a file for offline use, add it to `cache` variable of the `AppCachePlugin` in `webpack.build.config.js` and to the `urlsToCache` variable in the `serviceworker.js` file.
+### Web Fonts
+
+If you simply use web fonts in your project, the page will stay blank until these fonts are downloaded. That means a lot of waiting time in which users could already read the content.
+
+[FontFaceObserver](https://github.com/bramstein/fontfaceobserver) adds a `js-<font-name>-loaded` class to the `body` when the fonts have loaded. You should specify an initial `font-family` with save fonts, and a `.js-<font-name>-loaded` `font-family` which includes your web font.
+
+#### Adding a new font
+
+1. Add the `@font-face` declaration to `base/_fonts.css`.
+
+2. In `base/_base.css`, specify your initial `font-family` in the `body` tag with only save fonts. In the `body.js-<font-name>-loaded` tag, specify your `font-family` stack with your web font.
+
+3. In `js/app.js` add a `<font-name>Observer` for your font.
+
+### Offline access
+
+Using a `ServiceWorker` and the `App Cache`, your application is cached for offline usage. TO cache a file, add it to `cache` variable of the `AppCachePlugin` in `webpack.build.config.js` and to the `urlsToCache` variable in the `serviceworker.js` file.
+
+### Add To Homescreen
+
+On Chrome for Android (soon hopefully more browsers), users can add a webpage to the homescreen. Combined with offline caching, this means your web app can be used exactly like a native application.
+
+The name and icon to be displayed are set in the `manifest.json` file. Change them to your project name and icon, and try it!
 
 ## License
 
