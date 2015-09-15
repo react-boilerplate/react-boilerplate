@@ -27,7 +27,6 @@
     "mocha": "^2.3.2",
     "object.assign": "^4.0.1",
     "postcss-focus": "^1.0.0",
-    "postcss-font-magician": "^1.3.0",
     "postcss-import": "^7.0.0",
     "postcss-loader": "^0.6.0",
     "postcss-reporter": "^1.2.1",

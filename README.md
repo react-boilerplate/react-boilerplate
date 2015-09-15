@@ -56,8 +56,6 @@ The boilerplate uses PostCSS, and includes a few plugins by default:
 
 * `postcss-focus`: Adds a `:focus` selector to every `:hover`.
 
-* `postcss-font-magician`: Magically adds a `@font-face` declaration for fonts mentioned somewhere in the CSS. For a list of supported fonts see the [github page](https://github.com/jonathantneal/postcss-font-magician)!
-
 * `autoprefixer-core`: Prefixes your CSS automatically, supporting the last two versions of all major browsers and IE 8 and up.
 
 * `cssnano`: Optimizes your CSS file. For a full list of optimizations check [the offical website](http://cssnano.co/optimisations/).
