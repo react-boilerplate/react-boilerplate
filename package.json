@@ -45,8 +45,8 @@
   },
   "scripts": {
     "test": "mocha --compilers js:babel/register --recursive",
-    "start": "node server.js",
-    "build": "rm -rf build | webpack --config webpack.build.config.js --progress --colors -p"
+    "start": "NODE_ENV=development && node server.js",
+    "build": "rm -rf build && NODE_ENV=production && webpack --config webpack.prod.config.js --progress --colors -p"
   },
   "author": "Max Stoiber",
   "license": "MIT"
