@@ -102,7 +102,7 @@ Unit tests live in the `test` directory, and are run with `npm test`. There are 
 
 ## Offline usage
 
-To cache a file for offline use, add it to `app.appcache` and to the `urlsToCache` variable in the `serviceworker.js` file.
+To cache a file for offline use, add it to `cache` variable of the `AppCachePlugin` in `webpack.build.config.js` and to the `urlsToCache` variable in the `serviceworker.js` file.
 
 ## License
 
