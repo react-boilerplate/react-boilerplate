@@ -16,7 +16,7 @@ Quick setup for new performance orientated, offline–first React.js application
 
 - [**react-router**](https://github.com/rackt/react-router) is used for routing in this boilerplate. Using the new, and currently unreleased, `1.0` version, react-router makes routing really easy to do and takes care of a lot of the work. Since the version is not officially out yet, the [documentation](https://github.com/rackt/react-router/blob/master/doc/00%20Guides/0%20Overview.md) is not fully finished, but by far finished enough to work for most needs.
 
-- [ServiceWorker](http://www.html5rocks.com/en/tutorials/service-worker/introduction/) and [AppCache](http://www.html5rocks.com/en/tutorials/appcache/beginner/) make it possible to use your application offline. As soon as the website has been opened once, it is cached and available without a network connection. [`manifest.json`](https://developer.chrome.com/multidevice/android/installtohomescreen) is specifically for Chrome on Android. Users can add the website to the homescreen and use it like a native app!
+- [**ServiceWorker**](http://www.html5rocks.com/en/tutorials/service-worker/introduction/) and [**AppCache**](http://www.html5rocks.com/en/tutorials/appcache/beginner/) make it possible to use your application offline. As soon as the website has been opened once, it is cached and available without a network connection. [**`manifest.json`**](https://developer.chrome.com/multidevice/android/installtohomescreen) is specifically for Chrome on Android. Users can add the website to the homescreen and use it like a native app!
 
 ## Getting started
 
@@ -123,6 +123,30 @@ Using a `ServiceWorker` and the `App Cache`, your application is cached for offl
 On Chrome for Android (soon hopefully more browsers), users can add a webpage to the homescreen. Combined with offline caching, this means your web app can be used exactly like a native application.
 
 The name and icon to be displayed are set in the `manifest.json` file. Change them to your project name and icon, and try it!
+
+## Gotchas
+
+These are some things to be aware of when using this boilerplate.
+
+### Images in the HTML file(s)
+
+Adding images to the HTML is a bit of a pain right now as webpack only goes through the JavaScript file. Add the image to your HTML file how you always would:
+
+```HTML
+<!-- Normal Image -->
+<img src="img/yourimg.png" />
+<!-- Meta tags -->
+<meta property="og:image" content="img/yourimg.png" />
+<!-- ... -->
+```
+
+If you simply do this, webpack will not transfer the images to the build folder. To get webpack to transfer them, you have to import them with the file loader in your JavaScript somewhere, e.g.:
+
+```JavaScript
+import 'file?name=[name].[ext]!../img/yourimg.png';
+```
+
+Then webpack will correctly transfer the image to the build folder.
 
 ## License
 
