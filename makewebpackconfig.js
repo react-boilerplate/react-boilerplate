@@ -50,7 +50,7 @@ module.exports = function(options) {
       path.resolve(__dirname, 'js/app.js') // Start with js/app.js...
     ];
     // Add react-hot loader for js files
-    jsLoaders = ['react-hot', 'babel'];
+    jsLoaders = ['babel'];
     // Only plugin is the hot module replacement plugin
     plugins = [
       new webpack.HotModuleReplacementPlugin() // Make hot loading work
