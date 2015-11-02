@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var AppCachePlugin = require('appcache-webpack-plugin');
 
 module.exports = function(options) {
-  var entry, jsLoaders, plugins;
+  var entry, jsLoaders, plugins, cssLoaders;
 
   // If production is true
   if (options.prod) {
@@ -12,8 +12,7 @@ module.exports = function(options) {
     entry = [
       path.resolve(__dirname, 'js/app.js') // Start with js/app.js...
     ];
-    // Loaders for JS
-    jsLoaders = ['babel'];
+    cssLoaders = ['file-loader?name=[path][name].[ext]', 'postcss-loader'];
     // Plugins
     plugins = [// Plugins for Webpack
       new webpack.optimize.UglifyJsPlugin({ // Optimize the JavaScript...
@@ -49,8 +48,7 @@ module.exports = function(options) {
       "webpack/hot/only-dev-server", // See above
       path.resolve(__dirname, 'js/app.js') // Start with js/app.js...
     ];
-    // Add react-hot loader for js files
-    jsLoaders = ['babel'];
+    cssLoaders = ['style-loader', 'css-loader', 'postcss-loader'];
     // Only plugin is the hot module replacement plugin
     plugins = [
       new webpack.HotModuleReplacementPlugin() // Make hot loading work
@@ -66,11 +64,11 @@ module.exports = function(options) {
     module: {
       loaders: [{
           test: /\.js$/, // Transform all .js files required somewhere within an entry point...
-          loaders: jsLoaders, // ...with the specified loaders...
+          loader: 'babel', // ...with the specified loaders...
           exclude: path.join(__dirname, '/node_modules/') // ...except for the node_modules folder.
         }, {
           test:   /\.css$/, // Transform all .css files required somewhere within an entry point...
-          loader: "style-loader!css-loader!postcss-loader" // ...with PostCSS
+          loaders: cssLoaders // ...with PostCSS
         }, {
           test: /\.jpe?g$|\.gif$|\.png$/i,
           loader: "url-loader?limit=10000"
