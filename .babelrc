@@ -6,7 +6,7 @@
   "extra": {
     // must be defined and be an array
     "react-transform": [{
-      "target": "react-transform-webpack-hmr",
+      "target": "react-transform-hmr",
       // if you use React Native, pass "react-native" instead:
       "imports": ["react"],
       // this is important for Webpack HMR:
