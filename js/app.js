@@ -24,6 +24,7 @@ openSansObserver.check().then(() => {
 });
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { homeReducer } from './reducers/reducers';
@@ -37,7 +38,7 @@ import '../css/main.css';
 
 const store = createStore(homeReducer);
 
-React.render(
+ReactDOM.render(
   <Provider store={store}>
     {() =>
       <Router history={createHistory()}>

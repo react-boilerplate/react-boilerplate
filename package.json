@@ -5,7 +5,8 @@
   "dependencies": {
     "fontfaceobserver": "^1.5.1",
     "history": "^1.9.1",
-    "react": "^0.13.3",
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
     "react-redux": "^2.1.2",
     "react-router": "^1.0.0-rc1",
     "redux": "^3.0.0"
