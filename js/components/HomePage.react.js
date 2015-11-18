@@ -13,10 +13,10 @@ class HomePage extends Component {
 				<h1>Hello World!</h1>
         <h2>This is the demo for the <span className="home__text--red">{ projectName }</span> by <a href={'https://twitter.com/' + ownerName} >@{ ownerName }</a></h2>
         <label className="home__label">Change to your project name:
-				  <input className="home__input" type="text" onChange={(evt) => { dispatch(changeProjectName(evt.target.value)); }} defaultValue="React.js Boilerplate" placeholder="React.js Boilerplate" />
+				  <input className="home__input" type="text" onChange={(evt) => { dispatch(changeProjectName(evt.target.value)); }} defaultValue="React.js Boilerplate" placeholder={projectName} />
         </label>
         <label className="home__label">Change to your name:
-          <input className="home__input" type="text" onChange={(evt) => { dispatch(changeOwnerName(evt.target.value)); }} defaultValue="mxstbr" placeholder="mxstbr" />
+          <input className="home__input" type="text" onChange={(evt) => { dispatch(changeOwnerName(evt.target.value)); }} defaultValue="mxstbr" placeholder={projectName} />
         </label>
         <Link className="btn" to="/readme">Setup</Link>
 			</div>
