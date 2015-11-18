@@ -40,12 +40,10 @@ const store = createStore(homeReducer);
 
 ReactDOM.render(
   <Provider store={store}>
-    {() =>
-      <Router history={createHistory()}>
-        <Route path="/" component={HomePage} />
-        <Route path="/readme" component={ReadmePage} />
-      </Router>
-    }
+    <Router history={createHistory()}>
+      <Route path="/" component={HomePage} />
+      <Route path="/readme" component={ReadmePage} />
+    </Router>
   </Provider>,
   document.getElementById('app')
 );
