@@ -25,7 +25,8 @@ openSansObserver.check().then(() => {
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { homeReducer } from './reducers/reducers';
 import { Router, Route } from 'react-router';
@@ -36,7 +37,9 @@ import ReadmePage from './components/ReadmePage.react';
 
 import '../css/main.css';
 
-const store = createStore(homeReducer);
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+
+const store = createStoreWithMiddleware(homeReducer);
 
 ReactDOM.render(
   <Provider store={store}>
