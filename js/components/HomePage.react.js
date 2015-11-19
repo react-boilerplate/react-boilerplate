@@ -11,7 +11,8 @@ import Logo from '../../img/logo.png';
 
 class HomePage extends Component {
 	render() {
-    const { dispatch, projectName, ownerName } = this.props;
+    const dispatch = this.props.dispatch;
+    const { projectName, ownerName } = this.props.data;
     return (
 			<div className="wrapper">
         <img className="logo" src={Logo} />
@@ -34,8 +35,7 @@ class HomePage extends Component {
 // Which props do we want to inject, given the global state?
 function select(state) {
   return {
-    ownerName: state.ownerName,
-    projectName: state.projectName
+    data: state
   };
 }
 
