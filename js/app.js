@@ -3,6 +3,7 @@ import 'file?name=[name].[ext]!../serviceworker-cache-polyfill.js';
 import 'file?name=[name].[ext]!../manifest.json';
 import 'fontfaceobserver/fontfaceobserver.js';
 
+// Check for ServiceWorker support before trying to install it
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/serviceworker.js').then(() => {
     // Registration was successful
@@ -23,6 +24,7 @@ openSansObserver.check().then(() => {
   document.body.classList.remove('js-open-sans-loaded');
 });
 
+// Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
@@ -32,15 +34,21 @@ import { homeReducer } from './reducers/reducers';
 import { Router, Route } from 'react-router';
 import createHistory from 'history/lib/createBrowserHistory';
 
+// Import the custom components
 import HomePage from './components/HomePage.react';
 import ReadmePage from './components/ReadmePage.react';
 
+// Import the CSS file, which webpack transfers to the build folder
 import '../css/main.css';
 
+// Creates the Redux reducer with the redux-thunk middleware, which allows us
+// to do asynchronous stuff in the actions
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-
 const store = createStoreWithMiddleware(homeReducer);
 
+// Provider: Redux
+// Router: redux-router
+// HomePage/ReadmePage: Custom Components, see js/components folder
 ReactDOM.render(
   <Provider store={store}>
     <Router history={createHistory()}>

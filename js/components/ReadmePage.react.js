@@ -1,3 +1,9 @@
+/*
+ * ReadmePage
+ *
+ * This is the page users see when they click the "Setup" button on the HomePage
+ */
+
 import React, { Component} from 'react';
 import { Link } from 'react-router';
 import Logo from '../../img/logo.png';

@@ -1,3 +1,8 @@
+/*
+ * HomePage
+ * This is the first thing users see of our App
+ */
+
 import { asyncChangeProjectName, asyncChangeOwnerName } from '../actions/AppActions';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -24,8 +29,9 @@ class HomePage extends Component {
   }
 }
 
+// REDUX STUFF
+
 // Which props do we want to inject, given the global state?
-// Note: use https://github.com/faassen/reselect for better performance.
 function select(state) {
   return {
     ownerName: state.ownerName,
