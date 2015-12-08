@@ -35,9 +35,7 @@ module.exports = function(options) {
           minifyURLs: true
         }
       }),
-      new AppCachePlugin({
-        cache: ['index.html', 'js/bundle.js', 'serviceworker.js']
-      })
+      new AppCachePlugin()
     ];
 
   // If app is in development
@@ -51,7 +49,8 @@ module.exports = function(options) {
     cssLoaders = ['style-loader', 'css-loader', 'postcss-loader'];
     // Only plugin is the hot module replacement plugin
     plugins = [
-      new webpack.HotModuleReplacementPlugin() // Make hot loading work
+      new webpack.HotModuleReplacementPlugin(), // Make hot loading work
+      new AppCachePlugin()
     ]
   }
 
