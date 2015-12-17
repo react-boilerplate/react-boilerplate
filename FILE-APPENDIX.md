@@ -27,5 +27,3 @@
 * `server.js`: The development server, which allows us to go to `localhost:3000` and see the application live. Also makes hot-reloading work.
 
 * `serviceworker.js`: The script that tells the serviceworker how to cache our files.
-
-  * `serviceworker-cache-polyfill.js`: A polyfill for the `ServiceWorker` cache, which isn't yet fully supported everywhere. (See [https://jakearchibald.com/2014/using-serviceworker-today/](here) for more information)
