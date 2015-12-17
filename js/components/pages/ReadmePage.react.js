@@ -9,8 +9,8 @@ import { Link } from 'react-router';
 
 export default class AboutPage extends Component {
 	render() {
-    return (
-    	<div>
+		return (
+			<div>
 				<h2>Further Setup</h2>
 				<p>Assuming you have already cloned the repo and ran all the commands from the README (otherwise you would not be here), these are the further steps:</p>
 
@@ -25,5 +25,5 @@ export default class AboutPage extends Component {
 				<Link className="btn" to="/">Home</Link>
 			</div>
 		);
-  }
+	}
 }

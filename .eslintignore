@@ -8,4 +8,5 @@ node_modules
 *.css
 config.js
 server.js
-*.config.js
+*config.js
+serviceworker.js

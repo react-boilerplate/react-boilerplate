@@ -13,34 +13,38 @@
  *    }
  * 3) (optional) Add an async function like this:
  *    export function asyncYourAction(var) {
- *        return function(dispatch) {
+ *        return (dispatch) => {
  *             // Do async stuff here
  *             return dispatch(yourAction(var));
- *        }
+ *        };
  *    }
  *
  *    If you add an async function, remove the export from the function
  *    created in the second step
  */
 
+// Disable the no-use-before-define eslint rule for this file
+// It makes more sense to have the asnyc actions before the non-async ones
+/* eslint-disable no-use-before-define */
+
 import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from '../constants/AppConstants';
 
 export function asyncChangeProjectName(name) {
-  return function(dispatch) {
+  return (dispatch) => {
     // You can do async stuff here!
     // API fetching, Animations,...
     // For more information as to how and why you would do this, check https://github.com/gaearon/redux-thunk
     return dispatch(changeProjectName(name));
-  }
+  };
 }
 
 export function asyncChangeOwnerName(name) {
-  return function(dispatch) {
+  return (dispatch) => {
     // You can do async stuff here!
     // API fetching, Animations,...
     // For more information as to how and why you would do this, check https://github.com/gaearon/redux-thunk
     return dispatch(changeOwnerName(name));
-  }
+  };
 }
 
 export function changeProjectName(name) {
