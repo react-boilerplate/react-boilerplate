@@ -11,7 +11,6 @@
 	<body>
 		<!-- The app hooks into this div -->
 		<div id="app"></div>
-		<!-- The JavaScript bundle -->
-		<script src="js/bundle.js"></script>
+		<!-- Due to the way webpack works, a lot of magic happens in this file. HtmlWebpackPlugin automatically includes all assets (e.g. bundle.js, main.css) with the correct HTML tags, which is why they are missing in this HTML file. Check out webpackconfig.js if you want to know more. -->
 	</body>
 </html>
