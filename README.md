@@ -42,6 +42,16 @@ Quick setup for new performance orientated, offline–first React.js application
 
 4. Profit!
 
+### Server Configuration
+
+#### Apache
+
+This boilerplate includes a `.htaccess` file that does two things:
+
+1. Redirect all traffic to HTTPS because ServiceWorker only works for encrypted traffic
+
+2. Rewrite all pages (e.g. yourdomain.com/subpage) to the `index.html` to let `react-router` take care of presenting the correct page
+
 ## CSS
 
 The CSS modules found in the `css` subfolders all get imported into the `main.css` file, which get inlined and minified into the `compiled.css` file. To add/change the styling, either write the CSS into the appropriate module or make a new one and `@import` it in the `main.css` file at the appropriate place.
