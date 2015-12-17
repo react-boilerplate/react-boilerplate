@@ -35,8 +35,9 @@ import { Router, Route } from 'react-router';
 import createHistory from 'history/lib/createBrowserHistory';
 
 // Import the custom components
-import HomePage from './components/HomePage.react';
-import ReadmePage from './components/ReadmePage.react';
+import HomePage from './components/pages/HomePage.react';
+import ReadmePage from './components/pages/ReadmePage.react';
+import App from './components/App.react';
 
 // Import the CSS file, which webpack transfers to the build folder
 import '../css/main.css';
@@ -52,8 +53,10 @@ const store = createStoreWithMiddleware(homeReducer);
 ReactDOM.render(
   <Provider store={store}>
     <Router history={createHistory()}>
-      <Route path="/" component={HomePage} />
-      <Route path="/readme" component={ReadmePage} />
+      <Route component={App}>
+        <Route path="/" component={HomePage} />
+        <Route path="/readme" component={ReadmePage} />
+      </Route>
     </Router>
   </Provider>,
   document.getElementById('app')
