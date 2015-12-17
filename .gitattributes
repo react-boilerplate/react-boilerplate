@@ -1,4 +1,4 @@
-# These settings are for any web project
+# From https://github.com/Danimoth/gitattributes/blob/master/Web.gitattributes
 
 # Handle line endings automatically for files detected as text
 # and leave all files detected as binary untouched.

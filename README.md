@@ -66,6 +66,10 @@ See the [`js` folder README](js/README.md) for more information about the JS str
 
 Unit tests live in the `test` directory, and are run with `npm test`. There are two files in there already, testing that the current AppActions and Reducers are working correctly. Should you be stuck and have no idea what is going on check out the official [Mocha documentation](http://mochajs.org)!
 
+## Files in the root folder
+
+For a full explanation of all files in the root folder, see [`FILE-APPENDIX.md`](FILE-APPENDIX.md).
+
 ## Opinionated features
 
 ### Web Fonts
