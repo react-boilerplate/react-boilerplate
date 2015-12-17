@@ -31,3 +31,5 @@ The boilerplate comes with a basic folder structure to keep the CSS files organi
 * `utils`: Utility files, e.g. variables, mixins, functions,...
 
 * `vendor`: External files, e.g. a CSS reset
+
+* `main.css`: All CSS files from the above directories are `@import`ed into this file and inlined with `postcss-import`.

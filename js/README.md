@@ -13,3 +13,5 @@ The folder structure of the JS files reflects how [Redux](https://github.com/gae
 * `constants`: Action constants need to be defined in this/these utility module(s)
 
 * `reducers`: Reducers manage the state of an app, basically a simplified implementation of Stores in Flux. For an introduction to reducers, watch [this talk](https://www.youtube.com/watch?v=xsSnOQynTHs) by @gaearon.
+
+* `app.js`: The entry point of the application. Mostly setup and boilerplate code. Routes are configured in the JSX here!

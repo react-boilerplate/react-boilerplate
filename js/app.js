@@ -1,7 +1,17 @@
+/**
+ *
+ * app.js
+ *
+ * This is the entry file for the application, mostly just setup and boilerplate
+ * code. Routes are configured at the end of this file!
+ *
+ */
+
+// Load the ServiceWorker, the Cache polyfill, the manifest.json file and the .htaccess file
 import 'file?name=[name].[ext]!../serviceworker.js';
 import 'file?name=[name].[ext]!../serviceworker-cache-polyfill.js';
 import 'file?name=[name].[ext]!../manifest.json';
-import FontFaceObserver from 'fontfaceobserver';
+import 'file?name=[name].[ext]!../.htaccess';
 
 // Check for ServiceWorker support before trying to install it
 if ('serviceWorker' in navigator) {
@@ -14,6 +24,17 @@ if ('serviceWorker' in navigator) {
   // No ServiceWorker Support
 }
 
+// Import all the third party stuff
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import { homeReducer } from './reducers/reducers';
+import { Router, Route } from 'react-router';
+import FontFaceObserver from 'fontfaceobserver';
+import createHistory from 'history/lib/createBrowserHistory';
+
 // Observer loading of Open Sans (to remove open sans, remove the <link> tag in the index.html file and this observer)
 const openSansObserver = new FontFaceObserver('Open Sans', {});
 
@@ -24,32 +45,21 @@ openSansObserver.check().then(() => {
   document.body.classList.remove('js-open-sans-loaded');
 });
 
-// Import all the third party stuff
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
-import { homeReducer } from './reducers/reducers';
-import { Router, Route } from 'react-router';
-import createHistory from 'history/lib/createBrowserHistory';
-
-// Import the custom components
+// Import the pages
 import HomePage from './components/pages/HomePage.react';
 import ReadmePage from './components/pages/ReadmePage.react';
 import App from './components/App.react';
 
-// Import the CSS file, which webpack transfers to the build folder
+// Import the CSS file, which HtmlWebpackPlugin transfers to the build folder
 import '../css/main.css';
 
 // Creates the Redux reducer with the redux-thunk middleware, which allows us
-// to do asynchronous stuff in the actions
+// to do asynchronous things in the actions
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(homeReducer);
 
-// Provider: Redux
-// Router: redux-router
-// HomePage/ReadmePage: Custom Components, see js/components folder
+// Mostly boilerplate, except for the Routes. These are the pages you can go to,
+// which are all wrapped in the App component, which contains the navigation etc
 ReactDOM.render(
   <Provider store={store}>
     <Router history={createHistory()}>
