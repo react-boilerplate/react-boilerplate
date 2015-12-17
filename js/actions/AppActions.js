@@ -43,10 +43,10 @@ export function asyncChangeOwnerName(name) {
   }
 }
 
-function changeProjectName(name) {
+export function changeProjectName(name) {
   return { type: CHANGE_PROJECT_NAME, name };
 }
 
-function changeOwnerName(name) {
+export function changeOwnerName(name) {
   return { type: CHANGE_OWNER_NAME, name };
 }
