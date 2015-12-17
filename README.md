@@ -38,10 +38,6 @@ Quick setup for new performance orientated, offline–first React.js application
 
 2. Upload the contents of the `build` folder to your web server.
 
-3. ?????? (You figure this part out)
-
-4. Profit!
-
 ### Server Configuration
 
 #### Apache
