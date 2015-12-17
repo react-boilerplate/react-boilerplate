@@ -1,5 +1,10 @@
 {
   	"extends": "./node_modules/eslint-config-airbnb/.eslintrc",
+    "env": {
+      "browser": true,
+      "node": true,
+      "mocha": true
+    },
   	"ecmaFeatures": {
       	"forOf": true,
       	"jsx": true,
