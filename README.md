@@ -72,11 +72,11 @@ Unit tests live in the `test` directory, and are run with `npm test`. There are 
 
 If you simply use web fonts in your project, the page will stay blank until these fonts are downloaded. That means a lot of waiting time in which users could already read the content.
 
-[FontFaceObserver](https://github.com/bramstein/fontfaceobserver) adds a `js-<font-name>-loaded` class to the `body` when the fonts have loaded. You should specify an initial `font-family` with save fonts, and a `.js-<font-name>-loaded` `font-family` which includes your web font. See [app.js](js/app.js#L17-L25), and [base.css](css/base/_base.css#L26-L32).
+[FontFaceObserver](https://github.com/bramstein/fontfaceobserver) adds a `js-<font-name>-loaded` class to the `body` when the fonts have loaded. You should specify an initial `font-family` with save fonts, and a `.js-<font-name>-loaded` `font-family` which includes your web font. See [app.js](js/app.js#L17-L25) and [base.css](css/base/_base.css#L26-L32).
 
 #### Adding a new font
 
-1. Add the `@font-face` declaration to `base/_fonts.css`.
+1. Either add the `@font-face` declaration to `base/_fonts.css` or add a `<link>` tag to the [`index.html`](index.html). (Don't forget to remove the `<link>` for Open Sans from the [`index.html`](index.html))
 
 2. In `base/_base.css`, specify your initial `font-family` in the `body` tag with only save fonts. In the `body.js-<font-name>-loaded` tag, specify your `font-family` stack with your web font.
 
@@ -84,7 +84,11 @@ If you simply use web fonts in your project, the page will stay blank until thes
 
 ### Offline access
 
-Using a `ServiceWorker` and the `App Cache`, your application is cached for offline usage. TO cache a file, add it to `cache` variable of the `AppCachePlugin` in `webpack.build.config.js` and to the `urlsToCache` variable in the `serviceworker.js` file.
+Using a `ServiceWorker` and the `App Cache`, your application is cached for offline usage.
+
+#### Cache a new file
+
+To cache a file, add it to the `urlsToCache` variable in the [`serviceworker.js`](serviceworker.js) file.
 
 ### Add To Homescreen
 
