@@ -54,7 +54,7 @@ The CSS modules found in the `css` subfolders all get imported into one big file
 
 To add/change styling, either add to an existing file or make a new one and `@import` it in the `main.css` file.
 
-See the [`css` folder README](css/README.md) for more information about the CSS structure.
+See the [`css` folder README](css/README.md) for more information about the PostCSS plugins used and the CSS structure.
 
 ## JS
 
@@ -72,7 +72,7 @@ Unit tests live in the `test` directory, and are run with `npm test`. There are 
 
 If you simply use web fonts in your project, the page will stay blank until these fonts are downloaded. That means a lot of waiting time in which users could already read the content.
 
-[FontFaceObserver](https://github.com/bramstein/fontfaceobserver) adds a `js-<font-name>-loaded` class to the `body` when the fonts have loaded. You should specify an initial `font-family` with save fonts, and a `.js-<font-name>-loaded` `font-family` which includes your web font.
+[FontFaceObserver](https://github.com/bramstein/fontfaceobserver) adds a `js-<font-name>-loaded` class to the `body` when the fonts have loaded. You should specify an initial `font-family` with save fonts, and a `.js-<font-name>-loaded` `font-family` which includes your web font. See [app.js](js/app.js#L18-L25) from line 18 onwards.
 
 #### Adding a new font
 
