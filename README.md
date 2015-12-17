@@ -54,57 +54,17 @@ This boilerplate includes a `.htaccess` file that does two things:
 
 ## CSS
 
-The CSS modules found in the `css` subfolders all get imported into the `main.css` file, which get inlined and minified into the `compiled.css` file. To add/change the styling, either write the CSS into the appropriate module or make a new one and `@import` it in the `main.css` file at the appropriate place.
+The CSS modules found in the `css` subfolders all get imported into one big file (`main.css`), which gets transpiled with PostCSS.
 
-### PostCSS Plugins
+To add/change styling, either add to an existing file or make a new one and `@import` it in the `main.css` file.
 
-The boilerplate uses PostCSS, and includes a few plugins by default:
-
-* `postcss-import`: Inlines `@import`ed stylesheets to create one big stylesheet.
-
-* `postcss-simple-vars`: Makes it possible to use `$variables in your CSS.
-
-* `postcss-focus`: Adds a `:focus` selector to every `:hover`.
-
-* `autoprefixer-core`: Prefixes your CSS automatically, supporting the last two versions of all major browsers and IE 8 and up.
-
-* `cssnano`: Optimizes your CSS file. For a full list of optimizations check [the offical website](http://cssnano.co/optimisations/).
-
-* `postcss-reporter`: Makes warnings by the above plugins visible in the console.
-
-For a full, searchable catalog of plugins go to [postcss.parts](http://postcss.parts).
-
-### Folder Structure
-
-The boilerplate comes with a basic folder structure to keep the CSS files organised. This is what the folders are for:
-
-* `base`: Global styling, e.g. setting the box–model for all elements
-
-* `components`: Component specific styling, e.g. buttons, modals,...
-
-* `layout`: Global layouts, e.g. article, homepage,...
-
-* `utils`: Utility files, e.g. variables, mixins, functions,...
-
-* `vendor`: External files, e.g. a CSS reset
+See the [`css` folder README](css/README.md) for more information about the CSS structure.
 
 ## JS
 
-All files that are `import`ed/`require`d somewhere get compiled into one big file at build time. (`build/bundle.js`) Webpack automatically optimizes your JavaScript with `UglifyJS`, so you do not have to worry about that.
+All files that are `import`ed/`require`d somewhere get compiled into one big file at build time. (`build/bundle.js`) Webpack automatically optimizes your JavaScript with `UglifyJS`, so you don't have to worry about that.
 
-### Folder Structure
-
-The folder structure of the JS files reflects how [Redux](https://github.com/gaearon/redux) works, so if you are not familiar with Redux check out the [official documentation](https://gaearon.github.io/redux/).
-
-* `actions`: Actions get dispatched with this/these utility module(s)
-
-* `components`: The main JS folder. All your React components should be in this folder, for big projects they might be grouped into seperate subfolders. E.g. a navigation component `Nav.react.js`
-
-* `components/pages`: Actual pages (routes) users can visit.
-
-* `constants`: Action constants need to be defined in this/these utility module(s)
-
-* `reducers`: Reducers manage the state of an app, basically a simplified implementation of Stores in Flux. For an introduction to reducers, watch [this talk](https://www.youtube.com/watch?v=xsSnOQynTHs) by @gaearon.
+See the [`js` folder README](js/README.md) for more information about the JS structure.
 
 ## Testing
 
