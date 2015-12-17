@@ -82,19 +82,35 @@ If you simply use web fonts in your project, the page will stay blank until thes
 
 3. In `js/app.js` add a `<font-name>Observer` for your font.
 
+#### Removing performant web font loading
+
+**Careful** about removing this, as perceived performance might be highly impacted.
+
+To remove `FontFaceObserver`, don't import it in [`app.js`](js/app.js) and remove it from the [`package.json`](package.json).
+
 ### Offline access
 
-Using a `ServiceWorker` and the `App Cache`, your application is cached for offline usage.
+Using a `ServiceWorker` and the `Application Cache`, your application is cached for offline usage.
 
 #### Cache a new file
 
 To cache a file, add it to the `urlsToCache` variable in the [`serviceworker.js`](serviceworker.js) file.
+
+#### Removing offline access
+
+**Careful** about removing this, as there is no real downside to having your application available when the users network connection isn't perfect.
+
+To remove offline capability, delete [`serviceworker.js`](serviceworker.js) and [`serviceworker-cache-polyfill.js`](serviceworker-cache-polyfill.js), don't import them in the [`app.js`](js/app.js), remove `AppCachePlugin` in [`makewebpackconfig.js`](makewebpackconfig.js) and remove the `manifest` attribute of the `<html>` tag in [`index.html`](index.html).
 
 ### Add To Homescreen
 
 On Chrome for Android (soon hopefully more browsers), users can add a webpage to the homescreen. Combined with offline caching, this means your web app can be used exactly like a native application.
 
 The name and icon to be displayed are set in the `manifest.json` file. Change them to your project name and icon, and try it!
+
+#### Removing add to homescreen functionality
+
+Delete [`manifest.json`](manifest.json) and remove the `<link rel="manifest" href="manifest.json">` tag from the [`index.html`](index.html).
 
 ## Gotchas
 
