@@ -1,7 +1,5 @@
 # Files in the root folder
 
-* ``:
-
 * `.babelrc`: The Babel configuration. Babel is a ES6 to ES5 JavaScript transpiler, which means it's the tool that allows us to use ES6 in our applications.
 
 * `.eslintignore`: Tell `eslint`, the JavaScript linter I have installed in my IDE (and you should too) to ignore certain files I don't want to have linted. Linting a file means to check that the syntax of the language is correct, which helps us catch typos/structural errors before we get an error in the browser console.
