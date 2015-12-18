@@ -1,6 +1,6 @@
 # `css`
 
-All `.css` files in one of the five subfolders get compiled into one big file. You can add to existing files and add new ones and they'll get added automatically.
+All `.css` files in one of the five subfolders get compiled into one big file. You can write in existing files and add new ones and they'll get imported automatically.
 
 ## PostCSS Plugins
 
