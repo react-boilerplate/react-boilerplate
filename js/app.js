@@ -63,7 +63,7 @@ const store = createStoreWithMiddleware(rootReducer);
 // Make reducers hot reloadable, see http://stackoverflow.com/questions/34243684/make-redux-reducers-and-other-non-components-hot-loadable
 if (module.hot) {
   module.hot.accept('./reducers/rootReducer', () => {
-    const nextRootReducer = require('./reducers/rootReducer');
+    const nextRootReducer = require('./reducers/rootReducer').default;
     store.replaceReducer(nextRootReducer);
   });
 }
