@@ -24,7 +24,6 @@ const initialState = {
 function homeReducer(state = initialState, action) {
   switch (action.type) {
   case CHANGE_OWNER_NAME:
-    console.log('wat');
     return assign({}, state, {
       ownerName: action.name
     });
