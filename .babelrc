@@ -1,18 +1,16 @@
 {
-  "stage": 0,
   "env": {
-    // only enable react-transform-hmr when process.env.NODE_ENV is not 'production'
     "development": {
-      "plugins": ["react-transform"],
-      "extra": {
-        "react-transform": {
+      "plugins": [
+        ["react-transform", {
           "transforms": [{
             "transform": "react-transform-hmr",
             "imports": ["react"],
             "locals": ["module"]
           }]
-        }
-      }
+        }]
+      ]
     }
-  }
+  },
+  "presets": ["es2015", "react", "stage-2"]
 }
