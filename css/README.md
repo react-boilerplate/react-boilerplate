@@ -1,5 +1,7 @@
 # `css`
 
+All `.css` files in one of the five subfolders get compiled into one big file. You can add to existing files and add new ones and they'll get added automatically.
+
 ## PostCSS Plugins
 
 The boilerplate uses PostCSS, and includes a few plugins by default:

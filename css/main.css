@@ -1,21 +1,18 @@
-/* Do not write any CSS in here, add it to the appropriate module or make a new one and import it here */
+/* Do not write any CSS in here, add it to the appropriate module or make a new one */
 
 @charset 'UTF-8';
 
 /* 1. Vendors */
-@import 'vendor/_normalize';
+@import 'vendor/*.css';
 
 /* 2. Configuration and helpers */
-@import 'utils/_variables';
-@import 'base/_helpers';
+@import 'utils/*.css';
 
 /* 3. Base stuff */
-@import 'base/_base';
+@import 'base/*.css';
 
 /* 4. Layout-related sections */
-@import 'layout/_header';
-@import 'layout/_footer';
+@import 'layout/*.css';
 
 /* 5. Components */
-@import 'components/_buttons';
-@import 'components/_home';
+@import 'components/*.css';

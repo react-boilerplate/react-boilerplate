@@ -54,8 +54,6 @@ This boilerplate includes a `.htaccess` file that does two things:
 
 The CSS modules found in the `css` subfolders all get imported into one big file (`main.css`), which gets transpiled with PostCSS.
 
-To add/change styling, either add to an existing file or make a new one and `@import` it in the `main.css` file.
-
 See the [`css` folder README](css/README.md) for more information about the PostCSS plugins used and the CSS structure.
 
 ## JS
