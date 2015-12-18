@@ -8,6 +8,9 @@
  *   return assign({}, state, {
  *       stateVariable: action.var
  *   });
+ *
+ * To add a new reducer, add a file like this to the reducers folder, and
+ * add it in the rootReducer.js.
  */
 
 import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from '../constants/AppConstants';
@@ -18,9 +21,10 @@ const initialState = {
   ownerName: 'mxstbr'
 };
 
-export function homeReducer(state = initialState, action) {
+function homeReducer(state = initialState, action) {
   switch (action.type) {
   case CHANGE_OWNER_NAME:
+    console.log('wat');
     return assign({}, state, {
       ownerName: action.name
     });
@@ -32,3 +36,5 @@ export function homeReducer(state = initialState, action) {
     return state;
   }
 }
+
+export default homeReducer;
