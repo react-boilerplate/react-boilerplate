@@ -4,7 +4,7 @@
   "description": "Quick setup for new React.js applications featuring Redux, hot–reloading, PostCSS, react-router and Mocha.",
   "dependencies": {
     "fontfaceobserver": "^1.5.1",
-    "history": "1.13.1",
+    "history": "1.16.0",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-redux": "^4.0.0",
@@ -26,7 +26,7 @@
     "css-loader": "^0.23.0",
     "cssnano": "^3.0.1",
     "eslint": "^1.4.1",
-    "eslint-config-airbnb": "1.0.0",
+    "eslint-config-airbnb": "2.1.1",
     "eslint-plugin-react": "^3.3.2",
     "expect": "^1.10.0",
     "extract-text-webpack-plugin": "0.9.1",
