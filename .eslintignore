@@ -1,12 +1,9 @@
-js/bundle.js
-js/bundle.min.js
+# node_modules are ignored by default
+
+# Ignore build folder
 build
-node_modules
-*.html
-*.md
-*.json
-*.css
-config.js
+
+# Ignore config stuff
 server.js
 *config.js
 serviceworker.js
