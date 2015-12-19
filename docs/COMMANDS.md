@@ -1,7 +1,25 @@
 # Command Line Commands
 
-* `npm start`: Starts the development server. You will now visit your application in your browser at `localhost:3000`.
+## Development
 
-* `npm run build`: Builds your application for deployment. Generates a `build` folder, which you upload to your web server. This `build` folder should include all files you need for your application. (except images specified in the HTML, see the global README)
+```Shell
+$ npm start
+```
 
-* `npm run test`: Tests your application with the unit tests specified in the `test` folder.
+Starts the development server and makes your application accessible at `localhost:3000`. Changes in the application code will be hot-reloaded.
+
+## Building
+
+```Shell
+$ npm run build
+```
+
+Gets your application ready for deployment. Optimizes and minifies all files, and generates a folder called `build`. `build` includes all files you need for your application. Upload the contents of `build` to your web server to see it live!
+
+## Unit testing
+
+```Shell
+$ npm run test
+```
+
+Tests your application with the unit tests specified in the `test` folder.
