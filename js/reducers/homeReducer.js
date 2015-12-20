@@ -14,7 +14,7 @@
  */
 
 import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from '../constants/AppConstants';
-const assign = Object.assign || require('object.assign');
+const assign = Object.assign || require('object.assign'); // Polyfill maybe needed for browser support
 
 const initialState = {
   projectName: 'React.js Boilerplate',
@@ -22,17 +22,18 @@ const initialState = {
 };
 
 function homeReducer(state = initialState, action) {
+  Object.freeze(state); // Don't mutate state directly, always use assign()!
   switch (action.type) {
-  case CHANGE_OWNER_NAME:
-    return assign({}, state, {
-      ownerName: action.name
-    });
-  case CHANGE_PROJECT_NAME:
-    return assign({}, state, {
-      projectName: action.name
-    });
-  default:
-    return state;
+    case CHANGE_OWNER_NAME:
+      return assign({}, state, {
+        ownerName: action.name
+      });
+    case CHANGE_PROJECT_NAME:
+      return assign({}, state, {
+        projectName: action.name
+      });
+    default:
+      return state;
   }
 }
 
