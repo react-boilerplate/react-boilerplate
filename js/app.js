@@ -52,11 +52,9 @@ import App from './components/App.react';
 // Import the CSS file, which HtmlWebpackPlugin transfers to the build folder
 import '../css/main.css';
 
-// Create the store
-import rootReducer from './reducers/rootReducer';
-
-// Creates the global reducer with the redux-thunk middleware, which allows us
+// Create the store with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
+import rootReducer from './reducers/rootReducer';
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
 
