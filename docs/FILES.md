@@ -24,6 +24,8 @@
 
 * `package.json`: The `npm` configuration file. When you run `npm install`, this is the list that tells `npm` which packages/libraries to download. Also, `npm start`, `npm run build`,... commands are specified here.
 
-* `server.js`: The development server that runs when `npm start` is entered into the command line.
+* `server.dev.js`: The development server that runs when `npm start` is entered into the command line.
+
+* `server.prod.js`: The server that runs when `npm run serve` is entered into the command line.
 
 * `serviceworker.js`: The script that tells the serviceworker how to cache our files for offline usage.
