@@ -4,6 +4,6 @@
 build
 
 # Ignore config stuff
-server.js
+server.*.js
 *config.js
 serviceworker.js
