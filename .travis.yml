@@ -4,3 +4,6 @@ node_js:
   - "4"
   - "0.10"
 script: npm run build
+notifications:
+  email:
+    on_failure: change
