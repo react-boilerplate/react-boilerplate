@@ -1,6 +1,6 @@
 import expect from 'expect';
-import { changeOwnerName, changeProjectName } from '../js/actions/AppActions';
-import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from '../js/constants/AppConstants';
+import { changeOwnerName, changeProjectName } from '../app/js/actions/AppActions';
+import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from '../app/js/constants/AppConstants';
 
 // Test actions from AppActions.js
 describe('AppActions', () => {
