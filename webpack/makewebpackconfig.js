@@ -15,7 +15,7 @@ module.exports = function(options) {
   if (options.prod) {
     // Entry
     entry = [
-      path.join(__dirname, '..', 'js/app.js') // Start with js/app.js...
+      path.join(__dirname, '..', 'app/js/app.js') // Start with js/app.js...
     ];
     cssLoaders = ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader');
     // Plugins
