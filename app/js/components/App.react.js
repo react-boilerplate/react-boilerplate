@@ -8,7 +8,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Logo from '../../img/logo.png';
+import Logo from '../../assets/logo.png';
 
 class App extends Component {
   render() {
