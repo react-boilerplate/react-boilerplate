@@ -55,17 +55,23 @@ This boilerplate includes a `.htaccess` file that does two things:
 
 2. Rewrite all pages (e.g. yourdomain.com/subpage) to the `index.html` to let `react-router` take care of presenting the correct page
 
+## Structure
+
+As a developer making an application, check out the `app/` and the `tests/` folder and the files inside those. The rest of the folders and files is only there to make your life making your app much easier, and should not have to be touched. (If they have to be changed, please submit an issue with the reason for your change!)
+
+`app/` contains your entire application code, including CSS, JavaScript and HTML. `tests/` contains your unit tests.
+
 ## CSS
 
-The CSS modules found in the `css` subfolders all get imported into one big file (`main.css`), which gets transpiled with PostCSS.
+The CSS modules found in the `app/css` subfolders all get imported into one big file (`main.css`), which gets transpiled with PostCSS.
 
-See the [`css` folder README](css/README.md) for more information about the PostCSS plugins used and the CSS structure.
+See the [`css` folder README](app/css/README.md) for more information about the PostCSS plugins used and the CSS structure.
 
 ## JS
 
 All files that are `import`ed/`require`d somewhere get compiled into one big file at build time. (`build/bundle.js`) Webpack automatically optimizes your JavaScript with `UglifyJS`, so you don't have to worry about that.
 
-See the [`js` folder README](js/README.md) for more information about the JS structure.
+See the [`js` folder README](app/js/README.md) for more information about the JS structure.
 
 ## Testing
 
@@ -75,11 +81,11 @@ With `npm run serve` you can start a server that's accessible in the entire loca
 
 ### Unit testing
 
-Unit tests live in the `test` directory, and are run with `npm test`. There are two files in there already, testing that the current AppActions and Reducers are working correctly. Mocha is used as a unit testing framework, check out the official [documentation](http://mochajs.org)!
+Unit tests live in the `tests/` directory, and are run with `npm run test`. There are two files in there already, checking that the current AppActions and Reducers are working correctly. Mocha is used as a unit testing framework, for more information on how to use it check out the official [documentation](http://mochajs.org)!
 
 ## Files in the root folder
 
-For a full explanation of all files in the root folder, see [`docs/FILES.md`](docs/FILE-APPENDIX.md).
+For a full explanation of all files, see [`docs/FILES.md`](docs/FILE-APPENDIX.md).
 
 ## Opinionated features
 
@@ -87,21 +93,21 @@ For a full explanation of all files in the root folder, see [`docs/FILES.md`](do
 
 If you simply use web fonts in your project, the page will stay blank until these fonts are downloaded. That means a lot of waiting time in which users could already read the content.
 
-[FontFaceObserver](https://github.com/bramstein/fontfaceobserver) adds a `js-<font-name>-loaded` class to the `body` when the fonts have loaded. You should specify an initial `font-family` with save fonts on the `body`, and a `.js-<font-name>-loaded` `font-family` which includes your web font. See [app.js](js/app.js#L17-L25) and [base.css](css/base/_base.css#L26-L32).
+[FontFaceObserver](https://github.com/bramstein/fontfaceobserver) adds a `js-<font-name>-loaded` class to the `body` when the fonts have loaded. You should specify an initial `font-family` with save fonts on the `body`, and a `.js-<font-name>-loaded` `font-family` which includes your web font. See [app.js](app/js/app.js#L17-L25) and [base.css](app/css/base/_base.css#L26-L32).
 
 #### Adding a new font
 
-1. Either add the `@font-face` declaration to `base/_fonts.css` or add a `<link>` tag to the [`index.html`](index.html). (Don't forget to remove the `<link>` for Open Sans from the [`index.html`](index.html))
+1. Either add the `@font-face` declaration to `base/_fonts.css` or add a `<link>` tag to the [`index.html`](app/index.html). (Don't forget to remove the `<link>` for Open Sans from the [`index.html`](app/index.html))
 
-2. In `base/_base.css`, specify your initial `font-family` in the `body` tag with only save fonts. In the `body.js-<font-name>-loaded` tag, specify your `font-family` stack with your web font.
+2. In `app/base/_base.css`, specify your initial `font-family` in the `body` tag with only save fonts. In the `body.js-<font-name>-loaded` tag, specify your `font-family` stack with your web font.
 
-3. In `js/app.js` add a `<font-name>Observer` for your font.
+3. In `app/js/app.js` add a `<font-name>Observer` for your font.
 
 #### Removing performant web font loading
 
 **Careful** about removing this, as perceived performance might be highly impacted.
 
-To remove `FontFaceObserver`, don't import it in [`app.js`](js/app.js) and remove it from the [`package.json`](package.json).
+To remove `FontFaceObserver`, don't import it in [`app.js`](app/js/app.js) and remove it from the [`package.json`](package.json).
 
 ### Offline access
 
@@ -109,23 +115,23 @@ Using a `ServiceWorker` and the `Application Cache`, your application is cached 
 
 #### Cache a new file
 
-To cache a file, add it to the `urlsToCache` variable in the [`serviceworker.js`](serviceworker.js) file.
+To cache a file, add it to the `urlsToCache` variable in the [`serviceworker.js`](app/serviceworker.js) file.
 
 #### Removing offline access
 
 **Careful** about removing this, as there is no real downside to having your application available when the users network connection isn't perfect.
 
-To remove offline capability, delete [`serviceworker.js`](serviceworker.js), remove the import in [`app.js`](js/app.js), remove `AppCachePlugin` in [`makewebpackconfig.js`](makewebpackconfig.js) and remove the `manifest` attribute of the `<html>` tag in [`index.html`](index.html).
+To remove offline capability, delete [`serviceworker.js`](app/serviceworker.js), remove the import in [`app.js`](app/js/app.js), remove `AppCachePlugin` in [`makewebpackconfig.js`](webpack/makewebpackconfig.js) and remove the `manifest` attribute of the `<html>` tag in [`index.html`](app/index.html).
 
 ### Add To Homescreen
 
 On Chrome for Android (soon hopefully more browsers), users can add a webpage to the homescreen. Combined with offline caching, this means your web app can be used exactly like a native application.
 
-The name and icon to be displayed are set in the `manifest.json` file. Change them to your project name and icon, and try it!
+The name and icon to be displayed are set in the `app/manifest.json` file. Change them to your project name and icon, and try it!
 
 #### Removing add to homescreen functionality
 
-Delete [`manifest.json`](manifest.json) and remove the `<link rel="manifest" href="manifest.json">` tag from the [`index.html`](index.html).
+Delete [`manifest.json`](app/manifest.json) and remove the `<link rel="manifest" href="manifest.json">` tag from the [`index.html`](app/index.html).
 
 ## Gotchas
 
