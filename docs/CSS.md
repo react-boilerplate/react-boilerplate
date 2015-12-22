@@ -1,6 +1,6 @@
-# `css`
+# `CSS`
 
-All `.css` files in one of the five subfolders get compiled into one big file. You can write in existing files and add new ones and they'll get imported automatically.
+All `.css` files in one of the five subfolders of the `css/` folder get compiled into one big file. You can write in existing files and add new ones and they'll get imported automatically.
 
 ## PostCSS Plugins
 
@@ -22,13 +22,13 @@ For a full, searchable catalog of plugins go to [postcss.parts](http://postcss.p
 
 ## Folder structure
 
-The boilerplate comes with a basic folder structure to keep the CSS files organised. This is what the folders are for:
+The boilerplate comes with a basic folder structure to keep the CSS files organized. This is what the folders are for:
 
-* `base`: Global styling, e.g. setting the box–model for all elements
+* `base`: Global styling, e.g. typography
 
 * `components`: Component specific styling, e.g. buttons, modals,...
 
-* `layout`: Global layouts, e.g. article, homepage,...
+* `layout`: Bigger layouts, e.g. article, homepage,...
 
 * `utils`: Utility files, e.g. variables, mixins, functions,...
 
