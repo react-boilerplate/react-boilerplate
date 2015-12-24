@@ -69,8 +69,9 @@ project's developers might not want to merge into the project.
 Please adhere to the coding conventions used throughout a project (indentation,
 accurate comments, etc.) and any other requirements (such as test coverage).
 
-Adhering to the following process is the best way to get your work
-included in the project:
+The `master` branch is protected, because the main way people get this boilerplate is through `git clone`. Cloning a repo downloads the `master` branch, so there is no room for error or breakages there.
+
+Adhering to the following process is the best way to get your work included in the project:
 
 1. [Fork](https://help.github.com/articles/fork-a-repo/) the project, clone your fork, and configure the remotes:
 
