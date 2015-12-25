@@ -20,7 +20,7 @@ var dir = path.join(__dirname, '..');
 cleanRepo(dir, function () {
   process.stdout.write('\nInstalling dependencies...')
   exec('npm install', function() {
-    fs.unlink(path.join(__dirname, 'init', function() {
+    fs.unlink(path.join(__dirname, 'init'), function() {
       initGit(dir, function () {
         process.stdout.write('\nDone.');
         process.exit(0);
