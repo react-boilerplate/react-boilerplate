@@ -44,6 +44,7 @@
     "postcss-simple-vars": "^1.0.0",
     "psi": "1.0.6",
     "react-transform-hmr": "^1.0.1",
+    "rewire": "2.5.1",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.1",
