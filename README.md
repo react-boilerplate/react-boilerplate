@@ -6,7 +6,7 @@ Quick setup for new performance orientated, offline–first React.js application
 [dep-status-link]: https://david-dm.org/mxstbr/react-boilerplate
 [dev-dep-status-img]: https://david-dm.org/mxstbr/react-boilerplate/dev-status.svg
 [dev-dep-status-link]: https://david-dm.org/mxstbr/react-boilerplate#info=devDependencies
-[ci-img]: https://travis-ci.org/mxstbr/react-boilerplate.svg
+[ci-img]: https://travis-ci.org/mxstbr/react-boilerplate.svg?branch=master
 [ci]: https://travis-ci.org/mxstbr/react-boilerplate
 
 -----
