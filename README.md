@@ -75,13 +75,17 @@ See the [`js` folder README](app/js/README.md) for more information about the JS
 
 ## Testing
 
+### Performance testing
+
+With the development server running (i.e. while `$ npm start` is running in another tab), enter `$ npm run pagespeed` to run Google PageSpeed Insights and get a performance check right in your terminal!
+
 ### Browser testing
 
-With `npm run serve` you can start a server that's accessible in the entire local network and shows the version of the app that's in the `build` folder. Useful for testing on different devices!
+With `$ npm run serve` you can start a server that's accessible in the entire local network and shows the version of the app that's in the `build` folder. Useful for testing on different devices!
 
 ### Unit testing
 
-Unit tests live in the `tests/` directory, and are run with `npm run test`. There are two files in there already, checking that the current AppActions and Reducers are working correctly. Mocha is used as a unit testing framework, for more information on how to use it check out the official [documentation](http://mochajs.org)!
+Unit tests live in the `tests/` directory, and are run with `$ npm run test`. There are two files in there already, checking that the current AppActions and Reducers are working correctly. Mocha is used as a unit testing framework, for more information on how to use it check out the official [documentation](http://mochajs.org)!
 
 ## Files in the root folder
 
