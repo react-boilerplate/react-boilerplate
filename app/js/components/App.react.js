@@ -10,15 +10,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Logo from '../../assets/logo.png';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="wrapper">
-        <img className="logo" src={Logo} />
-        { this.props.children }
-      </div>
-    );
-  }
+function App(props) {
+  return (
+    <div className="wrapper">
+      <img className="logo" src={Logo} />
+      { props.children }
+    </div>
+  );
 }
 
 // REDUX STUFF
