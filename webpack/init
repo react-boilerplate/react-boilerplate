@@ -17,7 +17,7 @@ function cleanRepo(dir, callback) {
     // var readme = path.join(dir, 'README.md');
     // fs.unlinkSync(readme);
     // fs.renameSync(readme + '.example', readme);
-    fs.unlinkSync(path.join(dir, 'webpack', 'init.js'));
+    // fs.unlinkSync(path.join(dir, 'webpack', 'init.js'));
     exec('cd "' + dir + '" && rm -Rf .git/', callback);
 }
 
@@ -26,13 +26,12 @@ function initProject(dir, callback) {
     exec('cd "' + dir + '" && git init && npm install', callback);
 }
 
-var dir = path.join(__dirname, '..');
+var dir = path.join(__dirname, 'react-boilerplate');
 
 cleanRepo(dir, function () {
     initProject(dir, function () {
         process.stdout.write(
-            '\nDone. Remove this dir and continue work in ' +
-            '../' + answers.PLUGIN_NAME + '/\n');
+            '\nDone.');
         process.exit(0);
     });
 });
