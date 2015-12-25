@@ -151,6 +151,14 @@ import 'file?name=[name].[ext]!../img/yourimg.png';
 
 Then webpack will correctly transfer the image to the build folder.
 
+## How to contribute
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for infos on how you can help!
+
 ## License
 
 This project is licensed under the MIT license, Copyright (c) 2015 Maximilian Stoiber. For more information see `LICENSE.md`.
+
+----
+
+Made with ❤︎ by [Max Stoiber](https://twitter.com/mxstbr)!
