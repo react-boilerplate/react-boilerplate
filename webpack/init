@@ -9,30 +9,35 @@ var fs   = require('fs');
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
 
-function cleanRepo(dir, callback) {
-    // var readme = path.join(dir, 'README.md');
-    // fs.unlinkSync(readme);
-    // fs.renameSync(readme + '.example', readme);
-    // fs.unlinkSync(path.join(dir, 'webpack', 'init.js'));
-    fs.unlink(path.join(dir, '.git'), callback);
-}
-
-function initProject(dir, callback) {
-    process.stdout.write('\nInstalling npm packages...');
-    exec('git init && npm install', callback);
-}
-
-var dir = path.join(__dirname, '..');
-
 if (process.env.NODE_ENV !== "initialisation") {
   process.stdout.write('\n\nERROR')
   process.stdout.write('\nUse  npm run initProject  instead!\n\n\n');
   process.exit(0);
 }
 
+var dir = path.join(__dirname, '..');
+
 cleanRepo(dir, function () {
-    initProject(dir, function () {
+  process.stdout.write('\nInstalling dependencies...')
+  exec('npm install', function() {
+    fs.unlink(path.join(__dirname, 'init', function() {
+      initGit(dir, function () {
         process.stdout.write('\nDone.');
         process.exit(0);
+      });
     });
+  });
 });
+
+function cleanRepo(dir, callback) {
+    // var readme = path.join(dir, 'README.md');
+    // fs.unlinkSync(readme);
+    // fs.renameSync(readme + '.example', readme);
+    // fs.unlinkSync(path.join(dir, 'webpack', 'init.js'));
+    exec('rm -Rf .git/', callback);
+}
+
+function initGit(dir, callback) {
+    process.stdout.write('\nInitialising git...');
+    exec('git init && git add . && git commit -m "Initial commit"', callback);
+}
