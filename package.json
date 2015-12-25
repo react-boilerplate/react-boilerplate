@@ -58,7 +58,8 @@
     "start": "NODE_ENV=development node webpack/server.dev.js",
     "build": "npm run test && NODE_ENV=production webpack --config webpack/webpack.prod.config.js --progress --colors -p",
     "serve": "NODE_ENV=production node webpack/server.prod.js",
-    "pagespeed": "./webpack/pagespeed"
+    "pagespeed": "./webpack/pagespeed",
+    "initProject": "NODE_ENV=initialisation ./webpack/init"
   },
   "author": "Max Stoiber",
   "license": "MIT"

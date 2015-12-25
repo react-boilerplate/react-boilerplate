@@ -9,29 +9,30 @@ var fs   = require('fs');
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
 
-function copyDir(dir, callback) {
-    exec('cp -R "' + __dirname + '" "' + dir + '"', callback);
-}
-
 function cleanRepo(dir, callback) {
     // var readme = path.join(dir, 'README.md');
     // fs.unlinkSync(readme);
     // fs.renameSync(readme + '.example', readme);
     // fs.unlinkSync(path.join(dir, 'webpack', 'init.js'));
-    exec('cd "' + dir + '" && rm -Rf .git/', callback);
+    fs.unlink(path.join(dir, '.git'), callback);
 }
 
 function initProject(dir, callback) {
     process.stdout.write('\nInstalling npm packages...');
-    exec('cd "' + dir + '" && git init && npm install', callback);
+    exec('git init && npm install', callback);
 }
 
-var dir = path.join(__dirname, 'react-boilerplate');
+var dir = path.join(__dirname, '..');
+
+if (process.env.NODE_ENV !== "initialisation") {
+  process.stdout.write('\n\nERROR')
+  process.stdout.write('\nUse  npm run initProject  instead!\n\n\n');
+  process.exit(0);
+}
 
 cleanRepo(dir, function () {
     initProject(dir, function () {
-        process.stdout.write(
-            '\nDone.');
+        process.stdout.write('\nDone.');
         process.exit(0);
     });
 });
