@@ -30,7 +30,7 @@ function cleanRepo(dir, callback) {
 }
 
 /**
- * Initialises git again
+ * Initializes git again
  */
 function initGit(dir, callback) {
     process.stdout.write('\nInitialising new repository...');

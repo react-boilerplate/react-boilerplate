@@ -29,15 +29,11 @@ Quick setup for new performance orientated, offline–first React.js application
 
 1. Clone this repo using `git clone git@github.com:mxstbr/react-boilerplate`.
 
-2. Delete the existing git repository by running `rm -rf .git`.
+2. Run `npm run initProject` to initialize a new project.
 
-3. Initialize a new git repository with `git init`, `git add .` and `git commit -m "Initial commit"`.
+3. Run `npm start` to start the local web server.
 
-4. Run `npm install` to install the dependencies.
-
-5. Run `npm start` to start the local web server.
-
-6. Go to `http://localhost:3000` and you should see the app running!
+Now you can go to `http://localhost:3000` and see your app!
 
 ## Building & Deploying
 
