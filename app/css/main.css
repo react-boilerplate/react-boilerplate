@@ -11,8 +11,8 @@
 /* 3. Base stuff */
 @import 'base/*.css';
 
-/* 4. Layout-related sections */
-@import 'layout/*.css';
+/* 4. Pages */
+@import 'pages/*.css';
 
 /* 5. Components */
 @import 'components/*.css';
