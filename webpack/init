@@ -9,35 +9,45 @@ var fs   = require('fs');
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
 
-if (process.env.NODE_ENV !== "initialisation") {
-  process.stdout.write('\n\nERROR')
-  process.stdout.write('\nUse  npm run initProject  instead!\n\n\n');
-  process.exit(0);
-}
-
+// __dirname always is the name of the directory this script sits in, see https://stackoverflow.com/questions/8131344/what-is-the-difference-between-dirname-and-in-node-js
 var dir = path.join(__dirname, '..');
 
 cleanRepo(dir, function () {
-  process.stdout.write('\nInstalling dependencies...')
-  exec('npm install', function() {
-    fs.unlink(path.join(__dirname, 'init'), function() {
-      initGit(dir, function () {
-        process.stdout.write('\nDone.');
-        process.exit(0);
-      });
+  installDeps(deleteFileInCurrentDir('init', function() {
+    initGit(dir, function () {
+      process.stdout.write('\nDone.');
+      process.exit(0);
     });
-  });
+  }));
 });
 
+/**
+ * Deletes the .git folder in dir
+ */
 function cleanRepo(dir, callback) {
-    // var readme = path.join(dir, 'README.md');
-    // fs.unlinkSync(readme);
-    // fs.renameSync(readme + '.example', readme);
-    // fs.unlinkSync(path.join(dir, 'webpack', 'init.js'));
+  process.stdout.write('\nCleaning old repository...');
     exec('rm -Rf .git/', callback);
 }
 
+/**
+ * Initialises git again
+ */
 function initGit(dir, callback) {
-    process.stdout.write('\nInitialising git...');
+    process.stdout.write('\nInitialising new repository...');
     exec('git init && git add . && git commit -m "Initial commit"', callback);
+}
+
+/**
+ * Deletes this file
+ */
+function deleteFileInCurrentDir(file, callback) {
+  fs.unlink(path.join(__dirname, file), callback);
+}
+
+/**
+ * Installs dependencies
+ */
+function installDeps(callback) {
+  process.stdout.write('\nInstalling dependencies...')
+  exec('npm install', callback);
 }
