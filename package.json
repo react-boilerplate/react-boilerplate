@@ -35,12 +35,14 @@
     "ip": "1.1.0",
     "json-loader": "^0.5.2",
     "mocha": "^2.3.2",
+    "ngrok": "0.1.99",
     "object.assign": "^4.0.1",
     "postcss-focus": "^1.0.0",
     "postcss-import": "^7.0.0",
     "postcss-loader": "^0.8.0",
     "postcss-reporter": "^1.2.1",
     "postcss-simple-vars": "^1.0.0",
+    "psi": "1.0.6",
     "react-transform-hmr": "^1.0.1",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.6",
@@ -55,7 +57,8 @@
     "test": "mocha --compilers js:babel-core/register --recursive tests",
     "start": "NODE_ENV=development node webpack/server.dev.js",
     "build": "npm run test && NODE_ENV=production webpack --config webpack/webpack.prod.config.js --progress --colors -p",
-    "serve": "NODE_ENV=production node webpack/server.prod.js"
+    "serve": "NODE_ENV=production node webpack/server.prod.js",
+    "pagespeed": "./webpack/pagespeed"
   },
   "author": "Max Stoiber",
   "license": "MIT"
