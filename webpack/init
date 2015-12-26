@@ -26,19 +26,19 @@ cleanRepo(dir, function () {
  */
 function cleanRepo(dir, callback) {
   process.stdout.write('\nCleaning old repository...');
-    exec('rm -Rf .git/', callback);
+  exec('rm -Rf .git/', callback);
 }
 
 /**
  * Initializes git again
  */
 function initGit(dir, callback) {
-    process.stdout.write('\nInitialising new repository...');
-    exec('git init && git add . && git commit -m "Initial commit"', callback);
+  process.stdout.write('\nInitialising new repository...');
+  exec('git init && git add . && git commit -m "Initial commit"', callback);
 }
 
 /**
- * Deletes this file
+ * Deletes a file in the current directory
  */
 function deleteFileInCurrentDir(file, callback) {
   fs.unlink(path.join(__dirname, file), callback);
