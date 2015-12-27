@@ -2,6 +2,8 @@
 
 Quick setup for new performance orientated, offline–first React.js applications featuring Redux, hot–reloading, PostCSS, react-router, ServiceWorker, AppCache, FontFaceObserver and Mocha.
 
+Made with ❤︎ by [@mxstbr](https://twitter.com/mxstbr)!
+
 [dep-status-img]: https://david-dm.org/mxstbr/react-boilerplate.svg
 [dep-status-link]: https://david-dm.org/mxstbr/react-boilerplate
 [dev-dep-status-img]: https://david-dm.org/mxstbr/react-boilerplate/dev-status.svg
@@ -158,7 +160,3 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) for infos on how you can help!
 ## License
 
 This project is licensed under the MIT license, Copyright (c) 2015 Maximilian Stoiber. For more information see `LICENSE.md`.
-
-----
-
-Made with ❤︎ by [Max Stoiber](https://twitter.com/mxstbr)!
