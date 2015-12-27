@@ -1,9 +1,11 @@
 # Documentation
 
-* [`COMMANDS.md`](COMMANDS.md): The commands you can run in the command line.
+* [`commands.md`](commands.md): The commands you can run in the command line.
 
-* [`CSS.md`](CSS.md): PostCSS plugins used, folder structure of the css folder.
+* [`css.md`](css.md): PostCSS plugins used, folder structure of the css folder.
 
-* [`FILES.md`](FILES.md): The files in the root folder and what they're used for.
+* [`files.md`](files.md): The files in the root folder and what they're used for.
 
-* [`JS.md`](JS.md): The JavaScript folder structure explained
+* [`js.md`](js.md): The JavaScript folder structure explained.
+
+* [`testing.md`](testing.md): A deeper look into unit testing.
