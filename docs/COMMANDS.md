@@ -29,7 +29,19 @@ This will run a server that's accessible in the entire local network and shows t
 ## Unit testing
 
 ```Shell
+$ npm run lint
+```
+
+Checks your JavaScript coding styles for potential errors and suspicious usage of included functions.
+
+```Shell
 $ npm run test
 ```
 
-Tests your application with the unit tests specified in the `test` folder.
+Lints JavaScript files and tests your application with the unit tests specified in the `test` folder.
+
+```Shell
+$ npm run test:watch
+```
+
+Runs unit tests everytime you change something in your JavaScript code
