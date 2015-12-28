@@ -59,7 +59,7 @@ This boilerplate includes a `.htaccess` file that does two things:
 
 ## CSS
 
-The CSS modules found in the `css` subfolders all get imported into one big file (`main.css`), which gets transpiled with PostCSS.
+The CSS modules found in the `css` subfolders all get imported into one big file (`main.css`), which gets transpired with PostCSS.
 
 See the [`css` folder README](css/README.md) for more information about the PostCSS plugins used and the CSS structure.
 
