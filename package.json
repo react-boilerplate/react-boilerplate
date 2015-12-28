@@ -55,7 +55,9 @@
     "url": "git://github.com/mxstbr/react-boilerplate.git"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --recursive tests",
+    "lint": "eslint .",
+    "test": "mocha --compilers js:babel-core/register --recursive tests && npm run lint",
+    "test:watch": "npm test -- --watch",
     "start": "NODE_ENV=development node webpack/server.dev.js",
     "build": "npm run test && NODE_ENV=production webpack --config webpack/webpack.prod.config.js --progress --colors -p",
     "serve": "NODE_ENV=production node webpack/server.prod.js",
