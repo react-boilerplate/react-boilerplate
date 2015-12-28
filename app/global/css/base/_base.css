@@ -27,6 +27,6 @@ body {
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
-body.js-open-sans-loaded {
+:global(body.js-open-sans-loaded) {
 	font-family: 'Open Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
 }

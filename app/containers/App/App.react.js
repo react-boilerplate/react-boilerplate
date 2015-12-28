@@ -10,10 +10,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Logo from '../../assets/logo.png';
 
+import styles from './App.css';
+
 function App(props) {
   return (
-    <div className="wrapper">
-      <img className="logo" src={Logo} />
+    <div className={styles.wrapper}>
+      <img className={styles.logo} src={Logo} />
       { props.children }
     </div>
   );

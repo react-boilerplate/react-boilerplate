@@ -1,0 +1,12 @@
+.wrapper {
+	background-color: #FEFEFE;
+	color: #222222;
+	max-width: 978px;
+	margin: 0 auto;
+}
+
+.logo {
+	max-height: 5em;
+	margin: 0 auto;
+	display: block;
+}

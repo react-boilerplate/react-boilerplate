@@ -9,15 +9,13 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = function(options) {
   var entry, jsLoaders, plugins, cssLoaders;
 
-  console.log(path.join(__dirname, '..', 'app/js/app.js'));
-
   // If production is true
   if (options.prod) {
     // Entry
     entry = [
-      path.join(__dirname, '..', 'app/js/app.js') // Start with js/app.js...
+      path.join(__dirname, '..', 'app/app.js') // Start with js/app.js...
     ];
-    cssLoaders = ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader');
+    cssLoaders = ExtractTextPlugin.extract('style-loader', 'css-loader?modules!postcss-loader');
     // Plugins
     plugins = [// Plugins for Webpack
       new webpack.optimize.UglifyJsPlugin({ // Optimize the JavaScript...
@@ -55,9 +53,9 @@ module.exports = function(options) {
     entry = [
       "webpack-dev-server/client?http://localhost:3000", // Needed for hot reloading
       "webpack/hot/only-dev-server", // See above
-      path.join(__dirname, '..', 'app/js/app.js') // Start with js/app.js...
+      path.join(__dirname, '..', 'app/app.js') // Start with js/app.js...
     ];
-    cssLoaders = 'style-loader!css-loader!postcss-loader';
+    cssLoaders = 'style-loader!css-loader?modules!postcss-loader';
     // Only plugin is the hot module replacement plugin
     plugins = [
       new webpack.HotModuleReplacementPlugin(), // Make hot loading work

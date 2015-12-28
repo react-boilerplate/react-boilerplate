@@ -1,17 +1,5 @@
-.wrapper {
-	background-color: #FEFEFE;
+.link {
 	color: #222222;
-	max-width: 978px;
-	margin: 0 auto;
-}
-
-.home__wrapper a {
-	color: #222222;
-}
-
-.home__wrapper h1,
-.home__wrapper h2 {
-	text-align: center;
 }
 
 .btn {
@@ -22,19 +10,13 @@
 	text-decoration: none;
 }
 
-.logo {
-	max-height: 5em;
-	margin: 0 auto;
-	display: block;
-}
-
-.home__label {
+.label {
 	display: block;
 	width: 100%;
 	margin: 1em 0;
 }
 
-.home__input {
+.input {
 	margin-left: 0.5em;
 	border-radius: 2px;
 	border-width: 1px;
