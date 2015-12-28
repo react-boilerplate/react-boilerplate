@@ -81,7 +81,7 @@ Unit tests live in the `test` directory, and are run with `npm test`. There are 
 
 ## Files in the root folder
 
-For a full explanation of all files in the root folder, see [`docs/FILES.md`](docs/FILE-APPENDIX.md).
+For a full explanation of all files in the root folder, see [`docs/FILES.md`](docs/FILES.md).
 
 ## Opinionated features
 
