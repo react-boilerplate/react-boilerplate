@@ -1,20 +1,20 @@
 // Gets called when running npm start
 
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.prod.config');
-var ip = require("ip");
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const config = require('./webpack.prod.config');
+const ip = require('ip');
 
 console.log('Starting server from build folder...\n');
 
 new WebpackDevServer(webpack(config), { // Start a server
   publicPath: config.output.publicPath,
-  filename: "bundle.js",
+  filename: 'bundle.js',
   contentBase: 'build',
   lazy: true,
   historyApiFallback: true,
   quiet: true // Without logging
-}).listen(3000, '0.0.0.0', function (err, result) {
+}).listen(3000, '0.0.0.0', (err) => {
   if (err) {
     console.log(err);
   } else {
