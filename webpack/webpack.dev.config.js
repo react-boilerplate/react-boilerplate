@@ -1,3 +1,3 @@
-module.exports = require("./makewebpackconfig")({
+module.exports = require('./makewebpackconfig')({
   prod: false
 });

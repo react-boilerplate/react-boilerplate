@@ -1,8 +1,8 @@
 // Gets called when running npm start
 
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.dev.config');
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const config = require('./webpack.dev.config');
 
 console.log('Starting server...\n');
 
@@ -12,7 +12,7 @@ new WebpackDevServer(webpack(config), { // Start a server
   inline: false,
   historyApiFallback: true,
   quiet: true // Without logging
-}).listen(3000, 'localhost', function (err, result) {
+}).listen(3000, 'localhost', (err) => {
   if (err) {
     console.log(err);
   } else {
