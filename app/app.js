@@ -50,7 +50,7 @@ import NotFoundPage from './containers/NotFoundPage/NotFound.react';
 import App from './containers/App/App.react';
 
 // Import the CSS file, which HtmlWebpackPlugin transfers to the build folder
-import test from './global/css/global.css';
+import './global/css/global.css';
 
 // Create the store with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
