@@ -13,6 +13,7 @@
   "rules": {
     "comma-dangle": 0,
     "indent": [2, 2, {"SwitchCase": 1}],
+    "no-console": 0,
     "react/prop-types": 0
   }
 }
