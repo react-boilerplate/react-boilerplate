@@ -1,4 +1,4 @@
-// Gets called when running npm start
+// Gets called when running npm run serve
 
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
