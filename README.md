@@ -2,7 +2,7 @@
 
 Quick setup for new performance orientated, offline–first React.js applications featuring Redux, hot–reloading, PostCSS, react-router, ServiceWorker, AppCache, FontFaceObserver and Mocha.
 
-Made with ❤︎ by [Max Stoiber](https://twitter.com/mxstbr)!
+Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr)!
 
 [dep-status-img]: https://david-dm.org/mxstbr/react-boilerplate.svg
 [dep-status-link]: https://david-dm.org/mxstbr/react-boilerplate
