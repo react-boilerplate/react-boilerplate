@@ -82,7 +82,7 @@ module.exports = function(options) {
   }));
 
   return {
-    entry: entry,
+    entry,
     output: { // Compile into js/build.js
       path: path.resolve(__dirname, '..', 'build'),
       filename: "js/bundle.js"
@@ -102,7 +102,7 @@ module.exports = function(options) {
         }
       ]
     },
-    plugins: plugins,
+    plugins,
     postcss: function() {
       return [
         require('postcss-import')({ // Import all the css files...
