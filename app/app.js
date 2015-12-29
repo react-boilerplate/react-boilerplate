@@ -51,17 +51,18 @@ import App from './containers/App/App.react';
 
 // Import the CSS file, which HtmlWebpackPlugin transfers to the build folder
 import './global/css/global.css';
+import '../node_modules/sanitize.css/dist/sanitize.min.css';
 
 // Create the store with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
-import rootReducer from './global/rootReducer';
+import rootReducer from './rootReducer';
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
 
 // Make reducers hot reloadable, see http://stackoverflow.com/questions/34243684/make-redux-reducers-and-other-non-components-hot-loadable
 if (module.hot) {
-  module.hot.accept('./global/rootReducer', () => {
-    const nextRootReducer = require('./global/rootReducer').default;
+  module.hot.accept('./rootReducer', () => {
+    const nextRootReducer = require('./rootReducer').default;
     store.replaceReducer(nextRootReducer);
   });
 }

@@ -3,7 +3,7 @@
  * If we were to do this in store.js, reducers wouldn't be hot reloadable.
  */
 
-import HomePageReducer from '../containers/HomePage/HomePageReducer';
+import HomePageReducer from './containers/HomePage/HomePageReducer';
 
 // Replace line below once you have several reducers with
 // import { combineReducers } from 'redux';

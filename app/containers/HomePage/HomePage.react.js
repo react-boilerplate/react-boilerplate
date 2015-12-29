@@ -6,7 +6,8 @@
 import { asyncChangeProjectName, asyncChangeOwnerName } from './HomePageActions';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+
+import Button from '../../components/Button/Button.react';
 
 import styles from './HomePage.css';
 
@@ -24,7 +25,7 @@ class HomePage extends React.Component {
         <label className={styles.label}>Change to your name:
           <input className={styles.input} type="text" onChange={(evt) => { dispatch(asyncChangeOwnerName(evt.target.value)); }} defaultValue="mxstbr" value={ownerName} />
         </label>
-        <Link className={styles.btn} to="/readme">Setup</Link>
+        <Button route="/readme">Setup</Button>
       </div>
     );
   }
