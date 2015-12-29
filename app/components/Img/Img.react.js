@@ -18,6 +18,6 @@ Img.propTypes = {
   src: React.PropTypes.string.isRequired,
   alt: React.PropTypes.string.isRequired,
   className: React.PropTypes.string
-}
+};
 
 export default Img;
