@@ -82,7 +82,7 @@ module.exports = function(options) {
   }));
 
   return {
-    entry,
+    entry: entry,
     output: { // Compile into js/build.js
       path: path.resolve(__dirname, '..', 'build'),
       filename: "js/bundle.js"
@@ -92,7 +92,7 @@ module.exports = function(options) {
           test: /\.js$/, // Transform all .js files required somewhere within an entry point...
           loader: 'babel', // ...with the specified loaders...
           exclude: path.join(__dirname, '..', '/node_modules/'), // ...except for the node_modules folder.
-          query,
+          query: query,
         }, {
           test:   /\.css$/, // Transform all .css files required somewhere within an entry point...
           loader: cssLoaders // ...with PostCSS
@@ -102,7 +102,7 @@ module.exports = function(options) {
         }
       ]
     },
-    plugins,
+    plugins: plugins,
     postcss: function() {
       return [
         require('postcss-import')({ // Import all the css files...
