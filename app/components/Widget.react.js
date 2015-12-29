@@ -5,13 +5,11 @@ const propTypes = {
 };
 
 class Widget extends Component {
-
   render() {
     return (
-      <div>Widget</div>
+      <div>widget is named {this.props.name}</div>
     );
   }
-
 }
 
 Widget.propTypes = propTypes;
