@@ -14,13 +14,15 @@ import Logo from '../../assets/logo.png';
 
 import styles from './App.css';
 
-function App(props) {
-  return (
-    <div className={styles.wrapper}>
-      <Img className={styles.logo} src={Logo} alt="Max Stoiber - Logo"/>
-      { props.children }
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <div className={styles.wrapper}>
+        <Img className={styles.logo} src={Logo} alt="Max Stoiber - Logo"/>
+        { this.props.children }
+      </div>
+    );
+  }
 }
 
 // REDUX STUFF
