@@ -7,7 +7,7 @@
 import React, { Component} from 'react';
 import { Link } from 'react-router';
 
-export default class AboutPage extends Component {
+export default class ReadmePage extends Component {
   render() {
     return (
       <div>
