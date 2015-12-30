@@ -30,6 +30,6 @@ Button.propTypes = {
   route: React.PropTypes.string,
   href: React.PropTypes.string,
   onClick: React.PropTypes.func
-}
+};
 
 export default Button;
