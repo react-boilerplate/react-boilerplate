@@ -24,8 +24,8 @@
     "babel-preset-es2015": "^6.0.0",
     "babel-preset-react": "^6.0.0",
     "babel-preset-stage-2": "^6.0.0",
-    "chai": "^3.4.1",
     "css-loader": "^0.23.0",
+    "css-modules-require-hook": "2.1.0",
     "cssnano": "^3.0.1",
     "enzyme": "^1.2.0",
     "eslint": "^1.4.1",
@@ -61,7 +61,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "mocha --compilers js:babel-core/register --recursive 'app/**/*.test.js' && npm run lint",
+    "test": "mocha --compilers js:babel-core/register,css:css-modules-require-hook --recursive 'app/**/*.test.js' && npm run lint",
     "test:watch": "npm test -- --watch",
     "start": "NODE_ENV=development node webpack/server.dev.js",
     "build": "npm run test && NODE_ENV=production webpack --config webpack/webpack.prod.config.js --progress --colors -p",
