@@ -6,22 +6,34 @@ import React from 'react';
 
 describe('<Button />', () => {
   it('should render its children', () => {
-    const wrapper = shallow(<Button href="http://mxstbr.com"><h1>Test</h1></Button>);
-    expect(wrapper.contains(<h1>Test</h1>)).toEqual(true);
+    const children = (<h1>Test</h1>);
+    const renderedComponent = shallow(
+      <Button href="http://mxstbr.com">
+        { children }
+      </Button>
+    );
+    expect(renderedComponent.contains(children)).toEqual(true);
   });
 
   it('should adopt the className', () => {
-    const wrapper = shallow(<Button className="test" />);
-    expect(wrapper.hasClass('test')).toEqual(true);
+    const renderedComponent = shallow(<Button className="test" />);
+    expect(renderedComponent.hasClass('test')).toEqual(true);
   });
 
   it('should render an <a> tag if no route is specified', () => {
-    const wrapper = shallow(<Button href="http://mxstbr.com" />);
-    expect(wrapper.find('a').length).toEqual(1);
+    const renderedComponent = shallow(<Button href="http://mxstbr.com" />);
+    expect(renderedComponent.find('a').length).toEqual(1);
   });
 
   it('should render a Link if the route prop is specified', () => {
-    const wrapper = shallow(<Button route="/" />);
-    expect(wrapper.find('Link').length).toEqual(1);
+    const renderedComponent = shallow(<Button route="/" />);
+    expect(renderedComponent.find('Link').length).toEqual(1);
+  });
+
+  it('should handle click events', () => {
+    const onClickSpy = expect.createSpy();
+    const renderedComponent = shallow(<Button onClick={onClickSpy} />);
+    renderedComponent.find('a').simulate('click');
+    expect(onClickSpy).toHaveBeenCalled();
   });
 });
