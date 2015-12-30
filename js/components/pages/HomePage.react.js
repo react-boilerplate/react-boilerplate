@@ -7,6 +7,7 @@ import { asyncChangeProjectName, asyncChangeOwnerName } from '../../actions/AppA
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { createSelector } from 'reselect';
 
 class HomePage extends Component {
   render() {
@@ -31,11 +32,22 @@ class HomePage extends Component {
 // REDUX STUFF
 
 // Which props do we want to inject, given the global state?
-function select(state) {
-  return {
-    data: state
-  };
-}
+const getProjectName = state => state.projectName;
+const getOwnerName = state => state.ownerName;
+
+// Memoized selector
+const select = createSelector(
+  getProjectName,
+  getOwnerName,
+  (projectName, ownerName) => {
+    return {
+      data: {
+        projectName,
+        ownerName
+      }
+    };
+  }
+);
 
 // Wrap the component to inject dispatch and state into it
 export default connect(select)(HomePage);
