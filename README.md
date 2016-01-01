@@ -163,4 +163,4 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) for infos on how you can help!
 
 ## License
 
-This project is licensed under the MIT license, Copyright (c) 2015 Maximilian Stoiber. For more information see `LICENSE.md`.
+This project is licensed under the MIT license, Copyright (c) 2016 Maximilian Stoiber. For more information see `LICENSE.md`.
