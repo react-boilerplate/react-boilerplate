@@ -8,4 +8,4 @@
 
 * [`js.md`](js.md): The JavaScript folder structure explained.
 
-* [`testing.md`](testing.md): A deeper look into unit testing.
+* [`unit-testing.md`](unit-testing.md): A deeper look into unit testing.
