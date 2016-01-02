@@ -32,6 +32,7 @@
     "eslint-config-airbnb": "1.0.0",
     "eslint-plugin-react": "^3.3.2",
     "expect": "^1.10.0",
+    "expect-jsx": "2.2.1",
     "extract-text-webpack-plugin": "0.9.1",
     "file-loader": "^0.8.4",
     "html-webpack-plugin": "^1.6.1",
