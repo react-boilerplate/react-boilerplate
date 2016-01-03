@@ -3,7 +3,7 @@
  * This is the first thing users see of our App
  */
 
-import { asyncChangeProjectName, asyncChangeOwnerName } from './HomePageActions';
+import { asyncChangeProjectName, asyncChangeOwnerName } from './HomePage.actions';
 import React from 'react';
 import { connect } from 'react-redux';
 

@@ -1,6 +1,6 @@
 import expect from 'expect';
-import homeReducer from '../HomePageReducer';
-import * as constants from '../HomePageConstants';
+import homeReducer from '../HomePage.reducer';
+import * as constants from '../HomePage.constants';
 
 // Test Reducer
 describe('defaultReducer', () => {

@@ -13,7 +13,7 @@
  * add it in the rootReducer.js.
  */
 
-import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from './HomePageConstants';
+import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from './HomePage.constants';
 const assign = Object.assign || require('object.assign'); // Polyfill maybe needed for browser support
 
 const initialState = {
