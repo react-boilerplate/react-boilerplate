@@ -1,15 +1,16 @@
 import expect from 'expect';
-import homeReducer from '../HomePage.reducer';
+import rewire from 'rewire';
 import * as constants from '../HomePage.constants';
+
+let homeReducer = rewire('../HomePage.reducer');
+const initialState = homeReducer.__get__('initialState');
+homeReducer = homeReducer.default;
 
 // Test Reducer
 describe('defaultReducer', () => {
   // Test that the initial state is returning correctly
   it('should return the initial state', () => {
-    expect(homeReducer(undefined, {})).toEqual({
-      projectName: 'React.js Boilerplate',
-      ownerName: 'mxstbr'
-    });
+    expect(homeReducer(undefined, {})).toEqual(initialState);
   });
 
   // Test that it handles changing the owner correctly
