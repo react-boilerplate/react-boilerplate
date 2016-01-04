@@ -20,6 +20,8 @@
     "babel-eslint": "^4.1.2",
     "babel-loader": "^6.0.0",
     "babel-plugin-react-transform": "^2.0.0",
+    "babel-plugin-transform-react-constant-elements": "6.3.13",
+    "babel-plugin-transform-react-inline-elements": "6.3.13",
     "babel-plugin-transform-react-remove-prop-types": "0.1.0",
     "babel-preset-es2015": "^6.0.0",
     "babel-preset-react": "^6.0.0",
