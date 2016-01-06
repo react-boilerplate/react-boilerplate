@@ -33,7 +33,8 @@ import thunk from 'redux-thunk';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/lib/createBrowserHistory';
 
-// Observer loading of Open Sans (to remove open sans, remove the <link> tag in the index.html file and this observer)
+// Observer loading of Open Sans (to remove open sans, remove the <link> tag in
+// the index.html file and this observer)
 const openSansObserver = new FontFaceObserver('Open Sans', {});
 
 // When Open Sans is loaded, add the js-open-sans-loaded class to the body
@@ -58,7 +59,7 @@ import rootReducer from './rootReducer';
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
 
-// Make reducers hot reloadable, see http://stackoverflow.com/questions/34243684/make-redux-reducers-and-other-non-components-hot-loadable
+// Make reducers hot reloadable, see http://tinyurl.com/gwx7fdz
 if (module.hot) {
   module.hot.accept('./rootReducer', () => {
     const nextRootReducer = require('./rootReducer').default;

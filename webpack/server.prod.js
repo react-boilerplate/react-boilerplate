@@ -20,6 +20,7 @@ new WebpackDevServer(webpack(config), { // Start a server
     console.log(err);
   } else {
     console.log('Server started');
-    console.log('Your app is available at http://' + ip.address() + ':3000 on any device in your local network!');
+    console.log('Your app is available at http://' + ip.address() +
+      ':3000 on any device in your local network!');
   }
 });
