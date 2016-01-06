@@ -14,7 +14,10 @@ function ReadmePage() {
   return (
     <div>
       <h2>Further Setup</h2>
-      <p>Assuming you have already cloned the repo and ran all the commands from the README (otherwise you would not be here), these are the further steps:</p>
+      <p>
+        Assuming you have already cloned the repo and ran all the commands from
+        the README (otherwise you would not be here), these are the further steps:
+      </p>
 
       <ol className={styles.list}>
         <li>Replace my name and the package name in the package.json file</li>

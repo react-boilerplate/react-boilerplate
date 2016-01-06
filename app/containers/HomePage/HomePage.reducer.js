@@ -14,7 +14,9 @@
  */
 
 import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from './HomePage.constants';
-const assign = Object.assign || require('object.assign'); // Polyfill maybe needed for browser support
+
+// Polyfill maybe needed for browser support
+const assign = Object.assign || require('object.assign');
 
 const initialState = {
   projectName: 'React.js Boilerplate',

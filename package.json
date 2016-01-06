@@ -29,7 +29,7 @@
     "cssnano": "^3.0.1",
     "enzyme": "^1.2.0",
     "eslint": "^1.4.1",
-    "eslint-config-airbnb": "1.0.0",
+    "eslint-config-airbnb": "^3.0.0",
     "eslint-plugin-react": "^3.3.2",
     "expect": "^1.10.0",
     "expect-jsx": "2.2.1",

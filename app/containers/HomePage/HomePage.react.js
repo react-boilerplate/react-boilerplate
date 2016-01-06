@@ -12,18 +12,39 @@ import Button from '../../components/Button/Button.react';
 import styles from './HomePage.css';
 
 class HomePage extends React.Component {
+
+  constructor() {
+    this.onChangeProjectName = this.onChangeProjectName.bind(this);
+    this.onChangeOwnerName = this.onChangeOwnerName.bind(this);
+  }
+
+  onChangeProjectName() {
+    this.props.dispatch(asyncChangeProjectName(this.props.projectName));
+  }
+
+  onChangeOwnerName() {
+    this.props.dispatch(asyncChangeOwnerName(this.props.ownerName));
+  }
+
   render() {
-    const dispatch = this.props.dispatch;
     const { projectName, ownerName } = this.props.data;
     return (
       <div>
         <h1>Hello World!</h1>
-        <h2>This is the demo for the { projectName } by <a href={'https://twitter.com/' + ownerName} className={styles.link} >@{ ownerName }</a></h2>
+        <h2>This is the demo for the { projectName } by
+          <a href={`https://twitter.com/${ownerName}`}className={styles.link} >@{ ownerName }</a>
+        </h2>
         <label className={styles.label}>Change to your project name:
-          <input className={styles.input} type="text" onChange={(evt) => { dispatch(asyncChangeProjectName(evt.target.value)); }} defaultValue="React.js Boilerplate" value={projectName} />
+          <input className={styles.input} type="text"
+            onChange={this.onChangeProjectName()}
+            defaultValue="React.js Boilerplate" value={projectName}
+          />
         </label>
         <label className={styles.label}>Change to your name:
-          <input className={styles.input} type="text" onChange={(evt) => { dispatch(asyncChangeOwnerName(evt.target.value)); }} defaultValue="mxstbr" value={ownerName} />
+          <input className={styles.input} type="text"
+            onChange={this.onChangeOwnerName()}
+            defaultValue="mxstbr" value={ownerName}
+          />
         </label>
         <Button route="/readme">Setup</Button>
       </div>
