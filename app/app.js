@@ -59,7 +59,7 @@ import rootReducer from './rootReducer';
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
 
-// Make reducers hot reloadable, see http://tinyurl.com/gwx7fdz
+// Make reducers hot reloadable, see http://mxs.is/googmo
 if (module.hot) {
   module.hot.accept('./rootReducer', () => {
     const nextRootReducer = require('./rootReducer').default;
