@@ -1,10 +1,10 @@
 import expect from 'expect';
 import rewire from 'rewire';
 import * as constants from '../HomePage.constants';
+import homeReducer from '../HomePage.reducer';
 
-let homeReducer = rewire('../HomePage.reducer');
-const initialState = homeReducer.__get__('initialState');
-homeReducer = homeReducer.default;
+const rewiredhomeReducer = rewire('../HomePage.reducer');
+const initialState = rewiredhomeReducer.__get__('initialState');
 
 // Test Reducer
 describe('defaultReducer', () => {
