@@ -48,11 +48,13 @@ export function add(x, y) {
 
 > Note: The `export` here is ES6 syntax, and you will need an ES6 transpiler (e.g. babel.js) to run this JavaScript.
 
-> The `export` exports our function as a module, which we can `import` and use in other files. Continue below to see what that looks like:
+> The `export` exports our function as a module, which we can `import` and use in other files. Continue below to see what that looks like.
 
 ### Mocha
 
-Mocha is our unit testing framework. Its API, which we write tests with, is speech like.
+Mocha is our unit testing framework. Its API, which we write tests with, is speech like and easy to use.
+
+> Note: This is the [official documentation](mochajs.org) of Mocha.
 
 We're going to add a second file called `add.test.js` with our unit tests inside. Running said unit tests requires us to enter `mocha add.test.js` into the command line.
 
@@ -93,6 +95,8 @@ That's the entire Mocha part! Onwards to the actual tests.
 ### expect
 
 Using expect, we `expect` our little function to return the same thing every time given the same input.
+
+> Note: This is the [official documentation](https://github.com/mjackson/expect) for expect.
 
 First, we have to import `expect` at the top of our file, before the tests:
 
@@ -254,7 +258,7 @@ describe('NavBarReducer', () => {
 });
 ```
 
-This works, but we have one problem: We also test the initial state itself. When somebody changes the initial state because they add a new action, this test will fail even if the reducer still returns the initial state.
+This works, but we have one problem: We also test the initial state itself. When somebody changes the initial state, this test will fail, even though the reducer correctly returns the initial state.
 
 To fix that, we have to `import` the initial state from the reducer file and check that the reducer returns that. This has one problem: Our initial state isn't `export`ed.
 Now you might be thinking "Well, that's easy, simply add an `export` before the `const initialState` in the reducer."
@@ -263,6 +267,10 @@ We don't want to `export` it though, because it's relevant to that single module
 This is where the `rewire` module comes in handy.
 
 #### rewire
+
+Rewire allows us to `__get__` modules from files that we normally wouldn't have access to.
+
+> Note: This is the [official documentation](https://github.com/jhnns/rewire)!
 
 Start by `import`ing rewire at the top of your `NavBar.reducer.test.js` file:
 
@@ -273,7 +281,7 @@ import NavBarReducer from '../NavBar.reducer';
 import { TOGGLE_NAV } from '../NavBar.constants';
 ```
 
-Rewire allows us to `__get__` modules from files that we normally wouldn't have access to. This comes in handy here, because we can now `__get__` the `initialState` of the `NavBar.reducer`!
+This comes where `rewire` comes in, using it we can now `__get__` the `initialState` of the `NavBarReducer`!
 
 ```JS
 import expect from 'expect';
@@ -295,13 +303,17 @@ it('returns the initial state', () => {
 });
 ```
 
+Now we really test that the `NavBarReducer` returns the initial state if no action is passed!
+
+Lets see how we can test actions next.
+
 ### Actions
 
 We have one synchronous action `toggleNav` that changes the `NavBar` open state.
 
 #### Synchronous actions
 
-A redux action is a pure function, so testing it isn't more difficult than testing our `add` function from the first part of this guide!
+A Redux action is a pure function, so testing it isn't more difficult than testing our `add` function from the first part of this guide!
 
 The first step is to import the action we want to test, the constant it should return and `expect`:
 
@@ -337,6 +349,18 @@ it('should return the correct constant', () => {
 });
 ```
 
+If our `toggleNav` action works correctly, this is the output Mocha will show us:
+
+```
+NavBar actions
+  toggleNav
+    ✓ should return the correct constant
+```
+
 And that's it, we now know when somebody breaks the `toggleNav` action!
 
 #### Asynchronous actions
+
+**TODO**
+
+*Continue to learn how to test your application with [Component Testing](component-testing.md)!*
