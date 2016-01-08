@@ -27,6 +27,8 @@ Quick setup for new performance orientated, offline–first React.js application
 
 ## Getting started
 
+> Note: You'll need Node, npm and git installed for this to work – if you don't have them installed, have never heard of them or one of those steps throws an error, check out the [prerequisites](./docs/general/prerequisites.md) first!
+
 1. Clone this repo using `git clone git@github.com:mxstbr/react-boilerplate`.
 
 2. Run `npm run initProject` to initialize a new project.
