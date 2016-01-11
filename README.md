@@ -81,7 +81,7 @@ With `npm run serve` you can start a server that's accessible in the entire loca
 
 ### Unit testing
 
-Unit tests live in the `test` directory, and are run with `npm test`. There are two files in there already, testing that the current AppActions and Reducers are working correctly. Mocha is used as a unit testing framework, check out the official [documentation](http://mochajs.org)!
+Unit tests live in the `test` directory, and are run with `npm run test`. There are two files in there already, testing that the current AppActions and Reducers are working correctly. Mocha is used as a unit testing framework, check out the official [documentation](http://mochajs.org)!
 
 ## Files in the root folder
 
