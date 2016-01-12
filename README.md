@@ -33,7 +33,7 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr)!
 
 ## Getting started
 
-1. Clone this repo using `git clone git@github.com:mxstbr/react-boilerplate`.
+1. Clone this repo using `git clone https://github.com/mxstbr/react-boilerplate.git`.
 
 2. Delete the existing git repository by running `rm -rf .git`.
 
