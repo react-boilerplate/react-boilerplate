@@ -1,11 +1,14 @@
 /* eslint no-console:0 */
 // Gets called when running npm run serve
 
+const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.prod.config');
 const ip = require('ip');
 
+console.log('Source: ' + path.join(__dirname, '..', 'app'));
+console.log('Destination: ' + config.output.path);
 console.log('Starting server from build folder...\n');
 
 new WebpackDevServer(webpack(config), { // Start a server
@@ -22,5 +25,6 @@ new WebpackDevServer(webpack(config), { // Start a server
     console.log('Server started');
     console.log('Your app is available at http://' + ip.address() +
       ':3000 on any device in your local network!');
+    console.log('Press CTRL-C to stop');
   }
 });
