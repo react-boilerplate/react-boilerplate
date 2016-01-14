@@ -3,7 +3,7 @@
 
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const config = require('./webpack.prod.config');
+const config = require('./webpack.prod.babel');
 const ip = require('ip');
 
 console.log('Starting server from build folder...\n');

@@ -1,18 +1,16 @@
-/* eslint-disable */
-
 // Important modules this config uses
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // PostCSS plugins
-var cssnext = require('postcss-cssnext');
-var postcssFocus = require('postcss-focus');
-var postcssReporter = require('postcss-reporter');
-var cssnano = require('cssnano');
+const cssnext = require('postcss-cssnext');
+const postcssFocus = require('postcss-focus');
+const postcssReporter = require('postcss-reporter');
+const cssnano = require('cssnano');
 
-module.exports = require('./webpack.base.config')({
+module.exports = require('./webpack.base.babel')({
   // In production, we skip all hot-reloading stuff
   entry: [
     path.join(__dirname, '..', 'app/app.js')
@@ -60,12 +58,12 @@ module.exports = require('./webpack.base.config')({
       inject: true
     }),
     // Extract the CSS into a seperate file
-    new ExtractTextPlugin("css/main.css"),
+    new ExtractTextPlugin('css/main.css'),
     // Set the process.env to production so React includes the production
     // version of itself
     new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("production")
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
       }
     })
   ]

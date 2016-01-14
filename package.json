@@ -65,7 +65,7 @@
     "test": "mocha --compilers js:babel-core/register,css:css-modules-require-hook --recursive 'app/**/*.test.js' && npm run lint",
     "test:watch": "npm test -- --watch",
     "start": "NODE_ENV=development node webpack/server.dev.js",
-    "build": "npm run test && NODE_ENV=production webpack --config webpack/webpack.prod.config.js --progress --colors -p",
+    "build": "npm run test && NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --progress --colors -p",
     "serve": "NODE_ENV=production node webpack/server.prod.js",
     "pagespeed": "./webpack/pagespeed",
     "initProject": "NODE_ENV=initialisation ./webpack/init"

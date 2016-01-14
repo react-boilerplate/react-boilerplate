@@ -1,19 +1,17 @@
-/* eslint-disable */
-
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // PostCSS plugins
-var cssnext = require('postcss-cssnext');
-var postcssFocus = require('postcss-focus');
-var postcssReporter = require('postcss-reporter');
+const cssnext = require('postcss-cssnext');
+const postcssFocus = require('postcss-focus');
+const postcssReporter = require('postcss-reporter');
 
-module.exports = require('./webpack.base.config')({
+module.exports = require('./webpack.base.babel')({
   // Add hot reloading in development
   entry: [
-    "webpack-dev-server/client?http://localhost:3000", // Needed for hot reloading
-    "webpack/hot/only-dev-server", // See above
+    'webpack-dev-server/client?http://localhost:3000', // Needed for hot reloading
+    'webpack/hot/only-dev-server', // See above
     path.join(__dirname, '..', 'app/app.js') // Start with js/app.js...
   ],
   // Load the CSS in a style tag
@@ -39,11 +37,11 @@ module.exports = require('./webpack.base.config')({
   // Tell babel that we want to hot-reload
   query: {
     plugins: [
-      ["react-transform", {
+      ['react-transform', {
         transforms: [{
-          transform: "react-transform-hmr",
-          imports: ["react"],
-          locals: ["module"]
+          transform: 'react-transform-hmr',
+          imports: ['react'],
+          locals: ['module']
         }]
       }]
     ]

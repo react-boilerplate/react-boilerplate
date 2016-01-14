@@ -1,9 +1,7 @@
-/* eslint-disable */
+const path = require('path');
+const AppCachePlugin = require('appcache-webpack-plugin');
 
-var path = require('path');
-var AppCachePlugin = require('appcache-webpack-plugin');
-
-module.exports = function(options) {
+module.exports = (options) => {
   options.plugins.push(new AppCachePlugin({ // AppCache should be everywhere
     exclude: ['.htaccess'] // No need to cache .htaccess. See http://mxs.is/googmp
   }));
@@ -12,7 +10,7 @@ module.exports = function(options) {
     entry: options.entry,
     output: { // Compile into js/build.js
       path: path.resolve(__dirname, '..', 'build'),
-      filename: "js/bundle.js"
+      filename: 'js/bundle.js'
     },
     module: {
       loaders: [{
@@ -25,7 +23,7 @@ module.exports = function(options) {
         loader: options.cssLoaders // ...with PostCSS
       }, {
         test: /\.jpe?g$|\.gif$|\.png$/i,
-        loader: "url-loader?limit=10000"
+        loader: 'url-loader?limit=10000'
       }, {
         test: /\.html$/,
         loader: 'html-loader'
@@ -33,10 +31,10 @@ module.exports = function(options) {
       ]
     },
     plugins: options.plugins,
-    postcss: function() {
+    postcss: () => {
       return options.postcssPlugins;
     },
-    target: "web", // Make web variables accessible to webpack, e.g. window
+    target: 'web', // Make web variables accessible to webpack, e.g. window
     stats: false, // Don't show stats in the console
     progress: true
   };
