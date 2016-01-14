@@ -28,11 +28,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/lib/createBrowserHistory';
-
+import { syncHistory , routeReducer } from 'redux-simple-router';
 // Observer loading of Open Sans (to remove open sans, remove the <link> tag in the index.html file and this observer)
 const openSansObserver = new FontFaceObserver('Open Sans', {});
 
@@ -52,11 +52,23 @@ import App from './components/App.react';
 // Import the CSS file, which HtmlWebpackPlugin transfers to the build folder
 import '../css/main.css';
 
-// Create the store with the redux-thunk middleware, which allows us
-// to do asynchronous things in the actions
+
+
+// Add redux-simple-router https://github.com/rackt/redux-simple-router
 import rootReducer from './reducers/rootReducer';
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const store = createStoreWithMiddleware(rootReducer);
+const reducer = combineReducers({
+  ...rootReducer,
+  routing: routeReducer
+})
+const history = createHistory();
+
+// Sync dispatched route actions to the history
+const reduxRouterMiddleware = syncHistory(history)
+
+// Create the store with the redux-thunk middleware and redux-simple-router middleware,
+// which allows us to do asynchronous things in the actions
+const createStoreWithMiddleware = applyMiddleware(thunk , reduxRouterMiddleware)(createStore);
+const store = createStoreWithMiddleware(reducer);
 
 // Make reducers hot reloadable, see http://stackoverflow.com/questions/34243684/make-redux-reducers-and-other-non-components-hot-loadable
 if (module.hot) {
@@ -70,7 +82,7 @@ if (module.hot) {
 // which are all wrapped in the App component, which contains the navigation etc
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={createHistory()}>
+    <Router history={history}>
       <Route component={App}>
         <Route path="/" component={HomePage} />
         <Route path="/readme" component={ReadmePage} />
