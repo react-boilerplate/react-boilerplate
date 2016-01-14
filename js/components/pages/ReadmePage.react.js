@@ -5,10 +5,13 @@
  */
 
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { routeActions } from 'redux-simple-router';
 
 export default class ReadmePage extends Component {
   render() {
+    const dispatch = this.props.dispatch;
+    const { pathname } = this.props.location;
     return (
       <div>
         <h2>Further Setup</h2>
@@ -22,8 +25,21 @@ export default class ReadmePage extends Component {
           <li>And finally, update the unit tests</li>
         </ol>
 
-        <Link className="btn" to="/">Home</Link>
+        <button className="btn" onClick={ ()=> dispatch(routeActions.push('/')) }>Back Home</button>
+        <p> Here is {"'"}{ pathname }{"'"}</p>
       </div>
     );
   }
 }
+
+// REDUX STUFF
+
+// Which props do we want to inject, given the global state?
+function select(state) {
+  return {
+    location: state.routing.location
+  };
+}
+
+// Wrap the component to inject dispatch and state into it
+export default connect(select)(ReadmePage);
