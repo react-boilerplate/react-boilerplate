@@ -1,8 +1,12 @@
+/**
+ * COMMON WEBPACK CONFIGURATIONS
+ */
+
 const path = require('path');
 const AppCachePlugin = require('appcache-webpack-plugin');
 
 module.exports = (options) => {
-  options.plugins.push(new AppCachePlugin({ // AppCache should be everywhere
+  options.plugins.push(new AppCachePlugin({ // AppCache should be loaded in both environments
     exclude: ['.htaccess'] // No need to cache .htaccess. See http://mxs.is/googmp
   }));
 
@@ -16,7 +20,7 @@ module.exports = (options) => {
       loaders: [{
         test: /\.js$/, // Transform all .js files required somewhere within an entry point...
         loader: 'babel', // ...with the specified loaders...
-        exclude: path.join(__dirname, '..', '/node_modules/'), // ...except for the node_modules folder.
+        exclude: path.join(__dirname, '..', '/node_modules/'), // ...except for node_modules
         query: options.query,
       }, {
         test: /\.css$/, // Transform all .css files required somewhere within an entry point...
