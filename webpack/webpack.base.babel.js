@@ -1,5 +1,5 @@
 /**
- * COMMON WEBPACK CONFIGURATIONS
+ * COMMON WEBPACK CONFIGURATION
  */
 
 const path = require('path');
@@ -18,13 +18,13 @@ module.exports = (options) => {
     },
     module: {
       loaders: [{
-        test: /\.js$/, // Transform all .js files required somewhere within an entry point...
-        loader: 'babel', // ...with the specified loaders...
-        exclude: path.join(__dirname, '..', '/node_modules/'), // ...except for node_modules
+        test: /\.js$/, // Transform all .js files required somewhere with Babel
+        loader: 'babel',
+        exclude: path.join(__dirname, '..', '/node_modules/'),
         query: options.query,
       }, {
-        test: /\.css$/, // Transform all .css files required somewhere within an entry point...
-        loader: options.cssLoaders // ...with PostCSS
+        test: /\.css$/, // Transform all .css files required somewhere with PostCSS
+        loader: options.cssLoaders
       }, {
         test: /\.jpe?g$|\.gif$|\.png$/i,
         loader: 'url-loader?limit=10000'

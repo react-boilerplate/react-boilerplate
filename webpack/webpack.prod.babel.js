@@ -16,12 +16,12 @@ module.exports = require('./webpack.base.babel')({
     path.join(__dirname, '..', 'app/app.js')
   ],
   // We use ExtractTextPlugin so we get a seperate CSS file instead
-  // of the CSS being in the big JS file
+  // of the CSS being in the JS and injected as a style tag
   cssLoaders: ExtractTextPlugin.extract(
     'style-loader',
     'css-loader?modules&importLoaders=1!postcss-loader'
   ),
-  // In production, we minify our CSS with cssnano too
+  // In production, we minify our CSS with cssnano
   postcssPlugins: [
     postcssFocus(),
     cssnext({
