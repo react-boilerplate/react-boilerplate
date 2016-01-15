@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const AppCachePlugin = require('appcache-webpack-plugin');
 
 // PostCSS plugins
 const cssnext = require('postcss-cssnext');
@@ -37,6 +38,9 @@ module.exports = require('./webpack.base.babel')({
     })
   ],
   plugins: [
+    new AppCachePlugin({ // AppCache should be loaded in both environments
+      exclude: ['.htaccess'] // No need to cache .htaccess. See http://mxs.is/googmp
+    }),
     // Minify and optimize the JavaScript
     new webpack.optimize.UglifyJsPlugin({
       compress: {

@@ -3,13 +3,8 @@
  */
 
 const path = require('path');
-const AppCachePlugin = require('appcache-webpack-plugin');
 
 module.exports = (options) => {
-  options.plugins.push(new AppCachePlugin({ // AppCache should be loaded in both environments
-    exclude: ['.htaccess'] // No need to cache .htaccess. See http://mxs.is/googmp
-  }));
-
   return {
     entry: options.entry,
     output: { // Compile into js/build.js
