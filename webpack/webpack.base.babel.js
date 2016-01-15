@@ -38,6 +38,20 @@ module.exports = (options) => {
     postcss: () => {
       return options.postcssPlugins;
     },
+    resolve: {
+      modulesDirectories: [
+        'assets',
+        'containers',
+        'components',
+        'node_modules'
+      ],
+      extensions: [
+        '',
+        '.js',
+        '.jsx',
+        '.react.js'
+      ]
+    },
     target: 'web', // Make web variables accessible to webpack, e.g. window
     stats: false, // Don't show stats in the console
     progress: true
