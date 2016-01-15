@@ -33,7 +33,9 @@ Quick setup for new performance orientated, offline–first React.js application
 
 2. Run `npm run initProject` to initialize a new project.
 
-3. Run `npm start` to start the local web server.
+3. Run `npm install` to install all dependencies.
+
+4. Run `npm start` to start the local web server.
 
 Now you can go to `http://localhost:3000` and see your app!
 
