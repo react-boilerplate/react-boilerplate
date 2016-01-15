@@ -62,10 +62,12 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "mocha --compilers js:babel-core/register,css:css-modules-require-hook --recursive 'app/**/*.test.js' && npm run lint",
+    "pretest": "npm run lint",
+    "test": "mocha --compilers js:babel-core/register,css:css-modules-require-hook --recursive 'app/**/*.test.js'",
     "test:watch": "npm test -- --watch",
     "start": "NODE_ENV=development node webpack/server.dev.js",
-    "build": "npm run test && NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --progress --colors -p",
+    "prebuild": "npm run test",
+    "build": "NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --progress --colors -p",
     "serve": "NODE_ENV=production node webpack/server.prod.js",
     "pagespeed": "./webpack/pagespeed",
     "initProject": "NODE_ENV=initialisation ./webpack/init"
