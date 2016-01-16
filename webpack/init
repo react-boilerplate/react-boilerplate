@@ -13,12 +13,15 @@ process.stdin.setEncoding('utf8');
 var dir = path.join(__dirname, '..');
 
 cleanRepo(dir, function () {
-  installDeps(deleteFileInCurrentDir('init', function() {
-    initGit(dir, function () {
-      process.stdout.write('\nDone.');
-      process.exit(0);
+  installDeps(function(error) {
+    process.stdout.write(error);
+    deleteFileInCurrentDir('init', function() {
+      initGit(dir, function () {
+        process.stdout.write('\nDone.');
+        process.exit(0);
+      });
     });
-  }));
+  });
 });
 
 /**
@@ -48,6 +51,6 @@ function deleteFileInCurrentDir(file, callback) {
  * Installs dependencies
  */
 function installDeps(callback) {
-  process.stdout.write('\nInstalling dependencies...')
+  process.stdout.write('\nInstalling dependencies... (This might take a while)')
   exec('npm install', callback);
 }
