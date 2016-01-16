@@ -39,6 +39,7 @@
     "html-webpack-plugin": "^2.6.1",
     "ip": "1.1.0",
     "json-loader": "^0.5.2",
+    "lint-staged": "0.1.1",
     "mocha": "^2.3.2",
     "ngrok": "0.1.99",
     "object.assign": "^4.0.1",
@@ -62,6 +63,7 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "lint:staged": "eslint-staged",
     "pretest": "npm run lint",
     "test": "mocha --compilers js:babel-core/register,css:css-modules-require-hook --recursive 'app/**/*.test.js'",
     "test:watch": "npm test -- --watch",
@@ -72,6 +74,7 @@
     "pagespeed": "./webpack/pagespeed",
     "initProject": "NODE_ENV=initialisation ./webpack/init"
   },
+  "pre-commit": "lint:staged",
   "author": "Max Stoiber",
   "license": "MIT"
 }
