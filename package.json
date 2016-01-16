@@ -49,7 +49,6 @@
     "postcss-reporter": "^1.2.1",
     "psi": "1.0.6",
     "react-addons-test-utils": "^0.14.3",
-    "react-dom": "^0.14.3",
     "react-transform-hmr": "^1.0.1",
     "rewire": "2.5.1",
     "style-loader": "^0.13.0",
