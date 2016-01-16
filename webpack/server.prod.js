@@ -4,9 +4,9 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.prod.babel');
-const ip = require('ip');
+const ngrok = require('ngrok');
 
-console.log('Starting server from build folder...\n');
+console.log('Starting server from build folder...');
 
 new WebpackDevServer(webpack(config), { // Start a server
   publicPath: config.output.publicPath,
@@ -20,7 +20,12 @@ new WebpackDevServer(webpack(config), { // Start a server
     console.log(err);
   } else {
     console.log('Server started');
-    console.log('Your app is available at http://' + ip.address() +
-      ':3000 on any device in your local network!');
+    ngrok.connect(3000, (innerErr, url) => {
+      if (innerErr) {
+        console.log('ERROR\n' + innerErr);
+      }
+      console.log('Tunnel initialised');
+      console.log('\nYour app is available at ' + url + '!');
+    });
   }
 });
