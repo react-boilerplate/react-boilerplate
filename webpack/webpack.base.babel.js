@@ -3,13 +3,15 @@
  */
 
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = (options) => {
   return {
     entry: options.entry,
     output: { // Compile into js/build.js
       path: path.resolve(__dirname, '..', 'build'),
-      filename: 'js/bundle.js'
+      filename: '[name].js',
+      chunkFilename: '[name].chunk.js'
     },
     module: {
       loaders: [{
@@ -29,7 +31,9 @@ module.exports = (options) => {
       }
       ]
     },
-    plugins: options.plugins,
+    plugins: options.plugins.concat([
+      new webpack.optimize.CommonsChunkPlugin('common.js')
+    ]),
     postcss: () => {
       return options.postcssPlugins;
     },

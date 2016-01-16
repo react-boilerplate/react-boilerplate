@@ -10,8 +10,8 @@ console.log('Starting server from build folder...');
 
 new WebpackDevServer(webpack(config), { // Start a server
   publicPath: config.output.publicPath,
-  filename: 'bundle.js',
-  contentBase: 'build',
+  filename: config.output.filename,
+  contentBase: config.output.path,
   lazy: true,
   historyApiFallback: true,
   quiet: true // Without logging
