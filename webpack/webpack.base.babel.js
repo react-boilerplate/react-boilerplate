@@ -18,7 +18,7 @@ module.exports = (options) => {
         test: /\.js$/, // Transform all .js files required somewhere with Babel
         loader: 'babel',
         exclude: path.join(__dirname, '..', '/node_modules/'),
-        query: options.query,
+        query: options.babelQuery,
       }, {
         test: /\.css$/, // Transform all .css files required somewhere with PostCSS
         loader: options.cssLoaders
