@@ -1,11 +1,19 @@
 /* eslint no-console:0 */
 // Gets called when running npm run serve
 
+const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.prod.babel');
 const ngrok = require('ngrok');
+const chalk = require('chalk');
 
+console.log(
+  chalk.bold('Options:\n') +
+  chalk.gray('-----------------------------------\n') +
+  chalk.cyan('Source: ') + path.join(__dirname, '..', 'app') + '\n' +
+  chalk.gray('-----------------------------------\n')
+);
 console.log('Starting server from build folder...');
 
 new WebpackDevServer(webpack(config), { // Start a server
@@ -22,10 +30,11 @@ new WebpackDevServer(webpack(config), { // Start a server
     console.log('Server started');
     ngrok.connect(3000, (innerErr, url) => {
       if (innerErr) {
-        console.log('ERROR\n' + innerErr);
+        console.log(chalk.red('ERROR\n' + innerErr));
       }
       console.log('Tunnel initialised');
-      console.log('\nYour app is available at ' + url + '!');
+      console.log('\nYour app is available at ' + chalk.magenta(url));
+      console.log(chalk.blue('\nPress ' + chalk.italic('CTRL-C') + ' to stop'));
     });
   }
 });
