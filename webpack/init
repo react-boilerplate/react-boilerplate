@@ -14,7 +14,9 @@ var dir = path.join(__dirname, '..');
 
 cleanRepo(dir, function () {
   installDeps(function(error) {
-    process.stdout.write(error);
+    if (error) {
+      process.stdout.write(error);
+    }
     deleteFileInCurrentDir('init', function() {
       initGit(dir, function () {
         process.stdout.write('\nDone.');
