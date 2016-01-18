@@ -7,7 +7,7 @@
  *
  */
 
-// Load the ServiceWorker, the Cache polyfill, the manifest.json file and the .htaccess file
+// Load the ServiceWorker, the manifest.json file and the .htaccess file
 import 'file?name=[name].[ext]!./serviceworker.js';
 import 'file?name=[name].[ext]!./manifest.json';
 import 'file?name=[name].[ext]!./.htaccess';
