@@ -66,6 +66,8 @@ if (module.hot) {
 
 // Mostly boilerplate, except for the Routes. These are the pages you can go to,
 // which are all wrapped in the App component, which contains the navigation etc
+// See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
+// about the require.ensure code splitting business
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -73,27 +75,24 @@ ReactDOM.render(
         <Route
           path="/"
           getComponent={function get(location, cb) {
-            require.ensure(['./containers/HomePage/HomePage.react'], (require) => {
-              const HomePage = require('./containers/HomePage/HomePage.react');
-              cb(null, HomePage.default);
+            require.ensure([], (require) => {
+              cb(null, require('./containers/HomePage/HomePage.react').default);
             }, 'HomePage');
           }}
         />
         <Route
           path="/readme"
           getComponent={function get(location, cb) {
-            require.ensure(['./containers/ReadmePage/ReadmePage.react'], (require) => {
-              const ReadmePage = require('./containers/ReadmePage/ReadmePage.react');
-              cb(null, ReadmePage.default);
+            require.ensure([], (require) => {
+              cb(null, require('./containers/ReadmePage/ReadmePage.react').default);
             }, 'ReadmePage');
           }}
         />
         <Route
           path="*"
           getComponent={function get(location, cb) {
-            require.ensure(['./containers/NotFoundPage/NotFound.react'], (require) => {
-              const NotFoundPage = require('./containers/NotFoundPage/NotFound.react');
-              cb(null, NotFoundPage.default);
+            require.ensure([], (require) => {
+              cb(null, require('./containers/NotFoundPage/NotFound.react').default);
             }, 'NotFoundPage');
           }}
         />
