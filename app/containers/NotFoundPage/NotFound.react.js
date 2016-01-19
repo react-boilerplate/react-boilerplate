@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from 'Button/Button.react';
+import Button from 'Button';
 
 function NotFound() {
   return (

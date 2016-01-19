@@ -6,7 +6,7 @@
 
 import React from 'react';
 
-import Button from 'Button/Button.react';
+import Button from 'Button';
 
 import styles from './ReadmePage.css';
 

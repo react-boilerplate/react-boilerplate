@@ -7,7 +7,7 @@ import { asyncChangeProjectName, asyncChangeOwnerName } from './HomePage.actions
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Button from 'Button/Button.react';
+import Button from 'Button';
 
 import styles from './HomePage.css';
 
