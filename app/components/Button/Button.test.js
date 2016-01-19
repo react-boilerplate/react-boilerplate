@@ -25,9 +25,9 @@ describe('<Button />', () => {
     expect(renderedComponent.find('a').length).toEqual(1);
   });
 
-  it('should render a Link if the route prop is specified', () => {
-    const renderedComponent = shallow(<Button route="/" />);
-    expect(renderedComponent.find('Link').length).toEqual(1);
+  it('should render a button to change route if the handleRoute prop is specified', () => {
+    const renderedComponent = shallow(<Button handleRoute={ ()=> {} } />);
+    expect(renderedComponent.find('button').length).toEqual(1);
   });
 
   it('should handle click events', () => {
