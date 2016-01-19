@@ -9,7 +9,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Img from 'Img/Img.react';
+import Img from 'Img';
 import Logo from 'logo.png';
 
 import styles from './App.css';
