@@ -32,6 +32,8 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import FontFaceObserver from 'fontfaceobserver';
 import { browserHistory } from 'react-router';
+import { syncHistory } from 'redux-simple-router';
+const reduxRouterMiddleware = syncHistory(browserHistory);
 
 // Observer loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -50,10 +52,14 @@ import App from './containers/App/App.react';
 // Import the CSS file, which HtmlWebpackPlugin transfers to the build folder
 import '../node_modules/sanitize.css/dist/sanitize.min.css';
 
-// Create the store with the redux-thunk middleware, which allows us
-// to do asynchronous things in the actions
+/*
+*   Create the store with two middlewares :
+*   1. redux-thunk : Allow us to asynchronous things in the actions
+*   2. reduxRouterMiddleware : Sync dispatched route actions to the history
+*/
+
 import rootReducer from './rootReducer';
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(thunk, reduxRouterMiddleware)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
 
 // Make reducers hot reloadable, see http://mxs.is/googmo

@@ -5,32 +5,56 @@
  */
 
 import React from 'react';
-
+import { connect } from 'react-redux';
+import { routeActions } from 'redux-simple-router';
 import Button from 'Button/Button.react';
 
 import styles from './ReadmePage.css';
 
-function ReadmePage() {
-  return (
-    <div>
-      <h2>Further Setup</h2>
-      <p>
-        Assuming you have already cloned the repo and ran all the commands from
-        the README (otherwise you would not be here), these are the further steps:
-      </p>
+class ReadmePage extends React.Component {
+  constructor() {
+    super();
+    this.onChangeRoute = this.onChangeRoute.bind(this);
+  }
+  onChangeRoute(url) {
+    this.props.changeRoute(url);
+  }
+  render() {
+    const { pathname } = this.props.location;
 
-      <ol className={styles.list}>
-        <li>Replace my name and the package name in the package.json file</li>
-        <li>Replace the two components with your first component</li>
-        <li>Replace the default actions with your first action</li>
-        <li>Delete css/components/_home.css and add the styling for your component</li>
-        <li>And finally, update the unit tests</li>
-      </ol>
+    return (
+      <div>
+        <h2>Further Setup</h2>
+        <p>
+          Assuming you have already cloned the repo and ran all the commands from
+          the README (otherwise you would not be here), these are the further steps:
+        </p>
 
-      <Button route="/">Home</Button>
-    </div>
-  );
+        <ol className={styles.list}>
+          <li>Replace my name and the package name in the package.json file</li>
+          <li>Replace the two components with your first component</li>
+          <li>Replace the default actions with your first action</li>
+          <li>Delete css/components/_home.css and add the styling for your component</li>
+          <li>And finally, update the unit tests</li>
+        </ol>
+
+        <Button handleRoute= { () => this.onChangeRoute('/') } >Home</Button>
+        <p> Here is {"'"}{ pathname }{"'"}</p>
+      </div>
+    );
+  }
 }
 
+function mapStateToProps(state) {
+  return {
+    location: state.routing.location
+  };
+}
 
-export default ReadmePage;
+function mapDispatchToProps(dispatch) {
+  return {
+    changeRoute: (url) => dispatch(routeActions.push(url))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReadmePage);

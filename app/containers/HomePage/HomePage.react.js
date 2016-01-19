@@ -6,7 +6,7 @@
 import { asyncChangeProjectName, asyncChangeOwnerName } from './HomePage.actions';
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { routeActions } from 'redux-simple-router';
 import Button from 'Button/Button.react';
 
 import styles from './HomePage.css';
@@ -16,18 +16,22 @@ class HomePage extends React.Component {
     super();
     this.onChangeProjectName = this.onChangeProjectName.bind(this);
     this.onChangeOwnerName = this.onChangeOwnerName.bind(this);
+    this.onChangeRoute = this.onChangeRoute.bind(this);
   }
-
-  onChangeProjectName(evt) {
-    this.props.dispatch(asyncChangeProjectName(evt.target.value));
-  }
-
   onChangeOwnerName(evt) {
-    this.props.dispatch(asyncChangeOwnerName(evt.target.value));
+    this.props.changeOwnerName(evt.target.value);
+  }
+  onChangeProjectName(evt) {
+    this.props.changeProjectName(evt.target.value);
+  }
+
+  onChangeRoute(url) {
+    this.props.changeRoute(url);
   }
 
   render() {
     const { projectName, ownerName } = this.props.data;
+    const { pathname } = this.props.location;
 
     return (
       <div>
@@ -37,30 +41,38 @@ class HomePage extends React.Component {
         </h2>
         <label className={styles.label}>Change to your project name:
           <input className={styles.input} type="text"
-            onChange={this.onChangeProjectName}
+            onChange={ this.onChangeProjectName }
             defaultValue="React.js Boilerplate" value={projectName}
           />
         </label>
         <label className={styles.label}>Change to your name:
           <input className={styles.input} type="text"
-            onChange={this.onChangeOwnerName}
+            onChange={ this.onChangeOwnerName }
             defaultValue="mxstbr" value={ownerName}
           />
         </label>
-        <Button route="/readme">Setup</Button>
+        <Button handleRoute= { () => this.onChangeRoute('/readme') } >Setup</Button>
+        <p> Here is {"'"}{ pathname }{"'"}</p>
       </div>
     );
   }
 }
 
-// REDUX STUFF
-
-// Which props do we want to inject, given the global state?
-function select(state) {
+// react-redux stuff
+function mapStateToProps(state) {
   return {
-    data: state
+    location: state.routing.location,
+    data: state.home
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    changeRoute: (url) => dispatch(routeActions.push(url)),
+    changeProjectName: (value) => dispatch(asyncChangeProjectName(value)),
+    changeOwnerName: (value) => dispatch(asyncChangeOwnerName(value))
   };
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

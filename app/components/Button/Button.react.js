@@ -7,16 +7,15 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router';
 
 import styles from './Button.css';
 
 function Button(props) {
   const className = props.className ? props.className : styles.button;
 
-  if (props.route) {
+  if (props.handleRoute) {
     return (
-      <Link className={className} to={props.route}>{props.children}</Link>
+      <button className={className} onClick={ props.handleRoute } >{props.children}</button>
     );
   }
 
@@ -27,7 +26,7 @@ function Button(props) {
 
 Button.propTypes = {
   className: React.PropTypes.string,
-  route: React.PropTypes.string,
+  handleRoute: React.PropTypes.func,
   href: React.PropTypes.string,
   onClick: React.PropTypes.func
 };
