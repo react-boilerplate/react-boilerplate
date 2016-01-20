@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import Img from 'Img';
 import Logo from './logo.png';
 
-import styles from './App.css';
+import styles from './styles.css';
 
 class App extends React.Component {
   render() {

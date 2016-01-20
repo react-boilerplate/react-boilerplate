@@ -3,13 +3,13 @@
  * This is the first thing users see of our App
  */
 
-import { asyncChangeProjectName, asyncChangeOwnerName } from './HomePage.actions';
+import { asyncChangeProjectName, asyncChangeOwnerName } from './actions';
 import React from 'react';
 import { connect } from 'react-redux';
 import { routeActions } from 'redux-simple-router';
-import Button from 'Button/Button';
+import Button from 'Button';
 
-import styles from './HomePage.css';
+import styles from './styles.css';
 
 class HomePage extends React.Component {
   constructor() {

@@ -1,10 +1,10 @@
 import expect from 'expect';
 import rewire from 'rewire';
 
-const AppActions = rewire('../HomePage.actions');
+const AppActions = rewire('../actions');
 const changeOwnerName = AppActions.__get__('changeOwnerName');
 const changeProjectName = AppActions.__get__('changeProjectName');
-import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from '../HomePage.constants';
+import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from '../constants';
 
 // Test actions from AppActions.js
 describe('AppActions', () => {

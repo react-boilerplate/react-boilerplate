@@ -1,9 +1,9 @@
 import expect from 'expect';
 import rewire from 'rewire';
-import * as constants from '../HomePage.constants';
-import homeReducer from '../HomePage.reducer';
+import * as constants from '../constants';
+import homeReducer from '../reducer';
 
-const rewiredhomeReducer = rewire('../HomePage.reducer');
+const rewiredhomeReducer = rewire('../reducer');
 const initialState = rewiredhomeReducer.__get__('initialState');
 
 // Test Reducer

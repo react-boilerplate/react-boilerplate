@@ -47,7 +47,7 @@ openSansObserver.check().then(() => {
 });
 
 // Import the pages
-import App from './containers/App/App.react';
+import App from 'App';
 
 // Import the CSS file, which HtmlWebpackPlugin transfers to the build folder
 import '../node_modules/sanitize.css/dist/sanitize.min.css';
@@ -82,7 +82,7 @@ ReactDOM.render(
           path="/"
           getComponent={function get(location, cb) {
             require.ensure([], (require) => {
-              cb(null, require('./containers/HomePage/HomePage.react').default);
+              cb(null, require('HomePage').default);
             }, 'HomePage');
           }}
         />
@@ -90,7 +90,7 @@ ReactDOM.render(
           path="/readme"
           getComponent={function get(location, cb) {
             require.ensure([], (require) => {
-              cb(null, require('./containers/ReadmePage/ReadmePage.react').default);
+              cb(null, require('ReadmePage').default);
             }, 'ReadmePage');
           }}
         />
@@ -98,7 +98,7 @@ ReactDOM.render(
           path="*"
           getComponent={function get(location, cb) {
             require.ensure([], (require) => {
-              cb(null, require('./containers/NotFoundPage/NotFound.react').default);
+              cb(null, require('NotFoundPage').default);
             }, 'NotFoundPage');
           }}
         />

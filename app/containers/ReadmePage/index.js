@@ -7,9 +7,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { routeActions } from 'redux-simple-router';
-import Button from 'Button/Button';
+import Button from 'Button';
 
-import styles from './ReadmePage.css';
+import styles from './styles.css';
 
 class ReadmePage extends React.Component {
   constructor() {

@@ -1,4 +1,4 @@
-import Button from './Button.react';
+import Button from './index';
 
 import expect from 'expect';
 import { shallow } from 'enzyme';

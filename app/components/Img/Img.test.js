@@ -1,4 +1,4 @@
-import Img from './Img.react';
+import Img from './index';
 
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
