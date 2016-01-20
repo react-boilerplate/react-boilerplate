@@ -7,7 +7,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { routeActions } from 'redux-simple-router';
-import Button from 'Button/Button.react';
+import Button from 'Button/Button';
 
 import styles from './ReadmePage.css';
 
@@ -27,8 +27,6 @@ class ReadmePage extends React.Component {
   }
 
   render() {
-    const { pathname } = this.props.location;
-
     return (
       <div>
         <h2>Further Setup</h2>
@@ -46,7 +44,6 @@ class ReadmePage extends React.Component {
         </ol>
 
         <Button handleRoute= { this.changeRouteToHome } >Home</Button>
-        <p> Here is {"'"}{ pathname }{"'"}</p>
       </div>
     );
   }

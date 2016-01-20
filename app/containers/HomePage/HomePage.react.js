@@ -7,7 +7,7 @@ import { asyncChangeProjectName, asyncChangeOwnerName } from './HomePage.actions
 import React from 'react';
 import { connect } from 'react-redux';
 import { routeActions } from 'redux-simple-router';
-import Button from 'Button/Button.react';
+import Button from 'Button/Button';
 
 import styles from './HomePage.css';
 
@@ -36,7 +36,6 @@ class HomePage extends React.Component {
 
   render() {
     const { projectName, ownerName } = this.props.data;
-    const { pathname } = this.props.location;
 
     return (
       <div>
@@ -57,7 +56,6 @@ class HomePage extends React.Component {
           />
         </label>
         <Button handleRoute = { this.changeRouteToReadme }>Setup</Button>
-        <p> Here is {"'"}{ pathname }{"'"}</p>
       </div>
     );
   }
