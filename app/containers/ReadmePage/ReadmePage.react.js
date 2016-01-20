@@ -15,10 +15,17 @@ class ReadmePage extends React.Component {
   constructor() {
     super();
     this.onChangeRoute = this.onChangeRoute.bind(this);
+    this.changeRouteToHome = this.changeRouteToHome.bind(this);
   }
+
   onChangeRoute(url) {
     this.props.changeRoute(url);
   }
+
+  changeRouteToHome() {
+    this.onChangeRoute('/');
+  }
+
   render() {
     const { pathname } = this.props.location;
 
@@ -38,7 +45,7 @@ class ReadmePage extends React.Component {
           <li>And finally, update the unit tests</li>
         </ol>
 
-        <Button handleRoute= { () => this.onChangeRoute('/') } >Home</Button>
+        <Button handleRoute= { this.changeRouteToHome } >Home</Button>
         <p> Here is {"'"}{ pathname }{"'"}</p>
       </div>
     );

@@ -17,6 +17,7 @@ class HomePage extends React.Component {
     this.onChangeProjectName = this.onChangeProjectName.bind(this);
     this.onChangeOwnerName = this.onChangeOwnerName.bind(this);
     this.onChangeRoute = this.onChangeRoute.bind(this);
+    this.changeRouteToReadme = this.changeRouteToReadme.bind(this);
   }
   onChangeOwnerName(evt) {
     this.props.changeOwnerName(evt.target.value);
@@ -27,6 +28,10 @@ class HomePage extends React.Component {
 
   onChangeRoute(url) {
     this.props.changeRoute(url);
+  }
+
+  changeRouteToReadme() {
+    this.onChangeRoute('/readme');
   }
 
   render() {
@@ -51,7 +56,7 @@ class HomePage extends React.Component {
             defaultValue="mxstbr" value={ownerName}
           />
         </label>
-        <Button handleRoute= { () => this.onChangeRoute('/readme') } >Setup</Button>
+        <Button handleRoute = { this.changeRouteToReadme }>Setup</Button>
         <p> Here is {"'"}{ pathname }{"'"}</p>
       </div>
     );
