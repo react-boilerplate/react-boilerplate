@@ -69,7 +69,7 @@
     "lint": "eslint .",
     "lint:staged": "eslint-staged",
     "pretest": "npm run lint",
-    "test": "NODE_ENV=test mocha --compilers js:babel-core/register,css:css-modules-require-hook --require ./testHelper.js --recursive 'app/**/*.test.js'",
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register,css:css-modules-require-hook --require ./webpack/testHelper.js --recursive 'app/**/*.test.js'",
     "test:watch": "NODE_ENV=test npm test -- --watch",
     "start": "NODE_ENV=development node webpack/server.dev.js",
     "prebuild": "npm run test",
