@@ -15,7 +15,7 @@ import CheckmarkIcon from './CheckmarkIcon.react';
 
 function Button(props) {
   return (
-    <button className="btn">
+    <button className="btn" onClick={props.onClick}>
       <CheckmarkIcon />
       { props.children }
     </button>
@@ -37,7 +37,7 @@ import Button from './Button.react';
 class HomePage extends React.Component {
   render() {
     return(
-      <Button>Click me!</Button>
+      <Button onClick={this.doSomething}>Click me!</Button>
     );
   }
 }
@@ -67,10 +67,24 @@ In comparison, when rendered with the shallow renderer, we'll get a String conta
 <!-- </Button> -->
 ```
 
-If we tested our `Button` with the normal renderer, and there was a problem with the `CheckmarkIcon`, the test for the `Button` would fail as well and it would be hard to find the culprit of the failures. Using the shallow renderer, we can correctly asses and identify the problems since we only ever render one component!
+If we tested our `Button` with the normal renderer, and there was a problem with the `CheckmarkIcon`, the test for the `Button` would fail as well and it would be hard to find the culprit of the failures. Using the shallow renderer, we can asses and identify the problems since we don't render any other components other than the one we're testing!
 
-The problem with the shallow renderer is that all assertions have to be done manually, and you cannot do anything that needs the browsers DOM.
+The problem with the shallow renderer is that all assertions have to be done manually, and you cannot do anything that needs the DOM.
 
-Thankfully, [AirBnB](https://twitter.com/AirBnBNerds) has open sourced their wrapper around the React shallow renderer and jsdom, called `enzyme`. `enzyme` is a testing utility that gives us a very nice assertion/traversment/manipulation API.
+Thankfully, [AirBnB](https://twitter.com/AirBnBNerds) has open sourced their wrapper around the React shallow renderer and jsdom, called `enzyme`. `enzyme` is a testing utility that gives us a nice assertion/traversment/manipulation API.
 
 ## enzyme
+
+Lets test our `<Button>` component! We're going to assess three things: First, that it renders a HTML `<button>` tag, second that it renders the text we pass it and third that handles clicks!
+
+This is our Mocha setup:
+
+```JS
+describe('<Button />', () => {
+  it('renders a <button>', () => {});
+
+  it('renders text', () => {});
+
+  it('handles clicks', () => {});
+});
+```
