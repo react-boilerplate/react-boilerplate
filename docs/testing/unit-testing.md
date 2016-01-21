@@ -359,8 +359,4 @@ NavBar actions
 
 And that's it, we now know when somebody breaks the `toggleNav` action!
 
-#### Asynchronous actions
-
-**TODO**
-
 *Continue to learn how to test your application with [Component Testing](component-testing.md)!*
