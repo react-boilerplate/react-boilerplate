@@ -11,7 +11,8 @@ module.exports = (options) => {
     output: { // Compile into js/build.js
       path: path.resolve(__dirname, '..', 'build'),
       filename: '[name].js',
-      chunkFilename: '[name].chunk.js'
+      chunkFilename: '[name].chunk.js',
+      publicPath: '/'
     },
     module: {
       loaders: [{
