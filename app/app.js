@@ -7,21 +7,9 @@
  *
  */
 
-// Load the ServiceWorker, the manifest.json file and the .htaccess file
-import 'file?name=[name].[ext]!./serviceworker.js';
+// Load the manifest.json file and the .htaccess file
 import 'file?name=[name].[ext]!./manifest.json';
 import 'file?name=[name].[ext]!./.htaccess';
-
-// Check for ServiceWorker support before trying to install it
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/serviceworker.js').then(() => {
-    // Registration was successful
-  }).catch(() => {
-    // Registration failed
-  });
-} else {
-  // No ServiceWorker Support
-}
 
 // Import all the third party stuff
 import React from 'react';
@@ -107,3 +95,9 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 );
+
+// Install ServiceWorker and AppCache in the end since
+// it's not most important operation and if main code fails,
+// we do not want it installed
+import { install } from 'offline-plugin/runtime';
+install();
