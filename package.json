@@ -47,7 +47,7 @@
     "mocha": "^2.3.2",
     "ngrok": "0.1.99",
     "object.assign": "^4.0.1",
-    "offline-plugin": "^2.0.0",
+    "offline-plugin": "^2.0.2",
     "postcss-cssnext": "2.4.0",
     "postcss-focus": "^1.0.0",
     "postcss-loader": "^0.8.0",
