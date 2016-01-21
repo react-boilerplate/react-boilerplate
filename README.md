@@ -123,7 +123,7 @@ To cache a file, add it to the `urlsToCache` variable in the [`serviceworker.js`
 
 **Careful** about removing this, as there is no real downside to having your application available when the users network connection isn't perfect.
 
-To remove offline capability, delete [`serviceworker.js`](app/serviceworker.js), remove the import in [`app.js`](app/js/app.js), remove `AppCachePlugin` in [`makewebpackconfig.js`](webpack/makewebpackconfig.js) and remove the `manifest` attribute of the `<html>` tag in [`index.html`](app/index.html).
+To remove offline capability, delete the `offline-plugin` from the [`package.json`](package.json), remove the import of the plugin in [`app.js`](app/js/app.js) and remove the plugin from the [`webpack.prod.babel.js`](webpack/webpack.prod.babel.js).
 
 ### Add To Homescreen
 
