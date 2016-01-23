@@ -12,9 +12,15 @@ module.exports = {
       /node_modules\/acorn/,
     ],
     loaders: [
-      { test: /\.js$/, loader: 'babel', exclude: [/node_modules/], },
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.css$/, loader: 'null-loader' },
+      { test: /\.js$/,
+        loader: 'babel',
+        exclude: [/node_modules/],
+        query: {
+          plugins: ['babel-plugin-rewire']
+        }
+      },
     ]
   },
   // Some node_modules pull in Node-specific dependencies.
@@ -40,5 +46,5 @@ module.exports = {
       // required for enzyme to work properly
       sinon: 'sinon/pkg/sinon'
     },
-  },
+  }
 };

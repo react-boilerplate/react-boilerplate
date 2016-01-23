@@ -13,11 +13,11 @@ module.exports = function(config) {
     singleRun: process.env.TRAVIS ? true : false,
 
     files: [
-      'app/components/Button/Button.test.js'
+      'app/**/*.test.js'
     ],
 
     preprocessors: {
-      ['app/components/Button/Button.test.js']: ['webpack', 'sourcemap'],
+      ['app/**/*.test.js']: ['webpack', 'sourcemap'],
     },
 
     webpack: webpackConfig
