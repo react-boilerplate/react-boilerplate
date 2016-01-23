@@ -1,8 +1,16 @@
 .wrapper {
-	background-color: #FEFEFE;
-	color: #222222;
-	max-width: 978px;
+	max-width: calc(768px + 16px * 2);
 	margin: 0 auto;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	height: 100%;
+	padding: 0 16px;
+	flex-direction: column;
+}
+
+.logoWrapper {
+	padding: 2em 0;
 }
 
 .logo {

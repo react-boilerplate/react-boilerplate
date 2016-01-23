@@ -1,17 +1,32 @@
-.link {
-	color: #222222;
+.textSection {
+	margin: 3em auto;
 }
 
-.label {
-	display: block;
-	width: 100%;
+.textSection:first-child {
+	margin-top: 0;
+}
+
+:global(p) {
+  font-family: Georgia, Times, 'Times New Roman', serif;
+  line-height: 1.5em;
+}
+
+.list {
+  font-family: Georgia, Times, 'Times New Roman', serif;
+  padding-left: 1.75em;
+}
+
+.listItem {
 	margin: 1em 0;
 }
 
-.input {
-	margin-left: 0.5em;
-	border-radius: 2px;
-	border-width: 1px;
-	border-color: grey;
-	padding: 0.3em;
+.link {
+  text-decoration: none;
+}
+
+.code {
+  font-size: 0.75em;
+  background-color: $very-light-grey;
+  padding: 0.125em 0.5em;
+  border-radius: 1px;
 }
