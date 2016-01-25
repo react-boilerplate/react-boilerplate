@@ -4,6 +4,4 @@
 build
 
 # Ignore config stuff
-server.*.js
-*config.js
-serviceworker.js
+webpack/karma.conf.js
