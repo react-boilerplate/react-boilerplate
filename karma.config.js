@@ -3,7 +3,7 @@ var webpackConfig = require('./webpack/webpack.test.babel');
 
 module.exports = function(config) {
   config.set({
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha'],
 
     browsers:  process.env.TRAVIS
       ? ['ChromeTravis']
