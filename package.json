@@ -72,7 +72,7 @@
     "lint": "eslint .",
     "lint:staged": "eslint-staged",
     "pretest": "npm run lint",
-    "test": "NODE_ENV=test karma start karma.config.js",
+    "test": "NODE_ENV=test karma start webpack/karma.conf.js --single-run",
     "test:mocha": "NODE_ENV=test mocha --compilers js:babel-core/register,css:css-modules-require-hook --require ./webpack/testHelper.js --recursive 'app/**/*.test.js'",
     "test:mocha:watch": "NODE_ENV=test npm test -- --watch",
     "start": "NODE_ENV=development node webpack/server.dev.js",
