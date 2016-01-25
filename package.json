@@ -76,6 +76,7 @@
     "lint:staged": "eslint-staged",
     "pretest": "npm run lint",
     "test": "NODE_ENV=test karma start webpack/karma.conf.js --single-run",
+    "test:watch": "npm run test -- --auto-watch --no-single-run",
     "test:firefox": "npm run test -- --browsers Firefox",
     "test:safari": "npm run test -- --browsers Safari",
     "test:ie": "npm run test -- --browsers IE",

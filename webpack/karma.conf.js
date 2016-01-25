@@ -10,8 +10,8 @@ module.exports = function(config) {
       ? ['ChromeTravis']
       : ['Chrome'],
 
-    autoWatch: process.env.TRAVIS ? false : true,
-    singleRun: process.env.TRAVIS ? true : false,
+    autoWatch: false,
+    singleRun: true,
 
     files: [
       '../app/**/*.test.js'
