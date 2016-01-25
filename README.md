@@ -17,23 +17,25 @@ Quick setup for new performance orientated, offline–first React.js application
 
 - [**Redux**](https://github.com/gaearon/redux) is a much better implementation of a flux–like, unidirectional data flow. Redux makes actions composable, reduces the boilerplate code and makes hot–reloading possible in the first place. For a good overview of redux check out the talk linked above or the [official documentation](https://gaearon.github.io/redux/)!
 
-- [**PostCSS**](https://github.com/postcss/postcss) is like Sass, but modular and capable of much more. PostCSS is, in essence, just a wrapper for plugins which exposes an easy to use, but very powerful API. While it is possible to [replicate Sass features](https://github.com/jonathantneal/precss) with PostCSS, PostCSS has an [ecosystem of amazing plugins](http://postcss.parts) with funcionalities Sass cannot even dream about having.
+- [**PostCSS**](https://github.com/postcss/postcss) is like Sass, but modular and capable of much more. Using an array of plugins, we automatically prefix our CSS with the necessary vendor prefixes, are able to use as-of-yet-unreleased CSS4 features (variables, custom media queries,...) and much more awesome things.
 
-- **Unit tests** should be an important part of every web application developers toolchain. [Mocha](https://github.com/mochajs/mocha) and [Karma](https://github.com/karma-runner/karma) check your application is working exactly how it should without you lifting a single finger. Congratulations, you just won a First Class ticket to world domaination, fasten your seat belt please!
+- [**CSS Modules**](https://github.com/css-modules/css-modules) make our styles component specific. When building our application, all class names are scoped and become completely unique to the component. This means the end of global CSS and `!important` rules, and the beginning of a new era of CSS.
 
-- [**react-router**](https://github.com/rackt/react-router) is used for routing in this boilerplate. Using the new, and currently unreleased, `1.0` version, react-router makes routing really easy to do and takes care of a lot of the work. Since the version is not officially out yet, the [documentation](https://github.com/rackt/react-router/blob/master/doc/00%20Guides/0%20Overview.md) is not fully finished, but by far finished enough to work for most needs.
+- [**Karma**](https://github.com/karma-runner/karma) in combination with [**Mocha**](https://github.com/mochajs/mocha) verify that our application is working exactly how it should without us lifting a single finger. Congratulations, you just won a First Class ticket to world domination, fasten your seat belt please!
 
-- [**ServiceWorker**](http://www.html5rocks.com/en/tutorials/service-worker/introduction/) and [**AppCache**](http://www.html5rocks.com/en/tutorials/appcache/beginner/) make it possible to use your application offline. As soon as the website has been opened once, it is cached and available without a network connection. [**`manifest.json`**](https://developer.chrome.com/multidevice/android/installtohomescreen) is specifically for Chrome on Android. Users can add the website to the homescreen and use it like a native app!
+- [**react-router**](https://github.com/rackt/react-router) is used for routing in this boilerplate. Since the URL the user is visiting is in reality a part of the application state, we use [**react-router-redux**](https://github.com/rackt/react-router-redux) to bind the current route to our application state.
+
+- [**ServiceWorker**](http://www.html5rocks.com/en/tutorials/service-worker/introduction/) and [**AppCache**](http://www.html5rocks.com/en/tutorials/appcache/beginner/) make it possible to use your application offline. As soon as the website has been opened once, it is cached and available without a network connection. [**`manifest.json`**](https://developer.chrome.com/multidevice/android/installtohomescreen) makes it so users can add the website to the homescreen and use it like a native app!
 
 ## Getting started
 
-> Note: You'll need Node, npm and git installed for this to work – if you don't have them installed, have never heard of them or one of those steps throws an error, check out the [prerequisites](./docs/general/prerequisites.md) first!
+> Note: You'll need Node, npm and git installed for this to work – if you don't have them installed, have never heard of them or one of those steps throws an error, check out the [prerequisites](./docs/general/prerequisites.md)!
 
 1. Clone this repo using `git clone git@github.com:mxstbr/react-boilerplate`.
 
 2. Run `npm run initProject` to initialize a new project.
 
-3. Run `npm start` to start the local web server.
+3. Run `npm start` to start the local development environment.
 
 Now you can go to `http://localhost:3000` and see your app!
 
@@ -55,23 +57,25 @@ This boilerplate includes a `.htaccess` file that does two things:
 
 ## Structure
 
-As a developer making an application, check out the `app/` and the `tests/` folder and the files inside those. The rest of the folders and files is only there to make your life making your app much easier, and should not have to be touched. (If they have to be changed, please submit an issue with the reason for your change!)
+As a developer making an application, check out the `app/` folder and the files inside. The rest of the folders and files only exist to make your life easier, and should not have to be touched. *(If they have to be changed, please submit an issue!)*
 
-`app/` contains your entire application code, including CSS, JavaScript and HTML. `tests/` contains your unit tests.
+`app/` contains your entire application code, including CSS, JavaScript, HTML and tests.
 
 ## CSS
 
-The CSS modules found in the `app/css` subfolders all get imported into one big file (`main.css`), which gets transpiled with PostCSS.
+Each component has a unique `styles.css` file associated with it that is `import`ed in the main JavaScript file. (`index.js`) Each of those files gets run through PostCSS and is compiled into one big stylesheet that is sent down the pipe.
 
-See the [`css` folder README](app/css/README.md) for more information about the PostCSS plugins used and the CSS structure.
+See the [CSS documentation](docs/css/README.md) for more information about PostCSS and CSS modules.
 
 ## JS
 
 All files that are `import`ed/`require`d somewhere get compiled into one big file at build time. (`build/bundle.js`) Webpack automatically optimizes your JavaScript with `UglifyJS`, so you don't have to worry about that.
 
-See the [`js` folder README](app/js/README.md) for more information about the JS structure.
+See the [JS documentation](docs/js/README.md) for more information about the JS.
 
 ## Testing
+
+For a throughout explanation of the testing procedure, see the [testing documentation](docs/testing/README.md)!
 
 ### Performance testing
 
@@ -79,15 +83,15 @@ With the development server running (i.e. while `$ npm start` is running in anot
 
 ### Browser testing
 
-With `$ npm run serve` you can start a server that's accessible in the entire local network and shows the version of the app that's in the `build` folder. Useful for testing on different devices!
+With `$ npm run serve` you can start a server that's accessible in the entire world and shows the version of the app that's in the `build` folder. Useful for testing on different devices!
 
 ### Unit testing
 
-Unit tests live in the `tests/` directory, and are run with `$ npm run test`. There are two files in there already, checking that the current AppActions and Reducers are working correctly. Mocha is used as a unit testing framework, for more information on how to use it check out the official [documentation](http://mochajs.org)!
+Unit tests live in `test/` directories right next to the components being tested and are run with `$ npm run test`.
 
 ## Files in the root folder
 
-For a full explanation of all files, see [`docs/FILES.md`](docs/FILE-APPENDIX.md).
+For a full explanation of all files, see [`docs/general/files.md`](docs/general/files.md).
 
 ## Opinionated features
 
@@ -95,7 +99,7 @@ For a full explanation of all files, see [`docs/FILES.md`](docs/FILE-APPENDIX.md
 
 If you simply use web fonts in your project, the page will stay blank until these fonts are downloaded. That means a lot of waiting time in which users could already read the content.
 
-[FontFaceObserver](https://github.com/bramstein/fontfaceobserver) adds a `js-<font-name>-loaded` class to the `body` when the fonts have loaded. You should specify an initial `font-family` with save fonts on the `body`, and a `.js-<font-name>-loaded` `font-family` which includes your web font. See [app.js](app/js/app.js#L17-L25) and [base.css](app/css/base/_base.css#L26-L32).
+[FontFaceObserver](https://github.com/bramstein/fontfaceobserver) adds a class to the `body` when the fonts have loaded. You should specify an initial `font-family` with save fonts on the `body`, and a class with the web fonts in the `font-family`. See [`app.js`](app/app.js#L26-L32) and [`App/styles.css`](app/containers/App/styles.css).
 
 #### Adding a new font
 
