@@ -4,6 +4,7 @@ var webpackConfig = require('./webpack/webpack.test.babel');
 module.exports = function(config) {
   config.set({
     frameworks: ['mocha'],
+    reporters: ['mocha'],
 
     browsers:  process.env.TRAVIS
       ? ['ChromeTravis']
@@ -21,6 +22,11 @@ module.exports = function(config) {
     },
 
     webpack: webpackConfig,
+
+    // make Webpack bundle generation quiet
+    webpackMiddleware: {
+      noInfo: true
+    },
 
     customLaunchers: {
       ChromeTravis: {

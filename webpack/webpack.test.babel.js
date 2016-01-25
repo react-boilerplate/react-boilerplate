@@ -46,5 +46,5 @@ module.exports = {
       // required for enzyme to work properly
       sinon: 'sinon/pkg/sinon'
     },
-  }
+  },
 };
