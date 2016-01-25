@@ -20,7 +20,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import FontFaceObserver from 'fontfaceobserver';
 import { browserHistory } from 'react-router';
-import { syncHistory } from 'redux-simple-router';
+import { syncHistory } from 'react-router-redux';
 const reduxRouterMiddleware = syncHistory(browserHistory);
 
 // Observer loading of Open Sans (to remove open sans, remove the <link> tag in
