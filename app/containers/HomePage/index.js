@@ -6,7 +6,7 @@
 import { asyncChangeProjectName, asyncChangeOwnerName } from './actions';
 import React from 'react';
 import { connect } from 'react-redux';
-import { routeActions } from 'redux-simple-router';
+import { routeActions } from 'react-router-redux';
 import Button from 'Button';
 import Anchor from 'Anchor';
 import H1 from 'Heading1';
