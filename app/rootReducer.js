@@ -4,7 +4,7 @@
  */
 
 import { combineReducers } from 'redux';
-import { routeReducer } from 'redux-simple-router';
+import { routeReducer } from 'react-router-redux';
 import homeReducer from 'HomePage/reducer';
 
 export default combineReducers({
