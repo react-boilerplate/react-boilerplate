@@ -6,7 +6,7 @@ module.exports = function(config) {
     frameworks: ['mocha'],
 
     browsers:  process.env.TRAVIS
-      ? ['ChromiumTravis']
+      ? ['ChromeTravis']
       : ['Chrome'],
 
     autoWatch: process.env.TRAVIS ? false : true,
@@ -23,7 +23,7 @@ module.exports = function(config) {
     webpack: webpackConfig,
 
     customLaunchers: {
-      ChromiumTravis: {
+      ChromeTravis: {
           base: 'Chrome',
           flags: ['--no-sandbox']
       }
