@@ -6,7 +6,7 @@ module.exports = function(config) {
     frameworks: ['mocha'],
 
     browsers:  process.env.TRAVIS
-      ? ['ChromeTravis']
+      ? ['ChromiumTravis']
       : ['Chrome'],
 
     autoWatch: process.env.TRAVIS ? false : true,
@@ -20,6 +20,13 @@ module.exports = function(config) {
       ['app/**/*.test.js']: ['webpack', 'sourcemap'],
     },
 
-    webpack: webpackConfig
+    webpack: webpackConfig,
+
+    customLaunchers: {
+      ChromiumTravis: {
+          base: 'Chrome',
+          flags: ['--no-sandbox']
+      }
+    }
   });
 };
