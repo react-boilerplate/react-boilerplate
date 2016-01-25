@@ -1,12 +1,11 @@
-var path = require('path');
-var webpackConfig = require('./webpack.test.babel');
+const webpackConfig = require('./webpack.test.babel');
 
-module.exports = function(config) {
+module.exports = (config) => {
   config.set({
     frameworks: ['mocha'],
     reporters: ['mocha'],
 
-    browsers:  process.env.TRAVIS
+    browsers: process.env.TRAVIS
       ? ['ChromeTravis']
       : ['Chrome'],
 
@@ -30,8 +29,8 @@ module.exports = function(config) {
 
     customLaunchers: {
       ChromeTravis: {
-          base: 'Chrome',
-          flags: ['--no-sandbox']
+        base: 'Chrome',
+        flags: ['--no-sandbox']
       }
     }
   });

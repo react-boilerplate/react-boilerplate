@@ -2,6 +2,3 @@
 
 # Ignore build folder
 build
-
-# Ignore config stuff
-webpack/karma.conf.js
