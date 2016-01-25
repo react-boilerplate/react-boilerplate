@@ -21,6 +21,7 @@
     "babel-plugin-rewire": "^1.0.0-beta-5",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
+    "babel-preset-react-hmre": "1.0.1",
     "babel-preset-stage-2": "^6.3.13",
     "chalk": "^1.1.1",
     "cheerio": "^0.19.0",
@@ -61,7 +62,6 @@
     "psi": "^2.0.2",
     "react-addons-test-utils": "^0.14.6",
     "react-router-redux": "^2.1.0",
-    "react-transform-hmr": "^1.0.1",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.11",
@@ -79,7 +79,6 @@
     "initProject": "NODE_ENV=initialisation ./webpack/init",
     "lint": "eslint .",
     "test": "NODE_ENV=test karma start webpack/karma.conf.js --single-run",
-
     "prebuild": "npm run test",
     "pretest": "npm run lint",
     "lint:staged": "eslint-staged",

@@ -40,14 +40,6 @@ module.exports = require('./webpack.base.babel')({
   ],
   // Tell babel that we want to hot-reload
   babelQuery: {
-    plugins: [
-      ['react-transform', {
-        transforms: [{
-          transform: 'react-transform-hmr',
-          imports: ['react'],
-          locals: ['module']
-        }]
-      }]
-    ]
+    presets: ['react-hmre']
   }
 });
