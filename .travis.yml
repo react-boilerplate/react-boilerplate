@@ -1,7 +1,7 @@
 language: node_js
 sudo: true
 node_js:
-  - "stable"
+  - "5.0"
 script: npm run build
 before_install:
   - export CHROME_BIN=/usr/bin/google-chrome
