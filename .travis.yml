@@ -4,6 +4,10 @@ node_js:
   - "4"
   - "0.10"
 script: npm run build
+before_install:
+  - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
 notifications:
   email:
     on_failure: change
