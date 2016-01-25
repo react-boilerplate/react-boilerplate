@@ -1,3 +1,13 @@
+/* Global styles */
+
+body {
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+body.jsOpenSansLoaded {
+	font-family: 'Open Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
 .wrapper {
 	max-width: calc(768px + 16px * 2);
 	margin: 0 auto;

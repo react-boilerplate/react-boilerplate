@@ -25,13 +25,14 @@ const reduxRouterMiddleware = syncHistory(browserHistory);
 
 // Observer loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
+import styles from './containers/App/styles.css';
 const openSansObserver = new FontFaceObserver('Open Sans', {});
 
 // When Open Sans is loaded, add the js-open-sans-loaded class to the body
 openSansObserver.check().then(() => {
-  document.body.classList.add('js-open-sans-loaded');
+  document.body.classList.add(styles.jsOpenSansLoaded);
 }, () => {
-  document.body.classList.remove('js-open-sans-loaded');
+  document.body.classList.remove(styles.jsOpenSansLoaded);
 });
 
 // Import the pages
