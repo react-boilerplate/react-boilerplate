@@ -72,20 +72,21 @@
     "url": "git://github.com/mxstbr/react-boilerplate.git"
   },
   "scripts": {
-    "lint": "eslint .",
-    "lint:staged": "eslint-staged",
-    "pretest": "npm run lint",
-    "test": "NODE_ENV=test karma start webpack/karma.conf.js --single-run",
-    "test:watch": "npm run test -- --auto-watch --no-single-run",
-    "test:firefox": "npm run test -- --browsers Firefox",
-    "test:safari": "npm run test -- --browsers Safari",
-    "test:ie": "npm run test -- --browsers IE",
     "start": "NODE_ENV=development node webpack/server.dev.js",
-    "prebuild": "npm run test",
     "build": "NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --progress --colors -p",
     "serve": "NODE_ENV=production node webpack/server.prod.js",
     "pagespeed": "./webpack/pagespeed",
-    "initProject": "NODE_ENV=initialisation ./webpack/init"
+    "initProject": "NODE_ENV=initialisation ./webpack/init",
+    "lint": "eslint .",
+    "test": "NODE_ENV=test karma start webpack/karma.conf.js --single-run",
+
+    "prebuild": "npm run test",
+    "pretest": "npm run lint",
+    "lint:staged": "eslint-staged",
+    "test:watch": "npm run test -- --auto-watch --no-single-run",
+    "test:firefox": "npm run test -- --browsers Firefox",
+    "test:safari": "npm run test -- --browsers Safari",
+    "test:ie": "npm run test -- --browsers IE"
   },
   "pre-commit": "lint:staged",
   "author": "Max Stoiber",
