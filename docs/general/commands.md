@@ -28,6 +28,8 @@ Gets your application ready for deployment. Optimizes and minifies all files, an
 
 ## Testing
 
+See the [testing documentation](../testing/README.md) for detailed information as to how testing works! If you just want the commands and know how to write tests already, look below!
+
 ## Unit testing
 
 ```Shell
@@ -76,7 +78,7 @@ $ npm run pagespeed
 
 With the development server running (i.e. while `$ npm start` is running in another tab), enter this command to run Google PageSpeed Insights and get a performance check right in your terminal!
 
-### Test around the world
+### Remote testing
 
 ```Shell
 $ npm run serve
