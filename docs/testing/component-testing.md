@@ -75,7 +75,7 @@ Thankfully, [AirBnB](https://twitter.com/AirBnBNerds) has open sourced their wra
 
 ## enzyme
 
-Lets test our `<Button>` component! We're going to assess three things: First, that it renders a HTML `<button>` tag, second that it renders the text we pass it and third that handles clicks!
+Lets test our `<Button>` component! We're going to assess three things: First, that it renders a HTML `<button>` tag, second that it renders its children we pass it and third that handles clicks!
 
 This is our Mocha setup:
 
@@ -83,8 +83,50 @@ This is our Mocha setup:
 describe('<Button />', () => {
   it('renders a <button>', () => {});
 
-  it('renders text', () => {});
+  it('renders its children', () => {});
 
   it('handles clicks', () => {});
 });
 ```
+
+Lets start with testing that it renders a `<button>`. To do that we first `shallow` render it, and then `expect` that a `<button>` node exists.
+
+```JS
+it('renders a <button>', () => {
+  const renderedComponent = shallow(
+    <Button></Button>
+  );
+  expect(
+    renderedComponent.find("button").node
+  ).toExist();
+});
+```
+
+Nice, if somebody breaks our button component by having it render an `<a>` tag or something else we'll immediately know! Lets do something a bit more advanced now, and asses that our `<Button>` renders its children.
+
+We render our button component with some text, and then asses that our text exists:
+
+```JS
+it('renders its children', () => {
+  const text = "Click me!";
+  const renderedComponent = shallow(
+    <Button>{ text }</Button>
+  );
+  expect(
+    renderedComponent.contains(text)
+  ).toEqual(true);
+});
+```
+
+Great! Onwards to our last and most advanced test, which assesses that our `<Button>` handles clicks correctly. We'll use a Spy for that, a Spy is a function that knows if and how often it has been called. `expect` thankfully provides them for us, so all we have to do is use them. We create the Spy, pass it as the `onClick` function to our component, simulate a click on the `<button>` tag and lastly assess that our spy was called!
+
+```JS
+it('handles clicks', () => {
+  const onClickSpy = expect.createSpy();
+  const renderedComponent = shallow(<Button onClick={onClickSpy} />);
+  renderedComponent.find('button').simulate('click');
+  expect(onClickSpy).toHaveBeenCalled();
+});
+```
+
+That's how you unit test your components and make sure they work correctly!
