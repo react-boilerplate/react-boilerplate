@@ -1,12 +1,19 @@
 # Component testing
 
-Testing your Redux actions and reducers is nice, but you can do even more to make sure nothing breaks your application. The most integral part of a React app are your components.
+[Unit testing your Redux actions and reducers](unit-testing.md) is nice, but you can do even more to make sure nothing breaks your application. The most integral part of a React app are your components, so why not test them too!
 
-React provides us with a nice add-on called the Shallow Renderer. This renderer will render a React component **one level deep**. Lets take a look at what that means with a simple `Button` component.
+<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Shallow rendering](#shallow-rendering)
+- [enzyme](#enzyme)
+
+<!-- /TOC -->
 
 ## Shallow rendering
 
-Our `Button` renders a `<button>` element containing a checkmark icon and some text:
+React provides us with a nice add-on called the Shallow Renderer. This renderer will render a React component **one level deep**. Lets take a look at what that means with a simple `<Button>` component!
+
+This component renders a `<button>` element containing a checkmark icon and some text:
 
 ```JS
 // Button.react.js
