@@ -6,19 +6,15 @@ This boilerplate uses the [Mocha](https://github.com/mochajs/mocha) test framewo
 
 <!-- TOC depthFrom:2 depthTo:4 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-- [General](#general)
+- [Basics](#basics)
 	- [Mocha](#mocha)
 	- [expect](#expect)
-- [Real World Usage](#real-world-usage)
+- [Testing Redux Applications](#testing-redux-applications)
 	- [Reducers](#reducers)
 		- [rewire](#rewire)
 	- [Actions](#actions)
-		- [Synchronous actions](#synchronous-actions)
-		- [Asynchronous actions](#asynchronous-actions)
 
 <!-- /TOC -->
-
-## General
 
 We use this glob pattern to find unit tests `app/**/*.test.js` - this tells mocha to run all files that end with `.test.js` anywhere within the `app` folder. Use this to your advantage, and put unit tests next to the files you want to test so relevant files stay together!
 
@@ -35,6 +31,8 @@ NavBar                   # Wrapping folder
 │   ├── NavBar.actions.test.js  # Actions tests
 │   └── NavBar.reducer.test.js  # Reducer tests
 ```
+
+## Basics
 
 For the sake of this guide, lets pretend we're testing this function. It's situated in the `add.js` file:
 
@@ -163,7 +161,7 @@ add()
 
 This tells us that something is broken in the add function before any users get the code! Congratulations, you just saved time and money!
 
-## Real World Usage
+## Testing Redux Applications
 
 This boilerplate uses Redux, partially because it turns our data flow into testable (pure) functions. Lets go back to our `NavBar` component from above, and see what testing the actions and the reducer of it would look like.
 
@@ -289,8 +287,7 @@ import rewire from 'rewire';
 import NavBarReducer from '../NavBar.reducer';
 import { TOGGLE_NAV } from '../NavBar.constants';
 
-const rewiredNavBarReducer = rewire('../NavBar.reducer');
-const initialState = rewiredNavBarReducer.__get__('initialState');
+const initialState = NavBarReducer.__get__('initialState');
 ```
 
 > Note: You might be wondering why we still `import` the `NavBarReducer` above. The `NavBarReducer` imported with `rewire` isn't the actual reducer, it's a `rewire`d version.
@@ -309,9 +306,7 @@ Lets see how we can test actions next.
 
 ### Actions
 
-We have one synchronous action `toggleNav` that changes the `NavBar` open state.
-
-#### Synchronous actions
+We have one action `toggleNav` that changes the `NavBar` open state.
 
 A Redux action is a pure function, so testing it isn't more difficult than testing our `add` function from the first part of this guide!
 
