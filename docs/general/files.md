@@ -1,4 +1,8 @@
-# Files in the root folder
+# Files
+
+Some explanation for a few of the configuration files lying around this boilerplate.
+
+## Files in the root folder
 
 * `.babelrc`: The Babel configuration. Babel is a ES6 to ES5 JavaScript transpiler, which means it's the tool that allows us to use ES6 in our applications.
 
@@ -10,22 +14,24 @@
 
 * `.gitignore`: Tells `git` to ignore certain files and folders which don't need to be version controlled, like the build folder.
 
-* `.htaccess`: A default server configuration for a single page applications for the Apache web server. See the [`README`](README.md) for more information.
-
-* `index.html`: The HTML file that your web application uses.
-
-* `makewebpackconfig.js`: Generates the webpack configuration. In development mode, we add hot reloading and don't minify our code. In production mode, we minify everything.
-
-  * `webpack.dev.config.js`: Generates the webpack configuration for development.
-
-  * `webpack.prod.config.js`: Generates the webpack configuration for production.
-
-* `manifest.json`: On Chrome for Android (soon hopefully more browsers), users can add a webpage to the homescreen. This file specifies the name/icon/... that is displayed.
+* `.travis.yml`: The Continuous Integration configuration. This boilerplate uses [Travis CI](https://travis-ci.com), but feel free to swap this for your own CI.
 
 * `package.json`: The `npm` configuration file. When you run `npm install`, this is the list that tells `npm` which packages/libraries to download. Also, `npm start`, `npm run build`,... commands are specified here.
+
+## Files in the `webpack/` folder
+
+* `pagespeed`: The script that is run when `$ npm run pagespeed` is entered into the terminal.
+
+* `karma.conf.js`: The Karma testing configuration.
+
+* `webpack.base.babel.js`: The shared webpack configuration. In development mode, we add hot reloading and don't minify our code. In production mode, we minify everything.
+
+  * `webpack.dev.babel.js`: Generates the webpack configuration for development.
+
+  * `webpack.prod.babel.js`: Generates the webpack configuration for production.
+
+  * `webpack.test.babel.js`: Generates the webpack configuration for testing.
 
 * `server.dev.js`: The development server that runs when `npm start` is entered into the command line.
 
 * `server.prod.js`: The server that runs when `npm run serve` is entered into the command line.
-
-* `serviceworker.js`: The script that tells the serviceworker how to cache our files for offline usage.
