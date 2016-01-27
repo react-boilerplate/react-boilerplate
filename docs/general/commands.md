@@ -3,7 +3,7 @@
 ## Initialization
 
 ```Shell
-$ npm run initProject
+$ npm run setup
 ```
 
 Initializes a new project with this boilerplate. Deletes the `react-boilerplate` git history, installs the dependencies and initializes a new repository.

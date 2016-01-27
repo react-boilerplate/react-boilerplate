@@ -76,7 +76,7 @@
     "build": "NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --progress --colors -p",
     "serve": "NODE_ENV=production node webpack/server.prod.js",
     "pagespeed": "./webpack/pagespeed",
-    "initProject": "NODE_ENV=initialisation ./webpack/init",
+    "setup": "NODE_ENV=initialisation ./webpack/init",
     "lint": "eslint .",
     "test": "NODE_ENV=test karma start webpack/karma.conf.js --single-run",
     "prebuild": "npm run test",
