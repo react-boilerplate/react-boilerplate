@@ -3,11 +3,11 @@
  * If we were to do this in store.js, reducers wouldn't be hot reloadable.
  */
 
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 import { routeReducer } from 'react-router-redux';
 import homeReducer from 'HomePage/reducer';
 
 export default combineReducers({
-  routing: routeReducer,
+  route: routeReducer,
   home: homeReducer
 });

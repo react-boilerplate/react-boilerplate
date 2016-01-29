@@ -21,6 +21,7 @@ import thunk from 'redux-thunk';
 import FontFaceObserver from 'fontfaceobserver';
 import { browserHistory } from 'react-router';
 import { syncHistory } from 'react-router-redux';
+import { fromJS } from 'immutable';
 const reduxRouterMiddleware = syncHistory(browserHistory);
 
 // Observer loading of Open Sans (to remove open sans, remove the <link> tag in
@@ -49,7 +50,8 @@ import '../node_modules/sanitize.css/dist/sanitize.min.css';
 
 import rootReducer from './rootReducer';
 const createStoreWithMiddleware = applyMiddleware(thunk, reduxRouterMiddleware)(createStore);
-const store = createStoreWithMiddleware(rootReducer);
+const store = createStoreWithMiddleware(rootReducer, fromJS({}));
+reduxRouterMiddleware.listenForReplays(store, (state) => state.get('route').location);
 
 // Make reducers hot reloadable, see http://mxs.is/googmo
 if (module.hot) {

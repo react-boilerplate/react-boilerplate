@@ -4,11 +4,13 @@
   "description": "Quick setup for new React.js applications featuring Redux, hot–reloading, PostCSS, react-router and Mocha.",
   "dependencies": {
     "fontfaceobserver": "^1.6.3",
+    "immutable": "^3.7.6",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-redux": "^4.0.6",
     "react-router": "^2.0.0-rc5",
     "redux": "^3.0.5",
+    "redux-immutable": "^3.0.3",
     "redux-thunk": "^1.0.3",
     "sanitize.css": "^3.0.0"
   },
@@ -53,7 +55,6 @@
     "mocha": "^2.3.4",
     "ngrok": "^0.2.2",
     "null-loader": "^0.1.1",
-    "object.assign": "^4.0.3",
     "offline-plugin": "^2.0.2",
     "postcss-cssnext": "^2.4.0",
     "postcss-focus": "^1.0.0",
