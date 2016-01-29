@@ -90,8 +90,17 @@ This will run a server that's accessible on the entire world and shows the versi
 
 ## Linting
 
-Lint your JavaScript with this command.
+Lint your JavaScript and CSS with this command.
 
 ```Shell
 $ npm run lint
 ```
+
+Want to lint your JavaScript and CSS seperately? 
+
+```Shell
+$ npm run lint:js
+$ npm run lint:css
+```
+
+> Note: CSS Linting uses [Stylelint](http://stylelint.io/) default configuration with a few custom extends. To edit the custom extends open `.stylelintrc`
