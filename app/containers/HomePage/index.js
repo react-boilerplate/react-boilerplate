@@ -23,8 +23,8 @@ class HomePage extends React.Component {
     this.changeRouteToReadme = this.changeRouteToReadme.bind(this);
   }
 
-  shouldComponentUpdate(nextState, prevState) {
-    return nextState !== prevState;
+  shouldComponentUpdate(nextProps) {
+    return (nextProps.ownerName !== this.props.ownerName || nextProps.projectName !== this.props.projectName);
   }
 
   onChangeOwnerName(evt) {
