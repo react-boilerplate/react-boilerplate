@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import Img from 'Img';
 import Footer from 'Footer';
 import Logo from './logo.png';
-import Anchor from 'Anchor';
+import A from 'A';
 
 import styles from './styles.css';
 
@@ -20,7 +20,7 @@ class App extends React.Component {
   render() {
     return (
       <div className={ styles.wrapper }>
-        <Anchor
+        <A
           className={ styles.logoWrapper }
           href="https://twitter.com/mxstbr"
         >
@@ -29,7 +29,7 @@ class App extends React.Component {
             src={Logo}
             alt="Max Stoiber - Logo"
           />
-        </Anchor>
+        </A>
         { this.props.children }
         <Footer />
       </div>

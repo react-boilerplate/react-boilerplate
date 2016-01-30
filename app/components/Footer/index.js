@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Anchor from 'Anchor';
+import A from 'A';
 import styles from './styles.css';
 
 class Footer extends React.Component {
@@ -11,7 +11,7 @@ class Footer extends React.Component {
           <p>This project is licensed under the MIT license.</p>
         </section>
         <section>
-          <p>Made with love by <Anchor href="https://twitter.com/mxstbr">Max Stoiber</Anchor>.</p>
+          <p>Made with love by <A href="https://twitter.com/mxstbr">Max Stoiber</A>.</p>
         </section>
       </footer>
     );

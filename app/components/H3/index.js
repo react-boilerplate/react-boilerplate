@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Heading3 extends React.Component {
+class H3 extends React.Component {
   render() {
     return (
       <h3>{ this.props.children }</h3>
@@ -8,4 +8,4 @@ class Heading3 extends React.Component {
   }
 }
 
-export default Heading3;
+export default H3;

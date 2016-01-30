@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './styles.css';
 
-class Anchor extends React.Component {
+class A extends React.Component {
   render() {
     return (
       <a
@@ -17,4 +17,4 @@ class Anchor extends React.Component {
   }
 }
 
-export default Anchor;
+export default A;

@@ -8,7 +8,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import Button from 'Button';
-import H2 from 'Heading2';
+import H2 from 'H2';
 
 class ReadmePage extends React.Component {
   constructor() {

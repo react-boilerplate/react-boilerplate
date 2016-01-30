@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 
 import Button from 'Button';
+import H1 from 'H1';
 
 function NotFound(props) {
   return (
     <article>
-      <h1>Page not found.</h1>
+      <H1>Page not found.</H1>
       <Button
         handleRoute={function redirect() {
           props.changeRoute('/');
