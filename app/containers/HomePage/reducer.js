@@ -14,26 +14,20 @@
  */
 
 import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from './constants';
+import { fromJS } from 'immutable';
 
-// Polyfill maybe needed for browser support
-const assign = Object.assign || require('object.assign');
-
-const initialState = {
+const initialState = fromJS({
   projectName: 'React.js Boilerplate',
   ownerName: 'mxstbr'
-};
+});
 
 function homeReducer(state = initialState, action) {
   Object.freeze(state); // Don't mutate state directly, always use assign()!
   switch (action.type) {
     case CHANGE_OWNER_NAME:
-      return assign({}, state, {
-        ownerName: action.name
-      });
+      return state.set('ownerName', action.name);
     case CHANGE_PROJECT_NAME:
-      return assign({}, state, {
-        projectName: action.name
-      });
+      return state.set('projectName', action.name);
     default:
       return state;
   }

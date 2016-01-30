@@ -7,6 +7,7 @@ import { asyncChangeProjectName, asyncChangeOwnerName } from './actions';
 import React from 'react';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
+import shouldPureComponentUpdate from 'react-pure-render/function';
 import Button from 'Button';
 import Anchor from 'Anchor';
 import H1 from 'Heading1';
@@ -22,9 +23,13 @@ class HomePage extends React.Component {
     this.onChangeRoute = this.onChangeRoute.bind(this);
     this.changeRouteToReadme = this.changeRouteToReadme.bind(this);
   }
+
+  shouldComponentUpdate = shouldPureComponentUpdate;
+
   onChangeOwnerName(evt) {
     this.props.changeOwnerName(evt.target.value);
   }
+
   onChangeProjectName(evt) {
     this.props.changeProjectName(evt.target.value);
   }
@@ -38,8 +43,6 @@ class HomePage extends React.Component {
   }
 
   render() {
-    // const { projectName, ownerName } = this.props.data;
-
     return (
       <article>
         <div>
@@ -80,8 +83,8 @@ class HomePage extends React.Component {
 // react-redux stuff
 function mapStateToProps(state) {
   return {
-    location: state.routing.location,
-    data: state.home
+    projectName: state.get('home').get('projectName'),
+    ownerName: state.get('home').get('ownerName')
   };
 }
 

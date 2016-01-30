@@ -5,7 +5,6 @@ import { routeActions } from 'react-router-redux';
 import Button from 'Button';
 
 function NotFound(props) {
-  console.log(props);
   return (
     <article>
       <h1>Page not found.</h1>
@@ -23,7 +22,7 @@ function NotFound(props) {
 // react-redux stuff
 function mapStateToProps(state) {
   return {
-    location: state.routing.location
+    location: state.get('route').location
   };
 }
 
