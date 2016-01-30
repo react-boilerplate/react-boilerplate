@@ -8,12 +8,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
+
 import Button from 'Button';
 import A from 'A';
 import H1 from 'H1';
 import H2 from 'H2';
 
 import styles from './styles.css';
+import selector from './selector';
 
 class HomePage extends React.Component {
   constructor() {
@@ -80,14 +82,6 @@ class HomePage extends React.Component {
   }
 }
 
-// react-redux stuff
-function mapStateToProps(state) {
-  return {
-    projectName: state.get('home').get('projectName'),
-    ownerName: state.get('home').get('ownerName')
-  };
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     changeRoute: (url) => dispatch(routeActions.push(url)),
@@ -97,4 +91,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(selector, mapDispatchToProps)(HomePage);

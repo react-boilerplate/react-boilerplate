@@ -37,14 +37,5 @@ class App extends React.Component {
   }
 }
 
-// REDUX STUFF
-
-// Which props do we want to inject, given the global state?
-function select(state) {
-  return {
-    data: state
-  };
-}
-
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(App);
+export default connect()(App);

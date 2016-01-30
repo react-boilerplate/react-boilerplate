@@ -13,6 +13,7 @@
     "redux": "^3.0.5",
     "redux-immutable": "^3.0.3",
     "redux-thunk": "^1.0.3",
+    "reselect": "2.0.2",
     "sanitize.css": "^3.0.0"
   },
   "devDependencies": {
