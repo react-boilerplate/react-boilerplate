@@ -7,6 +7,7 @@ import { asyncChangeProjectName, asyncChangeOwnerName } from './actions';
 import React from 'react';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
+import shouldPureComponentUpdate from 'react-pure-render/function';
 import Button from 'Button';
 import Anchor from 'Anchor';
 import H1 from 'Heading1';
@@ -23,9 +24,7 @@ class HomePage extends React.Component {
     this.changeRouteToReadme = this.changeRouteToReadme.bind(this);
   }
 
-  shouldComponentUpdate(nextProps) {
-    return (nextProps.ownerName !== this.props.ownerName || nextProps.projectName !== this.props.projectName);
-  }
+  shouldComponentUpdate = shouldPureComponentUpdate;
 
   onChangeOwnerName(evt) {
     this.props.changeOwnerName(evt.target.value);
