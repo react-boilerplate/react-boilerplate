@@ -1,4 +1,127 @@
+.formWrapper {
+  max-width: 350px;
+  width: 100%;
+  margin: 1em 1em;
+  border: 1px solid #EDEDED;
+  border-radius: 3px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+.header {
+  padding: 1em;
+}
+
+.title {
+  text-align: center;
+  font-size: 1em;
+  user-select: none;
+}
+
+.inputWrapper {
+  width: 100%;
+  position: relative;
+  padding-top: 1.75em;
+  border-top: 1px solid #EDEDED;
+  border-bottom: 1px solid #EDEDED;
+  background-color: #fff;
+}
+
+.inputWrapper + .inputWrapper {
+  border-top: none;
+}
+
+.input:focus ~ .label {
+  color: #666;
+  background-color: #EDEDED;
+}
+
+.input:focus {
+  background-color: #EDEDED;
+  color: #333;
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  padding-top: 20px;
+  padding-bottom: 0;
+  margin: 0;
+  z-index: 1;
+  font-size: .8em;
+  color: #999;
+  font-weight: 400;
+  user-select: none;
+  cursor: text;
+}
+
 .input {
-    border: 1px solid black;
-    margin-left: 0.5em;
+  position: relative;
+  padding: 1.625em 16px;
+  width: 100%;
+  color: #666;
+  border: none;
+  outline: 0;
+  letter-spacing: 0.05em;
+}
+
+.submitBtnWrapper {
+  padding: 2em 1em;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+.submitBtn {
+  border: none;
+  background-color: #fff;
+  border: 1px solid green;
+  padding: 0.5em 1em;
+  border-radius: 3px;
+  background-color: green;
+  color: white;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+}
+
+.js-err-animation {
+  animation: shake 150ms ease-in-out;
+}
+
+.errorWrapper {
+  display: flex;
+  justify-content: center;
+  max-width: calc(100% - 2em);
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+.error {
+  background-color: #FB4F4F;
+  color: white;
+  margin: 0;
+  padding: 0.5em 1em;
+  font-size: 0.8em;
+  user-select: none;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

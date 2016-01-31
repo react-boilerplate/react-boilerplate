@@ -39,9 +39,9 @@ export function* loginSaga(getState) {
     const { data, err } = yield call(sendLoginRequest, username, password);
     if (err) {
       let errorMsg = 'Oops, something went wrong. Please try again!';
-      if (err.status === 401) {
+      if (err.response.status === 401) {
         errorMsg = 'Wrong username or password.';
-      } else if (err.status === 403) {
+      } else if (err.response.status === 403) {
         errorMsg = 'Maximum number of login attempts exceeded. Please try again later.';
       }
       yield put(authenticationFailed(errorMsg));

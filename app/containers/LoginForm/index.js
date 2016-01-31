@@ -8,6 +8,8 @@ import {
   submitForm
 } from './actions';
 
+import H2 from 'H2';
+
 import styles from './styles.css';
 import selector from './selector';
 
@@ -20,30 +22,43 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <form
-        className={ styles.form }
-        onSubmit={ this.props.onFormSubmit }
-      >
-        { this.props.error !== null ? (
-          <p>{ this.props.error }</p>
-        ) : (null) }
-        <label className={ styles.label }>Username
-          <input
-            className={ styles.input }
-            value={ this.props.username }
-            onChange={ this.props.onChangeUsername }
-          />
-        </label>
-        <label className={ styles.label }>Password
-          <input
-            className={ styles.input }
-            value={ this.props.password }
-            onChange={ this.props.onChangePassword }
-            type="password"
-          />
-        </label>
-        <input type="submit" value="Post" />
-      </form>
+      <div className={ styles.formWrapper }>
+        <div className={ styles.header }>
+          <H2 className={ styles.title }>Github Login</H2>
+        </div>
+        <form
+          onSubmit={ this.props.onFormSubmit }
+        >
+          { this.props.error !== null ? (
+            <div className={ styles.errorWrapper }>
+              <p className={ styles.error }>{ this.props.error }</p>
+            </div>
+          ) : (null) }
+          <div className={ styles.inputWrapper }>
+            <input
+              className={ styles.input }
+              value={ this.props.username }
+              onChange={ this.props.onChangeUsername }
+              id="username"
+            />
+            <label className={ styles.label } htmlFor="username">Username</label>
+          </div>
+
+          <div className={ styles.inputWrapper }>
+            <input
+              className={ styles.input }
+              value={ this.props.password }
+              onChange={ this.props.onChangePassword }
+              type="password"
+              id="password"
+            />
+            <label className={ styles.label } htmlFor="password">Password</label>
+          </div>
+          <div className={ styles.submitBtnWrapper }>
+            <button className={ styles.submitBtn } type="submit">Log In</button>
+          </div>
+        </form>
+      </div>
     );
   }
 }
