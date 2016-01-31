@@ -7,6 +7,8 @@
  *
  */
 
+import 'babel-polyfill';
+
 // Load the manifest.json file and the .htaccess file
 import 'file?name=[name].[ext]!./manifest.json';
 import 'file?name=[name].[ext]!./.htaccess';
@@ -17,12 +19,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
 import FontFaceObserver from 'fontfaceobserver';
 import { browserHistory } from 'react-router';
 import { syncHistory } from 'react-router-redux';
 import { fromJS } from 'immutable';
 const reduxRouterMiddleware = syncHistory(browserHistory);
+import sagaMiddleware from 'redux-saga';
 
 // Observer loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -49,7 +51,8 @@ import '../node_modules/sanitize.css/dist/sanitize.min.css';
 */
 
 import rootReducer from './rootReducer';
-const createStoreWithMiddleware = applyMiddleware(thunk, reduxRouterMiddleware)(createStore);
+import { loginSaga } from 'LoginForm/sagas';
+const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, sagaMiddleware(loginSaga))(createStore);
 const store = createStoreWithMiddleware(rootReducer, fromJS({}));
 reduxRouterMiddleware.listenForReplays(store, (state) => state.get('route').location);
 
@@ -78,11 +81,11 @@ ReactDOM.render(
           }}
         />
         <Route
-          path="/readme"
+          path="/features"
           getComponent={function get(location, cb) {
             require.ensure([], (require) => {
-              cb(null, require('ReadmePage').default);
-            }, 'ReadmePage');
+              cb(null, require('FeaturePage').default);
+            }, 'FeaturePage');
           }}
         />
         <Route

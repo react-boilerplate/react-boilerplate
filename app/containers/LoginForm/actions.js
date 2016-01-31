@@ -27,32 +27,18 @@
 // It makes more sense to have the asnyc actions before the non-async ones
 /* eslint-disable no-use-before-define */
 
-import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from './constants';
+import { CHANGE_USER_NAME, CHANGE_PASSWORD, FORM_SUBMITTED } from './constants';
 
-export function asyncChangeProjectName(name) {
-  return (dispatch) => {
-    // You can do async stuff here!
-    // API fetching, Animations,...
-    // For more information as to how and why you would do this,
-    // check https://github.com/gaearon/redux-thunk
-    return dispatch(changeProjectName(name));
+export function changeUsername(name) {
+  return { type: CHANGE_USER_NAME, name };
+}
+
+export function changePassword(password) {
+  return { type: CHANGE_PASSWORD, password };
+}
+
+export function submitForm() {
+  return {
+    type: FORM_SUBMITTED
   };
-}
-
-export function asyncChangeOwnerName(name) {
-  return (dispatch) => {
-    // You can do async stuff here!
-    // API fetching, Animations,...
-    // For more information as to how and why you would do this,
-    // check https://github.com/gaearon/redux-thunk
-    return dispatch(changeOwnerName(name));
-  };
-}
-
-function changeProjectName(name) {
-  return { type: CHANGE_PROJECT_NAME, name };
-}
-
-function changeOwnerName(name) {
-  return { type: CHANGE_OWNER_NAME, name };
 }

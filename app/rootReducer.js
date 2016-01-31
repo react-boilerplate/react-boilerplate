@@ -5,9 +5,11 @@
 
 import { combineReducers } from 'redux-immutable';
 import { routeReducer } from 'react-router-redux';
-import homeReducer from 'HomePage/reducer';
+import formReducer from 'LoginForm/reducer';
+import globalReducer from 'App/reducer';
 
 export default combineReducers({
   route: routeReducer,
-  home: homeReducer
+  form: formReducer,
+  global: globalReducer
 });

@@ -13,24 +13,27 @@
  * add it in the rootReducer.js.
  */
 
-import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from './constants';
+import { CHANGE_USER_NAME, CHANGE_PASSWORD } from './constants';
+import { AUTH_ERROR } from 'App/constants';
 import { fromJS } from 'immutable';
 
 const initialState = fromJS({
-  projectName: 'React.js Boilerplate',
-  ownerName: 'mxstbr'
+  username: 'mxstbr',
+  password: '',
+  error: null
 });
 
-function homeReducer(state = initialState, action) {
-  Object.freeze(state); // Don't mutate state directly, always use assign()!
+function formReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_OWNER_NAME:
-      return state.set('ownerName', action.name);
-    case CHANGE_PROJECT_NAME:
-      return state.set('projectName', action.name);
+    case CHANGE_USER_NAME:
+      return state.set('username', action.name);
+    case CHANGE_PASSWORD:
+      return state.set('password', action.password);
+    case AUTH_ERROR:
+      return state.set('error', action.errorMsg);
     default:
       return state;
   }
 }
 
-export default homeReducer;
+export default formReducer;

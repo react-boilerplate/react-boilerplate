@@ -8,5 +8,7 @@
  *
  * The constants are prefixed so there cannot be overlap between constants in different reducers/components
  */
-export const CHANGE_PROJECT_NAME = 'boilerplate/HomePage/CHANGE_PROJECT_NAME';
-export const CHANGE_OWNER_NAME = 'boilerplate/HomePage/CHANGE_OWNER_NAME';
+
+export const CHANGE_USER_NAME = 'boilerplate/LoginForm/CHANGE_USER_NAME';
+export const CHANGE_PASSWORD = 'boilerplate/LoginForm/CHANGE_PASSWORD';
+export const FORM_SUBMITTED = 'boilerplate/LoginForm/FORM_SUBMITTED';
