@@ -5,7 +5,8 @@ import shouldPureComponentUpdate from 'react-pure-render/function';
 import {
   changeUsername,
   changePassword,
-  submitForm
+  submitForm,
+  changeTwoFactor
 } from './actions';
 
 import H2 from 'H2';
@@ -21,7 +22,6 @@ class LoginForm extends React.Component {
   shouldComponentUpdate = shouldPureComponentUpdate;
 
   render() {
-    console.log('component two factor:', this.props.twoFactor);
     return (
       <div className={ styles.formWrapper }>
         <div className={ styles.header }>
@@ -60,10 +60,10 @@ class LoginForm extends React.Component {
                 className={ styles.input }
                 value={ this.props.twoFactor }
                 onChange={ this.props.onChangeTwoFactor }
-                type="password"
-                id="password"
+                type="text"
+                id="two-factor"
               />
-            <label className={ styles.label } htmlFor="password">Two Factor Code</label>
+            <label className={ styles.label } htmlFor="two-factor">Two Factor Code</label>
             </div>
           ) : null}
           <div className={ styles.submitBtnWrapper }>
@@ -79,6 +79,7 @@ function mapDispatchToProps(dispatch) {
   return {
     onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
     onChangePassword: (evt) => dispatch(changePassword(evt.target.value)),
+    onChangeTwoFactor: (evt) => dispatch(changeTwoFactor(evt.target.value)),
     onFormSubmit: (evt) => {
       evt.preventDefault();
       dispatch(submitForm());
