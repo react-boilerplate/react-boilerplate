@@ -1,34 +1,33 @@
 import { FORM_SUBMITTED } from './constants';
-import { authenticationSuccessful, authenticationFailed } from 'App/actions';
+import {
+  authenticationSuccessful,
+  authenticationFailed,
+  repositoriesLoaded
+} from 'App/actions';
 import { take, call, put } from 'redux-saga';
+import {
+  hasTwoFactorEnabled
+} from './actions';
+
+function parseJSON(response) {
+  return response.json();
+}
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
   const error = new Error(response.statusText);
-  error.response = response;
+  error.response = parseJSON(response);
   throw error;
 }
 
-function parseJSON(response) {
-  return response.json();
-}
-
-function sendLoginRequest(username, password) {
-  return fetch('https://api.github.com/user',
-    {
-      headers: {
-        Authorization: 'Basic ' + new Buffer(username + ':' + password, 'utf8').toString('base64')
-      }
-    })
+function request(url, options) {
+  return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON)
-    .then((data) => {
-      return { data };
-    }).catch((err) => {
-      return { err };
-    });
+    .then((data) => ({ data }))
+    .catch((err) => ({ err }));
 }
 
 export function* loginSaga(getState) {
@@ -36,17 +35,34 @@ export function* loginSaga(getState) {
     const state = getState();
     const username = state.getIn(['form', 'username']);
     const password = state.getIn(['form', 'password']);
-    const { data, err } = yield call(sendLoginRequest, username, password);
-    if (err) {
+    const requestOptions = {
+      headers: {
+        Authorization: 'Basic ' + new Buffer(username + ':' + password, 'utf8').toString('base64'),
+        Accept: 'application/vnd.github.v3+json'
+      }
+    };
+    const login = yield call(request, 'https://api.github.com/user', requestOptions);
+    const loginErr = yield login.err;
+    if (loginErr !== null && loginErr !== undefined) {
+      console.log('ERROR', loginErr.response);
       let errorMsg = 'Oops, something went wrong. Please try again!';
-      if (err.response.status === 401) {
-        errorMsg = 'Wrong username or password.';
-      } else if (err.response.status === 403) {
+      if (loginErr.response.status === 401) {
+        console.log('STATUS', loginErr.response);
+        if (loginErr.response.message === 'Must specify two-factor authentication OTP code.') {
+          console.log('MADE IT');
+          yield put(hasTwoFactorEnabled());
+        } else {
+          errorMsg = 'Wrong username or password.';
+        }
+      } else if (loginErr.response.status === 403) {
         errorMsg = 'Maximum number of login attempts exceeded. Please try again later.';
       }
       yield put(authenticationFailed(errorMsg));
-    } else {
-      yield put(authenticationSuccessful(data));
+      return;
     }
+    const loginData = yield login.data;
+    yield put(authenticationSuccessful(loginData));
+    const repos = yield call(request, 'https://api.github.com/user/repos', requestOptions);
+    yield put(repositoriesLoaded(repos.data));
   }
 }

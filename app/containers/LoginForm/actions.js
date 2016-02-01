@@ -27,7 +27,7 @@
 // It makes more sense to have the asnyc actions before the non-async ones
 /* eslint-disable no-use-before-define */
 
-import { CHANGE_USER_NAME, CHANGE_PASSWORD, FORM_SUBMITTED } from './constants';
+import { CHANGE_USER_NAME, CHANGE_PASSWORD, FORM_SUBMITTED, TWO_FACTOR_ENABLED } from './constants';
 
 export function changeUsername(name) {
   return { type: CHANGE_USER_NAME, name };
@@ -35,6 +35,11 @@ export function changeUsername(name) {
 
 export function changePassword(password) {
   return { type: CHANGE_PASSWORD, password };
+}
+
+export function hasTwoFactorEnabled() {
+  console.log('action two factor');
+  return { type: TWO_FACTOR_ENABLED };
 }
 
 export function submitForm() {

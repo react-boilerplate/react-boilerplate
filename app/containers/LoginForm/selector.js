@@ -17,9 +17,15 @@ const errorSelector = createSelector(
   (formState) => formState.get('error')
 );
 
+const twoFactorSelector = createSelector(
+  formSelector,
+  (formState) => formState.get('twoFactor')
+);
+
 export default createSelector(
   usernameSelector,
   passwordSelector,
   errorSelector,
-  (username, password, error) => ({ username, password, error })
+  twoFactorSelector,
+  (username, password, error, twoFactor) => ({ username, password, error, twoFactor })
 );

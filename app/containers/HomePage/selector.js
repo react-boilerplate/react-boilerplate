@@ -7,13 +7,13 @@ const authenticationSelector = createSelector(
   (globalState) => globalState.get('authenticated')
 );
 
-const userDataSelector = createSelector(
+const reposSelector = createSelector(
   globalSelector,
-  (globalState) => globalState.get('userData')
+  (globalState) => globalState.getIn(['userData', 'repositories'])
 );
 
 export default createSelector(
   authenticationSelector,
-  userDataSelector,
-  (authenticated, userData) => ({ authenticated, userData })
+  reposSelector,
+  (authenticated, repositories) => ({ authenticated, repositories })
 );

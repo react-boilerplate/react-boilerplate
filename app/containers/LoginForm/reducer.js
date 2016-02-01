@@ -13,14 +13,15 @@
  * add it in the rootReducer.js.
  */
 
-import { CHANGE_USER_NAME, CHANGE_PASSWORD } from './constants';
+import { CHANGE_USER_NAME, CHANGE_PASSWORD, TWO_FACTOR_ENABLED } from './constants';
 import { AUTH_ERROR } from 'App/constants';
 import { fromJS } from 'immutable';
 
 const initialState = fromJS({
   username: 'mxstbr',
   password: '',
-  error: null
+  error: null,
+  twoFactor: false
 });
 
 function formReducer(state = initialState, action) {
@@ -31,6 +32,9 @@ function formReducer(state = initialState, action) {
       return state.set('password', action.password);
     case AUTH_ERROR:
       return state.set('error', action.errorMsg);
+    case TWO_FACTOR_ENABLED:
+      console.log('reducer two factor');
+      return state.set('twoFactor', true);
     default:
       return state;
   }

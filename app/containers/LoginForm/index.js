@@ -21,6 +21,7 @@ class LoginForm extends React.Component {
   shouldComponentUpdate = shouldPureComponentUpdate;
 
   render() {
+    console.log('component two factor:', this.props.twoFactor);
     return (
       <div className={ styles.formWrapper }>
         <div className={ styles.header }>
@@ -43,7 +44,6 @@ class LoginForm extends React.Component {
             />
             <label className={ styles.label } htmlFor="username">Username</label>
           </div>
-
           <div className={ styles.inputWrapper }>
             <input
               className={ styles.input }
@@ -54,6 +54,18 @@ class LoginForm extends React.Component {
             />
             <label className={ styles.label } htmlFor="password">Password</label>
           </div>
+          { this.props.twoFactor !== false ? (
+            <div className={ styles.inputWrapper }>
+              <input
+                className={ styles.input }
+                value={ this.props.twoFactor }
+                onChange={ this.props.onChangeTwoFactor }
+                type="password"
+                id="password"
+              />
+            <label className={ styles.label } htmlFor="password">Two Factor Code</label>
+            </div>
+          ) : null}
           <div className={ styles.submitBtnWrapper }>
             <button className={ styles.submitBtn } type="submit">Log In</button>
           </div>
