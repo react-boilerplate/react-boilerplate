@@ -40,9 +40,11 @@ module.exports = (options) => {
     },
     resolve: {
       modulesDirectories: [
-        'assets',
         'containers',
         'components',
+        'selectors',
+        'sagas',
+        'assets',
         'node_modules'
       ],
       extensions: [
