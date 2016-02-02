@@ -1,0 +1,14 @@
+.listItemContent {
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.listItemContentLink {
+  color: black;
+  padding: 0 0.25em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}

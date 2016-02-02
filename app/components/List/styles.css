@@ -1,0 +1,12 @@
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #CCC;
+  padding: 0 1em;
+  border-radius: 3px;
+  max-height: 30em;
+  overflow-y: auto;
+}

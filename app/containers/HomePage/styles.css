@@ -6,7 +6,8 @@
   margin-top: 0;
 }
 
-:global(p) {
+p,
+label {
   font-family: Georgia, Times, 'Times New Roman', serif;
   line-height: 1.5em;
 }
@@ -20,4 +21,17 @@
   background-color: $very-light-grey;
   padding: 0.125em 0.5em;
   border-radius: 1px;
+}
+
+.label {
+}
+
+.input {
+  outline: none;
+  border-bottom: 1px dotted #999;
+}
+
+.atPrefix {
+  color: black;
+  margin-left: 0.4em;
 }

@@ -51,7 +51,8 @@ import '../node_modules/sanitize.css/dist/sanitize.min.css';
 */
 
 import rootReducer from './rootReducer';
-const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, sagaMiddleware())(createStore);
+import sagas from './sagas';
+const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, sagaMiddleware(...sagas))(createStore);
 const store = createStoreWithMiddleware(rootReducer, fromJS({}));
 reduxRouterMiddleware.listenForReplays(store, (state) => state.get('route').location);
 

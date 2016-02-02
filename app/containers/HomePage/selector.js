@@ -2,18 +2,18 @@ import { createSelector } from 'reselect';
 
 const globalSelector = (state) => state.get('global');
 
-const authenticationSelector = createSelector(
-  globalSelector,
-  (globalState) => globalState.get('authenticated')
-);
-
 const reposSelector = createSelector(
   globalSelector,
   (globalState) => globalState.getIn(['userData', 'repositories'])
 );
 
+const usernameSelector = createSelector(
+  globalSelector,
+  (globalState) => globalState.getIn(['userData', 'username'])
+);
+
 export default createSelector(
-  authenticationSelector,
   reposSelector,
-  (authenticated, repositories) => ({ authenticated, repositories })
+  usernameSelector,
+  (repos, username) => ({ repos, username })
 );

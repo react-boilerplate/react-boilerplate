@@ -1,22 +1,21 @@
-import { AUTH_SUCCESS, AUTH_ERROR, REPOS_LOADED } from './constants';
+import { CHANGE_USERNAME, LOAD_REPOS, LOAD_REPOS_SUCCESS } from './constants';
 
-export function authenticationSuccessful(data) {
+export function changeUsername(name) {
   return {
-    type: AUTH_SUCCESS,
-    data
+    type: CHANGE_USERNAME,
+    name
   };
 }
 
-export function authenticationFailed(errorMsg) {
+export function loadRepos() {
   return {
-    type: AUTH_ERROR,
-    errorMsg
+    type: LOAD_REPOS
   };
 }
 
-export function repositoriesLoaded(repos) {
+export function reposLoaded(repos) {
   return {
-    type: REPOS_LOADED,
+    type: LOAD_REPOS_SUCCESS,
     repos
   };
 }

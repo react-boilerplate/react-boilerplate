@@ -8,8 +8,16 @@ import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
+import {
+  changeUsername,
+  loadRepos
+} from 'App/actions';
+
 import Button from 'Button';
 import H1 from 'H1';
+import H2 from 'H2';
+import List from 'List';
+import RepoListItem from 'RepoListItem';
 
 import selector from './selector';
 import styles from './styles.css';
@@ -40,9 +48,25 @@ class HomePage extends React.Component {
             <p>Quick setup for new performance orientated, offline–first React.js applications featuring Redux, hot–reloading, PostCSS, react-router, ServiceWorker, AppCache, FontFaceObserver and Mocha.</p>
           </section>
           <section className={ styles.textSection }>
-            {!this.props.authenticated ? (
-              <div></div>
-            ) : null}
+              {(this.props.repos === false) ? (
+                <form onSubmit={ this.props.onSubmitForm }>
+                  <label className={ styles.label }>Show repositories of
+                    <span className={ styles.atPrefix }>@</span>
+                    <input
+                      className={ styles.input }
+                      type="text"
+                      placeholder="mxstbr"
+                      value={ this.props.username }
+                      onChange={ this.props.onChangeUsername }
+                    />
+                  </label>
+                </form>
+              ) : (
+                <div>
+                  <H2>{ this.props.username }</H2>
+                  <List items={this.props.repos} render={RepoListItem} />
+                </div>
+              )}
           </section>
           <Button handleRoute = { this.changeRouteToReadme }>Features</Button>
         </div>
@@ -51,5 +75,16 @@ class HomePage extends React.Component {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
+    onSubmitForm: (evt) => {
+      evt.preventDefault();
+      dispatch(loadRepos());
+    },
+    dispatch: dispatch
+  };
+}
+
 // Wrap the component to inject dispatch and state into it
-export default connect(selector)(HomePage);
+export default connect(selector, mapDispatchToProps)(HomePage);

@@ -1,3 +1,3 @@
-export const AUTH_SUCCESS = 'boilerplate/App/AUTH_SUCCESS';
-export const AUTH_ERROR = 'boilerplate/App/AUTH_ERROR';
-export const REPOS_LOADED = 'boilerplate/App/REPOS_LOADED';
+export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
+export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
+export const CHANGE_USERNAME = 'boilerplate/App/CHANGE_USERNAME';
