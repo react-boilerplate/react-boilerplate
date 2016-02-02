@@ -23,9 +23,6 @@ label {
   border-radius: 1px;
 }
 
-.label {
-}
-
 .input {
   outline: none;
   border-bottom: 1px dotted #999;
