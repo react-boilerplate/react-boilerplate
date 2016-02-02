@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
+import usernameSelector from 'usernameSelector';
 
 import ListItem from 'ListItem';
 import IssueIcon from 'IssueIcon';
 
 import styles from './styles.css';
-
-import selector from 'HomePage/selector';
 
 class RepoListItem extends React.Component {
   render() {
@@ -36,4 +36,7 @@ class RepoListItem extends React.Component {
   }
 }
 
-export default connect(selector)(RepoListItem);
+export default connect(createSelector(
+  usernameSelector,
+  (username) => ({ username })
+))(RepoListItem);

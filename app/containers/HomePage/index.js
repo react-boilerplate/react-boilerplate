@@ -7,6 +7,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
+import { createSelector } from 'reselect';
+import usernameSelector from 'usernameSelector';
+import reposSelector from 'reposSelector';
 
 import {
   changeUsername,
@@ -19,7 +22,6 @@ import H2 from 'H2';
 import List from 'List';
 import RepoListItem from 'RepoListItem';
 
-import selector from './selector';
 import styles from './styles.css';
 
 class HomePage extends React.Component {
@@ -87,4 +89,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(selector, mapDispatchToProps)(HomePage);
+export default connect(createSelector(
+  reposSelector,
+  usernameSelector,
+  (repos, username) => ({ repos, username })
+), mapDispatchToProps)(HomePage);
