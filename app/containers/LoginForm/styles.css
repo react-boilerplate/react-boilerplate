@@ -4,8 +4,8 @@
   margin: 1em 1em;
   border: 1px solid #EDEDED;
   border-radius: 3px;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  background-color: #FFF;
   margin: 0 auto;
 }
 
@@ -25,7 +25,7 @@
   padding-top: 1.75em;
   border-top: 1px solid #EDEDED;
   border-bottom: 1px solid #EDEDED;
-  background-color: #fff;
+  background-color: #FFF;
 }
 
 .inputWrapper + .inputWrapper {
@@ -52,7 +52,7 @@
   padding-bottom: 0;
   margin: 0;
   z-index: 1;
-  font-size: .8em;
+  font-size: 0.8em;
   color: #999;
   font-weight: 400;
   user-select: none;
@@ -72,14 +72,14 @@
 .submitBtnWrapper {
   padding: 2em 1em;
   width: 100%;
-  background-color: #fff;
+  background-color: #FFF;
   display: flex;
   justify-content: center;
 }
 
 .submitBtn {
   border: none;
-  background-color: #fff;
+  background-color: #FFF;
   border: 1px solid green;
   padding: 0.5em 1em;
   border-radius: 3px;
