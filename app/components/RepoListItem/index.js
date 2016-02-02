@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import usernameSelector from 'usernameSelector';
+import currentUserSelector from 'currentUserSelector';
 
 import ListItem from 'ListItem';
 import IssueIcon from 'IssueIcon';
@@ -13,7 +13,7 @@ class RepoListItem extends React.Component {
     const item = this.props.item;
     let nameprefix = '';
 
-    if (item.owner.login !== this.props.username) {
+    if (item.owner.login !== this.props.currentUser) {
       nameprefix = item.owner.login + '/';
     }
 
@@ -37,6 +37,6 @@ class RepoListItem extends React.Component {
 }
 
 export default connect(createSelector(
-  usernameSelector,
-  (username) => ({ username })
+  currentUserSelector,
+  (currentUser) => ({ currentUser })
 ))(RepoListItem);

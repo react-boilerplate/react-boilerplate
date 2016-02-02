@@ -53,7 +53,7 @@ class HomePage extends React.Component {
             <p>Quick setup for new performance orientated, offline–first React.js applications featuring Redux, hot–reloading, PostCSS, react-router, ServiceWorker, AppCache, FontFaceObserver and Mocha.</p>
           </section>
           <section className={ styles.textSection }>
-              <form onSubmit={ this.props.onSubmitForm }>
+              <form className={ styles.usernameForm } onSubmit={ this.props.onSubmitForm }>
                 <label>Show repositories of
                   <span className={ styles.atPrefix }>@</span>
                   <input

@@ -23,6 +23,10 @@ label {
   border-radius: 1px;
 }
 
+.usernameForm {
+  margin-bottom: 1em;
+}
+
 .input {
   outline: none;
   border-bottom: 1px dotted #999;
