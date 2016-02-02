@@ -10,7 +10,6 @@ import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import Button from 'Button';
 import H1 from 'H1';
-import LoginForm from 'LoginForm';
 
 import selector from './selector';
 import styles from './styles.css';
@@ -42,7 +41,7 @@ class HomePage extends React.Component {
           </section>
           <section className={ styles.textSection }>
             {!this.props.authenticated ? (
-              <LoginForm />
+              <div></div>
             ) : null}
           </section>
           <Button handleRoute = { this.changeRouteToReadme }>Features</Button>
