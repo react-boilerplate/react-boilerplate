@@ -82,7 +82,7 @@ function mapDispatchToProps(dispatch) {
       evt.preventDefault();
       dispatch(loadRepos());
     },
-    dispatch: dispatch
+    dispatch
   };
 }
 
