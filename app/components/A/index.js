@@ -10,6 +10,7 @@ class A extends React.Component {
           this.props.className || styles.link
         }
         href={ this.props.href }
+        target={ this.props.target }
       >
         { this.props.children }
       </a>

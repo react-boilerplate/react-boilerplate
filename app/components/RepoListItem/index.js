@@ -23,12 +23,14 @@ class RepoListItem extends React.Component {
         <A
           className={ styles.linkRepo }
           href={ item.html_url }
+          target="_blank"
         >
           { nameprefix + item.name }
         </A>
         <A
           className={ styles.linkIssues }
           href={ item.html_url + '/issues' }
+          target="_blank"
         >
           <IssueIcon className={ styles.issueIcon } />
           { item.open_issues_count }
