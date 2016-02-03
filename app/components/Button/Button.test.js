@@ -17,7 +17,7 @@ describe('<Button />', () => {
 
   it('should adopt the className', () => {
     const renderedComponent = shallow(<Button className="test" />);
-    expect(renderedComponent.hasClass('test')).toEqual(true);
+    expect(renderedComponent.find('a').hasClass('test')).toEqual(true);
   });
 
   it('should render an <a> tag if no route is specified', () => {
