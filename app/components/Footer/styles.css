@@ -1,8 +1,6 @@
 .footer {
-  margin: 3em 0;
   display: flex;
   justify-content: space-between;
-  margin: 3em 0;
   padding-top: 3em;
   border-top: 1px solid #666;
 }

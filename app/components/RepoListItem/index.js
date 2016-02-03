@@ -5,6 +5,7 @@ import currentUserSelector from 'currentUserSelector';
 
 import ListItem from 'ListItem';
 import IssueIcon from 'IssueIcon';
+import A from 'A';
 
 import styles from './styles.css';
 
@@ -19,18 +20,19 @@ class RepoListItem extends React.Component {
 
     return (
       <ListItem key={'repo-list-item-' + item.full_name }>
-        <a
+        <A
           className={ styles.linkRepo }
           href={ item.html_url }
-
-        >{ nameprefix + item.name }</a>
-        <a
+        >
+          { nameprefix + item.name }
+        </A>
+        <A
           className={ styles.linkIssues }
           href={ item.html_url + '/issues' }
         >
           <IssueIcon className={ styles.issueIcon } />
           { item.open_issues_count }
-        </a>
+        </A>
       </ListItem>
     );
   }
