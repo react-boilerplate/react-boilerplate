@@ -25,7 +25,7 @@ import { syncHistory } from 'react-router-redux';
 import { fromJS } from 'immutable';
 const reduxRouterMiddleware = syncHistory(browserHistory);
 import sagaMiddleware from 'redux-saga';
-
+import DevTools from './DevTools';
 // Observer loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
 import styles from './containers/App/styles.css';
@@ -53,7 +53,7 @@ import '../node_modules/sanitize.css/dist/sanitize.min.css';
 import rootReducer from './rootReducer';
 import sagas from './sagas';
 const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, sagaMiddleware(...sagas))(createStore);
-const store = createStoreWithMiddleware(rootReducer, fromJS({}));
+const store = createStoreWithMiddleware(rootReducer, fromJS({}), DevTools.instrument());
 reduxRouterMiddleware.listenForReplays(store, (state) => state.get('route').location);
 
 // Make reducers hot reloadable, see http://mxs.is/googmo
@@ -69,36 +69,39 @@ if (module.hot) {
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the require.ensure code splitting business
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route component={App}>
-        <Route
-          path="/"
-          getComponent={function get(location, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('HomePage').default);
-            }, 'HomePage');
-          }}
-        />
-        <Route
-          path="/features"
-          getComponent={function get(location, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('FeaturePage').default);
-            }, 'FeaturePage');
-          }}
-        />
-        <Route
-          path="*"
-          getComponent={function get(location, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('NotFoundPage').default);
-            }, 'NotFoundPage');
-          }}
-        />
-      </Route>
-    </Router>
-  </Provider>,
+    <Provider store={store}>
+      <div>
+        <Router history={browserHistory}>
+          <Route component={App}>
+            <Route
+              path="/"
+              getComponent={function get(location, cb) {
+                require.ensure([], (require) => {
+                  cb(null, require('HomePage').default);
+                }, 'HomePage');
+              }}
+            />
+            <Route
+              path="/features"
+              getComponent={function get(location, cb) {
+                require.ensure([], (require) => {
+                  cb(null, require('FeaturePage').default);
+                }, 'FeaturePage');
+              }}
+            />
+            <Route
+              path="*"
+              getComponent={function get(location, cb) {
+                require.ensure([], (require) => {
+                  cb(null, require('NotFoundPage').default);
+                }, 'NotFoundPage');
+              }}
+            />
+            </Route>
+          </Router>
+        <DevTools />
+      </div>
+    </Provider>,
   document.getElementById('app')
 );
 
