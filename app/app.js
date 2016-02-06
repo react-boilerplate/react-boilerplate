@@ -26,7 +26,7 @@ import useScroll from 'scroll-behavior/lib/useScrollToTop';
 import { fromJS } from 'immutable';
 const reduxRouterMiddleware = syncHistory(browserHistory);
 import sagaMiddleware from 'redux-saga';
-
+import DevTools from './DevTools';
 // Observer loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
 import styles from './containers/App/styles.css';
@@ -54,7 +54,7 @@ import '../node_modules/sanitize.css/dist/sanitize.min.css';
 import rootReducer from './rootReducer';
 import sagas from './sagas';
 const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, sagaMiddleware(...sagas))(createStore);
-const store = createStoreWithMiddleware(rootReducer, fromJS({}));
+const store = createStoreWithMiddleware(rootReducer, fromJS({}), DevTools.instrument());
 reduxRouterMiddleware.listenForReplays(store, (state) => state.get('route').location);
 
 // Make reducers hot reloadable, see http://mxs.is/googmo
@@ -76,7 +76,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={useScroll(() => browserHistory)()} routes={rootRoute} />
   </Provider>,
-  document.getElementById('app')
+ document.getElementById('app')
 );
 
 // Install ServiceWorker and AppCache in the end since
