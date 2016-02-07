@@ -1,0 +1,25 @@
+/**
+*
+* {{ properCase name }}.react.js
+*
+* {{ sentenceCase description }}
+*/
+
+import React from 'react';
+
+{{#if wantCSS}}
+    import styles from './{{ dashCase name }}.scss';
+{{/if}}
+
+function {{ properCase name }}() {
+  return (
+    {{#if wantCSS}}
+    <div style={ styles.{{ dashCase name }} }>
+    {{else}}
+    <div>
+    {{/if}}
+    </div>
+  );
+}
+
+export default {{ properCase name }};

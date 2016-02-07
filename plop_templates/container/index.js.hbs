@@ -1,0 +1,44 @@
+/**
+*
+* {{ properCase name }}.react.js
+*
+* {{ sentenceCase description }}
+*/
+
+import React from 'react';
+{{#if connectRedux}}
+import { connect } from 'react-redux';
+{{/if}}
+
+{{#if wantCSS}}
+import styles from './{{ dashCase name }}.css';
+{{/if}}
+
+class {{ properCase name }}Page extends React.Component {
+  render() {
+    return (
+      {{#if wantCSS}}
+      <div style={ styles.{{ dashCase name }} }>
+      {{else}}
+      <div>
+      {{/if}}
+      </div>
+    );
+  }
+}
+
+{{#if connectRedux}}
+function mapStateToProps(state) {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)({{ properCase name }}Page);
+{{else}}
+export default {{ properCase name }}Page;
+{{/if}}

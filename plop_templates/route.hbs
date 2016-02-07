@@ -1,0 +1,9 @@
+
+        <Route
+          path="/{{ path }}"
+          getComponent={function get(location, cb) {
+            require.ensure([], (require) => {
+              cb(null, require('{{ properCase name }}Page').default);
+            }, '{{ properCase name }}Page');
+          }}
+        />$1
