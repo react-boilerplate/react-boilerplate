@@ -31,7 +31,7 @@ cleanRepo(dir, function () {
  */
 function cleanRepo(dir, callback) {
   process.stdout.write('\nCleaning old repository...');
-  exec('rm -Rf .git/', callback);
+  exec('rm -Rf .git/', addCheckMark.bind(null, callback));
 }
 
 /**
@@ -39,7 +39,7 @@ function cleanRepo(dir, callback) {
  */
 function initGit(dir, callback) {
   process.stdout.write('\nInitialising new repository...');
-  exec('git init && git add . && git commit -m "Initial commit"', callback);
+  exec('git init && git add . && git commit -m "Initial commit"', addCheckMark.bind(null, callback));
 }
 
 /**
@@ -54,5 +54,13 @@ function deleteFileInCurrentDir(file, callback) {
  */
 function installDeps(callback) {
   process.stdout.write('\nInstalling dependencies... (This might take a while)')
-  exec('npm install', callback);
+  exec('npm install', addCheckMark.bind(null, callback));
+}
+
+/**
+ * Adds mark check symbol
+ */
+function addCheckMark(callback) {
+  process.stdout.write(' ✓');
+  callback();
 }
