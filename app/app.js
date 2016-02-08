@@ -17,7 +17,7 @@ import 'file?name=[name].[ext]!./.htaccess';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router';
+import { Router } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import FontFaceObserver from 'fontfaceobserver';
 import { browserHistory } from 'react-router';
@@ -64,40 +64,16 @@ if (module.hot) {
   });
 }
 
-// Mostly boilerplate, except for the Routes. These are the pages you can go to,
-// which are all wrapped in the App component, which contains the navigation etc
-// See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
-// about the require.ensure code splitting business
+// Set up the router, wrapping all Routes in the App component
+import routes from './routes';
+const rootRoute = {
+  component: App,
+  childRoutes: routes
+};
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route component={App}>
-        <Route
-          path="/"
-          getComponent={function get(location, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('HomePage').default);
-            }, 'HomePage');
-          }}
-        />
-        <Route
-          path="/features"
-          getComponent={function get(location, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('FeaturePage').default);
-            }, 'FeaturePage');
-          }}
-        />
-        <Route
-          path="*"
-          getComponent={function get(location, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('NotFoundPage').default);
-            }, 'NotFoundPage');
-          }}
-        />
-      </Route>
-    </Router>
+    <Router history={browserHistory} routes={rootRoute} />
   </Provider>,
   document.getElementById('app')
 );

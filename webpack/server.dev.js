@@ -27,7 +27,7 @@ new WebpackDevServer(webpack(config), { // Start a server
   if (err) {
     console.log(err);
   } else {
-    console.log('Server started');
+    console.log('Server started ' + chalk.green('✓'));
     console.log(
       chalk.bold('\nAccess URLs:') +
       chalk.gray('\n-----------------------------------') +

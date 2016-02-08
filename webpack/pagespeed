@@ -7,6 +7,7 @@ process.stdin.setEncoding('utf8');
 
 var ngrok = require('ngrok');
 var psi = require('psi');
+var chalk = require('chalk');
 
 log('\nStarting ngrok tunnel');
 
@@ -22,10 +23,10 @@ function runPsi(url) {
 function startTunnel(cb) {
   ngrok.connect(3000, function (err, url) {
     if (err) {
-      log('ERROR\n' + err);
+      log(chalk.red('\nERROR\n' + err));
       process.exit(0);
     }
-    log('\nServing tunnel from: ' + url);
+    log('\nServing tunnel from: ' + chalk.magenta(url));
     cb(url);
   });
 }
