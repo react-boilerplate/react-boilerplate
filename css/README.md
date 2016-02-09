@@ -14,7 +14,7 @@ The boilerplate uses PostCSS, and includes a few plugins by default:
 
 * `autoprefixer-core`: Prefixes your CSS automatically, supporting the last two versions of all major browsers and IE 8 and up.
 
-* `cssnano`: Optimizes your CSS file. For a full list of optimizations check [the offical website](http://cssnano.co/optimisations/).
+* `cssnano`: Optimizes your CSS file. For a full list of optimizations check [the official website](http://cssnano.co/optimisations/).
 
 * `postcss-reporter`: Makes warnings by the above plugins visible in the console.
 
@@ -22,7 +22,7 @@ For a full, searchable catalog of plugins go to [postcss.parts](http://postcss.p
 
 ## Folder structure
 
-The boilerplate comes with a basic folder structure to keep the CSS files organised. This is what the folders are for:
+The boilerplate comes with a basic folder structure to keep the CSS files organized. This is what the folders are for:
 
 * `base`: Global styling, e.g. setting the box–model for all elements
 
