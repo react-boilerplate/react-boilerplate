@@ -1,6 +1,6 @@
 /**
 *
-* {{ properCase name }}.react.js
+* {{ properCase name }}
 *
 * {{ sentenceCase description }}
 */
@@ -8,13 +8,13 @@
 import React from 'react';
 
 {{#if wantCSS}}
-    import styles from './{{ dashCase name }}.scss';
+import styles from './{{ dashCase name }}.scss';
 {{/if}}
 
 function {{ properCase name }}() {
   return (
     {{#if wantCSS}}
-    <div style={ styles.{{ dashCase name }} }>
+    <div style={ styles.{{ camelCase name }} }>
     {{else}}
     <div>
     {{/if}}

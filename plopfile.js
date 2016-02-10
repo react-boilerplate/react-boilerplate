@@ -1,6 +1,18 @@
+const fs = require('fs');
+const inquirer = require('inquirer');
 module.exports = plop => {
-  // Custom directory picker
-  plop.addPrompt('directory', require('inquirer-directory'));
+  // Retrieve all the components and container ending with Page
+  const getPageComponentList = () => {
+    const pageComponents = fs.readdirSync('app/components').filter(dir => dir.substr(dir.length - 4) === 'Page');
+    const pageContainers = fs.readdirSync('app/containers').filter(dir => dir.substr(dir.length - 4) === 'Page');
+    var components = [new inquirer.Separator('Page Components:')];
+    components = components.concat(pageComponents);
+    components.push(new inquirer.Separator());
+    components.push(new inquirer.Separator('Page Containers:'));
+    components = components.concat(pageContainers);
+
+    return components;
+  };
 
   // Stateless component generator
   plop.setGenerator('component', {
@@ -31,11 +43,6 @@ module.exports = plop => {
         return 'description is required';
       }
     }, {
-      type: 'directory',
-      name: 'path',
-      message: 'where would you like to put this component?',
-      basePath: plop.getPlopfilePath() + '/app/components'
-    }, {
       type: 'confirm',
       name: 'wantCSS',
       message: 'Do you want to create corresponding CSS file?'
@@ -43,21 +50,21 @@ module.exports = plop => {
     actions: data => {
       const actions = [{
         type: 'add',
-        path: 'app/components/{{ path }}/{{properCase name}}/index.js',
-        templateFile: data.type === 'ES6 Class' ? './plop_templates/component/es6.js.hbs' : './plop_templates/component/stateless.js.hbs',
+        path: 'app/components/{{properCase name}}/index.js',
+        templateFile: data.type === 'ES6 Class' ? './webpack/templates/component/es6.js.hbs' : './webpack/templates/component/stateless.js.hbs',
         abortOnFail: true
       }, {
         type: 'add',
-        path: 'app/components/{{path}}/{{properCase name}}/{{properCase name}}.test.js',
-        templateFile: './plop_templates/component/component.test.js.hbs',
+        path: 'app/components/{{properCase name}}/{{properCase name}}.test.js',
+        templateFile: './webpack/templates/component/component.test.js.hbs',
         abortOnFail: true
       }];
 
       if (data.wantCSS) {
         actions.push({
           type: 'add',
-          path: 'app/components/{{path}}/{{properCase name}}/styles.css',
-          templateFile: './plop_templates/component/styles.css.hbs',
+          path: 'app/components/{{properCase name}}/styles.css',
+          templateFile: './webpack/templates/component/styles.css.hbs',
           abortOnFail: true
         });
       }
@@ -66,9 +73,9 @@ module.exports = plop => {
     }
   });
 
-  // Page Component Generator
-  plop.setGenerator('page', {
-    description: 'Generate a Page Container Component',
+  // Container Component Generator
+  plop.setGenerator('container', {
+    description: 'Generate a Container Component',
     prompts: [{
       type: 'input',
       name: 'name',
@@ -81,18 +88,8 @@ module.exports = plop => {
       }
     }, {
       type: 'input',
-      name: 'path',
-      message: 'What should be the router path?',
-      validate: value => {
-        if ((/.+/).test(value)) {
-          return true;
-        }
-        return 'path is required';
-      }
-    }, {
-      type: 'input',
       name: 'description',
-      message: 'Describe what the page does?',
+      message: 'Describe what the container component does?',
       validate: value => {
         if ((/.+/).test(value)) {
           return true;
@@ -109,86 +106,76 @@ module.exports = plop => {
       message: 'Do you want to connect the page to a redux store/dispatch actions?'
     }, {
       type: 'confirm',
-      name: 'wantActions',
-      message: 'Do you want to generate corresponding actions file for the page?',
-      when: answers => answers.connectRedux
-    }, {
-      type: 'confirm',
-      name: 'wantReducer',
-      message: 'Do you want to generate corresponding reducer file for the page?',
+      name: 'wantActionsAndReducer',
+      message: 'Do you want to generate corresponding actions/reducer files for the container?',
       when: answers => answers.connectRedux
     }],
     actions: data => {
       const actions = [{
         type: 'add',
-        path: 'app/containers/{{properCase name}}Page/index.js',
-        templateFile: 'plop_templates/container/index.js.hbs',
+        path: 'app/containers/{{properCase name}}/index.js',
+        templateFile: './webpack/templates/container/index.js.hbs',
         abortOnFail: true
       }, {
         type: 'add',
-        path: 'app/containers/{{properCase name}}Page/{{properCase name}}Page.test.js',
-        templateFile: 'plop_templates/container/container.test.js.hbs',
+        path: 'app/containers/{{properCase name}}/{{properCase name}}.test.js',
+        templateFile: './webpack/templates/container/container.test.js.hbs',
         abortOnFail: true
-      }, {
-        type: 'modify',
-        path: 'app/app.js',
-        pattern: /(\n\s{8}<Route\n\s{10}path="\*")/g,
-        templateFile: 'plop_templates/route.hbs'
       }];
 
       if (data.wantCSS) {
         actions.push({
           type: 'add',
-          path: 'app/containers/{{properCase name}}Page/styles.css',
-          templateFile: 'plop_templates/container/styles.css.hbs',
+          path: 'app/containers/{{properCase name}}/styles.css',
+          templateFile: './webpack/templates/container/styles.css.hbs',
           abortOnFail: true
         });
       }
 
-      if (data.wantActions) {
+      if (data.wantActionsAndReducer) {
+        // Generate Actions
         actions.push({
           type: 'add',
-          path: 'app/containers/{{properCase name}}Page/actions.js',
+          path: 'app/containers/{{properCase name}}/actions.js',
           template: '\n',
           abortOnFail: true
         });
         actions.push({
           type: 'add',
-          path: 'app/containers/{{properCase name}}Page/tests/actions.js',
-          templateFile: 'plop_templates/container/actions.test.js.hbs',
+          path: 'app/containers/{{properCase name}}/tests/actions.js',
+          templateFile: './webpack/templates/container/actions.test.js.hbs',
           abortOnFail: true
         });
         actions.push({
           type: 'add',
-          path: 'app/containers/{{properCase name}}Page/constants.js',
+          path: 'app/containers/{{properCase name}}/constants.js',
           template: '\n',
           abortOnFail: true
         });
-      }
 
-      if (data.wantReducer) {
+        // Generate Reducer
         actions.push({
           type: 'add',
-          path: 'app/containers/{{properCase name}}Page/reducer.js',
-          templateFile: 'plop_templates/container/reducer.js.hbs',
+          path: 'app/containers/{{properCase name}}/reducer.js',
+          templateFile: './webpack/templates/container/reducer.js.hbs',
           abortOnFail: true
         });
         actions.push({
           type: 'modify',
           path: 'app/rootReducer.js',
           pattern: /(\n}\);)/gi,
-          template: ',\n  {{camelCase name}}Page: {{camelCase name}}PageReducer$1'
+          template: ',\n  {{camelCase name}}: {{camelCase name}}Reducer$1'
         });
         actions.push({
           type: 'modify',
           path: 'app/rootReducer.js',
           pattern: /(\n\nexport default combineReducers)/gi,
-          template: '\nimport {{camelCase name}}PageReducer from \'{{properCase name}}Page/reducer\';$1'
+          template: '\nimport {{camelCase name}}Reducer from \'{{properCase name}}/reducer\';$1'
         });
         actions.push({
           type: 'add',
-          path: 'app/containers/{{properCase name}}Page/tests/reducer.js',
-          templateFile: 'plop_templates/container/reducer.test.js.hbs',
+          path: 'app/containers/{{properCase name}}/tests/reducer.js',
+          templateFile: './webpack/templates/container/reducer.test.js.hbs',
           abortOnFail: true
         });
       }
@@ -214,7 +201,7 @@ module.exports = plop => {
     actions: [{
       type: 'add',
       path: 'app/selectors/{{camelCase name}}Selector.js',
-      templateFile: './plop_templates/selector.js.hbs',
+      templateFile: './webpack/templates/selector.js.hbs',
       abortOnFail: true
     }]
   });
@@ -236,8 +223,48 @@ module.exports = plop => {
     actions: [{
       type: 'add',
       path: 'app/sagas/{{camelCase name}}.saga.js',
-      templateFile: './plop_templates/saga.js.hbs',
+      templateFile: './webpack/templates/saga.js.hbs',
       abortOnFail: true
+    }, {
+      type: 'modify',
+      path: 'app/sagas/index.js',
+      pattern: /(\n\nexport default)/gi,
+      template: '\nimport { {{camelCase name}}Saga } from \'./{{camelCase name}}.saga\';$1'
+    }, {
+      type: 'modify',
+      path: 'app/sagas/index.js',
+      pattern: /(\n];)/gi,
+      template: ',\n  {{camelCase name}}Saga$1'
+    }]
+  });
+
+  // Route generator
+  plop.setGenerator('route', {
+    description: 'Generate a route',
+    prompts: [{
+      type: 'list',
+      name: 'component',
+      message: 'Pick the component for which the route should be generated?',
+      choices: getPageComponentList()
+    }, {
+      type: 'input',
+      name: 'path',
+      message: 'What should be the router path?',
+      validate: value => {
+        if ((/\/.+/).test(value)) {
+          return 'path should not start with "/"';
+        }
+        if ((/.+/).test(value)) {
+          return true;
+        }
+        return 'path is required';
+      }
+    }],
+    actions: [{
+      type: 'modify',
+      path: 'app/routes.js',
+      pattern: /(\s{\n\s{4}path: '\*')/g,
+      templateFile: './webpack/templates/route.hbs'
     }]
   });
 };

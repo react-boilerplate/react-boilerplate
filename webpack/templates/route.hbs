@@ -1,0 +1,8 @@
+ {
+    path: '/{{ path }}',
+    getComponent: function get(location, cb) {
+      require.ensure([], (require) => {
+        cb(null, require('{{ properCase component }}').default);
+      }, '{{ properCase component }}');
+    }
+  },$1
