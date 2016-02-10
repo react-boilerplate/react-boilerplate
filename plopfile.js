@@ -3,8 +3,8 @@ const inquirer = require('inquirer');
 module.exports = plop => {
   // Retrieve all the components and container ending with Page
   const getPageComponentList = () => {
-    const pageComponents = fs.readdirSync('app/components').filter(dir => dir.substr(dir.length - 4) === 'Page');
-    const pageContainers = fs.readdirSync('app/containers').filter(dir => dir.substr(dir.length - 4) === 'Page');
+    const pageComponents = fs.readdirSync('app/components');
+    const pageContainers = fs.readdirSync('app/containers');
     var components = [new inquirer.Separator('Page Components:')];
     components = components.concat(pageComponents);
     components.push(new inquirer.Separator());
@@ -109,8 +109,43 @@ module.exports = plop => {
       name: 'wantActionsAndReducer',
       message: 'Do you want to generate corresponding actions/reducer files for the container?',
       when: answers => answers.connectRedux
+    }, {
+      type: 'confirm',
+      name: 'wantSelector',
+      message: 'Do you want to add selectors to the connect method?',
+      when: answers => answers.connectRedux
+    }, {
+      type: 'list',
+      name: 'selectorType',
+      message: 'Select one option',
+      choices: [
+        { name: 'Select from already available selectors', value: 'old' },
+        { name: 'Generate new one', value: 'new' }
+      ],
+      when: answers => answers.wantSelector
+    }, {
+      type: 'checkbox',
+      name: 'selectors',
+      message: 'Do you want to add selectors to the connect method?',
+      choices: fs.readdirSync('app/selectors').map(dir => ({ name: dir.slice(0, -3), value: dir.slice(0, -3) })),
+      when: answers => answers.selectorType === 'old'
+    }, {
+      type: 'input',
+      name: 'selectorName',
+      message: 'What the selector should it be called?',
+      validate: value => {
+        if ((/.+saga/i).test(value)) {
+          return 'name should not end with selector, it will be automatically added';
+        }
+        if ((/.+/).test(value)) {
+          return true;
+        }
+        return 'selector name is required';
+      },
+      when: answers => answers.selectorType === 'new'
     }],
     actions: data => {
+      console.log(data.selectors);
       const actions = [{
         type: 'add',
         path: 'app/containers/{{properCase name}}/index.js',
@@ -142,7 +177,7 @@ module.exports = plop => {
         });
         actions.push({
           type: 'add',
-          path: 'app/containers/{{properCase name}}/tests/actions.js',
+          path: 'app/containers/{{properCase name}}/tests/actions.test.js',
           templateFile: './webpack/templates/container/actions.test.js.hbs',
           abortOnFail: true
         });
@@ -174,8 +209,17 @@ module.exports = plop => {
         });
         actions.push({
           type: 'add',
-          path: 'app/containers/{{properCase name}}/tests/reducer.js',
+          path: 'app/containers/{{properCase name}}/tests/reducer.test.js',
           templateFile: './webpack/templates/container/reducer.test.js.hbs',
+          abortOnFail: true
+        });
+      }
+
+      if (data.selectorType === 'new') {
+        actions.push({
+          type: 'add',
+          path: 'app/selectors/{{camelCase selectorName}}Selector.js',
+          templateFile: './webpack/templates/container/selector.js.hbs',
           abortOnFail: true
         });
       }
@@ -192,6 +236,9 @@ module.exports = plop => {
       name: 'name',
       message: 'What should it be called?',
       validate: value => {
+        if ((/.+saga/i).test(value)) {
+          return 'name should not end with selector, it will be automatically added';
+        }
         if ((/.+/).test(value)) {
           return true;
         }
@@ -214,6 +261,9 @@ module.exports = plop => {
       name: 'name',
       message: 'What should it be called?',
       validate: value => {
+        if ((/.+saga/i).test(value)) {
+          return 'name should not end with saga, it will be automatically added';
+        }
         if ((/.+/).test(value)) {
           return true;
         }
@@ -252,7 +302,7 @@ module.exports = plop => {
       message: 'What should be the router path?',
       validate: value => {
         if ((/\/.+/).test(value)) {
-          return 'path should not start with "/"';
+          return 'path should not start with "/", it will be automatically added';
         }
         if ((/.+/).test(value)) {
           return true;
