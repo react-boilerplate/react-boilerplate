@@ -1,17 +1,12 @@
 const fs = require('fs');
-const inquirer = require('inquirer');
 module.exports = plop => {
-  // Retrieve all the components and container ending with Page
-  const getPageComponentList = () => {
+  // Check whether the given component exist in either components or containers directory
+  const componentExists = comp => {
     const pageComponents = fs.readdirSync('app/components');
     const pageContainers = fs.readdirSync('app/containers');
-    var components = [new inquirer.Separator('Page Components:')];
-    components = components.concat(pageComponents);
-    components.push(new inquirer.Separator());
-    components.push(new inquirer.Separator('Page Containers:'));
-    components = components.concat(pageContainers);
+    const components = pageComponents.concat(pageContainers);
 
-    return components;
+    return components.indexOf(comp) >= 0;
   };
 
   // Stateless component generator
@@ -292,10 +287,15 @@ module.exports = plop => {
   plop.setGenerator('route', {
     description: 'Generate a route',
     prompts: [{
-      type: 'list',
+      type: 'input',
       name: 'component',
-      message: 'Pick the component for which the route should be generated?',
-      choices: getPageComponentList()
+      message: 'Enter the name of the component for which the route should be generated?',
+      validate: value => {
+        if ((/.+/).test(value)) {
+          return componentExists(value) ? true : 'Component doesn\'t exist in either components or containers folder';
+        }
+        return 'path is required';
+      }
     }, {
       type: 'input',
       name: 'path',
