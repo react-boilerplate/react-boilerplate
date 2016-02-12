@@ -2,9 +2,7 @@
 
 Quick setup for new performance orientated, offline–first React.js applications featuring Redux, hot–reloading, PostCSS, react-router, ServiceWorker, AppCache, FontFaceObserver and Mocha.
 
-Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr).
-
-*If you're using this boilerplate, we'd love to [hear from you](https://github.com/mxstbr/react-boilerplate/issues/115)!*
+Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors](https://github.com/mxstbr/react-boilerplate/graphs/contributors). *If you're using this boilerplate, we'd love to [hear from you](https://github.com/mxstbr/react-boilerplate/issues/115)!*
 
 [dep-status-img]: https://david-dm.org/mxstbr/react-boilerplate/v3.0.0.svg
 [dep-status-link]: https://david-dm.org/mxstbr/react-boilerplate/v3.0.0
@@ -32,18 +30,19 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr).
 ## Documentation
 
 - [General](docs/general)
-  - [Getting started](docs/general/getting-started.md)
+  - [**Getting started**](docs/general/getting-started.md)
   - [Prerequisites](docs/general/prerequisites.md)
   - [Features](docs/general/features.md)
-  - [Commands](docs/general/commands.md)
+  - [**Commands**](docs/general/commands.md)
   - [Files](docs/general/files.md)
   - [FAQ](docs/general/faq.md)
-
-
 - [Testing](docs/testing)
   - [Unit Testing](docs/general/unit-testing.md)
   - [Component Testing](docs/general/component-testing.md)
   - [Remote Testing](docs/general/remote-testing.md)
+- [CSS](docs/css)
+  - [PostCSS](docs/css/postcss.md)
+  - [CSS Modules](docs/css/css-modules.md)
 
 
 ## Quick start
