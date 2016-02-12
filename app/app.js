@@ -33,9 +33,9 @@ const openSansObserver = new FontFaceObserver('Open Sans', {});
 
 // When Open Sans is loaded, add the js-open-sans-loaded class to the body
 openSansObserver.check().then(() => {
-  document.body.classList.add(styles.jsOpenSansLoaded);
+  document.body.classList.add(styles.fontLoaded);
 }, () => {
-  document.body.classList.remove(styles.jsOpenSansLoaded);
+  document.body.classList.remove(styles.fontLoaded);
 });
 
 // Import the pages
