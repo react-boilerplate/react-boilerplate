@@ -18,6 +18,14 @@ $ npm start
 
 Starts the development server and makes your application accessible at `localhost:3000`. Changes in the application code will be hot-reloaded.
 
+### Port
+
+To change the port the app is accessible at pass the `-p` option to the command with `--`. E.g. to make the app visible at `localhost:5000`, run the following:
+
+```Shell
+$ npm start -- -p 5000
+```
+
 ## Building
 
 ```Shell
@@ -96,7 +104,7 @@ Lint your JavaScript and CSS with this command.
 $ npm run lint
 ```
 
-Want to lint your JavaScript and CSS seperately? 
+Want to lint your JavaScript and CSS seperately?
 
 ```Shell
 $ npm run lint:js
