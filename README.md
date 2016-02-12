@@ -6,12 +6,12 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr).
 
 *If you're using this boilerplate, we'd love to [hear from you](https://github.com/mxstbr/react-boilerplate/issues/115)!*
 
-[dep-status-img]: https://david-dm.org/mxstbr/react-boilerplate.svg
-[dep-status-link]: https://david-dm.org/mxstbr/react-boilerplate
-[dev-dep-status-img]: https://david-dm.org/mxstbr/react-boilerplate/dev-status.svg
-[dev-dep-status-link]: https://david-dm.org/mxstbr/react-boilerplate#info=devDependencies
-[ci-img]: https://travis-ci.org/mxstbr/react-boilerplate.svg
-[ci]: https://travis-ci.org/mxstbr/react-boilerplate
+[dep-status-img]: https://david-dm.org/mxstbr/react-boilerplate/v3.0.0.svg
+[dep-status-link]: https://david-dm.org/mxstbr/react-boilerplate/v3.0.0
+[dev-dep-status-img]: https://david-dm.org/mxstbr/react-boilerplate/v3.0.0/dev-status.svg
+[dev-dep-status-link]: https://david-dm.org/mxstbr/react-boilerplate/v3.0.0#info=devDependencies
+[ci-img]: https://travis-ci.org/mxstbr/react-boilerplate.svg?branch=v3.0.0
+[ci]: https://travis-ci.org/mxstbr/react-boilerplate?branch=v3.0.0
 
 ## Features
 
