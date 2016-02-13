@@ -115,8 +115,14 @@ module.exports = plop => {
     }, {
       type: 'checkbox',
       name: 'selectors',
-      message: 'Do you want to add selectors to the connect method?',
+      message: 'Choose the selectors which has to be added (select/deselect selectors by pressing space)',
       choices: fs.readdirSync('app/selectors').map(dir => ({ name: dir.slice(0, -3), value: dir.slice(0, -3) })),
+      validate: value => {
+        if (value.length > 0) {
+          return true;
+        }
+        return 'atleast one selector must be selector';
+      },
       when: answers => answers.selectorType === 'old'
     }, {
       type: 'input',
@@ -134,7 +140,6 @@ module.exports = plop => {
       when: answers => answers.selectorType === 'new'
     }],
     actions: data => {
-      console.log(data.selectors);
       const actions = [{
         type: 'add',
         path: 'app/containers/{{properCase name}}/index.js',
