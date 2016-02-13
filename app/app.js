@@ -22,6 +22,7 @@ import { createStore, applyMiddleware } from 'redux';
 import FontFaceObserver from 'fontfaceobserver';
 import { browserHistory } from 'react-router';
 import { syncHistory } from 'react-router-redux';
+import useScroll from 'scroll-behavior/lib/useScrollToTop';
 import { fromJS } from 'immutable';
 const reduxRouterMiddleware = syncHistory(browserHistory);
 import sagaMiddleware from 'redux-saga';
@@ -73,7 +74,7 @@ const rootRoute = {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory} routes={rootRoute} />
+    <Router history={useScroll(() => browserHistory)()} routes={rootRoute} />
   </Provider>,
   document.getElementById('app')
 );
