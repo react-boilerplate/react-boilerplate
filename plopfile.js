@@ -115,13 +115,13 @@ module.exports = plop => {
     }, {
       type: 'checkbox',
       name: 'selectors',
-      message: 'Choose the selectors which has to be added (select/deselect selectors by pressing space)',
+      message: 'Choose the selectors that should be added (select with space)',
       choices: fs.readdirSync('app/selectors').map(dir => ({ name: dir.slice(0, -3), value: dir.slice(0, -3) })),
       validate: value => {
         if (value.length > 0) {
           return true;
         }
-        return 'atleast one selector must be selector';
+        return 'At least one selector must be selected';
       },
       when: answers => answers.selectorType === 'old'
     }, {
