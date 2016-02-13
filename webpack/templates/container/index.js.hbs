@@ -6,7 +6,6 @@
 */
 
 import React from 'react';
-{{#if connectRedux}}
 import { connect } from 'react-redux';
 {{#if wantSelector}}
 
@@ -17,7 +16,6 @@ import {{camelCase selectorName}}Selector from '{{camelCase selectorName}}Select
 {{#each selectors }}
 import {{this}} from '{{this}}';
 {{/each}}
-{{/if}}
 {{/if}}
 {{/if}}
 
@@ -38,7 +36,6 @@ class {{ properCase name }} extends React.Component {
   }
 }
 
-{{#if connectRedux}}
 {{#if wantSelector}}
 const mapStateToProps = createSelector(
   {{#if selectorName}}
@@ -62,6 +59,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)({{ properCase name }});
-{{else}}
-export default {{ properCase name }};
-{{/if}}

@@ -97,18 +97,12 @@ module.exports = plop => {
       message: 'Do you want to create corresponding CSS file?'
     }, {
       type: 'confirm',
-      name: 'connectRedux',
-      message: 'Do you want to connect the page to a redux store/dispatch actions?'
-    }, {
-      type: 'confirm',
       name: 'wantActionsAndReducer',
-      message: 'Do you want to generate corresponding actions/reducer files for the container?',
-      when: answers => answers.connectRedux
+      message: 'Do you want to generate corresponding actions/reducer files for the container?'
     }, {
       type: 'confirm',
       name: 'wantSelector',
-      message: 'Do you want to add selectors to the connect method?',
-      when: answers => answers.connectRedux
+      message: 'Do you want to add selectors to the connect method?'
     }, {
       type: 'list',
       name: 'selectorType',
