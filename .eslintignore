@@ -1,4 +1,3 @@
 # node_modules are ignored by default
-
-# Ignore build folder
 build
+coverage
