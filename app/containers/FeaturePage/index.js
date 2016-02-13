@@ -17,17 +17,15 @@ import styles from './styles.css';
 class FeaturePage extends React.Component {
   constructor() {
     super();
-    this.onChangeRoute = this.onChangeRoute.bind(this);
-    this.changeRouteToHome = this.changeRouteToHome.bind(this);
   }
 
-  onChangeRoute(url) {
+  onChangeRoute = url => {
     this.props.changeRoute(url);
-  }
+  };
 
-  changeRouteToHome() {
+  changeRouteToHome = () => {
     this.onChangeRoute('/');
-  }
+  };
 
   render() {
     return (

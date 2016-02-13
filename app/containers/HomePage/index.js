@@ -30,19 +30,17 @@ import styles from './styles.css';
 class HomePage extends React.Component {
   constructor() {
     super();
-    this.onChangeRoute = this.onChangeRoute.bind(this);
-    this.changeRouteToReadme = this.changeRouteToReadme.bind(this);
   }
 
   shouldComponentUpdate = shouldPureComponentUpdate;
 
-  onChangeRoute(url) {
+  onChangeRoute = url => {
     this.props.dispatch(routeActions.push(url));
-  }
+  };
 
-  changeRouteToReadme() {
+  changeRouteToReadme = () => {
     this.onChangeRoute('/features');
-  }
+  };
 
   render() {
     return (
