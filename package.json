@@ -73,6 +73,7 @@
     "react-addons-test-utils": "^0.14.6",
     "react-router-redux": "^2.1.0",
     "redux-saga": "^0.6.0",
+    "sinon": "^1.17.3",
     "style-loader": "^0.13.0",
     "stylelint": "^4.1.0",
     "stylelint-config-standard": "^3.0.0",
