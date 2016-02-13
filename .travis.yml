@@ -15,3 +15,4 @@ before_install:
 notifications:
   email:
     on_failure: change
+after_success: 'npm run coveralls'
