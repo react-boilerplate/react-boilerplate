@@ -32,6 +32,7 @@
     "chai-enzyme": "^0.3.0",
     "chalk": "^1.1.1",
     "cheerio": "^0.19.0",
+    "coveralls": "^2.11.6",
     "css-loader": "^0.23.1",
     "css-modules-require-hook": "^2.1.0",
     "cssnano": "^3.4.0",
@@ -105,7 +106,8 @@
     "test:watch": "npm run test -- --auto-watch --no-single-run",
     "test:firefox": "npm run test -- --browsers Firefox",
     "test:safari": "npm run test -- --browsers Safari",
-    "test:ie": "npm run test -- --browsers IE"
+    "test:ie": "npm run test -- --browsers IE",
+    "coveralls": "cat ./coverage/lcov/lcov.info | ./node_modules/.bin/coveralls"
   },
   "pre-commit": "lint:staged",
   "author": "Max Stoiber",

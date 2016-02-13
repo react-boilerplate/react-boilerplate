@@ -1,4 +1,4 @@
-# React.js Boilerplate [![Dependency Status][dep-status-img]][dep-status-link] [![devDependency Status][dev-dep-status-img]][dev-dep-status-link] [![Build Status][ci-img]][ci]
+# React.js Boilerplate [![Dependency Status][dep-status-img]][dep-status-link] [![devDependency Status][dev-dep-status-img]][dev-dep-status-link] [![Build Status][ci-img]][ci-link] [![Code Coverage][coverage-img]][coverage-link]
 
 Quick setup for new performance orientated, offline–first React.js applications featuring Redux, hot–reloading, PostCSS, react-router, ServiceWorker, AppCache, FontFaceObserver and Mocha.
 
@@ -9,7 +9,9 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors
 [dev-dep-status-img]: https://david-dm.org/mxstbr/react-boilerplate/v3.0.0/dev-status.svg
 [dev-dep-status-link]: https://david-dm.org/mxstbr/react-boilerplate/v3.0.0#info=devDependencies
 [ci-img]: https://travis-ci.org/mxstbr/react-boilerplate.svg?branch=v3.0.0
-[ci]: https://travis-ci.org/mxstbr/react-boilerplate?branch=v3.0.0
+[ci-link]: https://travis-ci.org/mxstbr/react-boilerplate?branch=v3.0.0
+[coverage-link]: https://coveralls.io/r/mxstbr/react-boilerplate?branch=v3.0.0
+[coverage-img]: https://coveralls.io/r/mxstbr/react-boilerplate/badge.svg?branch=v3.0.0
 
 ## Features
 
