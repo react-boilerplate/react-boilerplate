@@ -41,8 +41,6 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors
   - [Component Testing](docs/general/component-testing.md)
   - [Remote Testing](docs/general/remote-testing.md)
 - [CSS](docs/css)
-  - [PostCSS](docs/css/postcss.md)
-  - [CSS Modules](docs/css/css-modules.md)
 
 
 ## Quick start
