@@ -11,7 +11,7 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors
 [ci-img]: https://travis-ci.org/mxstbr/react-boilerplate.svg?branch=v3.0.0
 [ci-link]: https://travis-ci.org/mxstbr/react-boilerplate?branch=v3.0.0
 [coverage-link]: https://coveralls.io/r/mxstbr/react-boilerplate?branch=v3.0.0
-[coverage-img]: https://coveralls.io/r/mxstbr/react-boilerplate/badge.svg?branch=v3.0.0
+[coverage-img]: https://coveralls.io/repos/github/mxstbr/react-boilerplate/badge.svg?branch=v3.0.0
 
 ## Features
 
