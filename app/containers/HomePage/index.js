@@ -34,7 +34,7 @@ class HomePage extends React.Component {
 
   shouldComponentUpdate = shouldPureComponentUpdate;
 
-  onChangeRoute = url => {
+  onChangeRoute = (url) => {
     this.props.dispatch(routeActions.push(url));
   };
 

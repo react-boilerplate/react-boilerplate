@@ -19,7 +19,7 @@ class FeaturePage extends React.Component {
     super();
   }
 
-  onChangeRoute = url => {
+  onChangeRoute = (url) => {
     this.props.changeRoute(url);
   };
 
