@@ -40,9 +40,11 @@ module.exports = (options) => {
     },
     resolve: {
       modulesDirectories: [
-        'assets',
         'containers',
         'components',
+        'selectors',
+        'sagas',
+        'assets',
         'node_modules'
       ],
       extensions: [
@@ -52,6 +54,7 @@ module.exports = (options) => {
         '.react.js'
       ]
     },
+    devtool: options.devtool,
     target: 'web', // Make web variables accessible to webpack, e.g. window
     stats: false, // Don't show stats in the console
     progress: true

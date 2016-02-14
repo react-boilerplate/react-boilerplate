@@ -1,0 +1,20 @@
+.linkRepo {
+  height: 100%;
+  color: black;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.linkIssues {
+  color: black;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.issueIcon {
+  fill: #CCC;
+  margin-right: 0.25em;
+}

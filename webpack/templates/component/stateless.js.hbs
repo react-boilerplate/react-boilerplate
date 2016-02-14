@@ -1,0 +1,25 @@
+/**
+*
+* {{ properCase name }}
+*
+* {{ sentenceCase description }}
+*/
+
+import React from 'react';
+
+{{#if wantCSS}}
+import styles from './styles.css';
+{{/if}}
+
+function {{ properCase name }}() {
+  return (
+    {{#if wantCSS}}
+    <div style={ styles.{{ camelCase name }} }>
+    {{else}}
+    <div>
+    {{/if}}
+    </div>
+  );
+}
+
+export default {{ properCase name }};

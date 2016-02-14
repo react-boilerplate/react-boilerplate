@@ -7,6 +7,8 @@
  *
  */
 
+import 'babel-polyfill';
+
 // Load the manifest.json file and the .htaccess file
 import 'file?name=[name].[ext]!./manifest.json';
 import 'file?name=[name].[ext]!./.htaccess';
@@ -15,13 +17,15 @@ import 'file?name=[name].[ext]!./.htaccess';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router';
+import { Router } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
 import FontFaceObserver from 'fontfaceobserver';
 import { browserHistory } from 'react-router';
 import { syncHistory } from 'react-router-redux';
+import useScroll from 'scroll-behavior/lib/useScrollToTop';
+import { fromJS } from 'immutable';
 const reduxRouterMiddleware = syncHistory(browserHistory);
+import sagaMiddleware from 'redux-saga';
 
 // Observer loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -30,9 +34,9 @@ const openSansObserver = new FontFaceObserver('Open Sans', {});
 
 // When Open Sans is loaded, add the js-open-sans-loaded class to the body
 openSansObserver.check().then(() => {
-  document.body.classList.add(styles.jsOpenSansLoaded);
+  document.body.classList.add(styles.fontLoaded);
 }, () => {
-  document.body.classList.remove(styles.jsOpenSansLoaded);
+  document.body.classList.remove(styles.fontLoaded);
 });
 
 // Import the pages
@@ -48,8 +52,10 @@ import '../node_modules/sanitize.css/dist/sanitize.min.css';
 */
 
 import rootReducer from './rootReducer';
-const createStoreWithMiddleware = applyMiddleware(thunk, reduxRouterMiddleware)(createStore);
-const store = createStoreWithMiddleware(rootReducer);
+import sagas from './sagas';
+const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, sagaMiddleware(...sagas))(createStore);
+const store = createStoreWithMiddleware(rootReducer, fromJS({}));
+reduxRouterMiddleware.listenForReplays(store, (state) => state.get('route').location);
 
 // Make reducers hot reloadable, see http://mxs.is/googmo
 if (module.hot) {
@@ -59,40 +65,16 @@ if (module.hot) {
   });
 }
 
-// Mostly boilerplate, except for the Routes. These are the pages you can go to,
-// which are all wrapped in the App component, which contains the navigation etc
-// See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
-// about the require.ensure code splitting business
+// Set up the router, wrapping all Routes in the App component
+import routes from './routes';
+const rootRoute = {
+  component: App,
+  childRoutes: routes
+};
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route component={App}>
-        <Route
-          path="/"
-          getComponent={function get(location, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('HomePage').default);
-            }, 'HomePage');
-          }}
-        />
-        <Route
-          path="/readme"
-          getComponent={function get(location, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('ReadmePage').default);
-            }, 'ReadmePage');
-          }}
-        />
-        <Route
-          path="*"
-          getComponent={function get(location, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('NotFoundPage').default);
-            }, 'NotFoundPage');
-          }}
-        />
-      </Route>
-    </Router>
+    <Router history={useScroll(() => browserHistory)()} routes={rootRoute} />
   </Provider>,
   document.getElementById('app')
 );

@@ -1,5 +1,9 @@
 # Frequently Asked Questions
 
+## Using react-boilerplate on Debian/Ubuntu systems
+
+You might run into errors when trying to `npm install` something. This is due to the way `node` is registered, try installing `nodejs-legacy` and see if it fixes the problem. (see [here](http://plaidzooks.tumblr.com/post/36894116867/using-nodejs-on-debianubuntu-systems) for more information)
+
 ## Why does this exist?
 
 The JavaScript ecosystem moves at an incredible speed, and staying up to date on best practices and new tools is time intensive. Instead of you having research the news for every project you do, I'll do it for you. I'll then package it nicely and you start your application with the best developer experience and structure possible by using react-boilerplate.

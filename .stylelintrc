@@ -3,6 +3,6 @@
   "rules": {
   		"color-hex-case": "upper",
   		"string-quotes": "single",
-      "indentation": 4,
+      "indentation": 2,
     }
 }

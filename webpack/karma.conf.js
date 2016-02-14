@@ -3,8 +3,7 @@ const webpackConfig = require('./webpack.test.babel');
 module.exports = (config) => {
   config.set({
     frameworks: ['mocha'],
-    reporters: ['mocha'],
-
+    reporters: ['coverage', 'mocha'],
     browsers: process.env.TRAVIS
       ? ['ChromeTravis']
       : ['Chrome'],
@@ -13,11 +12,16 @@ module.exports = (config) => {
     singleRun: true,
 
     files: [
-      '../app/**/*.test.js'
+      {
+        pattern: `./test-bundler.js`,
+        watched: false,
+        served: true,
+        included: true
+      }
     ],
 
     preprocessors: {
-      ['../app/**/*.test.js']: ['webpack', 'sourcemap'],
+      ['./test-bundler.js']: ['webpack', 'sourcemap']
     },
 
     webpack: webpackConfig,
@@ -32,6 +36,15 @@ module.exports = (config) => {
         base: 'Chrome',
         flags: ['--no-sandbox']
       }
-    }
+    },
+
+    coverageReporter: {
+      dir: '../coverage',
+      reporters: [
+        { type: 'lcov', subdir: 'lcov' },
+        { type: 'html', subdir: 'html' }
+      ]
+    },
+
   });
 };
