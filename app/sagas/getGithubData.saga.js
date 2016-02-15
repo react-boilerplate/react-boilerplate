@@ -2,7 +2,7 @@
 
 import { LOAD_REPOS } from 'App/constants';
 import { reposLoaded } from 'App/actions';
-import { take, call, put } from 'redux-saga';
+import { take, call, put } from 'redux-saga/effects';
 
 function parseJSON(response) {
   return response.json();
