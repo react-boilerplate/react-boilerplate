@@ -5,6 +5,7 @@
   "dependencies": {
     "babel-polyfill": "^6.3.14",
     "fontfaceobserver": "^1.6.3",
+    "history": "2.0.0",
     "immutable": "^3.7.6",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
