@@ -90,7 +90,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=development node webpack/server.dev.js",
-    "build": "NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --progress --colors -p",
+    "build": "NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --colors -p",
     "serve": "NODE_ENV=production node webpack/server.prod.js",
     "pagespeed": "./webpack/pagespeed",
     "setup": "NODE_ENV=initialisation ./webpack/init",
