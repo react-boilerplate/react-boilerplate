@@ -1,6 +1,15 @@
-import expect from 'expect';
-import {  } from '../actions';
-import {  } from '../constants';
+/*
+ *
+ * {{ properCase name }} actions
+ *
+ */
 
-describe('{{ properCase name }}Page actions', () => {
-});
+import {
+  DEFAULT_ACTION
+} from './constants';
+
+export function defaultAction() {
+  return {
+    type: DEFAULT_ACTION
+  };
+}

@@ -50,7 +50,7 @@ module.exports = plop => {
         abortOnFail: true
       }, {
         type: 'add',
-        path: 'app/components/{{properCase name}}/{{properCase name}}.test.js',
+        path: 'app/components/{{properCase name}}/index.test.js',
         templateFile: './webpack/templates/component/component.test.js.hbs',
         abortOnFail: true
       }];
@@ -74,22 +74,12 @@ module.exports = plop => {
     prompts: [{
       type: 'input',
       name: 'name',
-      message: 'What should it be called?',
+      message: 'What should it be called? (e.g. Form)',
       validate: value => {
         if ((/.+/).test(value)) {
           return true;
         }
         return 'name is required';
-      }
-    }, {
-      type: 'input',
-      name: 'description',
-      message: 'Describe what the container component does?',
-      validate: value => {
-        if ((/.+/).test(value)) {
-          return true;
-        }
-        return 'description is required';
       }
     }, {
       type: 'confirm',
@@ -147,7 +137,7 @@ module.exports = plop => {
         abortOnFail: true
       }, {
         type: 'add',
-        path: 'app/containers/{{properCase name}}/{{properCase name}}.test.js',
+        path: 'app/containers/{{properCase name}}/tests/index.test.js',
         templateFile: './webpack/templates/container/container.test.js.hbs',
         abortOnFail: true
       }];
@@ -166,7 +156,7 @@ module.exports = plop => {
         actions.push({
           type: 'add',
           path: 'app/containers/{{properCase name}}/actions.js',
-          template: '\n',
+          templateFile: './webpack/templates/container/actions.js.hbs',
           abortOnFail: true
         });
         actions.push({
@@ -175,10 +165,12 @@ module.exports = plop => {
           templateFile: './webpack/templates/container/actions.test.js.hbs',
           abortOnFail: true
         });
+
+        // Generate constants
         actions.push({
           type: 'add',
           path: 'app/containers/{{properCase name}}/constants.js',
-          template: '\n',
+          templateFile: './webpack/templates/container/constants.js.hbs',
           abortOnFail: true
         });
 
