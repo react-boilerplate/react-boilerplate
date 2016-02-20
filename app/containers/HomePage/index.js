@@ -22,6 +22,7 @@ import {
 import Button from 'Button';
 import H1 from 'H1';
 import List from 'List';
+import ListItem from 'ListItem';
 import RepoListItem from 'RepoListItem';
 import LoadingIndicator from 'LoadingIndicator';
 
@@ -43,6 +44,16 @@ class HomePage extends React.Component {
   };
 
   render() {
+    let mainContent = null;
+    if (this.props.loading) {
+      mainContent = (<List render={LoadingIndicator} />);
+    } else if (this.props.error !== false) {
+      const ErrorComponent = () => (<ListItem>Something went wrong, please try again!</ListItem>);
+      mainContent = (<List render={ErrorComponent} />);
+    } else if (this.props.repos !== false) {
+      mainContent = (<List items={this.props.repos} render={RepoListItem} />);
+    }
+
     return (
       <article>
         <div>
@@ -63,15 +74,7 @@ class HomePage extends React.Component {
                   />
                 </label>
               </form>
-                {(this.props.loading) ? (
-                  <List items={[{}]} render={LoadingIndicator} />
-                ) : (
-                  <div>
-                    {(this.props.repos !== false) ? (
-                      <List items={this.props.repos} render={RepoListItem} />
-                    ) : null }
-                  </div>
-                )}
+              { mainContent }
           </section>
           <Button handleRoute = { this.changeRouteToReadme }>Features</Button>
         </div>

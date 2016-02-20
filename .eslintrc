@@ -16,6 +16,7 @@
     "indent": [2, 2, {"SwitchCase": 1}],
     "no-console": 0,
     "react/prop-types": 0,
-    "max-len": 0
+    "max-len": 0,
+    "no-use-before-define": 0
   }
 }

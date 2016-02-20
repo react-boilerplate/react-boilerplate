@@ -1,3 +1,15 @@
+/*
+ * AppReducer
+ *
+ * The reducer takes care of our data
+ * Using actions, we can change our application state
+ * To add a new action, add it to the switch statement in the reducer function
+ *
+ * Example:
+ * case YOUR_ACTION_CONSTANT:
+ *   return state.set('yourStateVariable', true);
+ */
+
 import {
   CHANGE_USERNAME,
   LOAD_REPOS_SUCCESS,
@@ -23,7 +35,7 @@ function globalReducer(state = initialState, action) {
       const name = action.name.replace(/@/gi, '');
       return state.setIn(['userData', 'username'], name);
     case LOAD_REPOS:
-      return state.set('loading', 'true').setIn(['userData', 'repositories'], false);
+      return state.set('loading', 'true').set('error', false).setIn(['userData', 'repositories'], false);
     case LOAD_REPOS_SUCCESS:
       return state
         .setIn(['userData', 'repositories'], action.repos)
@@ -31,7 +43,7 @@ function globalReducer(state = initialState, action) {
         .set('currentUser', state.getIn(['userData', 'username']));
     case LOAD_REPOS_ERROR:
       return state
-        .set('error', true)
+        .set('error', action.error)
         .set('loading', false);
     default:
       return state;
