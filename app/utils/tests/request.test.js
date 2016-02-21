@@ -52,7 +52,7 @@ describe('request', () => {
           expect(json.err.response.status).toEqual(404);
           expect(json.err.response.statusText).toEqual('Not Found');
           done();
-        })
+        });
     });
   });
 });
