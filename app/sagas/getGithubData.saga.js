@@ -15,8 +15,8 @@ export function* getGithubData(getState) {
     if (repos.err === undefined || repos.err === null) {
       yield put(reposLoaded(repos.data));
     } else {
-      yield put(repoLoadingError(repos.err));
       console.log(repos.err.response);
+      yield put(repoLoadingError(repos.err));
     }
   }
 }
