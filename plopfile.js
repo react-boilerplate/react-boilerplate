@@ -16,26 +16,18 @@ module.exports = plop => {
       type: 'list',
       name: 'type',
       message: 'Select the type of component',
+      default: 'Stateless Function',
       choices: () => ['ES6 Class', 'Stateless Function']
     }, {
       type: 'input',
       name: 'name',
       message: 'What should it be called?',
+      default: 'Button',
       validate: value => {
         if ((/.+/).test(value)) {
           return true;
         }
         return 'name is required';
-      }
-    }, {
-      type: 'input',
-      name: 'description',
-      message: 'Describe what the component does?',
-      validate: value => {
-        if ((/.+/).test(value)) {
-          return true;
-        }
-        return 'description is required';
       }
     }, {
       type: 'confirm',
@@ -74,7 +66,8 @@ module.exports = plop => {
     prompts: [{
       type: 'input',
       name: 'name',
-      message: 'What should it be called? (e.g. Form)',
+      message: 'What should it be called?',
+      default: 'Form',
       validate: value => {
         if ((/.+/).test(value)) {
           return true;
@@ -84,19 +77,23 @@ module.exports = plop => {
     }, {
       type: 'confirm',
       name: 'wantCSS',
+      default: false,
       message: 'Do you want to create corresponding CSS file?'
     }, {
       type: 'confirm',
       name: 'wantActionsAndReducer',
+      default: true,
       message: 'Do you want to generate corresponding actions/reducer files for the container?'
     }, {
       type: 'confirm',
       name: 'wantSelector',
+      default: true,
       message: 'Do you want to add selectors to the connect method?'
     }, {
       type: 'list',
       name: 'selectorType',
       message: 'Select one option',
+      default: 'old',
       choices: [
         { name: 'Select from already available selectors', value: 'old' },
         { name: 'Generate new one', value: 'new' }
@@ -118,6 +115,7 @@ module.exports = plop => {
       type: 'input',
       name: 'selectorName',
       message: 'What the selector should it be called?',
+      default: 'form',
       validate: value => {
         if ((/.+saga/i).test(value)) {
           return 'name should not end with selector, it will be automatically added';
@@ -221,8 +219,9 @@ module.exports = plop => {
       type: 'input',
       name: 'name',
       message: 'What should it be called?',
+      default: 'form',
       validate: value => {
-        if ((/.+saga/i).test(value)) {
+        if ((/.+selector/i).test(value)) {
           return 'name should not end with selector, it will be automatically added';
         }
         if ((/.+/).test(value)) {
@@ -246,6 +245,7 @@ module.exports = plop => {
       type: 'input',
       name: 'name',
       message: 'What should it be called?',
+      default: 'requestData',
       validate: value => {
         if ((/.+saga/i).test(value)) {
           return 'name should not end with saga, it will be automatically added';
@@ -291,6 +291,7 @@ module.exports = plop => {
       type: 'input',
       name: 'path',
       message: 'What should be the router path?',
+      default: 'about',
       validate: value => {
         if ((/\/.+/).test(value)) {
           return 'path should not start with "/", it will be automatically added';
