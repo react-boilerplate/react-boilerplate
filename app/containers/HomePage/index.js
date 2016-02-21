@@ -46,12 +46,14 @@ class HomePage extends React.Component {
   render() {
     let mainContent = null;
     if (this.props.loading) {
-      mainContent = (<List render={LoadingIndicator} />);
+      mainContent = (<List component={LoadingIndicator} />);
     } else if (this.props.error !== false) {
-      const ErrorComponent = () => (<ListItem>Something went wrong, please try again!</ListItem>);
-      mainContent = (<List render={ErrorComponent} />);
+      const ErrorComponent = () => (
+        <ListItem content={'Something went wrong, please try again!'} />
+      );
+      mainContent = (<List component={ErrorComponent} />);
     } else if (this.props.repos !== false) {
-      mainContent = (<List items={this.props.repos} render={RepoListItem} />);
+      mainContent = (<List items={this.props.repos} component={RepoListItem} />);
     }
 
     return (

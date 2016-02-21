@@ -51,7 +51,7 @@ class FeaturePage extends React.Component {
             <p><A href="http://www.html5rocks.com/en/tutorials/service-worker/introduction/"><strong>ServiceWorker</strong></A> and <A href="http://www.html5rocks.com/en/tutorials/appcache/beginner/"><strong>AppCache</strong></A> make it possible to use the application offline. As soon as the website has been opened once, it is cached and available without a network connection. <A href="https://developer.chrome.com/multidevice/android/installtohomescreen"><strong><code className={ styles.code }>manifest.json</code></strong></A> is specifically for Chrome on Android. Users can add the website to the homescreen and use it like a native app!</p>
           </li>
         </ul>
-        <Button handleRoute= { this.changeRouteToHome } >Home</Button>
+        <Button handleRoute={ this.changeRouteToHome }>Home</Button>
       </div>
     );
   }
