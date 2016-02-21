@@ -8,7 +8,7 @@ import request from '../utils/request';
 export function* getGithubData(getState) {
   while (true) {
     yield take(LOAD_REPOS);
-    const state = yield getState();
+    const state = getState();
     const username = state.getIn(['global', 'userData', 'username']);
     const requestURL = 'https://api.github.com/users/' + username + '/repos?type=all&sort=updated';
     const repos = yield call(request, requestURL);
