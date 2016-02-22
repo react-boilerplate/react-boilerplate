@@ -15,5 +15,5 @@ global.should = chai.should();
 
 // Include all .js files under `app`, except app.js
 // This is for isparta code coverage
-const context = require.context('../app', true, /^((?!app).)*\.js$/);
+const context = require.context('../../app', true, /^((?!app).)*\.js$/);
 context.keys().forEach(context);
