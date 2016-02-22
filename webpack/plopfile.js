@@ -37,21 +37,21 @@ module.exports = plop => {
     actions: data => {
       const actions = [{
         type: 'add',
-        path: 'app/components/{{properCase name}}/index.js',
+        path: '../app/components/{{properCase name}}/index.js',
         templateFile: data.type === 'ES6 Class' ? './webpack/templates/component/es6.js.hbs' : './webpack/templates/component/stateless.js.hbs',
         abortOnFail: true
       }, {
         type: 'add',
-        path: 'app/components/{{properCase name}}/index.test.js',
-        templateFile: './webpack/templates/component/component.test.js.hbs',
+        path: '../app/components/{{properCase name}}/index.test.js',
+        templateFile: './templates/component/component.test.js.hbs',
         abortOnFail: true
       }];
 
       if (data.wantCSS) {
         actions.push({
           type: 'add',
-          path: 'app/components/{{properCase name}}/styles.css',
-          templateFile: './webpack/templates/component/styles.css.hbs',
+          path: '../app/components/{{properCase name}}/styles.css',
+          templateFile: './templates/component/styles.css.hbs',
           abortOnFail: true
         });
       }
@@ -130,21 +130,21 @@ module.exports = plop => {
     actions: data => {
       const actions = [{
         type: 'add',
-        path: 'app/containers/{{properCase name}}/index.js',
-        templateFile: './webpack/templates/container/index.js.hbs',
+        path: '../app/containers/{{properCase name}}/index.js',
+        templateFile: './templates/container/index.js.hbs',
         abortOnFail: true
       }, {
         type: 'add',
-        path: 'app/containers/{{properCase name}}/tests/index.test.js',
-        templateFile: './webpack/templates/container/container.test.js.hbs',
+        path: '../app/containers/{{properCase name}}/tests/index.test.js',
+        templateFile: './templates/container/container.test.js.hbs',
         abortOnFail: true
       }];
 
       if (data.wantCSS) {
         actions.push({
           type: 'add',
-          path: 'app/containers/{{properCase name}}/styles.css',
-          templateFile: './webpack/templates/container/styles.css.hbs',
+          path: '../app/containers/{{properCase name}}/styles.css',
+          templateFile: './templates/container/styles.css.hbs',
           abortOnFail: true
         });
       }
@@ -153,48 +153,48 @@ module.exports = plop => {
         // Generate Actions
         actions.push({
           type: 'add',
-          path: 'app/containers/{{properCase name}}/actions.js',
-          templateFile: './webpack/templates/container/actions.js.hbs',
+          path: '../app/containers/{{properCase name}}/actions.js',
+          templateFile: './templates/container/actions.js.hbs',
           abortOnFail: true
         });
         actions.push({
           type: 'add',
-          path: 'app/containers/{{properCase name}}/tests/actions.test.js',
-          templateFile: './webpack/templates/container/actions.test.js.hbs',
+          path: '../app/containers/{{properCase name}}/tests/actions.test.js',
+          templateFile: './templates/container/actions.test.js.hbs',
           abortOnFail: true
         });
 
         // Generate constants
         actions.push({
           type: 'add',
-          path: 'app/containers/{{properCase name}}/constants.js',
-          templateFile: './webpack/templates/container/constants.js.hbs',
+          path: '../app/containers/{{properCase name}}/constants.js',
+          templateFile: './templates/container/constants.js.hbs',
           abortOnFail: true
         });
 
         // Generate Reducer
         actions.push({
           type: 'add',
-          path: 'app/containers/{{properCase name}}/reducer.js',
-          templateFile: './webpack/templates/container/reducer.js.hbs',
+          path: '../app/containers/{{properCase name}}/reducer.js',
+          templateFile: './templates/container/reducer.js.hbs',
           abortOnFail: true
         });
         actions.push({
           type: 'modify',
-          path: 'app/rootReducer.js',
+          path: '../app/rootReducer.js',
           pattern: /(\n}\);)/gi,
           template: ',\n  {{camelCase name}}: {{camelCase name}}Reducer$1'
         });
         actions.push({
           type: 'modify',
-          path: 'app/rootReducer.js',
+          path: '../app/rootReducer.js',
           pattern: /(\n\nexport default combineReducers)/gi,
           template: '\nimport {{camelCase name}}Reducer from \'{{properCase name}}/reducer\';$1'
         });
         actions.push({
           type: 'add',
-          path: 'app/containers/{{properCase name}}/tests/reducer.test.js',
-          templateFile: './webpack/templates/container/reducer.test.js.hbs',
+          path: '../app/containers/{{properCase name}}/tests/reducer.test.js',
+          templateFile: './templates/container/reducer.test.js.hbs',
           abortOnFail: true
         });
       }
@@ -202,8 +202,14 @@ module.exports = plop => {
       if (data.selectorType === 'new') {
         actions.push({
           type: 'add',
-          path: 'app/selectors/{{camelCase selectorName}}Selector.js',
-          templateFile: './webpack/templates/container/selector.js.hbs',
+          path: '../app/selectors/{{camelCase selectorName}}Selector.js',
+          templateFile: './templates/container/selector.js.hbs',
+          abortOnFail: true
+        });
+        actions.push({
+          type: 'add',
+          path: '../app/selectors/tests/{{camelCase selectorName}}Selector.test.js',
+          templateFile: './templates/selector.test.js.hbs',
           abortOnFail: true
         });
       }
@@ -232,8 +238,13 @@ module.exports = plop => {
     }],
     actions: [{
       type: 'add',
-      path: 'app/selectors/{{camelCase name}}Selector.js',
-      templateFile: './webpack/templates/selector.js.hbs',
+      path: '../app/selectors/{{camelCase name}}Selector.js',
+      templateFile: './templates/selector.js.hbs',
+      abortOnFail: true
+    }, {
+      type: 'add',
+      path: '../app/selectors/tests/{{camelCase name}}Selector.test.js',
+      templateFile: './templates/selector.test.js.hbs',
       abortOnFail: true
     }]
   });
@@ -258,17 +269,22 @@ module.exports = plop => {
     }],
     actions: [{
       type: 'add',
-      path: 'app/sagas/{{camelCase name}}.saga.js',
-      templateFile: './webpack/templates/saga.js.hbs',
+      path: '../app/sagas/{{camelCase name}}.saga.js',
+      templateFile: './templates/saga.js.hbs',
+      abortOnFail: true
+    }, {
+      type: 'add',
+      path: '../app/sagas/tests/{{camelCase name}}.test.js',
+      templateFile: './templates/saga.test.js.hbs',
       abortOnFail: true
     }, {
       type: 'modify',
-      path: 'app/sagas/index.js',
+      path: '../app/sagas/index.js',
       pattern: /(\n\nexport default)/gi,
       template: '\nimport { {{camelCase name}}Saga } from \'./{{camelCase name}}.saga\';$1'
     }, {
       type: 'modify',
-      path: 'app/sagas/index.js',
+      path: '../app/sagas/index.js',
       pattern: /(\n];)/gi,
       template: ',\n  {{camelCase name}}Saga$1'
     }]
@@ -304,9 +320,9 @@ module.exports = plop => {
     }],
     actions: [{
       type: 'modify',
-      path: 'app/routes.js',
+      path: '../app/routes.js',
       pattern: /(\s{\n\s{4}path: '\*')/g,
-      templateFile: './webpack/templates/route.hbs'
+      templateFile: './templates/route.hbs'
     }]
   });
 };
