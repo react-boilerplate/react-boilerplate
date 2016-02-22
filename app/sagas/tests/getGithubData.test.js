@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { take, call, put } from 'redux-saga/effects';
+import { take, call, put, select } from 'redux-saga/effects';
 import { fromJS } from 'immutable';
 
 import { getGithubData } from '../getGithubData.saga';
@@ -11,21 +11,23 @@ import {
   repoLoadingError
 } from 'App/actions';
 import request from '../../utils/request';
+import usernameSelector from 'usernameSelector';
 
 const state = fromJS({
   global: {
     userData: {
-      username: 'mxstbr'
+      username: undefined // TODO dirty workaround for 0.9.1 update
     }
   }
 });
-const getState = () => state;
-const generator = getGithubData(getState);
+const generator = getGithubData();
 
 describe('getGithubData Saga', () => {
   beforeEach(() => {
     expect(generator.next().value).toEqual(take(LOAD_REPOS));
+    expect(generator.next().value).toEqual(select(usernameSelector));
     const username = state.getIn(['global', 'userData', 'username']);
+    console.log('test username', username);
     const requestURL = 'https://api.github.com/users/' + username + '/repos?type=all&sort=updated';
     expect(generator.next().value).toEqual(call(request, requestURL));
   });
