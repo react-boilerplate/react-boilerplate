@@ -28,7 +28,7 @@ import LoadingIndicator from 'LoadingIndicator';
 
 import styles from './styles.css';
 
-class HomePage extends React.Component {
+export class HomePage extends React.Component {
   constructor() {
     super();
   }

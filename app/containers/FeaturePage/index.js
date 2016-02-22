@@ -14,7 +14,7 @@ import A from 'A';
 
 import styles from './styles.css';
 
-class FeaturePage extends React.Component {
+export class FeaturePage extends React.Component {
   constructor() {
     super();
   }

@@ -9,7 +9,7 @@ import A from 'A';
 
 import styles from './styles.css';
 
-class RepoListItem extends React.Component {
+export class RepoListItem extends React.Component {
   render() {
     const item = this.props.item;
     let nameprefix = '';
