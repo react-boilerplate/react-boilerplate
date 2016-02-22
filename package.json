@@ -112,5 +112,42 @@
   },
   "pre-commit": "lint:staged",
   "author": "Max Stoiber",
-  "license": "MIT"
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-0"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "env": {
+      "browser": true,
+      "node": true,
+      "mocha": true
+    },
+    "ecmaFeatures": {
+      "forOf": true,
+      "jsx": true,
+      "es6": true
+    },
+    "rules": {
+      "comma-dangle": 0,
+      "indent": [2, 2, {"SwitchCase": 1}],
+      "no-console": 0,
+      "react/prop-types": 0,
+      "max-len": 0,
+      "no-use-before-define": 0
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "color-hex-case": "upper",
+      "string-quotes": "single",
+      "indentation": 2
+    }
+  }
 }
