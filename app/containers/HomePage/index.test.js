@@ -5,7 +5,7 @@ import RepoListItem from 'RepoListItem';
 import LoadingIndicator from 'LoadingIndicator';
 
 import expect from 'expect';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import React from 'react';
 
 describe('<HomePage />', () => {
@@ -47,5 +47,21 @@ describe('<HomePage />', () => {
     );
 
     expect(renderedComponent.contains(<List items={repos} component={RepoListItem} />)).toEqual(true);
+  });
+
+  it('should link to /features', () => {
+    const onChangeRouteSpy = expect.createSpy();
+    const renderedComponent = mount(
+      <HomePage loading />
+    );
+    // Spy on the onChangeRoute method of the HomePage
+    renderedComponent.instance().onChangeRoute = (dest) => {
+      if (dest === '/features') {
+        onChangeRouteSpy();
+      }
+    };
+    const button = renderedComponent.find('button');
+    button.simulate('click');
+    expect(onChangeRouteSpy).toHaveBeenCalled();
   });
 });
