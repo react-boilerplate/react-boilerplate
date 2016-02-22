@@ -24,10 +24,7 @@ module.exports = {
       { test: /\.css$/, loader: 'null-loader' },
       { test: /\.js$/,
         loader: 'babel',
-        exclude: [/node_modules/],
-        query: {
-          plugins: ['babel-plugin-rewire']
-        }
+        exclude: [/node_modules/]
       },
       { test: /\.jpe?g$|\.gif$|\.png$/i,
         loader: 'null-loader'

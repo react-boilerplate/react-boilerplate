@@ -26,7 +26,6 @@
     "babel-eslint": "^5.0.0-beta10",
     "babel-loader": "^6.2.1",
     "babel-plugin-react-transform": "^2.0.0",
-    "babel-plugin-rewire": "^1.0.0-beta-5",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
