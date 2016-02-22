@@ -32,7 +32,7 @@ export class HomePage extends React.Component {
   shouldComponentUpdate = shouldPureComponentUpdate;
 
   onChangeRoute = (url) => {
-    this.props.dispatch(routeActions.push(url));
+    this.props.changeRoute(url);
   };
 
   changeRouteToReadme = () => {
@@ -84,6 +84,7 @@ export class HomePage extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
+    changeRoute: (url) => dispatch(routeActions.push(url)),
     onSubmitForm: (evt) => {
       evt.preventDefault();
       dispatch(loadRepos());

@@ -51,15 +51,15 @@ describe('<HomePage />', () => {
 
   it('should link to /features', () => {
     const onChangeRouteSpy = expect.createSpy();
-    const renderedComponent = mount(
-      <HomePage loading />
-    );
     // Spy on the onChangeRoute method of the HomePage
-    renderedComponent.instance().onChangeRoute = (dest) => {
+    const onChangeRoute = (dest) => {
       if (dest === '/features') {
         onChangeRouteSpy();
       }
     };
+    const renderedComponent = mount(
+      <HomePage loading changeRoute={onChangeRoute} />
+    );
     const button = renderedComponent.find('button');
     button.simulate('click');
     expect(onChangeRouteSpy).toHaveBeenCalled();

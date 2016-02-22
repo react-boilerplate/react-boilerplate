@@ -23,15 +23,15 @@ describe('<FeaturePage />', () => {
 
   it('should link to "/"', () => {
     const onChangeRouteSpy = expect.createSpy();
-    const renderedComponent = mount(
-      <FeaturePage />
-    );
     // Spy on the onChangeRoute method of the FeaturePage
-    renderedComponent.instance().onChangeRoute = (dest) => {
+    const onChangeRoute = (dest) => {
       if (dest === '/') {
         onChangeRouteSpy();
       }
     };
+    const renderedComponent = mount(
+      <FeaturePage changeRoute={onChangeRoute} />
+    );
     const button = renderedComponent.find('button');
     button.simulate('click');
     expect(onChangeRouteSpy).toHaveBeenCalled();
