@@ -15,10 +15,6 @@ import A from 'A';
 import styles from './styles.css';
 
 export class FeaturePage extends React.Component {
-  constructor() {
-    super();
-  }
-
   onChangeRoute = (url) => {
     this.props.changeRoute(url);
   };

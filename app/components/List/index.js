@@ -7,11 +7,9 @@ class List extends React.Component {
     const ComponentToRender = this.props.component;
     let content = (<div></div>);
     if (this.props.items) {
-      content = this.props.items.map((item, index) => {
-        return (
-          <ComponentToRender key={'item-' + index } item={item} />
-        );
-      });
+      content = this.props.items.map((item, index) => (
+        <ComponentToRender key={'item-' + index } item={item} />
+      ));
     } else {
       content = (<ComponentToRender />);
     }

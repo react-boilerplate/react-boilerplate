@@ -13,7 +13,7 @@ module.exports = (config) => {
 
     files: [
       {
-        pattern: `./test-bundler.js`,
+        pattern: './test-bundler.js',
         watched: false,
         served: true,
         included: true

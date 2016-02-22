@@ -29,10 +29,6 @@ import LoadingIndicator from 'LoadingIndicator';
 import styles from './styles.css';
 
 export class HomePage extends React.Component {
-  constructor() {
-    super();
-  }
-
   shouldComponentUpdate = shouldPureComponentUpdate;
 
   onChangeRoute = (url) => {

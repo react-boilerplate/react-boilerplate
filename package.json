@@ -5,7 +5,7 @@
   "dependencies": {
     "babel-polyfill": "^6.3.14",
     "fontfaceobserver": "^1.6.3",
-    "history": "2.0.0",
+    "history": "^2.0.0",
     "immutable": "^3.7.6",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
@@ -40,8 +40,8 @@
     "cssnano": "^3.4.0",
     "enzyme": "^1.5.0",
     "eslint": "^2.0.0",
-    "eslint-config-airbnb": "5.0.0",
-    "eslint-plugin-react": "3.16.1",
+    "eslint-config-airbnb": "^6.0.0",
+    "eslint-plugin-react": "^4.0.0",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.2",
     "extract-text-webpack-plugin": "^1.0.1",
@@ -55,8 +55,8 @@
     "karma": "^0.13.19",
     "karma-chrome-launcher": "^0.2.2",
     "karma-coverage": "^0.5.3",
-    "karma-firefox-launcher": "0.1.7",
-    "karma-ie-launcher": "0.2.0",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-ie-launcher": "^0.2.0",
     "karma-mocha": "^0.2.1",
     "karma-mocha-reporter": "^1.1.5",
     "karma-safari-launcher": "^0.1.1",
@@ -125,12 +125,15 @@
     "env": {
       "browser": true,
       "node": true,
-      "mocha": true
-    },
-    "ecmaFeatures": {
-      "forOf": true,
-      "jsx": true,
+      "mocha": true,
       "es6": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
     },
     "rules": {
       "comma-dangle": 0,
@@ -138,7 +141,10 @@
       "no-console": 0,
       "react/prop-types": 0,
       "max-len": 0,
-      "no-use-before-define": 0
+      "prefer-template": 0,
+      "no-use-before-define": 0,
+      "newline-per-chained-call": 0,
+      "arrow-body-style": [2, "as-needed"]
     }
   },
   "stylelint": {

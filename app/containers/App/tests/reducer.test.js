@@ -35,7 +35,10 @@ describe('globalReducer', () => {
   });
 
   it('should handle the loadRepos action correctly', () => {
-    const expectedResult = state.set('loading', 'true').set('error', false).setIn(['userData', 'repositories'], false);
+    const expectedResult = state
+      .set('loading', 'true')
+      .set('error', false)
+      .setIn(['userData', 'repositories'], false);
 
     expect(globalReducer(state, loadRepos())).toEqual(expectedResult);
   });

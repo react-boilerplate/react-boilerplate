@@ -32,10 +32,13 @@ function globalReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_USERNAME:
       // Delete prefixed '@' from github username
-      const name = action.name.replace(/@/gi, '');
-      return state.setIn(['userData', 'username'], name);
+      return state
+        .setIn(['userData', 'username'], action.name.replace(/@/gi, ''));
     case LOAD_REPOS:
-      return state.set('loading', 'true').set('error', false).setIn(['userData', 'repositories'], false);
+      return state
+        .set('loading', 'true')
+        .set('error', false)
+        .setIn(['userData', 'repositories'], false);
     case LOAD_REPOS_SUCCESS:
       return state
         .setIn(['userData', 'repositories'], action.repos)
