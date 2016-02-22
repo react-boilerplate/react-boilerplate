@@ -22,6 +22,7 @@ import { createStore, applyMiddleware } from 'redux';
 import FontFaceObserver from 'fontfaceobserver';
 import { browserHistory } from 'react-router';
 import { syncHistory } from 'react-router-redux';
+import useScroll from 'scroll-behavior/lib/useScrollToTop';
 import { fromJS } from 'immutable';
 const reduxRouterMiddleware = syncHistory(browserHistory);
 import sagaMiddleware from 'redux-saga';
@@ -33,9 +34,9 @@ const openSansObserver = new FontFaceObserver('Open Sans', {});
 
 // When Open Sans is loaded, add the js-open-sans-loaded class to the body
 openSansObserver.check().then(() => {
-  document.body.classList.add(styles.jsOpenSansLoaded);
+  document.body.classList.add(styles.fontLoaded);
 }, () => {
-  document.body.classList.remove(styles.jsOpenSansLoaded);
+  document.body.classList.remove(styles.fontLoaded);
 });
 
 // Import the pages
@@ -73,7 +74,7 @@ const rootRoute = {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory} routes={rootRoute} />
+    <Router history={useScroll(() => browserHistory)()} routes={rootRoute} />
   </Provider>,
   document.getElementById('app')
 );

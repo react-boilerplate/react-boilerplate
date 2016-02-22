@@ -1,0 +1,26 @@
+/**
+*
+* {{ properCase name }}
+*
+*/
+
+import React from 'react';
+
+{{#if wantCSS}}
+import styles from './{{ dashCase name }}.css';
+{{/if}}
+
+class {{ properCase name }} extends React.Component {
+  render() {
+    return (
+      {{#if wantCSS}}
+      <div style={ styles.{{ camelCase name }} }>
+      {{else}}
+      <div>
+      {{/if}}
+      </div>
+    );
+  }
+}
+
+export default {{ properCase name }};

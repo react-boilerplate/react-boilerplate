@@ -1,0 +1,60 @@
+/*
+ *
+ * {{ properCase name }}
+ *
+ */
+
+import React from 'react';
+import { connect } from 'react-redux';
+{{#if wantSelector}}
+
+import { createSelector } from 'reselect';
+{{#if selectorName}}
+import {{camelCase selectorName}}Selector from '{{camelCase selectorName}}Selector';
+{{else}}
+{{#each selectors }}
+import {{this}} from '{{this}}';
+{{/each}}
+{{/if}}
+{{/if}}
+
+{{#if wantCSS}}
+import styles from './{{ dashCase name }}.css';
+{{/if}}
+
+class {{ properCase name }} extends React.Component {
+  render() {
+    return (
+      {{#if wantCSS}}
+      <div style={ styles.{{ camelCase name }} }>
+      {{else}}
+      <div>
+      {{/if}}
+      </div>
+    );
+  }
+}
+
+{{#if wantSelector}}
+const mapStateToProps = createSelector(
+  {{#if selectorName}}
+    {{camelCase selectorName}}Selector
+  {{else}}
+  {{#each selectors }}
+    {{this}},
+  {{/each}}
+  {{/if}}
+);
+{{else}}
+function mapStateToProps(state) {
+  return {};
+}
+{{/if}}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)({{ properCase name }});

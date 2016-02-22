@@ -5,7 +5,7 @@ import { routeActions } from 'react-router-redux';
 import Button from 'Button';
 import H1 from 'H1';
 
-function NotFound(props) {
+export function NotFound(props) {
   return (
     <article>
       <H1>Page not found.</H1>

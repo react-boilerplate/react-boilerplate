@@ -22,29 +22,40 @@ import {
 import Button from 'Button';
 import H1 from 'H1';
 import List from 'List';
+import ListItem from 'ListItem';
 import RepoListItem from 'RepoListItem';
 import LoadingIndicator from 'LoadingIndicator';
 
 import styles from './styles.css';
 
-class HomePage extends React.Component {
+export class HomePage extends React.Component {
   constructor() {
     super();
-    this.onChangeRoute = this.onChangeRoute.bind(this);
-    this.changeRouteToReadme = this.changeRouteToReadme.bind(this);
   }
 
   shouldComponentUpdate = shouldPureComponentUpdate;
 
-  onChangeRoute(url) {
+  onChangeRoute = (url) => {
     this.props.dispatch(routeActions.push(url));
-  }
+  };
 
-  changeRouteToReadme() {
+  changeRouteToReadme = () => {
     this.onChangeRoute('/features');
-  }
+  };
 
   render() {
+    let mainContent = null;
+    if (this.props.loading) {
+      mainContent = (<List component={LoadingIndicator} />);
+    } else if (this.props.error !== false) {
+      const ErrorComponent = () => (
+        <ListItem content={'Something went wrong, please try again!'} />
+      );
+      mainContent = (<List component={ErrorComponent} />);
+    } else if (this.props.repos !== false) {
+      mainContent = (<List items={this.props.repos} component={RepoListItem} />);
+    }
+
     return (
       <article>
         <div>
@@ -65,15 +76,7 @@ class HomePage extends React.Component {
                   />
                 </label>
               </form>
-                {(this.props.loading) ? (
-                  <List items={[{}]} render={LoadingIndicator} />
-                ) : (
-                  <div>
-                    {(this.props.repos !== false) ? (
-                      <List items={this.props.repos} render={RepoListItem} />
-                    ) : null }
-                  </div>
-                )}
+              { mainContent }
           </section>
           <Button handleRoute = { this.changeRouteToReadme }>Features</Button>
         </div>

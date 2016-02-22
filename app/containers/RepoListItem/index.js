@@ -9,7 +9,7 @@ import A from 'A';
 
 import styles from './styles.css';
 
-class RepoListItem extends React.Component {
+export class RepoListItem extends React.Component {
   render() {
     const item = this.props.item;
     let nameprefix = '';
@@ -18,8 +18,8 @@ class RepoListItem extends React.Component {
       nameprefix = item.owner.login + '/';
     }
 
-    return (
-      <ListItem key={'repo-list-item-' + item.full_name }>
+    const content = (
+      <div className={ styles.linkWrapper }>
         <A
           className={ styles.linkRepo }
           href={ item.html_url }
@@ -35,7 +35,11 @@ class RepoListItem extends React.Component {
           <IssueIcon className={ styles.issueIcon } />
           { item.open_issues_count }
         </A>
-      </ListItem>
+      </div>
+    );
+
+    return (
+      <ListItem key={'repo-list-item-' + item.full_name } content={content} />
     );
   }
 }

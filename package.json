@@ -3,18 +3,22 @@
   "version": "2.4.0",
   "description": "Quick setup for new React.js applications featuring Redux, hot–reloading, PostCSS, react-router and Mocha.",
   "dependencies": {
-    "babel-polyfill": "6.3.14",
+    "babel-polyfill": "^6.3.14",
     "fontfaceobserver": "^1.6.3",
+    "history": "2.0.0",
     "immutable": "^3.7.6",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
-    "react-pure-render": "1.0.2",
+    "react-pure-render": "^1.0.2",
     "react-redux": "^4.0.6",
     "react-router": "^2.0.0-rc5",
+    "react-router-redux": "^2.1.0",
     "redux": "^3.0.5",
     "redux-immutable": "^3.0.3",
-    "reselect": "2.0.2",
-    "sanitize.css": "^3.0.0"
+    "redux-saga": "^0.8.0",
+    "reselect": "^2.0.2",
+    "sanitize.css": "^3.0.0",
+    "scroll-behavior": "^0.3.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.1",
@@ -22,15 +26,15 @@
     "babel-eslint": "^4.1.8",
     "babel-loader": "^6.2.1",
     "babel-plugin-react-transform": "^2.0.0",
-    "babel-plugin-rewire": "^1.0.0-beta-5",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
-    "babel-preset-stage-0": "6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
     "chai": "^3.5.0",
     "chai-enzyme": "^0.3.0",
     "chalk": "^1.1.1",
     "cheerio": "^0.19.0",
+    "coveralls": "^2.11.6",
     "css-loader": "^0.23.1",
     "css-modules-require-hook": "^2.1.0",
     "cssnano": "^3.4.0",
@@ -45,33 +49,36 @@
     "html-loader": "^0.4.0",
     "html-webpack-plugin": "^2.7.1",
     "ip": "^1.1.0",
+    "isparta": "^4.0.0",
+    "isparta-loader": "^2.0.0",
     "json-loader": "^0.5.4",
     "karma": "^0.13.19",
     "karma-chrome-launcher": "^0.2.2",
+    "karma-coverage": "^0.5.3",
     "karma-firefox-launcher": "0.1.7",
     "karma-ie-launcher": "0.2.0",
     "karma-mocha": "^0.2.1",
     "karma-mocha-reporter": "^1.1.5",
-    "karma-safari-launcher": "0.1.1",
+    "karma-safari-launcher": "^0.1.1",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "lint-staged": "^0.1.1",
-    "minimist": "1.2.0",
+    "minimist": "^1.2.0",
     "mocha": "^2.3.4",
-    "ngrok": "^0.2.2",
+    "ngrok": "0.1.99",
     "null-loader": "^0.1.1",
     "offline-plugin": "^2.0.2",
+    "plop": "^1.4.1",
     "postcss-cssnext": "^2.4.0",
     "postcss-focus": "^1.0.0",
     "postcss-loader": "^0.8.0",
     "postcss-reporter": "^1.3.0",
     "psi": "^2.0.2",
     "react-addons-test-utils": "^0.14.6",
-    "react-router-redux": "^2.1.0",
-    "redux-saga": "0.6.0",
+    "sinon": "^1.17.3",
     "style-loader": "^0.13.0",
     "stylelint": "^4.1.0",
-    "stylelint-config-standard": "3.0.0",
+    "stylelint-config-standard": "^3.0.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.11",
     "webpack-dev-server": "^1.14.1"
@@ -82,10 +89,11 @@
   },
   "scripts": {
     "start": "NODE_ENV=development node webpack/server.dev.js",
-    "build": "NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --progress --colors -p",
+    "build": "NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --colors -p",
     "serve": "NODE_ENV=production node webpack/server.prod.js",
     "pagespeed": "./webpack/pagespeed",
     "setup": "NODE_ENV=initialisation ./webpack/init",
+    "generate": "plop --plopfile webpack/plopfile.js",
     "prebuild": "npm run test",
     "pretest": "npm run lint",
     "lint": "npm run lint:js && npm run lint:css",
@@ -98,9 +106,47 @@
     "test:watch": "npm run test -- --auto-watch --no-single-run",
     "test:firefox": "npm run test -- --browsers Firefox",
     "test:safari": "npm run test -- --browsers Safari",
-    "test:ie": "npm run test -- --browsers IE"
+    "test:ie": "npm run test -- --browsers IE",
+    "coveralls": "cat ./coverage/lcov/lcov.info | ./node_modules/.bin/coveralls"
   },
   "pre-commit": "lint:staged",
   "author": "Max Stoiber",
-  "license": "MIT"
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-0"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "env": {
+      "browser": true,
+      "node": true,
+      "mocha": true
+    },
+    "ecmaFeatures": {
+      "forOf": true,
+      "jsx": true,
+      "es6": true
+    },
+    "rules": {
+      "comma-dangle": 0,
+      "indent": [2, 2, {"SwitchCase": 1}],
+      "no-console": 0,
+      "react/prop-types": 0,
+      "max-len": 0,
+      "no-use-before-define": 0
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "color-hex-case": "upper",
+      "string-quotes": "single",
+      "indentation": 2
+    }
+  }
 }

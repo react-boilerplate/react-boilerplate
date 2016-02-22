@@ -6,9 +6,9 @@ class ListItem extends React.Component {
   render() {
     return (
       <li className={ this.props.className || styles.item }>
-        <span className={ styles.itemContent }>
-          { this.props.children }
-        </span>
+        <div className={ styles.itemContent }>
+          { this.props.content }
+        </div>
       </li>
     );
   }
