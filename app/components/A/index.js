@@ -1,4 +1,8 @@
-import React from 'react';
+/**
+ * A link to a certain page, an anchor tag
+ */
+
+import React, { PropTypes } from 'react';
 
 import styles from './styles.css';
 
@@ -17,5 +21,11 @@ class A extends React.Component {
     );
   }
 }
+
+A.propTypes = {
+  className: PropTypes.string,
+  href: PropTypes.string.isRequired,
+  target: PropTypes.string
+};
 
 export default A;

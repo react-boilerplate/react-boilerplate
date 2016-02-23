@@ -1,3 +1,9 @@
+/**
+ * NotFoundPage
+ *
+ * This is the page we show when the user visits a url that doesn't have a route
+ */
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
@@ -21,12 +27,6 @@ export function NotFound(props) {
 }
 
 // react-redux stuff
-function mapStateToProps(state) {
-  return {
-    location: state.get('route').location
-  };
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     changeRoute: (url) => dispatch(routeActions.push(url))
@@ -34,4 +34,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps, mapDispatchToProps)(NotFound);
+export default connect(null, mapDispatchToProps)(NotFound);

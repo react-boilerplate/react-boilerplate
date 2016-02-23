@@ -1,17 +1,24 @@
+/**
+ * Test the request function
+ */
+
 import request from '../request';
 import sinon from 'sinon';
 import expect from 'expect';
 
 describe('request', () => {
+  // Before each test, stub the fetch function
   beforeEach(() => {
     sinon.stub(window, 'fetch');
   });
 
+  // After each test, restore the fetch function
   afterEach(() => {
     window.fetch.restore();
   });
 
   describe('stubbing successful response', () => {
+    // Before each test, pretend we got a successful response
     beforeEach(() => {
       const res = new Response('{"hello":"world"}', {
         status: 200,
@@ -34,6 +41,7 @@ describe('request', () => {
   });
 
   describe('stubbing error response', () => {
+    // Before each test, pretend we got an unsuccessful response
     beforeEach(() => {
       const res = new Response('', {
         status: 404,

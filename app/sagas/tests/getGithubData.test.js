@@ -1,3 +1,7 @@
+/**
+ * Test the getGithubData saga
+ */
+
 import expect from 'expect';
 import { take, call, put, select } from 'redux-saga/effects';
 
@@ -15,6 +19,8 @@ import usernameSelector from 'usernameSelector';
 const generator = getGithubData();
 
 describe('getGithubData Saga', () => {
+  // We have to test twice, once for a successful load and once for an unsuccessful one
+  // so we do all the stuff that happens beforehand automatically in the beforeEach
   beforeEach(() => {
     expect(generator.next().value).toEqual(take(LOAD_REPOS));
     expect(generator.next().value).toEqual(select(usernameSelector));

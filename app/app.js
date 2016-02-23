@@ -1,10 +1,8 @@
 /**
- *
  * app.js
  *
- * This is the entry file for the application, mostly just setup and boilerplate
- * code. Routes are configured at the end of this file!
- *
+ * This is the entry file for the application, only setup and boilerplate
+ * code.
  */
 
 import 'babel-polyfill';
@@ -27,30 +25,25 @@ import { fromJS } from 'immutable';
 const reduxRouterMiddleware = syncHistory(browserHistory);
 import sagaMiddleware from 'redux-saga';
 
-// Observer loading of Open Sans (to remove open sans, remove the <link> tag in
+// Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
 import styles from './containers/App/styles.css';
 const openSansObserver = new FontFaceObserver('Open Sans', {});
 
-// When Open Sans is loaded, add the js-open-sans-loaded class to the body
+// When Open Sans is loaded, add a font-family using Open Sans to the body
 openSansObserver.check().then(() => {
   document.body.classList.add(styles.fontLoaded);
 }, () => {
   document.body.classList.remove(styles.fontLoaded);
 });
 
-// Import the pages
-import App from 'App';
-
-// Import the CSS file, which HtmlWebpackPlugin transfers to the build folder
+// Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import '../node_modules/sanitize.css/dist/sanitize.min.css';
 
-/*
-*   Create the store with two middlewares :
-*   1. redux-thunk : Allow us to asynchronous things in the actions
-*   2. reduxRouterMiddleware : Sync dispatched route actions to the history
-*/
-
+// Create the store with two middlewares
+// 1. sagaMiddleware: Imports all the asynchronous flows ("sagas") from the
+//    sagas folder and triggers them
+// 2. reduxRouterMiddleware: Syncs the location/URL path to the state
 import rootReducer from './rootReducer';
 import sagas from './sagas';
 const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, sagaMiddleware(...sagas))(createStore);
@@ -66,6 +59,7 @@ if (module.hot) {
 }
 
 // Set up the router, wrapping all Routes in the App component
+import App from 'App';
 import routes from './routes';
 const rootRoute = {
   component: App,

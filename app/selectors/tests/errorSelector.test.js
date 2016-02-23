@@ -1,3 +1,7 @@
+/**
+ * Test the error selector
+ */
+
 import errorSelector from '../errorSelector';
 import { fromJS } from 'immutable';
 import expect from 'expect';

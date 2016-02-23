@@ -1,8 +1,8 @@
 /*
  * AppReducer
  *
- * The reducer takes care of our data
- * Using actions, we can change our application state
+ * The reducer takes care of our data. Using actions, we can change our
+ * application state.
  * To add a new action, add it to the switch statement in the reducer function
  *
  * Example:
@@ -18,6 +18,7 @@ import {
 } from './constants';
 import { fromJS } from 'immutable';
 
+// The initial state of the App
 const initialState = fromJS({
   loading: false,
   error: false,
@@ -31,7 +32,7 @@ const initialState = fromJS({
 function globalReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_USERNAME:
-      // Delete prefixed '@' from github username
+      // Delete prefixed '@' from the github username
       return state
         .setIn(['userData', 'username'], action.name.replace(/@/gi, ''));
     case LOAD_REPOS:

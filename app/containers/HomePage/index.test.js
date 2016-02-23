@@ -1,3 +1,7 @@
+/**
+ * Test the HomePage
+ */
+
 import { HomePage } from './index';
 import List from 'List';
 import ListItem from 'ListItem';
@@ -50,18 +54,18 @@ describe('<HomePage />', () => {
   });
 
   it('should link to /features', () => {
-    const onChangeRouteSpy = expect.createSpy();
-    // Spy on the onChangeRoute method of the HomePage
-    const onChangeRoute = (dest) => {
+    const openRouteSpy = expect.createSpy();
+    // Spy on the openRoute method of the HomePage
+    const openRoute = (dest) => {
       if (dest === '/features') {
-        onChangeRouteSpy();
+        openRouteSpy();
       }
     };
     const renderedComponent = mount(
-      <HomePage loading changeRoute={onChangeRoute} />
+      <HomePage loading changeRoute={openRoute} />
     );
     const button = renderedComponent.find('button');
     button.simulate('click');
-    expect(onChangeRouteSpy).toHaveBeenCalled();
+    expect(openRouteSpy).toHaveBeenCalled();
   });
 });

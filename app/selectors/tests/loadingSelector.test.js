@@ -1,3 +1,7 @@
+/**
+ * Test the loading selector
+ */
+
 import loadingSelector from '../loadingSelector';
 import { fromJS } from 'immutable';
 import expect from 'expect';

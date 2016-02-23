@@ -22,6 +22,13 @@ import {
   LOAD_REPOS_ERROR
 } from './constants';
 
+/**
+ * Changes the input field of the form
+ *
+ * @param  {name} name The new text of the input field
+ *
+ * @return {object}    An action object with a type of CHANGE_USERNAME
+ */
 export function changeUsername(name) {
   return {
     type: CHANGE_USERNAME,
@@ -29,12 +36,24 @@ export function changeUsername(name) {
   };
 }
 
+/**
+ * Load the repositories, this action starts the getGithubData saga
+ *
+ * @return {object} An action object with a type of LOAD_REPOS
+ */
 export function loadRepos() {
   return {
     type: LOAD_REPOS
   };
 }
 
+/**
+ * Dispatched when the repositories are loaded by the getGithubData saga
+ *
+ * @param  {array} repos The repository data
+ *
+ * @return {object}      An action object with a type of LOAD_REPOS_SUCCESS passing the repos
+ */
 export function reposLoaded(repos) {
   return {
     type: LOAD_REPOS_SUCCESS,
@@ -42,6 +61,13 @@ export function reposLoaded(repos) {
   };
 }
 
+/**
+ * Dispatched when loading the repositoreis fails
+ *
+ * @param  {object} error The error
+ *
+ * @return {object}       An action object with a type of LOAD_REPOS_ERROR passing the error
+ */
 export function repoLoadingError(error) {
   return {
     type: LOAD_REPOS_ERROR,

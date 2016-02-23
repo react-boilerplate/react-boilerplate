@@ -1,3 +1,7 @@
+/**
+ * Test the repo list item
+ */
+
 import { RepoListItem } from './index';
 import IssueIcon from 'IssueIcon';
 import ListItem from 'ListItem';
@@ -9,6 +13,7 @@ import React from 'react';
 describe('<RepoListItem />', () => {
   let item;
 
+  // Before each test reset the item data for safety
   beforeEach(() => {
     item = {
       owner: {

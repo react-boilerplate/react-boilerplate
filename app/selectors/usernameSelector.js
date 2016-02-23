@@ -1,3 +1,7 @@
+/**
+ * The username currently entered into the input field on the homepage
+ */
+
 import { createSelector } from 'reselect';
 import globalSelector from 'globalSelector';
 

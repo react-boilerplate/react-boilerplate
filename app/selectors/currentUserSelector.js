@@ -1,3 +1,7 @@
+/**
+ * The currently loaded user
+ */
+
 import { createSelector } from 'reselect';
 import globalSelector from 'globalSelector';
 

@@ -1,3 +1,7 @@
+/**
+ * Are we loading anything at the moment
+ */
+
 import { createSelector } from 'reselect';
 import globalSelector from 'globalSelector';
 

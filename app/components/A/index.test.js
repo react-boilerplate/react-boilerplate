@@ -1,3 +1,7 @@
+/**
+ * Testing our link component
+ */
+
 import A from './index';
 
 import expect from 'expect';

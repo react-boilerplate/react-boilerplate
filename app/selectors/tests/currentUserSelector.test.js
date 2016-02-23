@@ -1,3 +1,7 @@
+/**
+ * Test the currentUser selector
+ */
+
 import currentUserSelector from '../currentUserSelector';
 import { fromJS } from 'immutable';
 import expect from 'expect';

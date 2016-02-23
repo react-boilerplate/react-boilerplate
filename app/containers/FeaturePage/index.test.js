@@ -22,18 +22,18 @@ describe('<FeaturePage />', () => {
   });
 
   it('should link to "/"', () => {
-    const onChangeRouteSpy = expect.createSpy();
-    // Spy on the onChangeRoute method of the FeaturePage
-    const onChangeRoute = (dest) => {
+    const openRouteSpy = expect.createSpy();
+    // Spy on the openRoute method of the FeaturePage
+    const openRoute = (dest) => {
       if (dest === '/') {
-        onChangeRouteSpy();
+        openRouteSpy();
       }
     };
     const renderedComponent = mount(
-      <FeaturePage changeRoute={onChangeRoute} />
+      <FeaturePage changeRoute={openRoute} />
     );
     const button = renderedComponent.find('button');
     button.simulate('click');
-    expect(onChangeRouteSpy).toHaveBeenCalled();
+    expect(openRouteSpy).toHaveBeenCalled();
   });
 });

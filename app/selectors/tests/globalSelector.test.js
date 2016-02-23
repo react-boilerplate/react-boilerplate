@@ -1,3 +1,7 @@
+/**
+ * Test the global selector
+ */
+
 import globalSelector from '../globalSelector';
 import { fromJS } from 'immutable';
 import expect from 'expect';

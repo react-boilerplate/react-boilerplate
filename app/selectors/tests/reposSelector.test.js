@@ -1,3 +1,7 @@
+/**
+ * Test the repo selector
+ */
+
 import reposSelector from '../reposSelector';
 import { fromJS } from 'immutable';
 import expect from 'expect';

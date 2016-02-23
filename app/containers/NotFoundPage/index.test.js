@@ -1,3 +1,7 @@
+/**
+ * Testing the NotFoundPage
+ */
+
 import { NotFound } from './index';
 import H1 from 'H1';
 import Button from 'Button';

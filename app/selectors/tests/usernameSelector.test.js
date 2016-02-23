@@ -1,3 +1,7 @@
+/**
+ * Test the username selector
+ */
+
 import usernameSelector from '../usernameSelector';
 import { fromJS } from 'immutable';
 import expect from 'expect';

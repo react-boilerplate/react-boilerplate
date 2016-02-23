@@ -1,3 +1,7 @@
+/**
+ * Testing our Button component
+ */
+
 import Button from './index';
 
 import expect from 'expect';
