@@ -20,11 +20,7 @@ Starts the development server and makes your application accessible at `localhos
 
 ### Port
 
-To change the port the app is accessible at pass the `-p` option to the command with `--`. E.g. to make the app visible at `localhost:5000`, run the following:
-
-```Shell
-$ npm start -- -p 5000
-```
+To change the port the app is accessible at pass the `-p` option to the command with `--`. E.g. to make the app visible at `localhost:5000`, run the following: `$ npm start -- -p 5000`
 
 ## Building
 
@@ -34,9 +30,17 @@ $ npm run build
 
 Gets your application ready for deployment. Optimizes and minifies all files, and generates a folder called `build`. `build` includes all files you need for your application. Upload the contents of `build` to your web server to see it live!
 
+## Generator
+
+```Shell
+$ npm run generate
+```
+
+Allows you to auto-generate boilerplate code for common parts of your application, specifically `components`, `containers`, `selectors`, `sagas` and `routes`.
+
 ## Testing
 
-See the [testing documentation](../testing/README.md) for detailed information as to how testing works! If you just want the commands and know how to write tests already, look below!
+See the [testing documentation](../testing/README.md) for detailed information about our testing setup!
 
 ## Unit testing
 
@@ -44,11 +48,11 @@ See the [testing documentation](../testing/README.md) for detailed information a
 $ npm run test
 ```
 
-Tests your application with the unit tests specified in the `*test.js` files throughout the application. This'll run the tests in Chrome, but you can choose different browsers.
+Tests your application with the unit tests specified in the `*test.js` files throughout the application.
 
 ### Browsers
 
-To choose the browser to run your unit tests in (Chrome is run by default), run one of the following commands:
+To choose the browser to run your unit tests in (Chrome by default), run one of the following commands:
 
 #### Firefox
 
@@ -72,19 +76,11 @@ $ npm run test:ie
 
 ### Watching
 
-To watch changes to your application and rerun tests whenever a file changes run
-
 ```Shell
 $ npm run test:watch
 ```
 
-### Performance testing
-
-```Shell
-$ npm run pagespeed
-```
-
-With the development server running (i.e. while `$ npm start` is running in another tab), enter this command to run Google PageSpeed Insights and get a performance check right in your terminal!
+Watches changes to your application and reruns tests whenever a file changes.
 
 ### Remote testing
 
@@ -92,23 +88,38 @@ With the development server running (i.e. while `$ npm start` is running in anot
 $ npm run serve
 ```
 
-This will run a server that's accessible on the entire world and shows the version of the app that's in the `build` folder. Useful for testing on different devices in different locations!
+Runs a server that's accessible on the entire world and shows the version of the app that's in the `build` folder. Useful for testing on different devices in different locations!
 
 > Note: This assumes you have done a build with `npm run build` before. The changes you make in your application won't be reflected in the application unless you run `npm run build` again.
 
-## Linting
+### Performance testing
 
-Lint your JavaScript and CSS with this command.
+```Shell
+$ npm run pagespeed
+```
+
+With the remote server running (i.e. while `$ npm run serve` is running in another terminal session), enter this command to run Google PageSpeed Insights and get a performance check right in your terminal!
+
+## Linting
 
 ```Shell
 $ npm run lint
 ```
 
-Want to lint your JavaScript and CSS seperately?
+Lints your JavaScript and CSS.
+
+### JavaScript
 
 ```Shell
 $ npm run lint:js
+```
+
+Only lints your JavaScript.
+
+### CSS
+
+```Shell
 $ npm run lint:css
 ```
 
-> Note: CSS Linting uses [Stylelint](http://stylelint.io/) default configuration with a few custom extends. To edit the custom extends open `.stylelintrc`
+Only lints your CSS.

@@ -2,13 +2,11 @@
 
 Some explanation for a few of the configuration files lying around this boilerplate.
 
-## Files in the root folder
+## The root folder
 
-* `.babelrc`: The Babel configuration. Babel is a ES6 to ES5 JavaScript transpiler, which means it's the tool that allows us to use ES6 in our applications.
+* `.editorconfig`: Sets the default configuration for certain files across editors. (e.g. indentation)
 
-* `.eslintignore`: Tell `eslint` to ignore certain files that should not be linted. (Analyse your code for potential errors/suspicious usage)
-
-* `.eslintrc`: The `eslint` configuration, which checks that the JavaScript files are written in a standardised way.
+* `.eslintignore`: Tell `eslint` to ignore certain files that should not be linted. `eslint` lints your JavaScript. (it analyse your code for potential errors/suspicious usage)
 
 * `.gitattributes`: Normalizes how `git`, the version control system this boilerplate uses, handles certain files.
 
@@ -16,9 +14,15 @@ Some explanation for a few of the configuration files lying around this boilerpl
 
 * `.travis.yml`: The Continuous Integration configuration. This boilerplate uses [Travis CI](https://travis-ci.com), but feel free to swap this for your own CI.
 
-* `package.json`: The `npm` configuration file. When you run `npm install`, this is the list that tells `npm` which packages/libraries to download. Also, `npm start`, `npm run build`,... commands are specified here.
+* `package.json`: The `npm` configuration file. When you run `npm install`, this is the list that tells `npm` which packages/libraries to download. Also, `npm start`, `npm run build`,... commands are specified here. Also includes
 
-## Files in the `webpack/` folder
+  * `babelConfig`: The Babel configuration. Babel is a JavaScript transpiler, which means it's the tool that allows us to use ESNext in our applications.
+
+  * `eslintConfig`: The `eslint` configuration.
+
+  * `stylelint`: The `stylelint` configuration.
+
+<!-- ## The `webpack/` folder
 
 * `pagespeed`: The script that is run when `$ npm run pagespeed` is entered into the terminal.
 
@@ -34,4 +38,4 @@ Some explanation for a few of the configuration files lying around this boilerpl
 
 * `server.dev.js`: The development server that runs when `npm start` is entered into the command line.
 
-* `server.prod.js`: The server that runs when `npm run serve` is entered into the command line.
+* `server.prod.js`: The server that runs when `npm run serve` is entered into the command line. -->
