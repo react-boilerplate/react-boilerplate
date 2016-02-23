@@ -3,9 +3,10 @@
  */
 
 const fs = require('fs');
+const componentExists = require('../utils/componentExists');
 
 module.exports = {
-  description: 'Generate a Container Component',
+  description: 'Add a container component',
   prompts: [{
     type: 'input',
     name: 'name',
@@ -13,25 +14,25 @@ module.exports = {
     default: 'Form',
     validate: value => {
       if ((/.+/).test(value)) {
-        return true;
+        return componentExists(value) ? 'A component or container with this name already exists' : true;
       }
-      return 'name is required';
+      return 'The name is required';
     }
   }, {
     type: 'confirm',
     name: 'wantCSS',
     default: false,
-    message: 'Do you want to create corresponding CSS file?'
+    message: 'Does it have styling?'
   }, {
     type: 'confirm',
     name: 'wantActionsAndReducer',
     default: true,
-    message: 'Do you want to generate corresponding actions/reducer files for the container?'
+    message: 'Do you want an actions/constants/reducer tupel for this container?'
   }, {
     type: 'confirm',
     name: 'wantSelector',
     default: true,
-    message: 'Do you want to add selectors to the connect method?'
+    message: 'Do you want to select a part of the application state?'
   }, {
     type: 'list',
     name: 'selectorType',
@@ -57,72 +58,80 @@ module.exports = {
   }, {
     type: 'input',
     name: 'selectorName',
-    message: 'What the selector should it be called?',
+    message: 'What the selector be called?',
     default: 'form',
     validate: value => {
-      if ((/.+saga/i).test(value)) {
-        return 'name should not end with selector, it will be automatically added';
+      if ((/.+selector/i).test(value)) {
+        return 'The name should not end in "-selector", we add that for you!';
       }
       if ((/.+/).test(value)) {
         return true;
       }
-      return 'selector name is required';
+      return 'The name is required';
     },
     when: answers => answers.selectorType === 'new'
   }],
   actions: data => {
+    // Generate index.js and index.test.js
     const actions = [{
       type: 'add',
       path: '../../app/containers/{{properCase name}}/index.js',
-      templateFile: './templates/container/index.js.hbs',
+      templateFile: './container/index.js.hbs',
       abortOnFail: true
     }, {
       type: 'add',
       path: '../../app/containers/{{properCase name}}/tests/index.test.js',
-      templateFile: './templates/container/container.test.js.hbs',
+      templateFile: './container/test.js.hbs',
       abortOnFail: true
     }];
 
+    // If they want a CSS file, add styles.css
     if (data.wantCSS) {
       actions.push({
         type: 'add',
         path: '../../app/containers/{{properCase name}}/styles.css',
-        templateFile: './templates/container/styles.css.hbs',
+        templateFile: './container/styles.css.hbs',
         abortOnFail: true
       });
     }
 
+    // If they want actions and a reducer, generate actions.js, constants.js,
+    // reducer.js and the corresponding tests for actions and the reducer
     if (data.wantActionsAndReducer) {
-      // Generate Actions
+      // Actions
       actions.push({
         type: 'add',
         path: '../../app/containers/{{properCase name}}/actions.js',
-        templateFile: './templates/container/actions.js.hbs',
+        templateFile: './container/actions.js.hbs',
         abortOnFail: true
       });
       actions.push({
         type: 'add',
         path: '../../app/containers/{{properCase name}}/tests/actions.test.js',
-        templateFile: './templates/container/actions.test.js.hbs',
+        templateFile: './container/actions.test.js.hbs',
         abortOnFail: true
       });
-
-      // Generate constants
+      // Constants
       actions.push({
         type: 'add',
         path: '../../app/containers/{{properCase name}}/constants.js',
-        templateFile: './templates/container/constants.js.hbs',
+        templateFile: './container/constants.js.hbs',
         abortOnFail: true
       });
-
-      // Generate Reducer
+      // Reducer
       actions.push({
         type: 'add',
         path: '../../app/containers/{{properCase name}}/reducer.js',
-        templateFile: './templates/container/reducer.js.hbs',
+        templateFile: './container/reducer.js.hbs',
         abortOnFail: true
       });
       actions.push({
+        type: 'add',
+        path: '../../app/containers/{{properCase name}}/tests/reducer.test.js',
+        templateFile: './container/reducer.test.js.hbs',
+        abortOnFail: true
+      });
+      actions.push({ // Add the reducer to the rootReducer
         type: 'modify',
         path: '../../app/rootReducer.js',
         pattern: /(\n}\);)/gi,
@@ -134,25 +143,20 @@ module.exports = {
         pattern: /(\n\nexport default combineReducers)/gi,
         template: '\nimport {{camelCase name}}Reducer from \'{{properCase name}}/reducer\';$1'
       });
-      actions.push({
-        type: 'add',
-        path: '../../app/containers/{{properCase name}}/tests/reducer.test.js',
-        templateFile: './templates/container/reducer.test.js.hbs',
-        abortOnFail: true
-      });
     }
 
+    // Generate a new selector
     if (data.selectorType === 'new') {
       actions.push({
         type: 'add',
         path: '../../app/selectors/{{camelCase selectorName}}Selector.js',
-        templateFile: './templates/container/selector.js.hbs',
+        templateFile: './container/selector.js.hbs', // Use our own selector.js.hbs template because the variable is selectorName
         abortOnFail: true
       });
       actions.push({
         type: 'add',
         path: '../../app/selectors/tests/{{camelCase selectorName}}Selector.test.js',
-        templateFile: './templates/selector.test.js.hbs',
+        templateFile: './selector/test.js.hbs',
         abortOnFail: true
       });
     }

@@ -93,7 +93,7 @@
     "serve": "NODE_ENV=production node webpack/webpack/server.prod.js",
     "pagespeed": "./webpack/scripts/pagespeed",
     "setup": "NODE_ENV=initialisation ./webpack/scripts/init",
-    "generate": "plop --plopfile webpack/generator/index.js",
+    "generate": "plop --plopfile webpack/generators/index.js",
     "prebuild": "npm run test",
     "pretest": "npm run lint",
     "lint": "npm run lint:js && npm run lint:css",

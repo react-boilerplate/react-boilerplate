@@ -3,7 +3,7 @@
  */
 
 module.exports = {
-  description: 'Generate a reselct selector',
+  description: 'Generate a reselect selector',
   prompts: [{
     type: 'input',
     name: 'name',
@@ -11,23 +11,24 @@ module.exports = {
     default: 'form',
     validate: value => {
       if ((/.+selector/i).test(value)) {
-        return 'name should not end with selector, it will be automatically added';
+        return 'The name should not end in "-selector", we add that for you!';
       }
       if ((/.+/).test(value)) {
         return true;
       }
-      return 'name is required';
+      return 'The name is required';
     }
   }],
+  // Add the selector and the test for it
   actions: [{
     type: 'add',
     path: '../../app/selectors/{{camelCase name}}Selector.js',
-    templateFile: './templates/selector.js.hbs',
+    templateFile: './selector/selector.js.hbs',
     abortOnFail: true
   }, {
     type: 'add',
     path: '../../app/selectors/tests/{{camelCase name}}Selector.test.js',
-    templateFile: './templates/selector.test.js.hbs',
+    templateFile: './selector/test.js.hbs',
     abortOnFail: true
   }]
 };

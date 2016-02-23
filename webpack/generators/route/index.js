@@ -2,25 +2,25 @@
  * Route Generator
  */
 
-const componentExists = require('./utils/componentExists');
+const componentExists = require('../utils/componentExists');
 
 module.exports = {
-  description: 'Generate a route',
+  description: 'Add a route',
   prompts: [{
     type: 'input',
     name: 'component',
-    message: 'Enter the name of the component for which the route should be generated?',
+    message: 'Which component should the route show?',
     validate: value => {
       if ((/.+/).test(value)) {
-        return componentExists(value) ? true : 'Component doesn\'t exist in either components or containers folder';
+        return componentExists(value) ? true : '"' + value + '" doesn\'t exist.';
       }
-      return 'path is required';
+      return 'The path is required';
     }
   }, {
     type: 'input',
     name: 'path',
-    message: 'What should be the router path?',
-    default: 'about',
+    message: 'Enter the path of the route.',
+    default: '/about',
     validate: value => {
       if ((/.+/).test(value)) {
         return true;
@@ -28,10 +28,12 @@ module.exports = {
       return 'path is required';
     }
   }],
+  // Add the route to the routes.js file above the error route
+  // TODO smarter route adding
   actions: [{
     type: 'modify',
     path: '../../app/routes.js',
     pattern: /(\s{\n\s{4}path: '\*')/g,
-    templateFile: './templates/route.hbs'
+    templateFile: './route/route.hbs'
   }]
 };

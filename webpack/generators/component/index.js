@@ -2,8 +2,10 @@
  * Component Generator
  */
 
+const componentExists = require('../utils/componentExists');
+
 module.exports = {
-  description: 'Generate a Component either using ES6 class or Stateless Function',
+  description: 'Add an unconnected component',
   prompts: [{
     type: 'list',
     name: 'type',
@@ -17,33 +19,36 @@ module.exports = {
     default: 'Button',
     validate: value => {
       if ((/.+/).test(value)) {
-        return true;
+        return componentExists(value) ? 'A component or container with this name already exists' : true;
       }
-      return 'name is required';
+      return 'The name is required';
     }
   }, {
     type: 'confirm',
     name: 'wantCSS',
-    message: 'Do you want to create corresponding CSS file?'
+    default: true,
+    message: 'Does it have styling?'
   }],
   actions: data => {
+    // Generate index.js and index.test.js
     const actions = [{
       type: 'add',
       path: '../../app/components/{{properCase name}}/index.js',
-      templateFile: data.type === 'ES6 Class' ? './templates/component/es6.js.hbs' : './templates/component/stateless.js.hbs',
+      templateFile: data.type === 'ES6 Class' ? './component/es6.js.hbs' : './component/stateless.js.hbs',
       abortOnFail: true
     }, {
       type: 'add',
       path: '../../app/components/{{properCase name}}/index.test.js',
-      templateFile: './templates/component/component.test.js.hbs',
+      templateFile: './component/test.js.hbs',
       abortOnFail: true
     }];
 
+    // If they want a CSS file, add styles.css
     if (data.wantCSS) {
       actions.push({
         type: 'add',
         path: '../../app/components/{{properCase name}}/styles.css',
-        templateFile: './templates/component/styles.css.hbs',
+        templateFile: './component/styles.css.hbs',
         abortOnFail: true
       });
     }
