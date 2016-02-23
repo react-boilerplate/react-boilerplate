@@ -53,16 +53,10 @@ export class FeaturePage extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    location: state.get('route').location
-  };
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     changeRoute: (url) => dispatch(routeActions.push(url))
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeaturePage);
+export default connect(null, mapDispatchToProps)(FeaturePage);
