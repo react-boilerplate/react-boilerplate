@@ -13,7 +13,7 @@ const port = argv.p || 3000;
 console.log(
   chalk.bold('Options:') +
   chalk.gray('\n-----------------------------------') +
-  chalk.cyan('\n       Source: ') + path.join(__dirname, '..', 'app') +
+  chalk.cyan('\n       Source: ') + path.join(__dirname, '../..', 'app') +
   chalk.cyan('\nHot reloading: ') + chalk.green('Enabled') +
   chalk.gray('\n-----------------------------------')
 );

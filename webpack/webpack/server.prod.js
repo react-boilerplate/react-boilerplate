@@ -11,7 +11,7 @@ const chalk = require('chalk');
 console.log(
   chalk.bold('Options:\n') +
   chalk.gray('-----------------------------------\n') +
-  chalk.cyan('Source: ') + path.join(__dirname, '..', 'app') + '\n' +
+  chalk.cyan('Source: ') + path.join(__dirname, '../..', 'app') + '\n' +
   chalk.gray('-----------------------------------\n')
 );
 console.log('Starting server from build folder...');
