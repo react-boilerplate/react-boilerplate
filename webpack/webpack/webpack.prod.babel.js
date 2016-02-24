@@ -62,7 +62,9 @@ module.exports = require('./webpack.base.babel')({
       inject: true
     }),
     // Extract the CSS into a seperate file
-    new ExtractTextPlugin('css/main.css'),
+    new ExtractTextPlugin('css/main.css', {
+      allChunks: true
+    }),
     // Set the process.env to production so React includes the production
     // version of itself
     new webpack.DefinePlugin({
