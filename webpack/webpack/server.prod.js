@@ -1,5 +1,5 @@
 /* eslint no-console:0 */
-// Gets called when running npm serve
+// Gets called when running npm run serve
 
 const config = require('./webpack.prod.babel');
 const express = require('express');
