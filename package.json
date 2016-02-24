@@ -97,7 +97,7 @@
     "prebuild": "npm run test",
     "pretest": "npm run lint",
     "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint .",
+    "lint:js": "eslint . --ignore-path .gitignore",
     "lint:js:staged": "eslint-staged",
     "lint:css": "stylelint ./app/**/*.css",
     "lint:css:staged": "stylelint-staged",
