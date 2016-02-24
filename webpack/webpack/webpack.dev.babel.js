@@ -11,9 +11,6 @@ const cssnext = require('postcss-cssnext');
 const postcssFocus = require('postcss-focus');
 const postcssReporter = require('postcss-reporter');
 
-const argv = require('minimist')(process.argv.slice(2));
-const port = argv.p || 3000;
-
 module.exports = require('./webpack.base.babel')({
   // Add hot reloading in development
   entry: [

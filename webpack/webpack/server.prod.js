@@ -1,5 +1,5 @@
 /* eslint no-console:0 */
-// Gets called when running npm start
+// Gets called when running npm serve
 
 const config = require('./webpack.prod.babel');
 const express = require('express');
@@ -40,7 +40,7 @@ app.use(webpackDevMiddleware(compiler, {
 
 app.use(webpackHotMiddleware(compiler));
 
-app.listen(port, '0.0.0.0', function(err) {
+app.listen(port, '0.0.0.0', (err) => {
   if (err) {
     console.log(chalk.red('ERROR\n' + err));
   } else {
