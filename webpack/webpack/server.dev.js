@@ -1,12 +1,19 @@
 /* eslint no-console:0 */
 // Gets called when running npm start
 
-const path = require('path');
-const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.dev.babel');
-const ip = require('ip');
+const express = require('express');
+const webpack = require('webpack');
+const path = require('path');
 const chalk = require('chalk');
+const ip = require('ip');
+
+const historyApi = require('connect-history-api-fallback');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+
+const app = express();
+const compiler = webpack(config);
 const argv = require('minimist')(process.argv.slice(2));
 const port = argv.p || 3000;
 
@@ -19,24 +26,32 @@ console.log(
 );
 console.log('\nStarting server...');
 
-new WebpackDevServer(webpack(config), { // Start a server
+app.use(historyApi({
+  verbose: false
+}));
+
+app.use(webpackDevMiddleware(compiler, {
+  noInfo: true,
   publicPath: config.output.publicPath,
   hot: true, // With hot reloading
   inline: false,
   historyApiFallback: true,
   quiet: true // Without logging
-}).listen(port, 'localhost', (err) => {
+}));
+
+app.use(webpackHotMiddleware(compiler));
+
+app.listen(port, 'localhost', function(err) {
   if (err) {
     console.log(err);
-  } else {
-    console.log('Server started ' + chalk.green('✓'));
-    console.log(
-      chalk.bold('\nAccess URLs:') +
-      chalk.gray('\n-----------------------------------') +
-      '\n   Local: ' + chalk.magenta('http://localhost:' + port) +
-      '\nExternal: ' + chalk.magenta('http://' + ip.address() + ':' + port) +
-      chalk.gray('\n-----------------------------------')
-    );
-    console.log(chalk.blue('\nPress ' + chalk.italic('CTRL-C') + ' to stop'));
+    return;
   }
+  console.log('Server started ' + chalk.green('✓'));
+  console.log(
+    chalk.bold('\nAccess URLs:') +
+    chalk.gray('\n-----------------------------------') +
+    '\n   Local: ' + chalk.magenta('http://localhost:' + port) +
+    '\nExternal: ' + chalk.magenta('http://' + ip.address() + ':' + port) +
+    chalk.gray('\n-----------------------------------')
+  );
 });
