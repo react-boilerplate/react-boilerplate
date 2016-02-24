@@ -1,12 +1,20 @@
 /* eslint no-console:0 */
 // Gets called when running npm run serve
 
-const path = require('path');
-const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.prod.babel');
-const ngrok = require('ngrok');
+const express = require('express');
+const webpack = require('webpack');
+const path = require('path');
 const chalk = require('chalk');
+const ngrok = require('ngrok');
+
+const historyApi = require('connect-history-api-fallback');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+
+const app = express();
+const compiler = webpack(config);
+const port = 3000;
 
 console.log(
   chalk.bold('Options:\n') +
@@ -16,16 +24,25 @@ console.log(
 );
 console.log('Starting server from build folder...');
 
-new WebpackDevServer(webpack(config), { // Start a server
+app.use(historyApi({
+  verbose: false
+}));
+
+app.use(webpackDevMiddleware(compiler, {
+  noInfo: true,
   publicPath: config.output.publicPath,
   filename: config.output.filename,
   contentBase: config.output.path,
   lazy: true,
   historyApiFallback: true,
   quiet: true // Without logging
-}).listen(3000, '0.0.0.0', (err) => {
+}));
+
+app.use(webpackHotMiddleware(compiler));
+
+app.listen(port, '0.0.0.0', (err) => {
   if (err) {
-    console.log(err);
+    console.log(chalk.red('ERROR\n' + err));
   } else {
     console.log('Server started ' + chalk.green('✓'));
     ngrok.connect(3000, (innerErr, url) => {

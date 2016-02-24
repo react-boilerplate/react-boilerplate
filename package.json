@@ -34,6 +34,7 @@
     "chai-enzyme": "^0.4.1",
     "chalk": "^1.1.1",
     "cheerio": "^0.20.0",
+    "connect-history-api-fallback": "^1.1.0",
     "coveralls": "^2.11.6",
     "css-loader": "^0.23.1",
     "css-modules-require-hook": "^2.1.0",
@@ -42,6 +43,7 @@
     "eslint": "^2.0.0",
     "eslint-config-airbnb": "^6.0.0",
     "eslint-plugin-react": "^4.0.0",
+    "eventsource-polyfill": "^0.9.6",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.2",
     "extract-text-webpack-plugin": "^1.0.1",
@@ -81,7 +83,8 @@
     "stylelint-config-standard": "^3.0.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.11",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-middleware": "^1.5.1",
+    "webpack-hot-middleware": "^2.7.1"
   },
   "repository": {
     "type": "git",
