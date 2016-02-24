@@ -1,8 +1,9 @@
-node_modules
-.DS_Store
-js/bundle.js
-js/bundle.min.js
+# Don't check auto-generated stuff into git
+coverage
 build
+node_modules
+
+# Cruft
+.DS_Store
 npm-debug.log
 .idea
-coverage
