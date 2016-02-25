@@ -17,19 +17,32 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr)!
 
 ## Features
 
-- Using [**react-transform-hmr**](https://github.com/gaearon/react-transform-hmr), your changes in the CSS and JS get reflected in the app instantly without refreshing the page. That means that the **current application state persists** even when you change something in the underlying code! For a very good explanation and demo, watch Dan Abramov himself [talking about it at react-europe](https://www.youtube.com/watch?v=xsSnOQynTHs).
+- **Instant feedback** Enjoy the best DX and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. That means that the **current application state persists** even when you change something in the underlying code!
 
-- [**Redux**](https://github.com/rackt/redux) is a much better implementation of a flux–like, unidirectional data flow. Redux makes actions composable, reduces the boilerplate code and makes hot–reloading possible in the first place. For a good overview of redux, check out the talk linked above or the [official documentation](https://gaearon.github.io/redux/)!
+    _via [react-transform-hmr](https://github.com/gaearon/react-transform-hmr). For a very good explanation and demo, watch Dan Abramov himself [talking about it at React Europe](https://www.youtube.com/watch?v=xsSnOQynTHs)._
 
-- [**Babel**](http://babeljs.io/) is a modular JavaScript transpiler that helps to use next generation JavaScript and more, like transformation for JSX, hot loading, error catching etc. Babel has a [solid ecosystem of offical preset and plugins](https://github.com/babel/babel/tree/master/packages).
+- **Predictable state management** with unidirectional data flow and time travel debugging.
 
-- [**PostCSS**](https://github.com/postcss/postcss) is like Sass, but modular and capable of much more. PostCSS is, in essence, just a wrapper for plugins which exposes an easy to use, but very powerful API. While it is possible to [replicate Sass features](https://github.com/jonathantneal/precss) with PostCSS, PostCSS has an [ecosystem of amazing plugins](http://postcss.parts) with functionalities Sass cannot even dream about having. See [this talk](http://mxs.is/pctalk) for a short introduction to PostCSS.
+    _via [Redux](https://github.com/rackt/redux)_
 
-- **Unit tests** should be an important part of every web application developers toolchain. [Mocha](https://github.com/mochajs/mocha) checks your application is working exactly how it should without you lifting a single finger. Congratulations, you just won a First Class ticket to world domination, fasten your seat belt please!
+- **Next generation JavaScript** use string templating, object destructuring, arrow functions, JSX syntax and more, today.
 
-- [**react-router**](https://github.com/rackt/react-router) is used for routing in this boilerplate. react-router makes routing easy to do and takes care of most of the work. (except you have to define your routes yourself) You can find the documentation right  [here](https://github.com/rackt/react-router/blob/master/doc/00%20Guides/0%20Overview.md).
+    _via [Babel](http://babeljs.io/). Check out its [solid ecosystem of offical preset and plugins](https://github.com/babel/babel/tree/master/packages)._
 
-- [**ServiceWorker**](http://www.html5rocks.com/en/tutorials/service-worker/introduction/) and [**AppCache**](http://www.html5rocks.com/en/tutorials/appcache/beginner/) make it possible to use your application offline. As soon as the website has been opened once, it is cached and available without a network connection. See [this talk](http://mxs.is/swtalk) for an explanation of the ServiceWorker used in this boilerplate. [**`manifest.json`**](https://developer.chrome.com/multidevice/android/installtohomescreen) is specifically for Chrome on Android. Users can add the website to the homescreen and use it like a native app!
+- **Next generation CSS**. Write composable CSS that's colocated with your components for complete modularity. Ship only the styles that are on the page for the best performance.
+
+    _via [PostCSS](https://github.com/postcss/postcss). See more of its [amazing plugins](http://postcss.parts), learn [how to migrate from Sass](https://github.com/jonathantneal/precss) or simply watch a [short introduction](http://mxs.is/pctalk)_
+
+- **Industry-standard routing** It's natural to think of your site as a series of loosely-coupled mini applications: routing makes this possible.
+
+    _via [react-router](https://github.com/rackt/react-router/blob/master/doc/00%20Guides/0%20Overview.md)._
+
+- **Offline-first** The next frontier in performant web apps: availability without a network connection as soon as the website has been loaded once.
+
+    _via [**ServiceWorker**](http://www.html5rocks.com/en/tutorials/service-worker/introduction/) and [**AppCache**](http://www.html5rocks.com/en/tutorials/appcache/beginner/). See [this talk](http://mxs.is/swtalk) for an explanation. [**`manifest.json`**](https://developer.chrome.com/multidevice/android/installtohomescreen) is specifically for Chrome on Android. Users can add the website to the homescreen and use it like a native app!_
+
+- **But wait... there's more!**
+    - **Built-in unit testing** the only way to guarantee code quality. (_via [Mocha](https://github.com/mochajs/mocha)_)
 
 ## Getting started
 
