@@ -14,7 +14,7 @@ import {
   CHANGE_USERNAME,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,
-  LOAD_REPOS_ERROR
+  LOAD_REPOS_ERROR,
 } from './constants';
 import { fromJS } from 'immutable';
 
@@ -25,8 +25,8 @@ const initialState = fromJS({
   currentUser: false,
   userData: fromJS({
     repositories: false,
-    username: ''
-  })
+    username: '',
+  }),
 });
 
 function globalReducer(state = initialState, action) {

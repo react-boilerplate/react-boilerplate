@@ -11,7 +11,7 @@ module.exports = {
     name: 'type',
     message: 'Select the type of component',
     default: 'Stateless Function',
-    choices: () => ['ES6 Class', 'Stateless Function']
+    choices: () => ['ES6 Class', 'Stateless Function'],
   }, {
     type: 'input',
     name: 'name',
@@ -22,12 +22,12 @@ module.exports = {
         return componentExists(value) ? 'A component or container with this name already exists' : true;
       }
       return 'The name is required';
-    }
+    },
   }, {
     type: 'confirm',
     name: 'wantCSS',
     default: true,
-    message: 'Does it have styling?'
+    message: 'Does it have styling?',
   }],
   actions: data => {
     // Generate index.js and index.test.js
@@ -35,12 +35,12 @@ module.exports = {
       type: 'add',
       path: '../../app/components/{{properCase name}}/index.js',
       templateFile: data.type === 'ES6 Class' ? './component/es6.js.hbs' : './component/stateless.js.hbs',
-      abortOnFail: true
+      abortOnFail: true,
     }, {
       type: 'add',
       path: '../../app/components/{{properCase name}}/index.test.js',
       templateFile: './component/test.js.hbs',
-      abortOnFail: true
+      abortOnFail: true,
     }];
 
     // If they want a CSS file, add styles.css
@@ -49,10 +49,10 @@ module.exports = {
         type: 'add',
         path: '../../app/components/{{properCase name}}/styles.css',
         templateFile: './component/styles.css.hbs',
-        abortOnFail: true
+        abortOnFail: true,
       });
     }
 
     return actions;
-  }
+  },
 };

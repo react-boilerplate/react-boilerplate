@@ -19,7 +19,7 @@ import {
   CHANGE_USERNAME,
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
-  LOAD_REPOS_ERROR
+  LOAD_REPOS_ERROR,
 } from './constants';
 
 /**
@@ -32,7 +32,7 @@ import {
 export function changeUsername(name) {
   return {
     type: CHANGE_USERNAME,
-    name
+    name,
   };
 }
 
@@ -43,7 +43,7 @@ export function changeUsername(name) {
  */
 export function loadRepos() {
   return {
-    type: LOAD_REPOS
+    type: LOAD_REPOS,
   };
 }
 
@@ -57,7 +57,7 @@ export function loadRepos() {
 export function reposLoaded(repos) {
   return {
     type: LOAD_REPOS_SUCCESS,
-    repos
+    repos,
   };
 }
 
@@ -71,6 +71,6 @@ export function reposLoaded(repos) {
 export function repoLoadingError(error) {
   return {
     type: LOAD_REPOS_ERROR,
-    error
+    error,
   };
 }

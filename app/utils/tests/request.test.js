@@ -23,8 +23,8 @@ describe('request', () => {
       const res = new Response('{"hello":"world"}', {
         status: 200,
         headers: {
-          'Content-type': 'application/json'
-        }
+          'Content-type': 'application/json',
+        },
       });
 
       window.fetch.returns(Promise.resolve(res));
@@ -47,8 +47,8 @@ describe('request', () => {
         status: 404,
         statusText: 'Not Found',
         headers: {
-          'Content-type': 'application/json'
-        }
+          'Content-type': 'application/json',
+        },
       });
 
       window.fetch.returns(Promise.resolve(res));

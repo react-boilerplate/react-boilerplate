@@ -17,12 +17,12 @@ describe('<RepoListItem />', () => {
   beforeEach(() => {
     item = {
       owner: {
-        login: 'mxstbr'
+        login: 'mxstbr',
       },
       html_url: 'https://github.com/mxstbr/react-boilerplate',
       name: 'react-boilerplate',
       open_issues_count: 20,
-      full_name: 'mxstbr/react-boilerplate'
+      full_name: 'mxstbr/react-boilerplate',
     };
   });
 

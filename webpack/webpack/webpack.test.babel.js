@@ -17,19 +17,19 @@ module.exports = {
       { test: /\.js$/,
         loader: 'isparta',
         include: path.resolve('app/'),
-      }
+      },
     ],
     loaders: [
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.css$/, loader: 'null-loader' },
       { test: /\.js$/,
         loader: 'babel',
-        exclude: [/node_modules/]
+        exclude: [/node_modules/],
       },
       { test: /\.jpe?g$|\.gif$|\.png$/i,
-        loader: 'null-loader'
-      }
-    ]
+        loader: 'null-loader',
+      },
+    ],
   },
   // Some node_modules pull in Node-specific dependencies.
   // Since we're running in a browser we have to stub them out. See:
@@ -46,7 +46,7 @@ module.exports = {
   externals: {
     jsdom: 'window',
     'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': 'window'
+    'react/lib/ReactContext': 'window',
   },
   resolve: {
     modulesDirectories: [
@@ -55,11 +55,11 @@ module.exports = {
       'selectors',
       'sagas',
       'assets',
-      'node_modules'
+      'node_modules',
     ],
     alias: {
       // required for enzyme to work properly
-      sinon: 'sinon/pkg/sinon'
+      sinon: 'sinon/pkg/sinon',
     },
   },
 };

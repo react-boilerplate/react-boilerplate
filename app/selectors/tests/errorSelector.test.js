@@ -11,8 +11,8 @@ describe('errorSelector', () => {
     const error = 404;
     const mockedState = fromJS({
       global: {
-        error
-      }
+        error,
+      },
     });
     expect(errorSelector(mockedState)).toEqual(error);
   });

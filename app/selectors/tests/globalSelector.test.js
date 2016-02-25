@@ -9,10 +9,10 @@ import expect from 'expect';
 describe('globalSelector', () => {
   it('should select the global state', () => {
     const globalState = fromJS({
-      userData: {}
+      userData: {},
     });
     const mockedState = fromJS({
-      global: globalState
+      global: globalState,
     });
     expect(globalSelector(mockedState)).toEqual(globalState);
   });

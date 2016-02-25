@@ -4,14 +4,14 @@ import {
   CHANGE_USERNAME,
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
-  LOAD_REPOS_ERROR
+  LOAD_REPOS_ERROR,
 } from '../constants';
 
 import {
   changeUsername,
   loadRepos,
   reposLoaded,
-  repoLoadingError
+  repoLoadingError,
 } from '../actions';
 
 describe('App Actions', () => {
@@ -20,7 +20,7 @@ describe('App Actions', () => {
       const fixture = 'Max';
       const expectedResult = {
         type: CHANGE_USERNAME,
-        name: fixture
+        name: fixture,
       };
 
       expect(changeUsername(fixture)).toEqual(expectedResult);
@@ -30,7 +30,7 @@ describe('App Actions', () => {
   describe('loadRepos', () => {
     it('should return the correct type', () => {
       const expectedResult = {
-        type: LOAD_REPOS
+        type: LOAD_REPOS,
       };
 
       expect(loadRepos()).toEqual(expectedResult);
@@ -42,7 +42,7 @@ describe('App Actions', () => {
       const fixture = ['Test'];
       const expectedResult = {
         type: LOAD_REPOS_SUCCESS,
-        repos: fixture
+        repos: fixture,
       };
 
       expect(reposLoaded(fixture)).toEqual(expectedResult);
@@ -52,11 +52,11 @@ describe('App Actions', () => {
   describe('repoLoadingError', () => {
     it('should return the correct type and the error', () => {
       const fixture = {
-        msg: 'Something went wrong!'
+        msg: 'Something went wrong!',
       };
       const expectedResult = {
         type: LOAD_REPOS_ERROR,
-        error: fixture
+        error: fixture,
       };
 
       expect(repoLoadingError(fixture)).toEqual(expectedResult);

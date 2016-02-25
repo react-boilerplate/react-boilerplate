@@ -63,7 +63,7 @@ export class FeaturePage extends React.Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeRoute: (url) => dispatch(routeActions.push(url))
+    changeRoute: (url) => dispatch(routeActions.push(url)),
   };
 }
 

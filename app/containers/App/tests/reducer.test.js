@@ -4,7 +4,7 @@ import {
   changeUsername,
   loadRepos,
   reposLoaded,
-  repoLoadingError
+  repoLoadingError,
 } from '../actions';
 import { fromJS } from 'immutable';
 
@@ -17,8 +17,8 @@ describe('globalReducer', () => {
       currentUser: false,
       userData: fromJS({
         repositories: false,
-        username: ''
-      })
+        username: '',
+      }),
     });
   });
 
@@ -45,7 +45,7 @@ describe('globalReducer', () => {
 
   it('should handle the reposLoaded action correctly', () => {
     const fixture = [{
-      name: 'My Repo'
+      name: 'My Repo',
     }];
     const expectedResult = state
       .setIn(['userData', 'repositories'], fixture)
@@ -57,7 +57,7 @@ describe('globalReducer', () => {
 
   it('should handle the repoLoadingError action correctly', () => {
     const fixture = {
-      msg: 'Not found'
+      msg: 'Not found',
     };
     const expectedResult = state
       .set('error', fixture)

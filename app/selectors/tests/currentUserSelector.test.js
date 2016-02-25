@@ -11,8 +11,8 @@ describe('currentUserSelector', () => {
     const currentUser = 'mxstbr';
     const mockedState = fromJS({
       global: {
-        currentUser
-      }
+        currentUser,
+      },
     });
     expect(currentUserSelector(mockedState)).toEqual(currentUser);
   });

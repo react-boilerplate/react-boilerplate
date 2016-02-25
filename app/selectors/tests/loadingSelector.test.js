@@ -11,8 +11,8 @@ describe('loadingSelector', () => {
     const loading = false;
     const mockedState = fromJS({
       global: {
-        loading
-      }
+        loading,
+      },
     });
     expect(loadingSelector(mockedState)).toEqual(loading);
   });

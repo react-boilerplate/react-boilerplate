@@ -12,9 +12,9 @@ describe('usernameSelector', () => {
     const mockedState = fromJS({
       global: {
         userData: {
-          username
-        }
-      }
+          username,
+        },
+      },
     });
     expect(usernameSelector(mockedState)).toEqual(username);
   });

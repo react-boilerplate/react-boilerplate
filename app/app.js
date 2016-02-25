@@ -63,7 +63,7 @@ import App from 'App';
 import routes from './routes';
 const rootRoute = {
   component: App,
-  childRoutes: routes
+  childRoutes: routes,
 };
 
 ReactDOM.render(

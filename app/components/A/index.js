@@ -25,7 +25,7 @@ class A extends React.Component {
 A.propTypes = {
   className: PropTypes.string,
   href: PropTypes.string.isRequired,
-  target: PropTypes.string
+  target: PropTypes.string,
 };
 
 export default A;

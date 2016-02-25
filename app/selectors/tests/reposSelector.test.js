@@ -12,9 +12,9 @@ describe('reposSelector', () => {
     const mockedState = fromJS({
       global: {
         userData: {
-          repositories
-        }
-      }
+          repositories,
+        },
+      },
     });
     expect(reposSelector(mockedState)).toEqual(repositories);
   });

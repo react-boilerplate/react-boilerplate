@@ -6,12 +6,12 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION
+  DEFAULT_ACTION,
 } from './constants';
 
 const initialState = fromJS({});
 
-function {{ properCase name }}Reducer(state = initialState, action) {
+function {{ camelCase name }}Reducer(state = initialState, action) {
   switch (action.type) {
     case DEFAULT_ACTION:
       return state;
@@ -20,4 +20,4 @@ function {{ properCase name }}Reducer(state = initialState, action) {
   }
 }
 
-export default {{ properCase name }}Reducer;
+export default {{ camelCase name }}Reducer;

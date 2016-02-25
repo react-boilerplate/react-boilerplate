@@ -29,7 +29,7 @@ export function NotFound(props) {
 // react-redux stuff
 function mapDispatchToProps(dispatch) {
   return {
-    changeRoute: (url) => dispatch(routeActions.push(url))
+    changeRoute: (url) => dispatch(routeActions.push(url)),
   };
 }
 

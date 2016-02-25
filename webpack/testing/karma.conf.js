@@ -16,34 +16,34 @@ module.exports = (config) => {
         pattern: './test-bundler.js',
         watched: false,
         served: true,
-        included: true
-      }
+        included: true,
+      },
     ],
 
     preprocessors: {
-      ['./test-bundler.js']: ['webpack', 'sourcemap']
+      ['./test-bundler.js']: ['webpack', 'sourcemap'],
     },
 
     webpack: webpackConfig,
 
     // make Webpack bundle generation quiet
     webpackMiddleware: {
-      noInfo: true
+      noInfo: true,
     },
 
     customLaunchers: {
       ChromeTravis: {
         base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
+        flags: ['--no-sandbox'],
+      },
     },
 
     coverageReporter: {
       dir: '../../coverage',
       reporters: [
         { type: 'lcov', subdir: 'lcov' },
-        { type: 'html', subdir: 'html' }
-      ]
+        { type: 'html', subdir: 'html' },
+      ],
     },
 
   });

@@ -5,10 +5,10 @@ import expect from 'expect';
 describe('routeSelector', () => {
   it('should select the route', () => {
     const route = fromJS({
-      location: ''
+      location: '',
     });
     const mockedState = fromJS({
-      route
+      route,
     });
     expect(routeSelector(mockedState)).toEqual(route);
   });

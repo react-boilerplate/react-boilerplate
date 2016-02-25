@@ -9,5 +9,5 @@ import globalReducer from 'App/reducer';
 
 export default combineReducers({
   route: routeReducer,
-  global: globalReducer
+  global: globalReducer,
 });

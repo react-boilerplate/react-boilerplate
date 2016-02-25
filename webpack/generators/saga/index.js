@@ -17,30 +17,30 @@ module.exports = {
         return true;
       }
       return 'The name is required';
-    }
+    },
   }],
   // Add the saga and the test for it
   actions: [{
     type: 'add',
     path: '../../app/sagas/{{camelCase name}}.saga.js',
     templateFile: './saga/saga.js.hbs',
-    abortOnFail: true
+    abortOnFail: true,
   }, {
     type: 'add',
     path: '../../app/sagas/tests/{{camelCase name}}.test.js',
     templateFile: './saga/test.js.hbs',
-    abortOnFail: true
+    abortOnFail: true,
   // Add the saga to the sagas/index.js file so it is automatically imported
   // and added to the middleware in the app.js file
   }, {
     type: 'modify',
     path: '../../app/sagas/index.js',
     pattern: /(\n\nexport default)/gi,
-    template: '\nimport { {{camelCase name}}Saga } from \'./{{camelCase name}}.saga\';$1'
+    template: '\nimport { {{camelCase name}} } from \'./{{camelCase name}}.saga\';$1',
   }, {
     type: 'modify',
     path: '../../app/sagas/index.js',
     pattern: /(\n];)/gi,
-    template: ',\n  {{camelCase name}}$1'
-  }]
+    template: '\n  {{camelCase name}},$1',
+  }],
 };

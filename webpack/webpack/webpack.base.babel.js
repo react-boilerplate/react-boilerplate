@@ -11,7 +11,7 @@ module.exports = (options) => ({
     path: path.resolve(__dirname, '../..', 'build'),
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
-    publicPath: '/'
+    publicPath: '/',
   },
   module: {
     loaders: [{
@@ -21,18 +21,17 @@ module.exports = (options) => ({
       query: options.babelQuery,
     }, {
       test: /\.css$/, // Transform all .css files required somewhere with PostCSS
-      loader: options.cssLoaders
+      loader: options.cssLoaders,
     }, {
       test: /\.jpe?g$|\.gif$|\.png$/i,
-      loader: 'url-loader?limit=10000'
+      loader: 'url-loader?limit=10000',
     }, {
       test: /\.html$/,
-      loader: 'html-loader'
-    }
-    ]
+      loader: 'html-loader',
+    }],
   },
   plugins: options.plugins.concat([
-    new webpack.optimize.CommonsChunkPlugin('common.js')
+    new webpack.optimize.CommonsChunkPlugin('common.js'),
   ]),
   postcss: () => options.postcssPlugins,
   resolve: {
@@ -42,17 +41,17 @@ module.exports = (options) => ({
       'selectors',
       'sagas',
       'assets',
-      'node_modules'
+      'node_modules',
     ],
     extensions: [
       '',
       '.js',
       '.jsx',
-      '.react.js'
-    ]
+      '.react.js',
+    ],
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
   stats: false, // Don't show stats in the console
-  progress: true
+  progress: true,
 });

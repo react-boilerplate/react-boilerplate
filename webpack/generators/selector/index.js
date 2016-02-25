@@ -17,18 +17,18 @@ module.exports = {
         return true;
       }
       return 'The name is required';
-    }
+    },
   }],
   // Add the selector and the test for it
   actions: [{
     type: 'add',
     path: '../../app/selectors/{{camelCase name}}Selector.js',
     templateFile: './selector/selector.js.hbs',
-    abortOnFail: true
+    abortOnFail: true,
   }, {
     type: 'add',
     path: '../../app/selectors/tests/{{camelCase name}}Selector.test.js',
     templateFile: './selector/test.js.hbs',
-    abortOnFail: true
-  }]
+    abortOnFail: true,
+  }],
 };

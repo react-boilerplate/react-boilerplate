@@ -36,12 +36,12 @@ describe('<HomePage />', () => {
   it('should render the repositories if loading was successful', () => {
     const repos = [{
       owner: {
-        login: 'mxstbr'
+        login: 'mxstbr',
       },
       html_url: 'https://github.com/mxstbr/react-boilerplate',
       name: 'react-boilerplate',
       open_issues_count: 20,
-      full_name: 'mxstbr/react-boilerplate'
+      full_name: 'mxstbr/react-boilerplate',
     }];
     const renderedComponent = shallow(
       <HomePage

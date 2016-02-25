@@ -15,7 +15,7 @@ module.exports = {
         return componentExists(value) ? true : '"' + value + '" doesn\'t exist.';
       }
       return 'The path is required';
-    }
+    },
   }, {
     type: 'input',
     name: 'path',
@@ -26,14 +26,14 @@ module.exports = {
         return true;
       }
       return 'path is required';
-    }
+    },
   }],
   // Add the route to the routes.js file above the error route
   // TODO smarter route adding
   actions: [{
     type: 'modify',
     path: '../../app/routes.js',
-    pattern: /(\s{\n\s{4}path: '\*')/g,
-    templateFile: './route/route.hbs'
-  }]
+    pattern: /(\s{\n\s{4}path: '\*'\,)/g,
+    templateFile: './route/route.hbs',
+  }],
 };

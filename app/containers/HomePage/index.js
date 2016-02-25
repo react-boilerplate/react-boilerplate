@@ -17,7 +17,7 @@ import errorSelector from 'errorSelector';
 
 import {
   changeUsername,
-  loadRepos
+  loadRepos,
 } from 'App/actions';
 
 import Button from 'Button';
@@ -101,7 +101,7 @@ function mapDispatchToProps(dispatch) {
       evt.preventDefault();
       dispatch(loadRepos());
     },
-    dispatch
+    dispatch,
   };
 }
 
