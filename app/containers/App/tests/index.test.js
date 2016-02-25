@@ -1,4 +1,4 @@
-import { App } from '../index';
+import App from '../index';
 import Footer from 'Footer';
 
 import expect from 'expect';

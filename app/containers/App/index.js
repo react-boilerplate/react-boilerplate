@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
 
 import Img from 'Img';
 import Footer from 'Footer';
@@ -16,7 +15,7 @@ import A from 'A';
 
 import styles from './styles.css';
 
-export class App extends React.Component {
+class App extends React.Component {
   render() {
     return (
       <div className={ styles.wrapper }>
@@ -37,5 +36,4 @@ export class App extends React.Component {
   }
 }
 
-// Wrap the component to inject dispatch and state into it
-export default connect()(App);
+export default App;
