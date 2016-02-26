@@ -15,8 +15,7 @@ module.exports = require('./webpack.base.babel')({
   entry: [
     path.join(__dirname, '../..', 'app/app.js'),
   ],
-
-  // Utilize long-term caching by addign content hashes (not compilation hashes) to compiled assets
+  // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
   output: {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].chunk.js',
@@ -39,7 +38,7 @@ module.exports = require('./webpack.base.babel')({
   ],
   plugins: [
     // OccurrenceOrderPlugin is needed for long-term caching to work properly.
-    // See https://medium.com/@okonetchnikov/long-term-caching-of-static-assets-with-webpack-1ecb139adb95
+    // See http://mxs.is/googmv
     new webpack.optimize.OccurrenceOrderPlugin(true),
     // Merge all duplicate modules
     new webpack.optimize.DedupePlugin(),
