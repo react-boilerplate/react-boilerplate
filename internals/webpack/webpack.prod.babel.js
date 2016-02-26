@@ -16,6 +16,12 @@ module.exports = require('./webpack.base.babel')({
   entry: [
     path.join(__dirname, '../..', 'app/app.js'),
   ],
+
+  // Utilize long-term caching by addign content hashes (not compilation hashes) to compiled assets
+  output: {
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].chunk.js',
+  },
   // We use ExtractTextPlugin so we get a seperate CSS file instead
   // of the CSS being in the JS and injected as a style tag
   cssLoaders: ExtractTextPlugin.extract(
@@ -38,6 +44,11 @@ module.exports = require('./webpack.base.babel')({
     }),
   ],
   plugins: [
+    // OccurrenceOrderPlugin is needed for long-term caching to work properly.
+    // See https://medium.com/@okonetchnikov/long-term-caching-of-static-assets-with-webpack-1ecb139adb95
+    new webpack.optimize.OccurrenceOrderPlugin(true),
+    // Merge all duplicate modules
+    new webpack.optimize.DedupePlugin(),
     // Minify and optimize the JavaScript
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -62,7 +73,7 @@ module.exports = require('./webpack.base.babel')({
       inject: true,
     }),
     // Extract the CSS into a seperate file
-    new ExtractTextPlugin('css/main.css', {
+    new ExtractTextPlugin('[name].[contenthash].css', {
       allChunks: true,
     }),
     // Set the process.env to production so React includes the production

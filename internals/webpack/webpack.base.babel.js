@@ -7,12 +7,10 @@ const webpack = require('webpack');
 
 module.exports = (options) => ({
   entry: options.entry,
-  output: { // Compile into js/build.js
-    path: path.resolve(__dirname, '../..', 'build'),
-    filename: '[name].js',
-    chunkFilename: '[name].chunk.js',
+  output: Object.assign({ // Compile into js/build.js
+    path: path.resolve(__dirname, '..', 'build'),
     publicPath: '/',
-  },
+  }, options.output), // Merge with env dependent settings
   module: {
     loaders: [{
       test: /\.js$/, // Transform all .js files required somewhere with Babel
@@ -22,11 +20,11 @@ module.exports = (options) => ({
     }, {
       test: /\.css$/, // Transform all .css files required somewhere with PostCSS
       exclude: /node_modules/,
-      loader: options.cssLoaders
+      loader: options.cssLoaders,
     }, {
       test: /\.css$/,
       include: /node_modules/,
-      loaders: ['style-loader', 'css-loader']
+      loaders: ['style-loader', 'css-loader'],
     }, {
       test: /\.jpe?g$|\.gif$|\.png$/i,
       loader: 'url-loader?limit=10000',

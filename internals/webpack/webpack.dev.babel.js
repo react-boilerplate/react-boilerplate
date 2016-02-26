@@ -21,6 +21,13 @@ module.exports = require('./webpack.base.babel')({
     'webpack/hot/only-dev-server',
     path.join(__dirname, '../..', 'app/app.js'), // Start with js/app.js
   ],
+
+  // Don't use hashes in dev mode for better performance
+  output: {
+    filename: '[name].js',
+    chunkFilename: '[name].chunk.js',
+  },
+
   // Load the CSS in a style tag in development
   cssLoaders: 'style-loader!css-loader?modules&importLoaders=1&sourceMap!postcss-loader',
   // Process the CSS with PostCSS
