@@ -17,11 +17,16 @@ module.exports = (options) => ({
     loaders: [{
       test: /\.js$/, // Transform all .js files required somewhere with Babel
       loader: 'babel',
-      exclude: path.join(__dirname, '../..', '/node_modules/'),
+      exclude: /node_modules/,
       query: options.babelQuery,
     }, {
       test: /\.css$/, // Transform all .css files required somewhere with PostCSS
-      loader: options.cssLoaders,
+      exclude: /node_modules/,
+      loader: options.cssLoaders
+    }, {
+      test: /\.css$/,
+      include: /node_modules/,
+      loaders: ['style-loader', 'css-loader']
     }, {
       test: /\.jpe?g$|\.gif$|\.png$/i,
       loader: 'url-loader?limit=10000',
