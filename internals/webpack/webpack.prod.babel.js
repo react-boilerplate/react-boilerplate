@@ -9,7 +9,6 @@ const OfflinePlugin = require('offline-plugin');
 const cssnext = require('postcss-cssnext');
 const postcssFocus = require('postcss-focus');
 const postcssReporter = require('postcss-reporter');
-const cssnano = require('cssnano');
 
 module.exports = require('./webpack.base.babel')({
   // In production, we skip all hot-reloading stuff
@@ -33,11 +32,6 @@ module.exports = require('./webpack.base.babel')({
     postcssFocus(),
     cssnext({
       browsers: ['last 2 versions', 'IE > 10'],
-    }),
-    cssnano({
-      autoprefixer: false, // cssnext already runs autoprefixer
-      discardUnused: false, // unsafe, see http://mxs.is/googmr
-      zindex: false, // unsafe, see http://mxs.is/googmq
     }),
     postcssReporter({
       clearMessages: true,
