@@ -70,7 +70,7 @@ module.exports = function(options) {
 
   return {
     entry: entry,
-    output: { // Compile into js/build.js
+    output: { // Compile into js/bundle.js
       path: path.resolve(__dirname, 'build'),
       filename: "js/bundle.js"
     },
