@@ -9,13 +9,17 @@ const OfflinePlugin = require('offline-plugin');
 const cssnext = require('postcss-cssnext');
 const postcssFocus = require('postcss-focus');
 const postcssReporter = require('postcss-reporter');
-const cssnano = require('cssnano');
 
 module.exports = require('./webpack.base.babel')({
   // In production, we skip all hot-reloading stuff
   entry: [
     path.join(process.cwd(), 'app/app.js'),
   ],
+  // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
+  output: {
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].chunk.js',
+  },
   // We use ExtractTextPlugin so we get a seperate CSS file instead
   // of the CSS being in the JS and injected as a style tag
   cssLoaders: ExtractTextPlugin.extract(
@@ -28,16 +32,16 @@ module.exports = require('./webpack.base.babel')({
     cssnext({
       browsers: ['last 2 versions', 'IE > 10'],
     }),
-    cssnano({
-      autoprefixer: false, // cssnext already runs autoprefixer
-      discardUnused: false, // unsafe, see http://mxs.is/googmr
-      zindex: false, // unsafe, see http://mxs.is/googmq
-    }),
     postcssReporter({
       clearMessages: true,
     }),
   ],
   plugins: [
+    // OccurrenceOrderPlugin is needed for long-term caching to work properly.
+    // See http://mxs.is/googmv
+    new webpack.optimize.OccurrenceOrderPlugin(true),
+    // Merge all duplicate modules
+    new webpack.optimize.DedupePlugin(),
     // Minify and optimize the JavaScript
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -62,7 +66,7 @@ module.exports = require('./webpack.base.babel')({
       inject: true,
     }),
     // Extract the CSS into a seperate file
-    new ExtractTextPlugin('css/main.css', {
+    new ExtractTextPlugin('[name].[contenthash].css', {
       allChunks: true,
     }),
     // Set the process.env to production so React includes the production
