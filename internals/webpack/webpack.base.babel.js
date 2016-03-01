@@ -8,7 +8,7 @@ const webpack = require('webpack');
 module.exports = (options) => ({
   entry: options.entry,
   output: { // Compile into js/build.js
-    path: path.resolve(__dirname, '../..', 'build'),
+    path: path.resolve(process.cwd(), 'build'),
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
     publicPath: '/',
@@ -17,7 +17,7 @@ module.exports = (options) => ({
     loaders: [{
       test: /\.js$/, // Transform all .js files required somewhere with Babel
       loader: 'babel',
-      exclude: path.join(__dirname, '../..', '/node_modules/'),
+      exclude: path.join(process.cwd(), 'node_modules'),
       query: options.babelQuery,
     }, {
       test: /\.css$/, // Transform all .css files required somewhere with PostCSS

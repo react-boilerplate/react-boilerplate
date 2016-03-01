@@ -1,4 +1,5 @@
 const webpackConfig = require('../webpack/webpack.test.babel');
+const path = require('path');
 
 module.exports = (config) => {
   config.set({
@@ -39,7 +40,7 @@ module.exports = (config) => {
     },
 
     coverageReporter: {
-      dir: '../../coverage',
+      dir: path.join(process.cwd(), '../../coverage'),
       reporters: [
         { type: 'lcov', subdir: 'lcov' },
         { type: 'html', subdir: 'html' },

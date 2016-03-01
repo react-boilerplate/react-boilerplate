@@ -9,8 +9,7 @@ var fs   = require('fs');
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
 
-// __dirname always is the name of the directory this script sits in, see https://stackoverflow.com/questions/8131344/what-is-the-difference-between-dirname-and-in-node-js
-var dir = path.join(__dirname, '..');
+var dir = process.cwd();
 
 cleanRepo(dir, function () {
   installDeps(function(error) {
