@@ -74,6 +74,7 @@ module.exports = require('./webpack.base.babel')({
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
+        _DEVTOOLS_: JSON.stringify(false),
       },
     }),
     // Put it in the end to capture all the HtmlWebpackPlugin's
