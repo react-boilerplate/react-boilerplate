@@ -74,6 +74,9 @@
     "postcss-reporter": "^1.3.0",
     "psi": "^2.0.2",
     "react-addons-test-utils": "^0.14.6",
+    "redux-devtools": "^3.1.1",
+    "redux-devtools-dock-monitor": "^1.1.0",
+    "redux-devtools-inspector": "^0.1.7",
     "sinon": "^1.17.3",
     "style-loader": "^0.13.0",
     "stylelint": "^4.1.0",
@@ -136,14 +139,23 @@
     },
     "rules": {
       "comma-dangle": 2,
-      "indent": [2, 2, {"SwitchCase": 1}],
+      "indent": [
+        2,
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
       "no-console": 0,
       "react/prop-types": 0,
       "max-len": 0,
       "prefer-template": 0,
       "no-use-before-define": 0,
       "newline-per-chained-call": 0,
-      "arrow-body-style": [2, "as-needed"]
+      "arrow-body-style": [
+        2,
+        "as-needed"
+      ]
     }
   },
   "stylelint": {

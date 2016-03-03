@@ -16,7 +16,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import FontFaceObserver from 'fontfaceobserver';
 import { browserHistory } from 'react-router';
 import { syncHistory } from 'react-router-redux';
@@ -40,13 +40,33 @@ openSansObserver.check().then(() => {
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import '../node_modules/sanitize.css/dist/sanitize.min.css';
 
+// Create and use Redux DevTools
+import { createDevTools } from 'redux-devtools';
+import Inspector from 'redux-devtools-inspector';
+import DockMonitor from 'redux-devtools-dock-monitor';
+
+const _DEVTOOLS_ = process.env._DEVTOOLS_;
+const DevTools = createDevTools(
+  <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q">
+    <Inspector />
+  </DockMonitor>
+);
+
+let devTools = [];
+if (_DEVTOOLS_) {
+  devTools = [DevTools.instrument()];
+}
+
 // Create the store with two middlewares
 // 1. sagaMiddleware: Imports all the asynchronous flows ("sagas") from the
 //    sagas folder and triggers them
 // 2. reduxRouterMiddleware: Syncs the location/URL path to the state
 import rootReducer from './rootReducer';
 import sagas from './sagas';
-const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, sagaMiddleware(...sagas))(createStore);
+const createStoreWithMiddleware = compose(
+  applyMiddleware(reduxRouterMiddleware, sagaMiddleware(...sagas)),
+  ...devTools
+)(createStore);
 const store = createStoreWithMiddleware(rootReducer, fromJS({}));
 reduxRouterMiddleware.listenForReplays(store, (state) => state.get('route').location);
 
@@ -68,11 +88,13 @@ const rootRoute = {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={useScroll(() => browserHistory)()} routes={rootRoute} />
+    <div>
+      <Router history={useScroll(() => browserHistory)()} routes={rootRoute} />
+      { _DEVTOOLS_ ? <DevTools /> : null }
+    </div>
   </Provider>,
   document.getElementById('app')
 );
-
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
 // we do not want it installed
