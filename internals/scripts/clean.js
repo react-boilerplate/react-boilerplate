@@ -52,10 +52,10 @@ cp('internals/templates/routes.js', 'app/routes.js');
 // Remove the templates folder
 rm('-rf', 'internals/templates');
 
-process.stdout.write(' ✓\n');
+process.stdout.write(' ✓');
 
 // Commit the changes
-if (exec('git add . && git commit -m "Remove default example"').code !== 0) {
+if (exec('git add . && git commit -qm "Remove default example"').code !== 0) {
   echo('\nError: Git commit failed');
   exit(1);
 }
