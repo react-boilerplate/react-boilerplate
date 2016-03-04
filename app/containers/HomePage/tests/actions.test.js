@@ -14,7 +14,7 @@ import {
   repoLoadingError,
 } from '../actions';
 
-describe('App Actions', () => {
+describe('Home Actions', () => {
   describe('changeUsername', () => {
     it('should return the correct type and the passed name', () => {
       const fixture = 'Max';

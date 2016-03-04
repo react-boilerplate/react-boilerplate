@@ -8,11 +8,11 @@ import { take, call, put, select } from 'redux-saga/effects';
 import { getGithubData } from '../getGithubData.saga';
 import {
   LOAD_REPOS,
-} from 'App/constants';
+} from 'HomePage/constants';
 import {
   reposLoaded,
   repoLoadingError,
-} from 'App/actions';
+} from 'HomePage/actions';
 import request from '../../utils/request';
 import usernameSelector from 'usernameSelector';
 

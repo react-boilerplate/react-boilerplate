@@ -3,11 +3,11 @@
  */
 
 import { createSelector } from 'reselect';
-import globalSelector from 'globalSelector';
+import homeSelector from 'homeSelector';
 
 const errorSelector = createSelector(
-  globalSelector,
-  (globalState) => globalState.get('error')
+  homeSelector,
+  (homeState) => homeState.get('error')
 );
 
 export default errorSelector;

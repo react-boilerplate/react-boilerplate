@@ -3,11 +3,11 @@
  */
 
 import { createSelector } from 'reselect';
-import globalSelector from 'globalSelector';
+import homeSelector from 'homeSelector';
 
 const loadingSelector = createSelector(
-  globalSelector,
-  (globalState) => globalState.get('loading')
+  homeSelector,
+  (homeState) => homeState.get('loading')
 );
 
 export default loadingSelector;

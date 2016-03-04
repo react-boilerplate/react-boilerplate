@@ -10,7 +10,7 @@ describe('reposSelector', () => {
   it('should select the repos', () => {
     const repositories = fromJS([]);
     const mockedState = fromJS({
-      global: {
+      home: {
         userData: {
           repositories,
         },

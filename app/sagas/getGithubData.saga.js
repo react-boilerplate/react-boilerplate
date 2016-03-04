@@ -4,8 +4,8 @@
 
 /* eslint-disable no-constant-condition */
 
-import { LOAD_REPOS } from 'App/constants';
-import { reposLoaded, repoLoadingError } from 'App/actions';
+import { LOAD_REPOS } from 'HomePage/constants';
+import { reposLoaded, repoLoadingError } from 'HomePage/actions';
 import { take, call, put, select } from 'redux-saga/effects';
 import request from '../utils/request';
 import usernameSelector from 'usernameSelector';

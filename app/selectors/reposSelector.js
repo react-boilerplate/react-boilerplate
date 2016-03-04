@@ -3,11 +3,11 @@
  */
 
 import { createSelector } from 'reselect';
-import globalSelector from 'globalSelector';
+import homeSelector from 'homeSelector';
 
 const reposSelector = createSelector(
-  globalSelector,
-  (globalState) => globalState.getIn(['userData', 'repositories'])
+  homeSelector,
+  (homeState) => homeState.getIn(['userData', 'repositories'])
 );
 
 export default reposSelector;
