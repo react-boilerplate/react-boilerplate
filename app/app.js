@@ -50,7 +50,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: process.env.BASENAME || '',
 });
 // Create redux store and sync react-router-redux
-const initialState = window.__INITIAL_STATE__ || {}
+const initialState = window.__INITIAL_STATE__ || {};
 const middleware =
   applyMiddleware(routerMiddleware(browserHistory), sagaMiddleware(...sagas));
 const store = middleware(createStore)(rootReducer, fromJS(initialState));
