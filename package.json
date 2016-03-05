@@ -94,8 +94,7 @@
     "url": "git://github.com/mxstbr/react-boilerplate.git"
   },
   "scripts": {
-    "start": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run serve-prod; else npm run serve-dev; fi",
-    "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run build; fi",
+    "start": "npm run serve-dev",
     "build": "NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --colors -p",
     "serve-dev": "NODE_ENV=development node server",
     "serve-prod": "NODE_ENV=production node server",
