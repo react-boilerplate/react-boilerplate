@@ -4,7 +4,7 @@
  */
 
 import { combineReducers } from 'redux-immutable';
-import { routeReducer } from 'react-router-redux';
+import { routeReducer } from './routeReducer';
 import globalReducer from 'App/reducer';
 
 export default combineReducers({

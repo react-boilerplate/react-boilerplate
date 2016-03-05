@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { routeActions } from 'react-router-redux';
+import { push } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import { createSelector } from 'reselect';
@@ -96,7 +96,7 @@ export class HomePage extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-    changeRoute: (url) => dispatch(routeActions.push(url)),
+    changeRoute: (url) => dispatch(push(url)),
     onSubmitForm: (evt) => {
       evt.preventDefault();
       dispatch(loadRepos());
