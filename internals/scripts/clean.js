@@ -37,9 +37,15 @@ cp('internals/templates/homePage.js', 'app/components/HomePage/index.js');
 rm('-rf', 'app/sagas/*');
 cp('internals/templates/sagas.js', 'app/sagas/index.js');
 
-// Cleanup selectors folder, leave selectLocationSelection.js
-rm('-Rf', 'app/selectors/tests');
+// Cleanup selectors folder, leave selectLocationSelection(.test).js
 rm('-f', [
+  'app/selectors/tests/currentUserSelector.test.js',
+  'app/selectors/tests/errorSelector.test.js',
+  'app/selectors/tests/globalSelector.test.js',
+  'app/selectors/tests/loadingSelector.test.js',
+  'app/selectors/tests/reposSelector.test.js',
+  'app/selectors/tests/routeSelector.test.js',
+  'app/selectors/tests/usernameSelector.test.js',
   'app/selectors/currentUserSelector.js',
   'app/selectors/errorSelector.js',
   'app/selectors/globalSelector.js',
