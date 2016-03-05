@@ -4,6 +4,9 @@
   "description": "Quick setup for new React.js applications featuring Redux, hot–reloading, PostCSS, react-router and Mocha.",
   "dependencies": {
     "babel-polyfill": "^6.3.14",
+    "compression": "^1.6.1",
+    "connect-history-api-fallback": "^1.1.0",
+    "express": "^4.13.4",
     "fontfaceobserver": "^1.6.3",
     "history": "^2.0.0",
     "immutable": "^3.7.6",
@@ -41,6 +44,7 @@
     "eslint": "^2.0.0",
     "eslint-config-airbnb": "^6.0.0",
     "eslint-plugin-react": "^4.0.0",
+    "eventsource-polyfill": "^0.9.6",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.2",
     "extract-text-webpack-plugin": "^1.0.1",
@@ -74,6 +78,7 @@
     "postcss-reporter": "^1.3.0",
     "psi": "^2.0.2",
     "react-addons-test-utils": "^0.14.6",
+    "sanitize.css": "^3.3.0",
     "shelljs": "^0.6.0",
     "sinon": "^1.17.3",
     "style-loader": "^0.13.0",
@@ -81,16 +86,19 @@
     "stylelint-config-standard": "^3.0.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.11",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-middleware": "^1.5.1",
+    "webpack-hot-middleware": "^2.9.1"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/mxstbr/react-boilerplate.git"
   },
   "scripts": {
-    "start": "NODE_ENV=development node internals/webpack/server.dev.js",
+    "start": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run serve-prod; else npm run serve-dev; fi",
+    "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run build; fi",
     "build": "NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --colors -p",
-    "serve": "NODE_ENV=production node internals/webpack/server.prod.js",
+    "serve-dev": "NODE_ENV=development node server",
+    "serve-prod": "NODE_ENV=production node server",
     "pagespeed": "./internals/scripts/pagespeed",
     "setup": "NODE_ENV=initialisation ./internals/scripts/init",
     "clean": "shjs ./internals/scripts/clean.js",
@@ -138,14 +146,23 @@
     },
     "rules": {
       "comma-dangle": 2,
-      "indent": [2, 2, {"SwitchCase": 1}],
+      "indent": [
+        2,
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
       "no-console": 0,
       "react/prop-types": 0,
       "max-len": 0,
       "prefer-template": 0,
       "no-use-before-define": 0,
       "newline-per-chained-call": 0,
-      "arrow-body-style": [2, "as-needed"]
+      "arrow-body-style": [
+        2,
+        "as-needed"
+      ]
     }
   },
   "stylelint": {

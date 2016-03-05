@@ -38,7 +38,7 @@ openSansObserver.check().then(() => {
 });
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
-import '../node_modules/sanitize.css/dist/sanitize.min.css';
+import '../node_modules/sanitize.css/sanitize.css';
 
 // Create the store with two middlewares
 // 1. sagaMiddleware: Imports all the asynchronous flows ("sagas") from the
