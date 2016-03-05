@@ -1,8 +1,10 @@
+/* eslint consistent-return:0 */
+
 const express = require('express');
-const logger = require('./lib/logger');
+const logger = require('./internals/server/logger');
 const ngrok = require('ngrok');
 
-const frontend = require('./middlewares/frontend');
+const frontend = require('./internals/server/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
 
 const app = express();
@@ -13,8 +15,8 @@ const app = express();
 
 // Initialize frontend middleware that will server your JS app
 const webpackConfig = isDev
-  ? require('../internals/webpack/webpack.dev.babel')
-  : require('../internals/webpack/webpack.prod.babel');
+  ? require('./internals/webpack/webpack.dev.babel')
+  : require('./internals/webpack/webpack.prod.babel');
 
 app.use(frontend(webpackConfig));
 
