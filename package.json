@@ -138,23 +138,14 @@
     },
     "rules": {
       "comma-dangle": 2,
-      "indent": [
-        2,
-        2,
-        {
-          "SwitchCase": 1
-        }
-      ],
+      "indent": [2, 2, {"SwitchCase": 1}],
       "no-console": 0,
       "react/prop-types": 0,
       "max-len": 0,
       "prefer-template": 0,
       "no-use-before-define": 0,
       "newline-per-chained-call": 0,
-      "arrow-body-style": [
-        2,
-        "as-needed"
-      ]
+      "arrow-body-style": [2, "as-needed"]
     }
   },
   "stylelint": {

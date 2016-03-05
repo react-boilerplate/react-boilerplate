@@ -15,14 +15,15 @@ import 'file?name=[name].[ext]!./.htaccess';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
-import { Router, useRouterHistory } from 'react-router';
+import { Router, browserHistory } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import useScroll from 'scroll-behavior/lib/useScrollToTop';
 import { fromJS } from 'immutable';
 import sagaMiddleware from 'redux-saga';
+
+import selectLocationSelector from 'selectLocationSelector';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -45,17 +46,12 @@ import '../node_modules/sanitize.css/dist/sanitize.min.css';
 // 2. routerMiddleware: Syncs the location/URL path to the state
 import rootReducer from './rootReducer';
 import sagas from './sagas';
-// Configure history for react-router
-const browserHistory = useRouterHistory(createBrowserHistory)({
-  basename: process.env.BASENAME || '',
-});
-// Create redux store and sync react-router-redux
-const initialState = window.__INITIAL_STATE__ || {};
-const middleware =
-  applyMiddleware(routerMiddleware(browserHistory), sagaMiddleware(...sagas));
-const store = middleware(createStore)(rootReducer, fromJS(initialState));
+const createStoreWithMiddleware = applyMiddleware(
+  routerMiddleware(browserHistory), sagaMiddleware(...sagas)
+)(createStore);
+const store = createStoreWithMiddleware(rootReducer, fromJS({}));
 const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState: (state) => state.get('route').toJS(),
+  selectLocationState: selectLocationSelector,
 });
 
 // Make reducers hot reloadable, see http://mxs.is/googmo

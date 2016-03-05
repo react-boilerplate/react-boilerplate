@@ -37,16 +37,26 @@ cp('internals/templates/homePage.js', 'app/components/HomePage/index.js');
 rm('-rf', 'app/sagas/*');
 cp('internals/templates/sagas.js', 'app/sagas/index.js');
 
-// Cleanup selectors folder
-rm('-rf', 'app/selectors/*');
+// Cleanup selectors folder, leave selectLocationSelection.js
+rm('-Rf', 'app/selectors/tests');
+rm('-f', [
+  'app/selectors/currentUserSelector.js',
+  'app/selectors/errorSelector.js',
+  'app/selectors/globalSelector.js',
+  'app/selectors/loadingSelector.js',
+  'app/selectors/reposSelector.js',
+  'app/selectors/routeSelector.js',
+  'app/selectors/usernameSelector.js',
+]);
 
 // Delete utils folder
 rm('-rf', 'app/utils');
 
-// Replace app.js, index.html, rootReducer.js and routes.js
+// Replace app.js, index.html, rootReducer.js, routeReducer.js and routes.js
 cp('internals/templates/app.js', 'app/app.js');
 cp('internals/templates/index.html', 'app/index.html');
 cp('internals/templates/rootReducer.js', 'app/rootReducer.js');
+cp('internals/templates/routeReducer.js', 'app/routeReducer.js');
 cp('internals/templates/routes.js', 'app/routes.js');
 
 // Remove the templates folder
