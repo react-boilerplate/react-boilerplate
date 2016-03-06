@@ -38,22 +38,12 @@ rm('-rf', 'app/sagas/*');
 cp('internals/templates/sagas.js', 'app/sagas/index.js');
 
 // Cleanup selectors folder, leave selectLocationSelection(.test).js
-rm('-f', [
-  'app/selectors/tests/currentUserSelector.test.js',
-  'app/selectors/tests/errorSelector.test.js',
-  'app/selectors/tests/globalSelector.test.js',
-  'app/selectors/tests/loadingSelector.test.js',
-  'app/selectors/tests/reposSelector.test.js',
-  'app/selectors/tests/routeSelector.test.js',
-  'app/selectors/tests/usernameSelector.test.js',
-  'app/selectors/currentUserSelector.js',
-  'app/selectors/errorSelector.js',
-  'app/selectors/globalSelector.js',
-  'app/selectors/loadingSelector.js',
-  'app/selectors/reposSelector.js',
-  'app/selectors/routeSelector.js',
-  'app/selectors/usernameSelector.js',
-]);
+rm('-rf', 'app/selectors/*');
+mkdir('-p', 'app/selectors/tests');
+cp('internals/templates/selectLocationSelector.js',
+  'app/selectors/selectLocationSelector.js');
+cp('internals/templates/selectLocationSelector.test.js',
+  'app/selectors/tests/selectLocationSelector.test.js');
 
 // Delete utils folder
 rm('-rf', 'app/utils');
@@ -64,6 +54,7 @@ cp('internals/templates/index.html', 'app/index.html');
 cp('internals/templates/rootReducer.js', 'app/rootReducer.js');
 cp('internals/templates/routeReducer.js', 'app/routeReducer.js');
 cp('internals/templates/routes.js', 'app/routes.js');
+
 
 // Remove the templates folder
 rm('-rf', 'internals/templates');
