@@ -10,7 +10,7 @@ describe('currentUserSelector', () => {
   it('should select the current user', () => {
     const currentUser = 'mxstbr';
     const mockedState = fromJS({
-      home: {
+      global: {
         currentUser,
       },
     });

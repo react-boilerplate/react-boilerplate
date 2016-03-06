@@ -11,9 +11,7 @@ describe('usernameSelector', () => {
     const username = 'mxstbr';
     const mockedState = fromJS({
       home: {
-        userData: {
-          username,
-        },
+        username,
       },
     });
     expect(usernameSelector(mockedState)).toEqual(username);

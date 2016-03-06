@@ -4,8 +4,8 @@
 
 /* eslint-disable no-constant-condition */
 
-import { LOAD_REPOS } from 'HomePage/constants';
-import { reposLoaded, repoLoadingError } from 'HomePage/actions';
+import { LOAD_REPOS } from 'App/constants';
+import { reposLoaded, repoLoadingError } from 'App/actions';
 import { take, call, put, select } from 'redux-saga/effects';
 import request from '../utils/request';
 import usernameSelector from 'usernameSelector';
@@ -19,7 +19,7 @@ export function* getGithubData() {
     const repos = yield call(request, requestURL);
     // We return an object in a specific format, see utils/request.js for more information
     if (repos.err === undefined || repos.err === null) {
-      yield put(reposLoaded(repos.data));
+      yield put(reposLoaded(repos.data, username));
     } else {
       console.log(repos.err.response);
       yield put(repoLoadingError(repos.err));

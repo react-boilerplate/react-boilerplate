@@ -7,7 +7,7 @@ import homeSelector from 'homeSelector';
 
 const usernameSelector = createSelector(
   homeSelector,
-  (homeState) => homeState.getIn(['userData', 'username'])
+  (homeState) => homeState.get('username')
 );
 
 export default usernameSelector;

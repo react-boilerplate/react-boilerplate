@@ -17,8 +17,11 @@ import errorSelector from 'errorSelector';
 
 import {
   changeUsername,
-  loadRepos,
 } from './actions';
+
+import {
+  loadRepos,
+} from '../App/actions';
 
 import Button from 'Button';
 import H1 from 'H1';

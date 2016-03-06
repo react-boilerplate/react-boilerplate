@@ -10,7 +10,7 @@ describe('loadingSelector', () => {
   it('should select the loading', () => {
     const loading = false;
     const mockedState = fromJS({
-      home: {
+      global: {
         loading,
       },
     });
