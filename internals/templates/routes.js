@@ -5,22 +5,22 @@
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the require.ensure code splitting business
 
-const routes = [
-  {
-    path: '/',
-    getComponent: function get(location, cb) {
-      require.ensure([], (require) => {
-        cb(null, require('HomePage').default);
-      }, 'HomePage');
+export default function createRoutes(store) { // eslint-disable-line
+  return [
+    {
+      path: '/',
+      getComponent: function get(location, cb) {
+        require.ensure([], (require) => {
+          cb(null, require('HomePage').default);
+        }, 'HomePage');
+      },
+    }, {
+      path: '*',
+      getComponent: function get(location, cb) {
+        require.ensure([], (require) => {
+          cb(null, require('NotFoundPage').default);
+        }, 'NotFoundPage');
+      },
     },
-  }, {
-    path: '*',
-    getComponent: function get(location, cb) {
-      require.ensure([], (require) => {
-        cb(null, require('NotFoundPage').default);
-      }, 'NotFoundPage');
-    },
-  },
-];
-
-export default routes;
+  ];
+}
