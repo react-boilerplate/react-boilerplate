@@ -145,7 +145,8 @@
       "prefer-template": 0,
       "no-use-before-define": 0,
       "newline-per-chained-call": 0,
-      "arrow-body-style": [2, "as-needed"]
+      "arrow-body-style": [2, "as-needed"],
+      "react/prefer-stateless-function": 0
     }
   },
   "stylelint": {
