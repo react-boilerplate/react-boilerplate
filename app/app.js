@@ -34,7 +34,7 @@ openSansObserver.check().then(() => {
 });
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
-import '../node_modules/sanitize.css/dist/sanitize.min.css';
+import '../node_modules/sanitize.css/sanitize.css';
 
 const store = configureStore();
 

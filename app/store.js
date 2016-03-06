@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import sagaMiddleware from 'redux-saga';
 import { syncHistory } from 'react-router-redux';
@@ -12,7 +12,10 @@ export default function configureStore(initialState = {}) {
   // 1. sagaMiddleware: Imports all the asynchronous flows ("sagas") from the
   //    sagas folder and triggers them
   // 2. reduxRouterMiddleware: Syncs the location/URL path to the state
-  const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware, sagaMiddleware(...sagas))(createStore);
+  const createStoreWithMiddleware = compose(
+    applyMiddleware(reduxRouterMiddleware, sagaMiddleware(...sagas)),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )(createStore);
   const store = createStoreWithMiddleware(createReducer(), fromJS(initialState));
   reduxRouterMiddleware.listenForReplays(store, (state) => state.get('route').location);
 
