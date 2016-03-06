@@ -5,7 +5,7 @@
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the require.ensure code splitting business
 
-export default function createRoutes(store) {
+export default function createRoutes(store) { // eslint-disable-line
   return [
     {
       path: '/',
