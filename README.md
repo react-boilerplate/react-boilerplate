@@ -15,19 +15,25 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors
 
 ## Features
 
-- Using [**react-transform-hmr**](https://github.com/gaearon/react-transform-hmr), your changes in the CSS and JS get reflected in the app instantly without refreshing the page. That means that the **current application state persists** even when you change something in the underlying code! For a very good explanation and demo watch Dan Abramov himself [talking about it at react-europe](https://www.youtube.com/watch?v=xsSnOQynTHs).
+- **Instant feedback** Enjoy the best DX and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!
 
-- [**Redux**](https://github.com/gaearon/redux) is a much better implementation of a flux–like, unidirectional data flow. Redux makes actions composable, reduces the boilerplate code and makes hot–reloading possible in the first place. For a good overview of redux check out the talk linked above or the [official documentation](https://gaearon.github.io/redux/)!
+- **Predictable state management** with unidirectional data flow and time travel debugging.
 
-- [**PostCSS**](https://github.com/postcss/postcss) is like Sass, but modular and capable of much more. Using an array of plugins, we automatically prefix our CSS with the necessary vendor prefixes, are able to use as-of-yet-unreleased CSS4 features (variables, custom media queries,...) and much more awesome things.
+- **Next generation JavaScript** use string templating, object destructuring, arrow functions, JSX syntax and more, today.
 
-- [**CSS Modules**](https://github.com/css-modules/css-modules) make our styles component specific. When building our application, all class names are scoped and become completely unique to the component. This means the end of global CSS and `!important` rules, and the beginning of a new era of CSS.
+- **Next generation CSS**. Write composable CSS that's co-located with your components for complete modularity. Unique generated class names keep the  specificity low while eliminating clashes. Ship only the styles that are on the page for the best performance.
 
-- [**Karma**](https://github.com/karma-runner/karma) in combination with [**Mocha**](https://github.com/mochajs/mocha) verify that our application is working exactly how it should without us lifting a single finger. Congratulations, you just won a First Class ticket to world domination, fasten your seat belt please!
+- **Industry-standard routing** It's natural to think of your site as a series of loosely-coupled mini applications: routing makes this possible.
 
-- [**react-router**](https://github.com/rackt/react-router) is used for routing in this boilerplate. Since the URL the user is visiting is in reality a part of the application state, we use [**react-router-redux**](https://github.com/rackt/react-router-redux) to bind the current route to our application state.
+- **Offline-first** The next frontier in performant web apps: availability without a network connection as soon as the website has been loaded once.
 
-- [**ServiceWorker**](http://www.html5rocks.com/en/tutorials/service-worker/introduction/) and [**AppCache**](http://www.html5rocks.com/en/tutorials/appcache/beginner/) make it possible to use your application offline. As soon as the website has been opened once, it is cached and available without a network connection. [**`manifest.json`**](https://developer.chrome.com/multidevice/android/installtohomescreen) makes it so users can add the website to the homescreen and use it like a native app!
+But wait... there's more!
+
+  - **Built-in unit testing** the only way to guarantee code quality
+  - **Native web app** functionality: your app's new home is the homescreen
+  - **The fastest fonts** say goodbye to vacant text
+
+**Coming soon!** render server-side for the most performant, accessible user experience possible.
 
 ## Documentation
 
