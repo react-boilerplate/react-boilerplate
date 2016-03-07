@@ -15,6 +15,11 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr)!
 
 -----
 
+Version 3.0 is actively being developed on the [v3.0.0 branch], please check it out and leave feedback!
+(PRs on `master` are not going to be merged.)
+
+[v3.0.0 branch]: https://github.com/mxstbr/react-boilerplate/tree/v3.0.0
+
 ## Features
 
 - Using [**react-transform-hmr**](https://github.com/gaearon/react-transform-hmr), your changes in the CSS and JS get reflected in the app instantly without refreshing the page. That means that the **current application state persists** even when you change something in the underlying code! For a very good explanation and demo, watch Dan Abramov himself [talking about it at react-europe](https://www.youtube.com/watch?v=xsSnOQynTHs).
@@ -93,13 +98,13 @@ For a full explanation of all files in the root folder, see [`docs/FILES.md`](do
 
 If you simply use web fonts in your project, the page will stay blank until these fonts are downloaded. That means a lot of waiting time in which users could already read the content.
 
-[FontFaceObserver](https://github.com/bramstein/fontfaceobserver) adds a `js-<font-name>-loaded` class to the `body` when the fonts have loaded. You should specify an initial `font-family` with save fonts on the `body`, and a `.js-<font-name>-loaded` `font-family` which includes your web font. See [app.js](js/app.js#L17-L25) and [base.css](css/base/_base.css#L26-L32).
+[FontFaceObserver](https://github.com/bramstein/fontfaceobserver) adds a `js-<font-name>-loaded` class to the `body` when the fonts have loaded. You should specify an initial `font-family` with safe fonts on the `body`, and a `.js-<font-name>-loaded` `font-family` which includes your web font. See [app.js](js/app.js#L17-L25) and [base.css](css/base/_base.css#L26-L32).
 
 #### Adding a new font
 
 1. Either add the `@font-face` declaration to `base/_fonts.css` or add a `<link>` tag to the [`index.html`](index.html). (Don't forget to remove the `<link>` for Open Sans from the [`index.html`](index.html))
 
-2. In `base/_base.css`, specify your initial `font-family` in the `body` tag with only save fonts. In the `body.js-<font-name>-loaded` tag, specify your `font-family` stack with your web font.
+2. In `base/_base.css`, specify your initial `font-family` in the `body` tag with only safe fonts. In the `body.js-<font-name>-loaded` tag, specify your `font-family` stack with your web font.
 
 3. In `js/app.js` add a `<font-name>Observer` for your font.
 
