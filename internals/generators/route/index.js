@@ -33,7 +33,7 @@ module.exports = {
   actions: [{
     type: 'modify',
     path: '../../app/routes.js',
-    pattern: /(\s{\n\s{4}path: '\*'\,)/g,
+    pattern: /(\s{\n\s{6}path: '\*'\,)/g,
     templateFile: './route/route.hbs',
   }],
 };

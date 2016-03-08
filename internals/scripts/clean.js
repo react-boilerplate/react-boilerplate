@@ -27,11 +27,11 @@ rm('-rf', 'app/components/*');
 // Cleanup containers folder
 rm('-rf', 'app/containers/*');
 mkdir('app/containers/App');
-mkdir('app/components/NotFoundPage');
-mkdir('app/components/HomePage');
+mkdir('app/containers/NotFoundPage');
+mkdir('app/containers/HomePage');
 cp('internals/templates/appContainer.js', 'app/containers/App/index.js');
-cp('internals/templates/notFoundPage.js', 'app/components/NotFoundPage/index.js');
-cp('internals/templates/homePage.js', 'app/components/HomePage/index.js');
+cp('internals/templates/notFoundPage.js', 'app/containers/NotFoundPage/index.js');
+cp('internals/templates/homePage.js', 'app/containers/HomePage/index.js');
 
 // Cleanup sagas folder
 rm('-rf', 'app/sagas/*');
@@ -48,12 +48,13 @@ cp('internals/templates/selectLocationSelector.test.js',
 // Delete utils folder
 rm('-rf', 'app/utils');
 
-// Replace app.js, index.html, rootReducer.js, routeReducer.js and routes.js
+// Replace app.js, index.html, rootReducer.js, routeReducer.js, routes.js and store.js
 cp('internals/templates/app.js', 'app/app.js');
 cp('internals/templates/index.html', 'app/index.html');
 cp('internals/templates/rootReducer.js', 'app/rootReducer.js');
 cp('internals/templates/routeReducer.js', 'app/routeReducer.js');
 cp('internals/templates/routes.js', 'app/routes.js');
+cp('internals/templates/store.js', 'app/store.js');
 
 
 // Remove the templates folder

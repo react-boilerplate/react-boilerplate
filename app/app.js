@@ -16,12 +16,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
-import { createStore, applyMiddleware } from 'redux';
-import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import useScroll from 'scroll-behavior/lib/useScrollToTop';
-import { fromJS } from 'immutable';
-import sagaMiddleware from 'redux-saga';
+import configureStore from './store';
 
 import selectLocationSelector from 'selectLocationSelector';
 
@@ -38,36 +36,28 @@ openSansObserver.check().then(() => {
 });
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
-import '../node_modules/sanitize.css/dist/sanitize.min.css';
+import '../node_modules/sanitize.css/sanitize.css';
 
-// Create the store with two middlewares
-// 1. sagaMiddleware: Imports all the asynchronous flows ("sagas") from the
-//    sagas folder and triggers them
-// 2. routerMiddleware: Syncs the location/URL path to the state
-import rootReducer from './rootReducer';
-import sagas from './sagas';
-const createStoreWithMiddleware = applyMiddleware(
-  routerMiddleware(browserHistory), sagaMiddleware(...sagas)
-)(createStore);
-const store = createStoreWithMiddleware(rootReducer, fromJS({}));
+// Create redux store with history
+// this uses the singleton browserHistory provided by react-router
+// Optionally, this could be changed to leverage a created history
+// e.g. `const browserHistory = useRouterHistory(createBrowserHistory)();`
+const initialState = {};
+const store = configureStore(initialState, browserHistory);
+
+// Sync history and store, as the react-router-redux reducer
+// is under the non-default key ("routing"), selectLocationState
+// must be provided for resolving how to retrieve the "route" in the state
 const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: selectLocationSelector,
 });
 
-// Make reducers hot reloadable, see http://mxs.is/googmo
-if (module.hot) {
-  module.hot.accept('./rootReducer', () => {
-    const nextRootReducer = require('./rootReducer').default;
-    store.replaceReducer(nextRootReducer);
-  });
-}
-
 // Set up the router, wrapping all Routes in the App component
 import App from 'App';
-import routes from './routes';
+import createRoutes from './routes';
 const rootRoute = {
   component: App,
-  childRoutes: routes,
+  childRoutes: createRoutes(store),
 };
 
 ReactDOM.render(

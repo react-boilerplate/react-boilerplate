@@ -17,7 +17,7 @@
     "redux-immutable": "^3.0.3",
     "redux-saga": "^0.9.1",
     "reselect": "^2.0.2",
-    "sanitize.css": "^3.0.0",
+    "sanitize.css": "^3.3.0",
     "scroll-behavior": "^0.3.2"
   },
   "devDependencies": {
@@ -145,7 +145,8 @@
       "prefer-template": 0,
       "no-use-before-define": 0,
       "newline-per-chained-call": 0,
-      "arrow-body-style": [2, "as-needed"]
+      "arrow-body-style": [2, "as-needed"],
+      "react/prefer-stateless-function": 0
     }
   },
   "stylelint": {
