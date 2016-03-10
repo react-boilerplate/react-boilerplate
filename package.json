@@ -12,12 +12,12 @@
     "react-pure-render": "^1.0.2",
     "react-redux": "^4.0.6",
     "react-router": "^2.0.0-rc5",
-    "react-router-redux": "^3.0.0",
+    "react-router-redux": "^4.0.0",
     "redux": "^3.0.5",
     "redux-immutable": "^3.0.3",
     "redux-saga": "^0.9.1",
     "reselect": "^2.0.2",
-    "sanitize.css": "^3.0.0",
+    "sanitize.css": "^3.3.0",
     "scroll-behavior": "^0.3.2"
   },
   "devDependencies": {

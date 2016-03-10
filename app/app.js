@@ -15,11 +15,13 @@ import 'file?name=[name].[ext]!./.htaccess';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
+import { Router, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
-import { browserHistory } from 'react-router';
 import useScroll from 'scroll-behavior/lib/useScrollToTop';
 import configureStore from './store';
+
+import selectLocationSelector from 'selectLocationSelector';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -36,7 +38,19 @@ openSansObserver.check().then(() => {
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import '../node_modules/sanitize.css/sanitize.css';
 
-const store = configureStore();
+// Create redux store with history
+// this uses the singleton browserHistory provided by react-router
+// Optionally, this could be changed to leverage a created history
+// e.g. `const browserHistory = useRouterHistory(createBrowserHistory)();`
+const initialState = {};
+const store = configureStore(initialState, browserHistory);
+
+// Sync history and store, as the react-router-redux reducer
+// is under the non-default key ("routing"), selectLocationState
+// must be provided for resolving how to retrieve the "route" in the state
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState: selectLocationSelector,
+});
 
 // Set up the router, wrapping all Routes in the App component
 import App from 'App';
@@ -48,7 +62,7 @@ const rootRoute = {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={useScroll(() => browserHistory)()} routes={rootRoute} />
+    <Router history={useScroll(() => history)()} routes={rootRoute} />
   </Provider>,
   document.getElementById('app')
 );
