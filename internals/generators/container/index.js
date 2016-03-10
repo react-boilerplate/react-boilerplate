@@ -134,13 +134,13 @@ module.exports = {
       actions.push({ // Add the reducer to the rootReducer
         type: 'modify',
         path: '../../app/rootReducer.js',
-        pattern: /(\n}\);)/gi,
-        template: '\n  {{camelCase name}}: {{camelCase name}}Reducer,$1',
+        pattern: /(\.\.\.asyncReducers,\n {2}}\);)/gi,
+        template: '{{camelCase name}}: {{camelCase name}}Reducer,\n    $1',
       });
       actions.push({
         type: 'modify',
         path: '../../app/rootReducer.js',
-        pattern: /(\n\nexport default combineReducers)/gi,
+        pattern: /(\n\nexport default function createReducer)/gi,
         template: '\nimport {{camelCase name}}Reducer from \'{{properCase name}}/reducer\';$1',
       });
     }
