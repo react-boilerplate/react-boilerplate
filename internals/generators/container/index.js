@@ -131,17 +131,17 @@ module.exports = {
         templateFile: './container/reducer.test.js.hbs',
         abortOnFail: true,
       });
-      actions.push({ // Add the reducer to the rootReducer
+      actions.push({ // Add the reducer to the reducer.js file
         type: 'modify',
-        path: '../../app/rootReducer.js',
+        path: '../../app/reducers.js',
         pattern: /(\.\.\.asyncReducers,\n {2}}\);)/gi,
         template: '{{camelCase name}}: {{camelCase name}}Reducer,\n    $1',
       });
       actions.push({
         type: 'modify',
-        path: '../../app/rootReducer.js',
-        pattern: /(\n\nexport default function createReducer)/gi,
-        template: '\nimport {{camelCase name}}Reducer from \'{{properCase name}}/reducer\';$1',
+        path: '../../app/reducers.js',
+        pattern: /(export default function createReducer)/gi,
+        template: 'import {{camelCase name}}Reducer from \'{{properCase name}}/reducer\';\n$1',
       });
     }
 
