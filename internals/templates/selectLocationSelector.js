@@ -6,7 +6,7 @@ const createSelectLocationState = () => {
   return (state) => {
     const routingState = state.get('route'); // or state.route
 
-    if (routingState.equals(prevRoutingState) === false) {
+    if (!routingState.equals(prevRoutingState)) {
       prevRoutingState = routingState;
       prevRoutingStateJS = routingState.toJS();
     }
