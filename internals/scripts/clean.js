@@ -51,8 +51,7 @@ rm('-rf', 'app/utils');
 // Replace app.js, index.html, rootReducer.js, routeReducer.js, routes.js and store.js
 cp('internals/templates/app.js', 'app/app.js');
 cp('internals/templates/index.html', 'app/index.html');
-cp('internals/templates/rootReducer.js', 'app/rootReducer.js');
-cp('internals/templates/routeReducer.js', 'app/routeReducer.js');
+cp('internals/templates/reducers.js', 'app/reducers.js');
 cp('internals/templates/routes.js', 'app/routes.js');
 cp('internals/templates/store.js', 'app/store.js');
 

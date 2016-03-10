@@ -3,7 +3,7 @@ import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import sagaMiddleware from 'redux-saga';
 import sagas from './sagas';
-import createReducer from './rootReducer';
+import createReducer from './reducers';
 
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
@@ -18,8 +18,8 @@ export default function configureStore(initialState = {}, history) {
 
 // Make reducers hot reloadable, see http://mxs.is/googmo
   if (module.hot) {
-    module.hot.accept('./rootReducer', () => {
-      const nextRootReducer = require('./rootReducer').default;
+    module.hot.accept('./reducers', () => {
+      const nextRootReducer = require('./reducers').default;
       store.replaceReducer(nextRootReducer);
     });
   }
