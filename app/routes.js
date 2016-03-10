@@ -12,12 +12,7 @@ export default function createRoutes(store) {
       path: '/',
       getComponent: function get(location, cb) {
         require.ensure([], (require) => {
-          // only run this once;
-          // as the store and history sync will get into infinite loop
-          if (!store.asyncReducers.home) {
-            const homeReducer = require('HomePage/reducer').default;
-            injectAsyncReducer(store, 'home', homeReducer);
-          }
+          injectAsyncReducer(store, 'home', require('HomePage/reducer').default);
           cb(null, require('HomePage').default);
         }, 'HomePage');
       },
