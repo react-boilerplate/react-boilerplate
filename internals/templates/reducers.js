@@ -15,17 +15,13 @@ import { LOCATION_CHANGE } from 'react-router-redux';
  *
  */
 
-// Initial state
+// Initial routing state
 const routeInitialState = fromJS({
   locationBeforeTransitions: null,
 });
 
 /**
- * merge route state into immutable
- *
- * @param {object} state = routeInitialState
- * @param {object} action
- * @returns {object}
+ * Merge route into the global application state
  */
 function routeReducer(state = routeInitialState, action) {
   switch (action.type) {
@@ -38,6 +34,9 @@ function routeReducer(state = routeInitialState, action) {
   }
 }
 
+/**
+ * Creates the main reducer with the asynchronously loaded ones
+ */
 export default function createReducer(asyncReducers) {
   return combineReducers({
     route: routeReducer,
