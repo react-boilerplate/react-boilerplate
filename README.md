@@ -17,23 +17,21 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors
 
 - **Instant feedback** Enjoy the best DX and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!
 
-- **Predictable state management** with unidirectional data flow and time travel debugging.
+- **Predictable state management** A unidirectional data flow allows for change logging and time travel debugging.
 
-- **Next generation JavaScript** use string templating, object destructuring, arrow functions, JSX syntax and more, today.
+- **Next generation JavaScript** Use string templates, object destructuring, arrow functions, JSX syntax and more, today.
 
-- **Next generation CSS**. Write composable CSS that's co-located with your components for complete modularity. Unique generated class names keep the  specificity low while eliminating clashes. Ship only the styles that are on the page for the best performance.
+- **Next generation CSS**. Write composable CSS that's co-located with your components for complete modularity. Unique generated class names keep the specificity low while eliminating style clashes.
 
-- **Industry-standard routing** It's natural to think of your site as a series of loosely-coupled mini applications: routing makes this possible.
+- **Industry-standard routing** It's natural to want to add pages (e.g. `/about`) to your application, and routing makes this possible.
 
-- **Offline-first** The next frontier in performant web apps: availability without a network connection as soon as the website has been loaded once.
+- **Offline-first** The next frontier in performant web apps: availability without a network connection as soon as the website was loaded once.
 
 But wait... there's more!
 
-  - **Built-in unit testing** the only way to guarantee code quality
-  - **Native web app** functionality: your app's new home is the homescreen
-  - **The fastest fonts** say goodbye to vacant text
-
-**Coming soon!** render server-side for the most performant, accessible user experience possible.
+  - **Built-in unit testing** Automatically guarantee code quality and non-breaking changes.
+  - **Native web app** Your app's new home? The homescreen of your users phone.
+  - **The fastest fonts** Say goodbye to vacant text.
 
 ## Documentation
 
