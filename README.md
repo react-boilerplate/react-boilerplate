@@ -17,15 +17,15 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors
 
 - **Instant feedback** Enjoy the best DX and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!
 
-- **Predictable state management** A unidirectional data flow allows for change logging and time travel debugging.
+- **Predictable state management** Unidirectional data flow allows for change logging and time travel debugging.
 
-- **Next generation JavaScript** Use string templates, object destructuring, arrow functions, JSX syntax and more, today.
+- **Next generation JavaScript** Use template strings, object destructuring, arrow functions, JSX syntax and more, today.
 
 - **Next generation CSS**. Write composable CSS that's co-located with your components for complete modularity. Unique generated class names keep the specificity low while eliminating style clashes.
 
 - **Industry-standard routing** It's natural to want to add pages (e.g. `/about`) to your application, and routing makes this possible.
 
-- **Offline-first** The next frontier in performant web apps: availability without a network connection as soon as the website was loaded once.
+- **Offline-first** The next frontier in performant web apps: availability without a network connection from the instant your users load the app.
 
 But wait... there's more!
 
