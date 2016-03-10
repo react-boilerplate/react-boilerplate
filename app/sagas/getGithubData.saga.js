@@ -19,7 +19,7 @@ export function* getGithubData() {
     const repos = yield call(request, requestURL);
     // We return an object in a specific format, see utils/request.js for more information
     if (repos.err === undefined || repos.err === null) {
-      yield put(reposLoaded(repos.data));
+      yield put(reposLoaded(repos.data, username));
     } else {
       console.log(repos.err.response);
       yield put(repoLoadingError(repos.err));

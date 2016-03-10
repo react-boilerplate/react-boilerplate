@@ -11,7 +11,6 @@
  */
 
 import {
-  CHANGE_USERNAME,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
@@ -25,16 +24,11 @@ const initialState = fromJS({
   currentUser: false,
   userData: fromJS({
     repositories: false,
-    username: '',
   }),
 });
 
-function globalReducer(state = initialState, action) {
+function homeReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_USERNAME:
-      // Delete prefixed '@' from the github username
-      return state
-        .setIn(['userData', 'username'], action.name.replace(/@/gi, ''));
     case LOAD_REPOS:
       return state
         .set('loading', 'true')
@@ -44,7 +38,7 @@ function globalReducer(state = initialState, action) {
       return state
         .setIn(['userData', 'repositories'], action.repos)
         .set('loading', false)
-        .set('currentUser', state.getIn(['userData', 'username']));
+        .set('currentUser', action.username);
     case LOAD_REPOS_ERROR:
       return state
         .set('error', action.error)
@@ -54,4 +48,4 @@ function globalReducer(state = initialState, action) {
   }
 }
 
-export default globalReducer;
+export default homeReducer;

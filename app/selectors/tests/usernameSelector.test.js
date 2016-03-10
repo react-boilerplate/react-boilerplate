@@ -10,10 +10,8 @@ describe('usernameSelector', () => {
   it('should select the username', () => {
     const username = 'mxstbr';
     const mockedState = fromJS({
-      global: {
-        userData: {
-          username,
-        },
+      home: {
+        username,
       },
     });
     expect(usernameSelector(mockedState)).toEqual(username);
