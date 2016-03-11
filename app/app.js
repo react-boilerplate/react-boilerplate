@@ -5,6 +5,7 @@
  * code.
  */
 
+// Needed for redux-saga es6 generator support
 import 'babel-polyfill';
 
 // Load the manifest.json file and the .htaccess file
@@ -20,8 +21,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import useScroll from 'scroll-behavior/lib/useScrollToTop';
 import configureStore from './store';
-
-import selectLocationSelector from 'selectLocationSelector';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -48,6 +47,7 @@ const store = configureStore(initialState, browserHistory);
 // Sync history and store, as the react-router-redux reducer
 // is under the non-default key ("routing"), selectLocationState
 // must be provided for resolving how to retrieve the "route" in the state
+import selectLocationSelector from 'selectLocationSelector';
 const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: selectLocationSelector,
 });

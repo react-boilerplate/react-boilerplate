@@ -1,3 +1,7 @@
+/**
+ * Create the store with asynchronously loaded reducers
+ */
+
 import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
@@ -16,7 +20,7 @@ export default function configureStore(initialState = {}, history) {
   )(createStore);
   const store = createStoreWithMiddleware(createReducer(), fromJS(initialState));
 
-// Make reducers hot reloadable, see http://mxs.is/googmo
+  // Make reducers hot reloadable, see http://mxs.is/googmo
   if (module.hot) {
     module.hot.accept('./reducers', () => {
       const nextRootReducer = require('./reducers').default;
@@ -24,11 +28,14 @@ export default function configureStore(initialState = {}, history) {
     });
   }
 
+  // Initialize it with no other reducers
   store.asyncReducers = {};
-
   return store;
 }
 
+/**
+ * Inject an asynchronously loaded reducer
+ */
 export function injectAsyncReducer(store, name, asyncReducer) {
   store.asyncReducers[name] = asyncReducer; // eslint-disable-line
   store.replaceReducer(createReducer(store.asyncReducers));
