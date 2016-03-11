@@ -52,9 +52,21 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors
 
 But wait... there's more!
 
-  - **Built-in unit testing** Automatically guarantee code quality and non-breaking changes.
-  - **Native web app** Your app's new home? The homescreen of your users' phones.
-  - **The fastest fonts** Say goodbye to vacant text.
+  - *Built-in unit testing:* Automatically guarantee code quality and non-breaking changes.
+  - *Native web app:* Your app's new home? The homescreen of your users' phones.
+  - *The fastest fonts:* Say goodbye to vacant text.
+
+## Quick start
+
+> Note: You'll need Node, npm and git installed for this to work, see the [prerequisites](./docs/general/prerequisites.md)!
+
+1. Clone this repo using `$ git clone git@github.com:mxstbr/react-boilerplate`.
+
+2. Run `$ npm run setup` to install dependencies and clean the git repo.<br /> *At this point you can run `$ npm start` to see the example app at `http://localhost:3000`.*
+
+3. Run `$ npm run clean` to delete the example app.
+
+Then start building your app!
 
 ## Documentation
 
@@ -70,21 +82,6 @@ But wait... there's more!
   - [Component Testing](docs/general/component-testing.md)
   - [Remote Testing](docs/general/remote-testing.md)
 - [CSS](docs/css)
-
-
-## Quick start
-
-> Note: You'll need Node, npm and git installed for this to work, see the [prerequisites](./docs/general/prerequisites.md)!
-
-1. Clone this repo using `$ git clone git@github.com:mxstbr/react-boilerplate`.
-
-2. Run `$ npm run setup` to install dependencies and clean the git repo.
-
-At this point you can run `$ npm start` to see the example app at `http://localhost:3000`.
-
-3. Run `$ npm run clean` to delete the example app.
-
-Now you can go and start building your app!
 
 ## License
 
