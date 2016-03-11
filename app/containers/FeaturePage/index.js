@@ -3,6 +3,7 @@
  *
  * List all the features
  */
+/* eslint-disable react/prefer-stateless-function */
 
 import React from 'react';
 import { connect } from 'react-redux';

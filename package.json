@@ -39,8 +39,8 @@
     "css-modules-require-hook": "^2.1.0",
     "enzyme": "^1.5.0",
     "eslint": "^2.0.0",
-    "eslint-config-airbnb": "^6.0.0",
-    "eslint-plugin-react": "^4.0.0",
+    "eslint-config-airbnb": "^6.1.0",
+    "eslint-plugin-react": "^4.2.1",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.2",
     "extract-text-webpack-plugin": "^1.0.1",
@@ -145,8 +145,7 @@
       "prefer-template": 0,
       "no-use-before-define": 0,
       "newline-per-chained-call": 0,
-      "arrow-body-style": [2, "as-needed"],
-      "react/prefer-stateless-function": 0
+      "arrow-body-style": [2, "as-needed"]
     }
   },
   "stylelint": {
