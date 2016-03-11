@@ -21,7 +21,7 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors
 
 - **Next generation JavaScript** Use template strings, object destructuring, arrow functions, JSX syntax and more, today.
 
-- **Next generation CSS**. Write composable CSS that's co-located with your components for complete modularity. Unique generated class names keep the specificity low while eliminating style clashes.
+- **Next generation CSS**. Write composable CSS that's co-located with your components for complete modularity. Unique generated class names keep the specificity low while eliminating style clashes. Ship only the styles that are on the page for the best performance.
 
 - **Industry-standard routing** It's natural to want to add pages (e.g. `/about`) to your application, and routing makes this possible.
 
@@ -30,8 +30,9 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors
 But wait... there's more!
 
   - **Built-in unit testing** Automatically guarantee code quality and non-breaking changes.
-  - **Native web app** Your app's new home? The homescreen of your users phone.
+  - **Native web app** Your app's new home? The homescreen of your users' phones.
   - **The fastest fonts** Say goodbye to vacant text.
+  - **Reduced boilerplate** Say hello to Rails-style scaffolding! Automate the creation of components, containers, routes and sagas - and their tests - right from the CLI :)
 
 ## Documentation
 
