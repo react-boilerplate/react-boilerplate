@@ -27,26 +27,28 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors
 
 ## Features
 
-<div><strong>Instant feedback</strong></div>
-Enjoy the best DX and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!
+<dl>
+  <dt>Instant feedback</dt>
+  <dd>Enjoy the best DX and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!</dd>
 
-<div><strong>Quick scaffolding</strong></div>
-Automate the creation of components, containers, routes and sagas - and their tests - right from the CLI!
+  <dt>Quick scaffolding</dt>
+  <dd>Automate the creation of components, containers, routes and sagas - and their tests - right from the CLI!
 
-<div><strong>Predictable state management</strong></div>
-Unidirectional data flow allows for change logging and time travel debugging.
+  <dt>Predictable state management</dt>
+  <dd>Unidirectional data flow allows for change logging and time travel debugging.</dd>
 
-<div><strong>Next generation JavaScript</strong></div>
-Use template strings, object destructuring, arrow functions, JSX syntax and more, today.
+  <dt>Next generation JavaScript</dt>
+  <dd>Use template strings, object destructuring, arrow functions, JSX syntax and more, today.</dd>
 
-<div><strong>Next generation CSS</strong></div>
-Write composable CSS that's co-located with your components for complete modularity. Unique generated class names keep the specificity low while eliminating style clashes. Ship only the styles that are on the page for the best performance.
+  <dt>Next generation CSS</dt>
+  <dd>Write composable CSS that's co-located with your components for complete modularity. Unique generated class names keep the specificity low while eliminating style clashes. Ship only the styles that are on the page for the best performance.</dd>
 
-<div><strong>Industry-standard routing</strong></div>
-It's natural to want to add pages (e.g. `/about`) to your application, and routing makes this possible.
+  <dt>Industry-standard routing</dt>
+  <dd>It's natural to want to add pages (e.g. `/about`) to your application, and routing makes this possible.</dd>
 
-<div><strong>Offline-first</strong></div>
-The next frontier in performant web apps: availability without a network connection from the instant your users load the app.
+  <dt>Offline-first</dt>
+  <dd>The next frontier in performant web apps: availability without a network connection from the instant your users load the app.</dd>
+</dl>
 
 But wait... there's more!
 
