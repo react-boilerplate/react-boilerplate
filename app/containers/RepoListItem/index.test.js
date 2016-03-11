@@ -3,7 +3,6 @@
  */
 
 import { RepoListItem } from './index';
-import IssueIcon from 'IssueIcon';
 import ListItem from 'ListItem';
 
 import expect from 'expect';
