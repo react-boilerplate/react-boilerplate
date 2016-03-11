@@ -75,7 +75,6 @@ Then start building your app!
 ## Documentation
 
 - [General](docs/general)
-  - [**Getting started**](docs/general/getting-started.md)
   - [Prerequisites](docs/general/prerequisites.md)
   - [Features](docs/general/features.md)
   - [**Commands**](docs/general/commands.md)
