@@ -1,17 +1,29 @@
-# React.js Boilerplate [![Dependency Status][dep-status-img]][dep-status-link] [![devDependency Status][dev-dep-status-img]][dev-dep-status-link] [![Build Status][ci-img]][ci-link] [![Code Coverage][coverage-img]][coverage-link]
+<img src="https://raw.githubusercontent.com/mxstbr/react-boilerplate-brand/master/assets/banner-metal.jpg" alt="react boilerplate banner" align="center" />
+
+<div align="center">
+  <!-- Dependency Status -->
+  <a href="https://david-dm.org/mxstbr/react-boilerplate/v3.0.0">
+    <img src="https://david-dm.org/mxstbr/react-boilerplate/v3.0.0.svg" alt="Dependency Status" />
+  </a>
+  <!-- devDependency Status -->
+  <a href="https://david-dm.org/mxstbr/react-boilerplate/v3.0.0#info=devDependencies">
+    <img src="https://david-dm.org/mxstbr/react-boilerplate/v3.0.0/dev-status.svg" alt="devDependency Status" />
+  </a>
+  <!-- Build Status -->
+  <a href="https://travis-ci.org/mxstbr/react-boilerplate?branch=v3.0.0">
+    <img src="https://travis-ci.org/mxstbr/react-boilerplate.svg?branch=v3.0.0" alt="Build Status" />
+  </a>
+  <!-- Test Coverage -->
+  <a href="https://coveralls.io/r/mxstbr/react-boilerplate?branch=v3.0.0">
+    <img src="https://coveralls.io/repos/github/mxstbr/react-boilerplate/badge.svg?branch=v3.0.0" alt="Test Coverage" />
+  </a>
+</div>
+
+<br />
 
 Quick setup for new performance orientated, offline–first React.js applications featuring Redux, hot–reloading, PostCSS, react-router, ServiceWorker, AppCache, FontFaceObserver and Mocha.
 
 Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors](https://github.com/mxstbr/react-boilerplate/graphs/contributors). *If you're using this boilerplate, we'd love to [hear from you](https://github.com/mxstbr/react-boilerplate/issues/115)!*
-
-[dep-status-img]: https://david-dm.org/mxstbr/react-boilerplate/v3.0.0.svg
-[dep-status-link]: https://david-dm.org/mxstbr/react-boilerplate/v3.0.0
-[dev-dep-status-img]: https://david-dm.org/mxstbr/react-boilerplate/v3.0.0/dev-status.svg
-[dev-dep-status-link]: https://david-dm.org/mxstbr/react-boilerplate/v3.0.0#info=devDependencies
-[ci-img]: https://travis-ci.org/mxstbr/react-boilerplate.svg?branch=v3.0.0
-[ci-link]: https://travis-ci.org/mxstbr/react-boilerplate?branch=v3.0.0
-[coverage-link]: https://coveralls.io/r/mxstbr/react-boilerplate?branch=v3.0.0
-[coverage-img]: https://coveralls.io/repos/github/mxstbr/react-boilerplate/badge.svg?branch=v3.0.0
 
 ## Features
 
