@@ -65,6 +65,7 @@ describe('<RepoListItem />', () => {
     const renderedComponent = mount(
       <RepoListItem item={item} />
     );
-    expect(renderedComponent.find(IssueIcon).length).toEqual(1);
+    console.log(renderedComponent.debug());
+    expect(renderedComponent.find('svg').length).toEqual(1);
   });
 });
