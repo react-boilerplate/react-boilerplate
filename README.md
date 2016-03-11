@@ -32,11 +32,11 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors
 ## Features
 
 <dl>
+  <dt>Quick scaffolding</dt>
+  <dd>Automate the creation of components, containers, routes and sagas - and their tests - right from the CLI!</dd>
+
   <dt>Instant feedback</dt>
   <dd>Enjoy the best DX and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!</dd>
-
-  <dt>Quick scaffolding</dt>
-  <dd>Automate the creation of components, containers, routes and sagas - and their tests - right from the CLI!
 
   <dt>Predictable state management</dt>
   <dd>Unidirectional data flow allows for change logging and time travel debugging.</dd>
