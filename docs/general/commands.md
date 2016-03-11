@@ -10,6 +10,24 @@ Initializes a new project with this boilerplate. Deletes the `react-boilerplate`
 
 > Note: This command is self-destructive, once you've run it the init script is gone forever. This is for your own safety, so you can't delete your projects history irreversibly on accident.
 
+## Cleaning
+
+```Shell
+$ npm run clean
+```
+
+Deletes the example app, replacing it with the smallest amount of boilerplate code necessary to start writing your app!
+
+> Note: This command is self-destructive, once you've run it you cannot run it again. This is for your own safety, so you can't delete your projects irreversibly on accident.
+
+## Generators
+
+```Shell
+$ npm run generate
+```
+
+Allows you to auto-generate boilerplate code for common parts of your application, specifically `components`, `containers`, `selectors`, `sagas` and `routes`.
+
 ## Development
 
 ```Shell
@@ -29,14 +47,6 @@ $ npm run build
 ```
 
 Gets your application ready for deployment. Optimizes and minifies all files, and generates a folder called `build`. `build` includes all files you need for your application. Upload the contents of `build` to your web server to see it live!
-
-## Generator
-
-```Shell
-$ npm run generate
-```
-
-Allows you to auto-generate boilerplate code for common parts of your application, specifically `components`, `containers`, `selectors`, `sagas` and `routes`.
 
 ## Testing
 

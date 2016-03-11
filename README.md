@@ -33,7 +33,7 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors
 
 <dl>
   <dt>Quick scaffolding</dt>
-  <dd>Automate the creation of components, containers, routes and sagas - and their tests - right from the CLI!</dd>
+  <dd>Automate the creation of components, containers, routes, selectors and sagas - and their tests - right from the CLI!</dd>
 
   <dt>Instant feedback</dt>
   <dd>Enjoy the best DX and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!</dd>
@@ -79,6 +79,7 @@ Then start building your app!
   - [Features](docs/general/features.md)
   - [**Commands**](docs/general/commands.md)
   - [Files](docs/general/files.md)
+  - [Server Configurations](docs/general/server-configs.md)
   - [FAQ](docs/general/faq.md)
 - [Testing](docs/testing)
   - [Unit Testing](docs/general/unit-testing.md)
