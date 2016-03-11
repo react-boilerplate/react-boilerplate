@@ -2,12 +2,10 @@ import React from 'react';
 
 import styles from './styles.css';
 
-class H1 extends React.Component {
-  render() {
-    return (
-      <h1 className={ styles.heading1 }>{ this.props.children }</h1>
-    );
-  }
+function H1(props) {
+  return (
+    <h1 className={ styles.heading1 } { ...props } />
+  );
 }
 
 export default H1;

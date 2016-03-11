@@ -15,25 +15,23 @@ import A from 'A';
 
 import styles from './styles.css';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className={ styles.wrapper }>
-        <A
-          className={ styles.logoWrapper }
-          href="https://twitter.com/mxstbr"
-        >
-          <Img
-            className={styles.logo}
-            src={Logo}
-            alt="Max Stoiber - Logo"
-          />
-        </A>
-        { this.props.children }
-        <Footer />
-      </div>
-    );
-  }
+function App(props) {
+  return (
+    <div className={ styles.wrapper }>
+      <A
+        className={ styles.logoWrapper }
+        href="https://twitter.com/mxstbr"
+      >
+        <Img
+          className={ styles.logo }
+          src={ Logo }
+          alt="Max Stoiber - Logo"
+        />
+      </A>
+      { props.children }
+      <Footer />
+    </div>
+  );
 }
 
 export default App;

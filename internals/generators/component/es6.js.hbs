@@ -14,7 +14,7 @@ class {{ properCase name }} extends React.Component {
   render() {
     return (
       {{#if wantCSS}}
-      <div style={ styles.{{ camelCase name }} }>
+      <div className={ styles.{{ camelCase name }} }>
       {{else}}
       <div>
       {{/if}}

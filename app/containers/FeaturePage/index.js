@@ -3,10 +3,11 @@
  *
  * List all the features
  */
+/* eslint-disable react/prefer-stateless-function */
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { routeActions } from 'react-router-redux';
+import { push } from 'react-router-redux';
 
 import Button from 'Button';
 import H1 from 'H1';
@@ -63,7 +64,7 @@ export class FeaturePage extends React.Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeRoute: (url) => dispatch(routeActions.push(url)),
+    changeRoute: (url) => dispatch(push(url)),
   };
 }
 

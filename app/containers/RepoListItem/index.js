@@ -3,6 +3,7 @@
  *
  * Lists the name and the issue count of a repository
  */
+/* eslint-disable react/prefer-stateless-function */
 
 import React from 'react';
 import { connect } from 'react-redux';

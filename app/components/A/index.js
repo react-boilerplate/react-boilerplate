@@ -6,20 +6,17 @@ import React, { PropTypes } from 'react';
 
 import styles from './styles.css';
 
-class A extends React.Component {
-  render() {
-    return (
-      <a
-        className={
-          this.props.className || styles.link
-        }
-        href={ this.props.href }
-        target={ this.props.target }
-      >
-        { this.props.children }
-      </a>
-    );
-  }
+function A(props) {
+  return (
+    <a
+      className={
+        props.className || styles.link
+      }
+      { ...props }
+    >
+      { props.children }
+    </a>
+  );
 }
 
 A.propTypes = {
