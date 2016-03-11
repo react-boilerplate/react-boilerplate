@@ -17,6 +17,8 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors
 
 - **Instant feedback** Enjoy the best DX and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!
 
+- **Quick scaffolding** Automate the creation of components, containers, routes and sagas - and their tests - right from the CLI!
+
 - **Predictable state management** Unidirectional data flow allows for change logging and time travel debugging.
 
 - **Next generation JavaScript** Use template strings, object destructuring, arrow functions, JSX syntax and more, today.
@@ -32,7 +34,6 @@ But wait... there's more!
   - **Built-in unit testing** Automatically guarantee code quality and non-breaking changes.
   - **Native web app** Your app's new home? The homescreen of your users' phones.
   - **The fastest fonts** Say goodbye to vacant text.
-  - **Reduced boilerplate** Say hello to Rails-style scaffolding! Automate the creation of components, containers, routes and sagas - and their tests - right from the CLI :)
 
 ## Documentation
 
