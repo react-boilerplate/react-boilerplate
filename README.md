@@ -27,19 +27,26 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors
 
 ## Features
 
-- **Instant feedback** Enjoy the best DX and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!
+<div><strong>Instant feedback</strong></div>
+Enjoy the best DX and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!
 
-- **Quick scaffolding** Automate the creation of components, containers, routes and sagas - and their tests - right from the CLI!
+<div><strong>Quick scaffolding</strong></div>
+Automate the creation of components, containers, routes and sagas - and their tests - right from the CLI!
 
-- **Predictable state management** Unidirectional data flow allows for change logging and time travel debugging.
+<div><strong>Predictable state management</strong></div>
+Unidirectional data flow allows for change logging and time travel debugging.
 
-- **Next generation JavaScript** Use template strings, object destructuring, arrow functions, JSX syntax and more, today.
+<div><strong>Next generation JavaScript</strong></div>
+Use template strings, object destructuring, arrow functions, JSX syntax and more, today.
 
-- **Next generation CSS**. Write composable CSS that's co-located with your components for complete modularity. Unique generated class names keep the specificity low while eliminating style clashes. Ship only the styles that are on the page for the best performance.
+<div><strong>Next generation CSS</strong></div>
+Write composable CSS that's co-located with your components for complete modularity. Unique generated class names keep the specificity low while eliminating style clashes. Ship only the styles that are on the page for the best performance.
 
-- **Industry-standard routing** It's natural to want to add pages (e.g. `/about`) to your application, and routing makes this possible.
+<div><strong>Industry-standard routing</strong></div>
+It's natural to want to add pages (e.g. `/about`) to your application, and routing makes this possible.
 
-- **Offline-first** The next frontier in performant web apps: availability without a network connection from the instant your users load the app.
+<div><strong>Offline-first</strong></div>
+The next frontier in performant web apps: availability without a network connection from the instant your users load the app.
 
 But wait... there's more!
 
