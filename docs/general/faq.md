@@ -14,10 +14,10 @@ Webpack compiles your application to memory and serves it from there, no data us
 
 ## Can I use Sass with this boilerplate?
 
-Of course you can do that, though I'd advise against it. PostCSS has a plugin called `PreCSS` that you can install, it can do the exact same things Sass can do. This way you can use Sass features, but still get the benefit of Autoprefix, postcss-focus, etc.
+You can do that, though we advise against it and **do not support this**. PostCSS has a plugin called `PreCSS` that you can install, it can do the exact same things Sass can do. This way you can use Sass features, but still get the benefit of Autoprefixer, postcss-focus, etc.
 
-If you're really serious about not wanting to use PostCSS replace the `postcss-loader` in the webpack config files with `sass-loader` and that should be good to go! (untested and provided you don't use any PostCSS features)
+If you're really serious about not wanting to use PostCSS replace the `postcss-loader` in the webpack config files with `sass-loader` and that should be good to go! (untested, only works provided you don't use any PostCSS features)
 
 ## Have another question?
 
-Submit an [issue](https://github.com/mxstbr/react-boilerplate/issues) or contact me on [twitter](https://twitter.com/mxstbr)!
+Submit an [issue](https://github.com/mxstbr/react-boilerplate/issues) or contact Max on [twitter](https://twitter.com/mxstbr)!
