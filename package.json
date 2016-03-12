@@ -21,7 +21,8 @@
     "redux-saga": "^0.9.1",
     "reselect": "^2.0.2",
     "sanitize.css": "^3.0.0",
-    "scroll-behavior": "^0.3.2"
+    "scroll-behavior": "^0.3.2",
+    "chalk": "^1.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.1",
@@ -35,7 +36,6 @@
     "babel-preset-stage-0": "^6.3.13",
     "chai": "^3.5.0",
     "chai-enzyme": "^0.4.1",
-    "chalk": "^1.1.1",
     "cheerio": "^0.20.0",
     "coveralls": "^2.11.6",
     "css-loader": "^0.23.1",
