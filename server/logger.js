@@ -9,12 +9,12 @@ const divider = chalk.gray('\n-----------------------------------');
 module.exports = {
 
   // Called whenever there's an error on the server we want to print
-  onError: err => {
+  error: err => {
     console.log(chalk.red(err));
   },
 
   // Called when express.js app starts on given port w/o errors
-  onAppStarted: port => {
+  appStarted: port => {
     console.log('Server started ' + chalk.green('✓'));
     console.log(
       chalk.bold('\nAccess URLs:') +
@@ -27,7 +27,7 @@ module.exports = {
   },
 
   // Called when ngrok tunnel is initialized
-  onTunnelStarted: (url) => {
+  tunnelStarted: (url) => {
     console.log('Tunnel initialised ' + chalk.green('✓'));
     console.log(
       chalk.bold('\nAccess URLs:') +

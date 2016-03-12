@@ -9,8 +9,7 @@ const isDev = process.env.NODE_ENV !== 'production';
 
 const app = express();
 
-// If you are developing more than just front-end, like POST form
-// handling or API, add your custom middleware here
+// If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
 // Initialize frontend middleware that will server your JS app
@@ -25,19 +24,19 @@ const port = process.env.PORT || 3000;
 // Start your app.
 app.listen(port, (err) => {
   if (err) {
-    return logger.onError(err);
+    return logger.error(err);
   }
 
-  logger.onAppStarted(port);
+  logger.appStarted(port);
 
   // Connect to ngrok in dev mode
   if (isDev) {
     ngrok.connect(port, (innerErr, url) => {
       if (innerErr) {
-        return logger.onError(innerErr);
+        return logger.error(innerErr);
       }
 
-      logger.onTunnelStarted(url);
+      logger.tunnelStarted(url);
     });
   }
 });
