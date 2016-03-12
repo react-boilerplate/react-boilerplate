@@ -28,3 +28,7 @@ return (
   </div>
 );
 ```
+
+## Removing CSS modules
+
+To remove this feature from your setup, stop importing `.css` files in your components and delete the `modules` option from the `css-loader` declaration in [`webpack.prod.babel.js`](/internals/webpack/webpack.prod.babel.js) and [`webpack.base.babel.js`](/internals/webpack/webpack.base.babel.js)!

@@ -4,4 +4,4 @@ Sanitize.css styles browsers to render elements more consistently with developer
 
 ## Remove `sanitize.css`
 
-Delete [lines 44 and 45 in `app.js`](../../app/app.js#L44-L45) and remove it from the `dependencies` in [`package.json`](../../package.json)!
+Delete the `import '../node_modules/sanitize.css/sanitize.css';` in [`app.js`](/app/app.js#L37-L38) and remove it from the `dependencies` in [`package.json`](/package.json)!
