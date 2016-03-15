@@ -44,8 +44,3 @@ test_script:
 on_success:
   - npm run coveralls
 
-notifications:
-
-  # Email
-  - provider: Email
-    on_build_failure: true
