@@ -6,8 +6,6 @@ import request from '../request';
 import sinon from 'sinon';
 import expect from 'expect';
 
-import 'whatwg-fetch';
-
 describe('request', () => {
   // Before each test, stub the fetch function
   beforeEach(() => {

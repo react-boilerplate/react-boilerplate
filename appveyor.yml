@@ -3,13 +3,6 @@
 # Set build version format here instead of in the admin panel
 version: "{build}"
 
-# Which branches to build
-branches:
-
-  # Blacklist
-  except:
-    - master
-
 # Do not build on gh tags
 skip_tags: true
  
@@ -38,8 +31,8 @@ test_script:
   # Output debugging info
   - node --version
   - npm --version
-  # run tests
-  - npm test
+  # run build and run tests
+  - npm run build
 
 on_success:
   - npm run coveralls
