@@ -34,6 +34,8 @@ test_script:
   # run build and run tests
   - npm run build
 
-on_success:
-  - npm run coveralls
+# remove, as appveyor doesn't support secure variables on pr builds
+# so `COVERALLS_REPO_TOKEN` cannot be set, without hard-coding in this file
+#on_success:
+#- npm run coveralls
 
