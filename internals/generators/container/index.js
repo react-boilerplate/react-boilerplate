@@ -89,7 +89,7 @@ module.exports = {
     if (data.wantCSS) {
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/{{dashCase name}}.css',
+        path: '../../app/containers/{{properCase name}}/styles.css',
         templateFile: './container/styles.css.hbs',
         abortOnFail: true,
       });
