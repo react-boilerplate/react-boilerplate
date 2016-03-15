@@ -10,8 +10,8 @@ module.exports = {
     // Some libraries don't like being run through babel.
     // If they gripe, put them here.
     noParse: [
-      /node_modules\/sinon/,
-      /node_modules\/acorn/,
+      /node_modules(\\|\/)sinon/,
+      /node_modules(\\|\/)acorn/,
     ],
     preLoaders: [
       { test: /\.js$/,
@@ -22,6 +22,9 @@ module.exports = {
     loaders: [
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.css$/, loader: 'null-loader' },
+      { test: /sinon(\\|\/)pkg(\\|\/)sinon\.js/,
+        loader: 'imports?define=>false,require=>false',
+      },
       { test: /\.js$/,
         loader: 'babel',
         exclude: [/node_modules/],
