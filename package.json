@@ -43,6 +43,7 @@
     "eslint-plugin-react": "^4.2.1",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.2",
+    "exports-loader": "^0.6.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "html-loader": "^0.4.0",
