@@ -23,7 +23,7 @@ environment:
 # Install scripts--runs after repo cloning
 install:
   # Install chrome
-  - choco install googlechrome
+  - choco install -y googlechrome
   # Install the latest stable version of Node
   - ps: Install-Product node $env:nodejs_version
   - npm -g install npm

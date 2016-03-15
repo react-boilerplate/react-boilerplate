@@ -1,3 +1,5 @@
+import 'whatwg-fetch';
+
 /**
  * Requests a URL, returning a promise
  *
