@@ -64,9 +64,12 @@ module.exports = function(options) {
     ]
   }
 
-  plugins.push(new AppCachePlugin({ // AppCache should be in both prod and dev env
-    exclude: ['.htaccess'] // No need to cache that. See https://support.hostgator.com/articles/403-forbidden-or-no-permission-to-access
-  }));
+  plugins.push(
+    new AppCachePlugin({ // AppCache should be in both prod and dev env
+      exclude: ['.htaccess'] // No need to cache that. See https://support.hostgator.com/articles/403-forbidden-or-no-permission-to-access
+    }),
+    new webpack.ProvidePlugin({'Promise': 'promise'}), // Polyfill for promise for older browser
+  );
 
   return {
     entry: entry,
