@@ -94,7 +94,7 @@
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --colors -p",
     "serve": "cross-env NODE_ENV=production node internals/webpack/server.prod.js",
     "pagespeed": "./internals/scripts/pagespeed",
-    "setup": "cross-env NODE_ENV=initialisation ./internals/scripts/init",
+    "setup": "./internals/scripts/init",
     "clean": "shjs ./internals/scripts/clean.js",
     "generate": "plop --plopfile internals/generators/index.js",
     "prebuild": "npm run test",
