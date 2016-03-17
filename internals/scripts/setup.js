@@ -28,7 +28,7 @@ cleanRepo(dir, function () {
     if (error) {
       process.stdout.write(error);
     }
-    deleteFileInCurrentDir('init', function() {
+    deleteFileInCurrentDir('setup.js', function() {
       process.stdout.write('\n');
       interval = animateProgress('Initialising new repository');
       process.stdout.write('Initialising new repository');
