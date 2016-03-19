@@ -5,6 +5,7 @@ import styles from './styles.css';
 function List(props) {
   const ComponentToRender = props.component;
   let content = (<div></div>);
+
   // If we have items, render them
   if (props.items) {
     content = props.items.map((item, index) => (

@@ -2,6 +2,7 @@
   "preset": "airbnb",
   "esnext": true,
   "validateQuoteMarks": null,
+  "requireTrailingComma": null,
   "maximumLineLength": null,
   "maxErrors": null,
   "requireShorthandArrowFunctions": null,

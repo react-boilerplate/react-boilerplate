@@ -103,7 +103,7 @@
     "lint": "npm run lint:js && npm run lint:css && npm run lint:jscs",
     "lint:js": "eslint . --ignore-path .gitignore",
     "lint:js:staged": "eslint-staged",
-    "lint:jscs": "jscs . || true",
+    "lint:jscs": "jscs .",
     "lint:css": "stylelint ./app/**/*.css",
     "lint:css:staged": "stylelint-staged",
     "lint:staged": "npm run lint:js:staged && npm run lint:css:staged",
