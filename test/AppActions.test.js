@@ -10,7 +10,7 @@ describe('AppActions', () => {
       const name = 'samsmith';
       const expectedResult = {
         type: CHANGE_OWNER_NAME,
-        name
+        name,
       };
 
       expect(changeOwnerName(name)).toEqual(expectedResult);
@@ -23,7 +23,7 @@ describe('AppActions', () => {
       const name = 'Webapplication Boilerplate';
       const expectedResult = {
         type: CHANGE_PROJECT_NAME,
-        name
+        name,
       };
 
       expect(changeProjectName(name)).toEqual(expectedResult);

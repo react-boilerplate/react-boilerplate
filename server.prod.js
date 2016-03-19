@@ -13,7 +13,7 @@ new WebpackDevServer(webpack(config), { // Start a server
   contentBase: 'build',
   lazy: true,
   historyApiFallback: true,
-  quiet: true // Without logging
+  quiet: true, // Without logging
 }).listen(3000, '0.0.0.0', function (err, result) {
   if (err) {
     console.log(err);

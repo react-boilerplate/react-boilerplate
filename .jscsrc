@@ -4,6 +4,7 @@
   "validateQuoteMarks": null,
   "maximumLineLength": null,
   "maxErrors": null,
+  "requireShorthandArrowFunctions": null,
   "excludeFiles": [
     "docs/**",
     "img/**",
