@@ -1,0 +1,12 @@
+{
+  "preset": "airbnb",
+  "esnext": true,
+  "validateQuoteMarks": null,
+  "maximumLineLength": null,
+  "maxErrors": null,
+  "excludeFiles": [
+    "docs/**",
+    "img/**",
+    "node_modules/**"
+  ]
+}
