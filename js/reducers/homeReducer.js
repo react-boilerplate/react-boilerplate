@@ -18,7 +18,7 @@ import assignToEmpty from '../utils/assign';
 
 const initialState = {
   projectName: 'React.js Boilerplate',
-  ownerName: 'mxstbr'
+  ownerName: 'mxstbr',
 };
 
 function homeReducer(state = initialState, action) {
@@ -26,11 +26,11 @@ function homeReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_OWNER_NAME:
       return assignToEmpty(state, {
-        ownerName: action.name
+        ownerName: action.name,
       });
     case CHANGE_PROJECT_NAME:
       return assignToEmpty(state, {
-        projectName: action.name
+        projectName: action.name,
       });
     default:
       return state;

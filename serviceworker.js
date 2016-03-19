@@ -1,27 +1,28 @@
 var CACHE_NAME = 'react-boilerplate-cache-v1';
+
 // The files we want to cache
 var urlsToCache = [
   '/',
   '/css/main.css',
-  '/js/bundle.js'
+  '/js/bundle.js',
 ];
 
 // Set the callback for the install step
-self.addEventListener('install', function(event) {
-    // Perform install steps
-    // event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function(cache) {
+self.addEventListener('install', function (event) {
+  // Perform install steps
+  // event.waitUntil(
+  caches.open(CACHE_NAME)
+      .then(function (cache) {
         console.log('Opened cache');
         return cache.addAll(urlsToCache);
       });
 });
 
 // Set the callback when the files get fetched
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.match(event.request)
-      .then(function(response) {
+      .then(function (response) {
         // Cached files available, return those
         if (response) {
           return response;
@@ -35,9 +36,9 @@ self.addEventListener('fetch', function(event) {
 
         // Start request again since there are no files in the cache
         return fetch(fetchRequest).then(
-          function(response) {
+          function (response) {
             // If response is invalid, throw error
-            if(!response || response.status !== 200 || response.type !== 'basic') {
+            if (!response || response.status !== 200 || response.type !== 'basic') {
               return response;
             }
 
@@ -49,7 +50,7 @@ self.addEventListener('fetch', function(event) {
 
             // Otherwise cache the downloaded files
             caches.open(CACHE_NAME)
-              .then(function(cache) {
+              .then(function (cache) {
                 cache.put(event.request, responseToCache);
               });
 

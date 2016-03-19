@@ -1,3 +1,3 @@
 module.exports = require("./makewebpackconfig")({
-  prod: true
+  prod: true,
 });

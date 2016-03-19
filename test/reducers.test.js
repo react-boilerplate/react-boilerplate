@@ -8,7 +8,7 @@ describe('defaultReducer', () => {
   it('should return the initial state', () => {
     expect(homeReducer(undefined, {})).toEqual({
       projectName: 'React.js Boilerplate',
-      ownerName: 'mxstbr'
+      ownerName: 'mxstbr',
     });
   });
 
@@ -19,10 +19,10 @@ describe('defaultReducer', () => {
     expect(
       homeReducer({}, {
         type: constants.CHANGE_OWNER_NAME,
-        name
+        name,
       })
     ).toEqual({
-      ownerName: name
+      ownerName: name,
     });
   });
 
@@ -33,10 +33,10 @@ describe('defaultReducer', () => {
     expect(
       homeReducer({}, {
         type: constants.CHANGE_PROJECT_NAME,
-        name
+        name,
       })
     ).toEqual({
-      projectName: name
+      projectName: name,
     });
   });
 });

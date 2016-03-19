@@ -38,6 +38,7 @@
     "file-loader": "^0.8.4",
     "html-webpack-plugin": "^1.6.1",
     "ip": "1.1.0",
+    "jscs": "^2.11.0",
     "json-loader": "^0.5.2",
     "mocha": "^2.3.2",
     "object.assign": "^4.0.1",
@@ -57,7 +58,9 @@
     "url": "git://github.com/mxstbr/react-boilerplate.git"
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint": "npm run lint:eslint && npm run lint:jscs",
+    "lint:eslint": "eslint .",
+    "lint:jscs": "jscs . || true",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "start": "cross-env NODE_ENV=development node server.dev.js",
