@@ -152,6 +152,22 @@
       "arrow-body-style": [2, "as-needed"]
     }
   },
+  "jscsConfig": {
+    "preset": "airbnb",
+    "esnext": true,
+    "validateQuoteMarks": null,
+    "requireTrailingComma": null,
+    "maximumLineLength": null,
+    "maxErrors": null,
+    "requireShorthandArrowFunctions": null,
+    "excludeFiles": [
+      "build/**",
+      "coverage/**",
+      "docs/**",
+      "internals/**",
+      "node_modules/**"
+    ]
+  },
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {
