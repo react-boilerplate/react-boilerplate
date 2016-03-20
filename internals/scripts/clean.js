@@ -55,7 +55,6 @@ cp('internals/templates/reducers.js', 'app/reducers.js');
 cp('internals/templates/routes.js', 'app/routes.js');
 cp('internals/templates/store.js', 'app/store.js');
 
-
 // Remove the templates folder
 rm('-rf', 'internals/templates');
 

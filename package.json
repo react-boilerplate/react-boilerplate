@@ -166,7 +166,6 @@
       "build/**",
       "coverage/**",
       "docs/**",
-      "internals/**",
       "node_modules/**"
     ]
   },
