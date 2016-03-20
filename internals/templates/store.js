@@ -16,7 +16,7 @@ export default function configureStore(initialState = {}, history) {
   )(createStore);
   const store = createStoreWithMiddleware(createReducer(), fromJS(initialState));
 
-// Make reducers hot reloadable, see http://mxs.is/googmo
+  // Make reducers hot reloadable, see http://mxs.is/googmo
   if (module.hot) {
     module.hot.accept('./reducers', () => {
       const nextRootReducer = require('./reducers').default;

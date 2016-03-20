@@ -22,6 +22,7 @@ module.exports = {
     loaders: [
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.css$/, loader: 'null-loader' },
+
       // sinon.js--aliased for enzyme--expects/requires global vars.
       // imports-loader allows for global vars to be injected into the module.
       // See https://github.com/webpack/webpack/issues/304
@@ -37,6 +38,7 @@ module.exports = {
       },
     ],
   },
+
   // Some node_modules pull in Node-specific dependencies.
   // Since we're running in a browser we have to stub them out. See:
   // https://webpack.github.io/docs/configuration.html#node
@@ -48,6 +50,7 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
   },
+
   // required for enzyme to work properly
   externals: {
     jsdom: 'window',
