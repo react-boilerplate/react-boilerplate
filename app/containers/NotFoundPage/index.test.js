@@ -33,6 +33,7 @@ describe('<NotFound />', () => {
         changeRouteSpy();
       }
     };
+
     const renderedComponent = mount(
       <NotFound changeRoute={onChangeRoute} />
     );
