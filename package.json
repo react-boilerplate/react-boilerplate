@@ -161,6 +161,7 @@
     "requireTrailingComma": null,
     "maximumLineLength": null,
     "maxErrors": null,
+    "requireCamelCaseOrUpperCaseIdentifiers": null,
     "requireShorthandArrowFunctions": null,
     "excludeFiles": [
       "build/**",
