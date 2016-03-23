@@ -38,9 +38,9 @@ Version 3.0 is actively being developed on the [v3.0.0 branch], please check it 
 
 ## Getting started
 
-1. Clone this repo using `git clone https://github.com/mxstbr/react-boilerplate.git`.
+1. Clone this repo using `git clone --depth=1 https://github.com/mxstbr/react-boilerplate.git`.
 
-2. Delete the existing git repository by running `rm -rf .git`.
+2. Delete the existing git repository by running `cd react-boilerplate` and `rm -rf .git`.
 
 3. Initialize a new git repository with `git init`, `git add .` and `git commit -m "Initial commit"`.
 
