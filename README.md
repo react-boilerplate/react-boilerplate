@@ -32,7 +32,7 @@ Version 3.0 is actively being developed on the [v3.0.0 branch], please check it 
 
 - **Unit tests** should be an important part of every web application developers toolchain. [Mocha](https://github.com/mochajs/mocha) checks your application is working exactly how it should without you lifting a single finger. Congratulations, you just won a First Class ticket to world domination, fasten your seat belt please!
 
-- [**react-router**](https://github.com/rackt/react-router) is used for routing in this boilerplate. react-router makes routing easy to do and takes care of most of the work. (except you have to define your routes yourself) You can find the documentation right  [here](https://github.com/reactjs/react-router/tree/master/docs).
+- [**react-router**](https://github.com/rackt/react-router) is used for routing in this boilerplate. react-router makes routing easy to do and takes care of most of the work. (except you have to define your routes yourself) You can find the documentation right  [here](https://github.com/reactjs/react-router/blob/master/docs/README.md).
 
 - [**ServiceWorker**](http://www.html5rocks.com/en/tutorials/service-worker/introduction/) and [**AppCache**](http://www.html5rocks.com/en/tutorials/appcache/beginner/) make it possible to use your application offline. As soon as the website has been opened once, it is cached and available without a network connection. See [this talk](http://mxs.is/swtalk) for an explanation of the ServiceWorker used in this boilerplate. [**`manifest.json`**](https://developer.chrome.com/multidevice/android/installtohomescreen) is specifically for Chrome on Android. Users can add the website to the homescreen and use it like a native app!
 
