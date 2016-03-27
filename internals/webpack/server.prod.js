@@ -1,4 +1,5 @@
 /* eslint no-console:0 */
+
 // Gets called when running npm run serve
 
 const path = require('path');
@@ -32,6 +33,7 @@ new WebpackDevServer(webpack(config), { // Start a server
       if (innerErr) {
         console.log(chalk.red('ERROR\n' + innerErr));
       }
+
       console.log('Tunnel initialised ' + chalk.green('✓'));
       console.log('\nYour app is available at ' + chalk.magenta(url));
       console.log(chalk.blue('\nPress ' + chalk.italic('CTRL-C') + ' to stop'));

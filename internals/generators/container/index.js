@@ -16,6 +16,7 @@ module.exports = {
       if ((/.+/).test(value)) {
         return componentExists(value) ? 'A component or container with this name already exists' : true;
       }
+
       return 'The name is required';
     },
   }, {
@@ -52,8 +53,10 @@ module.exports = {
       if (value.length > 0) {
         return true;
       }
+
       return 'At least one selector must be selected';
     },
+
     when: answers => answers.selectorType === 'old',
   }, {
     type: 'input',
@@ -64,11 +67,14 @@ module.exports = {
       if ((/.+selector/i).test(value)) {
         return 'The name should not end in "-selector", we add that for you!';
       }
+
       if ((/.+/).test(value)) {
         return true;
       }
+
       return 'The name is required';
     },
+
     when: answers => answers.selectorType === 'new',
   }],
   actions: data => {
@@ -111,6 +117,7 @@ module.exports = {
         templateFile: './container/actions.test.js.hbs',
         abortOnFail: true,
       });
+
       // Constants
       actions.push({
         type: 'add',
@@ -118,6 +125,7 @@ module.exports = {
         templateFile: './container/constants.js.hbs',
         abortOnFail: true,
       });
+
       // Reducer
       actions.push({
         type: 'add',

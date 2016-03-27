@@ -55,12 +55,14 @@ describe('<HomePage />', () => {
 
   it('should link to /features', () => {
     const openRouteSpy = expect.createSpy();
+
     // Spy on the openRoute method of the HomePage
     const openRoute = (dest) => {
       if (dest === '/features') {
         openRouteSpy();
       }
     };
+
     const renderedComponent = mount(
       <HomePage loading changeRoute={openRoute} />
     );

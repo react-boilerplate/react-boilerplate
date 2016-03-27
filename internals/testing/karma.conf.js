@@ -5,9 +5,12 @@ module.exports = (config) => {
   config.set({
     frameworks: ['mocha'],
     reporters: ['coverage', 'mocha'],
+    /*eslint-disable */
     browsers: process.env.TRAVIS
       ? ['ChromeTravis']
-      : ['Chrome'],
+      : process.env.APPVEYOR
+        ? ['IE'] : ['Chrome'],
+    /*eslint-enable */
 
     autoWatch: false,
     singleRun: true,
@@ -40,7 +43,7 @@ module.exports = (config) => {
     },
 
     coverageReporter: {
-      dir: path.join(process.cwd(), '../../coverage'),
+      dir: path.join(process.cwd(), 'coverage'),
       reporters: [
         { type: 'lcov', subdir: 'lcov' },
         { type: 'html', subdir: 'html' },
