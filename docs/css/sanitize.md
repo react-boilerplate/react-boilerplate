@@ -1,16 +1,18 @@
 # `sanitize.css`
 
-Sanitize.css styles browsers to render elements more consistently with developer
-expectations and preferences. In comparison to that, `normalize.css` styles
-browsers to render elements more consistently with each other and `reset.css`
-unstyles every element. Each one has its own advantages and disadvantages, but
-I prefer `sanitize.css`.
+Sanitize.css is a PostCSS plugin that makes browsers render elements more in
+line with developer expectations (e.g. having the box model set to a cascading
+`box-sizing: border-box`) and preferences (since its defaults can be individually
+overridden).
+
+It was selected over older projects such as `normalize.css` and `reset.css` due
+to its greater flexibility and better alignment with CSSNext features like CSS
+variables.
 
 See the [official documentation](https://github.com/10up/sanitize.css) for more
 information.
 
-## Remove `sanitize.css`
+## Removing `sanitize.css`
 
-Delete the `import '../node_modules/sanitize.css/sanitize.css';` in
-[`app.js`](/app/app.js#L37-L38) and remove it from the `dependencies` in
-[`package.json`](/package.json)!
+Delete [lines 44 and 45 in `app.js`](../../app/app.js#L44-L45) and remove it
+from the `dependencies` in [`package.json`](../../package.json)!
