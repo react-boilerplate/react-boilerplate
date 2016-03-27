@@ -2,11 +2,11 @@
 
 Sanitize.css is a PostCSS plugin that makes browsers render elements more in
 line with developer expectations (e.g. having the box model set to a cascading
-`box-sizing: border-box`) and preferences (since its defaults can be individually
+`box-sizing: border-box`) and preferences (its defaults can be individually
 overridden).
 
-It was selected over older projects such as `normalize.css` and `reset.css` due
-to its greater flexibility and better alignment with CSSNext features like CSS
+It was selected over older projects like `normalize.css` and `reset.css` due
+to its greater flexibility and better alignment with CSSNext features such as CSS
 variables.
 
 See the [official documentation](https://github.com/10up/sanitize.css) for more
