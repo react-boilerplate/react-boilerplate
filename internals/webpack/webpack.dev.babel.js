@@ -29,7 +29,7 @@ module.exports = require('./webpack.base.babel')({
   },
 
   // Load the CSS in a style tag in development
-  cssLoaders: 'style-loader!css-loader?modules&importLoaders=1&sourceMap!postcss-loader',
+  cssLoaders: 'style-loader!css-loader?localIdentName=[local]__[path][name]__[hash:base64:5]&modules&importLoaders=1&sourceMap!postcss-loader',
 
   // Process the CSS with PostCSS
   postcssPlugins: [
