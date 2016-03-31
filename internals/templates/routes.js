@@ -5,21 +5,29 @@
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the require.ensure code splitting business
 
+function errorLoading(err) {
+  console.error('Dynamic page loading failed', err);
+}
+
+function loadModule(cb) {
+  return (module) => cb(null, module.default);
+}
+
 export default function createRoutes(store) { // eslint-disable-line
   return [
     {
       path: '/',
-      getComponent: function get(location, cb) {
-        require.ensure([], (require) => {
-          cb(null, require('HomePage').default);
-        }, 'HomePage');
+      getComponent(location, cb) {
+        System.import('HomePage')
+          .then(loadModule(cb))
+          .catch(errorLoading);
       },
     }, {
       path: '*',
-      getComponent: function get(location, cb) {
-        require.ensure([], (require) => {
-          cb(null, require('NotFoundPage').default);
-        }, 'NotFoundPage');
+      getComponent(location, cb) {
+        System.import('NotFoundPage')
+          .then(loadModule(cb))
+          .catch(errorLoading);
       },
     },
   ];

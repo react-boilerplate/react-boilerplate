@@ -3,7 +3,7 @@
   "version": "2.4.0",
   "description": "Quick setup for new React.js applications featuring Redux, hot–reloading, PostCSS, react-router and Mocha.",
   "dependencies": {
-    "babel-plugin-transform-runtime": "^6.6.0",
+    "babel-polyfill": "^6.7.4",
     "fontfaceobserver": "^1.6.3",
     "history": "^2.0.0",
     "immutable": "^3.7.6",
@@ -125,9 +125,6 @@
       "es2015-native-modules",
       "react",
       "stage-0"
-    ],
-    "plugins": [
-      "transform-runtime"
     ]
   },
   "eslintConfig": {
