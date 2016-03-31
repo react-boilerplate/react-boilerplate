@@ -2,7 +2,7 @@
  * Create the store with asynchronously loaded reducers
  */
 
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux/es';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import sagaMiddleware from 'redux-saga';
@@ -23,7 +23,7 @@ export default function configureStore(initialState = {}, history) {
   // Make reducers hot reloadable, see http://mxs.is/googmo
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      const nextRootReducer = require('./reducers').default;
+      const nextRootReducer = System.import('./reducers').then(reducer => reducer.default);
       store.replaceReducer(nextRootReducer);
     });
   }
