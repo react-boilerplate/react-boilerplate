@@ -23,7 +23,7 @@
   "devDependencies": {
     "autoprefixer": "^6.3.1",
     "babel-core": "^6.4.5",
-    "babel-eslint": "^4.1.8",
+    "babel-eslint": "^6.0.1",
     "babel-loader": "^6.2.1",
     "babel-plugin-react-transform": "^2.0.0",
     "babel-preset-es2015": "^6.3.13",
@@ -60,14 +60,14 @@
     "karma-firefox-launcher": "^0.1.7",
     "karma-ie-launcher": "^0.2.0",
     "karma-mocha": "^0.2.1",
-    "karma-mocha-reporter": "^1.1.5",
+    "karma-mocha-reporter": "^2.0.0",
     "karma-safari-launcher": "^0.1.1",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "lint-staged": "^0.1.1",
     "minimist": "^1.2.0",
     "mocha": "^2.3.4",
-    "ngrok": "0.1.99",
+    "ngrok": "2.1.6",
     "null-loader": "^0.1.1",
     "offline-plugin": "^2.0.2",
     "plop": "^1.4.1",
@@ -80,8 +80,8 @@
     "shelljs": "^0.6.0",
     "sinon": "^1.17.3",
     "style-loader": "^0.13.0",
-    "stylelint": "^4.1.0",
-    "stylelint-config-standard": "^3.0.0",
+    "stylelint": "^5.2.1",
+    "stylelint-config-standard": "^4.0.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.11",
     "webpack-dev-server": "^1.14.1"
@@ -175,6 +175,7 @@
     "rules": {
       "color-hex-case": "upper",
       "string-quotes": "single",
+      "font-family-name-quotes": "single-where-recommended",
       "indentation": 2
     }
   }
