@@ -1,7 +1,13 @@
 const express = require('express');
 const path = require('path');
+const compression = require('compression');
 
 // Dev middleware
+// This code will only execute when NODE_ENV is `development`. If you are
+// deploying your app and destination environment is `production`, npm
+// will skip devDependencies by default. Dynamic require not only prevents your
+// app from crashing but also gives you the ability to avoid bundling webpack
+// with your application
 const addDevMiddlewares = (app, options) => {
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -28,9 +34,11 @@ const addDevMiddlewares = (app, options) => {
   });
 };
 
+// Production middlewares
 const addProdMiddlewares = (app, options) => {
-  const compression = require('compression');
-
+  // compression middleware compresses your server responses which makes them
+  // smaller (applies also to assets). You can read more about that technique
+  // and other good practices on official Express.js docs http://mxs.is/googmy
   app.use(compression());
   app.use(options.output.publicPath, express.static(options.output.path));
 
