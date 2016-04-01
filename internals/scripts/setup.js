@@ -17,18 +17,20 @@ process.stdout.write('Cleaning old repository');
 cleanRepo(dir, function () {
   clearInterval(interval);
   process.stdout.write('\nInstalling dependencies... (This might take a while)');
-  setTimeout(function() {
+  setTimeout(function () {
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
     interval = animateProgress('Installing dependencies');
   }, 500);
+
   process.stdout.write('Installing dependencies');
-  installDeps(function(error) {
+  installDeps(function (error) {
     clearInterval(interval);
     if (error) {
       process.stdout.write(error);
     }
-    deleteFileInCurrentDir('init', function() {
+
+    deleteFileInCurrentDir('setup.js', function () {
       process.stdout.write('\n');
       interval = animateProgress('Initialising new repository');
       process.stdout.write('Initialising new repository');
@@ -87,8 +89,9 @@ function animateProgress(message, amountOfDots) {
   if (typeof amountOfDots !== 'number') {
     amountOfDots = 3;
   }
+
   var i = 0;
-  return setInterval(function() {
+  return setInterval(function () {
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
     i = (i + 1) % (amountOfDots + 1);

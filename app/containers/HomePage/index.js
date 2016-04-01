@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { routeActions } from 'react-router-redux';
+import { push } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import { createSelector } from 'reselect';
@@ -53,15 +53,18 @@ export class HomePage extends React.Component {
 
   render() {
     let mainContent = null;
+
     // Show a loading indicator when we're loading
     if (this.props.loading) {
       mainContent = (<List component={LoadingIndicator} />);
+
     // Show an error if there is one
     } else if (this.props.error !== false) {
       const ErrorComponent = () => (
         <ListItem content={'Something went wrong, please try again!'} />
       );
       mainContent = (<List component={ErrorComponent} />);
+
     // If we're not loading, don't have an error and there are repos, show the repos
     } else if (this.props.repos !== false) {
       mainContent = (<List items={this.props.repos} component={RepoListItem} />);
@@ -99,11 +102,12 @@ export class HomePage extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-    changeRoute: (url) => dispatch(routeActions.push(url)),
+    changeRoute: (url) => dispatch(push(url)),
     onSubmitForm: (evt) => {
       evt.preventDefault();
       dispatch(loadRepos());
     },
+
     dispatch,
   };
 }

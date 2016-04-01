@@ -16,6 +16,7 @@ module.exports = {
       if ((/.+/).test(value)) {
         return componentExists(value) ? 'A component or container with this name already exists' : true;
       }
+
       return 'The name is required';
     },
   }, {
@@ -52,8 +53,10 @@ module.exports = {
       if (value.length > 0) {
         return true;
       }
+
       return 'At least one selector must be selected';
     },
+
     when: answers => answers.selectorType === 'old',
   }, {
     type: 'input',
@@ -64,11 +67,14 @@ module.exports = {
       if ((/.+selector/i).test(value)) {
         return 'The name should not end in "-selector", we add that for you!';
       }
+
       if ((/.+/).test(value)) {
         return true;
       }
+
       return 'The name is required';
     },
+
     when: answers => answers.selectorType === 'new',
   }],
   actions: data => {
@@ -111,6 +117,7 @@ module.exports = {
         templateFile: './container/actions.test.js.hbs',
         abortOnFail: true,
       });
+
       // Constants
       actions.push({
         type: 'add',
@@ -118,6 +125,7 @@ module.exports = {
         templateFile: './container/constants.js.hbs',
         abortOnFail: true,
       });
+
       // Reducer
       actions.push({
         type: 'add',
@@ -131,17 +139,17 @@ module.exports = {
         templateFile: './container/reducer.test.js.hbs',
         abortOnFail: true,
       });
-      actions.push({ // Add the reducer to the rootReducer
+      actions.push({ // Add the reducer to the reducer.js file
         type: 'modify',
-        path: '../../app/rootReducer.js',
-        pattern: /(\n}\);)/gi,
-        template: '\n  {{camelCase name}}: {{camelCase name}}Reducer,$1',
+        path: '../../app/reducers.js',
+        pattern: /(\.\.\.asyncReducers,\n {2}}\);)/gi,
+        template: '{{camelCase name}}: {{camelCase name}}Reducer,\n    $1',
       });
       actions.push({
         type: 'modify',
-        path: '../../app/rootReducer.js',
-        pattern: /(\n\nexport default combineReducers)/gi,
-        template: '\nimport {{camelCase name}}Reducer from \'{{properCase name}}/reducer\';$1',
+        path: '../../app/reducers.js',
+        pattern: /(export default function createReducer)/gi,
+        template: 'import {{camelCase name}}Reducer from \'{{properCase name}}/reducer\';\n$1',
       });
     }
 

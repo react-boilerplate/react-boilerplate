@@ -19,7 +19,7 @@
 *.scss text
 *.less text
 *.styl text
-*.js text
+*.js text eol=lf
 *.coffee text
 *.json text
 *.htm text

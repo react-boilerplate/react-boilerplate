@@ -1,8 +1,48 @@
 # Features
 
-## Offline First
+## Quick scaffolding
 
-Using a `ServiceWorker` and the `Application Cache`, your application is cached for offline usage. This is done using the [`offline-plugin`](https://github.com/NekR/offline-plugin) for webpack, so all your files are included automatically. No manual intervention needed!
+Automate the creation of components, containers, routes, selectors and sagas - and their tests - right from the CLI!
+
+Run `$ npm run generate` in your terminal and choose one of the parts you want to generate. They'll automatically be imported in the correct places and have everything set up correctly.
+
+> We use [plop] to generate new components, you can find all the logic and templates for the generation in `internals/generators`.
+
+[plop]: https://github.com/amwmedia/plop
+
+## Instant feedback
+
+Enjoy the best DX and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!
+
+## Predictable state management
+
+We use Redux to manage our applications state. We have also added optional support for the [Chrome Redux DevTools Extension] – if you have it installed, you can see, play back and change your action history!
+
+[Chrome Redux DevTools Extension]: https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
+
+## Next generation JavaScript
+
+Use ESNext template strings, object destructuring, arrow functions, JSX syntax and more, today. This is possible thanks to Babel with the `es2015`, `stage-0` and `react` presets!
+
+## Next generation CSS
+
+Write composable CSS that's co-located with your components using [CSS modules] for complete modularity. Unique generated class names keep the specificity low while eliminating style clashes. Ship only the styles that are used on the visible page for the best performance.
+
+[CSS modules]: ../css/css-modules.md
+
+## Industry-standard routing
+
+It's natural to want to add pages (e.g. `/about`) to your application, and routing makes this possible.
+Thanks to [react-router] with [react-router-redux], that's as easy as pie and the url is synced to our application state!
+
+[react-router]: https://github.com/reactjs/react-router
+[react-router-redux]: https://github.com/reactjs/react-router-redux
+
+## Offline-first
+
+The next frontier in performant web apps: availability without a network connection from the instant your users load the app. This is done with a ServiceWorker and a fallback to AppCache, so this feature even works on older browsers!
+
+> All your files are included automatically. No manual intervention needed thanks to webpack's [`offline-plugin`](https://github.com/NekR/offline-plugin)!
 
 ### Removing offline access
 
@@ -12,7 +52,7 @@ To remove offline capability, delete the `offline-plugin` from the [`package.jso
 
 ### Add To Homescreen
 
-On Chrome for Android (soon hopefully more browsers), users can add a webpage to the homescreen. Combined with offline caching, this means your web app can be used exactly like a native application.
+After two visits to the website, users will get a prompt to add your application to their homescreen. Combined with offline caching, this means your web app can be used exactly like a native application.
 
 The name and icon to be displayed are set in the `app/manifest.json` file. Change them to your project name and icon, and try it!
 
@@ -39,13 +79,3 @@ If you simply use web fonts in your project, the page will stay blank until thes
 **Careful** about removing this, as perceived performance might be highly impacted.
 
 To remove `FontFaceObserver`, don't import it in [`app.js`](app/js/app.js) and remove it from the [`package.json`](package.json).
-
-## Server Configuration
-
-### Apache
-
-This boilerplate includes a `.htaccess` file that does two things:
-
-1. Redirect all traffic to HTTPS because ServiceWorker only works for encrypted traffic.
-
-2. Rewrite all pages (e.g. `yourdomain.com/subpage`) to `yourdomain.com/index.html` to let `react-router` take care of presenting the correct page.

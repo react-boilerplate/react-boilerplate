@@ -5,7 +5,3 @@ end_of_line = lf
 insert_final_newline = false
 indent_style = space
 indent_size = 2
-
-[*.css]
-indent_style = space
-indent_size = 4

@@ -19,14 +19,14 @@ import {{this}} from '{{this}}';
 {{/if}}
 
 {{#if wantCSS}}
-import styles from './{{ dashCase name }}.css';
+import styles from './styles.css';
 {{/if}}
 
 class {{ properCase name }} extends React.Component {
   render() {
     return (
       {{#if wantCSS}}
-      <div style={ styles.{{ camelCase name }} }>
+      <div className={ styles.{{ camelCase name }} }>
       {{else}}
       <div>
       {{/if}}

@@ -1,7 +1,3 @@
-/**
- * Create the store with asynchronously loaded reducers
- */
-
 import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
@@ -28,14 +24,11 @@ export default function configureStore(initialState = {}, history) {
     });
   }
 
-  // Initialize it with no other reducers
   store.asyncReducers = {};
+
   return store;
 }
 
-/**
- * Inject an asynchronously loaded reducer
- */
 export function injectAsyncReducer(store, name, asyncReducer) {
   store.asyncReducers[name] = asyncReducer; // eslint-disable-line
   store.replaceReducer(createReducer(store.asyncReducers));

@@ -13,12 +13,15 @@ module.exports = {
       if ((/.+selector/i).test(value)) {
         return 'The name should not end in "-selector", we add that for you!';
       }
+
       if ((/.+/).test(value)) {
         return true;
       }
+
       return 'The name is required';
     },
   }],
+
   // Add the selector and the test for it
   actions: [{
     type: 'add',

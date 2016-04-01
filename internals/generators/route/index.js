@@ -14,6 +14,7 @@ module.exports = {
       if ((/.+/).test(value)) {
         return componentExists(value) ? true : '"' + value + '" doesn\'t exist.';
       }
+
       return 'The path is required';
     },
   }, {
@@ -25,9 +26,11 @@ module.exports = {
       if ((/.+/).test(value)) {
         return true;
       }
+
       return 'path is required';
     },
   }],
+
   // Add the route to the routes.js file above the error route
   // TODO smarter route adding
   actions: [{
