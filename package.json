@@ -4,6 +4,9 @@
   "description": "Quick setup for new React.js applications featuring Redux, hot–reloading, PostCSS, react-router and Mocha.",
   "dependencies": {
     "babel-polyfill": "^6.3.14",
+    "compression": "^1.6.1",
+    "connect-history-api-fallback": "^1.1.0",
+    "express": "^4.13.4",
     "fontfaceobserver": "^1.6.3",
     "history": "^2.0.0",
     "immutable": "^3.7.6",
@@ -18,7 +21,8 @@
     "redux-saga": "^0.9.1",
     "reselect": "^2.0.2",
     "sanitize.css": "^3.3.0",
-    "scroll-behavior": "^0.3.2"
+    "scroll-behavior": "^0.3.2",
+    "chalk": "^1.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.1",
@@ -32,7 +36,6 @@
     "babel-preset-stage-0": "^6.3.13",
     "chai": "^3.5.0",
     "chai-enzyme": "^0.4.1",
-    "chalk": "^1.1.1",
     "cheerio": "^0.20.0",
     "coveralls": "^2.11.6",
     "cross-env": "^1.0.7",
@@ -41,6 +44,7 @@
     "eslint": "^2.0.0",
     "eslint-config-airbnb": "^6.1.0",
     "eslint-plugin-react": "^4.2.1",
+    "eventsource-polyfill": "^0.9.6",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.2",
     "exports-loader": "^0.6.3",
@@ -77,6 +81,7 @@
     "postcss-reporter": "^1.3.0",
     "psi": "^2.0.2",
     "react-addons-test-utils": "^0.14.6",
+    "sanitize.css": "^3.3.0",
     "shelljs": "^0.6.0",
     "sinon": "^1.17.3",
     "style-loader": "^0.13.0",
@@ -84,16 +89,18 @@
     "stylelint-config-standard": "^4.0.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.11",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-middleware": "^1.5.1",
+    "webpack-hot-middleware": "^2.9.1"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/mxstbr/react-boilerplate.git"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development node internals/webpack/server.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --colors -p",
-    "serve": "cross-env NODE_ENV=production node internals/webpack/server.prod.js",
+    "start": "npm run start:tunnel",
+    "start:tunnel": "NODE_ENV=development node server",
+    "start:prod": "NODE_ENV=production node server",
     "pagespeed": "node ./internals/scripts/pagespeed.js",
     "setup": "node ./internals/scripts/setup.js",
     "clean": "shjs ./internals/scripts/clean.js",
