@@ -27,7 +27,7 @@
     "babel-loader": "^6.2.1",
     "babel-plugin-react-transform": "^2.0.0",
     "babel-preset-es2015": "^6.3.13",
-    "babel-preset-es2015-native-modules": "^6.6.0",
+    "babel-preset-es2015-webpack": "^6.4.0",
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
     "babel-preset-stage-0": "^6.3.13",
@@ -122,7 +122,7 @@
   "license": "MIT",
   "babel": {
     "presets": [
-      "es2015-native-modules",
+      "es2015-webpack",
       "react",
       "stage-0"
     ]
