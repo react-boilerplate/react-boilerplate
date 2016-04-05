@@ -36,14 +36,23 @@ Allows you to auto-generate boilerplate code for common parts of your
 application, specifically `components`, `containers`, `selectors`, `sagas` and
 `routes`.
 
-## Development
+## Server
+
+### Development
 
 ```Shell
 $ npm start
 ```
 
-Starts the development server and makes your application accessible at
-`localhost:3000`. Changes in the application code will be hot-reloaded.
+Starts the development server and makes your application accessible at `localhost:3000`. Tunnels that server with `ngrok`, which means the website accessible on the entire world! Changes in the application code will be hot-reloaded.
+
+### Production
+
+```Shell
+$ npm run start:prod
+```
+
+Starts the production server, which compresses the assets with gzip.
 
 ### Port
 
@@ -112,16 +121,11 @@ Watches changes to your application and reruns tests whenever a file changes.
 ### Remote testing
 
 ```Shell
-$ npm run serve
+$ npm run start:tunnel
 ```
+Starts the development server and tunnels it with `ngrok`, making the website available on the entire world. Useful for testing on different devices in different locations!
 
-Runs a server that's accessible on the entire world and shows the version of the
-app that's in the `build` folder. Useful for testing on different devices in
-different locations!
-
-> Note: This assumes you have done a build with `npm run build` before. The
-changes you make in your application won't be reflected in the application
-unless you run `npm run build` again.
+> Note: `$ npm start` aliases to this command.
 
 ### Performance testing
 
