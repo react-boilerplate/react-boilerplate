@@ -8,9 +8,11 @@
 
 *[Source](https://stackoverflow.com/questions/34570758/why-do-we-need-middleware-for-async-flow-in-redux/34623840#34623840)*
 
+To learn more about this amazing way to handle concurrent flows, start with the [official documentation](https://github.com/yelouafi/redux-saga) and explore some examples! (read [this comparison](https://stackoverflow.com/questions/34930735/pros-cons-of-using-redux-saga-with-es6-generators-vs-redux-thunk-with-es7-async/34933395) if you're used to `redux-thunk`)
+
 ## Usage
 
-Start off with the [official documentation](https://github.com/yelouafi/redux-saga), read [this comparison](https://stackoverflow.com/questions/34930735/pros-cons-of-using-redux-saga-with-es6-generators-vs-redux-thunk-with-es7-async/34933395) if you're used to `redux-thunk` and explore some examples!
+To generate a new saga, use the `$ npm run generate` command. This will create a new file in the `app/sagas` folder, in which you can write your saga.
 
 ## Removing `redux-saga`
 
