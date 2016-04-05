@@ -62,6 +62,10 @@ module.exports = (options) => ({
       '.jsx',
       '.react.js',
     ],
+    packageMains: [
+      'jsnext:main',
+      'main',
+    ],
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
