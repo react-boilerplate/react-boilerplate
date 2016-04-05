@@ -9,12 +9,15 @@ via [`reselect`](reselect.md).
 For managing asynchronous flows (e.g. logging in) we use
 [`redux-saga`](redux-saga.md).
 
+For routing, we use [`react-router` in combination with `react-router-redux`](routing.md).
+
 ### Learn more
 
 - [Redux](redux.md)
 - [ImmutableJS](immutablejs.md)
 - [reselect](reselect.md)
 - [redux-saga](redux-saga.md)
+- [routing](routing.md)
 
 ## Architecture: `components` and `containers`
 

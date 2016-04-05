@@ -1,6 +1,26 @@
 # Documentation
 
-**Add ToC of the documentation here as soon as it's finished**
+- [General](general)
+  - [Prerequisites](general/prerequisites.md)
+  - [Features](general/features.md)
+  - [**Commands**](general/commands.md)
+  - [Files](general/files.md)
+  - [Server Configurations](general/server-configs.md)
+  - [FAQ](general/faq.md)
+- [Testing](testing)
+  - [Unit Testing](testing/unit-testing.md)
+  - [Component Testing](testing/component-testing.md)
+  - [Remote Testing](testing/remote-testing.md)
+- [CSS](css)
+  - [PostCSS](css/postcss.md)
+  - [CSS Modules](css/css-modules.md)
+  - [sanitize.css](css/sanitize.md)
+- [JS](js)
+  - [Redux](js/redux.md)
+  - [ImmutableJS](js/immutablejs.md)
+  - [reselect](js/reselect.md)
+  - [redux-saga](js/redux-saga.md)
+  - [routing](js/routing.md)
 
 ## Overview
 
