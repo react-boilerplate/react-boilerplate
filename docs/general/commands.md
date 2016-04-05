@@ -44,7 +44,9 @@ application, specifically `components`, `containers`, `selectors`, `sagas` and
 $ npm start
 ```
 
-Starts the development server and makes your application accessible at `localhost:3000`. Tunnels that server with `ngrok`, which means the website accessible on the entire world! Changes in the application code will be hot-reloaded.
+Starts the development server and makes your application accessible at
+`localhost:3000`. Tunnels that server with `ngrok`, which means the website
+accessible anywhere! Changes in the application code will be hot-reloaded.
 
 ### Production
 
@@ -52,7 +54,8 @@ Starts the development server and makes your application accessible at `localhos
 $ npm run start:prod
 ```
 
-Starts the production server, which compresses the assets with gzip.
+Starts the production server, configured for optimal performance: assets are
+minified and served gzipped.
 
 ### Port
 
@@ -66,10 +69,9 @@ with `--`. E.g. to make the app visible at `localhost:5000`, run the following:
 $ npm run build
 ```
 
-Gets your application ready for deployment. Optimizes and minifies all files,
-and generates a folder called `build`. `build` includes all files you need for
-your application. Upload the contents of `build` to your web server to see it
-live!
+Preps your app for deployment. Optimizes and minifies all files, piping them to
+a folder called `build`. Upload the contents of `build` to your web server to
+see your work live!
 
 ## Testing
 
@@ -123,7 +125,8 @@ Watches changes to your application and reruns tests whenever a file changes.
 ```Shell
 $ npm run start:tunnel
 ```
-Starts the development server and tunnels it with `ngrok`, making the website available on the entire world. Useful for testing on different devices in different locations!
+Starts the development server and tunnels it with `ngrok`, making the website
+available on the entire world. Useful for testing on different devices in different locations!
 
 > Note: `$ npm start` aliases to this command.
 

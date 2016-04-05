@@ -40,9 +40,9 @@ function myReducer(state = initialState, action) {
 }
 ```
 
-We use [`reselect`](./reselect.md) to select our application state. Since that
-state is now immutable, we need to use the `.get` and `.getIn` functions to
-select the part we want.
+We use [`reselect`](./reselect.md) to efficiently cache our computed application
+state. Since that state is now immutable, we need to use the `.get` and `.getIn`
+functions to select the part we want.
 
 ```JS
 const myDataSelector = (state) => state.get('myData');
@@ -50,6 +50,6 @@ const myDataSelector = (state) => state.get('myData');
 export default myDataSelector;
 ```
 
-To learn more about that, check out [`reselect.md`](reselect.md)!
+To learn more, check out [`reselect.md`](reselect.md)!
 
 ## Removing ImmutableJS

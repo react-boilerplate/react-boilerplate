@@ -33,7 +33,7 @@ Run `$ npm start` to see your app at `localhost:3000`!
 1. Run `$ npm run build`, which will compile all the necessary files to the
 `build` folder.
 
-2. Upload the contents of the `build` folder to your web servers root folder.
+2. Upload the contents of the `build` folder to your web server's root folder.
 
 ### Structure
 
@@ -43,7 +43,7 @@ JavaScript, HTML and tests.
 The rest of the folders and files only exist to make your life easier, and
 should not need to be touched.
 
-*(If they do have to be changed, please submit an issue!)*
+*(If they do have to be changed, please [submit an issue](https://github.com/mxstbr/react-boilerplate/issues)!)*
 
 ### CSS
 
@@ -61,9 +61,9 @@ and CSS modules.
 
 ### JS
 
-We bundle all your clientside scripts and chunk them into several files if
-possible using code splitting. We automatically optimize your code when building
-for production so you don't have to worry about that.
+We bundle all your clientside scripts and chunk them into several files using
+code splitting where possible. We then automatically optimize your code when
+building for production so you don't have to worry about that.
 
 See the [JS documentation](./js/README.md) for more information about the
 JavaScript side of things.
@@ -81,9 +81,8 @@ get a performance check right in your terminal!
 
 #### Browser testing
 
-With `$ npm run serve` you can start a server that's accessible in the entire
-world and shows the version of the app that's in the `build` folder. Useful for
-testing on different devices!
+`$ npm run serve` makes your locally-running app globally available on the web
+via a temporary URL: great for testing on different devices, client demos, etc!
 
 #### Unit testing
 

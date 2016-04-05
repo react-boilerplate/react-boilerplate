@@ -6,7 +6,7 @@ line with developer expectations (e.g. having the box model set to a cascading
 overridden).
 
 It was selected over older projects like `normalize.css` and `reset.css` due
-to its greater flexibility and better alignment with CSSNext features such as CSS
+to its greater flexibility and better alignment with CSSNext features like CSS
 variables.
 
 See the [official documentation](https://github.com/10up/sanitize.css) for more

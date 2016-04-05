@@ -1,12 +1,18 @@
 # Routing via `react-router` and `react-router-redux`
 
-`react-router` is the de-facto standard routing solution for react applications. The thing is that with redux and a single state tree, the URL is part of that state. `react-router-redux` takes care of synchronizing the location of our application with the application state.
+`react-router` is the de-facto standard routing solution for react applications.
+The thing is that with redux and a single state tree, the URL is part of that
+state. `react-router-redux` takes care of synchronizing the location of our
+application with the application state.
 
 (See the [`react-router-redux` documentation](https://github.com/reactjs/react-router-redux) for more information)
 
 ## Usage
 
-To add a new route, use the generator with `$ npm run generate`, and/or add the route manually to the `app/routes.js` file. This is what a standard route looks like for a container, which we automatically generate for you:
+To add a new route, use the generator with `$ npm run generate`, or manually add the
+route to the `app/routes.js` file.
+
+This is what a standard (generated) route looks like for a container:
 
 ```JS
 {

@@ -1,7 +1,7 @@
 # PostCSS
 
-PostCSS is a modular CSS preprocessor based on JavaScript. It comes fully
-configured with the plugins listed below and ready to go.
+PostCSS is a modular CSS preprocessor based on JavaScript. It comes pre-
+configured with the plugins listed below.
 
 See the [official documentation](https://github.com/postcss/postcss) for more
 information!
@@ -19,7 +19,8 @@ features today. Transpiles CSS4 features down to CSS3.
 - [`cssnano`](https://github.com/ben-eb/cssnano): Optimizes your CSS file. For a
 full list of optimizations check [the offical website](http://cssnano.co/optimisations/).
 
-For a full, searchable catalog of possible plugins go to [postcss.parts](http://postcss.parts).
+For more awesome features that the PostCSS ecosystem offers, check out the
+comprehensive, fully-searchable catalog of available plugins at [postcss.parts](http://postcss.parts).
 
 ## Removing PostCSS
 

@@ -13,19 +13,19 @@ efficient tooling and cleanest project structure.
 
 ## Where are the files coming from when I run `$ npm start`?
 
-Webpack compiles your application to memory and serves it from there, no data
-used on your hard drive. Only when you run `$ npm run build` will it write to
-your physical medium and preserve your bundled application across computer
-restarts.
+In development Webpack compiles your application runs it in-memory. Only when
+you run `$ npm run build` will it write to disk and preserve your bundled
+application across computer restarts.
 
 ## Can I use Sass with this boilerplate?
 
-Yes, although we advise against it and **do not support this**. PostCSS has a
-plugin called `PreCSS` that you can install, it can do the exact same things
-Sass can do. This way you can use Sass features, but still get the benefit of
+Yes, although we advise against it and **do not support this**.
+
+As an alternative, consider installing a plugin called `PreCSS`: it lets you use
+familiar syntax - $variables, nesting, mixins, etc. - but still benefit from
 Autoprefixer, postcss-focus, etc.
 
-If you _really_ want to use Sass then
+If you _really_ still want to use Sass then...
 
 1. Change `internals/webpack/webpack.base.babel.js` so that line 22 reads
     ```JavaScript
@@ -97,4 +97,4 @@ The fix is to kill the process and rerun `npm start`.
 
 Submit an [issue](https://github.com/mxstbr/react-boilerplate/issues),
 hop onto the [Gitter channel](https://gitter.im/mxstbr/react-boilerplate)
-or contact Max on [twitter](https://twitter.com/mxstbr)!
+or contact Max direct on [twitter](https://twitter.com/mxstbr)!
