@@ -1,18 +1,12 @@
 const express = require('express');
 const path = require('path');
 const compression = require('compression');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpack = require('webpack');
 
 // Dev middleware
-// This code will only execute when NODE_ENV is `development`. If you are
-// deploying your app and destination environment is `production`, npm
-// will skip devDependencies by default. Dynamic require not only prevents your
-// app from crashing but also gives you the ability to avoid bundling webpack
-// with your application
 const addDevMiddlewares = (app, options) => {
-  const webpackDevMiddleware = require('webpack-dev-middleware');
-  const webpackHotMiddleware = require('webpack-hot-middleware');
-  const webpack = require('webpack');
-
   const compiler = webpack(options);
   const middleware = webpackDevMiddleware(compiler, {
     noInfo: true,
