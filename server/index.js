@@ -12,7 +12,7 @@ const app = express();
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
-// Initialize frontend middleware that will server your JS app
+// Initialize frontend middleware that will serve your JS app
 const webpackConfig = isDev
   ? require('../internals/webpack/webpack.dev.babel')
   : require('../internals/webpack/webpack.prod.babel');
@@ -27,8 +27,6 @@ app.listen(port, (err) => {
     return logger.error(err);
   }
 
-  logger.appStarted(port);
-
   // Connect to ngrok in dev mode
   if (isDev) {
     ngrok.connect(port, (innerErr, url) => {
@@ -36,7 +34,9 @@ app.listen(port, (err) => {
         return logger.error(innerErr);
       }
 
-      logger.tunnelStarted(url);
+      logger.appStarted(port, url);
     });
+  } else {
+    logger.appStarted(port);
   }
 });

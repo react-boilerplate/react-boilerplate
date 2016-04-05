@@ -6,7 +6,7 @@ const divider = chalk.gray('\n-----------------------------------');
 /**
  * Logger middleware, you can customize it to make messages more personal
  */
-module.exports = {
+const logger = {
 
   // Called whenever there's an error on the server we want to print
   error: err => {
@@ -14,27 +14,22 @@ module.exports = {
   },
 
   // Called when express.js app starts on given port w/o errors
-  appStarted: port => {
+  appStarted: (port, tunnelStarted) => {
     console.log('Server started ' + chalk.green('✓'));
+    // If the tunnel started, log that and the URL it's available at
+    if (tunnelStarted) {
+      console.log('Tunnel initialised ' + chalk.green('✓'));
+    }
     console.log(
       chalk.bold('\nAccess URLs:') +
       divider +
-      '\n   Local: ' + chalk.magenta('http://localhost:' + port) +
-      '\nExternal: ' + chalk.magenta('http://' + ip.address() + ':' + port) +
+      '\nLocalhost: ' + chalk.magenta('http://localhost:' + port) +
+      '\n      LAN: ' + chalk.magenta('http://' + ip.address() + ':' + port) +
+      (tunnelStarted ? '\n    Proxy: ' + chalk.magenta(tunnelStarted) : '') +
       divider,
       chalk.blue('\nPress ' + chalk.italic('CTRL-C') + ' to stop\n')
     );
   },
-
-  // Called when ngrok tunnel is initialized
-  tunnelStarted: (url) => {
-    console.log('Tunnel initialised ' + chalk.green('✓'));
-    console.log(
-      chalk.bold('\nAccess URLs:') +
-      divider +
-      '\n   Proxy: ' + chalk.magenta(url) +
-      divider + `\n`
-    );
-  },
-
 };
+
+module.exports = logger;
