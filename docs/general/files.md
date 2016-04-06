@@ -30,12 +30,6 @@ Some explanation for a few of the configuration files lying around this boilerpl
 
 * `webpack.base.babel.js`: The shared webpack configuration. In development mode, we add hot reloading and don't minify our code. In production mode, we minify everything.
 
-  * `webpack.dev.babel.js`: Generates the webpack configuration for development.
-
-  * `webpack.prod.babel.js`: Generates the webpack configuration for production.
-
-  * `webpack.test.babel.js`: Generates the webpack configuration for testing.
-
 * `server.dev.js`: The development server that runs when `npm start` is entered into the command line.
 
 * `server.prod.js`: The server that runs when `npm run serve` is entered into the command line. -->
