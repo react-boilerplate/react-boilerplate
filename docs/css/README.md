@@ -1,12 +1,12 @@
 # CSS
 
 This boilerplate uses PostCSS as a CSS preprocessor with a few utility plugins
-included by default.
+to make it "batteries included".
 
-This lets us embrace component encapsulation with CSS Modules and
-resets browser specific styling with sanitize.css.
+CSS Modules lets us embrace component encapsulation while sanitize.css gives us
+data-driven cross-browser normalisation.
 
-Learn more about
+Learn more:
 
 - [PostCSS](postcss.md)
 - [CSS Modules](css-modules.md)

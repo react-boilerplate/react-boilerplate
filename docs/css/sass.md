@@ -2,11 +2,11 @@
 
 Yes, although we advise against it and **do not support this**.
 
-As an alternative, consider installing a PostCSS plugin called `PreCSS`: it lets
-you use familiar syntax - $variables, nesting, mixins, etc. - but still benefit
-from Autoprefixer, postcss-focus, etc.
+As an alternative, consider installing a PostCSS plugin called [`PreCSS`](https://github.com/jonathantneal/precss):
+it lets you use familiar syntax - $variables, nesting, mixins, etc. - but retain
+the advantages (speed, memory efficiency, extensibility, etc) of PostCSS
 
-If you _really_ still want to use Sass then...
+If you _really_ still want (or need) to use Sass then...
 
 1. Change `internals/webpack/webpack.base.babel.js` so that line 22 reads
     ```JavaScript
