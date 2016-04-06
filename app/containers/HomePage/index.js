@@ -93,7 +93,7 @@ export class HomePage extends React.Component {
               </form>
               { mainContent }
           </section>
-          <Button handleRoute = { this.openFeaturesPage }>Features</Button>
+          <Button handleRoute={ this.openFeaturesPage }>Features</Button>
         </div>
       </article>
     );
