@@ -4,6 +4,7 @@
   "description": "Quick setup for new React.js applications featuring Redux, hot–reloading, PostCSS, react-router and Mocha.",
   "dependencies": {
     "babel-polyfill": "^6.3.14",
+    "chalk": "^1.1.1",
     "compression": "^1.6.1",
     "connect-history-api-fallback": "^1.1.0",
     "express": "^4.13.4",
@@ -22,7 +23,7 @@
     "reselect": "^2.2.1",
     "sanitize.css": "^3.3.0",
     "scroll-behavior": "^0.3.2",
-    "chalk": "^1.1.1"
+    "whatwg-fetch": "^0.11.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.1",
