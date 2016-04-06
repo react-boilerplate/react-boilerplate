@@ -58,7 +58,7 @@ Made with ❤︎ by <a href="https://twitter.com/mxstbr">Max Stoiber</a> and <a 
 
 But wait... there's more!
 
-  - *Built-in unit testing:* Automatically guarantee code quality and non-breaking changes.
+  - *The best test setup:* Automatically guarantee code quality and non-breaking changes. (Seen a react app with 99% test coverage before?)
   - *Native web app:* Your app's new home? The homescreen of your users' phones.
   - *The fastest fonts:* Say goodbye to vacant text.
 
