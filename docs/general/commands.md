@@ -6,9 +6,12 @@
 $ npm run setup
 ```
 
-Initializes a new project with this boilerplate. Deletes the `react-boilerplate` git history, installs the dependencies and initializes a new repository.
+Initializes a new project with this boilerplate. Deletes the `react-boilerplate`
+git history, installs the dependencies and initializes a new repository.
 
-> Note: This command is self-destructive, once you've run it the init script is gone forever. This is for your own safety, so you can't delete your projects history irreversibly on accident.
+> Note: This command is self-destructive, once you've run it the init script is
+gone forever. This is for your own safety, so you can't delete your project's
+history irreversibly by accident.
 
 ## Cleaning
 
@@ -16,9 +19,12 @@ Initializes a new project with this boilerplate. Deletes the `react-boilerplate`
 $ npm run clean
 ```
 
-Deletes the example app, replacing it with the smallest amount of boilerplate code necessary to start writing your app!
+Deletes the example app, replacing it with the smallest amount of boilerplate
+code necessary to start writing your app!
 
-> Note: This command is self-destructive, once you've run it you cannot run it again. This is for your own safety, so you can't delete your projects irreversibly on accident.
+> Note: This command is self-destructive, once you've run it you cannot run it
+again. This is for your own safety, so you can't delete portions of your project
+irreversibly by accident.
 
 ## Generators
 
@@ -26,7 +32,9 @@ Deletes the example app, replacing it with the smallest amount of boilerplate co
 $ npm run generate
 ```
 
-Allows you to auto-generate boilerplate code for common parts of your application, specifically `components`, `containers`, `selectors`, `sagas` and `routes`.
+Allows you to auto-generate boilerplate code for common parts of your
+application, specifically `components`, `containers`, `selectors`, `sagas` and
+`routes`.
 
 ## Server
 
@@ -36,7 +44,9 @@ Allows you to auto-generate boilerplate code for common parts of your applicatio
 $ npm start
 ```
 
-Starts the development server and makes your application accessible at `localhost:3000`. Tunnels that server with `ngrok`, which means the website accessible on the entire world! Changes in the application code will be hot-reloaded.
+Starts the development server and makes your application accessible at
+`localhost:3000`. Tunnels that server with `ngrok`, which means the website
+accessible anywhere! Changes in the application code will be hot-reloaded.
 
 ### Production
 
@@ -44,11 +54,14 @@ Starts the development server and makes your application accessible at `localhos
 $ npm run start:prod
 ```
 
-Starts the production server, which compresses the assets with gzip.
+Starts the production server, configured for optimal performance: assets are
+minified and served gzipped.
 
 ### Port
 
-To change the port the app is accessible at pass the `-p` option to the command with `--`. E.g. to make the app visible at `localhost:5000`, run the following: `$ npm start -- -p 5000`
+To change the port the app is accessible at pass the `-p` option to the command
+with `--`. E.g. to make the app visible at `localhost:5000`, run the following:
+`$ npm start -- -p 5000`
 
 ## Building
 
@@ -56,11 +69,14 @@ To change the port the app is accessible at pass the `-p` option to the command 
 $ npm run build
 ```
 
-Gets your application ready for deployment. Optimizes and minifies all files, and generates a folder called `build`. `build` includes all files you need for your application. Upload the contents of `build` to your web server to see it live!
+Preps your app for deployment. Optimizes and minifies all files, piping them to
+a folder called `build`. Upload the contents of `build` to your web server to
+see your work live!
 
 ## Testing
 
-See the [testing documentation](../testing/README.md) for detailed information about our testing setup!
+See the [testing documentation](../testing/README.md) for detailed information
+about our testing setup!
 
 ## Unit testing
 
@@ -68,11 +84,13 @@ See the [testing documentation](../testing/README.md) for detailed information a
 $ npm run test
 ```
 
-Tests your application with the unit tests specified in the `*test.js` files throughout the application.
+Tests your application with the unit tests specified in the `*test.js` files
+throughout the application.
 
 ### Browsers
 
-To choose the browser to run your unit tests in (Chrome by default), run one of the following commands:
+To choose the browser to run your unit tests in (Chrome by default), run one of
+the following commands:
 
 #### Firefox
 
@@ -107,8 +125,8 @@ Watches changes to your application and reruns tests whenever a file changes.
 ```Shell
 $ npm run start:tunnel
 ```
-
-Starts the development server and tunnels it with `ngrok`, making the website available on the entire world. Useful for testing on different devices in different locations!
+Starts the development server and tunnels it with `ngrok`, making the website
+available on the entire world. Useful for testing on different devices in different locations!
 
 > Note: `$ npm start` aliases to this command.
 
@@ -118,7 +136,9 @@ Starts the development server and tunnels it with `ngrok`, making the website av
 $ npm run pagespeed
 ```
 
-With the remote server running (i.e. while `$ npm run serve` is running in another terminal session), enter this command to run Google PageSpeed Insights and get a performance check right in your terminal!
+With the remote server running (i.e. while `$ npm run serve` is running in
+another terminal session), enter this command to run Google PageSpeed Insights
+and get a performance check right in your terminal!
 
 ## Linting
 
