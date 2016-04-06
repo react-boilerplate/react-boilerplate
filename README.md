@@ -1,5 +1,3 @@
-<br />
-
 <img src="https://raw.githubusercontent.com/mxstbr/react-boilerplate-brand/master/assets/banner-metal.jpg" alt="react boilerplate banner" align="center" />
 
 <br />
@@ -25,9 +23,13 @@
 
 <br />
 
-Quick setup for new performance orientated, offline–first React.js applications featuring Redux, hot–reloading, PostCSS, react-router, ServiceWorker, AppCache, FontFaceObserver and Mocha.
+<div align="center"><strong>Start your next react project in seconds</strong></div>
+<div align="center">A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices</div>
 
-Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors](https://github.com/mxstbr/react-boilerplate/graphs/contributors). *If you're using this boilerplate, we'd love to [hear from you](https://github.com/mxstbr/react-boilerplate/issues/115)!*
+<br />
+
+<sub>
+Made with ❤︎ by <a href="https://twitter.com/mxstbr">Max Stoiber</a> and <a href="https://github.com/mxstbr/react-boilerplate/graphs/contributors">contributors</a>. <i>If you're using this boilerplate, we'd love to <a href="https://github.com/mxstbr/react-boilerplate/issues/115">hear from you</a>!</i> </sub>
 
 ## Features
 
