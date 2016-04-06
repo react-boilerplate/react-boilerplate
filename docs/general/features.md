@@ -68,9 +68,9 @@ thanks to webpack's [`offline-plugin`](https://github.com/NekR/offline-plugin)!
 application available when the users network connection isn't perfect.
 
 To remove offline capability, delete the `offline-plugin` from the
-[`package.json`](package.json), remove the import of the plugin in
-[`app.js`](app/js/app.js) and remove the plugin from the
-[`webpack.prod.babel.js`](webpack/webpack.prod.babel.js).
+[`package.json`](../../package.json), remove the import of the plugin in
+[`app.js`](../../app/app.js) and remove the plugin from the
+[`webpack.prod.babel.js`](../../internals/webpack/webpack.prod.babel.js).
 
 ### Add To Homescreen
 
@@ -83,7 +83,7 @@ Change them to your project name and icon, and try it!
 
 #### Removing add to homescreen functionality
 
-Delete [`manifest.json`](app/manifest.json) and remove the
+Delete [`manifest.json`](../../app/manifest.json) and remove the
 `<link rel="manifest" href="manifest.json">` tag from the
 [`index.html`](../../app/index.html).
 
@@ -100,8 +100,8 @@ and [`App/styles.css`](../../app/containers/App/styles.css))
 ### Adding a new font
 
 1. Either add the `@font-face` declaration to `App/styles.css` or add a `<link>`
-tag to the [`index.html`](app/index.html). (Don't forget to remove the `<link>`
-for Open Sans from the [`index.html`](app/index.html)!)
+tag to the [`index.html`](../../app/index.html). (Don't forget to remove the `<link>`
+for Open Sans from the [`index.html`](../../app/index.html)!)
 
 2. In `App/styles.css`, specify your initial `font-family` in the `body` tag
 with only web-save fonts. In the `body.jsFontLoaded` tag, specify your
@@ -113,5 +113,5 @@ with only web-save fonts. In the `body.jsFontLoaded` tag, specify your
 
 **Careful** about removing this, as perceived performance might be highly impacted.
 
-To remove `FontFaceObserver`, don't import it in [`app.js`](app/js/app.js) and
-remove it from the [`package.json`](package.json).
+To remove `FontFaceObserver`, don't import it in [`app.js`](../../app/app.js) and
+remove it from the [`package.json`](../../package.json).
