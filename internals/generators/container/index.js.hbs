@@ -35,17 +35,7 @@ class {{ properCase name }} extends React.Component {
   }
 }
 
-{{#if wantSelector}}
-const makeMapStateToProps = () => createSelector(
-  {{#if selectorName}}
-    {{camelCase selectorName}}Selector
-  {{else}}
-  {{#each selectors }}
-    {{this}},
-  {{/each}}
-  {{/if}}
-);
-{{else}}
+{{#if !wantSelector}}
 function mapStateToProps(state) {
   return {};
 }
@@ -58,7 +48,15 @@ function mapDispatchToProps(dispatch) {
 }
 
 {{#if wantSelector}}
-export default connect(makeMapStateToProps, mapDispatchToProps)({{ properCase name }});
+export default connect(createSelector(
+  {{#if selectorName}}
+    {{camelCase selectorName}}Selector
+  {{else}}
+  {{#each selectors }}
+    {{this}},
+  {{/each}}
+  {{/if}}
+), mapDispatchToProps)({{ properCase name }});
 {{else}}
 export default connect(mapStateToProps, mapDispatchToProps)({{ properCase name }});
 {{/if}}

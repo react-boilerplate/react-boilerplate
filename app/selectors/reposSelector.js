@@ -6,7 +6,7 @@ import { createSelector } from 'reselect';
 import globalSelector from 'globalSelector';
 
 const reposSelector = () => createSelector(
-  globalSelector,
+  globalSelector(),
   (globalState) => globalState.getIn(['userData', 'repositories'])
 );
 
