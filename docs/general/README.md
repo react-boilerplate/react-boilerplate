@@ -1,8 +1,8 @@
 # General
 
-- [Prerequisites](general/prerequisites.md)
-- [Features](general/features.md)
-- [**Commands**](general/commands.md)
-- [Files](general/files.md)
-- [Server Configurations](general/server-configs.md)
-- [FAQ](general/faq.md)
+- [Prerequisites](prerequisites.md)
+- [Features](features.md)
+- [**Commands**](commands.md)
+- [Files](files.md)
+- [Server Configurations](server-configs.md)
+- [FAQ](faq.md)
