@@ -6,6 +6,8 @@ import currentUserSelector from '../currentUserSelector';
 import { fromJS } from 'immutable';
 import expect from 'expect';
 
+const selector = currentUserSelector();
+
 describe('currentUserSelector', () => {
   it('should select the current user', () => {
     const currentUser = 'mxstbr';
@@ -14,6 +16,6 @@ describe('currentUserSelector', () => {
         currentUser,
       },
     });
-    expect(currentUserSelector(mockedState)).toEqual(currentUser);
+    expect(selector(mockedState)).toEqual(currentUser);
   });
 });

@@ -115,9 +115,9 @@ function mapDispatchToProps(dispatch) {
 
 // Wrap the component to inject dispatch and state into it
 export default connect(createSelector(
-  reposSelector,
-  usernameSelector,
-  loadingSelector,
-  errorSelector,
+  reposSelector(),
+  usernameSelector(),
+  loadingSelector(),
+  errorSelector(),
   (repos, username, loading, error) => ({ repos, username, loading, error })
 ), mapDispatchToProps)(HomePage);

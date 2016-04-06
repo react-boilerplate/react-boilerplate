@@ -5,7 +5,7 @@
 import { createSelector } from 'reselect';
 import homeSelector from 'homeSelector';
 
-const usernameSelector = createSelector(
+const usernameSelector = () => createSelector(
   homeSelector,
   (homeState) => homeState.get('username')
 );

@@ -5,7 +5,7 @@
 import { createSelector } from 'reselect';
 import globalSelector from 'globalSelector';
 
-const loadingSelector = createSelector(
+const loadingSelector = () => createSelector(
   globalSelector,
   (globalState) => globalState.get('loading')
 );

@@ -6,6 +6,8 @@ import errorSelector from '../errorSelector';
 import { fromJS } from 'immutable';
 import expect from 'expect';
 
+const selector = errorSelector();
+
 describe('errorSelector', () => {
   it('should select the error', () => {
     const error = 404;
@@ -14,6 +16,6 @@ describe('errorSelector', () => {
         error,
       },
     });
-    expect(errorSelector(mockedState)).toEqual(error);
+    expect(selector(mockedState)).toEqual(error);
   });
 });

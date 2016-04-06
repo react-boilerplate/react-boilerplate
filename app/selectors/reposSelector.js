@@ -5,7 +5,7 @@
 import { createSelector } from 'reselect';
 import globalSelector from 'globalSelector';
 
-const reposSelector = createSelector(
+const reposSelector = () => createSelector(
   globalSelector,
   (globalState) => globalState.getIn(['userData', 'repositories'])
 );
