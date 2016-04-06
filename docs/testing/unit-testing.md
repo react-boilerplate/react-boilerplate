@@ -65,7 +65,7 @@ export function add(x, y) {
 Mocha is our unit testing framework. Its API, which we write tests with, is
 speech like and easy to use.
 
-> Note: This is the [official documentation](mochajs.org) of Mocha.
+> Note: This is the [official documentation](http://mochajs.org) of Mocha.
 
 We're going to add a second file called `add.test.js` with our unit tests
 inside. Running said unit tests requires us to enter `mocha add.test.js` into
