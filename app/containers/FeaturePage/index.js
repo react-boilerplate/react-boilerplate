@@ -36,26 +36,21 @@ export class FeaturePage extends React.Component {
     return (
       <div>
         <H1>Features</H1>
-        <ul className={ styles.list }>
-          <li className={ styles.listItem }>
-            <p>Using <A href="https://github.com/gaearon/react-transform-hmr"><strong>react-transform-hmr</strong></A>, your changes in the CSS and JS get reflected in the app instantly without refreshing the page. That means that the <strong>current application state persists</strong> even when you change something in the underlying code! For a very good explanation and demo watch Dan Abramov himself <A href="https://www.youtube.com/watch?v=xsSnOQynTHs">talking about it at react-europe</A>.</p>
-          </li>
-          <li className={ styles.listItem }>
-            <p><A href="https://github.com/gaearon/redux"><strong>Redux</strong></A> is a much better implementation of a flux–like, unidirectional data flow. Redux makes actions composable, reduces the boilerplate code and makes hot–reloading possible in the first place. For a good overview of redux check out the talk linked above or the <A href="https://gaearon.github.io/redux/">official documentation</A>!</p>
-          </li>
-          <li className={ styles.listItem }>
-            <p><A href="https://github.com/postcss/postcss"><strong>PostCSS</strong></A> is like Sass, but modular and capable of much more. PostCSS is, in essence, just a wrapper for plugins which exposes an easy to use, but very powerful API. While it is possible to <A href="https://github.com/jonathantneal/precss">replicate Sass features</A> with PostCSS, PostCSS has an <A href="http://postcss.parts">ecosystem of amazing plugins</A> with functionalities Sass cannot even dream about having.</p>
-          </li>
-          <li className={ styles.listItem }>
-            <p><strong>Unit tests</strong> should be an important part of every web application developers toolchain. <A href="https://github.com/mochajs/mocha">Mocha</A> checks your application is working exactly how it should without you lifting a single finger. Congratulations, you just won a First Class ticket to world domaination, fasten your seat belt please!</p>
-          </li>
-          <li className={ styles.listItem }>
-            <p><A href="https://github.com/rackt/react-router"><strong>react-router</strong></A> is used for routing in this boilerplate. react-router makes routing really easy to do and takes care of a lot of the work.</p>
-          </li>
-          <li className={ styles.listItem }>
-            <p><A href="http://www.html5rocks.com/en/tutorials/service-worker/introduction/"><strong>ServiceWorker</strong></A> and <A href="http://www.html5rocks.com/en/tutorials/appcache/beginner/"><strong>AppCache</strong></A> make it possible to use the application offline. As soon as the website has been opened once, it is cached and available without a network connection. <A href="https://developer.chrome.com/multidevice/android/installtohomescreen"><strong><code className={ styles.code }>manifest.json</code></strong></A> is specifically for Chrome on Android. Users can add the website to the homescreen and use it like a native app!</p>
-          </li>
-        </ul>
+          <ul className={ styles.list }>
+            <li className={ styles.listItem }><p className={ styles.listItemTitle }>Quick scaffolding</p><p>Automate the creation of components, containers, routes, selectors and sagas - and their tests - right from the CLI!</p></li>
+
+            <li className={ styles.listItem }><p className={ styles.listItemTitle }>Instant feedback</p><p>Enjoy the best DX and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!</p></li>
+
+            <li className={ styles.listItem }><p className={ styles.listItemTitle }>Predictable state management</p><p>Unidirectional data flow allows for change logging and time travel debugging.</p></li>
+
+            <li className={ styles.listItem }><p className={ styles.listItemTitle }>Next generation JavaScript</p><p>Use template strings, object destructuring, arrow functions, JSX syntax and more, today.</p></li>
+
+            <li className={ styles.listItem }><p className={ styles.listItemTitle }>Next generation CSS</p><p>Write composable CSS that's co-located with your components for complete modularity. Unique generated class names keep the specificity low while eliminating style clashes. Ship only the styles that are on the page for the best performance.</p></li>
+
+            <li className={ styles.listItem }><p className={ styles.listItemTitle }>Industry-standard routing</p><p>It's natural to want to add pages (e.g. `/about`) to your application, and routing makes this possible.</p></li>
+
+            <li className={ styles.listItem }><p className={ styles.listItemTitle }>Offline-first</p><p>The next frontier in performant web apps: availability without a network connection from the instant your users load the app.</p></li>
+          </ul>
         <Button handleRoute={ this.openHomePage }>Home</Button>
       </div>
     );
