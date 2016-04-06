@@ -1,5 +1,9 @@
 # Testing
 
+- [Unit Testing](unit-testing.md)
+- [Component Testing](component-testing.md)
+- [Remote Testing](remote-testing.md)
+
 Testing your application is a vital part of serious development. There are a few things you should test. If you've never done this before start with [unit testing](unit-testing.md). Move on to [component testing](component-testing.md) when you feel like you understand that!
 
 We also support [remote testing](remote-testing.md) your local application, which is quite awesome, so definitely check that out!

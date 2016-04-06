@@ -82,10 +82,19 @@ Then start building your app!
   - [Server Configurations](docs/general/server-configs.md)
   - [FAQ](docs/general/faq.md)
 - [Testing](docs/testing)
-  - [Unit Testing](docs/general/unit-testing.md)
-  - [Component Testing](docs/general/component-testing.md)
-  - [Remote Testing](docs/general/remote-testing.md)
+  - [Unit Testing](docs/testing/unit-testing.md)
+  - [Component Testing](docs/testing/component-testing.md)
+  - [Remote Testing](docs/testing/remote-testing.md)
 - [CSS](docs/css)
+  - [PostCSS](docs/css/postcss.md)
+  - [CSS Modules](docs/css/css-modules.md)
+  - [sanitize.css](docs/css/sanitize.md)
+- [JS](docs/js)
+  - [Redux](docs/js/redux.md)
+  - [ImmutableJS](docs/js/immutablejs.md)
+  - [reselect](docs/js/reselect.md)
+  - [redux-saga](docs/js/redux-saga.md)
+  - [routing](docs/js/routing.md)
 
 ## License
 
