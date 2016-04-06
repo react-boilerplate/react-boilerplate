@@ -37,8 +37,8 @@ NavBar                   # Wrapping folder
 ├── NavBar.constants.js  # Constants
 ├── NavBar.reducer.js    # Reducer
 └── test                        # Folder of tests
-│   ├── NavBar.actions.test.js  # Actions tests
-│   └── NavBar.reducer.test.js  # Reducer tests
+    ├── NavBar.actions.test.js  # Actions tests
+    └── NavBar.reducer.test.js  # Reducer tests
 ```
 
 ## Basics
@@ -46,7 +46,7 @@ NavBar                   # Wrapping folder
 For the sake of this guide, lets pretend we're testing this function. It's
 situated in the `add.js` file:
 
-```JS
+```javascript
 // add.js
 
 export function add(x, y) {

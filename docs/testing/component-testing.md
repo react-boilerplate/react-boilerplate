@@ -15,12 +15,12 @@ the _view_ layer of your app, let's see how to test Components too!
 
 React provides us with a nice add-on called the Shallow Renderer. This renderer
 will render a React component **one level deep**. Lets take a look at what that
-means with a simple `<Button>` component!
+means with a simple `<Button>` component...
 
 This component renders a `<button>` element containing a checkmark icon and some
 text:
 
-```JS
+```javascript
 // Button.react.js
 
 import CheckmarkIcon from './CheckmarkIcon.react';
@@ -37,11 +37,11 @@ function Button(props) {
 export default Button;
 ```
 
-> Note: This is a [stateless ("dumb") component](../js/README.md#architecture-components-and-containers)!
+_Note: This is a [state**less** ("dumb") component](../js/README.md#architecture-components-and-containers)_
 
 It might be used in another component like this:
 
-```JS
+```javascript
 // HomePage.react.js
 
 import Button from './Button.react';
@@ -55,30 +55,27 @@ class HomePage extends React.Component {
 }
 ```
 
-> Note: This is a [stateful ("smart") component](../js/README.md#architecture-components-and-containers)!
+_Note: This is a [state**ful** ("smart") component](../js/README.md#architecture-components-and-containers)!_
 
 When rendered normally with the standard `ReactDOM.render` function, this will
-be the HTML output (*comments added by hand for easier understanding*):
+be the HTML output
+(*Comments added in parallel to compare structures in HTML from JSX source*):
 
-```HTML
-<!-- <Button> -->
-<button>
-  <i class="fa fa-checkmark"></i>  <!-- <CheckmarkIcon /> -->
-  Click Me!                        <!-- { props.children } -->
-</button>
-<!-- </Button> -->
+```html
+<button>                           <!-- <Button>             -->
+  <i class="fa fa-checkmark"></i>  <!--   <CheckmarkIcon />  -->
+  Click Me!                        <!--   { props.children } -->
+</button>                          <!-- </Button>            -->
 ```
 
-In comparison, when rendered with the shallow renderer, we'll get a String
+Conversely, when rendered with the shallow renderer, we'll get a String
 containing this "HTML":
 
-```HTML
-<!-- <Button> -->
-<button>
-  <CheckmarkIcon />
-  Click Me!          <!-- { props.children } -->
-</button>
-<!-- </Button> -->
+```html
+<button>              <!-- <Button>             -->
+  <CheckmarkIcon />   <!--   NOT RENDERED!      -->
+  Click Me!           <!--   { props.children } -->
+</button>             <!-- </Button>            -->
 ```
 
 If we test our `Button` with the normal renderer and there's a problem
@@ -102,7 +99,7 @@ pass it and third that handles clicks!
 
 This is our Mocha setup:
 
-```JS
+```javascript
 describe('<Button />', () => {
   it('renders a <button>', () => {});
 
@@ -115,7 +112,7 @@ describe('<Button />', () => {
 Lets start with testing that it renders a `<button>`. To do that we first
 `shallow` render it, and then `expect` that a `<button>` node exists.
 
-```JS
+```javascript
 it('renders a <button>', () => {
   const renderedComponent = shallow(
     <Button></Button>
@@ -133,7 +130,7 @@ now, and check that our `<Button>` renders its children.
 We render our button component with some text, and then verify that our text
 exists:
 
-```JS
+```javascript
 it('renders its children', () => {
   const text = "Click me!";
   const renderedComponent = shallow(
@@ -151,7 +148,7 @@ function that knows if, and how often, it has been called. We create the Spy
 component, simulate a click on the rendered `<button>` element and, lastly,
 see that our Spy was called:
 
-```JS
+```javascript
 it('handles clicks', () => {
   const onClickSpy = expect.createSpy();
   const renderedComponent = shallow(<Button onClick={onClickSpy} />);
@@ -160,4 +157,4 @@ it('handles clicks', () => {
 });
 ```
 
-That's how you unit test your components and make sure they work correctly!
+And that's how you unit test your components and make sure they work correctly!

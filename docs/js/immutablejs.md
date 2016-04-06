@@ -51,5 +51,3 @@ export default myDataSelector;
 ```
 
 To learn more, check out [`reselect.md`](reselect.md)!
-
-## Removing ImmutableJS

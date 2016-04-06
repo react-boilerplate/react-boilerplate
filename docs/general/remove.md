@@ -20,3 +20,4 @@ Delete [`manifest.json`](../../app/manifest.json) and remove the
 
 To remove `FontFaceObserver`, don't import it in [`app.js`](../../app/app.js) and
 remove it from the [`package.json`](../../package.json).
+

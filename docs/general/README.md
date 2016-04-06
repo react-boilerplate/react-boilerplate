@@ -13,6 +13,7 @@ efficient tooling and cleanest project structure.
 - [Tool Configuration](../_todo/files.md)
 - [Server Configurations](server-configs.md)
 - [FAQ](faq.md)
+- [Gotchas](gotchas.md)
 
 # Feature overview
 
