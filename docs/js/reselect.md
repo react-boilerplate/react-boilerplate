@@ -5,7 +5,7 @@ tree. This means repeated changes and calculations are fast and efficient,
 providing us with a performance boost over standard `mapStateToProps`
 implementations.
 
-The [official documentation](Lee Bannardhttps://github.com/reactjs/reselect)
+The [official documentation](https://github.com/reactjs/reselect)
 offers a good starting point!
 
 ## Usage
