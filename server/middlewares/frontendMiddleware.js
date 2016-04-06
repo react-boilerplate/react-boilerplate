@@ -9,6 +9,7 @@ const webpack = require('webpack');
 const addDevMiddlewares = (app, options) => {
   const compiler = webpack(options);
   const middleware = webpackDevMiddleware(compiler, {
+    hot: true,
     noInfo: true,
     publicPath: options.output.publicPath,
     silent: true,

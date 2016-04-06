@@ -15,7 +15,6 @@ import 'file?name=[name].[ext]!./.htaccess';
 
 // Import all the third party stuff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -60,16 +59,10 @@ const rootRoute = {
   component: App,
   childRoutes: createRoutes(store),
 };
-
-ReactDOM.render(
+const rootContainer = (
   <Provider store={store}>
     <Router history={useScroll(() => history)()} routes={rootRoute} />
-  </Provider>,
-  document.getElementById('app')
+  </Provider>
 );
 
-// Install ServiceWorker and AppCache in the end since
-// it's not most important operation and if main code fails,
-// we do not want it installed
-import { install } from 'offline-plugin/runtime';
-install();
+export default rootContainer;
