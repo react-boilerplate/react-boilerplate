@@ -9,8 +9,7 @@ application with the application state.
 
 ## Usage
 
-To add a new route, use the generator with `$ npm run generate`, or manually add the
-route to the `app/routes.js` file.
+To add a new route, use the generator with `$ npm run generate route`.
 
 This is what a standard (generated) route looks like for a container:
 

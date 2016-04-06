@@ -12,7 +12,7 @@ To learn more about this amazing way to handle concurrent flows, start with the 
 
 ## Usage
 
-To generate a new saga, use the `$ npm run generate` command. This will create a new file in the `app/sagas` folder, in which you can write your saga.
+To generate a new saga, use the `$ npm run generate saga` command. This will create a new file in the `app/sagas` folder, in which you can write your saga.
 
 ## Removing `redux-saga`
 

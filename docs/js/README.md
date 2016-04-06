@@ -11,6 +11,13 @@ For managing asynchronous flows (e.g. logging in) we use
 
 For routing, we use [`react-router` in combination with `react-router-redux`](routing.md).
 
+We include a generator for components, containers, sagas, routes and selectors.
+Run `$ npm run generate` to choose from the available generators, and automatically
+add new parts of your application!
+
+> Note: If you want to skip the generator selection process,
+`$ npm run generate <generator>` also works. (e.g. `$ npm run generate route`)
+
 ### Learn more
 
 - [Redux](redux.md)

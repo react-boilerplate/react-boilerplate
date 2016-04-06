@@ -10,7 +10,7 @@ https://github.com/reactjs/reselect) offers a good starting point!
 
 ## Usage
 
-Generate a new selector with `$ npm run generate`. This will add a new file to
+Generate a new selector with `$ npm run generate selector`. This will add a new file to
 the `app/selectors` folder. There are two different kinds of selectors, simple
 and complex ones.
 
