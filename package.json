@@ -81,6 +81,7 @@
     "postcss-reporter": "^1.3.0",
     "psi": "^2.0.2",
     "react-addons-test-utils": "^0.14.6",
+    "rimraf": "^2.5.2",
     "sanitize.css": "^3.3.0",
     "shelljs": "^0.6.0",
     "sinon": "^1.17.3",
@@ -97,6 +98,8 @@
     "url": "git://github.com/mxstbr/react-boilerplate.git"
   },
   "scripts": {
+    "prebuild": "npm run test && npm run build:clean",
+    "build:clean": "rimraf ./build",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --colors -p",
     "start": "npm run start:tunnel",
     "start:tunnel": "NODE_ENV=development node server",
@@ -105,8 +108,6 @@
     "setup": "node ./internals/scripts/setup.js",
     "clean": "shjs ./internals/scripts/clean.js",
     "generate": "plop --plopfile internals/generators/index.js",
-    "prebuild": "npm run test",
-    "pretest": "npm run lint",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "npm run lint:eslint && npm run lint:jscs",
     "lint:js:staged": "npm run lint:eslint:staged",
@@ -116,6 +117,7 @@
     "lint:css": "stylelint ./app/**/*.css",
     "lint:css:staged": "stylelint-staged",
     "lint:staged": "npm run lint:js:staged && npm run lint:css:staged",
+    "pretest": "npm run lint",
     "test": "cross-env NODE_ENV=test karma start internals/testing/karma.conf.js --single-run",
     "test:watch": "npm run test -- --auto-watch --no-single-run",
     "test:firefox": "npm run test -- --browsers Firefox",
@@ -150,15 +152,27 @@
       }
     },
     "rules": {
-      "comma-dangle": [2, "always-multiline"],
-      "indent": [2, 2, {"SwitchCase": 1}],
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ],
+      "indent": [
+        2,
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
       "no-console": 0,
       "react/prop-types": 0,
       "max-len": 0,
       "prefer-template": 0,
       "no-use-before-define": 0,
       "newline-per-chained-call": 0,
-      "arrow-body-style": [2, "as-needed"]
+      "arrow-body-style": [
+        2,
+        "as-needed"
+      ]
     }
   },
   "jscsConfig": {
