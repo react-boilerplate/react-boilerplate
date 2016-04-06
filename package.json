@@ -99,7 +99,7 @@
   },
   "scripts": {
     "prebuild": "npm run test && npm run build:clean",
-    "build:clean": "rimraf ./build",
+    "build:clean": "rimraf ./build/*",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --colors -p",
     "start": "npm run start:tunnel",
     "start:tunnel": "NODE_ENV=development node server",
