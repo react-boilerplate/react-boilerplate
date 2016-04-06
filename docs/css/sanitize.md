@@ -12,7 +12,6 @@ variables.
 See the [official documentation](https://github.com/10up/sanitize.css) for more
 information.
 
-## Removing `sanitize.css`
+---
 
-Delete [lines 44 and 45 in `app.js`](../../app/app.js#L44-L45) and remove it
-from the `dependencies` in [`package.json`](../../package.json)!
+_Don't like this feature? [Click here](remove.md)_
