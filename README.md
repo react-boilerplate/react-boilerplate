@@ -24,6 +24,10 @@
   <a href="https://coveralls.io/r/mxstbr/react-boilerplate?branch=v3.0.0">
     <img src="https://coveralls.io/repos/github/mxstbr/react-boilerplate/badge.svg?branch=v3.0.0" alt="Test Coverage" />
   </a>
+  <!-- Donations -->
+  <a href="https://cash.me/$mxstbr">
+    <img src="https://img.shields.io/badge/square-donate-yellow.svg" alt="Donate with Square Cash" />
+  </a>
 </div>
 
 <br />
@@ -88,3 +92,9 @@ Now you're ready to rumble!
 
 This project is licensed under the MIT license, Copyright (c) 2016 Maximilian
 Stoiber. For more information see `LICENSE.md`.
+
+## Donate
+
+This project is a labor of love. I ([Max](https://twitter.com/mxstbr)) have
+spent a lot of time building and maintaining react-boilerplate, and if you're
+using it I'd be immensely grateful for [a donation](https://cash.me/$mxstbr).
