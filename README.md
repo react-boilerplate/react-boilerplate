@@ -1,6 +1,9 @@
+<img src="https://raw.githubusercontent.com/mxstbr/react-boilerplate-brand/master/assets/banner-metal.jpg" alt="react boilerplate banner" align="center" />
+
 <br />
 
-<img src="https://raw.githubusercontent.com/mxstbr/react-boilerplate-brand/master/assets/banner-metal.jpg" alt="react boilerplate banner" align="center" />
+<div align="center"><strong>Start your next react project in seconds</strong></div>
+<div align="center">A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices</div>
 
 <br />
 
@@ -25,9 +28,9 @@
 
 <br />
 
-Quick setup for new performance orientated, offline–first React.js applications featuring Redux, hot–reloading, PostCSS, react-router, ServiceWorker, AppCache, FontFaceObserver and Mocha.
-
-Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors](https://github.com/mxstbr/react-boilerplate/graphs/contributors). *If you're using this boilerplate, we'd love to [hear from you](https://github.com/mxstbr/react-boilerplate/issues/115)!*
+<div align="center">
+  <sub>Made with ❤︎ by <a href="https://twitter.com/mxstbr">Max Stoiber</a> and <a href="https://github.com/mxstbr/react-boilerplate/graphs/contributors">contributors</a>. <i>If you're using this boilerplate, we'd love to <a href="https://github.com/mxstbr/react-boilerplate/issues/115">hear from you</a>!</i></sub>
+</div>
 
 ## Features
 
@@ -56,7 +59,7 @@ Made with :heart: by [Max Stoiber](https://twitter.com/mxstbr) and [contributors
 
 But wait... there's more!
 
-  - *Built-in unit testing:* Automatically guarantee code quality and non-breaking changes.
+  - *The best test setup:* Automatically guarantee code quality and non-breaking changes. (Seen a react app with 99% test coverage before?)
   - *Native web app:* Your app's new home? The homescreen of your users' phones.
   - *The fastest fonts:* Say goodbye to vacant text.
 

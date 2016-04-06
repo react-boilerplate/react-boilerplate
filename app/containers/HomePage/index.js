@@ -24,7 +24,7 @@ import {
 } from '../App/actions';
 
 import Button from 'Button';
-import H1 from 'H1';
+import H2 from 'H2';
 import List from 'List';
 import ListItem from 'ListItem';
 import RepoListItem from 'RepoListItem';
@@ -73,13 +73,14 @@ export class HomePage extends React.Component {
     return (
       <article>
         <div>
-          <section className={ styles.textSection }>
-            <H1>React Boilerplate</H1>
-            <p>Quick setup for new performance orientated, offline–first React.js applications featuring Redux, hot–reloading, PostCSS, react-router, ServiceWorker, AppCache, FontFaceObserver and Mocha.</p>
+          <section className={ styles.textSection + ' ' + styles.centered }>
+            <H2>Start your next react project in seconds</H2>
+            <p>A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices</p>
           </section>
           <section className={ styles.textSection }>
+            <H2>Try me!</H2>
               <form className={ styles.usernameForm } onSubmit={ this.props.onSubmitForm }>
-                <label>Show repositories of
+                <label>Show Github repositories by
                   <span className={ styles.atPrefix }>@</span>
                   <input
                     className={ styles.input }

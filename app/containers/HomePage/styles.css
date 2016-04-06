@@ -6,6 +6,10 @@
   margin-top: 0;
 }
 
+.centered {
+  text-align: center;
+}
+
 p,
 label {
   font-family: Georgia, Times, 'Times New Roman', serif;
