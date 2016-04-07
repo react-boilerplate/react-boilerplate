@@ -19,7 +19,7 @@ The fix is to kill the process and rerun `npm start`.
     ```
     > This will return the PID as the value following your username:
     > ```Shell
-    > $ janedoe    29811  49.1  2.1  3394936 356956 s004  S+    4:45pm   2:40.07 node internals/webpack/server.dev.js
+    > $ janedoe    29811  49.1  2.1  3394936 356956 s004  S+    4:45pm   2:40.07 node server
     > ```
 
 1. Then run
