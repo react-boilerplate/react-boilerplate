@@ -7,6 +7,7 @@
   - [Files](general/files.md)
   - [Server Configurations](general/server-configs.md)
   - [FAQ](general/faq.md)
+  - [Gotchas](general/gotchas.md)
 - [Testing](testing)
   - [Unit Testing](testing/unit-testing.md)
   - [Component Testing](testing/component-testing.md)
