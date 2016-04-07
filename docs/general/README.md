@@ -10,7 +10,7 @@ ideas on what represents optimal developer experience, best practice, most
 efficient tooling and cleanest project structure.
 
 - [**CLI Commands**](commands.md)
-- [Tool Configuration](../_todo/files.md)
+- [Tool Configuration](files.md)
 - [Server Configurations](server-configs.md)
 - [FAQ](faq.md)
 - [Gotchas](gotchas.md)

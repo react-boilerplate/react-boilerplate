@@ -1,5 +1,9 @@
 # Frequently Asked Questions
 
+## Where are Babel, ESLint and stylelint configured?
+
+In package.json
+
 ## Where are the files coming from when I run `$ npm start`?
 
 In development Webpack compiles your application runs it in-memory. Only when
