@@ -13,7 +13,7 @@ import usernameSelector from 'usernameSelector';
 export function* getGithubData() {
   while (true) {
     yield take(LOAD_REPOS);
-    const username = yield select(usernameSelector);
+    const username = yield select(usernameSelector());
     const requestURL = 'https://api.github.com/users/' + username + '/repos?type=all&sort=updated';
 
     // Use call from redux-saga for easier testing

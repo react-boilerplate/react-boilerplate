@@ -56,6 +56,6 @@ export class RepoListItem extends React.Component {
 }
 
 export default connect(createSelector(
-  currentUserSelector,
+  currentUserSelector(),
   (currentUser) => ({ currentUser })
 ))(RepoListItem);
