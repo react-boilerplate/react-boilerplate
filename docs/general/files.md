@@ -1,41 +1,34 @@
-# Files
+# Configuration: A Glossary
 
-Some explanation for a few of the configuration files lying around this boilerplate.
+A guide to the configuration files for this project: where they live and what
+they do.
 
 ## The root folder
 
 * `.editorconfig`: Sets the default configuration for certain files across editors. (e.g. indentation)
 
-* `.eslintignore`: Tell `eslint` to ignore certain files that should not be linted. `eslint` lints your JavaScript. (it analyse your code for potential errors/suspicious usage)
-
 * `.gitattributes`: Normalizes how `git`, the version control system this boilerplate uses, handles certain files.
 
 * `.gitignore`: Tells `git` to ignore certain files and folders which don't need to be version controlled, like the build folder.
 
-* `.travis.yml`: The Continuous Integration configuration. This boilerplate uses [Travis CI](https://travis-ci.com), but feel free to swap this for your own CI.
+* `.travis.yml` and `appveyor.yml`: Continuous Integration configuration<br/>
+  This boilerplate uses [Travis CI](https://travis-ci.com) for Linux environments
+  and [AppVeyor](https://www.appveyor.com/) for Windows platforms, but feel free
+  to swap either out for your own choice of CI.
 
-* `package.json`: The `npm` configuration file. When you run `npm install`, this is the list that tells `npm` which packages/libraries to download. Also, `npm start`, `npm run build`,... commands are specified here. Also includes
+* `package.json`: Our `npm` configuration file has three functions:
 
-  * `babelConfig`: The Babel configuration. Babel is a JavaScript transpiler, which means it's the tool that allows us to use ESNext in our applications.
+  1. It's where Babel, ESLint and stylelint are configured
+  1. It's the API for the project: a consistent interface for all its controls
+  1. It lists the project's package dependencies
 
-  * `eslintConfig`: The `eslint` configuration.
+  Baking the config in is a slightly unusual set-up, but it allows us to keep
+  the project root as uncluttered and grokkable-at-a-glance as possible.
 
-  * `stylelint`: The `stylelint` configuration.
+## The `./internals` folder
 
-<!-- ## The `webpack/` folder
+This is where the bulk of the tooling configuration lives, broken out into
+recognisable units of work.
 
-* `pagespeed`: The script that is run when `$ npm run pagespeed` is entered into the terminal.
-
-* `karma.conf.js`: The Karma testing configuration.
-
-* `webpack.base.babel.js`: The shared webpack configuration. In development mode, we add hot reloading and don't minify our code. In production mode, we minify everything.
-
-  * `webpack.dev.babel.js`: Generates the webpack configuration for development.
-
-  * `webpack.prod.babel.js`: Generates the webpack configuration for production.
-
-  * `webpack.test.babel.js`: Generates the webpack configuration for testing.
-
-* `server.dev.js`: The development server that runs when `npm start` is entered into the command line.
-
-* `server.prod.js`: The server that runs when `npm run serve` is entered into the command line. -->
+Feel free to change anything you like but don't be afraid to [ask upfront](https://gitter.im/mxstbr/react-boilerplate)
+whether you should: build systems are easy to break!

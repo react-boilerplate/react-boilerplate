@@ -2,6 +2,8 @@ import routeSelector from '../routeSelector';
 import { fromJS } from 'immutable';
 import expect from 'expect';
 
+const selector = routeSelector();
+
 describe('routeSelector', () => {
   it('should select the route', () => {
     const route = fromJS({
@@ -10,6 +12,6 @@ describe('routeSelector', () => {
     const mockedState = fromJS({
       route,
     });
-    expect(routeSelector(mockedState)).toEqual(route);
+    expect(selector(mockedState)).toEqual(route);
   });
 });

@@ -6,3 +6,7 @@
 .listItem {
   margin: 1em 0;
 }
+
+.listItemTitle {
+  font-weight: bold;
+}

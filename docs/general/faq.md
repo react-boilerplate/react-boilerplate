@@ -1,51 +1,14 @@
 # Frequently Asked Questions
 
-## Why does this project exist?
+## Where are Babel, ESLint and stylelint configured?
 
-The JavaScript ecosystem evolves at incredible speed: staying current can feel
-overwhelming. So, instead of you having to stay on top of every new tool,
-feature and technique to hit the headlines, this project aims to lighten the
-load by providing a curated baseline of the most valuable ones.
-
-Using React Boilerplate, you get to start your app with our community's current
-ideas on what represents optimal developer experience, best practice, most
-efficient tooling and cleanest project structure.
+In package.json
 
 ## Where are the files coming from when I run `$ npm start`?
 
 In development Webpack compiles your application runs it in-memory. Only when
 you run `$ npm run build` will it write to disk and preserve your bundled
 application across computer restarts.
-
-## Can I use Sass with this boilerplate?
-
-Yes, although we advise against it and **do not support this**.
-
-As an alternative, consider installing a plugin called `PreCSS`: it lets you use
-familiar syntax - $variables, nesting, mixins, etc. - but still benefit from
-Autoprefixer, postcss-focus, etc.
-
-If you _really_ still want to use Sass then...
-
-1. Change `internals/webpack/webpack.base.babel.js` so that line 22 reads
-    ```JavaScript
-    test: /\.s?css$/,
-    ```
-
-1. Update each of
-
-    - `internals/webpack/webpack.dev.babel.js`
-    - `internals/webpack/webpack.prod.babel.js`
-
-    changing the config option for cssLoaders to
-
-    ```JavaScript
-    cssLoaders: 'style-loader!css-loader?modules&importLoaders=1&sourceMap!postcss-loader!sass-loader',
-    ```
-
-    Then run `npm i -D sass-loader`
-
-...and you should be good to go!
 
 ## How do I fix `Error: listen EADDRINUSE 127.0.0.1:3000`?
 
@@ -60,7 +23,7 @@ The fix is to kill the process and rerun `npm start`.
     ```
     > This will return the PID as the value following your username:
     > ```Shell
-    > $ janedoe    29811  49.1  2.1  3394936 356956 s004  S+    4:45pm   2:40.07 node internals/webpack/server.dev.js
+    > $ janedoe    29811  49.1  2.1  3394936 356956 s004  S+    4:45pm   2:40.07 node server
     > ```
 
 1. Then run

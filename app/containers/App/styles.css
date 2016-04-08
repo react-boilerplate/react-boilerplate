@@ -16,8 +16,8 @@ body.fontLoaded {
 
 :global(#app) {
   background-color: #FAFAFA;
-  height: 100%;
-  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
 }
 
 .wrapper {
@@ -26,7 +26,7 @@ body.fontLoaded {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: 100%;
+  min-height: 100%;
   padding: 0 16px;
   flex-direction: column;
 }
@@ -36,7 +36,7 @@ body.fontLoaded {
 }
 
 .logo {
-  max-height: 5em;
+  width: 100%;
   margin: 0 auto;
   display: block;
 }
