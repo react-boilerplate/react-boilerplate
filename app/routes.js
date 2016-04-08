@@ -21,13 +21,13 @@ export default function createRoutes(store) {
     {
       path: '/',
       getComponent(location, cb) {
-        System.import('HomePage/reducer')
-          .then(loadReducer(store, 'home'))
-          .catch(errorLoading);
-
-        System.import('HomePage')
-          .then(loadModule(cb))
-          .catch(errorLoading);
+        Promise.all([
+          System.import('HomePage/reducer'),
+          System.import('HomePage'),
+        ]).then(modules => {
+          loadReducer(store, 'home')(modules[0]);
+          loadModule(cb)(modules[1]);
+        }).catch(errorLoading);
       },
     }, {
       path: '/features',
