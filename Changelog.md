@@ -4,20 +4,20 @@
 
 React Boilerplate (RBP) v3.0.0 is out, and it's a _complete_ rewrite! :tada:
 
-We've focussed on becoming a rock-solid foundation to start your next project
+We've focused on becoming a rock-solid foundation to start your next project
 with, no matter what its scale. You get to focus on writing your app because we
 focus on making that as easy as pie.
 
 website!
 
-## Changes
+## Highlights
 
 - **Scaffolding**: Thanks to @somus, you can now run `$ npm run generate` in your
   terminal and immediately create new components, containers, sagas, routes and
   selectors! No more context switching, no more "Create new file, copy and paste
-  that boilerplate structure, bla bla": just `npm run generate` and done.
+  that boilerplate structure, bla bla": just `npm run generate <thing>` and go.
 
-  Starting a project just got a whole lot easier too: simply `npm run setup`!
+  Oh... and starting a project got a whole lot easier too: `npm run setup`. Done.
 
 - **Revamped architecture**: Following the incredible discussion in #27 (thanks
   everybody for sharing your thoughts), we now have a weapons-grade, domain-driven
@@ -33,11 +33,17 @@ website!
     - redux-saga
 
 - **Huge CSS Improvements**
-  - _CSS Modules_: Finally, truly modular, reusable styles!
-  - _Page-specific CSS_ through smart Webpack configuration
+  - _[CSS Modules](docs/css/css-modules.md)_: Finally, truly modular, reusable
+    styles!
+  - _Page-specific CSS_: smart Webpack configuration means that only the CSS
+    your components need is served
+  - _Standards rock:_ Nothing beats consistent styling so we beefed up the
+    quality checks with **[stylelint](docs/css/stylelint.md)** to help ensure
+    that you and your team stay on point.
 
 - **Performance**
-  - Code splitting/chunking routes
+  - _Code splitting_: splitting/chunking by route means the leanest, meanest
+    payload (because the fastest code is the code you don't load!)
   - _PageSpeed Metrics_ are built right in with `npm run pagespeed`
 
 - **Testing setup**: Thanks to @jbinto's herculean efforts, testing is now a
@@ -65,6 +71,5 @@ website!
   @okonet!) to code splitting to cross-OS compatibility is now tested and ready
   to go:
 
-  - We finally added a **CoC**
-  - We beefed up the quality checks with **stylelint**
+  - We finally added a **[CoC](CODE_OF_CONDUCT.md)**
   - Windows compatibility has improved massively
