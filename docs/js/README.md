@@ -6,8 +6,7 @@ This boilerplate manages application state using [Redux](redux.md), makes it
 immutable with [`ImmutableJS`](immutablejs.md) and keeps access performant
 via [`reselect`](reselect.md).
 
-For managing asynchronous flows (e.g. logging in) we use
-[`redux-saga`](redux-saga.md).
+For managing asynchronous flows (e.g. logging in) we use [`redux-saga`](redux-saga.md).
 
 For routing, we use [`react-router` in combination with `react-router-redux`](routing.md).
 
@@ -16,7 +15,7 @@ Run `$ npm run generate` to choose from the available generators, and automatica
 add new parts of your application!
 
 > Note: If you want to skip the generator selection process,
-`$ npm run generate <generator>` also works. (e.g. `$ npm run generate route`)
+  `$ npm run generate <generator>` also works. (e.g. `$ npm run generate route`)
 
 ### Learn more
 
