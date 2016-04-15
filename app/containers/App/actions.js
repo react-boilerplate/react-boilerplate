@@ -49,7 +49,7 @@ export function reposLoaded(repos, username) {
 }
 
 /**
- * Dispatched when loading the repositoreis fails
+ * Dispatched when loading the repositories fails
  *
  * @param  {object} error The error
  *
