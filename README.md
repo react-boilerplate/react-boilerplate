@@ -69,6 +69,10 @@ But wait... there's more!
   - *The fastest fonts:* Say goodbye to vacant text.
   - *Stay fast*: Profile your app's performance from the comfort of your command
     line!
+  - *Catch problems:* AppVeyor and TravisCI setups included by default, so your
+    tests get run automatically on Windows and Unix.
+
+<sub><i>Keywords: React.js, Redux, Hot Reloading, ESNext, Babel, PostCSS, Autoprefixer, react-router, Offline First, ServiceWorker, CSS Modules, redux-saga, FontFaceObserver, PageSpeed Insights</i></sub>
 
 ## Quick start
 
@@ -82,7 +86,7 @@ Now you're ready to rumble!
 ## Documentation
 
 - [Intro](docs/general): What's included and why
-- [Commands](docs/general/commands.md): Getting the most out of this boilerplate
+- [**Commands**](docs/general/commands.md): Getting the most out of this boilerplate
 - [Testing](docs/testing): How to work with the built-in test harness
 - [Styling](docs/css): How to work with the CSS tooling
 - [Your app](docs/js): Supercharging your app with Routing, Redux, simple
