@@ -27,7 +27,7 @@ describe('appReducer', () => {
 
   it('should handle the loadRepos action correctly', () => {
     const expectedResult = state
-      .set('loading', 'true')
+      .set('loading', true)
       .set('error', false)
       .setIn(['userData', 'repositories'], false);
 
