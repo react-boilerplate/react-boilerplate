@@ -5,6 +5,8 @@
 var exec = require('child_process').exec;
 var path = require('path');
 var fs   = require('fs');
+var animateProgress = require('./helpers/progress');
+var addCheckMark = require('./helpers/checkmark');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
@@ -69,33 +71,4 @@ function deleteFileInCurrentDir(file, callback) {
  */
 function installDeps(callback) {
   exec('npm install', addCheckMark.bind(null, callback));
-}
-
-/**
- * Adds mark check symbol
- */
-function addCheckMark(callback) {
-  process.stdout.write(' ✓');
-  callback();
-}
-
-/**
- * Adds an animated progress indicator
- *
- * @param  {string} message      The message to write next to the indicator
- * @param  {number} amountOfDots The amount of dots you want to animate
- */
-function animateProgress(message, amountOfDots) {
-  if (typeof amountOfDots !== 'number') {
-    amountOfDots = 3;
-  }
-
-  var i = 0;
-  return setInterval(function () {
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
-    i = (i + 1) % (amountOfDots + 1);
-    var dots = new Array(i + 1).join(".");
-    process.stdout.write(message + dots);
-  }, 500);
 }

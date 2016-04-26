@@ -31,7 +31,7 @@ function homeReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_REPOS:
       return state
-        .set('loading', 'true')
+        .set('loading', true)
         .set('error', false)
         .setIn(['userData', 'repositories'], false);
     case LOAD_REPOS_SUCCESS:

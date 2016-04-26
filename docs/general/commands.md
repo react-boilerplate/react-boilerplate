@@ -140,6 +140,17 @@ With the remote server running (i.e. while `$ npm run serve` is running in
 another terminal session), enter this command to run Google PageSpeed Insights
 and get a performance check right in your terminal!
 
+### Dependency size test
+
+```Shell
+$ npm run analyze
+```
+
+This command will generate a `stats.json` file from your production build, which
+you can upload to the [webpack analyzer](https://webpack.github.io/analyse/). This
+analyzer will visualize your dependencies and chunks with detailed statistics
+about the bundle size.
+
 ## Linting
 
 ```Shell

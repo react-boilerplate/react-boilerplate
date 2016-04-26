@@ -8,6 +8,9 @@
 
 import React from 'react';
 
+// Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
+import 'sanitize.css/sanitize.css';
+
 import Img from 'Img';
 import Footer from 'Footer';
 import Banner from './banner-metal.jpg';
