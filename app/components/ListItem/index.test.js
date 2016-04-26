@@ -4,7 +4,7 @@ import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
 
-describe('<List />', () => {
+describe('<ListItem />', () => {
   it('should adopt the className', () => {
     const renderedComponent = shallow(<ListItem className="test" />);
     expect(renderedComponent.find('li').hasClass('test')).toEqual(true);
