@@ -14,7 +14,7 @@ function loadModule(cb) {
   return (module) => cb(null, module.default);
 }
 
-function loadReducer(store, name) {
+function loadReducer(store, name) { // eslint-disable-line
   return (module) => injectAsyncReducer(store, name, module.default);
 }
 
@@ -23,13 +23,9 @@ export default function createRoutes(store) { // eslint-disable-line
     {
       path: '/',
       getComponent(location, cb) {
-        Promise.all([
-          System.import('HomePage/reducer'),
-          System.import('HomePage'),
-        ]).then(modules => {
-          loadReducer(store, 'home')(modules[0]);
-          loadModule(cb)(modules[1]);
-        }).catch(errorLoading);
+        System.import('HomePage')
+          .then(loadModule(cb))
+          .catch(errorLoading);
       },
     }, {
       path: '*',
