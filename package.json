@@ -3,7 +3,7 @@
   "version": "2.4.0",
   "description": "Quick setup for new React.js applications featuring Redux, hot–reloading, PostCSS, react-router and Mocha.",
   "dependencies": {
-    "babel-polyfill": "^6.3.14",
+    "babel-polyfill": "^6.7.4",
     "chalk": "^1.1.1",
     "compression": "^1.6.1",
     "connect-history-api-fallback": "^1.1.0",
@@ -32,6 +32,7 @@
     "babel-loader": "^6.2.1",
     "babel-plugin-react-transform": "^2.0.0",
     "babel-preset-es2015": "^6.3.13",
+    "babel-preset-es2015-webpack": "^6.4.0",
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.1",
     "babel-preset-stage-0": "^6.3.13",
@@ -86,12 +87,12 @@
     "rimraf": "^2.5.2",
     "sanitize.css": "^3.3.0",
     "shelljs": "^0.6.0",
-    "sinon": "^1.17.3",
+    "sinon": "^2.0.0-pre",
     "style-loader": "^0.13.0",
     "stylelint": "^5.2.1",
     "stylelint-config-standard": "^4.0.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.12.11",
+    "webpack": "^2.1.0-beta.6",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.9.1"
   },
@@ -102,7 +103,7 @@
   "scripts": {
     "prebuild": "npm run test && npm run build:clean",
     "build:clean": "rimraf ./build/*",
-    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --colors -p",
+    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p",
     "analyze": "node ./internals/scripts/analyze.js",
     "start": "npm run start:tunnel",
     "start:tunnel": "cross-env NODE_ENV=development node server",
@@ -134,7 +135,7 @@
   "license": "MIT",
   "babel": {
     "presets": [
-      "es2015",
+      "es2015-webpack",
       "react",
       "stage-0"
     ]
