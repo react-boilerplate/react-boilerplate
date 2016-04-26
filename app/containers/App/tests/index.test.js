@@ -17,7 +17,7 @@ describe('<App />', () => {
     const children = (<h1>Test</h1>);
     const renderedComponent = shallow(
       <App>
-        { children }
+        {children}
       </App>
     );
     expect(renderedComponent.contains(children)).toEqual(true);

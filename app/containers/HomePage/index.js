@@ -73,27 +73,27 @@ export class HomePage extends React.Component {
     return (
       <article>
         <div>
-          <section className={ styles.textSection + ' ' + styles.centered }>
+          <section className={styles.textSection + ' ' + styles.centered}>
             <H2>Start your next react project in seconds</H2>
             <p>A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices</p>
           </section>
-          <section className={ styles.textSection }>
+          <section className={styles.textSection}>
             <H2>Try me!</H2>
-              <form className={ styles.usernameForm } onSubmit={ this.props.onSubmitForm }>
+              <form className={styles.usernameForm} onSubmit={this.props.onSubmitForm}>
                 <label>Show Github repositories by
-                  <span className={ styles.atPrefix }>@</span>
+                  <span className={styles.atPrefix}>@</span>
                   <input
-                    className={ styles.input }
+                    className={styles.input}
                     type="text"
                     placeholder="mxstbr"
-                    value={ this.props.username }
-                    onChange={ this.props.onChangeUsername }
+                    value={this.props.username}
+                    onChange={this.props.onChangeUsername}
                   />
                 </label>
               </form>
-              { mainContent }
+              {mainContent}
           </section>
-          <Button handleRoute={ this.openFeaturesPage }>Features</Button>
+          <Button handleRoute={this.openFeaturesPage}>Features</Button>
         </div>
       </article>
     );

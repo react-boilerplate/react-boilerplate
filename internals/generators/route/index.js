@@ -12,7 +12,7 @@ module.exports = {
     message: 'Which component should the route show?',
     validate: value => {
       if ((/.+/).test(value)) {
-        return componentExists(value) ? true : '"' + value + '" doesn\'t exist.';
+        return componentExists(value) ? true : `"${value}" doesn't exist.`;
       }
 
       return 'The path is required';

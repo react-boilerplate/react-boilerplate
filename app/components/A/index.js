@@ -14,7 +14,7 @@ function A(props) {
       }
       { ...props }
     >
-      { props.children }
+      {props.children}
     </a>
   );
 }

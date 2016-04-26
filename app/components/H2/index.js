@@ -4,7 +4,7 @@ import styles from './styles.css';
 
 function H2(props) {
   return (
-    <h2 className={ styles.heading2 } { ...props } />
+    <h2 className={styles.heading2} { ...props } />
   );
 }
 

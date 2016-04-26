@@ -11,7 +11,7 @@ import React from 'react';
 function App(props) {
   return (
     <div>
-      { props.children }
+      {props.children}
     </div>
   );
 }

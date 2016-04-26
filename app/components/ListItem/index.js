@@ -4,9 +4,9 @@ import styles from './styles.css';
 
 function ListItem(props) {
   return (
-    <li className={ props.className || styles.item }>
-      <div className={ styles.itemContent }>
-        { props.content }
+    <li className={props.className || styles.item}>
+      <div className={styles.itemContent}>
+        {props.content}
       </div>
     </li>
   );

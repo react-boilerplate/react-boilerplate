@@ -29,28 +29,28 @@ export class RepoListItem extends React.Component {
 
     // Put together the content of the repository
     const content = (
-      <div className={ styles.linkWrapper }>
+      <div className={styles.linkWrapper}>
         <A
-          className={ styles.linkRepo }
-          href={ item.html_url }
+          className={styles.linkRepo}
+          href={item.html_url}
           target="_blank"
         >
-          { nameprefix + item.name }
+          {nameprefix + item.name}
         </A>
         <A
-          className={ styles.linkIssues }
-          href={ item.html_url + '/issues' }
+          className={styles.linkIssues}
+          href={item.html_url + '/issues'}
           target="_blank"
         >
-          <IssueIcon className={ styles.issueIcon } />
-          { item.open_issues_count }
+          <IssueIcon className={styles.issueIcon} />
+          {item.open_issues_count}
         </A>
       </div>
     );
 
     // Render the content into a list item
     return (
-      <ListItem key={'repo-list-item-' + item.full_name } content={content} />
+      <ListItem key={'repo-list-item-' + item.full_name} content={content} />
     );
   }
 }
