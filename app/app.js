@@ -35,9 +35,6 @@ openSansObserver.check().then(() => {
   document.body.classList.remove(styles.fontLoaded);
 });
 
-// Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
-import '../node_modules/sanitize.css/sanitize.css';
-
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
 // Optionally, this could be changed to leverage a created history
