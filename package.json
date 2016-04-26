@@ -91,7 +91,7 @@
     "stylelint": "^5.2.1",
     "stylelint-config-standard": "^4.0.1",
     "url-loader": "^0.5.7",
-    "webpack": "^2.1.0-beta.4",
+    "webpack": "^2.1.0-beta.6",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.9.1"
   },
@@ -102,7 +102,7 @@
   "scripts": {
     "prebuild": "npm run test && npm run build:clean",
     "build:clean": "rimraf ./build/*",
-    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --colors -p",
+    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p",
     "start": "npm run start:tunnel",
     "start:tunnel": "cross-env NODE_ENV=development node server",
     "start:prod": "cross-env NODE_ENV=production node server",
