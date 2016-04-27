@@ -6,11 +6,11 @@
 /* eslint-disable react/prefer-stateless-function */
 
 import React from 'react';
-import {connect} from 'react-redux';
-import {push} from 'react-router-redux';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 
-import Button from 'Button';
-import H1 from 'H1';
+import Button from 'components/Button';
+import H1 from 'components/H1';
 
 import styles from './styles.css';
 
@@ -31,7 +31,7 @@ export class FeaturePage extends React.Component {
     this.openRoute('/');
   };
 
-  render () {
+  render() {
     return (
       <div>
         <H1>Features</H1>
@@ -71,7 +71,7 @@ export class FeaturePage extends React.Component {
           </li>
 
           <li className={styles.listItem}>
-            <pclassName={styles.listItemTitle}>Industry-standard routing</p>
+            <p className={styles.listItemTitle}>Industry-standard routing</p>
             <p>It's natural to want to add pages (e.g. `/about`) to your
             application, and routing makes this possible.</p>
           </li>
@@ -88,7 +88,7 @@ export class FeaturePage extends React.Component {
   }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     changeRoute: (url) => dispatch(push(url)),
   };

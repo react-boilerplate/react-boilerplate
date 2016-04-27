@@ -3,10 +3,11 @@
  * If we were to do this in store.js, reducers wouldn't be hot reloadable.
  */
 
-import { combineReducers } from 'redux-immutable';
-import globalReducer from 'App/reducer';
 import { fromJS } from 'immutable';
+import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
+
+import globalReducer from 'containers/App/reducer';
 
 /*
  * routeReducer

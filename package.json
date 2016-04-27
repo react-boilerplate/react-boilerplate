@@ -45,7 +45,7 @@
     "enzyme": "^2.2.0",
     "eslint": "^2.8.0",
     "eslint-config-airbnb": "^8.0.0",
-    "eslint-import-resolver-webpack": "^0.2.1",
+    "eslint-import-resolver-webpack": "^0.2.2",
     "eslint-plugin-import": "^1.6.0",
     "eslint-plugin-jsx-a11y": "^1.0.3",
     "eslint-plugin-react": "^5.0.1",
@@ -61,7 +61,7 @@
     "ip": "^1.1.2",
     "isparta": "^4.0.0",
     "isparta-loader": "^2.0.0",
-    "jscs": "^3.0.3",
+    "jscs": "^2.11.0",
     "json-loader": "^0.5.4",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.3",
@@ -78,7 +78,7 @@
     "mocha": "^2.4.5",
     "ngrok": "2.1.7",
     "null-loader": "^0.1.1",
-    "offline-plugin": "^2.1.1",
+    "offline-plugin": "^2.2.0",
     "open": "0.0.5",
     "plop": "^1.5.0",
     "postcss-cssnext": "^2.5.2",
@@ -160,7 +160,7 @@
       }
     },
     "rules": {
-      "import/no-unresolved": 0,
+      "import/no-unresolved": 2,
       "comma-dangle": [
         2,
         "always-multiline"
@@ -193,7 +193,6 @@
   },
   "jscsConfig": {
     "preset": "airbnb",
-    "esnext": true,
     "validateQuoteMarks": null,
     "requireTrailingComma": null,
     "maximumLineLength": null,

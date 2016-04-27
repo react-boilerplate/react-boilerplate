@@ -4,12 +4,12 @@
  * This is the entry file for the application, only setup and boilerplate
  * code.
  */
-
 import 'babel-polyfill';
 
+// TODO constrain eslint import/no-unresolved rule to this block
 // Load the manifest.json file and the .htaccess file
-import 'file?name=[name].[ext]!./manifest.json';
-import 'file?name=[name].[ext]!./.htaccess';
+import 'file?name=[name].[ext]!./manifest.json';  // eslint-disable-line import/no-unresolved
+import 'file?name=[name].[ext]!./.htaccess';      // eslint-disable-line import/no-unresolved
 
 // Import all the third party stuff
 import React from 'react';
@@ -20,10 +20,10 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import useScroll from 'scroll-behavior/lib/useScrollToTop';
 import configureStore from './store';
 
-import selectLocationSelector from 'selectLocationSelector';
+import selectLocationSelector from 'selectors/selectLocationSelector';
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
-import '../node_modules/sanitize.css/sanitize.css';
+import 'sanitize.css/lib/sanitize.css';
 
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
@@ -40,7 +40,7 @@ const history = syncHistoryWithStore(browserHistory, store, {
 });
 
 // Set up the router, wrapping all Routes in the App component
-import App from 'App';
+import App from 'containers/App';
 import createRoutes from './routes';
 const rootRoute = {
   component: App,

@@ -4,6 +4,11 @@
 
 const path = require('path');
 
+const modules = [
+  'app',
+  'node_modules',
+];
+
 module.exports = {
   devtool: 'inline-source-map',
   isparta: {
@@ -59,18 +64,13 @@ module.exports = {
   // required for enzyme to work properly
   externals: {
     jsdom: 'window',
+    'react/addons': true,
     'react/lib/ExecutionEnvironment': true,
     'react/lib/ReactContext': 'window',
   },
   resolve: {
-    modules: [
-      'containers',
-      'components',
-      'selectors',
-      'sagas',
-      'assets',
-      'node_modules',
-    ],
+    modulesDirectories: modules,
+    modules,
     alias: {
       // required for enzyme to work properly
       sinon: 'sinon/pkg/sinon',

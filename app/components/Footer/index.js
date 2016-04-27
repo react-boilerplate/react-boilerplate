@@ -1,6 +1,6 @@
 import React from 'react';
 
-import A from 'A';
+import A from 'components/A';
 import styles from './styles.css';
 
 function Footer() {

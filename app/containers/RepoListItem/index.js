@@ -8,11 +8,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import currentUserSelector from 'currentUserSelector';
 
-import ListItem from 'ListItem';
-import IssueIcon from 'IssueIcon';
-import A from 'A';
+import currentUserSelector from 'selectors/currentUserSelector';
+
+import ListItem from 'components/ListItem';
+import IssueIcon from 'components/IssueIcon';
+import A from 'components/A';
 
 import styles from './styles.css';
 
