@@ -1,0 +1,12 @@
+{
+     path: '{{ path }}',
+     getComponent(location, cb) {
+       Promise.all([
+         System.import('{{ properCase component }}/reducer'),
+         System.import('{{ properCase component }}'),
+       ]).then(modules => {
+         loadReducer(store, '{{ camelCase component }}')(modules[0]);
+         loadModule(cb)(modules[1]);
+       }).catch(errorLoading);
+     },
+   },$1

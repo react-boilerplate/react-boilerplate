@@ -8,9 +8,9 @@ const componentExists = require('../utils/componentExists');
 function reducerExists(comp) {
   try {
     fs.accessSync(`app/containers/${comp}/reducer.js`, fs.F_OK);
-    return true
+    return true;
   } catch (e) {
-    return false
+    return false;
   }
 }
 
@@ -44,13 +44,23 @@ module.exports = {
   // Add the route to the routes.js file above the error route
   // TODO smarter route adding
   actions: data => {
-    const actions = [{
-      type: 'modify',
-      path: '../../app/routes.js',
-      pattern: /(\s{\n\s{6}path: '\*'\,)/g,
-      templateFile: './route/route.hbs',
-    }];
-    data.withReducer = reducerExists(data.component);
-    return actions
-  }
+    const actions = [];
+    if (reducerExists(data.component)) {
+      actions.push({
+        type: 'modify',
+        path: '../../app/routes.js',
+        pattern: /(\s{\n\s{6}path: '\*'\,)/g,
+        templateFile: './route/routeWithReducer.hbs',
+      });
+    } else {
+      actions.push({
+        type: 'modify',
+        path: '../../app/routes.js',
+        pattern: /(\s{\n\s{6}path: '\*'\,)/g,
+        templateFile: './route/route.hbs',
+      });
+    }
+
+    return actions;
+  },
 };

@@ -1,18 +1,8 @@
  {
       path: '{{ path }}',
       getComponent(location, cb) {
-        {{#if withReducer}}
-        Promise.all([
-          System.import('{{ properCase component }}/reducer'),
-          System.import('{{ properCase component }}'),
-        ]).then(modules => {
-          loadReducer(store, '{{ camelCase component }}')(modules[0]);
-          loadModule(cb)(modules[1]);
-        }).catch(errorLoading);
-        {{else}}
         System.import('{{ properCase component }}')
           .then(loadModule(cb))
           .catch(errorLoading);
-        {{/if}}
       },
     },$1
