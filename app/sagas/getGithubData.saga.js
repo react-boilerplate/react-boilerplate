@@ -16,7 +16,7 @@ export function* getGithubData() {
   while (true) {
     yield take(LOAD_REPOS);
     const username = yield select(usernameSelector());
-    const requestURL = 'https://api.github.com/users/' + username + '/repos?type=all&sort=updated';
+    const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
 
     // Use call from redux-saga for easier testing
     const repos = yield call(request, requestURL);
@@ -25,7 +25,7 @@ export function* getGithubData() {
     if (repos.err === undefined || repos.err === null) {
       yield put(reposLoaded(repos.data, username));
     } else {
-      console.log(repos.err.response);
+      console.log(repos.err.response); // eslint-disable-line no-console
       yield put(repoLoadingError(repos.err));
     }
   }

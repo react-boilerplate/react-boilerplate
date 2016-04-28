@@ -7,7 +7,7 @@
 import { injectAsyncReducer } from './store';
 
 function errorLoading(err) {
-  console.error('Dynamic page loading failed', err);
+  console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
 }
 
 function loadModule(cb) {

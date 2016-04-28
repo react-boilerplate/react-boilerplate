@@ -25,7 +25,7 @@ describe('getGithubData Saga', () => {
   beforeEach(() => {
     expect(generator.next().value).toEqual(take(LOAD_REPOS));
     expect(generator.next().value).toEqual(select(usernameSelector()));
-    const requestURL = 'https://api.github.com/users/' + username + '/repos?type=all&sort=updated';
+    const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
     expect(generator.next(username).value).toEqual(call(request, requestURL));
   });
 

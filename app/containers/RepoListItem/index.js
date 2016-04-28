@@ -18,11 +18,6 @@ import A from 'components/A';
 import styles from './styles.css';
 
 export class RepoListItem extends React.Component {
-  propTypes = {
-    item: React.PropTypes.object,
-    currentUser: React.PropTypes.string,
-  }
-
   render() {
     const item = this.props.item;
     let nameprefix = '';
@@ -30,7 +25,7 @@ export class RepoListItem extends React.Component {
     // If the repository is owned by a different person than we got the data for
     // it's a fork and we should show the name of the owner
     if (item.owner.login !== this.props.currentUser) {
-      nameprefix = item.owner.login + '/';
+      nameprefix = `${item.owner.login}/`;
     }
 
     // Put together the content of the repository
@@ -45,7 +40,7 @@ export class RepoListItem extends React.Component {
         </A>
         <A
           className={styles.linkIssues}
-          href={item.html_url + '/issues'}
+          href={`${item.html_url}/issues`}
           target="_blank"
         >
           <IssueIcon className={styles.issueIcon} />
@@ -56,11 +51,15 @@ export class RepoListItem extends React.Component {
 
     // Render the content into a list item
     return (
-      <ListItem key={'repo-list-item-' + item.full_name} content={content} />
+      <ListItem key={`repo-list-item-${item.full_name}`} content={content} />
     );
   }
 }
 
+RepoListItem.propTypes = {
+  item: React.PropTypes.object,
+  currentUser: React.PropTypes.string,
+};
 
 export default connect(createSelector(
   currentUserSelector(),

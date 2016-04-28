@@ -34,15 +34,6 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import styles from './styles.css';
 
 export class HomePage extends React.Component {
-  propTypes = {
-    changeRoute: React.PropTypes.func,
-    loading: React.PropTypes.bool,
-    error: React.PropTypes.object,
-    repos: React.PropTypes.array,
-    onSubmitForm: React.PropTypes.func,
-    username: React.PropTypes.string,
-    onChangeUsername: React.PropTypes.func,
-  }
   shouldComponentUpdate = shouldPureComponentUpdate;
 
   /**
@@ -83,7 +74,7 @@ export class HomePage extends React.Component {
     return (
       <article>
         <div>
-          <section className={styles.textSection + ' ' + styles.centered}>
+          <section className={`${styles.textSection} ${styles.centered}`}>
             <H2>Start your next react project in seconds</H2>
             <p>A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices</p>
           </section>
@@ -109,6 +100,22 @@ export class HomePage extends React.Component {
     );
   }
 }
+
+HomePage.propTypes = {
+  changeRoute: React.PropTypes.func,
+  loading: React.PropTypes.bool,
+  error: React.PropTypes.oneOfType([
+    React.PropTypes.object,
+    React.PropTypes.bool,
+  ]),
+  repos: React.PropTypes.oneOfType([
+    React.PropTypes.array,
+    React.PropTypes.bool,
+  ]),
+  onSubmitForm: React.PropTypes.func,
+  username: React.PropTypes.string,
+  onChangeUsername: React.PropTypes.func,
+};
 
 function mapDispatchToProps(dispatch) {
   return {

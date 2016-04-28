@@ -15,9 +15,6 @@ import H1 from 'components/H1';
 import styles from './styles.css';
 
 export class FeaturePage extends React.Component {
-  propTypes = {
-    changeRoute: React.PropTypes.func,
-  }
 
   /**
    * Changes the route
@@ -91,6 +88,9 @@ export class FeaturePage extends React.Component {
     );
   }
 }
+FeaturePage.propTypes = {
+  changeRoute: React.PropTypes.func,
+};
 
 function mapDispatchToProps(dispatch) {
   return {

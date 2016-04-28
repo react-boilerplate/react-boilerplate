@@ -1,3 +1,5 @@
+/* eslint-disable no-console,prefer-template */
+
 const chalk = require('chalk');
 const ip = require('ip');
 
