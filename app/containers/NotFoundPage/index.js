@@ -26,6 +26,10 @@ export function NotFound(props) {
   );
 }
 
+NotFound.propTypes = {
+  changeRoute: React.PropTypes.func,
+};
+
 // react-redux stuff
 function mapDispatchToProps(dispatch) {
   return {

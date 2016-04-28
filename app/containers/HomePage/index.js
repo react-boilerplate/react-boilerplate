@@ -34,6 +34,15 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import styles from './styles.css';
 
 export class HomePage extends React.Component {
+  propTypes = {
+    changeRoute: React.PropTypes.func,
+    loading: React.PropTypes.bool,
+    error: React.PropTypes.object,
+    repos: React.PropTypes.array,
+    onSubmitForm: React.PropTypes.func,
+    username: React.PropTypes.string,
+    onChangeUsername: React.PropTypes.func,
+  }
   shouldComponentUpdate = shouldPureComponentUpdate;
 
   /**

@@ -12,4 +12,9 @@ function ListItem(props) {
   );
 }
 
+ListItem.propTypes = {
+  className: React.PropTypes.string,
+  content: React.PropTypes.any,
+};
+
 export default ListItem;

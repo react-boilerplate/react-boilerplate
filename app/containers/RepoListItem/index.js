@@ -18,6 +18,11 @@ import A from 'components/A';
 import styles from './styles.css';
 
 export class RepoListItem extends React.Component {
+  propTypes = {
+    item: React.PropTypes.object,
+    currentUser: React.PropTypes.string,
+  }
+
   render() {
     const item = this.props.item;
     let nameprefix = '';
@@ -55,6 +60,7 @@ export class RepoListItem extends React.Component {
     );
   }
 }
+
 
 export default connect(createSelector(
   currentUserSelector(),

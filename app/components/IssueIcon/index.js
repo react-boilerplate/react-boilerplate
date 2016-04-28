@@ -12,4 +12,8 @@ function IssueIcon(props) {
   );
 }
 
+IssueIcon.propTypes = {
+  className: React.PropTypes.string,
+};
+
 export default IssueIcon;

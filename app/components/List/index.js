@@ -25,4 +25,9 @@ function List(props) {
   );
 }
 
+List.propTypes = {
+  component: React.PropTypes.node.isRequired,
+  items: React.PropTypes.array,
+};
+
 export default List;

@@ -16,4 +16,8 @@ function App(props) {
   );
 }
 
+App.propTypes = {
+  children: React.PropTypes.node,
+};
+
 export default App;
