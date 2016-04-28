@@ -81,9 +81,10 @@ export class HomePage extends React.Component {
           <section className={styles.textSection}>
             <H2>Try me!</H2>
             <form className={styles.usernameForm} onSubmit={this.props.onSubmitForm}>
-              <label>Show Github repositories by
+              <label htmlFor="username">Show Github repositories by
                 <span className={styles.atPrefix}>@</span>
                 <input
+                  id="username"
                   className={styles.input}
                   type="text"
                   placeholder="mxstbr"
