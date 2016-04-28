@@ -10,10 +10,11 @@ import { push } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import { createSelector } from 'reselect';
-import usernameSelector from 'usernameSelector';
-import reposSelector from 'reposSelector';
-import loadingSelector from 'loadingSelector';
-import errorSelector from 'errorSelector';
+
+import usernameSelector from 'selectors/usernameSelector';
+import reposSelector from 'selectors/reposSelector';
+import loadingSelector from 'selectors/loadingSelector';
+import errorSelector from 'selectors/errorSelector';
 
 import {
   changeUsername,
@@ -23,12 +24,12 @@ import {
   loadRepos,
 } from '../App/actions';
 
-import Button from 'Button';
-import H2 from 'H2';
-import List from 'List';
-import ListItem from 'ListItem';
-import RepoListItem from 'RepoListItem';
-import LoadingIndicator from 'LoadingIndicator';
+import RepoListItem from 'containers/RepoListItem';
+import Button from 'components/Button';
+import H2 from 'components/H2';
+import List from 'components/List';
+import ListItem from 'components/ListItem';
+import LoadingIndicator from 'components/LoadingIndicator';
 
 import styles from './styles.css';
 
@@ -73,32 +74,49 @@ export class HomePage extends React.Component {
     return (
       <article>
         <div>
-          <section className={ styles.textSection + ' ' + styles.centered }>
+          <section className={`${styles.textSection} ${styles.centered}`}>
             <H2>Start your next react project in seconds</H2>
             <p>A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices</p>
           </section>
-          <section className={ styles.textSection }>
+          <section className={styles.textSection}>
             <H2>Try me!</H2>
-              <form className={ styles.usernameForm } onSubmit={ this.props.onSubmitForm }>
-                <label>Show Github repositories by
-                  <span className={ styles.atPrefix }>@</span>
-                  <input
-                    className={ styles.input }
-                    type="text"
-                    placeholder="mxstbr"
-                    value={ this.props.username }
-                    onChange={ this.props.onChangeUsername }
-                  />
-                </label>
-              </form>
-              { mainContent }
+            <form className={styles.usernameForm} onSubmit={this.props.onSubmitForm}>
+              <label htmlFor="username">Show Github repositories by
+                <span className={styles.atPrefix}>@</span>
+                <input
+                  id="username"
+                  className={styles.input}
+                  type="text"
+                  placeholder="mxstbr"
+                  value={this.props.username}
+                  onChange={this.props.onChangeUsername}
+                />
+              </label>
+            </form>
+            {mainContent}
           </section>
-          <Button handleRoute={ this.openFeaturesPage }>Features</Button>
+          <Button handleRoute={this.openFeaturesPage}>Features</Button>
         </div>
       </article>
     );
   }
 }
+
+HomePage.propTypes = {
+  changeRoute: React.PropTypes.func,
+  loading: React.PropTypes.bool,
+  error: React.PropTypes.oneOfType([
+    React.PropTypes.object,
+    React.PropTypes.bool,
+  ]),
+  repos: React.PropTypes.oneOfType([
+    React.PropTypes.array,
+    React.PropTypes.bool,
+  ]),
+  onSubmitForm: React.PropTypes.func,
+  username: React.PropTypes.string,
+  onChangeUsername: React.PropTypes.func,
+};
 
 function mapDispatchToProps(dispatch) {
   return {

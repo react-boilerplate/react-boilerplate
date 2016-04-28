@@ -8,8 +8,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
-import Button from 'Button';
-import H1 from 'H1';
+import Button from 'components/Button';
+import H1 from 'components/H1';
 
 export function NotFound(props) {
   return (
@@ -25,6 +25,10 @@ export function NotFound(props) {
     </article>
   );
 }
+
+NotFound.propTypes = {
+  changeRoute: React.PropTypes.func,
+};
 
 // react-redux stuff
 function mapDispatchToProps(dispatch) {

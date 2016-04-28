@@ -2,12 +2,12 @@
  * Test the repo list item
  */
 
-import { RepoListItem } from './index';
-import ListItem from 'ListItem';
-
 import expect from 'expect';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
+
+import { RepoListItem } from './index';
+import ListItem from 'components/ListItem';
 
 describe('<RepoListItem />', () => {
   let item;
@@ -64,7 +64,6 @@ describe('<RepoListItem />', () => {
     const renderedComponent = mount(
       <RepoListItem item={item} />
     );
-    console.log(renderedComponent.debug());
     expect(renderedComponent.find('svg').length).toEqual(1);
   });
 });

@@ -13,9 +13,7 @@ function A(props) {
         props.className || styles.link
       }
       { ...props }
-    >
-      { props.children }
-    </a>
+    />
   );
 }
 
@@ -23,6 +21,7 @@ A.propTypes = {
   className: PropTypes.string,
   href: PropTypes.string.isRequired,
   target: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default A;

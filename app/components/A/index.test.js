@@ -13,7 +13,7 @@ describe('<A />', () => {
     const children = (<h1>Test</h1>);
     const renderedComponent = shallow(
       <A>
-        { children }
+        {children}
       </A>
     );
     expect(renderedComponent.contains(children)).toEqual(true);

@@ -4,17 +4,19 @@
 
 /* eslint-disable no-constant-condition */
 
-import { LOAD_REPOS } from 'App/constants';
-import { reposLoaded, repoLoadingError } from 'App/actions';
 import { take, call, put, select } from 'redux-saga/effects';
-import request from '../utils/request';
-import usernameSelector from 'usernameSelector';
+
+import { LOAD_REPOS } from 'containers/App/constants';
+import { reposLoaded, repoLoadingError } from 'containers/App/actions';
+
+import request from 'utils/request';
+import usernameSelector from 'selectors/usernameSelector';
 
 export function* getGithubData() {
   while (true) {
     yield take(LOAD_REPOS);
     const username = yield select(usernameSelector());
-    const requestURL = 'https://api.github.com/users/' + username + '/repos?type=all&sort=updated';
+    const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
 
     // Use call from redux-saga for easier testing
     const repos = yield call(request, requestURL);
@@ -23,7 +25,7 @@ export function* getGithubData() {
     if (repos.err === undefined || repos.err === null) {
       yield put(reposLoaded(repos.data, username));
     } else {
-      console.log(repos.err.response);
+      console.log(repos.err.response); // eslint-disable-line no-console
       yield put(repoLoadingError(repos.err));
     }
   }

@@ -3,7 +3,7 @@
  */
 
 import { createSelector } from 'reselect';
-import globalSelector from 'globalSelector';
+import globalSelector from './globalSelector';
 
 const loadingSelector = () => createSelector(
   globalSelector(),

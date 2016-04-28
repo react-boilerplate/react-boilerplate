@@ -13,7 +13,7 @@ describe('<Button />', () => {
     const children = (<h1>Test</h1>);
     const renderedComponent = shallow(
       <Button href="http://mxstbr.com">
-        { children }
+        {children}
       </Button>
     );
     expect(renderedComponent.contains(children)).toEqual(true);

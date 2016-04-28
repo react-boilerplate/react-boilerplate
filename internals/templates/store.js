@@ -19,7 +19,7 @@ export default function configureStore(initialState = {}, history) {
   // Make reducers hot reloadable, see http://mxs.is/googmo
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      const nextRootReducer = require('./reducers').default;
+      const nextRootReducer = require('./reducers').default; // eslint-disable-line global-require
       store.replaceReducer(nextRootReducer);
     });
   }

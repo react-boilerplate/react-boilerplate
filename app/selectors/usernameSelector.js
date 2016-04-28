@@ -3,7 +3,7 @@
  */
 
 import { createSelector } from 'reselect';
-import homeSelector from 'homeSelector';
+import homeSelector from './homeSelector';
 
 const usernameSelector = () => createSelector(
   homeSelector(),

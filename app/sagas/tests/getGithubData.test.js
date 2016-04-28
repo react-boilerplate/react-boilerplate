@@ -5,16 +5,16 @@
 import expect from 'expect';
 import { take, call, put, select } from 'redux-saga/effects';
 
-import { getGithubData } from '../getGithubData.saga';
+import { getGithubData } from 'sagas/getGithubData.saga';
 import {
   LOAD_REPOS,
-} from 'App/constants';
+} from 'containers/App/constants';
 import {
   reposLoaded,
   repoLoadingError,
-} from 'App/actions';
-import request from '../../utils/request';
-import usernameSelector from 'usernameSelector';
+} from 'containers/App/actions';
+import request from 'utils/request';
+import usernameSelector from 'selectors/usernameSelector';
 
 const generator = getGithubData();
 const username = 'mxstbr';
@@ -25,7 +25,7 @@ describe('getGithubData Saga', () => {
   beforeEach(() => {
     expect(generator.next().value).toEqual(take(LOAD_REPOS));
     expect(generator.next().value).toEqual(select(usernameSelector()));
-    const requestURL = 'https://api.github.com/users/' + username + '/repos?type=all&sort=updated';
+    const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
     expect(generator.next(username).value).toEqual(call(request, requestURL));
   });
 

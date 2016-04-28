@@ -1,6 +1,7 @@
-import selectLocationSelector from '../selectLocationSelector';
 import { fromJS } from 'immutable';
 import expect from 'expect';
+
+import selectLocationSelector from 'selectors/selectLocationSelector';
 
 describe('selectLocationSelector', () => {
   it('should select the route as a plain JS object', () => {
