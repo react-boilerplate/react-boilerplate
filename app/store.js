@@ -20,6 +20,7 @@ export default function configureStore(initialState = {}, history) {
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )(createStore);
   const store = createStoreWithMiddleware(createReducer(), fromJS(initialState));
+
   // Add all sagas to the saga middleware
   for (let i = 0; i < sagas.length; i++) {
     sagaMiddleware.run(sagas[i]);
