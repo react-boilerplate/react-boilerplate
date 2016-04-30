@@ -1,9 +1,7 @@
 /**
- * Export all your sagas here so the sagaMiddleware imports them
+ * Export all sync sagas here so the sagaMiddleware imports and runs them
  */
 
-import { getGithubData } from './getGithubData.saga';
-
 export default [
-  getGithubData,
+
 ];

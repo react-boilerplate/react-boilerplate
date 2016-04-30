@@ -5,7 +5,7 @@
 import expect from 'expect';
 import { take, call, put, select } from 'redux-saga/effects';
 
-import { getGithubData } from 'sagas/getGithubData.saga';
+import getGithubData from 'sagas/getGithubData.saga';
 import {
   LOAD_REPOS,
 } from 'containers/App/constants';
