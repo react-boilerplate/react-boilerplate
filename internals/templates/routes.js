@@ -23,14 +23,14 @@ export default function createRoutes(store) { // eslint-disable-line
     {
       path: '/',
       getComponent(location, cb) {
-        System.import('containers/App')
+        System.import('components/HomePage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
     }, {
       path: '*',
       getComponent(location, cb) {
-        System.import('containers/NotFoundPage')
+        System.import('components/NotFoundPage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
