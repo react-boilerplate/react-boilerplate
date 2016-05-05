@@ -31,7 +31,7 @@ mkdir('app/containers/NotFoundPage');
 mkdir('app/components/HomePage');
 cp('internals/templates/appContainer.js', 'app/containers/App/index.js');
 cp('internals/templates/notFoundPage.js', 'app/containers/NotFoundPage/index.js');
-cp('internals/templates/homePage.js', 'app/components/HomePage/index.js');
+cp('internals/templates/homePage.js', 'app/containers/HomePage/index.js');
 
 // Cleanup sagas folder
 rm('-rf', 'app/sagas/*');
