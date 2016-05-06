@@ -2,52 +2,54 @@
 // They are all wrapped in the App component, which should contain the navbar etc
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the code splitting business
-import { injectAsyncReducer, injectAsyncSaga } from './store';
+import { getHooks } from './utils/hooks';
 
-function errorLoading(err) {
+const errorLoading = (err) => {
   console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
-}
+};
 
-function loadModule(cb) {
-  return (module) => cb(null, module.default);
-}
-
-function loadReducer(store, name) {
-  return (module) => injectAsyncReducer(store, name, module.default);
-}
-
-function loadSaga(store) {
-  return (module) => injectAsyncSaga(store, module.default);
-}
+const loadModule = (cb) => (componentModule) => {
+  cb(null, componentModule.default);
+};
 
 export default function createRoutes(store) {
+  // create reusable async injectors using getHooks factory
+  const { injectReducer, injectSagas } = getHooks(store);
+
   return [
     {
-      name: 'home',
       path: '/',
-      getComponent(location, cb) {
-        Promise.all([
-          System.import('sagas/getGithubData.saga'),
+      name: 'home',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
           System.import('containers/HomePage/reducer'),
+          System.import('containers/HomePage/sagas'),
           System.import('containers/HomePage'),
-        ]).then(([saga, reducer, component]) => {
-          loadSaga(store)(saga);
-          loadReducer(store, 'home')(reducer);
-          loadModule(cb)(component);
-        }).catch(errorLoading);
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('home', reducer.default);
+          injectSagas(sagas.default);
+
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
       },
     }, {
-      name: 'features',
       path: '/features',
-      getComponent(location, cb) {
+      name: 'features',
+      getComponent(nextState, cb) {
         System.import('containers/FeaturePage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
     }, {
-      name: 'catchall',
       path: '*',
-      getComponent(location, cb) {
+      name: 'notfound',
+      getComponent(nextState, cb) {
         System.import('containers/NotFoundPage')
           .then(loadModule(cb))
           .catch(errorLoading);

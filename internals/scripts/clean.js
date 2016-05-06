@@ -27,11 +27,11 @@ rm('-rf', 'app/components/*');
 // Cleanup containers folder
 rm('-rf', 'app/containers/*');
 mkdir('app/containers/App');
-mkdir('app/containers/NotFoundPage');
+mkdir('app/components/NotFoundPage');
 mkdir('app/components/HomePage');
 cp('internals/templates/appContainer.js', 'app/containers/App/index.js');
-cp('internals/templates/notFoundPage.js', 'app/containers/NotFoundPage/index.js');
-cp('internals/templates/homePage.js', 'app/containers/HomePage/index.js');
+cp('internals/templates/notFoundPage.js', 'app/components/NotFoundPage/index.js');
+cp('internals/templates/homePage.js', 'app/components/HomePage/index.js');
 
 // Cleanup sagas folder
 rm('-rf', 'app/sagas/*');

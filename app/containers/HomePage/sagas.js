@@ -4,25 +4,21 @@
 
 /* eslint-disable no-constant-condition */
 
-import {
-  take,
-  call,
-  put,
-  select,
-} from 'redux-saga/effects';
+import { take, call, put, select } from 'redux-saga/effects';
 
-import {
-  LOAD_REPOS,
-} from 'containers/App/constants';
-import {
-  reposLoaded,
-  repoLoadingError,
-} from 'containers/App/actions';
+import { LOAD_REPOS } from 'containers/App/constants';
+import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
 import usernameSelector from 'selectors/usernameSelector';
 
-export default function* getGithubData() {
+// Bootstrap sagas
+export default [
+  getGithubData,
+];
+
+// Individual exports for testing
+export function* getGithubData() {
   while (true) {
     yield take(LOAD_REPOS);
     const username = yield select(usernameSelector());
