@@ -76,14 +76,6 @@ module.exports = require('./webpack.base.babel')({
     // Extract the CSS into a seperate file
     new ExtractTextPlugin('[name].[contenthash].css'),
 
-    // Set the process.env to production so React includes the production
-    // version of itself
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }),
-
     // Put it in the end to capture all the HtmlWebpackPlugin's
     // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
     new OfflinePlugin({
