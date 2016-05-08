@@ -20,7 +20,7 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
-import useScroll from 'scroll-behavior/lib/useScrollToTop';
+import useScroll from 'scroll-behavior/lib/useStandardScroll';
 import configureStore from './store';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
