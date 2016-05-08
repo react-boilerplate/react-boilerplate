@@ -188,7 +188,7 @@
     "mocha": "^2.4.5",
     "ngrok": "2.1.7",
     "null-loader": "^0.1.1",
-    "offline-plugin": "^2.2.0",
+    "offline-plugin": "^3.2.0",
     "plop": "^1.5.0",
     "postcss-cssnext": "^2.5.2",
     "postcss-focus": "^1.0.0",
