@@ -17,6 +17,7 @@
     "start:tunnel": "cross-env NODE_ENV=development node server",
     "start:prod": "cross-env NODE_ENV=production node server",
     "pagespeed": "node ./internals/scripts/pagespeed.js",
+    "presetup": "npm i chalk",
     "setup": "node ./internals/scripts/setup.js",
     "clean": "shjs ./internals/scripts/clean.js",
     "generate": "plop --plopfile internals/generators/index.js",
