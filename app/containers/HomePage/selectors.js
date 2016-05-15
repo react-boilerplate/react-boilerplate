@@ -1,13 +1,17 @@
 /**
- * The username currently entered into the input field on the homepage
+ * Homepage selectors
  */
 
 import { createSelector } from 'reselect';
-import homeSelector from './homeSelector';
+
+const homeSelector = () => (state) => state.get('home');
 
 const usernameSelector = () => createSelector(
   homeSelector(),
   (homeState) => homeState.get('username')
 );
 
-export default usernameSelector;
+export {
+  homeSelector,
+  usernameSelector,
+};

@@ -10,7 +10,7 @@ import { LOAD_REPOS } from 'containers/App/constants';
 import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
-import usernameSelector from 'selectors/usernameSelector';
+import { usernameSelector } from 'containers/HomePage/selectors';
 
 export function* getGithubData() {
   while (true) {

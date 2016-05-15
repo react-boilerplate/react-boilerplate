@@ -14,7 +14,7 @@ import {
   repoLoadingError,
 } from 'containers/App/actions';
 import request from 'utils/request';
-import usernameSelector from 'selectors/usernameSelector';
+import { usernameSelector } from 'containers/HomePage/selectors';
 
 const generator = getGithubData();
 const username = 'mxstbr';

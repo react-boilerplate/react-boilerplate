@@ -9,7 +9,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import currentUserSelector from 'selectors/currentUserSelector';
+import { currentUserSelector } from 'containers/App/selectors';
 
 import ListItem from 'components/ListItem';
 import IssueIcon from 'components/IssueIcon';
