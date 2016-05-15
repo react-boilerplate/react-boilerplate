@@ -132,7 +132,6 @@ module.exports = {
         abortOnFail: true,
       });
     }
-    }
 
     return actions;
   },
