@@ -6,16 +6,12 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-{{#if wantSelector}}
 
+{{#if wantActionsAndReducer}}
 import { createSelector } from 'reselect';
-{{#if selectorName}}
-import {{camelCase selectorName}}Selector from '{{camelCase selectorName}}Selector';
-{{else}}
-{{#each selectors }}
-import {{this}} from '{{this}}';
-{{/each}}
-{{/if}}
+import {
+  select{{properCase name}},
+} from './selectors';
 {{/if}}
 
 {{#if wantCSS}}
@@ -41,16 +37,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-{{#if wantSelector}}
+{{#if wantActionsAndReducer}}
 export default connect(createSelector(
-  {{#if selectorName}}
-    {{camelCase selectorName}}Selector
-  {{else}}
-  {{#each selectors }}
-    {{this}}(),
-  {{/each}}
-  
-  {{/if}}
+  select{{properCase name}}(),
 ), mapDispatchToProps)({{ properCase name }});
 {{else}}
 function mapStateToProps(state) {
