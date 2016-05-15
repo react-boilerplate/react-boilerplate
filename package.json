@@ -136,7 +136,7 @@
     "redux-saga": "^0.10.0",
     "reselect": "^2.5.1",
     "sanitize.css": "^3.3.0",
-    "whatwg-fetch": "^0.11.0"
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.7.7",
