@@ -35,6 +35,7 @@ export default function configureStore(initialState = {}, history) {
   store.runSaga = sagaMiddleware.run;
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
+  /* istanbul ignore next */
   if (module.hot) {
     module.hot.accept('./reducers', () => {
       const nextRootReducer = require('./reducers').default; // eslint-disable-line global-require
