@@ -2,17 +2,17 @@ import { fromJS } from 'immutable';
 import expect from 'expect';
 
 import {
-  globalSelector,
-  currentUserSelector,
-  loadingSelector,
-  errorSelector,
-  reposSelector,
-  selectLocationSelector,
+  selectGlobal,
+  selectCurrentUser,
+  selectLoading,
+  selectError,
+  selectRepos,
+  selectLocationState,
 } from '../selectors';
 
-let currentSelector = globalSelector();
+let currentSelector = selectGlobal();
 
-describe('globalSelector', () => {
+describe('selectGlobal', () => {
   it('should select the global state', () => {
     const globalState = fromJS({});
     const mockedState = fromJS({
@@ -22,9 +22,9 @@ describe('globalSelector', () => {
   });
 });
 
-currentSelector = currentUserSelector();
+currentSelector = selectCurrentUser();
 
-describe('currentUserSelector', () => {
+describe('selectCurrentUser', () => {
   it('should select the current user', () => {
     const username = 'mxstbr';
     const mockedState = fromJS({
@@ -36,9 +36,9 @@ describe('currentUserSelector', () => {
   });
 });
 
-currentSelector = loadingSelector();
+currentSelector = selectLoading();
 
-describe('loadingSelector', () => {
+describe('selectLoading', () => {
   it('should select the loading', () => {
     const loading = false;
     const mockedState = fromJS({
@@ -50,9 +50,9 @@ describe('loadingSelector', () => {
   });
 });
 
-currentSelector = errorSelector();
+currentSelector = selectError();
 
-describe('errorSelector', () => {
+describe('selectError', () => {
   it('should select the error', () => {
     const error = 404;
     const mockedState = fromJS({
@@ -64,9 +64,9 @@ describe('errorSelector', () => {
   });
 });
 
-currentSelector = reposSelector();
+currentSelector = selectRepos();
 
-describe('reposSelector', () => {
+describe('selectRepos', () => {
   it('should select the repos', () => {
     const repositories = fromJS([]);
     const mockedState = fromJS({
@@ -80,9 +80,9 @@ describe('reposSelector', () => {
   });
 });
 
-currentSelector = selectLocationSelector();
+currentSelector = selectLocationState();
 
-describe('selectLocationSelector', () => {
+describe('selectLocationState', () => {
   it('should select the route as a plain JS object', () => {
     const route = fromJS({
       locationBeforeTransitions: null,

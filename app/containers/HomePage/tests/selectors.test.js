@@ -2,13 +2,13 @@ import { fromJS } from 'immutable';
 import expect from 'expect';
 
 import {
-  homeSelector,
-  usernameSelector,
+  selectHome,
+  selectUsername,
 } from '../selectors';
 
-let currentSelector = homeSelector();
+let currentSelector = selectHome();
 
-describe('homeSelector', () => {
+describe('selectHome', () => {
   it('should select the home state', () => {
     const homeState = fromJS({
       userData: {},
@@ -20,9 +20,9 @@ describe('homeSelector', () => {
   });
 });
 
-currentSelector = usernameSelector();
+currentSelector = selectUsername();
 
-describe('usernameSelector', () => {
+describe('selectUsername', () => {
   it('should select the username', () => {
     const username = 'mxstbr';
     const mockedState = fromJS({

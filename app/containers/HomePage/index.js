@@ -12,13 +12,13 @@ import shouldPureComponentUpdate from 'react-pure-render/function';
 import { createSelector } from 'reselect';
 
 import {
-  reposSelector,
-  loadingSelector,
-  errorSelector,
+  selectRepos,
+  selectLoading,
+  selectError,
 } from 'containers/App/selectors';
 
 import {
-  usernameSelector,
+  selectUsername,
 } from './selectors';
 
 import {
@@ -138,9 +138,9 @@ function mapDispatchToProps(dispatch) {
 
 // Wrap the component to inject dispatch and state into it
 export default connect(createSelector(
-  reposSelector(),
-  usernameSelector(),
-  loadingSelector(),
-  errorSelector(),
+  selectRepos(),
+  selectUsername(),
+  selectLoading(),
+  selectError(),
   (repos, username, loading, error) => ({ repos, username, loading, error })
 ), mapDispatchToProps)(HomePage);
