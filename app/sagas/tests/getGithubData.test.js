@@ -14,7 +14,7 @@ import {
   repoLoadingError,
 } from 'containers/App/actions';
 import request from 'utils/request';
-import { usernameSelector } from 'containers/HomePage/selectors';
+import { selectUsername } from 'containers/HomePage/selectors';
 
 const generator = getGithubData();
 const username = 'mxstbr';
@@ -24,7 +24,7 @@ describe('getGithubData Saga', () => {
   // so we do all the stuff that happens beforehand automatically in the beforeEach
   beforeEach(() => {
     expect(generator.next().value).toEqual(take(LOAD_REPOS));
-    expect(generator.next().value).toEqual(select(usernameSelector()));
+    expect(generator.next().value).toEqual(select(selectUsername()));
     const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
     expect(generator.next(username).value).toEqual(call(request, requestURL));
   });

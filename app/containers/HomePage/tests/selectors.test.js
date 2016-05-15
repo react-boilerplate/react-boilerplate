@@ -6,9 +6,8 @@ import {
   selectUsername,
 } from '../selectors';
 
-let currentSelector = selectHome();
-
 describe('selectHome', () => {
+  const homeSelector = selectHome();
   it('should select the home state', () => {
     const homeState = fromJS({
       userData: {},
@@ -16,13 +15,12 @@ describe('selectHome', () => {
     const mockedState = fromJS({
       home: homeState,
     });
-    expect(currentSelector(mockedState)).toEqual(homeState);
+    expect(homeSelector(mockedState)).toEqual(homeState);
   });
 });
 
-currentSelector = selectUsername();
-
 describe('selectUsername', () => {
+  const usernameSelector = selectUsername();
   it('should select the username', () => {
     const username = 'mxstbr';
     const mockedState = fromJS({
@@ -30,6 +28,6 @@ describe('selectUsername', () => {
         username,
       },
     });
-    expect(currentSelector(mockedState)).toEqual(username);
+    expect(usernameSelector(mockedState)).toEqual(username);
   });
 });

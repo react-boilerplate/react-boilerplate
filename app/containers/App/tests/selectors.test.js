@@ -10,35 +10,32 @@ import {
   selectLocationState,
 } from '../selectors';
 
-let currentSelector = selectGlobal();
-
 describe('selectGlobal', () => {
+  const globalSelector = selectGlobal();
   it('should select the global state', () => {
     const globalState = fromJS({});
     const mockedState = fromJS({
       global: globalState,
     });
-    expect(currentSelector(mockedState)).toEqual(globalState);
+    expect(globalSelector(mockedState)).toEqual(globalState);
   });
 });
 
-currentSelector = selectCurrentUser();
-
 describe('selectCurrentUser', () => {
+  const currentUserSelector = selectCurrentUser();
   it('should select the current user', () => {
     const username = 'mxstbr';
     const mockedState = fromJS({
       global: {
-        username,
+        currentUser: username,
       },
     });
-    expect(currentSelector(mockedState)).toEqual(username);
+    expect(currentUserSelector(mockedState)).toEqual(username);
   });
 });
 
-currentSelector = selectLoading();
-
 describe('selectLoading', () => {
+  const loadingSelector = selectLoading();
   it('should select the loading', () => {
     const loading = false;
     const mockedState = fromJS({
@@ -46,13 +43,12 @@ describe('selectLoading', () => {
         loading,
       },
     });
-    expect(currentSelector(mockedState)).toEqual(loading);
+    expect(loadingSelector(mockedState)).toEqual(loading);
   });
 });
 
-currentSelector = selectError();
-
 describe('selectError', () => {
+  const errorSelector = selectError();
   it('should select the error', () => {
     const error = 404;
     const mockedState = fromJS({
@@ -60,13 +56,12 @@ describe('selectError', () => {
         error,
       },
     });
-    expect(currentSelector(mockedState)).toEqual(error);
+    expect(errorSelector(mockedState)).toEqual(error);
   });
 });
 
-currentSelector = selectRepos();
-
 describe('selectRepos', () => {
+  const reposSelector = selectRepos();
   it('should select the repos', () => {
     const repositories = fromJS([]);
     const mockedState = fromJS({
@@ -76,13 +71,12 @@ describe('selectRepos', () => {
         },
       },
     });
-    expect(currentSelector(mockedState)).toEqual(repositories);
+    expect(reposSelector(mockedState)).toEqual(repositories);
   });
 });
 
-currentSelector = selectLocationState();
-
 describe('selectLocationState', () => {
+  const locationStateSelector = selectLocationState();
   it('should select the route as a plain JS object', () => {
     const route = fromJS({
       locationBeforeTransitions: null,
@@ -90,6 +84,6 @@ describe('selectLocationState', () => {
     const mockedState = fromJS({
       route,
     });
-    expect(currentSelector(mockedState)).toEqual(route.toJS());
+    expect(locationStateSelector(mockedState)).toEqual(route.toJS());
   });
 });
