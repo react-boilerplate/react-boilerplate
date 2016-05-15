@@ -27,7 +27,12 @@ module.exports = {
     type: 'confirm',
     name: 'wantActionsAndReducer',
     default: true,
-    message: 'Do you want an actions/constants/selectors/reducer/sagas tupel for this container?',
+    message: 'Do you want an actions/constants/selectors/reducer tupel for this container?',
+  }, {
+    type: 'confirm',
+    name: 'wantSagas',
+    default: true,
+    message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
   }],
   actions: data => {
     // Generate index.js and index.test.js
@@ -117,8 +122,10 @@ module.exports = {
         pattern: /(export default function createReducer)/gi,
         template: 'import {{camelCase name}}Reducer from \'containers/{{properCase name}}/reducer\';\n$1',
       });
+    }
 
-      // Sagas
+    // Sagas
+    if (data.wantSagas) {
       actions.push({
         type: 'add',
         path: '../../app/containers/{{properCase name}}/sagas.js',
