@@ -12,11 +12,14 @@ import shouldPureComponentUpdate from 'react-pure-render/function';
 import { createSelector } from 'reselect';
 
 import {
-  usernameSelector,
   reposSelector,
   loadingSelector,
   errorSelector,
 } from 'containers/App/selectors';
+
+import {
+  usernameSelector,
+} from './selectors';
 
 import {
   changeUsername,
