@@ -187,7 +187,7 @@
     "karma-webpack": "^1.7.0",
     "lint-staged": "^0.2.1",
     "mocha": "^2.4.5",
-    "ngrok": "2.1.7",
+    "ngrok": "2.1.8",
     "null-loader": "^0.1.1",
     "offline-plugin": "^3.2.0",
     "plop": "^1.5.0",
