@@ -16,13 +16,8 @@ import reposSelector from 'selectors/reposSelector';
 import loadingSelector from 'selectors/loadingSelector';
 import errorSelector from 'selectors/errorSelector';
 
-import {
-  changeUsername,
-} from './actions';
-
-import {
-  loadRepos,
-} from '../App/actions';
+import { changeUsername } from './actions';
+import { loadRepos } from '../App/actions';
 
 import RepoListItem from 'containers/RepoListItem';
 import Button from 'components/Button';
