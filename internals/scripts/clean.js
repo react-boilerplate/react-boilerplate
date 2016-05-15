@@ -33,10 +33,6 @@ cp('internals/templates/appContainer.js', 'app/containers/App/index.js');
 cp('internals/templates/notFoundPage.js', 'app/components/NotFoundPage/index.js');
 cp('internals/templates/homePage.js', 'app/components/HomePage/index.js');
 
-// Cleanup sagas folder
-rm('-rf', 'app/sagas/*');
-cp('internals/templates/sagas.js', 'app/sagas/index.js');
-
 // Copy selectors
 mkdir('app/containers/App/tests');
 cp('internals/templates/selectors.js',
@@ -44,15 +40,22 @@ cp('internals/templates/selectors.js',
 cp('internals/templates/selectors.test.js',
   'app/containers/App/tests/selectors.test.js');
 
-// Delete utils folder
+// Utils
 rm('-rf', 'app/utils');
+mkdir('app/utils');
+mkdir('app/utils/tests');
+cp('internals/templates/hooks.js',
+  'app/utils/hooks.js');
+cp('internals/templates/hooks.test.js',
+  'app/utils/test/hooks.test.js');
 
-// Replace app.js, index.html, rootReducer.js, routeReducer.js, routes.js and store.js
+// Replace the files in the root app/ folder
 cp('internals/templates/app.js', 'app/app.js');
 cp('internals/templates/index.html', 'app/index.html');
 cp('internals/templates/reducers.js', 'app/reducers.js');
 cp('internals/templates/routes.js', 'app/routes.js');
 cp('internals/templates/store.js', 'app/store.js');
+cp('internals/templates/store.test.js', 'app/store.test.js');
 
 // Remove the templates folder
 rm('-rf', 'internals/templates');
