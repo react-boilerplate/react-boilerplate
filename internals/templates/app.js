@@ -15,9 +15,9 @@ import 'file?name=[name].[ext]!./.htaccess';      // eslint-disable-line import/
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
+import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import useScroll from 'scroll-behavior/lib/useScrollToTop';
+import useScroll from 'react-router-scroll';
 import configureStore from './store';
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
@@ -48,7 +48,27 @@ const rootRoute = {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={useScroll(() => history)()} routes={rootRoute} />
+    <Router
+      history={history}
+      routes={rootRoute}
+      render={
+        // Scroll to top when going to a new page, imitating default browser
+        // behaviour
+        applyRouterMiddleware(
+          useScroll(
+            (prevProps, props) => {
+              if (!prevProps || !props) {
+                return true;
+              }
+              if (prevProps.location.pathname !== props.location.pathname) {
+                return [0, 0];
+              }
+              return true;
+            }
+          )
+        )
+      }
+    />
   </Provider>,
   document.getElementById('app')
 );

@@ -130,12 +130,12 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.3.0",
     "react-router-redux": "^4.0.4",
+    "react-router-scroll": "^0.2.0",
     "redux": "^3.5.2",
     "redux-immutable": "^3.0.6",
     "redux-saga": "^0.10.0",
     "reselect": "^2.5.1",
     "sanitize.css": "^3.3.0",
-    "scroll-behavior": "^0.4.0",
     "whatwg-fetch": "^0.11.0"
   },
   "devDependencies": {
