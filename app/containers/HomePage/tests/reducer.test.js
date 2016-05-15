@@ -1,27 +1,26 @@
-import expect from 'expect';
+import { expect } from 'chai';
 import homeReducer from '../reducer';
 import {
   changeUsername,
 } from '../actions';
-import { fromJS } from 'immutable';
+import { Record } from 'immutable';
 
 describe('homeReducer', () => {
   let state;
   beforeEach(() => {
-    state = fromJS({
-      username: '',
-    });
+    const HomeRecord = Record({ username: '' }, 'HomeRecord'); // eslint-disable-line
+    state = new HomeRecord({});
   });
 
   it('should return the initial state', () => {
     const expectedResult = state;
-    expect(homeReducer(undefined, {})).toEqual(expectedResult);
+    expect(homeReducer(undefined, {})).to.equal(expectedResult);
   });
 
   it('should handle the changeUsername action correctly', () => {
     const fixture = 'mxstbr';
     const expectedResult = state.set('username', fixture);
 
-    expect(homeReducer(state, changeUsername(fixture))).toEqual(expectedResult);
+    expect(homeReducer(state, changeUsername(fixture))).to.equal(expectedResult);
   });
 });

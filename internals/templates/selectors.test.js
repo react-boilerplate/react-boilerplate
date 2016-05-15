@@ -1,9 +1,9 @@
 import { fromJS } from 'immutable';
 import expect from 'expect';
 
-import selectLocationSelector from 'selectors/selectLocationSelector';
+import { selectLocationState } from 'containers/App/selectors';
 
-describe('selectLocationSelector', () => {
+describe('selectLocationState', () => {
   it('should select the route as a plain JS object', () => {
     const route = fromJS({
       locationBeforeTransitions: null,
@@ -11,6 +11,6 @@ describe('selectLocationSelector', () => {
     const mockedState = fromJS({
       route,
     });
-    expect(selectLocationSelector(mockedState)).toEqual(route.toJS());
+    expect(selectLocationState(mockedState)).toEqual(route.toJS());
   });
 });

@@ -1,28 +1,36 @@
-import expect from 'expect';
+import { expect } from 'chai';
 import appReducer from '../reducer';
 import {
   loadRepos,
   reposLoaded,
   repoLoadingError,
 } from '../actions';
-import { fromJS } from 'immutable';
+import { Record } from 'immutable';
 
 describe('appReducer', () => {
   let state;
   beforeEach(() => {
-    state = fromJS({
+    const UserDataRecord = Record({ // eslint-disable-line
+      repositories: false,
+    },
+    'UserData'
+    );
+
+    const GlobalRecord = Record({ // eslint-disable-line
       loading: false,
       error: false,
       currentUser: false,
-      userData: fromJS({
-        repositories: false,
-      }),
-    });
+      userData: new UserDataRecord({}),
+    },
+    'GlobalRecord'
+    );
+
+    state = new GlobalRecord({});
   });
 
   it('should return the initial state', () => {
     const expectedResult = state;
-    expect(appReducer(undefined, {})).toEqual(expectedResult);
+    expect(appReducer(undefined, {})).to.equal(expectedResult);
   });
 
   it('should handle the loadRepos action correctly', () => {
@@ -31,7 +39,7 @@ describe('appReducer', () => {
       .set('error', false)
       .setIn(['userData', 'repositories'], false);
 
-    expect(appReducer(state, loadRepos())).toEqual(expectedResult);
+    expect(appReducer(state, loadRepos())).to.equal(expectedResult);
   });
 
   it('should handle the reposLoaded action correctly', () => {
@@ -44,7 +52,7 @@ describe('appReducer', () => {
       .set('loading', false)
       .set('currentUser', username);
 
-    expect(appReducer(state, reposLoaded(fixture, username))).toEqual(expectedResult);
+    expect(appReducer(state, reposLoaded(fixture, username))).to.equal(expectedResult);
   });
 
   it('should handle the repoLoadingError action correctly', () => {
@@ -55,6 +63,6 @@ describe('appReducer', () => {
       .set('error', fixture)
       .set('loading', false);
 
-    expect(appReducer(state, repoLoadingError(fixture))).toEqual(expectedResult);
+    expect(appReducer(state, repoLoadingError(fixture))).to.equal(expectedResult);
   });
 });

@@ -23,7 +23,7 @@ import { Record } from 'immutable';
 const UserDataRecord = Record({ // eslint-disable-line
   repositories: false,
 },
-'userData'
+'UserData'
 );
 
 const GlobalRecord = Record({ // eslint-disable-line
@@ -32,7 +32,7 @@ const GlobalRecord = Record({ // eslint-disable-line
   currentUser: false,
   userData: new UserDataRecord({}),
 },
-'globalRecord'
+'GlobalRecord'
 );
 
 // The initial state of the App initialised by default record
