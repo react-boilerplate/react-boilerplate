@@ -20,8 +20,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import useScroll from 'scroll-behavior/lib/useScrollToTop';
 import configureStore from './store';
 
-import selectLocationSelector from 'selectors/selectLocationSelector';
-
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import 'sanitize.css/lib/sanitize.css';
 
@@ -35,8 +33,9 @@ const store = configureStore(initialState, browserHistory);
 // Sync history and store, as the react-router-redux reducer
 // is under the non-default key ("routing"), selectLocationState
 // must be provided for resolving how to retrieve the "route" in the state
+import { selectLocationState } from 'containers/App/selectors';
 const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState: selectLocationSelector,
+  selectLocationState: selectLocationState(),
 });
 
 // Set up the router, wrapping all Routes in the App component

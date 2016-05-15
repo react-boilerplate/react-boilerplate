@@ -37,13 +37,12 @@ cp('internals/templates/homePage.js', 'app/components/HomePage/index.js');
 rm('-rf', 'app/sagas/*');
 cp('internals/templates/sagas.js', 'app/sagas/index.js');
 
-// Cleanup selectors folder
-rm('-rf', 'app/selectors/*');
-mkdir('-p', 'app/selectors/tests');
-cp('internals/templates/selectLocationSelector.js',
-  'app/selectors/selectLocationSelector.js');
-cp('internals/templates/selectLocationSelector.test.js',
-  'app/selectors/tests/selectLocationSelector.test.js');
+// Copy selectors
+mkdir('app/containers/App/tests');
+cp('internals/templates/selectors.js',
+  'app/containers/App/selectors.js');
+cp('internals/templates/selectors.test.js',
+  'app/containers/App/tests/selectors.test.js');
 
 // Delete utils folder
 rm('-rf', 'app/utils');
