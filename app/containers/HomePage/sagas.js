@@ -12,6 +12,12 @@ import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 import request from 'utils/request';
 import { selectUsername } from 'containers/HomePage/selectors';
 
+// Bootstrap sagas
+export default [
+  getGithubData,
+];
+
+// Individual exports for testing
 export function* getGithubData() {
   while (true) {
     yield take(LOAD_REPOS);

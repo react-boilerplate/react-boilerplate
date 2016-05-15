@@ -5,14 +5,11 @@
 import expect from 'expect';
 import { take, call, put, select } from 'redux-saga/effects';
 
-import { getGithubData } from 'sagas/getGithubData.saga';
-import {
-  LOAD_REPOS,
-} from 'containers/App/constants';
-import {
-  reposLoaded,
-  repoLoadingError,
-} from 'containers/App/actions';
+import { getGithubData } from '../sagas';
+
+import { LOAD_REPOS } from 'containers/App/constants';
+import { reposLoaded, repoLoadingError } from 'containers/App/actions';
+
 import request from 'utils/request';
 import { selectUsername } from 'containers/HomePage/selectors';
 

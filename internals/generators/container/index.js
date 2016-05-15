@@ -27,7 +27,7 @@ module.exports = {
     type: 'confirm',
     name: 'wantActionsAndReducer',
     default: true,
-    message: 'Do you want an actions/constants/selectors/reducer tupel for this container?',
+    message: 'Do you want an actions/constants/selectors/reducer/sagas tupel for this container?',
   }],
   actions: data => {
     // Generate index.js and index.test.js
@@ -117,6 +117,21 @@ module.exports = {
         pattern: /(export default function createReducer)/gi,
         template: 'import {{camelCase name}}Reducer from \'containers/{{properCase name}}/reducer\';\n$1',
       });
+
+      // Sagas
+      actions.push({
+        type: 'add',
+        path: '../../app/containers/{{properCase name}}/sagas.js',
+        templateFile: './container/sagas.js.hbs',
+        abortOnFail: true,
+      });
+      actions.push({
+        type: 'add',
+        path: '../../app/containers/{{properCase name}}/tests/sagas.test.js',
+        templateFile: './container/sagas.test.js.hbs',
+        abortOnFail: true,
+      });
+    }
     }
 
     return actions;

@@ -1,12 +1,21 @@
- {
+    {
       path: '{{ path }}',
-      getComponent(location, cb) {
-        Promise.all([
-          System.import('{{ properCase component }}/reducer'),
-          System.import('{{ properCase component }}'),
-        ]).then(modules => {
-          loadReducer(store, '{{ camelCase component }}')(modules[0]);
-          loadModule(cb)(modules[1]);
-        }).catch(errorLoading);
+      name: '{{ camelCase component }}',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/{{ properCase component }}/reducer'),
+          System.import('containers/{{ properCase component }}/sagas'),
+          System.import('containers/{{ properCase component }}'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectAsyncReducer(store, '{{ camelCase component }}', reducer.default);
+          injectAsyncSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
       },
     },$1
