@@ -47,7 +47,7 @@ mkdir('app/utils/tests');
 cp('internals/templates/hooks.js',
   'app/utils/hooks.js');
 cp('internals/templates/hooks.test.js',
-  'app/utils/test/hooks.test.js');
+  'app/utils/tests/hooks.test.js');
 
 // Replace the files in the root app/ folder
 cp('internals/templates/app.js', 'app/app.js');
@@ -63,7 +63,7 @@ rm('-rf', 'internals/templates');
 process.stdout.write(' ✓');
 
 // Commit the changes
-if (exec('git add . && git commit -qm "Remove default example"').code !== 0) {
+if (exec('git add . --all && git commit -qm "Remove default example"').code !== 0) {
   echo('\nError: Git commit failed');
   exit(1);
 }
