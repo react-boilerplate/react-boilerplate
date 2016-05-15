@@ -13,12 +13,15 @@
 import {
   CHANGE_USERNAME,
 } from './constants';
-import { fromJS } from 'immutable';
+import { Record } from 'immutable';
 
-// The initial state of the App
-const initialState = fromJS({
-  username: '',
-});
+// A Record is an immutable similar to Map, but can be accessed
+// with dot notation
+// see https://facebook.github.io/immutable-js/docs/#/Record
+const HomeRecord = Record({ username: '' }, 'HomeRecord'); // eslint-disable-line
+
+// The initial state of the App initialised by default record
+const initialState = new HomeRecord({});
 
 function homeReducer(state = initialState, action) {
   switch (action.type) {

@@ -5,8 +5,10 @@ import 'babel-polyfill';
 import sinon from 'sinon';
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
+import chaiImmutable from 'chai-immutable';
 
 chai.use(chaiEnzyme());
+chai.use(chaiImmutable);
 
 global.chai = chai;
 global.sinon = sinon;
