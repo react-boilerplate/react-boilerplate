@@ -33,8 +33,7 @@ $ npm run generate
 ```
 
 Allows you to auto-generate boilerplate code for common parts of your
-application, specifically `components`, `containers`, `selectors`, `sagas` and
-`routes`.
+application, specifically `components`, `containers`, and `routes`.
 
 ## Server
 

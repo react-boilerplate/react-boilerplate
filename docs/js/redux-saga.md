@@ -28,8 +28,49 @@ some examples! (read [this comparison](https://stackoverflow.com/questions/34930
 
 ## Usage
 
-To generate a new saga, use the `$ npm run generate saga` command. This will
-create a new file in the `app/sagas` folder, in which you can write your saga.
+Sagas are associated with a container, just like actions, constants, selectors
+and reducers. If your container already has a `sagas.js` file, simply add your
+saga to that. If your container does not yet have a `sagas.js` file, add one with
+this boilerplate structure:
+
+```JS
+import { take, call, put, select } from 'redux-saga/effects';
+
+// Your sagas for this container
+export default [
+  sagaName,
+];
+
+// Individual exports for testing
+export function* sagaName() {
+
+}
+```
+
+Then, in your `routes.js`, add injection for the newly added saga:
+
+```JS
+getComponent(nextState, cb) {
+  const importModules = Promise.all([
+    System.import('containers/YourComponent/reducer'),
+    System.import('containers/YourComponent/sagas'),
+    System.import('containers/YourComponent'),
+  ]);
+
+  const renderRoute = loadModule(cb);
+
+  importModules.then(([reducer, sagas, component]) => {
+    injectReducer('home', reducer.default);
+    injectSagas(sagas.default); // Inject the saga
+
+    renderRoute(component);
+  });
+
+  importModules.catch(errorLoading);
+},
+```
+
+Now add as many sagas to your `sagas.js` file as you want!
 
 ---
 
