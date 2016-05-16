@@ -51,3 +51,26 @@ export default myDataSelector;
 ```
 
 To learn more, check out [`reselect.md`](reselect.md)!
+
+## Advanced Usage
+
+ImmutableJS provide many immutable structures like `Map`, `Set` and `List`. But the  downside to using ImmutableJS data structures is that they are not normal JavaScript data structures. 
+
+That means you must use getters to access properties : for instance you'll do `map.get("property")` instead of `map.property`, and `array.get(0)` instead of `array[0]`. It's not natural and your code becoming bigger, you finish by not knowing anymore if you are working with a JavaScript object or an Immutable one. While it's possible to be clear where you are using immutable objects, you still pass them through the system into places where it's not clear. This makes reasoning about functions harder.
+
+The `Record` structure tries to get rid of this drawback. `Record` is like a `Map` whose shape is fixed : you can't later add a new property after the record is created. The benefit of `Record` is that you can now, along with others .get, .set and .merge methods, use the dot notation to access properties, which is a good point to write simpler code.
+
+The creation of a record is less simple. You got to first create the `Record` shape. With the example above, to create your initial state, you'll write :
+
+```JS
+//the shape
+const StateRecord = Record({
+  myData: 'Hello World!',
+});
+
+const initialState = new StateRecord({}); // initialState is now a new StateRecord instance
+                                          // initialized with myData set by default as 'Hello World!'
+```
+
+Now, if you want to access `myData`, you can just write `state.myData` in your reducer code.
+
