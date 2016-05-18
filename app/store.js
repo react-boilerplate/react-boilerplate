@@ -31,8 +31,9 @@ export default function configureStore(initialState = {}, history) {
     compose(...enhancers)
   );
 
-  // Create hook for async sagas
+  // Extensions
   store.runSaga = sagaMiddleware.run;
+  store.asyncReducers = {}; // Async reducer registry
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
@@ -43,7 +44,5 @@ export default function configureStore(initialState = {}, history) {
     });
   }
 
-  // Initialize it with no other reducers
-  store.asyncReducers = {};
   return store;
 }
