@@ -6,7 +6,7 @@ import expect from 'expect';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 
-import { RepoListItem } from './index';
+import { RepoListItem } from '../index';
 import ListItem from 'components/ListItem';
 
 describe('<RepoListItem />', () => {

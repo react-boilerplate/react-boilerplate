@@ -1,4 +1,4 @@
-import LoadingIndicator from './index';
+import LoadingIndicator from '../index';
 
 import expect from 'expect';
 import { shallow } from 'enzyme';

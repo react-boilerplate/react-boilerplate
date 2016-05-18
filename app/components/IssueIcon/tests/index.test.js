@@ -1,4 +1,4 @@
-import IssueIcon from './index';
+import IssueIcon from '../index';
 
 import expect from 'expect';
 import { shallow } from 'enzyme';

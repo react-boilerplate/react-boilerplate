@@ -6,7 +6,7 @@ import expect from 'expect';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 
-import { NotFound } from './index';
+import { NotFound } from '../index';
 import H1 from 'components/H1';
 import Button from 'components/Button';
 

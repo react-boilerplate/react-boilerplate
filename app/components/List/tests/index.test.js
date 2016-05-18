@@ -2,7 +2,7 @@ import expect from 'expect';
 import { render } from 'enzyme';
 import React from 'react';
 
-import List from './index';
+import List from '../index';
 import ListItem from 'components/ListItem';
 
 describe('<List />', () => {

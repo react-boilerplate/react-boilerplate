@@ -2,7 +2,7 @@ import expect from 'expect';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 
-import { FeaturePage } from './index';
+import { FeaturePage } from '../index';
 import H1 from 'components/H1';
 
 describe('<FeaturePage />', () => {
