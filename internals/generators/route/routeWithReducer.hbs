@@ -11,8 +11,8 @@
         const renderRoute = loadModule(cb);
 
         importModules.then(([reducer, sagas, component]) => {
-          injectAsyncReducer(store, '{{ camelCase component }}', reducer.default);
-          injectAsyncSagas(sagas.default);
+          injectReducer(store, '{{ camelCase component }}', reducer.default);
+          injectSagas(sagas.default);
           renderRoute(component);
         });
 
