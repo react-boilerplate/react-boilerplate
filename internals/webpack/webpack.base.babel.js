@@ -49,6 +49,9 @@ module.exports = (options) => ({
     }, {
       test: /\.html$/,
       loader: 'html-loader',
+    }, {
+      test: /\.json$/,
+      loader: 'json-loader',
     }],
   },
   plugins: options.plugins.concat([
