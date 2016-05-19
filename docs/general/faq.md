@@ -15,7 +15,7 @@ application across computer restarts.
 This simply means that there's another process already listening on port 3000.
 The fix is to kill the process and rerun `npm start`.
 
-### OS X:
+### OS X / Linux:
 
 1. Find the process id (PID):
     ```Shell
