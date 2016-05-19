@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+var readline = require('readline');
+
 /**
  * Adds an animated progress indicator
  *
@@ -13,8 +15,7 @@ function animateProgress(message, amountOfDots) {
 
   var i = 0;
   return setInterval(function () {
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
+    readline.cursorTo(process.stdout, 0);
     i = (i + 1) % (amountOfDots + 1);
     var dots = new Array(i + 1).join(".");
     process.stdout.write(message + dots);
