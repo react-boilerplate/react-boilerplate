@@ -1,7 +1,7 @@
 # CSS Modules
 
 With CSS Modules, all class names are locally scoped by default. This means
-no more bugs from classname clashes. Being to compose primitives to build
+no more bugs from classname clashes. Being able to compose primitives to build
 up behaviour also lets us bring programming best practice to CSS: DRY, reusable,
 modular code FTW!
 
