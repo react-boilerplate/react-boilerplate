@@ -1,8 +1,6 @@
 import { createSelector } from 'reselect';
 
-const select{{ properCase name }} = () => createSelector(
-
-);
+const select{{ properCase name }} = () => state => state.get('{{ properCase name }}')
 
 export {
   select{{ properCase name }},
