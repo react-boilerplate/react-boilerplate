@@ -39,7 +39,7 @@ function mapDispatchToProps(dispatch) {
 
 {{#if wantActionsAndReducer}}
 export default connect(createSelector(
-  select{{properCase name}}(),
+  select{{properCase name}}(), ({{ camelCase name }}) => ({ {{ camelCase name }} })
 ), mapDispatchToProps)({{ properCase name }});
 {{else}}
 function mapStateToProps(state) {
