@@ -6,10 +6,11 @@
 
 import React from 'react';
 
-export function HomePage() {
-  return (
-    <h1>This is the Homepage!</h1>
-  );
-}
+export default class HomePage extends React.Component {
 
-export default HomePage;
+  render() {
+    return (
+      <h1>This is the Homepage!</h1>
+    )
+  }
+}
