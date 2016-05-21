@@ -11,8 +11,6 @@ import select{{properCase name}} from './selectors';
 import styles from './styles.css';
 {{/if}}
 
-// Underlying component
-// named export so that it can be tested
 export class {{ properCase name }} extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
@@ -27,17 +25,12 @@ export class {{ properCase name }} extends React.Component { // eslint-disable-l
   }
 }
 
-// mapStateToProps selects parts of the state to be used by the underlying component
-// Selection is made by the default selector declared in selectors.js
 const mapStateToProps = select{{properCase name}}();
 
-// mapDispatchToProps() allows to pass dispatch store method and our own
-// handlers to the underlying component
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
   };
 }
 
-// The container (smart component) to be exported by default
 export default connect(mapStateToProps, mapDispatchToProps)({{ properCase name }});

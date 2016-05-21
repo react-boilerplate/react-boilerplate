@@ -1,38 +1,19 @@
 import { createSelector } from 'reselect';
 
 /**
- * direct selector to the {{ camelCase name }} state domain
+ * Direct selector to the {{ camelCase name }} state domain
  */
 const select{{ properCase name }}Domain = () => state => state.get('{{ camelCase name }}');
 
 /**
- * other specific selectors
+ * Other specific selectors
  */
 
-// exemples
-//  const selectFirst = () => state => state.getIn(
-//    ['{{ camelCase name }}',
-//    'myFirstProperty']
-//   );
-//  const selectSecond = () => state => state.getIn(
-//    ['{{ camelCase name }}',
-//    'mySecondProperty']
-//  );
 
 /**
- * selector used by connect
+ * Default selector used by {{ properCase name }}
  */
 
-// exemple :
-//    export default const select{{ properCase name }} = () => state => createSelector(
-//      selectFirst(),
-//      selectSecond(),
-//      (first, second) => do Something With Those Two Selected Parts,
-//    );
-//
-// To make our app work out of the box, we return the all
-// {{ properCase name }} substate.
-// Change this to only select what the underlying component needs.
 const select{{ properCase name }} = () => createSelector(
   select{{ properCase name }}Domain(),
   (substate) => substate
