@@ -6,19 +6,14 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-
-{{#if wantActionsAndReducer}}
-import { createSelector } from 'reselect';
-import {
-  select{{properCase name}},
-} from './selectors';
-{{/if}}
-
+import select{{properCase name}} from './selectors';
 {{#if wantCSS}}
 import styles from './styles.css';
 {{/if}}
 
-class {{ properCase name }} extends React.Component {
+// Underlying component
+// named export so that it can be tested
+export class {{ properCase name }} extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       {{#if wantCSS}}
@@ -26,27 +21,23 @@ class {{ properCase name }} extends React.Component {
       {{else}}
       <div>
       {{/if}}
+      This is {{properCase name}} container !
       </div>
     );
   }
 }
 
+// mapStateToProps selects parts of the state to be used by the underlying component
+// Selection is made by the default selector declared in selectors.js
+const mapStateToProps = select{{properCase name}}();
+
+// mapDispatchToProps() allows to pass dispatch store method and our own
+// handlers to the underlying component
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
   };
 }
 
-{{#if wantActionsAndReducer}}
-export default connect(createSelector(
-  select{{properCase name}}(), ({{ camelCase name }}) => ({ {{ camelCase name }} })
-), mapDispatchToProps)({{ properCase name }});
-{{else}}
-function mapStateToProps(state) {
-  return {
-
-  };
-}
-
+// The container (smart component) to be exported by default
 export default connect(mapStateToProps, mapDispatchToProps)({{ properCase name }});
-{{/if}}
