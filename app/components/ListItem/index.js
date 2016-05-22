@@ -6,7 +6,7 @@ function ListItem(props) {
   return (
     <li className={props.className || styles.item}>
       <div className={styles.itemContent}>
-        {props.content}
+        {props.item}
       </div>
     </li>
   );
@@ -14,7 +14,7 @@ function ListItem(props) {
 
 ListItem.propTypes = {
   className: React.PropTypes.string,
-  content: React.PropTypes.any,
+  item: React.PropTypes.any,
 };
 
 export default ListItem;
