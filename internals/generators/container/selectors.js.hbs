@@ -1,7 +1,25 @@
 import { createSelector } from 'reselect';
 
-const select{{ properCase name }} = () => state => state.get('{{ properCase name }}')
+/**
+ * Direct selector to the {{ camelCase name }} state domain
+ */
+const select{{ properCase name }}Domain = () => state => state.get('{{ camelCase name }}');
 
+/**
+ * Other specific selectors
+ */
+
+
+/**
+ * Default selector used by {{ properCase name }}
+ */
+
+const select{{ properCase name }} = () => createSelector(
+  select{{ properCase name }}Domain(),
+  (substate) => substate
+);
+
+export default select{{ properCase name }};
 export {
-  select{{ properCase name }},
+  select{{ properCase name }}Domain,
 };
