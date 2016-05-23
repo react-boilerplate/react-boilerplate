@@ -1,0 +1,10 @@
+{
+  "template": "nodejs",
+  "ports": [3000],
+  "name": "React Boilerplate",
+  "description": "A highly scalable, offline-first foundation with the best developer experience and a focus on performance and best practices. http://reactboilerplate.com",
+  "scripts": {
+    "post-create": "echo 'npm installing -- this might take a while' && npm run setup",
+    "Start React Boilerplate": "cd ~/code/react-boilerplate && npm start"
+  }
+}

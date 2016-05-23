@@ -81,6 +81,14 @@ But wait... there's more!
    *At this point you can run `$ npm start` to see the example app at `http://localhost:3000`.*
 1. Run `$ npm run clean` to delete the example app.
 
+Or you can quickly create a free development environment for this project in the cloud on [Nitrous.io](https://www.nitrous.io) by clicking the button below.
+
+<a href="https://www.nitrous.io/quickstart">
+  <img src="https://nitrous-image-icons.s3.amazonaws.com/quickstart.png" alt="Nitrous Quickstart" width=142 height=34>
+</a>
+
+In the IDE, start React Boilerplate via `Run > Start React Boilerplate` and access your site via `Preview > 3000`.
+
 Now you're ready to rumble!
 
 ## Documentation
