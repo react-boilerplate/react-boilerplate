@@ -98,8 +98,8 @@ module.exports = require('./webpack.base.babel')({
       AppCache: {
         // Starting from offline-plugin:v3, AppCache by default caches only
         // `main` section. This lets it use `additional` section too
-        caches: ['main', 'additional']
-      }
+        caches: ['main', 'additional'],
+      },
     }),
   ],
 });
