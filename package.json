@@ -122,7 +122,7 @@
     "rules": {
       "color-hex-case": "upper",
       "string-quotes": "single",
-      "font-family-name-quotes": "single-where-recommended",
+      "font-family-name-quotes": "always-where-recommended",
       "indentation": 2
     }
   },
