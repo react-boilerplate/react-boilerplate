@@ -47,7 +47,7 @@ module.exports = (config) => {
       reporters: [
         { type: 'lcov', subdir: 'lcov' },
         { type: 'html', subdir: 'html' },
-        { type: 'text' },
+        { type: 'text-summary' },
       ],
     },
 
