@@ -51,7 +51,7 @@ export class RepoListItem extends React.Component {
 
     // Render the content into a list item
     return (
-      <ListItem key={`repo-list-item-${item.full_name}`} content={content} />
+      <ListItem key={`repo-list-item-${item.full_name}`} item={content} />
     );
   }
 }
