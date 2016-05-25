@@ -9,11 +9,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
+import { FormattedMessage } from 'react-intl';
 import Button from 'components/Button';
 import H1 from 'components/H1';
 
 import styles from './styles.css';
-import { FormattedMessage } from 'react-intl';
 
 export class FeaturePage extends React.Component {
   /**

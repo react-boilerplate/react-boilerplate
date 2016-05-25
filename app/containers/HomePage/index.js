@@ -24,13 +24,13 @@ import {
 import { changeUsername } from './actions';
 import { loadRepos } from '../App/actions';
 
+import { FormattedMessage } from 'react-intl';
 import RepoListItem from 'containers/RepoListItem';
 import Button from 'components/Button';
 import H2 from 'components/H2';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
-import { FormattedMessage } from 'react-intl';
 
 import styles from './styles.css';
 
