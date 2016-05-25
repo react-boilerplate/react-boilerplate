@@ -137,7 +137,7 @@ available on the entire world. Useful for testing on different devices in differ
 $ npm run pagespeed
 ```
 
-With the remote server running (i.e. while `$ npm run serve` is running in
+With the remote server running (i.e. while `$ npm run start` is running in
 another terminal session), enter this command to run Google PageSpeed Insights
 and get a performance check right in your terminal!
 
