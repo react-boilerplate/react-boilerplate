@@ -21,6 +21,7 @@ import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import useScroll from 'react-router-scroll';
+import { IntlProvider } from 'react-intl';
 import configureStore from './store';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
@@ -60,29 +61,31 @@ const rootRoute = {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router
-      history={history}
-      routes={rootRoute}
-      render={
-        // Scroll to top when going to a new page, imitating default browser
-        // behaviour
-        applyRouterMiddleware(
-          useScroll(
-            (prevProps, props) => {
-              if (!prevProps || !props) {
+    <IntlProvider locale="en">
+      <Router
+        history={history}
+        routes={rootRoute}
+        render={
+          // Scroll to top when going to a new page, imitating default browser
+          // behaviour
+          applyRouterMiddleware(
+            useScroll(
+              (prevProps, props) => {
+                if (!prevProps || !props) {
+                  return true;
+                }
+
+                if (prevProps.location.pathname !== props.location.pathname) {
+                  return [0, 0];
+                }
+
                 return true;
               }
-
-              if (prevProps.location.pathname !== props.location.pathname) {
-                return [0, 0];
-              }
-
-              return true;
-            }
+            )
           )
-        )
-      }
-    />
+        }
+      />
+    </IntlProvider>
   </Provider>,
   document.getElementById('app')
 );

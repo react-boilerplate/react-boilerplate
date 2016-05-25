@@ -10,13 +10,21 @@
  */
 
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.Component {
 
   render() {
     return (
-      <h1>This is the Homepage!</h1>
+      <h1>
+        <FormattedMessage
+          id="boilerplate.components.HomePage.header"
+          defaultMessage={`
+            This is the Homepage!
+          `}
+        />
+      </h1>
     );
   }
 }

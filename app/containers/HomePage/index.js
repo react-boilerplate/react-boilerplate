@@ -30,6 +30,7 @@ import H2 from 'components/H2';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { FormattedMessage } from 'react-intl';
 
 import styles from './styles.css';
 
@@ -75,14 +76,48 @@ export class HomePage extends React.Component {
       <article>
         <div>
           <section className={`${styles.textSection} ${styles.centered}`}>
-            <H2>Start your next react project in seconds</H2>
-            <p>A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices</p>
+            <H2>
+              <FormattedMessage
+                id="boilerplate.containers.HomePage.start_project.header"
+                defaultMessage={`
+                  Start your next react project in seconds
+                `}
+              />
+            </H2>
+            <p>
+              <FormattedMessage
+                id="boilerplate.containers.HomePage.start_project.message"
+                defaultMessage={`
+                  A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices
+                `}
+              />
+            </p>
           </section>
           <section className={styles.textSection}>
-            <H2>Try me!</H2>
+            <H2>
+              <FormattedMessage
+                id="boilerplate.containers.HomePage.tryme.header"
+                defaultMessage={`
+                  Try me!
+                `}
+              />
+            </H2>
             <form className={styles.usernameForm} onSubmit={this.props.onSubmitForm}>
-              <label htmlFor="username">Show Github repositories by
-                <span className={styles.atPrefix}>@</span>
+              <label htmlFor="username">
+                <FormattedMessage
+                  id="boilerplate.containers.HomePage.tryme.message"
+                  defaultMessage={`
+                    Show Github repositories by
+                  `}
+                />
+                <span className={styles.atPrefix}>
+                  <FormattedMessage
+                    id="boilerplate.containers.HomePage.tryme.atPrefix"
+                    defaultMessage={`
+                      @
+                    `}
+                  />
+                </span>
                 <input
                   id="username"
                   className={styles.input}
@@ -95,7 +130,12 @@ export class HomePage extends React.Component {
             </form>
             {mainContent}
           </section>
-          <Button handleRoute={this.openFeaturesPage}>Features</Button>
+          <Button handleRoute={this.openFeaturesPage}>
+            <FormattedMessage
+              id="boilerplate.containers.HomePage.features.Button"
+              defaultMessage={'Features'}
+            />
+          </Button>
         </div>
       </article>
     );
