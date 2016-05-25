@@ -14,7 +14,13 @@ export function injectAsyncReducer(store) {
  * Inject an asynchronously loaded saga
  */
 export function injectAsyncSagas(store) {
-  return (sagas) => sagas.map(store.runSaga);
+  const prevSagas = [];
+  return (sagas) => sagas.forEach((saga) => {
+    if (!prevSagas.includes(saga)) {
+      store.runSaga(saga);
+      prevSagas.push(saga);
+    }
+  });
 }
 
 /**
