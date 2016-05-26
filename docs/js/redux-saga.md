@@ -61,7 +61,7 @@ getComponent(nextState, cb) {
 
   importModules.then(([reducer, sagas, component]) => {
     injectReducer('home', reducer.default);
-    injectSagas(sagas.default); // Inject the saga
+    injectSagas('home', sagas.default); // Inject the saga
 
     renderRoute(component);
   });
