@@ -19,20 +19,18 @@ export default [
 
 // Individual exports for testing
 export function* getGithubData() {
-  while (true) {
-    yield take(LOAD_REPOS);
-    const username = yield select(selectUsername());
-    const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
+  yield take(LOAD_REPOS);
+  const username = yield select(selectUsername());
+  const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
 
-    // Use call from redux-saga for easier testing
-    const repos = yield call(request, requestURL);
+  // Use call from redux-saga for easier testing
+  const repos = yield call(request, requestURL);
 
-    // We return an object in a specific format, see utils/request.js for more information
-    if (repos.err === undefined || repos.err === null) {
-      yield put(reposLoaded(repos.data, username));
-    } else {
-      console.log(repos.err.response); // eslint-disable-line no-console
-      yield put(repoLoadingError(repos.err));
-    }
+  // We return an object in a specific format, see utils/request.js for more information
+  if (repos.err === undefined || repos.err === null) {
+    yield put(reposLoaded(repos.data, username));
+  } else {
+    console.log(repos.err.response); // eslint-disable-line no-console
+    yield put(repoLoadingError(repos.err));
   }
 }
