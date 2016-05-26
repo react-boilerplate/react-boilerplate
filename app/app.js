@@ -24,6 +24,9 @@ import FontFaceObserver from 'fontfaceobserver';
 import useScroll from 'react-router-scroll';
 import configureStore from './store';
 
+// Import bootloader
+import { translationMessages } from './bootloader';
+
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
 import styles from 'containers/App/styles.css';
@@ -61,7 +64,7 @@ const rootRoute = {
 
 ReactDOM.render(
   <Provider store={store}>
-    <IntlProvider locale="en">
+    <IntlProvider locale="de" messages={translationMessages.en}>
       <Router
         history={history}
         routes={rootRoute}

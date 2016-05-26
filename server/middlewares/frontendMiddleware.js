@@ -5,6 +5,8 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpack = require('webpack');
 
+const userConfig = require('../../app/config.json');
+
 // Dev middleware
 const addDevMiddlewares = (app, options) => {
   const compiler = webpack(options);
@@ -12,6 +14,7 @@ const addDevMiddlewares = (app, options) => {
     noInfo: true,
     publicPath: options.output.publicPath,
     silent: true,
+    watchOptions: { poll: userConfig.babel.watchOptions.poll },
   });
 
   app.use(middleware);

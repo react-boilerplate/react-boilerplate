@@ -1,0 +1,10 @@
+{
+  "babel": {
+    "watchOptions": {
+      "poll": true
+    }
+  },
+  "react-intl": {
+    "locales": ["en", "de"]
+  }
+}
