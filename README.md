@@ -24,10 +24,6 @@
   <a href="https://coveralls.io/r/mxstbr/react-boilerplate">
     <img src="https://coveralls.io/repos/github/mxstbr/react-boilerplate/badge.svg" alt="Test Coverage" />
   </a>
-  <!-- Donations -->
-  <a href="https://cash.me/$mxstbr">
-    <img src="https://img.shields.io/badge/square-donate-yellow.svg" alt="Donate with Square Cash" />
-  </a>
 </div>
 
 [![OpenCollective](https://opencollective.com/react-boilerplate/backers/badge.svg)](#backers) 
