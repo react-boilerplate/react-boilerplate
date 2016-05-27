@@ -1,13 +1,13 @@
 /* eslint no-unused-vars: 0 */
 import { addLocaleData } from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
-import zhLocaleData from 'react-intl/locale-data/de';
+import deLocaleData from 'react-intl/locale-data/de';
 
 import enTranslationMessages from 'translations/en.json';
 import deTranslationMessages from 'translations/de.json';
 
 addLocaleData(enLocaleData);
-addLocaleData(zhLocaleData);
+addLocaleData(deLocaleData);
 
 const formatTranslationMessages = (messages) => {
   const formattedMessages = {};

@@ -4,12 +4,12 @@ const nodeGlob = require('glob');
 const chalk = require('chalk');
 const transform = require('babel-core').transform;
 const pkg = require('../../package.json');
-const userConfig = require('../../app/config.json');
+const il8n = require('../../app/il8n');
 
 require('shelljs/global');
 
 const FILES_TO_PARSE = 'app/**/!(*.test).js';
-const locales = userConfig['react-intl']['locales'];
+const locales = il8n['locales'];
 
 const glob = (pattern) => new Promise((resolve, reject) => {
   nodeGlob(pattern, (error, value) => (error ? reject(error) : resolve(value)));

@@ -56,4 +56,9 @@ module.exports = require('./webpack.base.babel')({
 
   // Emit a source map for easier debugging
   devtool: 'inline-source-map',
+
+  // Polling for vagrant based development
+  watchOptions: {
+    poll: true,
+  },
 });

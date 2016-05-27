@@ -62,7 +62,7 @@ const rootRoute = {
   childRoutes: createRoutes(store),
 };
 
-ReactDOM.render(
+const render = () => ReactDOM.render(
   <Provider store={store}>
     <IntlProvider locale="de" messages={translationMessages.en}>
       <Router
@@ -92,6 +92,16 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 );
+
+// Chunked polyfill for browsers without Intl support
+if (!window.Intl) {
+  require.ensure(['intl'], (require) => {
+    window.Intl = require('intl');
+    render();
+  }, 'IntlBundle');
+} else {
+  render();
+}
 
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
