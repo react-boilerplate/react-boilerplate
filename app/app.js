@@ -24,8 +24,8 @@ import FontFaceObserver from 'fontfaceobserver';
 import useScroll from 'react-router-scroll';
 import configureStore from './store';
 
-// Import bootloader
-import { translationMessages } from './bootloader';
+// Import i18n messages
+import { translationMessages } from './i18n';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -62,43 +62,42 @@ const rootRoute = {
   childRoutes: createRoutes(store),
 };
 
-const render = () => ReactDOM.render(
-  <Provider store={store}>
-    <IntlProvider locale="de" messages={translationMessages.en}>
-      <Router
-        history={history}
-        routes={rootRoute}
-        render={
-          // Scroll to top when going to a new page, imitating default browser
-          // behaviour
-          applyRouterMiddleware(
-            useScroll(
-              (prevProps, props) => {
-                if (!prevProps || !props) {
+const render = () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <IntlProvider locale="en" messages={translationMessages.en}>
+        <Router
+          history={history}
+          routes={rootRoute}
+          render={
+            // Scroll to top when going to a new page, imitating default browser
+            // behaviour
+            applyRouterMiddleware(
+              useScroll(
+                (prevProps, props) => {
+                  if (!prevProps || !props) {
+                    return true;
+                  }
+
+                  if (prevProps.location.pathname !== props.location.pathname) {
+                    return [0, 0];
+                  }
+
                   return true;
                 }
-
-                if (prevProps.location.pathname !== props.location.pathname) {
-                  return [0, 0];
-                }
-
-                return true;
-              }
+              )
             )
-          )
-        }
-      />
-    </IntlProvider>
-  </Provider>,
-  document.getElementById('app')
-);
+          }
+        />
+      </IntlProvider>
+    </Provider>,
+    document.getElementById('app')
+  );
+};
 
 // Chunked polyfill for browsers without Intl support
 if (!window.Intl) {
-  require.ensure(['intl'], (require) => {
-    window.Intl = require('intl');
-    render();
-  }, 'IntlBundle');
+  System.import('intl').then(render);
 } else {
   render();
 }

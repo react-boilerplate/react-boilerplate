@@ -13,7 +13,7 @@ module.exports = (options) => ({
   }, options.output), // Merge with env dependent settings
   module: {
     loaders: [{
-      test: /\.js(on)?$/, // Transform all .js, .json files required somewhere with Babel
+      test: /\.js$/, // Transform all .js, .json files required somewhere with Babel
       loader: 'babel',
       exclude: /node_modules/,
       query: options.babelQuery,
@@ -88,9 +88,4 @@ module.exports = (options) => ({
   target: 'web', // Make web variables accessible to webpack, e.g. window
   stats: false, // Don't show stats in the console
   progress: true,
-
-  // Polling for vagrant based development
-  watchOptions: {
-    poll: true,
-  },
 });
