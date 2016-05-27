@@ -88,4 +88,9 @@ module.exports = (options) => ({
   target: 'web', // Make web variables accessible to webpack, e.g. window
   stats: false, // Don't show stats in the console
   progress: true,
+
+  // Polling for vagrant based development
+  watchOptions: {
+    poll: true,
+  },
 });
