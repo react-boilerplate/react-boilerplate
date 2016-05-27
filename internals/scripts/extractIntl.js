@@ -9,7 +9,7 @@ const i18n = require('../../app/i18n');
 require('shelljs/global');
 
 const FILES_TO_PARSE = 'app/**/!(*.test).js';
-const locales = i18n['appLocales'];
+const locales = i18n.appLocales;
 
 const glob = (pattern) => new Promise((resolve, reject) => {
   nodeGlob(pattern, (error, value) => (error ? reject(error) : resolve(value)));
@@ -27,7 +27,7 @@ const logDivider = () => {
   console.log(
     chalk.gray('------------------------------------------------------------------------')
   );
-}
+};
 
 const logError = (error, ...args) => {
   console.error(
@@ -117,10 +117,12 @@ const extractFromFile = async (fileName) => {
           2
         )
       );
+
       logSuccess(`Translation file for ${locale} successfully saved to: ${translationFileName}`);
     } catch (error) {
       logError(`There was an error saving this translation file: ${translationFileName}\n${error}`);
     }
   }
+
   logDivider();
 }());

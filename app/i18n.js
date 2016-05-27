@@ -16,6 +16,7 @@ const formatTranslationMessages = (messages) => {
   for (const message of messages) {
     formattedMessages[message.id] = message.message || message.defaultMessage;
   }
+
   return formattedMessages;
 };
 
