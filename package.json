@@ -13,6 +13,7 @@
     "build:clean": "rimraf ./build/*",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p",
     "analyze": "node ./internals/scripts/analyze.js",
+    "extractIntl": "babel-node ./internals/scripts/extractIntl.js",
     "start": "npm run start:tunnel",
     "start:tunnel": "cross-env NODE_ENV=development node server",
     "start:prod": "cross-env NODE_ENV=production node server",
@@ -153,9 +154,11 @@
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.7.7",
     "babel-core": "^6.7.7",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
+    "babel-plugin-react-intl": "^2.1.3",
     "babel-plugin-react-transform": "^2.0.2",
     "babel-plugin-transform-react-constant-elements": "^6.8.0",
     "babel-plugin-transform-react-inline-elements": "^6.8.0",
@@ -186,6 +189,7 @@
     "file-loader": "^0.8.5",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.16.0",
+    "intl": "^1.2.4",
     "imports-loader": "^0.6.5",
     "ip": "^1.1.2",
     "isparta": "^4.0.0",
