@@ -25,11 +25,11 @@
     <img src="https://coveralls.io/repos/github/mxstbr/react-boilerplate/badge.svg" alt="Test Coverage" />
   </a>
     <!-- Backers -->
-  <a href="#Backers">
+  <a href="#backers">
     <img src="https://opencollective.com/react-boilerplate/backers/badge.svg" alt="Backers" />
   </a>
       <!-- Sponsors -->
-  <a href="#Sponsors">
+  <a href="#sponsors">
     <img src="https://opencollective.com/react-boilerplate/sponsors/badge.svg" alt="Sponsors" />
   </a>
 </div>
