@@ -142,6 +142,7 @@
     "react-pure-render": "^1.0.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.3.0",
+    "react-intl": "^2.1.2",
     "react-router-redux": "^4.0.4",
     "react-router-scroll": "^0.2.0",
     "redux": "^3.5.2",
