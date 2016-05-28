@@ -13,9 +13,9 @@ environment:
     # Node versions to run
     - nodejs_version: "5.0"
 
-# Git config fix
+# Fix line endings in Windows. (runs before repo cloning)
 init:
-- git config --global core.autocrlf false
+  - git config --global core.autocrlf input
 
 # Install scripts--runs after repo cloning
 install:
