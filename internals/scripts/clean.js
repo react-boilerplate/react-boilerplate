@@ -30,9 +30,9 @@ mkdir('app/containers/App');
 mkdir('app/components/NotFoundPage');
 mkdir('app/components/HomePage');
 cp('internals/templates/appContainer.js', 'app/containers/App/index.js');
-cp('internals/templates/notFoundPage.js', 'app/components/NotFoundPage/index.js');
+cp('internals/templates/notFoundPage.js_', 'app/components/NotFoundPage/index.js');
 cp('internals/templates/notFoundPageMessages.js', 'app/components/NotFoundPage/messages.js');
-cp('internals/templates/homePage.js', 'app/components/HomePage/index.js');
+cp('internals/templates/homePage.js_', 'app/components/HomePage/index.js');
 cp('internals/templates/homePageMessages.js', 'app/components/HomePage/messages.js');
 
 // Copy selectors
