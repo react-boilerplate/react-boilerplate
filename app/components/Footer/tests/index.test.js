@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import messages from '../messages';
 import Footer from '../index';
 import A from 'components/A';
 
@@ -14,12 +15,7 @@ describe('<Footer />', () => {
     expect(renderedComponent.contains(
       <section>
         <p>
-          <FormattedMessage
-            id="boilerplate.components.Footer.license.message"
-            defaultMessage={`
-              This project is licensed under the MIT license.
-            `}
-          />
+          <FormattedMessage {...messages.licenseMessage} />
         </p>
       </section>
     )).toEqual(true);
@@ -31,10 +27,7 @@ describe('<Footer />', () => {
       <section>
         <p>
           <FormattedMessage
-            id="boilerplate.components.Footer.author.message"
-            defaultMessage={`
-              Made with love by {author}.
-            `}
+            {...messages.authorMessage}
             values={{
               author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,
             }}

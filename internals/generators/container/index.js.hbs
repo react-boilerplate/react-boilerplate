@@ -1,12 +1,16 @@
 /*
  *
- * {{ properCase name }}
+ * {{properCase name }}
  *
  */
 
 import React from 'react';
 import { connect } from 'react-redux';
 import select{{properCase name}} from './selectors';
+{{#if wantMessages}}
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
+{{/if}}
 {{#if wantCSS}}
 import styles from './styles.css';
 {{/if}}
@@ -19,7 +23,7 @@ export class {{ properCase name }} extends React.Component { // eslint-disable-l
       {{else}}
       <div>
       {{/if}}
-      This is {{properCase name}} container !
+        <FormattedMessage {...messages.header} />
       </div>
     );
   }

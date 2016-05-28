@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
+import messages from './messages';
 import { createSelector } from 'reselect';
 
 import {
@@ -77,46 +78,21 @@ export class HomePage extends React.Component {
         <div>
           <section className={`${styles.textSection} ${styles.centered}`}>
             <H2>
-              <FormattedMessage
-                id="boilerplate.containers.HomePage.start_project.header"
-                defaultMessage={`
-                  Start your next react project in seconds
-                `}
-              />
+              <FormattedMessage {...messages.startProjectHeader} />
             </H2>
             <p>
-              <FormattedMessage
-                id="boilerplate.containers.HomePage.start_project.message"
-                defaultMessage={`
-                  A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices
-                `}
-              />
+              <FormattedMessage {...messages.startProjectMessage} />
             </p>
           </section>
           <section className={styles.textSection}>
             <H2>
-              <FormattedMessage
-                id="boilerplate.containers.HomePage.tryme.header"
-                defaultMessage={`
-                  Try me!
-                `}
-              />
+              <FormattedMessage {...messages.trymeHeader} />
             </H2>
             <form className={styles.usernameForm} onSubmit={this.props.onSubmitForm}>
               <label htmlFor="username">
-                <FormattedMessage
-                  id="boilerplate.containers.HomePage.tryme.message"
-                  defaultMessage={`
-                    Show Github repositories by
-                  `}
-                />
+                <FormattedMessage {...messages.trymeMessage} />
                 <span className={styles.atPrefix}>
-                  <FormattedMessage
-                    id="boilerplate.containers.HomePage.tryme.atPrefix"
-                    defaultMessage={`
-                      @
-                    `}
-                  />
+                  <FormattedMessage {...messages.trymeAtPrefix} />
                 </span>
                 <input
                   id="username"
@@ -131,10 +107,7 @@ export class HomePage extends React.Component {
             {mainContent}
           </section>
           <Button handleRoute={this.openFeaturesPage}>
-            <FormattedMessage
-              id="boilerplate.containers.HomePage.features.Button"
-              defaultMessage={'Features'}
-            />
+            <FormattedMessage {...messages.featuresButton} />
           </Button>
         </div>
       </article>

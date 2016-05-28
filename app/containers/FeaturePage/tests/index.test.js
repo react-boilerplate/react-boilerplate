@@ -3,6 +3,7 @@ import { shallow, mount } from 'enzyme';
 import React from 'react';
 
 import { IntlProvider, FormattedMessage } from 'react-intl';
+import messages from '../messages';
 import { FeaturePage } from '../index';
 import H1 from 'components/H1';
 
@@ -13,10 +14,7 @@ describe('<FeaturePage />', () => {
     );
     expect(renderedComponent.contains(
       <H1>
-        <FormattedMessage
-          id="boilerplate.containers.FeaturePage.features.header"
-          defaultMessage={'Features'}
-        />
+        <FormattedMessage {...messages.header} />
       </H1>
     )).toEqual(true);
   });

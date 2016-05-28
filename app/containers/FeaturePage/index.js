@@ -9,6 +9,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
+import messages from './messages';
 import { FormattedMessage } from 'react-intl';
 import Button from 'components/Button';
 import H1 from 'components/H1';
@@ -36,180 +37,83 @@ export class FeaturePage extends React.Component {
     return (
       <div>
         <H1>
-          <FormattedMessage
-            id="boilerplate.containers.FeaturePage.features.header"
-            defaultMessage={'Features'}
-          />
+          <FormattedMessage {...messages.header} />
         </H1>
         <ul className={styles.list}>
           <li className={styles.listItem}>
             <p className={styles.listItemTitle}>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.scaffolding.header"
-                defaultMessage={`
-                  Quick scaffolding
-                `}
-              />
+              <FormattedMessage {...messages.scaffoldingHeader} />
             </p>
             <p>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.scaffolding.message"
-                defaultMessage={`
-                  Automate the creation of components, containers, routes, selectors
-                and sagas - and their tests - right from the CLI!
-                `}
-              />
+              <FormattedMessage {...messages.scaffoldingMessage} />
             </p>
           </li>
 
           <li className={styles.listItem}>
             <p className={styles.listItemTitle}>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.feedback.header"
-                defaultMessage={`
-                  Instant feedback
-                `}
-              />
+              <FormattedMessage {...messages.feedbackHeader} />
             </p>
             <p>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.feedback.message"
-                defaultMessage={`
-                  Enjoy the best DX and code your app at the speed of thought! Your
-                saved changes to the CSS and JS are reflected instantaneously
-                without refreshing the page. Preserve application state even when
-                you update something in the underlying code!
-                `}
-              />
+              <FormattedMessage {...messages.feedbackMessage} />
             </p>
           </li>
 
           <li className={styles.listItem}>
             <p className={styles.listItemTitle}>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.state_management.header"
-                defaultMessage={`
-                  Predictable state management
-                `}
-              />
+              <FormattedMessage {...messages.feedbackHeader} />
             </p>
             <p>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.state_management.message"
-                defaultMessage={`
-                  Unidirectional data flow allows for change logging and time travel
-                debugging.
-                `}
-              />
+              <FormattedMessage {...messages.feedbackMessage} />
             </p>
           </li>
 
           <li className={styles.listItem}>
             <p className={styles.listItemTitle}>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.javascript.header"
-                defaultMessage={`
-                  Next generation JavaScript
-                `}
-              />
+              <FormattedMessage {...messages.feedbackHeader} />
             </p>
             <p>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.javascript.message"
-                defaultMessage={`
-                  Use template strings, object destructuring, arrow functions, JSX
-                syntax and more, today.
-                `}
-              />
+              <FormattedMessage {...messages.feedbackMessage} />
             </p>
           </li>
 
           <li className={styles.listItem}>
             <p className={styles.listItemTitle}>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.css.header"
-                defaultMessage={`
-                  Next generation CSS
-                `}
-              />
+              <FormattedMessage {...messages.feedbackHeader} />
             </p>
             <p>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.css.message"
-                defaultMessage={`
-                  Write composable CSS that's co-located with your components for
-                complete modularity. Unique generated class names keep the
-                specificity low while eliminating style clashes. Ship only the
-                styles that are on the page for the best performance.
-                `}
-              />
+              <FormattedMessage {...messages.feedbackMessage} />
             </p>
           </li>
 
           <li className={styles.listItem}>
             <p className={styles.listItemTitle}>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.routing.header"
-                defaultMessage={`
-                  Industry-standard routing
-                `}
-              />
+              <FormattedMessage {...messages.routingHeader} />
             </p>
             <p>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.routing.message"
-                defaultMessage={`
-                  It's natural to want to add pages (e.g. '/about') to your
-                application, and routing makes this possible.
-                `}
-              />
+              <FormattedMessage {...messages.routingMessage} />
             </p>
           </li>
 
           <li className={styles.listItem}>
             <p className={styles.listItemTitle}>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.network.header"
-                defaultMessage={`
-                  Offline-first
-                `}
-              />
+              <FormattedMessage {...messages.networkHeader} />
             </p>
             <p>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.network.message"
-                defaultMessage={`
-                  The next frontier in performant web apps: availability without a
-                  network connection from the instant your users load the app.
-                `}
-              />
+              <FormattedMessage {...messages.networkMessage} />
             </p>
           </li>
 
           <li className={styles.listItem}>
             <p className={styles.listItemTitle}>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.internationalization.header"
-                defaultMessage={`
-                  Complete i18n Standard Internationalization & Pluralization
-                `}
-              />
+              <FormattedMessage {...messages.intlHeader} />
             </p>
             <p>
-              <FormattedMessage
-                id="boilerplate.containers.FeaturePage.internationalization.message"
-                defaultMessage={`
-                  The web is global. Multilanguage and pluralization support is critical for web apps to scale.
-                `}
-              />
+              <FormattedMessage {...messages.intlMessage} />
             </p>
           </li>
         </ul>
         <Button handleRoute={this.openHomePage}>
-          <FormattedMessage
-            id="boilerplate.containers.FeaturePage.home"
-            defaultMessage={'Home'}
-          />
+          <FormattedMessage {...messages.homeButton} />
         </Button>
       </div>
     );
