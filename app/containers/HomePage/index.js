@@ -52,6 +52,15 @@ export class HomePage extends React.Component {
     this.openRoute('/features');
   };
 
+  /**
+   * when initial state username is not null, submit the form to load repos
+   */
+  componentDidMount() {
+    if (this.props.username.trim().length > 0) {
+      this.props.onSubmitForm();
+    }
+  };
+
   render() {
     let mainContent = null;
 
@@ -123,7 +132,7 @@ function mapDispatchToProps(dispatch) {
     onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
     changeRoute: (url) => dispatch(push(url)),
     onSubmitForm: (evt) => {
-      evt.preventDefault();
+      evt && evt.preventDefault();
       dispatch(loadRepos());
     },
 
