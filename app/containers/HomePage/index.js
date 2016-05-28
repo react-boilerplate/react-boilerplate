@@ -34,6 +34,15 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import styles from './styles.css';
 
 export class HomePage extends React.Component {
+  /**
+   * when initial state username is not null, submit the form to load repos
+   */
+  componentDidMount() {
+    if (this.props.username.trim().length > 0) {
+      this.props.onSubmitForm();
+    }
+  }
+
   shouldComponentUpdate = shouldPureComponentUpdate;
 
   /**
@@ -50,15 +59,6 @@ export class HomePage extends React.Component {
    */
   openFeaturesPage = () => {
     this.openRoute('/features');
-  };
-
-  /**
-   * when initial state username is not null, submit the form to load repos
-   */
-  componentDidMount() {
-    if (this.props.username.trim().length > 0) {
-      this.props.onSubmitForm();
-    }
   };
 
   render() {
@@ -132,6 +132,7 @@ function mapDispatchToProps(dispatch) {
     onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
     changeRoute: (url) => dispatch(push(url)),
     onSubmitForm: (evt) => {
+      /* eslint no-unused-expressions: ["error", { "allowShortCircuit": true }] */
       evt && evt.preventDefault();
       dispatch(loadRepos());
     },
