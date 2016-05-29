@@ -13,8 +13,7 @@
 
 import React from 'react';
 
-/* eslint-disable react/prefer-stateless-function */
-export default class App extends React.Component {
+export default class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
     children: React.PropTypes.node,

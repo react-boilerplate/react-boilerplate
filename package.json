@@ -22,7 +22,7 @@
     "clean": "shjs ./internals/scripts/clean.js",
     "generate": "plop --plopfile internals/generators/index.js",
     "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint . --ignore-path .gitignore",
+    "lint:js": "eslint . --ignore-path .gitignore --ignore-pattern internals/scripts",
     "lint:js:staged": "eslint-staged",
     "lint:css": "stylelint ./app/**/*.css",
     "lint:css:staged": "stylelint-staged",

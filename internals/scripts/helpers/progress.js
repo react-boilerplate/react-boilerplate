@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 var readline = require('readline');
 
 /**
