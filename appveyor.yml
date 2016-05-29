@@ -12,7 +12,6 @@ environment:
   matrix:
     # Node versions to run
     - nodejs_version: "5.0"
-    - nodejs_version: "0.12"
 
 # Install scripts--runs after repo cloning
 install:
