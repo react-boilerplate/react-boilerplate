@@ -33,7 +33,7 @@ const logger = {
       divider,
       chalk.blue('\nPress ' + chalk.italic('CTRL-C') + ' to stop\n')
     );
-  },
+  }
 };
 
 module.exports = logger;

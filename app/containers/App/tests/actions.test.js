@@ -3,20 +3,20 @@ import expect from 'expect';
 import {
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
-  LOAD_REPOS_ERROR,
+  LOAD_REPOS_ERROR
 } from '../constants';
 
 import {
   loadRepos,
   reposLoaded,
-  repoLoadingError,
+  repoLoadingError
 } from '../actions';
 
 describe('App Actions', () => {
   describe('loadRepos', () => {
     it('should return the correct type', () => {
       const expectedResult = {
-        type: LOAD_REPOS,
+        type: LOAD_REPOS
       };
 
       expect(loadRepos()).toEqual(expectedResult);
@@ -30,7 +30,7 @@ describe('App Actions', () => {
       const expectedResult = {
         type: LOAD_REPOS_SUCCESS,
         repos: fixture,
-        username,
+        username
       };
 
       expect(reposLoaded(fixture, username)).toEqual(expectedResult);
@@ -40,11 +40,11 @@ describe('App Actions', () => {
   describe('repoLoadingError', () => {
     it('should return the correct type and the error', () => {
       const fixture = {
-        msg: 'Something went wrong!',
+        msg: 'Something went wrong!'
       };
       const expectedResult = {
         type: LOAD_REPOS_ERROR,
-        error: fixture,
+        error: fixture
       };
 
       expect(repoLoadingError(fixture)).toEqual(expectedResult);

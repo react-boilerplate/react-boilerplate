@@ -17,12 +17,12 @@ export default function configureStore(initialState = {}, history) {
   // 2. routerMiddleware: Syncs the location/URL path to the state
   const middlewares = [
     sagaMiddleware,
-    routerMiddleware(history),
+    routerMiddleware(history)
   ];
 
   const enhancers = [
     applyMiddleware(...middlewares),
-    devtools(),
+    devtools()
   ];
 
   const store = createStore(

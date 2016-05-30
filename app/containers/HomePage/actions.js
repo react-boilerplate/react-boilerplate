@@ -16,7 +16,7 @@
  */
 
 import {
-  CHANGE_USERNAME,
+  CHANGE_USERNAME
 } from './constants';
 
 /**
@@ -29,6 +29,6 @@ import {
 export function changeUsername(name) {
   return {
     type: CHANGE_USERNAME,
-    name,
+    name
   };
 }

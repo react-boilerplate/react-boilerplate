@@ -48,5 +48,5 @@ export {
   selectLoading,
   selectError,
   selectRepos,
-  selectLocationState,
+  selectLocationState
 };

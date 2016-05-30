@@ -89,12 +89,12 @@ export class FeaturePage extends React.Component {
   }
 }
 FeaturePage.propTypes = {
-  changeRoute: React.PropTypes.func,
+  changeRoute: React.PropTypes.func
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeRoute: (url) => dispatch(push(url)),
+    changeRoute: (url) => dispatch(push(url))
   };
 }
 
