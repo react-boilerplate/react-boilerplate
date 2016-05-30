@@ -1,0 +1,8 @@
+.gitignore
+
+internals/**/**
+coverage/**
+node_modules/**
+
+
+app/components/IssueIcon/index.js
