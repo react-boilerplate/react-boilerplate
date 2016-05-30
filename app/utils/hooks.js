@@ -23,6 +23,6 @@ export function injectAsyncSagas(store) {
 export function getHooks(store) {
   return {
     injectReducer: injectAsyncReducer(store),
-    injectSagas: injectAsyncSagas(store),
+    injectSagas: injectAsyncSagas(store)
   };
 }

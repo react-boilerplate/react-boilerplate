@@ -1,7 +1,7 @@
 import expect from 'expect';
 import homeReducer from '../reducer';
 import {
-  changeUsername,
+  changeUsername
 } from '../actions';
 import { fromJS } from 'immutable';
 
@@ -9,7 +9,7 @@ describe('homeReducer', () => {
   let state;
   beforeEach(() => {
     state = fromJS({
-      username: '',
+      username: ''
     });
   });
 

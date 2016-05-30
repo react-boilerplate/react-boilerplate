@@ -7,7 +7,7 @@ import {
   selectLoading,
   selectError,
   selectRepos,
-  selectLocationState,
+  selectLocationState
 } from '../selectors';
 
 describe('selectGlobal', () => {
@@ -15,7 +15,7 @@ describe('selectGlobal', () => {
   it('should select the global state', () => {
     const globalState = fromJS({});
     const mockedState = fromJS({
-      global: globalState,
+      global: globalState
     });
     expect(globalSelector(mockedState)).toEqual(globalState);
   });
@@ -27,8 +27,8 @@ describe('selectCurrentUser', () => {
     const username = 'mxstbr';
     const mockedState = fromJS({
       global: {
-        currentUser: username,
-      },
+        currentUser: username
+      }
     });
     expect(currentUserSelector(mockedState)).toEqual(username);
   });
@@ -40,8 +40,8 @@ describe('selectLoading', () => {
     const loading = false;
     const mockedState = fromJS({
       global: {
-        loading,
-      },
+        loading
+      }
     });
     expect(loadingSelector(mockedState)).toEqual(loading);
   });
@@ -53,8 +53,8 @@ describe('selectError', () => {
     const error = 404;
     const mockedState = fromJS({
       global: {
-        error,
-      },
+        error
+      }
     });
     expect(errorSelector(mockedState)).toEqual(error);
   });
@@ -67,9 +67,9 @@ describe('selectRepos', () => {
     const mockedState = fromJS({
       global: {
         userData: {
-          repositories,
-        },
-      },
+          repositories
+        }
+      }
     });
     expect(reposSelector(mockedState)).toEqual(repositories);
   });
@@ -79,10 +79,10 @@ describe('selectLocationState', () => {
   const locationStateSelector = selectLocationState();
   it('should select the route as a plain JS object', () => {
     const route = fromJS({
-      locationBeforeTransitions: null,
+      locationBeforeTransitions: null
     });
     const mockedState = fromJS({
-      route,
+      route
     });
     expect(locationStateSelector(mockedState)).toEqual(route.toJS());
   });

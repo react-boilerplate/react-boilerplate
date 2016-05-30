@@ -27,7 +27,7 @@ function List(props) {
 
 List.propTypes = {
   component: React.PropTypes.func.isRequired,
-  items: React.PropTypes.array,
+  items: React.PropTypes.array
 };
 
 export default List;

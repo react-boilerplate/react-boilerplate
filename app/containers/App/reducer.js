@@ -13,7 +13,7 @@
 import {
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,
-  LOAD_REPOS_ERROR,
+  LOAD_REPOS_ERROR
 } from './constants';
 import { fromJS } from 'immutable';
 
@@ -23,8 +23,8 @@ const initialState = fromJS({
   error: false,
   currentUser: false,
   userData: fromJS({
-    repositories: false,
-  }),
+    repositories: false
+  })
 });
 
 function homeReducer(state = initialState, action) {

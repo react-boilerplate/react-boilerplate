@@ -16,7 +16,7 @@ import { selectUsername } from 'containers/HomePage/selectors';
 
 // Bootstrap sagas
 export default [
-  getGithubData,
+  getGithubData
 ];
 
 // Individual exports for testing
@@ -24,7 +24,7 @@ export function* getGithubData() {
   while (true) {
     const watcher = yield race({
       loadRepos: take(LOAD_REPOS),
-      stop: take(LOCATION_CHANGE), // stop watching if user leaves page
+      stop: take(LOCATION_CHANGE) // stop watching if user leaves page
     });
 
     if (watcher.stop) break;

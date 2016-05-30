@@ -23,7 +23,7 @@ describe('getGithubData Saga', () => {
   beforeEach(() => {
     expect(generator.next().value).toEqual(race({
       loadRepos: take(LOAD_REPOS),
-      stop: take(LOCATION_CHANGE),
+      stop: take(LOCATION_CHANGE)
     }));
     expect(generator.next(take(LOAD_REPOS)).value).toEqual(select(selectUsername()));
     const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
@@ -33,17 +33,17 @@ describe('getGithubData Saga', () => {
   it('should dispatch the reposLoaded action if it requests the data successfully', () => {
     const response = {
       data: [{
-        name: 'First repo',
+        name: 'First repo'
       }, {
-        name: 'Second repo',
-      }],
+        name: 'Second repo'
+      }]
     };
     expect(generator.next(response).value).toEqual(put(reposLoaded(response.data, username)));
   });
 
   it('should call the repoLoadingError action if the response errors', () => {
     const response = {
-      err: 'Some error',
+      err: 'Some error'
     };
     expect(generator.next(response).value).toEqual(put(repoLoadingError(response.err)));
   });

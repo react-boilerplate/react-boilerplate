@@ -3,7 +3,7 @@ import appReducer from '../reducer';
 import {
   loadRepos,
   reposLoaded,
-  repoLoadingError,
+  repoLoadingError
 } from '../actions';
 import { fromJS } from 'immutable';
 
@@ -15,8 +15,8 @@ describe('appReducer', () => {
       error: false,
       currentUser: false,
       userData: fromJS({
-        repositories: false,
-      }),
+        repositories: false
+      })
     });
   });
 
@@ -36,7 +36,7 @@ describe('appReducer', () => {
 
   it('should handle the reposLoaded action correctly', () => {
     const fixture = [{
-      name: 'My Repo',
+      name: 'My Repo'
     }];
     const username = 'test';
     const expectedResult = state
@@ -49,7 +49,7 @@ describe('appReducer', () => {
 
   it('should handle the repoLoadingError action correctly', () => {
     const fixture = {
-      msg: 'Not found',
+      msg: 'Not found'
     };
     const expectedResult = state
       .set('error', fixture)

@@ -14,11 +14,11 @@ import { createSelector } from 'reselect';
 import {
   selectRepos,
   selectLoading,
-  selectError,
+  selectError
 } from 'containers/App/selectors';
 
 import {
-  selectUsername,
+  selectUsername
 } from './selectors';
 
 import { changeUsername } from './actions';
@@ -85,7 +85,10 @@ export class HomePage extends React.Component {
         <div>
           <section className={`${styles.textSection} ${styles.centered}`}>
             <H2>Start your next react project in seconds</H2>
-            <p>A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices</p>
+            <p>
+              A highly scalable, offline-first foundation with the best DX and a focus on performance and best
+              practices
+            </p>
           </section>
           <section className={styles.textSection}>
             <H2>Try me!</H2>
@@ -116,15 +119,15 @@ HomePage.propTypes = {
   loading: React.PropTypes.bool,
   error: React.PropTypes.oneOfType([
     React.PropTypes.object,
-    React.PropTypes.bool,
+    React.PropTypes.bool
   ]),
   repos: React.PropTypes.oneOfType([
     React.PropTypes.array,
-    React.PropTypes.bool,
+    React.PropTypes.bool
   ]),
   onSubmitForm: React.PropTypes.func,
   username: React.PropTypes.string,
-  onChangeUsername: React.PropTypes.func,
+  onChangeUsername: React.PropTypes.func
 };
 
 function mapDispatchToProps(dispatch) {
@@ -136,7 +139,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(loadRepos());
     },
 
-    dispatch,
+    dispatch
   };
 }
 

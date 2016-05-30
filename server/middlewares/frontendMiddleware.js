@@ -11,7 +11,7 @@ const addDevMiddlewares = (app, options) => {
   const middleware = webpackDevMiddleware(compiler, {
     noInfo: true,
     publicPath: options.output.publicPath,
-    silent: true,
+    silent: true
   });
 
   app.use(middleware);
