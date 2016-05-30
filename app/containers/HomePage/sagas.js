@@ -4,7 +4,9 @@
 
 /* eslint-disable no-constant-condition */
 
-import { take, call, put, select } from 'redux-saga/effects';
+import { take, call, put, select, race } from 'redux-saga/effects';
+
+import { LOCATION_CHANGE } from 'react-router-redux';
 
 import { LOAD_REPOS } from 'containers/App/constants';
 import { reposLoaded, repoLoadingError } from 'containers/App/actions';
@@ -20,7 +22,13 @@ export default [
 // Individual exports for testing
 export function* getGithubData() {
   while (true) {
-    yield take(LOAD_REPOS);
+    const watcher = yield race({
+      loadRepos: take(LOAD_REPOS),
+      stop: take(LOCATION_CHANGE), // stop watching if user leaves page
+    });
+
+    if (watcher.stop) break;
+
     const username = yield select(selectUsername());
     const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
 
