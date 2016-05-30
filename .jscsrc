@@ -1,0 +1,4 @@
+{
+  "preset": "airbnb",
+  "fileExtensions": [".js", ".jsx"] 
+}

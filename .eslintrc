@@ -1,0 +1,33 @@
+{
+  "parser": "babel-eslint",
+  "extends" : [
+    "eslint:recommended",
+  ],
+  "env"     : {
+    "es6": true,
+    "browser" : true,
+    "node" : true,
+    "mocha"   : true
+  },
+  "rules": {
+    "max-len": [2, 120, 2],
+    "react/prop-types": 0,
+    "react/jsx-uses-react": 1,    
+    "react/jsx-no-bind": 0,
+    "react/jsx-uses-vars": 2,
+    "react/react-in-jsx-scope": 1,
+  },
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true,
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "plugins": [
+    "react"
+  ]
+}
+
