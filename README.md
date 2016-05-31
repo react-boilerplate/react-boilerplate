@@ -24,6 +24,8 @@
   <a href="https://coveralls.io/r/mxstbr/react-boilerplate">
     <img src="https://coveralls.io/repos/github/mxstbr/react-boilerplate/badge.svg" alt="Test Coverage" />
   </a>
+</div>
+<div align="center">
     <!-- Backers -->
   <a href="#backers">
     <img src="https://opencollective.com/react-boilerplate/backers/badge.svg" alt="Backers" />
