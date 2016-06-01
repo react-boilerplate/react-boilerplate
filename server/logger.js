@@ -24,15 +24,13 @@ const logger = {
       console.log(`Tunnel initialised ${chalk.green('✓')}`);
     }
 
-    console.log(
-      chalk.bold(`
-Access URLs:${divider}
+    console.log(`
+${chalk.bold('Access URLs:')}${divider}
 Localhost: ${chalk.magenta(`http://localhost:${port}`)}
-      LAN: ${chalk.magenta(`http://${ip.address()}:${port}`)}
-${(tunnelStarted ? `    Proxy: ${chalk.magenta(tunnelStarted)}` : null)}${divider}
+      LAN: ${chalk.magenta(`http://${ip.address()}:${port}`) +
+(tunnelStarted ? `\n    Proxy: ${chalk.magenta(tunnelStarted)}` : '')}${divider}
 ${chalk.blue(`Press ${chalk.italic('CTRL-C')} to stop`)}
-      `)
-    );
+    `);
   },
 };
 
