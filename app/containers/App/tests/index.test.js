@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 
 import App from '../index';
-import Footer from 'components/Footer';
+import Footer from './components/Footer';
 
 describe('<App />', () => {
   it('should render the logo', () => {

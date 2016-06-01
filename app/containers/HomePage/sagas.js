@@ -8,11 +8,11 @@ import { take, call, put, select, race } from 'redux-saga/effects';
 
 import { LOCATION_CHANGE } from 'react-router-redux';
 
-import { LOAD_REPOS } from 'containers/App/constants';
-import { reposLoaded, repoLoadingError } from 'containers/App/actions';
+import { LOAD_REPOS } from './containers/App/constants';
+import { reposLoaded, repoLoadingError } from './containers/App/actions';
 
 import request from 'utils/request';
-import { selectUsername } from 'containers/HomePage/selectors';
+import { selectUsername } from './containers/HomePage/selectors';
 
 // Bootstrap sagas
 export default [

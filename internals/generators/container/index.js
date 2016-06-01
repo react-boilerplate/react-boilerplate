@@ -120,7 +120,7 @@ module.exports = {
         type: 'modify',
         path: '../../app/reducers.js',
         pattern: /(export default function createReducer)/gi,
-        template: 'import {{camelCase name}}Reducer from \'containers/{{properCase name}}/reducer\';\n$1',
+        template: 'import {{camelCase name}}Reducer from \'./containers/{{properCase name}}/reducer\';\n$1',
       });
     }
 

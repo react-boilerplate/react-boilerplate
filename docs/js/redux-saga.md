@@ -52,9 +52,9 @@ Then, in your `routes.js`, add injection for the newly added saga:
 ```JS
 getComponent(nextState, cb) {
   const importModules = Promise.all([
-    System.import('containers/YourComponent/reducer'),
-    System.import('containers/YourComponent/sagas'),
-    System.import('containers/YourComponent'),
+    System.import('./containers/YourComponent/reducer'),
+    System.import('./containers/YourComponent/sagas'),
+    System.import('./containers/YourComponent'),
   ]);
 
   const renderRoute = loadModule(cb);

@@ -15,7 +15,7 @@ import {
   selectRepos,
   selectLoading,
   selectError,
-} from 'containers/App/selectors';
+} from '../containers/App/selectors';
 
 import {
   selectUsername,
@@ -24,12 +24,12 @@ import {
 import { changeUsername } from './actions';
 import { loadRepos } from '../App/actions';
 
-import RepoListItem from 'containers/RepoListItem';
-import Button from 'components/Button';
-import H2 from 'components/H2';
-import List from 'components/List';
-import ListItem from 'components/ListItem';
-import LoadingIndicator from 'components/LoadingIndicator';
+import RepoListItem from './containers/RepoListItem';
+import Button from './components/Button';
+import H2 from './components/H2';
+import List from './components/List';
+import ListItem from './components/ListItem';
+import LoadingIndicator from './components/LoadingIndicator';
 
 import styles from './styles.css';
 

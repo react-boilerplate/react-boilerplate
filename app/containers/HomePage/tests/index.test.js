@@ -7,9 +7,9 @@ import { shallow, mount } from 'enzyme';
 import React from 'react';
 
 import { HomePage } from '../index';
-import RepoListItem from 'containers/RepoListItem';
-import List from 'components/List';
-import LoadingIndicator from 'components/LoadingIndicator';
+import RepoListItem from './containers/RepoListItem';
+import List from './components/List';
+import LoadingIndicator from './components/LoadingIndicator';
 
 describe('<HomePage />', () => {
   it('should render the loading indicator when its loading', () => {

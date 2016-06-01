@@ -9,11 +9,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { selectCurrentUser } from 'containers/App/selectors';
+import { selectCurrentUser } from './containers/App/selectors';
 
-import ListItem from 'components/ListItem';
-import IssueIcon from 'components/IssueIcon';
-import A from 'components/A';
+import ListItem from '../components/ListItem';
+import IssueIcon from '../components/IssueIcon';
+import A from '../components/A';
 
 import styles from './styles.css';
 
