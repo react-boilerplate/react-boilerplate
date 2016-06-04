@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-/* eslint-disable */
-
 var exec = require('child_process').exec;
 var path = require('path');
 var fs   = require('fs');
