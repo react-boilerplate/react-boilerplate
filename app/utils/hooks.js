@@ -5,7 +5,7 @@ import createReducer from '../reducers';
  */
 export function injectAsyncReducer(store) {
   return (name, asyncReducer) => {
-    store.asyncReducers[name] = asyncReducer; // eslint-disable-line
+    store.asyncReducers[name] = asyncReducer; // eslint-disable-line no-param-reassign
     store.replaceReducer(createReducer(store.asyncReducers));
   };
 }

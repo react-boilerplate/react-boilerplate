@@ -2,8 +2,6 @@
  * Gets the repositories of the user from Github
  */
 
-/* eslint-disable no-constant-condition */
-
 import { take, call, put, select, race } from 'redux-saga/effects';
 
 import { LOCATION_CHANGE } from 'react-router-redux';
@@ -14,14 +12,9 @@ import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 import request from 'utils/request';
 import { selectUsername } from 'containers/HomePage/selectors';
 
-// Bootstrap sagas
-export default [
-  getGithubData,
-];
-
 // Individual exports for testing
 export function* getGithubData() {
-  while (true) {
+  while (true) { // eslint-disable-line no-constant-condition
     const watcher = yield race({
       loadRepos: take(LOAD_REPOS),
       stop: take(LOCATION_CHANGE), // stop watching if user leaves page
@@ -44,3 +37,8 @@ export function* getGithubData() {
     }
   }
 }
+
+// Bootstrap sagas
+export default [
+  getGithubData,
+];

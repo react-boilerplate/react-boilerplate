@@ -11,8 +11,7 @@
 
 import React from 'react';
 
-/* eslint-disable react/prefer-stateless-function */
-export default class HomePage extends React.Component {
+export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
     return (

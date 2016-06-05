@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-/* eslint-disable */
-
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
 

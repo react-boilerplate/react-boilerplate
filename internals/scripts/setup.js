@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-/* eslint-disable */
-
 var exec = require('child_process').exec;
 var path = require('path');
 var fs   = require('fs');
@@ -38,16 +36,8 @@ cleanRepo(dir, function () {
       process.stdout.write('Initialising new repository');
       initGit(dir, function () {
         clearInterval(interval);
-
-        process.stdout.write('\n');
-        interval = animateProgress('Initialising pre-commit');
-        process.stdout.write('Initialising pre-commit');
-        installPreCommit(function () {
-          clearInterval(interval);
-
-          process.stdout.write('\nDone!');
-          process.exit(0);
-        });
+        process.stdout.write('\nDone!');
+        process.exit(0);
       });
     });
   });
@@ -65,13 +55,6 @@ function cleanRepo(dir, callback) {
  */
 function initGit(dir, callback) {
   exec('git init && git add . && git commit -m "Initial commit"', addCheckMark.bind(null, callback));
-}
-
-/**
- * Install pre-commit, needed because we have just deleted the old git repository
- */
-function installPreCommit(callback) {
-  exec('npm install pre-commit', addCheckMark.bind(null, callback));
 }
 
 /**
