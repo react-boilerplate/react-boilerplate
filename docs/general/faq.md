@@ -56,6 +56,14 @@ The fix is to kill the process and rerun `npm start`.
     > e.g. given the output from the example above, `YOUR_PID` is `28344`, hence
     that would mean you would run `taskkill /F /PID 28344`
 
+## Local webfonts not working for development
+
+In development mode CSS sourcemaps require that styling is loaded by blob://,
+resulting in browsers resolving font files relative to the main document.
+
+A way to use local webfonts in development mode is to add an absolute
+output.publicPath in webpack.dev.babel.js, with protocol. e.g 'http://127.0.0.1:3000/'
+
 ## Have another question?
 
 Submit an [issue](https://github.com/mxstbr/react-boilerplate/issues),
