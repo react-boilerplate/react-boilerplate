@@ -11,18 +11,13 @@
   },
   {
     "id": "boilerplate.containers.FeaturePage.css.header",
-    "defaultMessage": "Next generation CSS",
+    "defaultMessage": "Features",
     "message": "Next generation CSS"
   },
   {
     "id": "boilerplate.containers.FeaturePage.css.message",
-    "defaultMessage": "Write composable CSS that's co-located with your components for\n                complete modularity. Unique generated class names keep the\n                specificity low while eliminating style clashes. Ship only the\n                styles that are on the page for the best performance.",
+    "defaultMessage": "Next generation CSS",
     "message": "Write composable CSS that's co-located with your components for\n                complete modularity. Unique generated class names keep the\n                specificity low while eliminating style clashes. Ship only the\n                styles that are on the page for the best performance."
-  },
-  {
-    "id": "boilerplate.containers.FeaturePage.features.header",
-    "defaultMessage": "Features",
-    "message": "Features"
   },
   {
     "id": "boilerplate.containers.FeaturePage.feedback.header",
@@ -31,8 +26,13 @@
   },
   {
     "id": "boilerplate.containers.FeaturePage.feedback.message",
-    "defaultMessage": "Enjoy the best DX and code your app at the speed of thought! Your\n                saved changes to the CSS and JS are reflected instantaneously\n                without refreshing the page. Preserve application state even when\n                you update something in the underlying code!",
+    "defaultMessage": "Enjoy the best DX and code your app at the speed of thought! Your\n    saved changes to the CSS and JS are reflected instantaneously\n    without refreshing the page. Preserve application state even when\n    you update something in the underlying code!",
     "message": "Enjoy the best DX and code your app at the speed of thought! Your\n                saved changes to the CSS and JS are reflected instantaneously\n                without refreshing the page. Preserve application state even when\n                you update something in the underlying code!"
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.header",
+    "defaultMessage": "Features",
+    "message": ""
   },
   {
     "id": "boilerplate.containers.FeaturePage.home",
@@ -56,7 +56,7 @@
   },
   {
     "id": "boilerplate.containers.FeaturePage.javascript.message",
-    "defaultMessage": "Use template strings, object destructuring, arrow functions, JSX\n                syntax and more, today.",
+    "defaultMessage": "Use template strings, object destructuring, arrow functions, JSX\n    syntax and more, today.",
     "message": "Use template strings, object destructuring, arrow functions, JSX\n                syntax and more, today."
   },
   {
@@ -66,17 +66,17 @@
   },
   {
     "id": "boilerplate.containers.FeaturePage.network.message",
-    "defaultMessage": "The next frontier in performant web apps: availability without a\n                  network connection from the instant your users load the app.",
+    "defaultMessage": "The next frontier in performant web apps: availability without a\n      network connection from the instant your users load the app.",
     "message": "The next frontier in performant web apps: availability without a\n                  network connection from the instant your users load the app."
   },
   {
     "id": "boilerplate.containers.FeaturePage.routing.header",
-    "defaultMessage": "Industry-standard routing",
+    "defaultMessage": "Write composable CSS that's co-located with your components for\n    complete modularity. Unique generated class names keep the\n    specificity low while eliminating style clashes. Ship only the\n    styles that are on the page for the best performance.",
     "message": "Industry-standard routing"
   },
   {
     "id": "boilerplate.containers.FeaturePage.routing.message",
-    "defaultMessage": "It's natural to want to add pages (e.g. '/about') to your\n                application, and routing makes this possible.",
+    "defaultMessage": "Industry-standard routing",
     "message": "It's natural to want to add pages (e.g. '/about') to your\n                application, and routing makes this possible."
   },
   {
@@ -86,7 +86,7 @@
   },
   {
     "id": "boilerplate.containers.FeaturePage.scaffolding.message",
-    "defaultMessage": "Automate the creation of components, containers, routes, selectors\n                and sagas - and their tests - right from the CLI!",
+    "defaultMessage": "Automate the creation of components, containers, routes, selectors\n  and sagas - and their tests - right from the CLI!",
     "message": "Automate the creation of components, containers, routes, selectors\n                and sagas - and their tests - right from the CLI!"
   },
   {
@@ -96,7 +96,7 @@
   },
   {
     "id": "boilerplate.containers.FeaturePage.state_management.message",
-    "defaultMessage": "Unidirectional data flow allows for change logging and time travel\n                debugging.",
+    "defaultMessage": "Unidirectional data flow allows for change logging and time travel\n    debugging.",
     "message": "Unidirectional data flow allows for change logging and time travel\n                debugging."
   },
   {

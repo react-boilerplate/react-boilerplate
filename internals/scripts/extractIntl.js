@@ -1,4 +1,7 @@
 /* eslint-disable */
+/**
+ * This script will extract the internationalization messages from all components and package them in the transalation json files in the translations file.
+ */
 const fs = require('fs');
 const nodeGlob = require('glob');
 const chalk = require('chalk');
@@ -43,6 +46,7 @@ const logSuccess = (success, ...args) => {
   );
 };
 
+// Store existing translations into memory
 const oldLocaleMappings = [];
 const localeMappings = [];
 for (const locale of locales) {
@@ -61,6 +65,8 @@ for (const locale of locales) {
   }
 }
 
+// Use babel plugin to extract instances where react-intl is called and merge it with the
+// existing translation
 const extractFromFile = async (fileName) => {
   try {
     const code = await readFile(fileName);
@@ -93,6 +99,7 @@ const extractFromFile = async (fileName) => {
     files.map((fileName) => extractFromFile(fileName))
   );
 
+  // Make the directory if it doesn't exist, especially for first run
   mkdir('-p', 'app/translations');
   logDivider();
   for (const locale of locales) {
