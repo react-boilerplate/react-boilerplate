@@ -184,7 +184,7 @@
     "stylelint": "^6.3.3",
     "stylelint-config-standard": "^8.0.0",
     "url-loader": "^0.5.7",
-    "webpack": "^2.1.0-beta.6",
+    "webpack": "2.1.0-beta.8",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"
   }
