@@ -3,7 +3,6 @@
  *
  * Lists the name and the issue count of a repository
  */
-/* eslint-disable react/prefer-stateless-function */
 
 import React from 'react';
 import { connect } from 'react-redux';
@@ -17,7 +16,7 @@ import A from 'components/A';
 
 import styles from './styles.css';
 
-export class RepoListItem extends React.Component {
+export class RepoListItem extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const item = this.props.item;
     let nameprefix = '';
