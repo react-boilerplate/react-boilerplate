@@ -73,7 +73,7 @@ export class HomePage extends React.Component {
     // Show an error if there is one
     } else if (this.props.error !== false) {
       const ErrorComponent = () => (
-        <ListItem item={(<FormattedMessage {...messages.loadError} />)} />
+        <ListItem item={'Something went wrong, please try again!'} />
       );
       mainContent = (<List component={ErrorComponent} />);
 

@@ -3,8 +3,8 @@ import { addLocaleData } from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
 import deLocaleData from 'react-intl/locale-data/de';
 
-import enTranslationMessages from 'translations/en.json';
-import deTranslationMessages from 'translations/de.json';
+import enTranslationMessages from './translations/en.json';
+import deTranslationMessages from './translations/de.json';
 
 export const appLocales = ['en', 'de'];
 

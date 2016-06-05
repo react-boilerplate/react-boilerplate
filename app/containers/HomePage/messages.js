@@ -6,10 +6,6 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  loadError: {
-    id: 'boilerplate.containers.HomePage.load_error.message',
-    defaultMessage: 'Something went wrong, please try again!',
-  },
   startProjectHeader: {
     id: 'boilerplate.containers.HomePage.start_project.header',
     defaultMessage: 'Start your next react project in seconds',
