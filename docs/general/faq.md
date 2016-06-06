@@ -62,7 +62,16 @@ In development mode CSS sourcemaps require that styling is loaded by blob://,
 resulting in browsers resolving font files relative to the main document.
 
 A way to use local webfonts in development mode is to add an absolute
-output.publicPath in webpack.dev.babel.js, with protocol. e.g 'http://127.0.0.1:3000/'
+output.publicPath in webpack.dev.babel.js, with protocol.
+
+```javascript
+// webpack.dev.babel.js
+
+output: {
+  publicPath: 'http://127.0.0.1:3000',
+  /* … */
+},
+```
 
 ## Have another question?
 
