@@ -12,7 +12,7 @@
 
         importModules.then(([reducer, sagas, component]) => {
           injectReducer('{{ camelCase component }}', reducer.default);
-          injectSagas(sagas.default);
+          injectSagas('{{ camelCase component }}', sagas.default);
           renderRoute(component);
         });
 

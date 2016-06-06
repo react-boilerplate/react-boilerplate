@@ -45,7 +45,7 @@ describe('hooks', () => {
       const { injectReducer, injectSagas } = getHooks(store);
 
       injectReducer('test', reducer);
-      injectSagas(sagas);
+      injectSagas('test', sagas);
 
       const actual = store.getState().get('test');
       const expected = initialState.merge({ reduced: 'yup' });
@@ -76,7 +76,7 @@ describe('hooks', () => {
       it('given a store, it should provide a function to inject a saga', () => {
         const injectSagas = injectAsyncSagas(store);
 
-        injectSagas(sagas);
+        injectSagas('test', sagas);
 
         const actual = store.getState().get('test');
         const expected = initialState.merge({ reduced: 'yup' });
