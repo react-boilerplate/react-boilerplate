@@ -14,7 +14,7 @@ module.exports = require('./webpack.base.babel')({
   // In production, we skip all hot-reloading stuff
   entry: {
     vendor: path.join(process.cwd(), 'app/vendor.js'),
-    app: path.join(process.cwd(), 'app/app.js')
+    app: path.join(process.cwd(), 'app/app.js'),
   },
 
   // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
@@ -41,7 +41,12 @@ module.exports = require('./webpack.base.babel')({
     }),
   ],
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.[chunkhash].js' }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'app',
+      children: true,
+      async: true,
+      minChunks: 3,
+    }),
 
     // OccurrenceOrderPlugin is needed for long-term caching to work properly.
     // See http://mxs.is/googmv

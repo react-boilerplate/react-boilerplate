@@ -18,8 +18,8 @@ module.exports = require('./webpack.base.babel')({
     app: [
       'eventsource-polyfill', // Necessary for hot reloading with IE
       'webpack-hot-middleware/client',
-      path.join(process.cwd(), 'app/app.js') // Start with js/app.js
-    ]
+      path.join(process.cwd(), 'app/app.js'), // Start with js/app.js
+    ],
   },
 
   // Don't use hashes in dev mode for better performance
@@ -44,7 +44,12 @@ module.exports = require('./webpack.base.babel')({
 
   // Add hot reloading
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'app',
+      children: true,
+      async: true,
+      minChunks: 3,
+    }),
     new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
