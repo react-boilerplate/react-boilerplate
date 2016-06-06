@@ -24,20 +24,14 @@ const addDevMiddlewares = (app, webpackConfig, options) => {
   // artifacts, we use it instead
   const fs = middleware.fileSystem;
 
-  // Using the default DLL Plugin config, there is only one bundle to serve
-  if (!dllPlugin.dlls) {
-    app.get('/react-boilerplate-dependencies.js', (req, res) => {
-      const file = readFile(path.join(process.cwd(), 'app/dlls/react-boilerplate-dependencies.js'));
+  const dllNames = !dllPlugin.dlls ? ['reactBoilerplateDeps'] : Object.keys(dllPlugin.dlls);
+
+  dllNames.forEach((dllName) => {
+    app.get(`/${dllName}.js`, (req, res) => {
+      const file = readFile(path.join(process.cwd(), `app/dlls/${dllName}.js`));
       res.send(file.toString());
     });
-  } else if (typeof dllPlugin.dlls === 'object') {
-    Object.keys(dllPlugin).forEach((dllName) => {
-      app.get(`/${dllName}.js`, (req, res) => {
-        const file = readFile(path.join(process.cwd(), `app/dlls/${dllName}.js`));
-        res.send(file.toString());
-      });
-    });
-  }
+  });
 
   app.get('*', (req, res) => {
     const file = fs.readFileSync(path.join(compiler.outputPath, 'index.html'));

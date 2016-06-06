@@ -11,7 +11,7 @@
  * or dependency changes.
  */
 
-const { assign, keys } = Object;
+const { keys } = Object;
 const { resolve } = require('path');
 const pkg = require(resolve(process.cwd(), 'package.json'));
 
@@ -24,7 +24,6 @@ const uniq = require('lodash/uniq');
 const defaults = require('lodash/defaultsDeep');
 const webpack = require('webpack');
 
-const devConfig = require('./webpack.dev.babel.js');
 const outputPath = resolve(process.cwd(), 'app/dlls');
 
 /**
@@ -32,21 +31,12 @@ const outputPath = resolve(process.cwd(), 'app/dlls');
  */
 const dllPlugin = defaults(pkg.dllPlugin, {
   /**
-   * By default the boilerplate dependencies will be
-   * bundled as a DLL. However as the app grows and
-   * dependencies change, there will need to be a way
-   * for the user to have more control over the contents.
-   */
-  dlls: 'package.json',
-
-  /**
    * Not all dependencies can be bundled
   */
   exclude: [
     'express',
     'chalk',
     'compression',
-    'file-loader',
     'sanitize.css',
   ],
 
@@ -61,7 +51,7 @@ const dllPlugin = defaults(pkg.dllPlugin, {
   ],
 });
 
-if (dllPlugin.dlls !== 'package.json' && typeof dllPlugin.dlls !== 'object') {
+if (dllPlugin.dlls && typeof dllPlugin.dlls !== 'object') {
   throw new Error('The Webpack DLL Plugin configuration in your package.json must contain a dlls property.');
 }
 
@@ -70,8 +60,8 @@ const dependencyNames = keys(pkg.dependencies);
  * Includes the package.json dependencies plus the module names
  * listed in the include / exclude list.
  */
-const entry = dllPlugin.dlls === 'package.json' ?
-  pullAll(uniq(dependencyNames.concat(dllPlugin.include)), dllPlugin.exclude) :
+const entry = typeof dllPlugin.dlls === 'undefined' ?
+  { reactBoilerplateDeps: pullAll(uniq(dependencyNames.concat(dllPlugin.include)), dllPlugin.exclude) } :
   dllPlugin.dlls;
 
 module.exports = {
@@ -79,11 +69,11 @@ module.exports = {
   entry,
   devtool: 'eval',
   output: {
-    filename: 'react-boilerplate-dependencies.js',
-    library: 'main',
+    filename: '[name].js',
     path: outputPath,
+    library: '[name]',
   },
   plugins: [
-    new webpack.DllPlugin({ name: '[name]', path: resolve(outputPath, 'react-boilerplate-dependencies-manifest.json') }), // eslint-disable-line no-new
+    new webpack.DllPlugin({ name: '[name]', path: resolve(outputPath, '[name].json') }), // eslint-disable-line no-new
   ],
 };
