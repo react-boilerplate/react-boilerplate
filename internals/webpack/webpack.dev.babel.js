@@ -44,12 +44,6 @@ module.exports = require('./webpack.base.babel')({
 
   // Add hot reloading
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'app',
-      children: true,
-      async: true,
-      minChunks: 3,
-    }),
     new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
