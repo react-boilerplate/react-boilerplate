@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const readFile = require('fs').readFileSync;
 const compression = require('compression');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -23,10 +24,18 @@ const addDevMiddlewares = (app, webpackConfig, options) => {
   // artifacts, we use it instead
   const fs = middleware.fileSystem;
 
-  if (dllPlugin.dlls === 'package.json') {
+  // Using the default DLL Plugin config, there is only one bundle to serve
+  if (!dllPlugin.dlls) {
     app.get('/react-boilerplate-dependencies.js', (req, res) => {
-      const file = require('fs').readFileSync(path.join(process.cwd(), 'app/dlls/react-boilerplate-dependencies.js')); // eslint-disable-line global-require
+      const file = readFile(path.join(process.cwd(), 'app/dlls/react-boilerplate-dependencies.js'));
       res.send(file.toString());
+    });
+  } else if (typeof dllPlugin.dlls === 'object') {
+    Object.keys(dllPlugin).forEach((dllName) => {
+      app.get(`/${dllName}.js`, (req, res) => {
+        const file = readFile(path.join(process.cwd(), `app/dlls/${dllName}.js`));
+        res.send(file.toString());
+      });
     });
   }
 

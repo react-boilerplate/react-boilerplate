@@ -97,9 +97,8 @@
     }
   },
   "dllPlugin": {
-    "dlls": "package.json",
-    "include": ["babel-polyfill","eventsource-polyfill","core-js"],
-    "exclude": ["express","chalk","compression","sanitize.css"]
+    "exclude": ["express","chalk","compression"],
+    "include": ["core-js", "eventsource-polyfill", "lodash"]
   },
   "dependencies": {
     "babel-polyfill": "^6.7.4",

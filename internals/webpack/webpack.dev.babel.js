@@ -64,25 +64,33 @@ module.exports = require('./webpack.base.babel')({
   // Emit a source map for easier debugging
   devtool: 'cheap-module-eval-source-map',
 });
+
 /**
- * Use the Webpack DLL Plugin if there is a dllPlugin key
- * on the project's package.json.
+ * Select which plugins to use to optimize the bundle's handling of
+ * third party dependencies.
  *
- * The advantage of the DLL Plugin over the CommonsChunkPlugin
- * is that you only need one Webpack configuration.
- * The disadvantage for large projects is that the 'commons' chunk
- * will be recompiled every time you run Webpack.
+ * If there is a dllPlugin key on the project's package.json, the
+ * Webpack DLL Plugin will be used.  Otherwise the CommonsChunkPlugin
+ * will be used.
+ *
  */
 function dependencyHandlers() {
   if (process.env.BUILDING_DLL) { return []; }
 
   const dllPlugin = require(path.resolve(process.cwd(), 'package.json')).dllPlugin; // eslint-disable-line global-require
 
+  // If the package.json does not have a dllPlugin property, use the CommonsChunkPlugin
   if (!dllPlugin) {
     return [new webpack.optimize.CommonsChunkPlugin('common.js')];
   }
 
-  if (dllPlugin.dlls === 'package.json') {
+  /**
+   * If dlls aren't explicitly defined, built a dependency manifest from the package.json
+   * Reminder: We need to exclude any server side dependencies by listing them dllConfig.exclude
+   *
+   * See docs/general/webpack.md
+   */
+  if (!dllPlugin.dlls) {
     const manifestPath = path.resolve(process.cwd(), 'app/dlls/react-boilerplate-dependencies-manifest.json');
 
     if (!fs.existsSync(manifestPath)) {

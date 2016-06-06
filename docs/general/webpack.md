@@ -42,13 +42,11 @@ Other dependencies which may not be listed in the project's package.json, can be
 ```
 {
   "dllPlugin": {
-    "dlls": "package.json",
-    "exclude": ["express","chalk","file-loader"],
-    "include": ["babel-polyfill", "core-js", "eventsource-polyfill"]
+    "exclude": ["express","chalk","compression"],
+    "include": ["core-js", "eventsource-polyfill", "lodash"]
   }
 }
 ```
-
 
 Using the `npm run analyse` script will give you a good idea of what exactly is part of your bundle.
 
