@@ -6,7 +6,7 @@ const ngrok = require('ngrok');
 
 const frontend = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
-const useTunnel = isDev && process.env.ENABLE_TUNNEL
+const useTunnel = isDev && process.env.ENABLE_TUNNEL;
 
 const app = express();
 
