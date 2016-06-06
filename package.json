@@ -6,8 +6,8 @@
     "type": "git",
     "url": "git://github.com/mxstbr/react-boilerplate.git"
   },
-  "engines": {
-    "npm": ">=3"
+  "engines" : {
+    "npm" : ">=3"
   },
   "author": "Max Stoiber",
   "license": "MIT",
@@ -51,9 +51,7 @@
     ],
     "env": {
       "production": {
-        "only": [
-          "app"
-        ],
+        "only": ["app"],
         "plugins": [
           "transform-react-remove-prop-types",
           "transform-react-constant-elements",
@@ -193,7 +191,7 @@
     "stylelint": "^6.3.3",
     "stylelint-config-standard": "^8.0.0",
     "url-loader": "^0.5.7",
-    "webpack": "^2.1.0-beta.6",
+    "webpack": "2.1.0-beta.8",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"
   }
