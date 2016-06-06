@@ -13,6 +13,14 @@ git history, installs the dependencies and initializes a new repository.
 gone forever. This is for your own safety, so you can't delete your project's
 history irreversibly by accident.
 
+## Development
+
+```Shell
+$ npm run start
+```
+
+Starts the development server running on `http://localhost:3000`
+
 ## Cleaning
 
 ```Shell
@@ -128,8 +136,6 @@ $ npm run start:tunnel
 ```
 Starts the development server and tunnels it with `ngrok`, making the website
 available on the entire world. Useful for testing on different devices in different locations!
-
-> Note: `$ npm start` aliases to this command.
 
 ### Performance testing
 
