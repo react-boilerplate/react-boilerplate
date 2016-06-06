@@ -18,15 +18,37 @@ By default, a DLL bundle is generated for all of the modules listed as dependenc
 
 ```
 {
+  "dependencies": {
+    "babel-polyfill": "^6.7.4",
+    "chalk": "^1.1.3",
+    "compression": "^1.6.1",
+    "express": "^4.13.4",
+    "file-loader": "^0.8.5",
+    "fontfaceobserver": "^1.7.1",
+    "history": "^2.1.0",
+    "immutable": "^3.8.1",
+    "react": "^15.0.1",
+    ...
+  }
+}
+```
+
+Certain production dependencies which don't belong in the browser bundle can be excluded by naming them in the `exclude` list. 
+
+Other dependencies which may not be listed in the project's package.json, can be explicitly included by naming them in the `include` list.  For example using `babel-polyfill` will include `core-js` and hot module reloading dependencies may also include `lodash`.  
+
+**Example:**
+
+```
+{
   "dllPlugin": {
     "dlls": "package.json",
-    "exclude": ["express","chalk"]
+    "exclude": ["express","chalk","file-loader"],
     "include": ["babel-polyfill", "core-js", "eventsource-polyfill"]
   }
 }
 ```
 
-Certain production dependencies which don't belong in the browser bundle can be excluded by naming them in the `exclude` list. Other dependencies which may not be listed in the project's package.json, can be explicitly included by naming them in the `include` list.  For example using `babel-polyfill` will include `core-js` and hot module reloading dependencies may also include `lodash`.  
 
 Using the `npm run analyse` script will give you a good idea of what exactly is part of your bundle.
 
