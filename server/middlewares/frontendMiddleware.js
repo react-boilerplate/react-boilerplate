@@ -1,16 +1,18 @@
 const express = require('express');
 const path = require('path');
+const readFile = require('fs').readFileSync;
 const compression = require('compression');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpack = require('webpack');
 
 // Dev middleware
-const addDevMiddlewares = (app, options) => {
-  const compiler = webpack(options);
+const addDevMiddlewares = (app, webpackConfig, options) => {
+  const dllPlugin = options.dllPlugin || {};
+  const compiler = webpack(webpackConfig);
   const middleware = webpackDevMiddleware(compiler, {
     noInfo: true,
-    publicPath: options.output.publicPath,
+    publicPath: webpackConfig.output.publicPath,
     silent: true,
     stats: 'errors-only',
   });
@@ -22,6 +24,15 @@ const addDevMiddlewares = (app, options) => {
   // artifacts, we use it instead
   const fs = middleware.fileSystem;
 
+  const dllNames = !dllPlugin.dlls ? ['reactBoilerplateDeps'] : Object.keys(dllPlugin.dlls);
+
+  dllNames.forEach((dllName) => {
+    app.get(`/${dllName}.js`, (req, res) => {
+      const file = readFile(path.join(process.cwd(), `app/dlls/${dllName}.js`));
+      res.send(file.toString());
+    });
+  });
+
   app.get('*', (req, res) => {
     const file = fs.readFileSync(path.join(compiler.outputPath, 'index.html'));
     res.send(file.toString());
@@ -29,28 +40,27 @@ const addDevMiddlewares = (app, options) => {
 };
 
 // Production middlewares
-const addProdMiddlewares = (app, options) => {
+const addProdMiddlewares = (app, webpackConfig) => {
   // compression middleware compresses your server responses which makes them
   // smaller (applies also to assets). You can read more about that technique
   // and other good practices on official Express.js docs http://mxs.is/googmy
   app.use(compression());
-  app.use(options.output.publicPath, express.static(options.output.path));
+  app.use(webpackConfig.output.publicPath, express.static(webpackConfig.output.path));
 
-  app.get('*', (req, res) => res.sendFile(path.join(options.output.path, 'index.html')));
+  app.get('*', (req, res) => res.sendFile(path.join(webpackConfig.output.path, 'index.html')));
 };
 
 /**
  * Front-end middleware
  */
-module.exports = (options) => {
+module.exports = (webpackConfig, options) => {
   const isProd = process.env.NODE_ENV === 'production';
-
   const app = express();
 
   if (isProd) {
-    addProdMiddlewares(app, options);
+    addProdMiddlewares(app, webpackConfig, options || {});
   } else {
-    addDevMiddlewares(app, options);
+    addDevMiddlewares(app, webpackConfig, options || {});
   }
 
   return app;

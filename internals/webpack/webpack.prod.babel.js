@@ -1,5 +1,7 @@
 // Important modules this config uses
 const path = require('path');
+const fs = require('fs');
+const cheerio = require('cheerio');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -40,6 +42,11 @@ module.exports = require('./webpack.base.babel')({
     }),
   ],
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      children: true,
+      minChunks: 2,
+      async: true
+    }),
 
     // OccurrenceOrderPlugin is needed for long-term caching to work properly.
     // See http://mxs.is/googmv
@@ -57,7 +64,7 @@ module.exports = require('./webpack.base.babel')({
 
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
-      template: 'app/index.html',
+      templateContent: templateFn(), // eslint-disable-line no-use-before-define
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -103,3 +110,12 @@ module.exports = require('./webpack.base.babel')({
     }),
   ],
 });
+
+function templateFn() {
+  const html = fs.readFileSync(
+    path.resolve(process.cwd(), 'app/index.html')
+  ).toString();
+  const doc = cheerio(html);
+  doc.find('script[data-dll]').remove();
+  return doc.toString();
+}
