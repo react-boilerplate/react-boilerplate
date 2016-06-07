@@ -23,8 +23,6 @@ body.fontLoaded {
 .wrapper {
   max-width: calc(768px + 16px * 2);
   margin: 0 auto;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   min-height: 100%;
   padding: 0 16px;
