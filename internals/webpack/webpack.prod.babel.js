@@ -1,7 +1,5 @@
 // Important modules this config uses
 const path = require('path');
-const fs = require('fs');
-const cheerio = require('cheerio');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -43,9 +41,10 @@ module.exports = require('./webpack.base.babel')({
   ],
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
       children: true,
       minChunks: 2,
-      async: true
+      async: true,
     }),
 
     // OccurrenceOrderPlugin is needed for long-term caching to work properly.
@@ -64,7 +63,7 @@ module.exports = require('./webpack.base.babel')({
 
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
-      templateContent: templateFn(), // eslint-disable-line no-use-before-define
+      template: 'app/index.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -110,12 +109,3 @@ module.exports = require('./webpack.base.babel')({
     }),
   ],
 });
-
-function templateFn() {
-  const html = fs.readFileSync(
-    path.resolve(process.cwd(), 'app/index.html')
-  ).toString();
-  const doc = cheerio(html);
-  doc.find('script[data-dll]').remove();
-  return doc.toString();
-}
