@@ -50,11 +50,7 @@
     "env": {
       "production": {
         "only": ["app"],
-        "plugins": [
-          "transform-react-remove-prop-types",
-          "transform-react-constant-elements",
-          "transform-react-inline-elements"
-        ]
+        "presets": ["react-optimize"]
       }
     }
   },
@@ -129,6 +125,7 @@
     "babel-preset-es2015-webpack": "^6.4.1",
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
     "chai-enzyme": "^0.4.2",
