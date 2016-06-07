@@ -6,12 +6,9 @@
     "type": "git",
     "url": "git://github.com/mxstbr/react-boilerplate.git"
   },
-<<<<<<< HEAD
-=======
   "engines": {
     "npm": ">=3"
   },
->>>>>>> 4f831628b8bfbae7598889898dc13938f52e9418
   "author": "Max Stoiber",
   "license": "MIT",
   "scripts": {
