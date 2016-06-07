@@ -6,8 +6,8 @@
     "type": "git",
     "url": "git://github.com/mxstbr/react-boilerplate.git"
   },
-  "engines" : {
-    "npm" : ">=3"
+  "engines": {
+    "npm": ">=3"
   },
   "author": "Max Stoiber",
   "license": "MIT",
@@ -28,10 +28,8 @@
     "generate": "plop --plopfile internals/generators/index.js",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint . --ignore-path .gitignore --ignore-pattern internals/scripts",
-    "lint:js:staged": "eslint-staged",
     "lint:css": "stylelint ./app/**/*.css",
-    "lint:css:staged": "stylelint-staged",
-    "lint:staged": "npm run lint:js:staged && npm run lint:css:staged",
+    "lint:staged": "lint-staged",
     "pretest": "npm run lint",
     "test": "cross-env NODE_ENV=test karma start internals/testing/karma.conf.js --single-run",
     "test:watch": "npm run test -- --auto-watch --no-single-run",
@@ -39,6 +37,10 @@
     "test:safari": "npm run test -- --browsers Safari",
     "test:ie": "npm run test -- --browsers IE",
     "coveralls": "cat ./coverage/lcov/lcov.info | coveralls"
+  },
+  "lint-staged": {
+    "eslint": "*.js",
+    "stylelint": "*.css"
   },
   "pre-commit": "lint:staged",
   "babel": {
@@ -49,7 +51,9 @@
     ],
     "env": {
       "production": {
-        "only": ["app"],
+        "only": [
+          "app"
+        ],
         "plugins": [
           "transform-react-remove-prop-types",
           "transform-react-constant-elements",
@@ -166,7 +170,7 @@
     "karma-safari-launcher": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
-    "lint-staged": "^0.2.1",
+    "lint-staged": "^1.0.0",
     "mocha": "^2.4.5",
     "ngrok": "2.1.8",
     "null-loader": "^0.1.1",
@@ -176,6 +180,7 @@
     "postcss-focus": "^1.0.0",
     "postcss-loader": "^0.9.1",
     "postcss-reporter": "^1.3.3",
+    "pre-commit": "^1.1.3",
     "psi": "^2.0.3",
     "rimraf": "^2.5.2",
     "shelljs": "^0.7.0",
