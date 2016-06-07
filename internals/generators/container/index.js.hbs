@@ -6,7 +6,9 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+{{#if wantActionsAndReducer}}
 import select{{properCase name}} from './selectors';
+{{/if}}
 {{#if wantCSS}}
 import styles from './styles.css';
 {{/if}}
@@ -25,7 +27,9 @@ export class {{ properCase name }} extends React.Component { // eslint-disable-l
   }
 }
 
+{{#if wantActionsAndReducer}}
 const mapStateToProps = select{{properCase name}}();
+{{/if}}
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -33,4 +37,8 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+{{#if wantActionsAndReducer}}
 export default connect(mapStateToProps, mapDispatchToProps)({{ properCase name }});
+{{else}}
+export default connect(mapDispatchToProps)({{ properCase name }});
+{{/if}}
