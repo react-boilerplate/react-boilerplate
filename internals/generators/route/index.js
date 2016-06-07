@@ -49,14 +49,14 @@ module.exports = {
       actions.push({
         type: 'modify',
         path: '../../app/routes.js',
-        pattern: /(\s{\n\s{6}path: '\*',)/g,
+        pattern: /(\s{\n\s{0,}path: '\*',)/g,
         templateFile: './route/routeWithReducer.hbs',
       });
     } else {
       actions.push({
         type: 'modify',
         path: '../../app/routes.js',
-        pattern: /(\s{\n\s{6}path: '\*',)/g,
+        pattern: /(\s{\n\s{0,}path: '\*',)/g,
         templateFile: './route/route.hbs',
       });
     }

@@ -39,7 +39,7 @@ export default defineMessages({
 });
 ```
 
-Below is the example `Footer` react component. Here we see the component including the `messages.js` file, which contains all the default component text, organized with ids (and optionally descriptions). We are also including the `FormattedMessage` which will display a given message from the `messages.js` file.
+Below is the example `Footer` component. Here we see the component including the `messages.js` file, which contains all the default component text, organized with ids (and optionally descriptions). We are also importing the `FormattedMessage` component, which will display a given message from the `messages.js` file in the selected language.
 
 You will also notice a more complex use of `FormattedMessage` for the author message where alternate or variable values (i.e. `author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,`) are being injected, in this case it's a react component.
 
@@ -75,3 +75,11 @@ function Footer() {
 
 export default Footer;
 ```
+
+## Removing i18n and react-intl
+
+You can remove `react-intl` modules by first removing the `IntlProvider` object from the `app/app.js` file and by either removing or not selecting the i18n text option during component scaffolding.
+
+The packages associated with `react-intl` are:
+ - react-intl
+ - babel-plugin-react-intl

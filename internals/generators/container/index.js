@@ -128,7 +128,7 @@ module.exports = {
       actions.push({ // Add the reducer to the reducer.js file
         type: 'modify',
         path: '../../app/reducers.js',
-        pattern: /(\.\.\.asyncReducers,\n {2}}\);)/gi,
+        pattern: /(\.\.\.asyncReducers,\n\s{0,}}\);)/gi,
         template: '{{camelCase name}}: {{camelCase name}}Reducer,\n    $1',
       });
       actions.push({
