@@ -3,11 +3,12 @@
 ## Table of Contents
 
 - [General](general)
-  - [**Commands**](general/commands.md)
-  - [Files](general/files.md)
-  - [Server Configurations](general/server-configs.md)
-  - [FAQ](general/faq.md)
-  - [Gotchas](general/gotchas.md)
+  - [**CLI Commands**](commands.md)
+  - [Tool Configuration](files.md)
+  - [Server Configurations](server-configs.md)
+  - [Deployment](deployment.md) *(currently Heroku specific)*
+  - [FAQ](faq.md)
+  - [Gotchas](gotchas.md)
 - [Testing](testing)
   - [Unit Testing](testing/unit-testing.md)
   - [Component Testing](testing/component-testing.md)
