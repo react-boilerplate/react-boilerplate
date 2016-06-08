@@ -5,8 +5,8 @@ const logger = require('./logger');
 
 const frontend = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
-const ngrok = isDev ? require('ngrok') : false
-const resolve = require('path').resolve
+const ngrok = isDev ? require('ngrok') : false;
+const resolve = require('path').resolve;
 
 const app = express();
 
