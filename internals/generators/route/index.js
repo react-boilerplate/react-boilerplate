@@ -14,15 +14,6 @@ function reducerExists(comp) {
   }
 }
 
-function compDirectory(comp) {
-  try {
-    fs.accessSync(`app/containers/${comp}`, fs.F_OK);
-    return 'containers';
-  } catch (e) {
-    return 'components';
-  }
-}
-
 module.exports = {
   description: 'Add a route',
   prompts: [{
@@ -54,7 +45,6 @@ module.exports = {
   // TODO smarter route adding
   actions: data => {
     const actions = [];
-    data.directory = compDirectory(data.component);
     if (reducerExists(data.component)) {
       actions.push({
         type: 'modify',
