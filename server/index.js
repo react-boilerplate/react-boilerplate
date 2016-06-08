@@ -5,11 +5,7 @@ const logger = require('./logger');
 
 const frontend = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
-<<<<<<< 84591d9edf0e1be29ca35609445744c03e88c37e
-const ngrok = isDev && process.env.USE_TUNNEL ? require('ngrok') : false;
-=======
-const ngrok = isDev ? require('ngrok') : false;
->>>>>>> Fix style mistakes
+const ngrok = isDev && process.env.ENABLE_TUNNEL ? require('ngrok') : false;
 const resolve = require('path').resolve;
 
 const app = express();
