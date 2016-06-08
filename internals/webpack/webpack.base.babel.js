@@ -46,12 +46,6 @@ module.exports = (options) => ({
     }],
   },
   plugins: options.plugins.concat([
-    new webpack.optimize.CommonsChunkPlugin('common.js'),
-    new webpack.ProvidePlugin({
-      // make fetch available
-      fetch: 'exports?self.fetch!whatwg-fetch',
-    }),
-
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
     // inside your code for any environment checks; UglifyJS will automatically
     // drop any unreachable code.
