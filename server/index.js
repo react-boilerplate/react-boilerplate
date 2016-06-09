@@ -20,7 +20,9 @@ const webpackConfig = isDev
 
 app.use(frontend(webpackConfig));
 
-const port = process.env.PORT || 3000;
+// get the intended port number, use port 3000 if not provided
+const intendedPort = process.argv[3] || 3000;
+const port = process.env.PORT || intendedPort;
 
 // Start your app.
 app.listen(port, (err) => {
