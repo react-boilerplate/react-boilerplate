@@ -7,7 +7,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import shallowCompare  from 'react-addons-shallow-compare';
+import shallowCompare from 'react-addons-shallow-compare';
 
 import { createSelector } from 'reselect';
 
