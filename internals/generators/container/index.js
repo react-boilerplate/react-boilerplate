@@ -30,6 +30,12 @@ module.exports = {
     message: 'Do you want an actions/constants/selectors/reducer tupel for this container?',
   }, {
     type: 'confirm',
+    name: 'wantStaticReducer',
+    default: false,
+    message: 'Do you want to register the reducer as static (i.e. statically imported)?',
+    when: (answers) => answers.wantActionsAndReducer,
+  }, {
+    type: 'confirm',
     name: 'wantSagas',
     default: true,
     message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
@@ -110,6 +116,10 @@ module.exports = {
         templateFile: './container/reducer.test.js.hbs',
         abortOnFail: true,
       });
+    }
+
+    // If they want a static reducer (i.e. statically imported), add it to the static reducers list
+    if (data.wantStaticReducer) {
       actions.push({ // Add the reducer to the reducer.js file
         type: 'modify',
         path: '../../app/reducers.js',
