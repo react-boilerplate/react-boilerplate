@@ -75,7 +75,7 @@ But wait... there's more!
 
   - *The best test setup:* Automatically guarantee code quality and non-breaking
     changes. (Seen a react app with 99% test coverage before?)
-  - *Native web app:* Your app's new home? The homescreen of your users' phones.
+  - *Native web app:* Your app's new home? The home screen of your users' phones.
   - *The fastest fonts:* Say goodbye to vacant text.
   - *Stay fast*: Profile your app's performance from the comfort of your command
     line!
