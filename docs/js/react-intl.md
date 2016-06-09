@@ -81,7 +81,7 @@ export default Footer;
 You can extract all i18n language within each component by running the following command:
 
 ```
-npm run extractIntl
+  npm run extractIntl
 ```
 
 This will extract all language into i18n JSON files in `app/translations`. This allows you to easily add and maintain multi-language support for your application. You can add additional languages by adding an empty generation slot in the `internals/scripts/extractIntl` script and then adding the additional language JSON in `app/i18n.js`.
