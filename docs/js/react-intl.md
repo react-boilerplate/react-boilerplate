@@ -1,7 +1,7 @@
 # `react-intl`
 
 `react-intl` is a library to manage internationalization and pluralization support
-for your application. International apps that scale need to support multiple languages. This involves support multi-language support for both the static text but also things like variable numbers, words or names that change with application state. `react-intl` provides an incredible amount of mature facility to preform these very tasks.
+for your react application. International apps that scale need to support multiple languages. This involves support multi-language support for both the static text but also things like variable numbers, words or names that change with application state. `react-intl` provides an incredible amount of mature facility to preform these very tasks.
 
 The complete `react-intl` docs can be found here:
 
@@ -75,6 +75,16 @@ function Footer() {
 
 export default Footer;
 ```
+
+## Extracting i18n JSON files
+
+You can extract all i18n language within each component by running the following command:
+
+```
+npm run extractIntl
+```
+
+This will extract all language into i18n JSON files in `app/translations`. This allows you to easily add and maintain multi-language support for your application. You can add additional languages by adding an empty generation slot in the `internals/scripts/extractIntl` script and then adding the additional language JSON in `app/i18n.js`.
 
 ## Removing i18n and react-intl
 
