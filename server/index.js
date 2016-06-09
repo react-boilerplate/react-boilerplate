@@ -22,7 +22,7 @@ app.use(frontend(webpackConfig));
 
 // get the intended port number, use port 3000 if not provided
 const intendedPort = process.argv[3] || 3000;
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || intendedPort;
 
 // Start your app.
 app.listen(port, (err) => {
