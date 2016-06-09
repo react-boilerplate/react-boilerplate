@@ -31,6 +31,7 @@ module.exports = (config) => {
     // make Webpack bundle generation quiet
     webpackMiddleware: {
       noInfo: true,
+      stats: 'errors-only',
     },
 
     customLaunchers: {
