@@ -30,6 +30,7 @@ const addDevMiddlewares = (app, options) => {
         res.send(file.toString());
       }
     });
+  });
 };
 
 // Production middlewares
