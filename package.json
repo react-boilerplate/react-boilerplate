@@ -28,11 +28,6 @@
     "generate": "plop --plopfile internals/generators/index.js",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint . --ignore-path .gitignore --ignore-pattern internals/scripts",
-    "lint:js:staged": "npm run lint:eslint:staged && npm run lint:jscs:staged",
-    "lint:eslint": "eslint . --ignore-path .gitignore",
-    "lint:eslint:staged": "eslint-staged",
-    "lint:jscs": "jscs .",
-    "lint:jscs:staged": "jscs-staged",
     "lint:css": "stylelint ./app/**/*.css",
     "lint:staged": "lint-staged",
     "pretest": "npm run lint",
@@ -112,21 +107,6 @@
       }
     }
   },
-  "jscsConfig": {
-    "preset": "airbnb",
-    "validateQuoteMarks": null,
-    "requireTrailingComma": null,
-    "maximumLineLength": null,
-    "maxErrors": null,
-    "requireCamelCaseOrUpperCaseIdentifiers": null,
-    "requireShorthandArrowFunctions": null,
-    "excludeFiles": [
-      "build/**",
-      "coverage/**",
-      "docs/**",
-      "node_modules/**"
-    ]
-  },
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {
@@ -203,7 +183,6 @@
     "ip": "^1.1.2",
     "isparta": "^4.0.0",
     "isparta-loader": "^2.0.0",
-    "jscs": "^2.11.0",
     "json-loader": "^0.5.4",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^1.0.1",
