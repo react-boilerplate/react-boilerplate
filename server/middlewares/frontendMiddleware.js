@@ -23,13 +23,8 @@ const addDevMiddlewares = (app, options) => {
   const fs = middleware.fileSystem;
 
   app.get('*', (req, res) => {
-    fs.readFile(path.join(compiler.outputPath, 'index.html'), (file, error) => {
-      if (error) {
-        res.sendStatus(404);
-      } else {
-        res.send(file.toString());
-      }
-    });
+    const file = fs.readFileSync(path.join(compiler.outputPath, 'index.html'));
+    res.send(file.toString());
   });
 };
 
