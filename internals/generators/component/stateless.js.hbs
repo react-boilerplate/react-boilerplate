@@ -13,7 +13,7 @@ import styles from './styles.css';
 function {{ properCase name }}() {
   return (
     {{#if wantCSS}}
-    <div className={ styles.{{ camelCase name }} }>
+    <div className={{curly true}}styles.{{ camelCase name }}{{curly}}>
     {{else}}
     <div>
     {{/if}}
