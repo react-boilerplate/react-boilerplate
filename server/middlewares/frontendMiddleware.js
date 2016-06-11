@@ -17,20 +17,6 @@ const addDevMiddlewares = (app, options) => {
 
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
-
-  // Since webpackDevMiddleware uses memory-fs internally to store build
-  // artifacts, we use it instead
-  const fs = middleware.fileSystem;
-
-  app.get('*', (req, res) => {
-    fs.readFile(path.join(compiler.outputPath, 'index.html'), (file, error) => {
-      if (error) {
-        res.sendStatus(404);
-      } else {
-        res.send(file.toString());
-      }
-    });
-  });
 };
 
 // Production middlewares
