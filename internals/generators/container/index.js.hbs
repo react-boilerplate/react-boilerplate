@@ -20,7 +20,7 @@ export class {{ properCase name }} extends React.Component { // eslint-disable-l
   render() {
     return (
       {{#if wantCSS}}
-      <div className={ styles.{{ camelCase name }} }>
+      <div className={{curly true}}styles.{{ camelCase name }}{{curly}}>
       {{else}}
       <div>
       {{/if}}

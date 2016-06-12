@@ -23,4 +23,5 @@ module.exports = (plop) => {
       return `components/${comp}`;
     }
   });
+  plop.addHelper('curly', (object, open) => (open ? '{' : '}'));
 };
