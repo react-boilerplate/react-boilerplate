@@ -1,12 +1,21 @@
-/* eslint no-unused-vars: 0 */
+/**
+ * i18n.js
+ *
+ * This will setup the i18n language files and locale data for your app.
+ *
+ */
 import { addLocaleData } from 'react-intl';
+
 import enLocaleData from 'react-intl/locale-data/en';
 import deLocaleData from 'react-intl/locale-data/de';
 
+export const appLocales = [
+  'en',
+  'de',
+];
+
 import enTranslationMessages from './translations/en.json';
 import deTranslationMessages from './translations/de.json';
-
-export const appLocales = ['en', 'de'];
 
 addLocaleData(enLocaleData);
 addLocaleData(deLocaleData);

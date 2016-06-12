@@ -22,7 +22,7 @@
   - [ImmutableJS](js/immutablejs.md)
   - [reselect](js/reselect.md)
   - [redux-saga](js/redux-saga.md)
-  - [react-intl](js/react-intl.md)
+  - [i18n](js/i18n.md)
   - [routing](js/routing.md)
 
 ## Overview
