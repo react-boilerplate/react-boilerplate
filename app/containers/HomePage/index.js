@@ -7,7 +7,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import shallowCompare from 'react-addons-shallow-compare';
 
 import { createSelector } from 'reselect';
 
@@ -42,11 +41,6 @@ export class HomePage extends React.Component {
       this.props.onSubmitForm();
     }
   }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
-
   /**
    * Changes the route
    *
