@@ -27,6 +27,7 @@
     "pagespeed": "node ./internals/scripts/pagespeed.js",
     "presetup": "npm i chalk",
     "setup": "node ./internals/scripts/setup.js",
+    "postsetup": "npm run build:dll",
     "clean": "shjs ./internals/scripts/clean.js",
     "generate": "plop --plopfile internals/generators/index.js",
     "lint": "npm run lint:js && npm run lint:css",
