@@ -124,13 +124,7 @@
 }
 
 @keyframes sk-circleFadeDelay {
-  0%,
-  39%,
-  100% {
-    opacity: 0;
-  }
-
-  40% {
-    opacity: 1;
-  }
+  0% { opacity: 0; }
+  100% { opacity: 0; }
+  40% { opacity: 1; }
 }
