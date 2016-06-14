@@ -1,13 +1,14 @@
 /* eslint consistent-return:0 */
 
-const express = require('express');
-const logger = require('./logger');
+import express from 'express';
+import logger from './logger';
+import minimist from 'minimist';
+import setup from './middlewares/frontendMiddleware';
+import { resolve } from 'path';
 
-const argv = require('minimist')(process.argv.slice(2));
-const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
+const argv = minimist(process.argv.slice(2));
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
-const resolve = require('path').resolve;
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
