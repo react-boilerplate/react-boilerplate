@@ -78,7 +78,7 @@ module.exports = (options) => ({
       '.jsx',
       '.react.js',
     ],
-    packageMains: [
+    mainFields: [
       'jsnext:main',
       'main',
     ],
