@@ -1,4 +1,5 @@
 const webpackConfig = require('../webpack/webpack.test.babel');
+const argv = require('minimist')(process.argv.slice(2));
 const path = require('path');
 
 module.exports = (config) => {
@@ -12,6 +13,12 @@ module.exports = (config) => {
 
     autoWatch: false,
     singleRun: true,
+
+    client: {
+      mocha: {
+        grep: argv.grep,
+      },
+    },
 
     files: [
       {
@@ -31,6 +38,7 @@ module.exports = (config) => {
     // make Webpack bundle generation quiet
     webpackMiddleware: {
       noInfo: true,
+      stats: 'errors-only',
     },
 
     customLaunchers: {

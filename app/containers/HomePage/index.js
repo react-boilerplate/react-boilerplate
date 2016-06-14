@@ -7,7 +7,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import { createSelector } from 'reselect';
 
@@ -42,9 +41,6 @@ export class HomePage extends React.Component {
       this.props.onSubmitForm();
     }
   }
-
-  shouldComponentUpdate = shouldPureComponentUpdate;
-
   /**
    * Changes the route
    *
