@@ -2,27 +2,28 @@
 
 const express = require('express');
 const logger = require('./logger');
-const ngrok = require('ngrok');
 
+const argv = require('minimist').parse(process.argv.slice(2));
 const frontend = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
-const useTunnel = isDev && process.env.ENABLE_TUNNEL;
+const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
+const resolve = require('path').resolve;
 
 const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
-// Initialize frontend middleware that will serve your JS app
-const webpackConfig = isDev
-  ? require('../internals/webpack/webpack.dev.babel')
-  : require('../internals/webpack/webpack.prod.babel');
-
-app.use(frontend(webpackConfig));
+// In production we need to pass these values in instead of relying on webpack
+app.use(
+ frontend({
+   outputPath: resolve(process.cwd(), 'build'),
+   publicPath: '/',
+ })
+);
 
 // get the intended port number, use port 3000 if not provided
-const intendedPort = process.argv[3] || 3000;
-const port = process.env.PORT || intendedPort;
+const port = argv.port || process.env.PORT || 3000;
 
 // Start your app.
 app.listen(port, (err) => {
@@ -31,7 +32,7 @@ app.listen(port, (err) => {
   }
 
   // Connect to ngrok in dev mode
-  if (isDev && useTunnel) {
+  if (ngrok) {
     ngrok.connect(port, (innerErr, url) => {
       if (innerErr) {
         return logger.error(innerErr);
