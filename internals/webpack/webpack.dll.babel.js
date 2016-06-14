@@ -8,69 +8,27 @@
  * the webpack process.
  */
 
-const { keys } = Object;
-const { resolve } = require('path');
-const pkg = require(resolve(process.cwd(), 'package.json'));
-
-if (!pkg.dllPlugin) {
-  throw new Error('Usage of the Webpack DLL plugin depends on a dllPlugin key being present in your package.json');
-}
-
-const pullAll = require('lodash/pullAll');
-const uniq = require('lodash/uniq');
+const { join } = require('path');
 const defaults = require('lodash/defaultsDeep');
 const webpack = require('webpack');
+const pkg = require(join(process.cwd(), 'package.json'));
+const dllPlugin = require('../config').dllPlugin;
 
-const outputPath = resolve(process.cwd(), 'app/dlls');
+if (!pkg.dllPlugin) { process.exit(0); }
 
-/**
- * @todo discuss best configuration UI
- */
-const dllPlugin = defaults(pkg.dllPlugin, {
-  /**
-   * Not all dependencies can be bundled
-  */
-  exclude: [
-    'express',
-    'chalk',
-    'compression',
-    'sanitize.css',
-  ],
-
-  /**
-   * Some additional dependencies which aren't
-   * in the production dependencies need to be bundled.
-   */
-  include: [
-    'babel-polyfill',
-    'eventsource-polyfill',
-    'core-js',
-  ],
-});
-
-if (dllPlugin.dlls && typeof dllPlugin.dlls !== 'object') {
-  throw new Error('The Webpack DLL Plugin configuration in your package.json must contain a dlls property.');
-}
-
-const dependencyNames = keys(pkg.dependencies);
-/**
- * Includes the package.json dependencies plus the module names
- * listed in the include / exclude list.
- */
-const entry = typeof dllPlugin.dlls === 'undefined' ?
-  { reactBoilerplateDeps: pullAll(uniq(dependencyNames.concat(dllPlugin.include)), dllPlugin.exclude) } :
-  dllPlugin.dlls;
+const dllConfig = defaults(pkg.dllPlugin, dllPlugin.defaults);
+const outputPath = join(process.cwd(), dllConfig.path);
 
 module.exports = {
   context: process.cwd(),
-  entry,
+  entry: dllConfig.dlls ? dllConfig.dlls : dllPlugin.entry(pkg),
   devtool: 'eval',
   output: {
-    filename: '[name].js',
+    filename: '[name].dll.js',
     path: outputPath,
     library: '[name]',
   },
   plugins: [
-    new webpack.DllPlugin({ name: '[name]', path: resolve(outputPath, '[name].json') }), // eslint-disable-line no-new
+    new webpack.DllPlugin({ name: '[name]', path: join(outputPath, '[name].json') }), // eslint-disable-line no-new
   ],
 };
