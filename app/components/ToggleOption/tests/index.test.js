@@ -19,6 +19,6 @@ describe('<ToggleOption />', () => {
         <ToggleOption value="en" message={message.enMessage} />
       </IntlProvider>
     );
-    expect(renderedComponent.contains(defaultEnMessage)).toEqual(true);
+    expect(renderedComponent.contains(<ToggleOption value="en" message={message.enMessage} />)).toEqual(true);
   });
 });

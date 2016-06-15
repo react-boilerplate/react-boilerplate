@@ -23,6 +23,6 @@ describe('<LocaleToggle />', () => {
         </LanguageProvider>
       </Provider>
     );
-    expect(renderedComponent.contains('en')).toEqual(true);
+    expect(renderedComponent.contains(<LocaleToggle />)).toEqual(true);
   });
 });

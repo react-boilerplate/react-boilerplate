@@ -30,6 +30,6 @@ describe('<LanguageProvider />', () => {
         </LanguageProvider>
       </Provider>
     );
-    expect(renderedComponent.contains('This is some default message')).toEqual(true);
+    expect(renderedComponent.contains(<FormattedMessage {...messages.someMessage} />)).toEqual(true);
   });
 });
