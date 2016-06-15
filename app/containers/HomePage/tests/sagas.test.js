@@ -73,13 +73,13 @@ describe('githubDataSaga Saga', () => {
   let forkDescriptor;
 
   it('should asyncronously fork getReposWatcher saga', () => {
-    forkDescriptor = githubDataSaga.next().value;
-    expect(forkDescriptor).toEqual(fork(getReposWatcher));
+    forkDescriptor = githubDataSaga.next();
+    expect(forkDescriptor.value).toEqual(fork(getReposWatcher));
   });
 
   it('should yield until LOCATION_CHANGE action', () => {
-    forkDescriptor = githubDataSaga.next();
-    expect(forkDescriptor.value).toEqual(take(LOCATION_CHANGE));
+    const takeDescriptor = githubDataSaga.next();
+    expect(takeDescriptor.value).toEqual(take(LOCATION_CHANGE));
   });
 
   it('should finally cancel() the forked getReposWatcher saga',
