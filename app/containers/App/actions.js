@@ -22,7 +22,7 @@ import {
 } from './constants';
 
 /**
- * Load the repositories, this action starts the getGithubData saga
+ * Load the repositories, this action starts the request saga
  *
  * @return {object} An action object with a type of LOAD_REPOS
  */
@@ -33,7 +33,7 @@ export function loadRepos() {
 }
 
 /**
- * Dispatched when the repositories are loaded by the getGithubData saga
+ * Dispatched when the repositories are loaded by the request saga
  *
  * @param  {array} repos The repository data
  * @param  {string} username The current username

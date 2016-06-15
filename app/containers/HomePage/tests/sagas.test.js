@@ -1,5 +1,5 @@
 /**
- * Test the getGithubData saga
+ * Tests for HomePage sagas
  */
 
 import expect from 'expect';
