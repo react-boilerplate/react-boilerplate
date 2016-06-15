@@ -24,7 +24,6 @@ describe('<Toggle />', () => {
         <Toggle values={['en', 'de']} messages={messages} />
       </IntlProvider>
     );
-    console.log('LOC', renderedComponent.find('en'));
-    expect(renderedComponent.contains(<option value="en" />)).toEqual(true);
+    expect(renderedComponent.contains(<Toggle values={['en', 'de']} messages={messages} />)).toEqual(true);
   });
 });

@@ -12,11 +12,15 @@
   "author": "Max Stoiber",
   "license": "MIT",
   "scripts": {
-    "prebuild": "npm run test && npm run build:clean",
-    "build:clean": "rimraf ./build/*",
-    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p",
     "analyze": "node ./internals/scripts/analyze.js",
     "extractIntl": "babel-node --presets es2015 -- ./internals/scripts/extractIntl.js",
+    "npmcheckversion": "node ./internals/scripts/npmcheckversion.js",
+    "preinstall": "npm run npmcheckversion",
+    "postinstall": "npm run build:dll",
+    "prebuild": "npm run test && npm run build:clean",
+    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p",
+    "build:clean": "rimraf ./build/*",
+    "build:dll": "node ./internals/scripts/dependencies.js",
     "start": "cross-env NODE_ENV=development node server",
     "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "start:production": "npm run build && npm run start:prod",
@@ -24,6 +28,7 @@
     "pagespeed": "node ./internals/scripts/pagespeed.js",
     "presetup": "npm i chalk",
     "setup": "node ./internals/scripts/setup.js",
+    "postsetup": "npm run build:dll",
     "clean": "shjs ./internals/scripts/clean.js",
     "generate": "plop --plopfile internals/generators/index.js",
     "lint": "npm run lint:js && npm run lint:css",
@@ -119,6 +124,23 @@
       "indentation": 2
     }
   },
+  "dllPlugin": {
+    "path": "node_modules/react-boilerplate-dlls",
+    "exclude": [
+      "chalk",
+      "compression",
+      "cross-env",
+      "express",
+      "ip",
+      "minimist",
+      "sanitize.css"
+    ],
+    "include": [
+      "core-js",
+      "lodash",
+      "eventsource-polyfill"
+    ]
+  },
   "dependencies": {
     "babel-polyfill": "^6.7.4",
     "chalk": "^1.1.3",
@@ -128,8 +150,9 @@
     "history": "^2.1.0",
     "immutable": "^3.8.1",
     "intl": "^1.2.4",
+    "ip": "^1.1.2",
+    "minimist": "^1.2.0",
     "react": "^15.0.1",
-    "react-addons-shallow-compare": "^15.1.0",
     "react-dom": "^15.0.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.3.0",
@@ -179,6 +202,7 @@
     "file-loader": "^0.8.5",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.16.0",
+    "image-webpack-loader": "^1.8.0",
     "imports-loader": "^0.6.5",
     "ip": "^1.1.2",
     "isparta": "^4.0.0",
@@ -195,6 +219,8 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "lint-staged": "^1.0.0",
+    "lodash": "^4.13.1",
+    "minimist": "^1.2.0",
     "mocha": "^2.4.5",
     "ngrok": "2.1.8",
     "null-loader": "^0.1.1",
@@ -213,7 +239,7 @@
     "stylelint": "^6.3.3",
     "stylelint-config-standard": "^8.0.0",
     "url-loader": "^0.5.7",
-    "webpack": "^2.1.0-beta.6",
+    "webpack": "2.1.0-beta.13",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"
   }

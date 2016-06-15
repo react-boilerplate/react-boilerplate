@@ -18,8 +18,11 @@ import { Provider } from 'react-redux';
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import useScroll from 'react-router-scroll';
-import { IntlProvider } from 'react-intl';
+import { LanguageProvider } from 'containers/LanguageProvider';
 import configureStore from './store';
+
+// Import i18n messages
+import { translationMessages } from './i18n';
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import 'sanitize.css/lib/sanitize.css';
@@ -49,31 +52,17 @@ const rootRoute = {
 
 ReactDOM.render(
   <Provider store={store}>
-    <IntlProvider locale="en">
+    <LanguageProvider messages={translationMessages}>
       <Router
         history={history}
         routes={rootRoute}
         render={
           // Scroll to top when going to a new page, imitating default browser
           // behaviour
-          applyRouterMiddleware(
-            useScroll(
-              (prevProps, props) => {
-                if (!prevProps || !props) {
-                  return true;
-                }
-
-                if (prevProps.location.pathname !== props.location.pathname) {
-                  return [0, 0];
-                }
-
-                return true;
-              }
-            )
-          )
+          applyRouterMiddleware(useScroll())
         }
       />
-    </IntlProvider>
+    </LanguageProvider>
   </Provider>,
   document.getElementById('app')
 );

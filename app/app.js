@@ -38,6 +38,9 @@ openSansObserver.check().then(() => {
   document.body.classList.remove(styles.fontLoaded);
 });
 
+// Import i18n messages
+import { translationMessages } from './i18n';
+
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
 // Optionally, this could be changed to leverage a created history
@@ -64,7 +67,7 @@ const rootRoute = {
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-      <LanguageProvider>
+      <LanguageProvider messages={translationMessages}>
         <Router
           history={history}
           routes={rootRoute}
