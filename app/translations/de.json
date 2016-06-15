@@ -1,5 +1,15 @@
 [
   {
+    "id": "app.components.LocaleToggle.de",
+    "defaultMessage": "de",
+    "message": ""
+  },
+  {
+    "id": "app.components.LocaleToggle.en",
+    "defaultMessage": "en",
+    "message": ""
+  },
+  {
     "id": "boilerplate.components.Footer.author.message",
     "defaultMessage": "Made with love by {author}.",
     "message": ""

@@ -17,15 +17,14 @@ import 'file?name=[name].[ext]!./.htaccess';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { IntlProvider } from 'react-intl';
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import useScroll from 'react-router-scroll';
 import configureStore from './store';
 
-// Import i18n messages
-import { translationMessages } from './i18n';
+// Import Language Provider
+import LanguageProvider from 'containers/LanguageProvider';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -65,7 +64,7 @@ const rootRoute = {
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-      <IntlProvider locale="en" messages={translationMessages.en}>
+      <LanguageProvider>
         <Router
           history={history}
           routes={rootRoute}
@@ -75,7 +74,7 @@ const render = () => {
             applyRouterMiddleware(useScroll())
           }
         />
-      </IntlProvider>
+      </LanguageProvider>
     </Provider>,
     document.getElementById('app')
   );

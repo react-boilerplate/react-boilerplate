@@ -15,12 +15,14 @@ import Img from 'components/Img';
 import Footer from 'components/Footer';
 import Banner from './banner-metal.jpg';
 import A from 'components/A';
+import LocaleToggle from 'containers/LocaleToggle';
 
 import styles from './styles.css';
 
 function App(props) {
   return (
     <div className={styles.wrapper}>
+      <LocaleToggle />
       <A className={styles.logoWrapper} href="https://twitter.com/mxstbr">
         <Img className={styles.logo} src={Banner} alt="react-boilerplate - Logo" />
       </A>
