@@ -5,19 +5,18 @@
 */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';  // eslint-disable-line import/no-unresolved
+import { injectIntl, intlShape } from 'react-intl';
 
-function ToggleOption(props) {
-  return (
-    <option value={props.value}>
-      <FormattedMessage {...props.message} />
-    </option>
-  );
-}
+const ToggleOption = ({ value, message, intl }) => (
+  <option value={value}>
+    {intl.formatMessage(message)}
+  </option>
+);
 
 ToggleOption.propTypes = {
   value: React.PropTypes.string.isRequired,
   message: React.PropTypes.object.isRequired,
+  intl: intlShape.isRequired,
 };
 
-export default ToggleOption;
+export default injectIntl(ToggleOption);
