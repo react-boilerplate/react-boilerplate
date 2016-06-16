@@ -68,5 +68,6 @@ function deleteFileInCurrentDir(file, callback) {
  * Installs dependencies
  */
 function installDeps(callback) {
-  exec('npm install', addCheckMark.bind(null, callback));
+  var npmBin = process.env.npm_execpath;
+  exec(npmBin + ' install', addCheckMark.bind(null, callback));
 }
