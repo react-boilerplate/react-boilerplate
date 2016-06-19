@@ -12,7 +12,7 @@ function A(props) {
       className={
         props.className || styles.link
       }
-      { ...props }
+      {...props}
     />
   );
 }
