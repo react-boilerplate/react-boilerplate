@@ -107,13 +107,13 @@ For a thorough explanation of the testing procedure, see the
 
 #### Performance testing
 
-With the production server running (i.e. while `$ npm run serve` is running in
+With the production server running (i.e. while `$ npm run start:production` is running in
 another tab), enter `$ npm run pagespeed` to run Google PageSpeed Insights and
 get a performance check right in your terminal!
 
 #### Browser testing
 
-`$ npm run serve` makes your locally-running app globally available on the web
+`$ npm run start:tunnel` makes your locally-running app globally available on the web
 via a temporary URL: great for testing on different devices, client demos, etc!
 
 #### Unit testing
