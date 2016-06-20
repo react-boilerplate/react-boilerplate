@@ -36,7 +36,10 @@ module.exports = (options) => ({
       loader: 'file-loader',
     }, {
       test: /\.(jpg|png|gif)$/,
-      loader: 'file-loader',
+      loaders: [
+        'file-loader',
+        'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
+      ],
     }, {
       test: /\.html$/,
       loader: 'html-loader',
@@ -44,15 +47,11 @@ module.exports = (options) => ({
       test: /\.json$/,
       loader: 'json-loader',
     }, {
-      test: /\.mp4$/,
-      loader: 'url?limit=10000&mimetype=video/mp4',
-    }, {
-      test: /\.webm$/,
-      loader: 'url?limit=10000&mimetype=video/webm',
+      test: /\.(mp4|webm)$/,
+      loader: 'url-loader?limit=10000',
     }],
   },
   plugins: options.plugins.concat([
-    new webpack.optimize.CommonsChunkPlugin('common.js'),
     new webpack.ProvidePlugin({
       // make fetch available
       fetch: 'exports?self.fetch!whatwg-fetch',

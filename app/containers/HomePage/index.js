@@ -7,9 +7,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import shallowCompare from 'react-addons-shallow-compare';
 
-import { createSelector } from 'reselect';
+import { createStructuredSelector } from 'reselect';
 
 import {
   selectRepos,
@@ -42,11 +41,6 @@ export class HomePage extends React.Component {
       this.props.onSubmitForm();
     }
   }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
-
   /**
    * Changes the route
    *
@@ -142,11 +136,12 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+const mapStateToProps = createStructuredSelector({
+  repos: selectRepos(),
+  username: selectUsername(),
+  loading: selectLoading(),
+  error: selectError(),
+});
+
 // Wrap the component to inject dispatch and state into it
-export default connect(createSelector(
-  selectRepos(),
-  selectUsername(),
-  selectLoading(),
-  selectError(),
-  (repos, username, loading, error) => ({ repos, username, loading, error })
-), mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
