@@ -8,7 +8,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
-import { createSelector } from 'reselect';
+import { createStructuredSelector } from 'reselect';
 
 import {
   selectRepos,
@@ -136,11 +136,12 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+const mapStateToProps = createStructuredSelector({
+  repos: selectRepos(),
+  username: selectUsername(),
+  loading: selectLoading(),
+  error: selectError(),
+});
+
 // Wrap the component to inject dispatch and state into it
-export default connect(createSelector(
-  selectRepos(),
-  selectUsername(),
-  selectLoading(),
-  selectError(),
-  (repos, username, loading, error) => ({ repos, username, loading, error })
-), mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

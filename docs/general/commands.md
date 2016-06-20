@@ -68,9 +68,9 @@ minified and served gzipped.
 
 ### Port
 
-To change the port the app is accessible at pass the `-p` option to the command
+To change the port the app is accessible at pass the `--port` option to the command
 with `--`. E.g. to make the app visible at `localhost:5000`, run the following:
-`$ npm start -- -p 5000`
+`$ npm start -- --port 5000`
 
 ## Building
 
