@@ -85,6 +85,8 @@ But wait... there's more!
   - *Catch problems:* AppVeyor and TravisCI setups included by default, so your
     tests get run automatically on Windows and Unix.
 
+There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on how to structure your React.js apps with scalability in mind. It provides rationale for the majority of boilerplate's design decisions.
+
 <sub><i>Keywords: React.js, Redux, Hot Reloading, ESNext, Babel, PostCSS, Autoprefixer, react-router, Offline First, ServiceWorker, CSS Modules, redux-saga, FontFaceObserver, PageSpeed Insights</i></sub>
 
 ## Quick start
@@ -105,14 +107,22 @@ Now you're ready to rumble!
 - [Your app](docs/js): Supercharging your app with Routing, Redux, simple
   asynchronicity helpers, etc.
 
-## License
+## Supporters
 
-This project is licensed under the MIT license, Copyright (c) 2016 Maximilian
-Stoiber. For more information see `LICENSE.md`.
+This project would not be possible without the support by these amazing folks. [**Become a sponsor**](https://opencollective.com/react-boilerplate) to get your company in front of thousands of engaged react developers and help us out!
 
-## Backers
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/0/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/1/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/2/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/3/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/4/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/5/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/6/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/7/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/8/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/9/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/9/avatar.svg"></a>
 
-Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/react-boilerplate#backer)]
+----
 
 <a href="https://opencollective.com/react-boilerplate/backer/0/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/0/avatar.svg"></a>
 <a href="https://opencollective.com/react-boilerplate/backer/1/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/1/avatar.svg"></a>
@@ -124,64 +134,9 @@ Support us with a monthly donation and help us continue our activities. [[Become
 <a href="https://opencollective.com/react-boilerplate/backer/7/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/7/avatar.svg"></a>
 <a href="https://opencollective.com/react-boilerplate/backer/8/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/8/avatar.svg"></a>
 <a href="https://opencollective.com/react-boilerplate/backer/9/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/9/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/10/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/10/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/11/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/11/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/12/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/12/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/13/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/13/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/14/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/14/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/15/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/15/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/16/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/16/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/17/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/17/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/18/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/18/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/19/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/19/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/20/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/20/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/21/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/21/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/22/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/22/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/23/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/23/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/24/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/24/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/25/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/25/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/26/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/26/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/27/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/27/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/28/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/28/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/backer/29/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/29/avatar.svg"></a>
 
 
-## Sponsors
+## License
 
-Become a sponsor and get your logo on our website  and on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/react-boilerplate#sponsor)]
-
-<a href="https://opencollective.com/react-boilerplate/sponsor/0/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/1/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/2/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/3/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/4/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/5/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/6/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/7/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/8/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/9/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/9/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/10/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/10/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/11/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/11/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/12/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/12/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/13/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/13/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/14/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/14/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/15/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/15/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/16/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/16/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/17/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/17/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/18/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/18/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/19/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/19/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/20/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/20/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/21/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/21/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/22/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/22/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/23/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/23/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/24/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/24/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/25/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/25/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/26/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/26/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/27/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/27/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/28/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/28/avatar.svg"></a>
-<a href="https://opencollective.com/react-boilerplate/sponsor/29/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/sponsor/29/avatar.svg"></a>
-
-
-This project is a labor of love. I ([Max](https://twitter.com/mxstbr)) have
-spent a lot of time building and maintaining react-boilerplate, and if you're
-using it I'd be immensely grateful for [a donation](https://cash.me/$mxstbr).
+This project is licensed under the MIT license, Copyright (c) 2016 Maximilian
+Stoiber. For more information see `LICENSE.md`.

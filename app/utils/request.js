@@ -14,7 +14,7 @@ function parseJSON(response) {
 /**
  * Checks if a network request came back fine, and throws an error if not
  *
- * @param  {objct} response   A response from a network request
+ * @param  {object} response   A response from a network request
  *
  * @return {object|undefined} Returns either the response, or throws an error
  */

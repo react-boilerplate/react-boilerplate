@@ -4,6 +4,7 @@ import messages from './messages';
 import A from 'components/A';
 import styles from './styles.css';
 import { FormattedMessage } from 'react-intl';
+import LocaleToggle from 'containers/LocaleToggle';
 
 function Footer() {
   return (
@@ -12,6 +13,9 @@ function Footer() {
         <p>
           <FormattedMessage {...messages.licenseMessage} />
         </p>
+      </section>
+      <section>
+        <LocaleToggle />
       </section>
       <section>
         <p>
