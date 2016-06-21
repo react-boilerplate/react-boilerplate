@@ -37,8 +37,8 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
-  options.credentials = 'same-origin';
-  return fetch(url, options)
+  const decoratedOptions = { credentials: 'same-origin', ...options };
+  return fetch(url, decoratedOptions)
     .then(checkStatus)
     .then(parseJSON)
     .then((data) => ({ data }))
