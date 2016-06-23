@@ -1,6 +1,6 @@
 # `sanitize.css`
 
-Sanitize.css is a PostCSS plugin that makes browsers render elements more in
+Sanitize.css makes browsers render elements more in
 line with developer expectations (e.g. having the box model set to a cascading
 `box-sizing: border-box`) and preferences (its defaults can be individually
 overridden).
