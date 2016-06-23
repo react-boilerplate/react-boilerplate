@@ -1,0 +1,152 @@
+[
+  {
+    "id": "app.components.LocaleToggle.de",
+    "defaultMessage": "de",
+    "message": ""
+  },
+  {
+    "id": "app.components.LocaleToggle.en",
+    "defaultMessage": "en",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.components.Footer.author.message",
+    "defaultMessage": "Made with love by {author}.",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.components.Footer.license.message",
+    "defaultMessage": "This project is licensed under the MIT license.",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.css.header",
+    "defaultMessage": "Features",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.css.message",
+    "defaultMessage": "Next generation CSS",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.feedback.header",
+    "defaultMessage": "Instant feedback",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.feedback.message",
+    "defaultMessage": "Enjoy the best DX and code your app at the speed of thought! Your\n    saved changes to the CSS and JS are reflected instantaneously\n    without refreshing the page. Preserve application state even when\n    you update something in the underlying code!",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.header",
+    "defaultMessage": "Features",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.home",
+    "defaultMessage": "Home",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.internationalization.header",
+    "defaultMessage": "Complete i18n Standard Internationalization & Pluralization",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.internationalization.message",
+    "defaultMessage": "The web is global. Multilanguage and pluralization support is critical for web apps to scale.",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.javascript.header",
+    "defaultMessage": "Next generation JavaScript",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.javascript.message",
+    "defaultMessage": "Use template strings, object destructuring, arrow functions, JSX\n    syntax and more, today.",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.network.header",
+    "defaultMessage": "Offline-first",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.network.message",
+    "defaultMessage": "The next frontier in performant web apps: availability without a\n      network connection from the instant your users load the app.",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.routing.header",
+    "defaultMessage": "Write composable CSS that's co-located with your components for\n    complete modularity. Unique generated class names keep the\n    specificity low while eliminating style clashes. Ship only the\n    styles that are on the page for the best performance.",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.routing.message",
+    "defaultMessage": "Industry-standard routing",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.scaffolding.header",
+    "defaultMessage": "Quick scaffolding",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.scaffolding.message",
+    "defaultMessage": "Automate the creation of components, containers, routes, selectors\n  and sagas - and their tests - right from the CLI!",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.state_management.header",
+    "defaultMessage": "Predictable state management",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.FeaturePage.state_management.message",
+    "defaultMessage": "Unidirectional data flow allows for change logging and time travel\n    debugging.",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.HomePage.features.Button",
+    "defaultMessage": "Features",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.HomePage.start_project.header",
+    "defaultMessage": "Start your next react project in seconds",
+    "message": "Beginnen Sie Ihren nächsten reagieren Projekt in Sekunden"
+  },
+  {
+    "id": "boilerplate.containers.HomePage.start_project.message",
+    "defaultMessage": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.HomePage.tryme.atPrefix",
+    "defaultMessage": "@",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.HomePage.tryme.header",
+    "defaultMessage": "Try me!",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.HomePage.tryme.message",
+    "defaultMessage": "Show Github repositories by",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.NotFoundPage.header",
+    "defaultMessage": "Page not found.",
+    "message": ""
+  },
+  {
+    "id": "boilerplate.containers.NotFoundPage.home",
+    "defaultMessage": "Home",
+    "message": ""
+  }
+]

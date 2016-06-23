@@ -1,3 +1,4 @@
+/*eslint-disable*/
 require('shelljs/global');
 
 /**
@@ -29,8 +30,36 @@ mkdir('app/containers/App');
 mkdir('app/containers/NotFoundPage');
 mkdir('app/containers/HomePage');
 cp('internals/templates/appContainer.js', 'app/containers/App/index.js');
+cp('internals/templates/notFoundPage/notFoundPage.js', 'app/containers/NotFoundPage/index.js');
+cp('internals/templates/notFoundPage/notFoundPageMessages.js', 'app/containers/NotFoundPage/messages.js');
+cp('internals/templates/homePage/homePage.js', 'app/containers/HomePage/index.js');
+cp('internals/templates/homePage/messages.js', 'app/containers/HomePage/messages.js');
 cp('internals/templates/notFoundPage.js', 'app/containers/NotFoundPage/index.js');
 cp('internals/templates/homePage.js', 'app/containers/HomePage/index.js');
+
+// Handle Translations
+mkdir('app/translations');
+cp('internals/templates/translations/en.json',
+  'app/translations/en.json');
+
+// move i18n file
+cp('internals/templates/i18n.js',
+  'app/i18n.js');
+
+// Copy LanguageProvider
+mkdir('app/containers/LanguageProvider');
+mkdir('app/containers/LanguageProvider/tests');
+cp('internals/templates/LanguageProvider/actions.js',
+  'app/containers/LanguageProvider/actions.js');
+cp('internals/templates/LanguageProvider/constants.js',
+  'app/containers/LanguageProvider/constants.js');
+cp('internals/templates/LanguageProvider/languageProvider.js',
+  'app/containers/LanguageProvider/index.js');
+cp('internals/templates/LanguageProvider/reducer.js',
+  'app/containers/LanguageProvider/reducer.js');
+cp('internals/templates/LanguageProvider/selectors.js',
+  'app/containers/LanguageProvider/selectors.js');
+
 
 // Copy selectors
 mkdir('app/containers/App/tests');

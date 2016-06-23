@@ -67,6 +67,9 @@
   <dt>Industry-standard routing</dt>
   <dd>It's natural to want to add pages (e.g. `/about`) to your application, and routing makes this possible.</dd>
 
+  <dt>Industry-standard i18n internationalization support</dt>
+  <dd>Scalable apps need to support multiple languages, easily add and support multiple languages with `react-intl`.</dd>
+
   <dt>Offline-first</dt>
   <dd>The next frontier in performant web apps: availability without a network connection from the instant your users load the app.</dd>
 </dl>
