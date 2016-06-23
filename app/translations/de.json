@@ -12,12 +12,12 @@
   {
     "id": "boilerplate.components.Footer.author.message",
     "defaultMessage": "Made with love by {author}.",
-    "message": ""
+    "message": "Mit Liebe gemacht von {author}."
   },
   {
     "id": "boilerplate.components.Footer.license.message",
     "defaultMessage": "This project is licensed under the MIT license.",
-    "message": ""
+    "message": "Dieses Projekt wird unter der MIT-Lizenz veröffentlicht."
   },
   {
     "id": "boilerplate.containers.FeaturePage.css.header",
@@ -27,17 +27,17 @@
   {
     "id": "boilerplate.containers.FeaturePage.css.message",
     "defaultMessage": "Next generation CSS",
-    "message": ""
+    "message": "Die nächste Generation von CSS"
   },
   {
     "id": "boilerplate.containers.FeaturePage.feedback.header",
     "defaultMessage": "Instant feedback",
-    "message": ""
+    "message": "Sofortiges Feedback"
   },
   {
     "id": "boilerplate.containers.FeaturePage.feedback.message",
     "defaultMessage": "Enjoy the best DX and code your app at the speed of thought! Your\n    saved changes to the CSS and JS are reflected instantaneously\n    without refreshing the page. Preserve application state even when\n    you update something in the underlying code!",
-    "message": ""
+    "message": "Genießen Sie die beste Entwicklungserfahrung und programmieren Sie Ihre App so schnell wie noch nie! Ihre Änderungen an dem CSS und JavaScript sind sofort reflektiert, ohne die Seite aktualisieren zu müssen. So bleibt der Anwendungszustand bestehen, auch wenn Sie etwas in dem darunter liegenden Code aktualisieren!"
   },
   {
     "id": "boilerplate.containers.FeaturePage.header",
@@ -52,22 +52,22 @@
   {
     "id": "boilerplate.containers.FeaturePage.internationalization.header",
     "defaultMessage": "Complete i18n Standard Internationalization & Pluralization",
-    "message": ""
+    "message": "Komplette i18n Standard-Internationalisierung und Pluralisierung"
   },
   {
     "id": "boilerplate.containers.FeaturePage.internationalization.message",
     "defaultMessage": "The web is global. Multilanguage and pluralization support is critical for web apps to scale.",
-    "message": ""
+    "message": "Das Internet ist global. Mehrsprachige- und Pluralisierungsunterstützung ist entscheidend für große Web-Anwendungen."
   },
   {
     "id": "boilerplate.containers.FeaturePage.javascript.header",
     "defaultMessage": "Next generation JavaScript",
-    "message": ""
+    "message": "Die nächste Generation von JavaScript"
   },
   {
     "id": "boilerplate.containers.FeaturePage.javascript.message",
     "defaultMessage": "Use template strings, object destructuring, arrow functions, JSX\n    syntax and more, today.",
-    "message": ""
+    "message": "Benutzen Sie ES6 template strings, object destructuring, arrow functions, JSX syntax und mehr, heute."
   },
   {
     "id": "boilerplate.containers.FeaturePage.network.header",
@@ -77,37 +77,37 @@
   {
     "id": "boilerplate.containers.FeaturePage.network.message",
     "defaultMessage": "The next frontier in performant web apps: availability without a\n      network connection from the instant your users load the app.",
-    "message": ""
+    "message": "Die nächste Schwelle für performanten Web-Anwendungen: Verfügbarkeit ohne Netzwerkverbindung wenn Ihre Benutzer die App einmal heruntergeladen haben."
   },
   {
     "id": "boilerplate.containers.FeaturePage.routing.header",
     "defaultMessage": "Write composable CSS that's co-located with your components for\n    complete modularity. Unique generated class names keep the\n    specificity low while eliminating style clashes. Ship only the\n    styles that are on the page for the best performance.",
-    "message": ""
+    "message": "Schreiben Sie CSS, das am selben Ort wie ihre Komponenten ist. Deterministisch generierte, einzigartige Klassennamen halten die Spezifität niedrig während styling Konflikte vermieden werden. Senden Sie nur das CSS an ihre Benutzer welches dann wirklich sichtbar ist für die schnellste Performance!"
   },
   {
     "id": "boilerplate.containers.FeaturePage.routing.message",
     "defaultMessage": "Industry-standard routing",
-    "message": ""
+    "message": "Standard Routing"
   },
   {
     "id": "boilerplate.containers.FeaturePage.scaffolding.header",
     "defaultMessage": "Quick scaffolding",
-    "message": ""
+    "message": "Schnelles Scaffolding"
   },
   {
     "id": "boilerplate.containers.FeaturePage.scaffolding.message",
     "defaultMessage": "Automate the creation of components, containers, routes, selectors\n  and sagas - and their tests - right from the CLI!",
-    "message": ""
+    "message": "Automatisieren Sie die Kreation von Komponenten, Containern, Routen, Selektoren und Sagas – und ihre Tests – direkt von dem Terminal!"
   },
   {
     "id": "boilerplate.containers.FeaturePage.state_management.header",
     "defaultMessage": "Predictable state management",
-    "message": ""
+    "message": "Berechenbare Stateverwaltung"
   },
   {
     "id": "boilerplate.containers.FeaturePage.state_management.message",
     "defaultMessage": "Unidirectional data flow allows for change logging and time travel\n    debugging.",
-    "message": ""
+    "message": "Unidirectional data flow erlaubt uns alle Änderungen ihrer Applikation zu loggen und time travel debugging einzusetzen."
   },
   {
     "id": "boilerplate.containers.HomePage.features.Button",
@@ -117,12 +117,12 @@
   {
     "id": "boilerplate.containers.HomePage.start_project.header",
     "defaultMessage": "Start your next react project in seconds",
-    "message": "Beginnen Sie Ihren nächsten reagieren Projekt in Sekunden"
+    "message": "Beginnen Sie Ihr nächstes React Projekt in Sekunden"
   },
   {
     "id": "boilerplate.containers.HomePage.start_project.message",
     "defaultMessage": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
-    "message": ""
+    "message": "Ein skalierendes, offline-first Fundament mit der besten DX und einem Fokus auf Performance und bewährte Methoden"
   },
   {
     "id": "boilerplate.containers.HomePage.tryme.atPrefix",
@@ -132,17 +132,17 @@
   {
     "id": "boilerplate.containers.HomePage.tryme.header",
     "defaultMessage": "Try me!",
-    "message": ""
+    "message": "Probiere mich!"
   },
   {
     "id": "boilerplate.containers.HomePage.tryme.message",
     "defaultMessage": "Show Github repositories by",
-    "message": ""
+    "message": "Zeige die Github Repositories von"
   },
   {
     "id": "boilerplate.containers.NotFoundPage.header",
     "defaultMessage": "Page not found.",
-    "message": ""
+    "message": "Seite nicht gefunden."
   },
   {
     "id": "boilerplate.containers.NotFoundPage.home",

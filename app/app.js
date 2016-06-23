@@ -10,7 +10,7 @@ import 'babel-polyfill';
 
 // Load the favicon, the manifest.json file and the .htaccess file
 import 'file?name=[name].[ext]!./favicon.ico';
-import 'file?name=[name].[ext]!./manifest.json';
+import '!file?name=[name].[ext]!./manifest.json';
 import 'file?name=[name].[ext]!./.htaccess';
 
 // Import all the third party stuff

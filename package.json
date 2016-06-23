@@ -32,7 +32,8 @@
     "clean": "shjs ./internals/scripts/clean.js",
     "generate": "plop --plopfile internals/generators/index.js",
     "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint . --ignore-path .gitignore --ignore-pattern internals/scripts",
+    "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern internals/scripts",
+    "lint:js": "npm run lint:eslint -- . ",
     "lint:css": "stylelint ./app/**/*.css",
     "lint:staged": "lint-staged",
     "pretest": "npm run lint",
@@ -44,7 +45,7 @@
     "coveralls": "cat ./coverage/lcov/lcov.info | coveralls"
   },
   "lint-staged": {
-    "eslint": "*.js",
+    "lint:eslint": "*.js",
     "stylelint": "*.css"
   },
   "pre-commit": "lint:staged",
@@ -218,7 +219,7 @@
     "karma-safari-launcher": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
-    "lint-staged": "^1.0.0",
+    "lint-staged": "^1.0.1",
     "lodash": "^4.13.1",
     "minimist": "^1.2.0",
     "mocha": "^2.4.5",

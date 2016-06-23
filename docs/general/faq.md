@@ -73,6 +73,68 @@ output: {
 },
 ```
 
+## Non-route containers
+
+> Note: Container will always be nested somewhere below a route. Even if there's dozens of components
+in between, somewhere up the tree will be route. (maybe only "/", but still a route)
+
+### Where do I put the reducer?
+
+While you can include the reducer statically in `reducers.js`, we don't recommend this as you loose
+the benefits of code splitting. Instead, add it as a _composed reducer_. This means that you
+pass actions onward to a second reducer from a lower-level route reducer like so:
+
+
+```JS
+// Main route reducer
+
+function myReducerOfRoute(state, action) {
+  switch (action.type) {
+    case SOME_OTHER_ACTION:
+      return someOtherReducer(state, action);
+  }
+}
+```
+
+That way, you still get the code splitting at route level, but avoid having a static `combineReducers`
+call that includes all of them by default.
+
+*See [this and the following lesson](https://egghead.io/lessons/javascript-redux-reducer-composition-with-arrays?course=getting-started-with-redux) of the egghead.io Redux course for more information about reducer composition!*
+
+### How do I run the saga?
+
+Since a container will always be within a route, one we can simply add it to the exported array in
+`sagas.js` of the route container somewhere up the tree:
+
+```JS
+// /containers/SomeContainer/sagas.js
+
+import { someOtherSagaFromNestedContainer } from './containers/SomeNestedContainer/sagas';
+
+function* someSaga() { /* … */ }
+
+export default [
+  someSaga,
+  someOtherSagaFromNestedContainer,
+];
+```
+
+Or, if you have multiple sagas in the nested container:
+
+
+```JS
+// /containers/SomeContainer/sagas.js
+
+import nestedContainerSagas from './containers/SomeNestedContainer/sagas';
+
+function* someSaga() { /* … */ }
+
+export default [
+  someSaga,
+  ...nestedContainerSagas,
+];
+```
+
 ## Have another question?
 
 Submit an [issue](https://github.com/mxstbr/react-boilerplate/issues),
