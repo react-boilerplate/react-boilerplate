@@ -57,7 +57,7 @@
   {
     "id": "boilerplate.containers.FeaturePage.internationalization.message",
     "defaultMessage": "The web is global. Multilanguage and pluralization support is critical for web apps to scale.",
-    "message": "The web is global. Multilanguage and pluralization support is critical for web apps to scale."
+    "message": "Scalable apps need to support multiple languages, easily add and support multiple languages with `react-intl`."
   },
   {
     "id": "boilerplate.containers.FeaturePage.javascript.header",

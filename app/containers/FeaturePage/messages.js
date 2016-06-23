@@ -90,7 +90,7 @@ export default defineMessages({
   },
   intlMessage: {
     id: 'boilerplate.containers.FeaturePage.internationalization.message',
-    defaultMessage: 'The web is global. Multilanguage and pluralization support is critical for web apps to scale.',
+    defaultMessage: 'Scalable apps need to support multiple languages, easily add and support multiple languages with `react-intl`.',
   },
   homeButton: {
     id: 'boilerplate.containers.FeaturePage.home',
