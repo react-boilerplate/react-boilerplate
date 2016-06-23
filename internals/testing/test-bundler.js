@@ -7,7 +7,6 @@ import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 chai.use(chaiEnzyme());
 
-// Include all .js files under `app`, except app.js, reducers.js, routes.js and
-// store.js. This is for isparta code coverage
-const context = require.context('../../app', true, /^^((?!(app|reducers|routes|store)).)*\.js$/);
+// Include all .test.js files, this is for Istanbul code coverage
+const context = require.context('../../app', true, /\.test\.js$/);
 context.keys().forEach(context);

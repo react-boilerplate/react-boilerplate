@@ -2,7 +2,6 @@
  * TEST WEBPACK CONFIGURATION
  */
 
-const path = require('path');
 const webpack = require('webpack');
 const modules = [
   'app',
@@ -11,10 +10,8 @@ const modules = [
 
 module.exports = {
   devtool: 'inline-source-map',
-  isparta: {
-    babel: {
-      presets: ['es2015', 'react', 'stage-0'],
-    },
+  babel: {
+    presets: ['es2015', 'react', 'stage-0'],
   },
   module: {
     // Some libraries don't like being run through babel.
@@ -22,12 +19,6 @@ module.exports = {
     noParse: [
       /node_modules(\\|\/)sinon/,
       /node_modules(\\|\/)acorn/,
-    ],
-    preLoaders: [
-      { test: /\.js$/,
-        loader: 'isparta',
-        include: path.resolve('app/'),
-      },
     ],
     loaders: [
       { test: /\.json$/, loader: 'json-loader' },
@@ -45,6 +36,16 @@ module.exports = {
       },
       { test: /\.jpe?g$|\.gif$|\.png$/i,
         loader: 'null-loader',
+      },
+    ],
+
+    postLoaders: [
+      // Delays coverage til tests are run, fixing transipiled source coverage
+      // errors and avoiding to slow down the build
+      {
+        test: /\.js$/,
+        exclude: /(test|node_modules)\//,
+        loader: 'istanbul-instrumenter',
       },
     ],
   },
