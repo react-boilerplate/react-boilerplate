@@ -39,7 +39,7 @@ openSansObserver.check().then(() => {
 });
 
 // Import i18n messages
-import { translationMessages, formatTranslationMessages } from './i18n';
+import { translationMessages } from './i18n';
 
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
@@ -94,6 +94,8 @@ const render = (translatedMessages) => {
 
 // Hot reloadable translation json files
 if (module.hot) {
+  // modules.hot.accept does not accept dynamic dependencies,
+  // have to be constants at compile-time
   module.hot.accept('./i18n', () => {
     render(translationMessages);
   });
