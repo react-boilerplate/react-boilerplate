@@ -39,7 +39,7 @@ openSansObserver.check().then(() => {
 });
 
 // Import i18n messages
-import { translationMessages } from './i18n';
+import { translationMessages, formatTranslationMessages } from './i18n';
 
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
@@ -73,10 +73,10 @@ const rootRoute = {
   childRoutes: createRoutes(store),
 };
 
-const render = () => {
+const render = (translatedMessages) => {
   ReactDOM.render(
     <Provider store={store}>
-      <LanguageProvider messages={translationMessages}>
+      <LanguageProvider messages={translatedMessages}>
         <Router
           history={history}
           routes={rootRoute}
@@ -92,11 +92,23 @@ const render = () => {
   );
 };
 
+// Hot reloadable translation json files
+if (module.hot) {
+  Object.keys(translationMessages).forEach((locale) => {
+    module.hot.accept(`./translations/${locale}.json`, () => {
+      System.import(`./translations/${locale}.json`).then((translation) => {
+        translationMessages[locale] = formatTranslationMessages(translation);
+        render(translationMessages);
+      });
+    });
+  });
+}
+
 // Chunked polyfill for browsers without Intl support
 if (!window.Intl) {
-  System.import('intl').then(render);
+  System.import('intl').then(() => render(translationMessages));
 } else {
-  render();
+  render(translationMessages);
 }
 
 // Install ServiceWorker and AppCache in the end since
