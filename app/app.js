@@ -94,13 +94,8 @@ const render = (translatedMessages) => {
 
 // Hot reloadable translation json files
 if (module.hot) {
-  Object.keys(translationMessages).forEach((locale) => {
-    module.hot.accept(`./translations/${locale}.json`, () => {
-      System.import(`./translations/${locale}.json`).then((translation) => {
-        translationMessages[locale] = formatTranslationMessages(translation);
-        render(translationMessages);
-      });
-    });
+  module.hot.accept('./i18n', () => {
+    render(translationMessages);
   });
 }
 
