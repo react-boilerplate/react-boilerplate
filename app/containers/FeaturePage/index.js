@@ -58,33 +58,6 @@ export class FeaturePage extends React.Component {
 
           <li className={styles.listItem}>
             <p className={styles.listItemTitle}>
-              <FormattedMessage {...messages.feedbackHeader} />
-            </p>
-            <p>
-              <FormattedMessage {...messages.feedbackMessage} />
-            </p>
-          </li>
-
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>
-              <FormattedMessage {...messages.feedbackHeader} />
-            </p>
-            <p>
-              <FormattedMessage {...messages.feedbackMessage} />
-            </p>
-          </li>
-
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>
-              <FormattedMessage {...messages.feedbackHeader} />
-            </p>
-            <p>
-              <FormattedMessage {...messages.feedbackMessage} />
-            </p>
-          </li>
-
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>
               <FormattedMessage {...messages.routingHeader} />
             </p>
             <p>
