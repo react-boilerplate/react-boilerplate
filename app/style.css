@@ -1,0 +1,4 @@
+/*
+  This stylesheet is not linked anywhere.
+  It is included here so that stylelint will not fail the build when no other css files are present.
+*/
