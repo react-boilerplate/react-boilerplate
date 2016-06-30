@@ -4,4 +4,6 @@
  * App container styles
  */
 
-.container { }
+.container {
+  display: block;
+}
