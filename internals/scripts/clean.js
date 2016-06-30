@@ -43,10 +43,10 @@ cp('internals/templates/selectors.test.js',
 rm('-rf', 'app/utils');
 mkdir('app/utils');
 mkdir('app/utils/tests');
-cp('internals/templates/hooks.js',
-  'app/utils/hooks.js');
-cp('internals/templates/hooks.test.js',
-  'app/utils/tests/hooks.test.js');
+cp('internals/templates/asyncInjectors.js',
+  'app/utils/asyncInjectors.js');
+cp('internals/templates/asyncInjectors.test.js',
+  'app/utils/tests/asyncInjectors.test.js');
 
 // Replace the files in the root app/ folder
 cp('internals/templates/app.js', 'app/app.js');
