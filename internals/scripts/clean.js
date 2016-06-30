@@ -22,6 +22,7 @@ process.stdout.write('Cleanup started...');
 
 // Cleanup components folder
 rm('-rf', 'app/components/*');
+mkdir('app/components');
 
 // Cleanup containers folder
 rm('-rf', 'app/containers/*');
