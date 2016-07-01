@@ -29,6 +29,7 @@ mkdir('app/containers/App');
 mkdir('app/containers/NotFoundPage');
 mkdir('app/containers/HomePage');
 cp('internals/templates/appContainer.js', 'app/containers/App/index.js');
+cp('internals/templates/styles.css', 'app/containers/App/styles.css');
 cp('internals/templates/notFoundPage.js', 'app/containers/NotFoundPage/index.js');
 cp('internals/templates/homePage.js', 'app/containers/HomePage/index.js');
 
