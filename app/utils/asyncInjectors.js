@@ -20,7 +20,7 @@ export function injectAsyncSagas(store) {
 /**
  * Helper for creating injectors
  */
-export function getHooks(store) {
+export function getAsyncInjectors(store) {
   return {
     injectReducer: injectAsyncReducer(store),
     injectSagas: injectAsyncSagas(store),
