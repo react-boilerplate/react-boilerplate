@@ -26,64 +26,94 @@ import configureStore from './store';
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
 import styles from 'containers/App/styles.css';
-const openSansObserver = new FontFaceObserver('Open Sans', {});
 
-// When Open Sans is loaded, add a font-family using Open Sans to the body
-openSansObserver.check().then(() => {
-  document.body.classList.add(styles.fontLoaded);
-}, () => {
-  document.body.classList.remove(styles.fontLoaded);
-});
+const isClient = typeof document !== 'undefined';
+
+if (isClient) {
+  const openSansObserver = new FontFaceObserver('Open Sans', {});
+
+  // When Open Sans is loaded, add a font-family using Open Sans to the body
+  openSansObserver.check().then(() => {
+    document.body.classList.add(styles.fontLoaded);
+  }, () => {
+    document.body.classList.remove(styles.fontLoaded);
+  });
+}
 
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
 // Optionally, this could be changed to leverage a created history
 // e.g. `const browserHistory = useRouterHistory(createBrowserHistory)();`
 const initialState = {};
-const store = configureStore(initialState, browserHistory);
 
-// If you use Redux devTools extension, since v2.0.1, they added an
-// `updateStore`, so any enhancers that change the store object
-// could be used with the devTools' store.
-// As this boilerplate uses Redux & Redux-Saga, the `updateStore` is needed
-// if you want to `take` actions in your Sagas, dispatched from devTools.
-if (window.devToolsExtension) {
-  window.devToolsExtension.updateStore(store);
-}
+const createStore = (state = initialState) => {
+  const store = configureStore(
+     state, browserHistory
+  );
+
+  // If you use Redux devTools extension, since v2.0.1, they added an
+  // `updateStore`, so any enhancers that change the store object
+  // could be used with the devTools' store.
+  // As this boilerplate uses Redux & Redux-Saga, the `updateStore` is needed
+  // if you want to `take` actions in your Sagas, dispatched from devTools.
+  if (window && window.devToolsExtension) {
+    window.devToolsExtension.updateStore(store);
+  }
+
+  return store;
+};
 
 // Sync history and store, as the react-router-redux reducer
 // is under the non-default key ("routing"), selectLocationState
 // must be provided for resolving how to retrieve the "route" in the state
 import { selectLocationState } from 'containers/App/selectors';
-const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState: selectLocationState(),
-});
+
+const syncedHistory = (store) => (
+  syncHistoryWithStore(browserHistory, store, {
+    selectLocationState: selectLocationState(),
+  })
+);
 
 // Set up the router, wrapping all Routes in the App component
 import App from 'containers/App';
 import createRoutes from './routes';
-const rootRoute = {
-  component: App,
-  childRoutes: createRoutes(store),
+
+export const buildRootRoute = (component, store) => ({
+  component, childRoutes: createRoutes(store),
+});
+
+export const clientRenderer = (components) => {
+  const { history, store, rootRoute } = components();
+
+  ReactDOM.render(
+    <Provider store={store}>
+      <Router
+        history={history}
+        routes={rootRoute}
+        render={
+          // Scroll to top when going to a new page, imitating default browser
+          // behaviour
+          applyRouterMiddleware(useScroll())
+        }
+      />
+    </Provider>,
+    document.getElementById('app')
+  );
+
+  // Install ServiceWorker and AppCache in the end since
+  // it's not most important operation and if main code fails,
+  // we do not want it installed
+  require('offline-plugin/runtime').install(); // eslint-disable-line global-require
 };
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router
-      history={history}
-      routes={rootRoute}
-      render={
-        // Scroll to top when going to a new page, imitating default browser
-        // behaviour
-        applyRouterMiddleware(useScroll())
-      }
-    />
-  </Provider>,
-  document.getElementById('app')
-);
+if (isClient) {
+  clientRenderer(() => {
+    const store = createStore();
 
-// Install ServiceWorker and AppCache in the end since
-// it's not most important operation and if main code fails,
-// we do not want it installed
-import { install } from 'offline-plugin/runtime';
-install();
+    return {
+      store,
+      history: syncedHistory(store),
+      rootRoute: buildRootRoute(App, store),
+    };
+  });
+}
