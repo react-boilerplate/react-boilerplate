@@ -37,3 +37,49 @@ import { push } from 'react-router-redux';
 
 push('/some/page');
 ```
+
+## Child Routes
+`$ npm run generate route` does not currently support automatically generating child routes if you need them, but they can be easily created manually.
+
+For example, if you have a route called `about` at `/about` and want to make a child route called `team` at `/about/our-team` you can just add that child page to the parent page's `childRoutes` array like so:
+```
+/* your app's other routes would already be in this array */
+{
+  path: '/about',
+  name: 'about',
+  getComponent(nextState, cb) {
+    const importModules = Promise.all([
+      System.import('containers/AboutPage'),
+    ]);
+
+    const renderRoute = loadModule(cb);
+
+    importModules.then(([component]) => {
+      renderRoute(component);
+    });
+
+    importModules.catch(errorLoading);
+  },
+  childRoutes: [
+    {
+      path: '/about/our-team',
+      name: 'team',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/TeamPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([component]) => {
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    },
+  ]
+}
+```
+
+You can read more on [`react-router`'s documentation](https://github.com/reactjs/react-router/blob/master/docs/API.md#props-3).
