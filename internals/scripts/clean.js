@@ -62,10 +62,4 @@ rm('-rf', 'internals/templates');
 
 process.stdout.write(' ✓');
 
-// Commit the changes
-if (exec('git add . --all && git commit -qm "Remove default example"').code !== 0) {
-  echo('\nError: Git commit failed');
-  exit(1);
-}
-
-echo('\nCleanup done. Happy Coding!!!');
+echo('\nCleanup done. Happy Coding!!!\nDon\'t forget to commit your changes git add . --all && git commit -qm "Remove default example"');
