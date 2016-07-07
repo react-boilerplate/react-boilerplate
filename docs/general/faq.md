@@ -68,7 +68,7 @@ output.publicPath in webpack.dev.babel.js, with protocol.
 // webpack.dev.babel.js
 
 output: {
-  publicPath: 'http://127.0.0.1:3000',
+  publicPath: 'http://127.0.0.1:3000/',
   /* … */
 },
 ```
