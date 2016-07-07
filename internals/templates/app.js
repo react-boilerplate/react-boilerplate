@@ -8,7 +8,7 @@ import 'babel-polyfill';
 
 // TODO constrain eslint import/no-unresolved rule to this block
 // Load the manifest.json file and the .htaccess file
-import 'file?name=[name].[ext]!./manifest.json';  // eslint-disable-line import/no-unresolved
+import '!file?name=[name].[ext]!./manifest.json';  // eslint-disable-line import/no-unresolved
 import 'file?name=[name].[ext]!./.htaccess';      // eslint-disable-line import/no-unresolved
 
 // Import all the third party stuff
@@ -21,7 +21,7 @@ import useScroll from 'react-router-scroll';
 import configureStore from './store';
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
-import 'sanitize.css/lib/sanitize.css';
+import 'sanitize.css/sanitize.css';
 
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
