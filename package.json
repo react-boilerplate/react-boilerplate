@@ -162,7 +162,7 @@
     "coveralls": "2.11.9",
     "cross-env": "1.0.7",
     "css-loader": "0.23.1",
-    "enzyme": "2.2.0",
+    "enzyme": "2.4.0",
     "eslint": "3.0.1",
     "eslint-config-airbnb": "9.0.1",
     "eslint-import-resolver-webpack": "0.3.1",
