@@ -125,6 +125,7 @@
     "chalk": "1.1.3",
     "compression": "1.6.1",
     "express": "4.13.4",
+    "express-http-proxy": "^0.7.3",
     "fontfaceobserver": "1.7.1",
     "history": "3.0.0",
     "immutable": "3.8.1",
