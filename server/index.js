@@ -14,10 +14,6 @@ const app = express();
 const pxhost = process.env.npm_config_pxhost || '127.0.0.1';
 const pxport = process.env.npm_config_pxport || '3000';
 
-
- console.log({ pxhost: pxhost });
- console.log({ pxport: pxport });
-
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
@@ -32,7 +28,7 @@ const port = argv.port || process.env.PORT || 3000;
 
 // Proxy requests
 app.use('/api', proxy(`${pxhost}:${pxport}/`, {
-  forwardPath: function(req, res) {
+  forwardPath: function (req, res) {
     return require('url').parse(req.url).path;
   }
 }));
