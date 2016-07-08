@@ -131,7 +131,7 @@
     "ip": "1.1.2",
     "minimist": "1.2.0",
     "react": "15.2.0",
-    "react-dom": "15.2.0",
+    "react-dom": "15.2.1",
     "react-redux": "4.4.5",
     "react-router": "2.5.2",
     "react-router-redux": "4.0.4",
