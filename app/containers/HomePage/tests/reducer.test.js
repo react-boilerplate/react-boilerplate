@@ -1,7 +1,7 @@
 import expect from 'expect';
 import homeReducer from '../reducer';
 import {
-  changeUsername,
+  ChangeUsername,
 } from '../actions';
 import { fromJS } from 'immutable';
 
@@ -22,6 +22,6 @@ describe('homeReducer', () => {
     const fixture = 'mxstbr';
     const expectedResult = state.set('username', fixture);
 
-    expect(homeReducer(state, changeUsername(fixture))).toEqual(expectedResult);
+    expect(homeReducer(state, ChangeUsername.action(fixture))).toEqual(expectedResult);
   });
 });

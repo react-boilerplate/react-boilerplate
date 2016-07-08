@@ -129,6 +129,7 @@
     "history": "3.0.0",
     "immutable": "3.8.1",
     "ip": "1.1.2",
+    "match-js": "^1.5.3",
     "minimist": "1.2.0",
     "react": "15.2.0",
     "react-dom": "15.2.0",
