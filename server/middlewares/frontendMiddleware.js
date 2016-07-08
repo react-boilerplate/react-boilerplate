@@ -2,7 +2,15 @@
 const express = require('express');
 const path = require('path');
 const compression = require('compression');
-const pkg = require(path.resolve(process.cwd(), 'package.json'));
+
+// This avoids the webpack dependency expression issue
+/* eslint-disable */
+function readJSON(path) {
+  return JSON.parse(require('fs').readFileSync(path).toString());
+}
+/* eslint-enable */
+
+const pkg = readJSON(path.resolve(process.cwd(), 'package.json'));
 
 // Dev middleware
 const addDevMiddlewares = (app, webpackConfig) => {
@@ -20,26 +28,13 @@ const addDevMiddlewares = (app, webpackConfig) => {
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
 
-  // Since webpackDevMiddleware uses memory-fs internally to store build
-  // artifacts, we use it instead
-  const fs = middleware.fileSystem;
-
   if (pkg.dllPlugin) {
-    app.get(/\.dll\.js$/, (req, res) => {
-      const filename = req.path.replace(/^\//, '');
-      res.sendFile(path.join(process.cwd(), pkg.dllPlugin.path, filename));
-    });
+    app.use(
+      express.static(path.join(process.cwd(), pkg.dllPlugin.path))
+    );
   }
 
-  app.get('*', (req, res) => {
-    fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
-      if (err) {
-        res.sendStatus(404);
-      } else {
-        res.send(file.toString());
-      }
-    });
-  });
+  // app.get('*', require('../../app/ssr').requestHandler);
 };
 
 // Production middlewares

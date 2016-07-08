@@ -8,7 +8,15 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const logger = require('../../server/logger');
 const cheerio = require('cheerio');
-const pkg = require(path.resolve(process.cwd(), 'package.json'));
+
+// This avoids the webpack dependency expression issue
+/* eslint-disable */
+function readJSON(path) {
+  return JSON.parse(require('fs').readFileSync(path).toString());
+}
+/* eslint-enable */
+
+const pkg = readJSON(path.resolve(process.cwd(), 'package.json'));
 const dllPlugin = pkg.dllPlugin;
 
 // PostCSS plugins
@@ -109,7 +117,7 @@ function dependencyHandlers() {
     return [
       new webpack.DllReferencePlugin({
         context: process.cwd(),
-        manifest: require(manifestPath), // eslint-disable-line global-require
+        manifest: readJSON(manifestPath), // eslint-disable-line global-require
       }),
     ];
   }
@@ -130,7 +138,7 @@ function dependencyHandlers() {
 
     return new webpack.DllReferencePlugin({
       context: process.cwd(),
-      manifest: require(manifestPath), // eslint-disable-line global-require
+      manifest: readJSON(manifestPath), // eslint-disable-line global-require
     });
   });
 }

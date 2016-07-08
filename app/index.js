@@ -1,0 +1,1 @@
+import 'isomorphic-fetch';
