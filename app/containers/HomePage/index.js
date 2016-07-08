@@ -20,8 +20,8 @@ import {
   selectUsername,
 } from './selectors';
 
-import { changeUsername } from './actions';
-import { loadRepos } from '../App/actions';
+import { ChangeUsername } from './actions';
+import { LoadRepos } from '../App/actions';
 
 import RepoListItem from 'containers/RepoListItem';
 import Button from 'components/Button';
@@ -125,11 +125,11 @@ HomePage.propTypes = {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
+    onChangeUsername: (evt) => dispatch(ChangeUsername.action(evt.target.value)),
     changeRoute: (url) => dispatch(push(url)),
     onSubmitForm: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadRepos());
+      dispatch(LoadRepos.action());
     },
 
     dispatch,

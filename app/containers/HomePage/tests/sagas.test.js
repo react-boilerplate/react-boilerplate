@@ -8,8 +8,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 
 import { getRepos, getReposWatcher, githubData } from '../sagas';
 
-import { LOAD_REPOS } from 'containers/App/constants';
-import { reposLoaded, repoLoadingError } from 'containers/App/actions';
+import { LoadRepos, LoadReposSuccess, LoadReposError } from 'containers/App/actions';
 
 import request from 'utils/request';
 import { selectUsername } from 'containers/HomePage/selectors';
@@ -32,7 +31,7 @@ describe('getRepos Saga', () => {
     expect(callDescriptor).toEqual(call(request, requestURL));
   });
 
-  it('should dispatch the reposLoaded action if it requests the data successfully', () => {
+  it('should dispatch the LoadRepos action if it requests the data successfully', () => {
     const response = {
       data: [{
         name: 'First repo',
@@ -41,7 +40,7 @@ describe('getRepos Saga', () => {
       }],
     };
     const putDescriptor = getReposGenerator.next(response).value;
-    expect(putDescriptor).toEqual(put(reposLoaded(response.data, username)));
+    expect(putDescriptor).toEqual(put(LoadReposSuccess.action({ repos: response.data, username })));
   });
 
   it('should call the repoLoadingError action if the response errors', () => {
@@ -49,7 +48,7 @@ describe('getRepos Saga', () => {
       err: 'Some error',
     };
     const putDescriptor = getReposGenerator.next(response).value;
-    expect(putDescriptor).toEqual(put(repoLoadingError(response.err)));
+    expect(putDescriptor).toEqual(put(LoadReposError.action(response.err)));
   });
 });
 
@@ -58,11 +57,11 @@ describe('getReposWatcher Saga', () => {
 
   it('should watch for LOAD_REPOS action', () => {
     const takeDescriptor = getReposWatcherGenerator.next().value;
-    expect(takeDescriptor).toEqual(take(LOAD_REPOS));
+    expect(takeDescriptor).toEqual(take(LoadRepos.type));
   });
 
   it('should invoke getRepos saga on actions', () => {
-    const callDescriptor = getReposWatcherGenerator.next(put(LOAD_REPOS)).value;
+    const callDescriptor = getReposWatcherGenerator.next(put(LoadRepos.type)).value;
     expect(callDescriptor).toEqual(call(getRepos));
   });
 });

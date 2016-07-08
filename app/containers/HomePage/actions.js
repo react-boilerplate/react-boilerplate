@@ -13,22 +13,11 @@
  *    export function yourAction(var) {
  *        return { type: YOUR_ACTION_CONSTANT, var: var }
  *    }
+ * OR
+ * 1) Import the Action class from 'utils/action'
+ * 2) Define your class by setting a unique name, or use the generated one.
  */
 
-import {
-  CHANGE_USERNAME,
-} from './constants';
+import Action from 'utils/action';
 
-/**
- * Changes the input field of the form
- *
- * @param  {name} name The new text of the input field
- *
- * @return {object}    An action object with a type of CHANGE_USERNAME
- */
-export function changeUsername(name) {
-  return {
-    type: CHANGE_USERNAME,
-    name,
-  };
-}
+export const ChangeUsername = new Action('ChangeUsername');
