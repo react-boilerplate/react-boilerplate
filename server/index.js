@@ -27,11 +27,7 @@ setup(app, {
 const port = argv.port || process.env.PORT || 3000;
 
 // Proxy requests
-app.use('/api', proxy(`${pxhost}:${pxport}/`, {
-  forwardPath: function (req, res) {
-    return require('url').parse(req.url).path;
-  }
-}));
+app.use('/api', proxy(`${pxhost}:${pxport}/`));
 
 // Start your app.
 app.listen(port, (err) => {
