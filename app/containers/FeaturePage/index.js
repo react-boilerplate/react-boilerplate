@@ -35,10 +35,10 @@ export class FeaturePage extends React.Component {
     return (
       <div>
         <Helmet
-            title="Feature Page"
-            meta={[
-                {"name": "description", "content": "Feature page of React.js Boilerplate application"},
-            ]}
+          title="Feature Page"
+          meta={[
+            { name: 'description', content: 'Feature page of React.js Boilerplate application' },
+          ]}
         />
         <H1>Features</H1>
         <ul className={styles.list}>

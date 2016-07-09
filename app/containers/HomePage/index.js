@@ -80,10 +80,10 @@ export class HomePage extends React.Component {
     return (
       <article>
         <Helmet
-            title="Home Page"
-            meta={[
-                {"name": "description", "content": "A React.js Boilerplate application homepage"},
-            ]}
+          title="Home Page"
+          meta={[
+            { name: 'description', content: 'A React.js Boilerplate application homepage' },
+          ]}
         />
         <div>
           <section className={`${styles.textSection} ${styles.centered}`}>
