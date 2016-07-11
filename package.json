@@ -197,7 +197,7 @@
     "karma-safari-launcher": "1.0.0",
     "karma-sourcemap-loader": "0.3.7",
     "karma-webpack": "1.7.0",
-    "lint-staged": "2.0.1",
+    "lint-staged": "2.0.2",
     "lodash": "4.13.1",
     "minimist": "1.2.0",
     "mocha": "2.5.3",
