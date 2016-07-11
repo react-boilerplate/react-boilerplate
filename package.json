@@ -203,7 +203,7 @@
     "mocha": "2.5.3",
     "ngrok": "2.2.1",
     "null-loader": "0.1.1",
-    "offline-plugin": "3.4.1",
+    "offline-plugin": "3.4.2",
     "plop": "1.5.0",
     "postcss-cssnext": "2.7.0",
     "postcss-focus": "1.0.0",
