@@ -1,0 +1,10 @@
+image: gwhansscheuren/bitbucket-pipelines-node-chrome-firefox
+
+pipelines:
+  default:
+    - step:
+        script:
+          - node --version
+          - npm --version
+          - npm install
+          - npm test
