@@ -6,6 +6,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import Helmet from 'react-helmet';
 
 import Button from 'components/Button';
 import H1 from 'components/H1';
@@ -33,6 +34,12 @@ export class FeaturePage extends React.Component {
   render() {
     return (
       <div>
+        <Helmet
+          title="Feature Page"
+          meta={[
+            { name: 'description', content: 'Feature page of React.js Boilerplate application' },
+          ]}
+        />
         <H1>Features</H1>
         <ul className={styles.list}>
           <li className={styles.listItem}>

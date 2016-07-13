@@ -69,6 +69,9 @@
 
   <dt>Offline-first</dt>
   <dd>The next frontier in performant web apps: availability without a network connection from the instant your users load the app.</dd>
+
+  <dt>SEO</dt>
+  <dd>We support SEO (document head tags management) for search engines that support indexing of JavaScript content. (eg. Google)</dd>
 </dl>
 
 But wait... there's more!
