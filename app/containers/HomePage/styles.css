@@ -20,13 +20,6 @@ label {
   text-decoration: none;
 }
 
-.code {
-  font-size: 0.75em;
-  background-color: $very-light-grey;
-  padding: 0.125em 0.5em;
-  border-radius: 1px;
-}
-
 .usernameForm {
   margin-bottom: 1em;
 }
