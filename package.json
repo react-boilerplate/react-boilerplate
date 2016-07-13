@@ -140,7 +140,7 @@
     "react-redux": "4.4.5",
     "react-router": "2.5.2",
     "react-router-redux": "4.0.5",
-    "react-router-scroll": "0.2.0",
+    "react-router-scroll": "0.2.1",
     "redux": "3.5.2",
     "redux-immutable": "3.0.6",
     "redux-saga": "0.11.0",
