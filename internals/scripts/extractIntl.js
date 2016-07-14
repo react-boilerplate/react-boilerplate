@@ -136,7 +136,7 @@ const extractFromFile = async (fileName) => {
           messages,
           null,
           2
-        )
+        ) + "\n"
       );
 
       logSuccess(`Translation file for ${locale} successfully saved to: ${translationFileName}`);

@@ -56,7 +56,7 @@
   },
   {
     "id": "boilerplate.containers.FeaturePage.internationalization.message",
-    "defaultMessage": "The web is global. Multilanguage and pluralization support is critical for web apps to scale.",
+    "defaultMessage": "Scalable apps need to support multiple languages, easily add and support multiple languages with `react-intl`.",
     "message": "Das Internet ist global. Mehrsprachige- und Pluralisierungsunterstützung ist entscheidend für große Web-Anwendungen."
   },
   {
@@ -81,13 +81,13 @@
   },
   {
     "id": "boilerplate.containers.FeaturePage.routing.header",
-    "defaultMessage": "Write composable CSS that's co-located with your components for\n    complete modularity. Unique generated class names keep the\n    specificity low while eliminating style clashes. Ship only the\n    styles that are on the page for the best performance.",
-    "message": "Schreiben Sie CSS, das am selben Ort wie ihre Komponenten ist. Deterministisch generierte, einzigartige Klassennamen halten die Spezifität niedrig während styling Konflikte vermieden werden. Senden Sie nur das CSS an ihre Benutzer welches dann wirklich sichtbar ist für die schnellste Performance!"
+    "defaultMessage": "Industry-standard routing",
+    "message": "Standard Routing"
   },
   {
     "id": "boilerplate.containers.FeaturePage.routing.message",
-    "defaultMessage": "Industry-standard routing",
-    "message": "Standard Routing"
+    "defaultMessage": "Write composable CSS that's co-located with your components for\n    complete modularity. Unique generated class names keep the\n    specificity low while eliminating style clashes. Ship only the\n    styles that are on the page for the best performance.",
+    "message": "Schreiben Sie CSS, das am selben Ort wie ihre Komponenten ist. Deterministisch generierte, einzigartige Klassennamen halten die Spezifität niedrig während styling Konflikte vermieden werden. Senden Sie nur das CSS an ihre Benutzer welches dann wirklich sichtbar ist für die schnellste Performance!"
   },
   {
     "id": "boilerplate.containers.FeaturePage.scaffolding.header",

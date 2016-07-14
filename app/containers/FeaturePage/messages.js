@@ -62,16 +62,16 @@ export default defineMessages({
   },
   routingHeader: {
     id: 'boilerplate.containers.FeaturePage.routing.header',
+    defaultMessage: 'Industry-standard routing',
+  },
+  routingMessage: {
+    id: 'boilerplate.containers.FeaturePage.routing.message',
     defaultMessage: `
       Write composable CSS that's co-located with your components for
     complete modularity. Unique generated class names keep the
     specificity low while eliminating style clashes. Ship only the
     styles that are on the page for the best performance.
     `,
-  },
-  routingMessage: {
-    id: 'boilerplate.containers.FeaturePage.routing.message',
-    defaultMessage: 'Industry-standard routing',
   },
   networkHeader: {
     id: 'boilerplate.containers.FeaturePage.network.header',
