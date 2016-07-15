@@ -81,12 +81,12 @@
   },
   {
     "id": "boilerplate.containers.FeaturePage.routing.header",
-    "defaultMessage": "Write composable CSS that's co-located with your components for\n    complete modularity. Unique generated class names keep the\n    specificity low while eliminating style clashes. Ship only the\n    styles that are on the page for the best performance.",
+    "defaultMessage": "Industry-standard routing",
     "message": "Industry-standard routing"
   },
   {
     "id": "boilerplate.containers.FeaturePage.routing.message",
-    "defaultMessage": "Industry-standard routing",
+    "defaultMessage": "Write composable CSS that's co-located with your components for\n    complete modularity. Unique generated class names keep the\n    specificity low while eliminating style clashes. Ship only the\n    styles that are on the page for the best performance.",
     "message": "It's natural to want to add pages (e.g. '/about') to your\n                application, and routing makes this possible."
   },
   {
