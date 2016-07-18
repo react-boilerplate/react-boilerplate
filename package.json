@@ -138,7 +138,7 @@
     "react-dom": "15.2.1",
     "react-helmet": "3.1.0",
     "react-redux": "4.4.5",
-    "react-router": "2.5.2",
+    "react-router": "2.6.0",
     "react-router-redux": "4.0.5",
     "react-router-scroll": "0.2.0",
     "redux": "3.5.2",
