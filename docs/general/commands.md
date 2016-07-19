@@ -201,7 +201,7 @@ docker run -d -p 3000:3000 --name myweb_container myweb_image
 ```
 Now, you should be accessible to your very first time of this boilerplate by accessing `http://localhost:3000`
 
-However, you cannot do any change in that example app. We need to link docker container directory
+However, you cannot made any change in that example app yet. We need to link docker container directory
 to what we have in our local machine. First, let's destroy the old container.
 ```
 docker rm -f myweb_container
@@ -210,7 +210,8 @@ Then, let's run below command to create new container with a link directory to y
 ```
 docker run -it -p 3000:3000 -v {YOUR_PROJECT_ROOT_FULL_PATH}:/reactapp --name myweb_container myreact bash
 ```
-Now, your prompt will looks difference, because you are now in the container! Let's start with install all node dependencies
+Now, your prompt will looks difference, because you are now in the container!
+Let's start with install all node dependencies
 ```
 npm install
 ```
