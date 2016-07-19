@@ -13,7 +13,6 @@ efficient tooling and cleanest project structure.
 - [Tool Configuration](files.md)
 - [Server Configurations](server-configs.md)
 - [Deployment](deployment.md) *(currently Heroku specific)*
-- [Setting up IDE](ide.md)
 - [FAQ](faq.md)
 - [Gotchas](gotchas.md)
 
