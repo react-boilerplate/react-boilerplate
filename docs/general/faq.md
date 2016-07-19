@@ -135,6 +135,16 @@ export default [
 ];
 ```
 
+## I'm using Node v0.12 and the server doesn't work?
+
+We settled on supporting the last three major Node.js versions for the boilerplate – at the moment
+of this writing those are v4, v5 and v6. We **highly recommend upgrading to a newer Node.js version**!
+
+If you _have_ to use Node.js 0.12, you can hack around the server not running by using `babel-cli` to
+run the server: `npm install babel-cli`, and then replace all instances of `node server` in the `"scripts"`
+in the `package.json` with `babel server`!
+
+
 ## Have another question?
 
 Submit an [issue](https://github.com/mxstbr/react-boilerplate/issues),
