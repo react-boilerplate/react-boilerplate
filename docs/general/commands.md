@@ -199,7 +199,7 @@ If everything goes well, you can summon the docker image up by running below com
 ```
 docker run -d -p 3000:3000 --name myweb_container myweb_image
 ```
-Now, you should be accessible your very time of this boilerplate by accessing `http://localhost:3000`
+Now, you should be accessible to your very first time of this boilerplate by accessing `http://localhost:3000`
 
 However, you cannot do any change in that example app. We need to link docker container directory
 to what we have in our local machine. First, let's destroy the old container.
