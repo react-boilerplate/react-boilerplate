@@ -23,7 +23,7 @@ efficient tooling and cleanest project structure.
 Automate the creation of components, containers, routes, selectors and sagas -
 and their tests - right from the CLI!
 
-Run `$ npm run generate` in your terminal and choose one of the parts you want
+Run `npm run generate` in your terminal and choose one of the parts you want
 to generate. They'll automatically be imported in the correct places and have
 everything set up correctly.
 

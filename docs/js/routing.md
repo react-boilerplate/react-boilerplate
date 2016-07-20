@@ -10,7 +10,7 @@ for more information)
 
 ## Usage
 
-To add a new route, use the generator with `$ npm run generate route`.
+To add a new route, use the generator with `npm run generate route`.
 
 This is what a standard (generated) route looks like for a container:
 
@@ -39,7 +39,7 @@ push('/some/page');
 ```
 
 ## Child Routes
-`$ npm run generate route` does not currently support automatically generating child routes if you need them, but they can be easily created manually.
+`npm run generate route` does not currently support automatically generating child routes if you need them, but they can be easily created manually.
 
 For example, if you have a route called `about` at `/about` and want to make a child route called `team` at `/about/our-team` you can just add that child page to the parent page's `childRoutes` array like so:
 ```
