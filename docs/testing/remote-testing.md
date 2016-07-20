@@ -1,7 +1,7 @@
 # Remote testing
 
 ```Shell
-$ npm run start:tunnel
+npm run start:tunnel
 ```
 
 This command will start a server and tunnel it with `ngrok`. You'll get a URL
