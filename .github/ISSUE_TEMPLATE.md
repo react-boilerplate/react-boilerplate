@@ -1,29 +1,30 @@
-**React Boilerplate**
+# React Boilerplate
 
-Thank you for contributing to our community! Before opening a new issue, you may find an answer in already closed issues:
-https://github.com/mxstbr/react-boilerplate/issues?q=is%3Aissue+is%3Aclosed
+Before opening a new issue, please take a moment to review our [**community guidelines**](https://github.com/mxstbr/react-boilerplate/blob/master/.github/CONTRIBUTING.md) to make the contribution process easy and effective for everyone involved.
 
 Please direct redux-saga related questions to stack overflow:
 http://stackoverflow.com/questions/tagged/redux-saga
 
-For questions related to the boilerplate, you can also find answers in our gitter chat: https://gitter.im/mxstbr/react-boilerplate
+For questions related to the boilerplate itself, you can also find answers on our gitter chat:
+https://gitter.im/mxstbr/react-boilerplate
 
-**Issue Type**
+**Before opening a new issue, you may find an answer in already closed issues**:
+https://github.com/mxstbr/react-boilerplate/issues?q=is%3Aissue+is%3Aclosed
 
-- [ ] Bug
-- [ ] Improvement
-- [ ] Feature
-- [ ] Other
+## Issue Type
 
-**Description**
+- [ ] Bug (https://github.com/mxstbr/react-boilerplate/blob/master/.github/CONTRIBUTING.md#bug-reports)
+- [ ] Feature (https://github.com/mxstbr/react-boilerplate/blob/master/.github/CONTRIBUTING.md#feature-requests)
+
+## Description
 
 (Add images if possible)
 
-**Steps to reproduce**
+## Steps to reproduce
 
 (Add link to a demo on https://jsfiddle.net or similar if possible)
 
-**Versions**
+# Versions
 
 - Node/NPM:
 - Browser:

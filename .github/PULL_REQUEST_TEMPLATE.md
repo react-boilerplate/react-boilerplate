@@ -1,9 +1,23 @@
-**React Boilerplate**
+## React Boilerplate
 
-Thank you for contributing to our community! Before opening a pull request, please ensure:
+Thank you for contributing! Please take a moment to review our [**community guidelines**](https://github.com/mxstbr/react-boilerplate/blob/master/.github/CONTRIBUTING.md)
+to make the contribution process easy and effective for everyone involved.
 
+**Please open an issue** before embarking on any significant pull request (e.g.
+implementing features, refactoring code, porting to a different language),
+otherwise you risk spending a lot of time working on something that the
+project's developers might not want to merge into the project.
+
+Before opening a pull request, please ensure:
+
+- [ ] I have reviewed
 - [ ] Pull request has tests (we are going for 100% coverage!)
-- [ ] Code is well commented and linted
+- [ ] Code is well-commented, linted and follows project conventions
 - [ ] Documentation is updated (if necessary)
 - [ ] Internal code generators and templates are updated (if necessary)
-- [ ] Description explains the issue / use-case resolved, and auto-closes the related issue(s) (https://help.github.com/articles/closing-issues-via-commit-messages/).
+- [ ] Description explains the issue/use-case resolved and auto-closes related issues
+
+Be kind to code reviewers, please try to keep pull requests as small and focused as possible :)
+
+**IMPORTANT**: By submitting a patch, you agree to allow the project
+owners to license your work under the terms of the [MIT License](https://github.com/mxstbr/react-boilerplate/blob/master/LICENSE.txt).
