@@ -15,7 +15,7 @@
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
     "analyze": "node ./internals/scripts/analyze.js",
-    "extract-intl": "babel-node --presets es2015 -- ./internals/scripts/extractIntl.js",
+    "extract-intl": "babel-node --presets es2015,stage-0 -- ./internals/scripts/extract-intl.js",
     "npmcheckversion": "node ./internals/scripts/npmcheckversion.js",
     "preinstall": "npm run npmcheckversion",
     "postinstall": "npm run build:dll",
@@ -61,9 +61,7 @@
     ],
     "env": {
       "production": {
-        "only": [
-          "app"
-        ],
+        "only": ["app"],
         "plugins": [
           "transform-react-remove-prop-types",
           "transform-react-constant-elements",
