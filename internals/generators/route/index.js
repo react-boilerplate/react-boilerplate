@@ -1,10 +1,9 @@
 /**
  * Route Generator
  */
-
 const fs = require('fs');
 const componentExists = require('../utils/componentExists');
-const componentName = '';
+var componentName; // eslint-disable-line no-var
 
 function reducerExists(comp) {
   try {
@@ -53,8 +52,8 @@ module.exports = {
   }, {
     type: 'confirm',
     name: 'useSagas',
-    default: sagasExists(componentName) ? true : false,
-    message: 'Do you want to use sagas?',
+    default: sagasExists(componentName),
+    message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
   }],
 
   // Add the route to the routes.js file above the error route
