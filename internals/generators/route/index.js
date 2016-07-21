@@ -22,6 +22,11 @@ function sagasExists(comp) {
   }
 }
 
+function trimTemplateFile(template) {
+  // Loads the template file and trims the whitespace and then returns the content as a string.
+  return fs.readFileSync(`internals/generators/route/${template}`, 'utf8').replace(/\s*$/, '');
+}
+
 module.exports = {
   description: 'Add a route',
   prompts: [{
@@ -59,14 +64,14 @@ module.exports = {
         type: 'modify',
         path: '../../app/routes.js',
         pattern: /(\s{\n\s{0,}path: '\*',)/g,
-        templateFile: './route/routeWithReducer.hbs',
+        template: trimTemplateFile('routeWithReducer.hbs'),
       });
     } else {
       actions.push({
         type: 'modify',
         path: '../../app/routes.js',
         pattern: /(\s{\n\s{0,}path: '\*',)/g,
-        templateFile: './route/route.hbs',
+        template: trimTemplateFile('route.hbs'),
       });
     }
 
