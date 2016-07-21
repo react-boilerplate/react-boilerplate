@@ -3,7 +3,6 @@
  */
 const fs = require('fs');
 const componentExists = require('../utils/componentExists');
-var componentName; // eslint-disable-line no-var
 
 function reducerExists(comp) {
   try {
@@ -30,7 +29,6 @@ module.exports = {
     name: 'component',
     message: 'Which component should the route show?',
     validate: value => {
-      componentName = value;
       if ((/.+/).test(value)) {
         return componentExists(value) ? true : `"${value}" doesn't exist.`;
       }
@@ -52,7 +50,8 @@ module.exports = {
   }, {
     type: 'confirm',
     name: 'useSagas',
-    default: sagasExists(componentName),
+    default: true,
+    when: answers => sagasExists(answers.component),
     message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
   }],
 
