@@ -15,7 +15,7 @@
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
     "analyze": "node ./internals/scripts/analyze.js",
-    "extractIntl": "babel-node --presets es2015 -- ./internals/scripts/extractIntl.js",
+    "extract-intl": "babel-node --presets es2015 -- ./internals/scripts/extractIntl.js",
     "npmcheckversion": "node ./internals/scripts/npmcheckversion.js",
     "preinstall": "npm run npmcheckversion",
     "postinstall": "npm run build:dll",
@@ -173,6 +173,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.11.4",
     "babel-core": "6.10.4",
     "babel-eslint": "6.1.2",
     "babel-loader": "6.2.4",
