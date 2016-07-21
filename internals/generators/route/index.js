@@ -47,12 +47,6 @@ module.exports = {
 
       return 'path is required';
     },
-  }, {
-    type: 'confirm',
-    name: 'useSagas',
-    default: true,
-    when: answers => sagasExists(answers.component),
-    message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
   }],
 
   // Add the route to the routes.js file above the error route
@@ -60,6 +54,7 @@ module.exports = {
   actions: data => {
     const actions = [];
     if (reducerExists(data.component)) {
+      data.useSagas = sagasExists(data.component);
       actions.push({
         type: 'modify',
         path: '../../app/routes.js',
