@@ -59,11 +59,11 @@
 
 ### Development
 
-Run `$ npm start` to see your app at `localhost:3000`
+Run `npm start` to see your app at `localhost:3000`
 
 ### Building & Deploying
 
-1. Run `$ npm run build`, which will compile all the necessary files to the
+1. Run `npm run build`, which will compile all the necessary files to the
 `build` folder.
 
 2. Upload the contents of the `build` folder to your web server's root folder.
@@ -101,6 +101,11 @@ building for production so you don't have to worry about that.
 See the [JS documentation](./js/README.md) for more information about the
 JavaScript side of things.
 
+### SEO
+
+We use [react-helmet](https://github.com/nfl/react-helmet) for managing document head tags. Examples on how to
+write head tags can be found [here](https://github.com/nfl/react-helmet#examples).
+
 ### Testing
 
 For a thorough explanation of the testing procedure, see the
@@ -108,16 +113,16 @@ For a thorough explanation of the testing procedure, see the
 
 #### Performance testing
 
-With the production server running (i.e. while `$ npm run start:production` is running in
-another tab), enter `$ npm run pagespeed` to run Google PageSpeed Insights and
+With the production server running (i.e. while `npm run start:production` is running in
+another tab), enter `npm run pagespeed` to run Google PageSpeed Insights and
 get a performance check right in your terminal!
 
 #### Browser testing
 
-`$ npm run start:tunnel` makes your locally-running app globally available on the web
+`npm run start:tunnel` makes your locally-running app globally available on the web
 via a temporary URL: great for testing on different devices, client demos, etc!
 
 #### Unit testing
 
 Unit tests live in `test/` directories right next to the components being tested
-and are run with `$ npm run test`.
+and are run with `npm run test`.

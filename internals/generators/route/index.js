@@ -1,13 +1,21 @@
 /**
  * Route Generator
  */
-
 const fs = require('fs');
 const componentExists = require('../utils/componentExists');
 
 function reducerExists(comp) {
   try {
     fs.accessSync(`app/containers/${comp}/reducer.js`, fs.F_OK);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function sagasExists(comp) {
+  try {
+    fs.accessSync(`app/containers/${comp}/sagas.js`, fs.F_OK);
     return true;
   } catch (e) {
     return false;
@@ -46,6 +54,7 @@ module.exports = {
   actions: data => {
     const actions = [];
     if (reducerExists(data.component)) {
+      data.useSagas = sagasExists(data.component); // eslint-disable-line no-param-reassign
       actions.push({
         type: 'modify',
         path: '../../app/routes.js',

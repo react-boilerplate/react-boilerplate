@@ -6,6 +6,9 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+{{#if wantHeaders}}
+import Helmet from 'react-helmet';
+{{/if}}
 {{#if wantActionsAndReducer}}
 import select{{properCase name}} from './selectors';
 {{/if}}
@@ -24,6 +27,14 @@ export class {{ properCase name }} extends React.Component { // eslint-disable-l
       <div className={{curly true}}styles.{{ camelCase name }}{{curly}}>
       {{else}}
       <div>
+      {{/if}}
+      {{#if wantHeaders}}
+      <Helmet
+        title="{{properCase name}}"
+        meta={{curly true}}[
+          {{curly true}} name: 'description', content: 'Description of {{properCase name}}' {{curly}},
+        ]{{curly}}
+      />
       {{/if}}
       {{#if wantMessages}}
         <FormattedMessage {...messages.header} />
