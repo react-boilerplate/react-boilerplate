@@ -4,10 +4,20 @@
 
 const fs = require('fs');
 const componentExists = require('../utils/componentExists');
+const componentName = '';
 
 function reducerExists(comp) {
   try {
     fs.accessSync(`app/containers/${comp}/reducer.js`, fs.F_OK);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function sagasExists(comp) {
+  try {
+    fs.accessSync(`app/containers/${comp}/sagas.js`, fs.F_OK);
     return true;
   } catch (e) {
     return false;
@@ -21,6 +31,7 @@ module.exports = {
     name: 'component',
     message: 'Which component should the route show?',
     validate: value => {
+      componentName = value;
       if ((/.+/).test(value)) {
         return componentExists(value) ? true : `"${value}" doesn't exist.`;
       }
@@ -39,6 +50,11 @@ module.exports = {
 
       return 'path is required';
     },
+  }, {
+    type: 'confirm',
+    name: 'useSagas',
+    default: sagasExists(componentName) ? true : false,
+    message: 'Do you want to use sagas?',
   }],
 
   // Add the route to the routes.js file above the error route
