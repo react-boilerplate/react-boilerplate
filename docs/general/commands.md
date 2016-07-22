@@ -208,7 +208,7 @@ docker rm -f myweb_container
 ```
 Then, let's run below command to create new container with a link directory to your local machine
 ```
-docker run -it -p 3000:3000 -v {YOUR_PROJECT_ROOT_FULL_PATH}:/reactapp --name myweb_container myreact bash
+docker run -it -p 3000:3000 -v {YOUR_PROJECT_ROOT_FULL_PATH}:/reactapp --name myweb_container myweb_image bash
 ```
 Now, your prompt will looks difference, because you are now in the container!
 Let's start with install all node dependencies
@@ -217,5 +217,5 @@ npm install
 ```
 After finish installed, try start the app and you're now good to go!
 ```
-npm run
+npm start
 ```
