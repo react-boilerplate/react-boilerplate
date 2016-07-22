@@ -12,7 +12,7 @@ website!
 
 ## Highlights
 
-- **Scaffolding**: Thanks to @somus, you can now run `$ npm run generate` in your
+- **Scaffolding**: Thanks to @somus, you can now run `npm run generate` in your
   terminal and immediately create new components, containers, sagas, routes and
   selectors! No more context switching, no more "Create new file, copy and paste
   that boilerplate structure, bla bla": just `npm run generate <thing>` and go.
