@@ -1,4 +1,4 @@
-FROM node:5-slim
+FROM node:6-slim
 
 RUN apt-get update && apt-get install libpng12-0
 
