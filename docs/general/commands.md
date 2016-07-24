@@ -3,7 +3,7 @@
 ## Initialization
 
 ```Shell
-$ npm run setup
+npm run setup
 ```
 
 Initializes a new project with this boilerplate. Deletes the `react-boilerplate`
@@ -16,7 +16,7 @@ history irreversibly by accident.
 ## Development
 
 ```Shell
-$ npm run start
+npm run start
 ```
 
 Starts the development server running on `http://localhost:3000`
@@ -24,7 +24,7 @@ Starts the development server running on `http://localhost:3000`
 ## Cleaning
 
 ```Shell
-$ npm run clean
+npm run clean
 ```
 
 Deletes the example app, replacing it with the smallest amount of boilerplate
@@ -37,7 +37,7 @@ irreversibly by accident.
 ## Generators
 
 ```Shell
-$ npm run generate
+npm run generate
 ```
 
 Allows you to auto-generate boilerplate code for common parts of your
@@ -50,7 +50,7 @@ generate container`)
 ### Development
 
 ```Shell
-$ npm start
+npm start
 ```
 
 Starts the development server and makes your application accessible at
@@ -60,7 +60,7 @@ accessible anywhere! Changes in the application code will be hot-reloaded.
 ### Production
 
 ```Shell
-$ npm run start:prod
+npm run start:prod
 ```
 
 Starts the production server, configured for optimal performance: assets are
@@ -70,12 +70,12 @@ minified and served gzipped.
 
 To change the port the app is accessible at pass the `--port` option to the command
 with `--`. E.g. to make the app visible at `localhost:5000`, run the following:
-`$ npm start -- --port 5000`
+`npm start -- --port 5000`
 
 ## Building
 
 ```Shell
-$ npm run build
+npm run build
 ```
 
 Preps your app for deployment. Optimizes and minifies all files, piping them to
@@ -90,7 +90,7 @@ about our testing setup!
 ## Unit testing
 
 ```Shell
-$ npm run test
+npm run test
 ```
 
 Tests your application with the unit tests specified in the `*test.js` files
@@ -100,7 +100,7 @@ the tests ran by Karma. Useful if you need to run a specific test only.
 
 ```Shell
 # Run only the Button component tests
-$ npm run test:watch -- --grep Button
+npm run test:watch -- --grep Button
 ```
 
 ### Browsers
@@ -111,13 +111,13 @@ the following commands:
 #### Firefox
 
 ```Shell
-$ npm run test:firefox
+npm run test:firefox
 ```
 
 #### Safari
 
 ```Shell
-$ npm run test:safari
+npm run test:safari
 ```
 
 #### Internet Explorer
@@ -125,13 +125,13 @@ $ npm run test:safari
 *Windows only!*
 
 ```Shell
-$ npm run test:ie
+npm run test:ie
 ```
 
 ### Watching
 
 ```Shell
-$ npm run test:watch
+npm run test:watch
 ```
 
 Watches changes to your application and reruns tests whenever a file changes.
@@ -139,7 +139,7 @@ Watches changes to your application and reruns tests whenever a file changes.
 ### Remote testing
 
 ```Shell
-$ npm run start:tunnel
+npm run start:tunnel
 ```
 Starts the development server and tunnels it with `ngrok`, making the website
 available on the entire world. Useful for testing on different devices in different locations!
@@ -147,17 +147,17 @@ available on the entire world. Useful for testing on different devices in differ
 ### Performance testing
 
 ```Shell
-$ npm run pagespeed
+npm run pagespeed
 ```
 
-With the remote server running (i.e. while `$ npm run start:prod` is running in
+With the remote server running (i.e. while `npm run start:prod` is running in
 another terminal session), enter this command to run Google PageSpeed Insights
 and get a performance check right in your terminal!
 
 ### Dependency size test
 
 ```Shell
-$ npm run analyze
+npm run analyze
 ```
 
 This command will generate a `stats.json` file from your production build, which
@@ -168,7 +168,7 @@ about the bundle size.
 ## Linting
 
 ```Shell
-$ npm run lint
+npm run lint
 ```
 
 Lints your JavaScript and CSS.
@@ -176,7 +176,7 @@ Lints your JavaScript and CSS.
 ### JavaScript
 
 ```Shell
-$ npm run lint:js
+npm run lint:js
 ```
 
 Only lints your JavaScript.
@@ -184,7 +184,7 @@ Only lints your JavaScript.
 ### CSS
 
 ```Shell
-$ npm run lint:css
+npm run lint:css
 ```
 
 Only lints your CSS.

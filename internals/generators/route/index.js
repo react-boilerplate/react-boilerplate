@@ -1,7 +1,6 @@
 /**
  * Route Generator
  */
-
 const fs = require('fs');
 const componentExists = require('../utils/componentExists');
 
@@ -12,6 +11,20 @@ function reducerExists(comp) {
   } catch (e) {
     return false;
   }
+}
+
+function sagasExists(comp) {
+  try {
+    fs.accessSync(`app/containers/${comp}/sagas.js`, fs.F_OK);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function trimTemplateFile(template) {
+  // Loads the template file and trims the whitespace and then returns the content as a string.
+  return fs.readFileSync(`internals/generators/route/${template}`, 'utf8').replace(/\s*$/, '');
 }
 
 module.exports = {
@@ -46,18 +59,19 @@ module.exports = {
   actions: data => {
     const actions = [];
     if (reducerExists(data.component)) {
+      data.useSagas = sagasExists(data.component); // eslint-disable-line no-param-reassign
       actions.push({
         type: 'modify',
         path: '../../app/routes.js',
         pattern: /(\s{\n\s{0,}path: '\*',)/g,
-        templateFile: './route/routeWithReducer.hbs',
+        template: trimTemplateFile('routeWithReducer.hbs'),
       });
     } else {
       actions.push({
         type: 'modify',
         path: '../../app/routes.js',
         pattern: /(\s{\n\s{0,}path: '\*',)/g,
-        templateFile: './route/route.hbs',
+        template: trimTemplateFile('route.hbs'),
       });
     }
 
