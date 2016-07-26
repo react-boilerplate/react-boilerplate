@@ -6,6 +6,10 @@
 
 import React from 'react';
 
+{{#if wantMessages}}
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
+{{/if}}
 {{#if wantCSS}}
 import styles from './styles.css';
 {{/if}}
@@ -17,6 +21,9 @@ class {{ properCase name }} extends React.Component { // eslint-disable-line rea
       <div className={{curly true}}styles.{{ camelCase name }}{{curly}}>
       {{else}}
       <div>
+      {{/if}}
+      {{#if wantMessages}}
+        <FormattedMessage {...messages.header} />
       {{/if}}
       </div>
     );
