@@ -1,6 +1,8 @@
 /**
  * Language Generator
  */
+var exec = require('child_process').exec;
+
 
 module.exports = {
   description: 'Add a langauge',
@@ -56,6 +58,17 @@ module.exports = {
       templateFile: './language/translations-json.hbs',
       abortOnFail: true,
     });
+    actions.push(
+      function() {
+        cmd = 'npm run extract-intl';
+        exec(cmd, function(err, stdout, stderr) {
+          if (err || stderr) {
+            throw err || stderr;
+          }
+          console.log(stdout);
+        });
+      }
+    );
 
     return actions;
   },
