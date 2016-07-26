@@ -18,7 +18,7 @@ import { Provider } from 'react-redux';
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import useScroll from 'react-router-scroll';
-import { LanguageProvider } from 'containers/LanguageProvider';
+import LanguageProvider from 'containers/LanguageProvider';
 import configureStore from './store';
 
 // Import i18n messages
