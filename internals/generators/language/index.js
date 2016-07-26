@@ -1,8 +1,7 @@
 /**
  * Language Generator
  */
-var exec = require('child_process').exec;
-
+const exec = require('child_process').exec;
 
 module.exports = {
   description: 'Add a langauge',
@@ -59,13 +58,13 @@ module.exports = {
       abortOnFail: true,
     });
     actions.push(
-      function() {
-        cmd = 'npm run extract-intl';
-        exec(cmd, function(err, stdout, stderr) {
+      () => {
+        const cmd = 'npm run extract-intl';
+        exec(cmd, (err, result, stderr) => {
           if (err || stderr) {
             throw err || stderr;
           }
-          console.log(stdout);
+          process.stdout.write(result);
         });
       }
     );

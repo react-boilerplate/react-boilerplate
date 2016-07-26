@@ -132,11 +132,11 @@ const extractFromFile = async (fileName) => {
           if (a < b) -1;
           else if (a > b) 1;
           else 0;
-        }
+        };
       });
 
       // Write to file the JSON representation of the translation messages
-      const prettified = `${JSON.stringify(messages, null, 2)}\n`
+      const prettified = `${JSON.stringify(messages, null, 2)}\n`;
 
       await writeFile(translationFileName, prettified);
 
