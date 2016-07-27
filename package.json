@@ -154,7 +154,6 @@
     "immutable": "3.8.1",
     "intl": "1.2.4",
     "ip": "1.1.3",
-    "minimist": "1.2.0",
     "react": "15.2.1",
     "react-dom": "15.2.1",
     "react-helmet": "3.1.0",
