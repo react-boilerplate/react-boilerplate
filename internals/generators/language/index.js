@@ -52,12 +52,6 @@ module.exports = {
       templateFile: './language/format-translation-messages.hbs',
     });
     actions.push({
-      type: 'modify',
-      path: '../../app.js',
-      pattern: /(System\.import\('intl\/locale-data\/jsonp\/[a-z]+\.js'\),\n)(?!.*System\.import\('intl\/locale-data\/jsonp\/[a-z]+\.js'\),)/g,
-      templateFile: './language/polyfill-intl-local.hbs',
-    });
-    actions.push({
       type: 'add',
       path: '../../app/translations/{{language}}.json',
       templateFile: './language/translations-json.hbs',
