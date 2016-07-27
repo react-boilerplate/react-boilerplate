@@ -13,4 +13,3 @@ Learn more:
 - [sanitize.css](sanitize.md)
 - [stylelint.css](stylelint.md)
 - [Using Sass](sass.md)
-- [Integrating Global CSS](integrating-global-css.md)
