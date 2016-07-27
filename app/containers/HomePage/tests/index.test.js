@@ -36,6 +36,20 @@ describe('<HomePage />', () => {
       ).toBeGreaterThan(-1);
   });
 
+  it('should render fetch the repos on mount if a username exists', () => {
+    const submitSpy = expect.createSpy();
+    mount(
+      <IntlProvider locale="en">
+        <HomePage
+          username="Not Empty"
+          onSubmitForm={submitSpy}
+        />
+      </IntlProvider>
+    );
+
+    expect(submitSpy).toHaveBeenCalled();
+  });
+
   it('should render the repositories if loading was successful', () => {
     const repos = [{
       owner: {
