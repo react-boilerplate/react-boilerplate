@@ -167,6 +167,23 @@ ESLint help making all developer follow the same coding format. Please also sett
 
 ![Setting up ESLint](webstorm-eslint.png)
 
+## Use CI with bitbucket pipelines
+
+Your project is on bitbucket? Take advantage of the pipelines feature (Continuous Integration) by creating a 'bitbucket-pipelines.yml' file at the root of the project and use the following code to automatically test your app at each commit:
+
+```YAML
+image: gwhansscheuren/bitbucket-pipelines-node-chrome-firefox
+
+pipelines:
+  default:
+    - step:
+        script:
+          - node --version
+          - npm --version
+          - npm install
+          - npm test
+```
+
 ## Have another question?
 
 Submit an [issue](https://github.com/mxstbr/react-boilerplate/issues),
