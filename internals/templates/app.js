@@ -68,7 +68,7 @@ const render = (translatedMessages) => {
     </Provider>,
     document.getElementById('app')
   );
-}
+};
 
 
 // Hot reloadable translation json files
