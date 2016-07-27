@@ -50,22 +50,42 @@ const rootRoute = {
   childRoutes: createRoutes(store),
 };
 
-ReactDOM.render(
-  <Provider store={store}>
-    <LanguageProvider messages={translationMessages}>
-      <Router
-        history={history}
-        routes={rootRoute}
-        render={
-          // Scroll to top when going to a new page, imitating default browser
-          // behaviour
-          applyRouterMiddleware(useScroll())
-        }
-      />
-    </LanguageProvider>
-  </Provider>,
-  document.getElementById('app')
-);
+
+const render = (translatedMessages) => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <LanguageProvider messages={translatedMessages}>
+        <Router
+          history={history}
+          routes={rootRoute}
+          render={
+            // Scroll to top when going to a new page, imitating default browser
+            // behaviour
+            applyRouterMiddleware(useScroll())
+          }
+        />
+      </LanguageProvider>
+    </Provider>,
+    document.getElementById('app')
+  );
+};
+
+
+// Hot reloadable translation json files
+if (module.hot) {
+  // modules.hot.accept does not accept dynamic dependencies,
+  // have to be constants at compile-time
+  module.hot.accept('./i18n', () => {
+    render(translationMessages);
+  });
+}
+
+// Chunked polyfill for browsers without Intl support
+if (!window.Intl) {
+  System.import('intl').then(() => render(translationMessages));
+} else {
+  render(translationMessages);
+}
 
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
