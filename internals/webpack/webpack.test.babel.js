@@ -2,7 +2,6 @@
  * TEST WEBPACK CONFIGURATION
  */
 
-const path = require('path');
 const webpack = require('webpack');
 const modules = [
   'app',
@@ -22,12 +21,6 @@ module.exports = {
     noParse: [
       /node_modules(\\|\/)sinon/,
       /node_modules(\\|\/)acorn/,
-    ],
-    preLoaders: [
-      { test: /\.js$/,
-        loader: 'isparta',
-        include: path.resolve('app/'),
-      },
     ],
     loaders: [
       { test: /\.json$/, loader: 'json-loader' },
