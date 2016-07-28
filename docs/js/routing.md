@@ -17,25 +17,30 @@ This is what a standard (generated) route looks like for a container:
 ```JS
 {
   path: '/',
-  getComponent: function get(location, cb) {
-    require.ensure([], (require) => {
-      injectAsyncReducer(store, 'home', require('HomePage/reducer').default);
-      cb(null, require('HomePage').default);
-    }, 'HomePage');
+  name: 'home',
+  getComponent(nextState, cb) {
+    const importModules = Promise.all([
+      System.import('containers/HomePage')
+    ]);
+
+    const renderRoute = loadModule(cb);
+
+    importModules.then(([component]) => {
+
+      renderRoute(component);
+    });
+
+    importModules.catch(errorLoading);
   },
 }
 ```
-
-> Don't worry about all of that `require.ensure` and `injectAsyncReducer` stuff,
-  it's there to make code splitting routes work. See [this blog post](http://blog.mxstbr.com/2016/01/react-apps-with-pages)
-  for more information!
 
 To go to a new page use the `push` function by `react-router-redux`:
 
 ```JS
 import { push } from 'react-router-redux';
 
-push('/some/page');
+dispatch(push('/some/page'));
 ```
 
 ## Child Routes
