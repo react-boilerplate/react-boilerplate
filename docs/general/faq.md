@@ -156,16 +156,44 @@ WebStorm is a powerful IDE, and why not also use it as debugger tool? Here is th
 ![How to debug using WebStorm](webstorm-debug.png)
 
 ### Troubleshooting
+
 1. You miss the last `.` (dot) in `webpack://.`
 2. The port debugger is listening tool and the JetBrain extension is mismatch.
 
 ### Enable ESLint
+
 ESLint help making all developer follow the same coding format. Please also setting up in your IDE, otherwise, you will fail ESLint test.
 1. Go to WebStorm Preference
 2. Search for `ESLint`
 3. Click `Enable`
 
 ![Setting up ESLint](webstorm-eslint.png)
+
+## Use CI with bitbucket pipelines
+
+Your project is on bitbucket? Take advantage of the pipelines feature (Continuous Integration) by creating a 'bitbucket-pipelines.yml' file at the root of the project and use the following code to automatically test your app at each commit:
+
+```YAML
+image: gwhansscheuren/bitbucket-pipelines-node-chrome-firefox
+
+pipelines:
+  default:
+    - step:
+        script:
+          - node --version
+          - npm --version
+          - npm install
+          - npm test
+```
+
+## I'm using Node v0.12 and the server doesn't work?
+
+We settled on supporting the last three major Node.js versions for the boilerplate – at the moment
+of this writing those are v4, v5 and v6. We **highly recommend upgrading to a newer Node.js version**!
+
+If you _have_ to use Node.js 0.12, you can hack around the server not running by using `babel-cli` to
+run the server: `npm install babel-cli`, and then replace all instances of `node server` in the `"scripts"`
+in the `package.json` with `babel server`!
 
 ## Have another question?
 

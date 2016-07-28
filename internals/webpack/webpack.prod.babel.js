@@ -104,11 +104,7 @@ module.exports = require('./webpack.base.babel')({
       // Removes warning for about `additional` section usage
       safeToUseOptionalCaches: true,
 
-      AppCache: {
-        // Starting from offline-plugin:v3, AppCache by default caches only
-        // `main` section. This lets it use `additional` section too
-        caches: ['main', 'additional'],
-      },
+      AppCache: false,
     }),
   ],
 });
