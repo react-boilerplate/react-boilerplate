@@ -28,6 +28,24 @@ module.exports = {
     path: outputPath,
     library: '[name]',
   },
+  module: {
+    loaders: [
+      {
+        test: /\.json$/,
+        loader: 'json-loader',
+      },
+      {
+        test: /\.yaml$/,
+        loader: 'yaml-loader',
+      },
+    ]
+  },
+  node: {
+    console: true,
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  },
   plugins: [
     new webpack.DllPlugin({ name: '[name]', path: join(outputPath, '[name].json') }), // eslint-disable-line no-new
   ],
