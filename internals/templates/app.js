@@ -83,7 +83,10 @@ if (module.hot) {
 
 // Chunked polyfill for browsers without Intl support
 if (!window.Intl) {
-  System.import('intl').then(() => render(translationMessages));
+  Promise.all([
+    System.import('intl'),
+    System.import('intl/locale-data/jsonp/en.js'),
+  ]).then(() => render(translationMessages));
 } else {
   render(translationMessages);
 }
