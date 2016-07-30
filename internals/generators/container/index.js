@@ -38,6 +38,11 @@ module.exports = {
     name: 'wantSagas',
     default: true,
     message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
+  }, {
+    type: 'confirm',
+    name: 'wantMessages',
+    default: true,
+    message: 'Do you want i18n messages (i.e. will this component use text)?',
   }],
   actions: data => {
     // Generate index.js and index.test.js
@@ -59,6 +64,16 @@ module.exports = {
         type: 'add',
         path: '../../app/containers/{{properCase name}}/styles.css',
         templateFile: './container/styles.css.hbs',
+        abortOnFail: true,
+      });
+    }
+
+    // If component wants messages
+    if (data.wantMessages) {
+      actions.push({
+        type: 'add',
+        path: '../../app/containers/{{properCase name}}/messages.js',
+        templateFile: './container/messages.js.hbs',
         abortOnFail: true,
       });
     }

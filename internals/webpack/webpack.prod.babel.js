@@ -85,6 +85,9 @@ module.exports = require('./webpack.base.babel')({
     // Put it in the end to capture all the HtmlWebpackPlugin's
     // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
     new OfflinePlugin({
+      relativePaths: false,
+      publicPath: '/',
+
       // No need to cache .htaccess. See http://mxs.is/googmp,
       // this is applied before any match in `caches` section
       excludes: ['.htaccess'],
@@ -101,11 +104,7 @@ module.exports = require('./webpack.base.babel')({
       // Removes warning for about `additional` section usage
       safeToUseOptionalCaches: true,
 
-      AppCache: {
-        // Starting from offline-plugin:v3, AppCache by default caches only
-        // `main` section. This lets it use `additional` section too
-        caches: ['main', 'additional'],
-      },
+      AppCache: false,
     }),
   ],
 });
