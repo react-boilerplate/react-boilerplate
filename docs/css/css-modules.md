@@ -105,7 +105,7 @@ You can apply the global styles directly.
 <div className="container-fluid"></div>
 ```
 
-You can override `react-bootstrap`.
+You can apply global styles implicitly via `react-bootstrap`.
 ```javascript
 <Grid fluid></div>
 ```
@@ -118,7 +118,7 @@ You can override global styles in your CSS module.
 ```
 
 Or you can add overrides via another local scope and
-[classnames](https://github.com/JedWatson/classnames)
+[classnames](https://github.com/JedWatson/classnames).
 ```css
 .localContainer {
   margin-left: 20px;
@@ -130,7 +130,7 @@ import classNames from 'classnames';
 <div className={ classNames('container-fluid', styles.localContainer) }></div>
 ```
 
-Doing the same via `react-bootstrap`
+Doing the same via `react-bootstrap`.
 ```javascript
 import styles from './styles.css';
 <Grid fluid className={ styles.localContainer }></Grid>
