@@ -19,6 +19,12 @@ module.exports = {
       return 'The name is required';
     },
   }, {
+    type: 'list',
+    name: 'component',
+    message: 'Select a base component:',
+    default: 'PureComponent',
+    choices: () => ['PureComponent', 'Component'],
+  }, {
     type: 'confirm',
     name: 'wantHeaders',
     default: false,
