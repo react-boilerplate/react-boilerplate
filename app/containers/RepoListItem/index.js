@@ -16,7 +16,7 @@ import A from 'components/A';
 
 import styles from './styles.css';
 
-export class RepoListItem extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class RepoListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     const item = this.props.item;
     let nameprefix = '';
@@ -35,7 +35,7 @@ export class RepoListItem extends React.Component { // eslint-disable-line react
           href={item.html_url}
           target="_blank"
         >
-          {nameprefix + item.name}
+          {`${nameprefix}${item.name}`}
         </A>
         <A
           className={styles.linkIssues}

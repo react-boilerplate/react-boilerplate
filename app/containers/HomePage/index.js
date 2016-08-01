@@ -35,7 +35,7 @@ import LoadingIndicator from 'components/LoadingIndicator';
 
 import styles from './styles.css';
 
-export class HomePage extends React.Component {
+export class HomePage extends React.PureComponent {
   /**
    * when initial state username is not null, submit the form to load repos
    */

@@ -13,7 +13,7 @@ import styles from './styles.css';
 import messages from './messages';
 import Toggle from 'components/Toggle';
 
-export class LocaleToggle extends React.Component { // eslint-disable-line
+export class LocaleToggle extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div className={styles.localeToggle}>
