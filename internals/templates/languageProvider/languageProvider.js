@@ -16,7 +16,7 @@ export class LanguageProvider extends React.PureComponent { // eslint-disable-li
   render() {
     return (
       <IntlProvider locale={this.props.locale} messages={this.props.messages[this.props.locale]}>
-        {this.props.children}
+        {React.Children.only(this.props.children)}
       </IntlProvider>
     );
   }
