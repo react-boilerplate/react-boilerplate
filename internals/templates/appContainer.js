@@ -24,7 +24,7 @@ export default class App extends React.Component { // eslint-disable-line react/
   render() {
     return (
       <div className={styles.container}>
-        {this.props.children}
+        {React.children.toArray(this.props.children)}
       </div>
     );
   }
