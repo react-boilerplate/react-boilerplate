@@ -32,7 +32,7 @@ function App(props) {
       <A className={styles.logoWrapper} href="https://twitter.com/mxstbr">
         <Img className={styles.logo} src={Banner} alt="react-boilerplate - Logo" />
       </A>
-      {props.children}
+      {React.Children.toArray(props.children)}
       <Footer />
     </div>
   );
