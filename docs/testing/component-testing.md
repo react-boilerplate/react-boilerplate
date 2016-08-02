@@ -29,7 +29,7 @@ function Button(props) {
   return (
     <button className="btn" onClick={props.onClick}>
       <CheckmarkIcon />
-      { React.children.only(props.children) }
+      { React.Children.only(props.children) }
     </button>
   );
 }
