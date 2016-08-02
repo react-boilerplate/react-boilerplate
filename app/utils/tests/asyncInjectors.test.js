@@ -152,7 +152,7 @@ describe('asyncInjectors', () => {
         }
 
         try {
-          injectSagas([testSaga]);
+          injectSagas(testSaga);
         } catch (err) {
           result = err.name === 'Invariant Violation';
         }
