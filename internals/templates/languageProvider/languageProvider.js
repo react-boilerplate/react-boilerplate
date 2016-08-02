@@ -16,7 +16,7 @@ export class LanguageProvider extends React.Component { // eslint-disable-line r
   render() {
     return (
       <IntlProvider locale={this.props.locale} messages={this.props.messages[this.props.locale]}>
-        {React.children.only(this.props.children)}
+        {React.Children.only(this.props.children)}
       </IntlProvider>
     );
   }
