@@ -16,7 +16,7 @@ export class LanguageProvider extends React.Component { // eslint-disable-line r
   render() {
     return (
       <IntlProvider locale={this.props.locale} messages={this.props.messages[this.props.locale]}>
-        {this.props.children}
+        {React.Children.only(this.props.children)}
       </IntlProvider>
     );
   }
@@ -28,16 +28,9 @@ LanguageProvider.propTypes = {
   children: React.PropTypes.element.isRequired,
 };
 
-
 const mapStateToProps = createSelector(
   selectLocale(),
   (locale) => ({ locale })
 );
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LanguageProvider);
+export default connect(mapStateToProps)(LanguageProvider);
