@@ -81,7 +81,7 @@ there will be an error during the build process and you will not be able to
 run the application.
 
 Now edit `internals/config.js` and make the following modifications
-```
+```javascript
 const ReactBoilerplate = {
   /* ... */
   dllPlugin: {
@@ -94,6 +94,11 @@ const ReactBoilerplate = {
 
       /* ... */
 };
+```
+
+And finally edit `app/containers/App/index.js`, and add the following after the line `import 'sanitize.css/sanitize.css';`
+```javascript
+import 'bootstrap-css-only/css/bootstrap.min.css';
 ```
 
 ### Usage
