@@ -34,20 +34,14 @@ describe('<NotFound />', () => {
   });
 
   it('should link to "/"', () => {
-    const changeRouteSpy = expect.createSpy();
-    const onChangeRoute = (dest) => {
-      if (dest === '/') {
-        changeRouteSpy();
-      }
-    };
-
+    const onPushSpy = expect.createSpy();
     const renderedComponent = mount(
       <IntlProvider locale="en">
-        <NotFound changeRoute={onChangeRoute} />
+        <NotFound push={onPushSpy} />
       </IntlProvider>
     );
     const button = renderedComponent.find('button');
     button.simulate('click');
-    expect(changeRouteSpy).toHaveBeenCalled();
+    expect(onPushSpy).toHaveBeenCalled();
   });
 });

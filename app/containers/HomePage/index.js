@@ -37,14 +37,6 @@ import styles from './styles.css';
 
 export class HomePage extends React.Component {
   /**
-   * when initial state username is not null, submit the form to load repos
-   */
-  componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
-      this.props.onSubmitForm();
-    }
-  }
-  /**
    * Changes the route
    *
    * @param  {string} route The route we want to go to
@@ -148,7 +140,7 @@ function mapDispatchToProps(dispatch) {
     onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
     changeRoute: (url) => dispatch(push(url)),
     onSubmitForm: (evt) => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+      evt.preventDefault();
       dispatch(loadRepos());
     },
 
