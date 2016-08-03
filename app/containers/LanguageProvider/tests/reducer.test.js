@@ -6,18 +6,26 @@ import { CHANGE_LOCALE } from '../constants';
 
 describe('languageProviderReducer', () => {
   it('returns the initial state', () => {
-    expect(languageProviderReducer(undefined, {})).toEqual(fromJS({
+    const expected = languageProviderReducer(undefined, {});
+    const actual = expected.merge({
       locale: 'en',
-    }));
+    });
+
+    expect(expected).toEqual(actual);
   });
 
   it('updates the locale', () => {
-    const action = {
+    const initialState = fromJS({
+      locale: 'en',
+    });
+    const expected = languageProviderReducer(initialState, {
       type: CHANGE_LOCALE,
       locale: 'de',
-    };
-    expect(languageProviderReducer(undefined, action)).toEqual(fromJS({
+    });
+    const actual = initialState.merge({
       locale: 'de',
-    }));
+    });
+
+    expect(expected).toEqual(actual);
   });
 });
