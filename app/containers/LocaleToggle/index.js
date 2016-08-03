@@ -8,33 +8,35 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { selectLocale } from '../LanguageProvider/selectors';
 import { changeLocale } from '../LanguageProvider/actions';
-import { createStructuredSelector } from 'reselect';
+import { createSelector } from 'reselect';
 import styles from './styles.css';
 import messages from './messages';
 import Toggle from 'components/Toggle';
-export class LocaleToggle extends React.Component {
-  static propTypes = {
-    changeLocale: React.PropTypes.func,
-  }
 
-  handleToggle = (evt) => {
-    this.props.changeLocale(evt.target.value);
-  }
-
+export class LocaleToggle extends React.Component { // eslint-disable-line
   render() {
     return (
       <div className={styles.localeToggle}>
-        <Toggle
-          values={['en', 'de']}
-          messages={messages}
-          onToggle={this.handleToggle}
-        />
+        <Toggle values={['en', 'de']} messages={messages} onToggle={this.props.onLocaleToggle} />
       </div>
     );
   }
 }
 
-const mapStateToProps = createStructuredSelector({ locale: selectLocale() });
-const mapActionCreators = { changeLocale };
+LocaleToggle.propTypes = {
+  onLocaleToggle: React.PropTypes.func,
+};
 
-export default connect(mapStateToProps, mapActionCreators)(LocaleToggle);
+const mapStateToProps = createSelector(
+  selectLocale(),
+  (locale) => ({ locale })
+);
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onLocaleToggle: (evt) => dispatch(changeLocale(evt.target.value)),
+    dispatch,
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocaleToggle);
