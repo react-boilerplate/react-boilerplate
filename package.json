@@ -153,7 +153,9 @@
     "history": "3.0.0",
     "immutable": "3.8.1",
     "intl": "1.2.4",
+    "invariant": "^2.2.1",
     "ip": "1.1.3",
+    "lodash": "4.14.1",
     "react": "15.3.0",
     "react-dom": "15.3.0",
     "react-helmet": "3.1.0",
@@ -167,6 +169,7 @@
     "redux-saga": "0.11.0",
     "reselect": "2.5.3",
     "sanitize.css": "4.1.0",
+    "warning": "^3.0.0",
     "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
@@ -207,7 +210,6 @@
     "html-webpack-plugin": "2.22.0",
     "image-webpack-loader": "2.0.0",
     "imports-loader": "0.6.5",
-    "ip": "1.1.3",
     "isparta": "4.0.0",
     "isparta-loader": "2.0.0",
     "json-loader": "0.5.4",
@@ -222,7 +224,6 @@
     "karma-sourcemap-loader": "0.3.7",
     "karma-webpack": "1.7.0",
     "lint-staged": "2.0.2",
-    "lodash": "4.14.1",
     "minimist": "1.2.0",
     "mocha": "2.5.3",
     "ngrok": "2.2.2",
