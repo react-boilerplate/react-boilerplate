@@ -9,7 +9,7 @@ import { browserHistory } from 'react-router';
 describe('configureStore', () => {
   let store;
 
-  before(() => {
+  beforeAll(() => {
     store = configureStore({}, browserHistory);
   });
 

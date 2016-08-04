@@ -4,7 +4,6 @@
 
 import Button from '../index';
 
-import expect from 'expect';
 import { mount } from 'enzyme';
 import React from 'react';
 

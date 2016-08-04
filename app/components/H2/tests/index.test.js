@@ -1,6 +1,5 @@
 import H2 from '../index';
 
-import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
 
@@ -18,6 +17,6 @@ describe('<H2 />', () => {
     const renderedComponent = shallow(
       <H2>{children}</H2>
     );
-    expect(renderedComponent.contains(children)).toEqual(true);
+    expect(renderedComponent.contains(children)).toBe(true);
   });
 });

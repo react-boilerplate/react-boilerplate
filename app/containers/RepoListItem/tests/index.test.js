@@ -2,7 +2,6 @@
  * Test the repo list item
  */
 
-import expect from 'expect';
 import { shallow, render } from 'enzyme';
 import React from 'react';
 
@@ -36,7 +35,7 @@ describe('<RepoListItem />', () => {
     const renderedComponent = shallow(
       <RepoListItem item={item} />
     );
-    expect(renderedComponent.find(ListItem).length).toEqual(1);
+    expect(renderedComponent.find(ListItem).length).toBe(1);
   });
 
   it('should not render the current username', () => {
@@ -67,6 +66,6 @@ describe('<RepoListItem />', () => {
 
   it('should render the IssueIcon', () => {
     const renderedComponent = renderComponent({ item });
-    expect(renderedComponent.find('svg').length).toEqual(1);
+    expect(renderedComponent.find('svg').length).toBe(1);
   });
 });

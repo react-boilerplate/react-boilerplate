@@ -1,6 +1,5 @@
 import IssueIcon from '../index';
 
-import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
 
@@ -9,6 +8,6 @@ describe('<IssueIcon />', () => {
     const renderedComponent = shallow(
       <IssueIcon />
     );
-    expect(renderedComponent.find('svg').length).toEqual(1);
+    expect(renderedComponent.find('svg').length).toBe(1);
   });
 });
