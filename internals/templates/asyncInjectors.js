@@ -1,20 +1,23 @@
+import { conformsTo, isEmpty, isFunction, isObject, isString } from 'lodash';
 import invariant from 'invariant';
+import warning from 'warning';
 import createReducer from 'reducers';
-
-export const isType = type => target => typeof target === type;
-export const isFunction = isType('function');
 
 /**
  * Validate the shape of redux store
  */
-const reduxKeys = ['dispatch', 'subscribe', 'getState', 'replaceReducer'];
-const internalKeys = ['runSaga']; // asyncReducers does not exist yet
-const expectedKeys = [...reduxKeys, ...internalKeys];
-
 export function checkStore(store) {
+  const shape = {
+    dispatch: isFunction,
+    subscribe: isFunction,
+    getState: isFunction,
+    replaceReducer: isFunction,
+    runSaga: isFunction,
+    asyncReducers: isObject,
+  };
   invariant(
-    expectedKeys.reduce((acc, curr) => (acc ? isFunction(store[`${curr}`]) : false), true),
-    '(app/utils...) asyncInjectors: Received invalid redux store.'
+    conformsTo(store, shape),
+    '(app/utils...) asyncInjectors: Expected a valid redux store'
   );
 }
 
@@ -26,8 +29,8 @@ export function injectAsyncReducer(store, isValid) {
     if (!isValid) checkStore(store);
 
     invariant(
-      isType('string')(name) && name.length && isFunction(asyncReducer),
-      '(app/utils...) injectAsyncReducer: `asyncReducer` must be a reducer function'
+      isString(name) && !isEmpty(name) && isFunction(asyncReducer),
+      '(app/utils...) injectAsyncReducer: Expected `asyncReducer` to be a reducer function'
     );
 
     store.asyncReducers[name] = asyncReducer; // eslint-disable-line no-param-reassign
@@ -43,8 +46,13 @@ export function injectAsyncSagas(store, isValid) {
     if (!isValid) checkStore(store);
 
     invariant(
-      Array.isArray(sagas) && sagas.length,
-      '(app/utils/injectAsyncSagas...) `sagas` must be an array of generator functions'
+      Array.isArray(sagas),
+      '(app/utils...) injectAsyncSagas: Expected `sagas` to be an array of generator functions'
+    );
+
+    warning(
+      !isEmpty(sagas),
+      '(app/utils...) injectAsyncSagas: Received an empty `sagas` array'
     );
 
     sagas.map(store.runSaga);
