@@ -55,7 +55,7 @@
   "pre-commit": "lint:staged",
   "babel": {
     "presets": [
-      "es2015-webpack",
+      ["es2015", { "modules": false }],
       "react",
       "stage-0"
     ],
@@ -185,7 +185,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
-    "babel-core": "6.11.4",
+    "babel-core": "6.13.2",
     "babel-eslint": "6.1.2",
     "babel-loader": "6.2.4",
     "babel-plugin-react-intl": "^2.1.3",
@@ -193,8 +193,7 @@
     "babel-plugin-transform-react-constant-elements": "6.9.1",
     "babel-plugin-transform-react-inline-elements": "6.8.0",
     "babel-plugin-transform-react-remove-prop-types": "0.2.9",
-    "babel-preset-es2015": "6.9.0",
-    "babel-preset-es2015-webpack": "6.4.2",
+    "babel-preset-es2015": "6.13.2",
     "babel-preset-react": "6.11.1",
     "babel-preset-react-hmre": "1.1.1",
     "babel-preset-stage-0": "6.5.0",
