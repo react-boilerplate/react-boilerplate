@@ -16,6 +16,6 @@ describe('getLocaleMessages', () => {
 
     const actual = getLocaleMessages(['en', 'fr']);
 
-    assert(expected === actual);
+    assert.deepEqual(expected, actual);
   });
 });
