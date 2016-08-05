@@ -6,8 +6,8 @@
 import { defineMessages } from 'react-intl';
 import { appLocales } from '../../i18n';
 
-function getAppLocales() {
-  return appLocales.reduce((messages, locale) =>
+export function getLocaleMessages(locales) {
+  return locales.reduce((messages, locale) =>
     Object.assign(messages, {
       [locale]: {
         id: `app.components.LocaleToggle.${locale}`,
@@ -16,4 +16,6 @@ function getAppLocales() {
     }), {});
 }
 
-export default defineMessages(getAppLocales());
+export default defineMessages(
+  getLocaleMessages(appLocales)
+);
