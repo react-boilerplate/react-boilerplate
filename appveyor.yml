@@ -20,7 +20,7 @@ init:
 # Install scripts--runs after repo cloning
 install:
   # Install chrome
-  - choco install -y googlechrome
+  - choco install -y googlechrome-allusers
   # Install the latest stable version of Node
   - ps: Install-Product node $env:nodejs_version
   - npm -g install npm
