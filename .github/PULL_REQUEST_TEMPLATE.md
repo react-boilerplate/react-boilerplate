@@ -3,7 +3,7 @@
 Thank you for contributing! Please take a moment to review our [**contributing guidelines**](https://github.com/mxstbr/react-boilerplate/blob/master/.github/CONTRIBUTING.md)
 to make the process easy and effective for everyone involved.
 
-**Please open an issue** before embarking on any significant pull request, expecially those that
+**Please open an issue** before embarking on any significant pull request, especially those that
 add a new library or change existing tests, otherwise you risk spending a lot of time working
 on something that might not end up being merged into the project.
 
