@@ -8,10 +8,12 @@
 // Needed for redux-saga es6 generator support
 import 'babel-polyfill';
 
+/* eslint-disable import/no-unresolved */
 // Load the favicon, the manifest.json file and the .htaccess file
 import 'file?name=[name].[ext]!./favicon.ico';
 import '!file?name=[name].[ext]!./manifest.json';
 import 'file?name=[name].[ext]!./.htaccess';
+/* eslint-enable import/no-unresolved */
 
 // Import all the third party stuff
 import React from 'react';
@@ -103,7 +105,17 @@ if (module.hot) {
 
 // Chunked polyfill for browsers without Intl support
 if (!window.Intl) {
-  System.import('intl').then(() => render(translationMessages));
+  (new Promise((resolve) => {
+    resolve(System.import('intl'));
+  }))
+    .then(() => Promise.all([
+      System.import('intl/locale-data/jsonp/en.js'),
+      System.import('intl/locale-data/jsonp/de.js'),
+    ]))
+    .then(() => render(translationMessages))
+    .catch((err) => {
+      throw err;
+    });
 } else {
   render(translationMessages);
 }

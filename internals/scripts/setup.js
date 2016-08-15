@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+var shell = require('shelljs');
 var exec = require('child_process').exec;
 var path = require('path');
 var fs   = require('fs');
@@ -47,7 +48,8 @@ cleanRepo(dir, function () {
  * Deletes the .git folder in dir
  */
 function cleanRepo(dir, callback) {
-  exec('rm -Rf .git/', addCheckMark.bind(null, callback));
+  shell.rm('-rf', '.git/');
+  addCheckMark(callback);
 }
 
 /**

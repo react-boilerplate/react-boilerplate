@@ -17,25 +17,30 @@ This is what a standard (generated) route looks like for a container:
 ```JS
 {
   path: '/',
-  getComponent: function get(location, cb) {
-    require.ensure([], (require) => {
-      injectAsyncReducer(store, 'home', require('HomePage/reducer').default);
-      cb(null, require('HomePage').default);
-    }, 'HomePage');
+  name: 'home',
+  getComponent(nextState, cb) {
+    const importModules = Promise.all([
+      System.import('containers/HomePage')
+    ]);
+
+    const renderRoute = loadModule(cb);
+
+    importModules.then(([component]) => {
+
+      renderRoute(component);
+    });
+
+    importModules.catch(errorLoading);
   },
 }
 ```
-
-> Don't worry about all of that `require.ensure` and `injectAsyncReducer` stuff,
-  it's there to make code splitting routes work. See [this blog post](http://blog.mxstbr.com/2016/01/react-apps-with-pages)
-  for more information!
 
 To go to a new page use the `push` function by `react-router-redux`:
 
 ```JS
 import { push } from 'react-router-redux';
 
-push('/some/page');
+dispatch(push('/some/page'));
 ```
 
 ## Child Routes
@@ -81,5 +86,79 @@ For example, if you have a route called `about` at `/about` and want to make a c
   ]
 }
 ```
+
+## Dynamic routes
+
+To go to a dynamic route such as 'post/:slug' eg 'post/cool-new-post', firstly add the route to your `routes.js`, as per documentation:
+
+```
+path: '/posts/:slug',
+name: 'post',
+getComponent(nextState, cb) {
+ const importModules = Promise.all([
+   System.import('containers/Post/reducer'),
+   System.import('containers/Post/sagas'),
+   System.import('containers/Post'),
+ ]);
+
+ const renderRoute = loadModule(cb);
+
+ importModules.then(([reducer, sagas, component]) => {
+   injectReducer('post', reducer.default);
+   injectSagas(sagas.default);
+   renderRoute(component);
+ });
+
+ importModules.catch(errorLoading);
+},
+```
+
+###Container:
+
+```
+<Link to={`/posts/${post.slug}`} key={post._id}>
+```
+
+Clickable link with payload (you could use push if needed).
+
+###Action:
+
+```
+export function getPost(slug) {
+  return {
+    type: LOAD_POST,
+    slug,
+  };
+}
+
+export function postLoaded(post) {
+  return {
+    type: LOAD_POST_SUCCESS,
+    podcast,
+  };
+}
+```
+
+###Saga:
+
+```
+const { slug } = yield take(LOAD_POST);
+yield call(getXhrPodcast, slug);
+
+export function* getXhrPodcast(slug) {
+  const requestURL = `http://your.api.com/api/posts/${slug}`;
+  const post = yield call(request, requestURL);
+  if (!post.err) {
+    yield put(postLoaded(post));
+  } else {
+    yield put(postLoadingError(post.err));
+  }
+}
+```
+
+Wait (`take`) for the LOAD_POST constant, which contains the slug payload from the `getPost()` function in actions.js. 
+
+When the action is fired then dispatch the `getXhrPodcast()` function to get the reponse from your api. On success dispatch the `postLoaded()` action (`yield put`) which sends back the reponse and can be added into the reducer state.
+
 
 You can read more on [`react-router`'s documentation](https://github.com/reactjs/react-router/blob/master/docs/API.md#props-3).

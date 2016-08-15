@@ -8,6 +8,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { selectLocale } from '../LanguageProvider/selectors';
 import { changeLocale } from '../LanguageProvider/actions';
+import { appLocales } from '../../i18n';
 import { createSelector } from 'reselect';
 import styles from './styles.css';
 import messages from './messages';
@@ -17,7 +18,7 @@ export class LocaleToggle extends React.Component { // eslint-disable-line
   render() {
     return (
       <div className={styles.localeToggle}>
-        <Toggle values={['en', 'de']} messages={messages} onToggle={this.props.onLocaleToggle} />
+        <Toggle values={appLocales} messages={messages} onToggle={this.props.onLocaleToggle} />
       </div>
     );
   }

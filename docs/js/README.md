@@ -23,7 +23,7 @@ add new parts of your application!
 - [ImmutableJS](immutablejs.md)
 - [reselect](reselect.md)
 - [redux-saga](redux-saga.md)
-- [react-intl](react-intl.md)
+- [react-intl](i18n.md)
 - [routing](routing.md)
 
 ## Architecture: `components` and `containers`
