@@ -26,7 +26,6 @@ This is what a standard (generated) route looks like for a container:
     const renderRoute = loadModule(cb);
 
     importModules.then(([component]) => {
-
       renderRoute(component);
     });
 
@@ -47,7 +46,8 @@ dispatch(push('/some/page'));
 `npm run generate route` does not currently support automatically generating child routes if you need them, but they can be easily created manually.
 
 For example, if you have a route called `about` at `/about` and want to make a child route called `team` at `/about/our-team` you can just add that child page to the parent page's `childRoutes` array like so:
-```
+
+```JS
 /* your app's other routes would already be in this array */
 {
   path: '/about',
@@ -91,7 +91,7 @@ For example, if you have a route called `about` at `/about` and want to make a c
 
 To go to a dynamic route such as 'post/:slug' eg 'post/cool-new-post', firstly add the route to your `routes.js`, as per documentation:
 
-```
+```JS
 path: '/posts/:slug',
 name: 'post',
 getComponent(nextState, cb) {
@@ -115,7 +115,7 @@ getComponent(nextState, cb) {
 
 ###Container:
 
-```
+```JSX
 <Link to={`/posts/${post.slug}`} key={post._id}>
 ```
 
@@ -123,7 +123,7 @@ Clickable link with payload (you could use push if needed).
 
 ###Action:
 
-```
+```JS
 export function getPost(slug) {
   return {
     type: LOAD_POST,
@@ -141,7 +141,7 @@ export function postLoaded(post) {
 
 ###Saga:
 
-```
+```JS
 const { slug } = yield take(LOAD_POST);
 yield call(getXhrPodcast, slug);
 
