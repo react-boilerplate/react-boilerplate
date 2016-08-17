@@ -75,10 +75,10 @@ const rootRoute = {
   childRoutes: createRoutes(store),
 };
 
-const render = (translatedMessages) => {
+const render = (messages) => {
   ReactDOM.render(
     <Provider store={store}>
-      <LanguageProvider messages={translatedMessages}>
+      <LanguageProvider messages={messages}>
         <Router
           history={history}
           routes={rootRoute}

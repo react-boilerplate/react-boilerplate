@@ -55,17 +55,29 @@
   "pre-commit": "lint:staged",
   "babel": {
     "presets": [
-      ["es2015", { "modules": false }],
+      [
+        "es2015",
+        {
+          "modules": false
+        }
+      ],
       "react",
       "stage-0"
     ],
     "env": {
       "production": {
-        "only": ["app"],
+        "only": [
+          "app"
+        ],
         "plugins": [
           "transform-react-remove-prop-types",
           "transform-react-constant-elements",
           "transform-react-inline-elements"
+        ]
+      },
+      "test": {
+        "plugins": [
+          "istanbul"
         ]
       }
     }
@@ -91,15 +103,27 @@
       }
     },
     "rules": {
-      "arrow-body-style": [2, "as-needed"],
-      "comma-dangle": [2, "always-multiline"],
+      "arrow-body-style": [
+        2,
+        "as-needed"
+      ],
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ],
       "import/imports-first": 0,
       "import/newline-after-import": 0,
       "import/no-extraneous-dependencies": 0,
       "import/no-named-as-default": 0,
       "import/no-unresolved": 2,
       "import/prefer-default-export": 0,
-      "indent": [2, 2, { "SwitchCase": 1 }],
+      "indent": [
+        2,
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
       "jsx-a11y/aria-props": 2,
       "jsx-a11y/heading-has-content": 0,
       "jsx-a11y/href-no-hash": 2,
@@ -132,9 +156,14 @@
       "color-hex-case": "upper",
       "string-quotes": "single",
       "font-family-name-quotes": "always-where-recommended",
-      "selector-pseudo-class-no-unknown": [true, {
-        "ignorePseudoClasses": ["global"]
-      }],
+      "selector-pseudo-class-no-unknown": [
+        true,
+        {
+          "ignorePseudoClasses": [
+            "global"
+          ]
+        }
+      ],
       "indentation": 2
     }
   },
@@ -188,6 +217,7 @@
     "babel-core": "6.13.2",
     "babel-eslint": "6.1.2",
     "babel-loader": "6.2.4",
+    "babel-plugin-istanbul": "2.0.0",
     "babel-plugin-react-intl": "2.1.3",
     "babel-plugin-react-transform": "2.0.2",
     "babel-plugin-transform-react-constant-elements": "6.9.1",
