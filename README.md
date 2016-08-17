@@ -101,7 +101,7 @@ There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on ho
 
 Now you're ready to rumble!
 
-> Please note that this boilerplate is **not meant for beginners**! If you're just starting out with react or redux, please refer to https://github.com/petehunt/react-howto instead.
+> Please note that this boilerplate is **not meant for beginners**! If you're just starting out with react or redux, please refer to [react-howto](https://github.com/petehunt/react-howto) instead. You may also use the officially supported [Create React App](https://github.com/facebookincubator/create-react-app) tool to create React projects with no build configuration.
 
 ## Documentation
 
