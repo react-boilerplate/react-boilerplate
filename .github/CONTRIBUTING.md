@@ -69,6 +69,11 @@ project's developers might not want to merge into the project.
 Please adhere to the coding conventions used throughout a project (indentation,
 accurate comments, etc.) and any other requirements (such as test coverage).
 
+Since the `master` branch is what people actually use in production, we have a
+`dev` branch that unstable changes get merged into first. Only when we
+consider that stable we merge it into the `master` branch and release the
+changes for real.
+
 Adhering to the following process is the best way to get your work
 included in the project:
 
@@ -86,11 +91,11 @@ included in the project:
 2. If you cloned a while ago, get the latest changes from upstream:
 
    ```bash
-   git checkout master
-   git pull upstream master
+   git checkout dev
+   git pull upstream dev
    ```
 
-3. Create a new topic branch (off the main project development branch) to contain your feature, change, or fix:
+3. Create a new topic branch (off the `dev` branch) to contain your feature, change, or fix:
 
    ```bash
    git checkout -b <topic-branch-name>
@@ -98,10 +103,10 @@ included in the project:
 
 4. Commit your changes in logical chunks. Please adhere to these [git commit message guidelines](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) or your code is unlikely be merged into the main project. Use Git's [interactive rebase](https://help.github.com/articles/about-git-rebase/) feature to tidy up your commits before making them public.
 
-5. Locally merge (or rebase) the upstream development branch into your topic branch:
+5. Locally merge (or rebase) the upstream dev branch into your topic branch:
 
    ```bash
-   git pull [--rebase] upstream master
+   git pull [--rebase] upstream dev
    ```
 
 6. Push your topic branch up to your fork:
