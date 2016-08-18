@@ -29,12 +29,12 @@ export class {{ properCase name }} extends React.Component { // eslint-disable-l
       <div>
       {{/if}}
       {{#if wantHeaders}}
-      <Helmet
-        title="{{properCase name}}"
-        meta={{curly true}}[
-          {{curly true}} name: 'description', content: 'Description of {{properCase name}}' {{curly}},
-        ]{{curly}}
-      />
+        <Helmet
+          title="{{properCase name}}"
+          meta={{curly true}}[
+            {{curly true}} name: 'description', content: 'Description of {{properCase name}}' {{curly}},
+          ]{{curly}}
+        />
       {{/if}}
       {{#if wantMessages}}
         <FormattedMessage {...messages.header} />
