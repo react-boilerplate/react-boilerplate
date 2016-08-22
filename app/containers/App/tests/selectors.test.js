@@ -11,13 +11,12 @@ import {
 } from '../selectors';
 
 describe('selectGlobal', () => {
-  const globalSelector = selectGlobal();
   it('should select the global state', () => {
     const globalState = fromJS({});
     const mockedState = fromJS({
       global: globalState,
     });
-    expect(globalSelector(mockedState)).toEqual(globalState);
+    expect(selectGlobal(mockedState)).toEqual(globalState);
   });
 });
 
