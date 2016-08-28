@@ -6,7 +6,6 @@ import { shallow } from 'enzyme';
 import React from 'react';
 
 describe('<App />', () => {
-  /* eslint no-underscore-dangle: ["error", {"allow": ["__Rewire__", "__ResetDependency__"]}] */
   before(() => App.__Rewire__('Banner', 'test.png'));
   after(() => App.__ResetDependency__('Banner'));
 
