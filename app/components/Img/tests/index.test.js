@@ -26,13 +26,13 @@ describe('<Img />', () => {
     expect(renderedComponent).to.have.attr('alt', alt);
   });
 
-  it('should adopt the className', () => {
+  it('should adopt a className attribute', () => {
     const className = 'test';
     const renderedComponent = renderComponent({ className });
     expect(renderedComponent).to.have.attr('class', className);
   });
 
-  it('should not adopt the srcset', () => {
+  it('should not adopt a srcset attribute', () => {
     const srcset = 'test-HD.png 2x';
     const renderedComponent = renderComponent({ srcset });
     expect(renderedComponent).to.not.have.attr('srcset', srcset);
