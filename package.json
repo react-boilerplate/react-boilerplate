@@ -131,10 +131,12 @@
       "no-console": 1,
       "no-underscore-dangle": [
         2,
-        { "allow": [
-          "__Rewire__",
-          "__ResetDependency__"
-        ] }
+        {
+          "allow": [
+            "__Rewire__",
+            "__ResetDependency__"
+          ]
+        }
       ],
       "no-use-before-define": 0,
       "prefer-template": 2,
