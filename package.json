@@ -129,6 +129,15 @@
       "max-len": 0,
       "newline-per-chained-call": 0,
       "no-console": 1,
+      "no-underscore-dangle": [
+        2,
+        {
+          "allow": [
+            "__Rewire__",
+            "__ResetDependency__"
+          ]
+        }
+      ],
       "no-use-before-define": 0,
       "prefer-template": 2,
       "react/jsx-filename-extension": 0,
@@ -214,6 +223,7 @@
     "babel-loader": "6.2.4",
     "babel-plugin-react-intl": "2.1.3",
     "babel-plugin-react-transform": "2.0.2",
+    "babel-plugin-rewire": "1.0.0-rc-6",
     "babel-plugin-transform-react-constant-elements": "6.9.1",
     "babel-plugin-transform-react-inline-elements": "6.8.0",
     "babel-plugin-transform-react-remove-prop-types": "0.2.9",

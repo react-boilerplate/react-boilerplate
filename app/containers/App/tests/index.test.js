@@ -1,11 +1,14 @@
+import App from '../index';
+import Footer from 'components/Footer';
+
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import App from '../index';
-import Footer from 'components/Footer';
-
 describe('<App />', () => {
+  before(() => App.__Rewire__('Banner', 'test.png'));
+  after(() => App.__ResetDependency__('Banner'));
+
   it('should render the logo', () => {
     const renderedComponent = shallow(
       <App />
