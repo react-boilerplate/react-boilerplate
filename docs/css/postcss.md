@@ -22,6 +22,22 @@ This boilerplate bundles a few of the most useful PostCSS plugins by default:
 For more awesome features that the PostCSS ecosystem offers, check out the
 comprehensive, fully-searchable catalog of available plugins at [postcss.parts](http://postcss.parts).
 
+## Adding a new PostCSS plugin
+
+1. Add the plugin to your project (e.g. `npm install --save-dev postcss-super-plugin`).
+2. Modify `internals/webpack/webpack.dev.babel.js`:
+   - Add `const postcssSuperPlugin = require('postcss-super-plugin');`
+     to `// PostCSS plugins` section.
+   - Find `postcssPlugins: [/* ... current set of plugins ... */]` and add
+     the new plugin to the list: `postcssPlugins: [/* ... */, postcssSuperPlugin()]`.
+3. Modify `internals/webpack/webpack.prod.babel.js` the same way.
+4. Restart the server (`CTRL+C`, `npm start`) for the new plugin to become available
+  (webpack does not pick config changes while running).
+
+Before installing a new plugin, make sure that you are not trying to add a feature
+that is already available. It is likely that what you are looking for
+[is supported by `cssnext`](http://cssnext.io/features/), which is a part of the boilerplate. 
+
 ---
 
 _Don't like this feature? [Click here](remove.md)_
