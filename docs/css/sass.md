@@ -29,6 +29,16 @@ If you _really_ still want (or need) to use Sass then...
     cssLoaders: 'style-loader!css-loader?modules&importLoaders=1&sourceMap!postcss-loader!sass-loader',
     ```
 
+    - `internals/webpack/webpack.test.babel.js`
+
+    ```diff
+    loaders: [
+      { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.css$/, loader: 'null-loader' },
++ { test: /\.scss$/, loader: ['style-loader', 'css-loader', 'sass-loader'] },
+     ...
+    ```
+
     Then run `npm i -D sass-loader node-sass`
 
 ...and you should be good to go!
