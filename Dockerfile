@@ -4,10 +4,9 @@ RUN apt-get update && apt-get install libpng12-0
 
 WORKDIR /reactapp
 
-RUN mkdir -p /reactapp
-ADD package.json /reactapp/package.json
+COPY package.json .
 RUN npm install
-ADD . /reactapp
+COPY . .
 
 RUN npm run build:dll
 
