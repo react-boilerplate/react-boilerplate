@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // PostCSS plugins
 const cssnext = require('postcss-cssnext');
@@ -106,5 +107,9 @@ module.exports = require('./webpack.base.babel')({
 
       AppCache: false,
     }),
+
+    new CopyWebpackPlugin([
+      { from: 'app/static' },
+    ]),
   ],
 });
