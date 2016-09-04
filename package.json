@@ -164,6 +164,14 @@
           ]
         }
       ],
+      "property-no-unknown": [
+        true,
+        {
+          "ignoreProperties": [
+            "composes"
+          ]
+        }
+      ],
       "indentation": 2
     }
   },
@@ -278,7 +286,7 @@
     "sinon": "2.0.0-pre",
     "style-loader": "0.13.1",
     "stylelint": "7.2.0",
-    "stylelint-config-standard": "12.0.0",
+    "stylelint-config-standard": "13.0.0",
     "url-loader": "0.5.7",
     "webpack": "2.1.0-beta.21",
     "webpack-dev-middleware": "1.6.1",
