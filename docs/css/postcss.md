@@ -17,7 +17,7 @@ This boilerplate bundles a few of the most useful PostCSS plugins by default:
 - [`cssnext`](https://github.com/moox/postcss-cssnext): Use tomorrow's CSS
   features today. Transpiles CSS4 features down to CSS3.
 - [`cssnano`](https://github.com/ben-eb/cssnano): Optimizes your CSS file. For a
-  full list of optimizations check [the offical website](http://cssnano.co/optimisations/).
+  full list of optimizations check [the official website](http://cssnano.co/optimisations/).
 
 For more awesome features that the PostCSS ecosystem offers, check out the
 comprehensive, fully-searchable catalog of available plugins at [postcss.parts](http://postcss.parts).
