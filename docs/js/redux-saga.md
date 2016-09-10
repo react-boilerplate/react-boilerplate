@@ -8,7 +8,7 @@ beautifully for data fetching, concurrent computations and a lot more.
   then it should have an effect on widget2. Instead of coupling the 2 widgets
   together (ie widget1 dispatch an action that targets widget2), widget1 only
   dispatch that its button was clicked. Then the saga listen for this button
-  click and then update widget2 by dispaching a new event that widget2 is aware of.
+  click and then update widget2 by dispatching a new event that widget2 is aware of.
 >
 > This adds a level of indirection that is unnecessary for simple apps, but make
   it more easy to scale complex applications. You can now publish widget1 and
