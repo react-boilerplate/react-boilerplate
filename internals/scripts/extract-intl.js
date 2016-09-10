@@ -1,7 +1,7 @@
 /* eslint-disable */
 /**
  * This script will extract the internationalization messages from all components
-   and package them in the transalation json files in the translations file.
+   and package them in the translation json files in the translations file.
  */
 const fs = require('fs');
 const nodeGlob = require('glob');

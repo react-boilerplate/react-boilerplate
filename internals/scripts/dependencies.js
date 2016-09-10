@@ -28,7 +28,7 @@ mkdir('-p', outputPath)
 echo('Building the Webpack DLL...')
 
 /**
- * Create a manifest so npm install doesnt warn us
+ * Create a manifest so npm install doesn't warn us
  */
 if (!exists(dllManifestPath)) {
   writeFile(
