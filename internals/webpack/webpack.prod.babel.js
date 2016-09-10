@@ -29,16 +29,6 @@ module.exports = require('./webpack.base.babel')({
     'css-loader?modules&-autoprefixer&importLoaders=1!postcss-loader'
   ),
 
-  // In production, we minify our CSS with cssnano
-  postcssPlugins: [
-    postcssFocus(),
-    cssnext({
-      browsers: ['last 2 versions', 'IE > 10'],
-    }),
-    postcssReporter({
-      clearMessages: true,
-    }),
-  ],
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
