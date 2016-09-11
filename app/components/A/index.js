@@ -6,14 +6,17 @@ import React, { PropTypes } from 'react';
 
 import styles from './styles.css';
 
-function A(props) {
+function A({ ...props }) {
+  const { className, children, href, target, ...rest } = props;
   return (
     <a
-      className={
-        props.className || styles.link
-      }
-      {...props}
-    />
+      href={href}
+      target={target}
+      className={className || styles.link}
+      {...rest}
+    >
+      { children }
+    </a>
   );
 }
 
