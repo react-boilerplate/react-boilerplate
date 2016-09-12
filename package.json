@@ -103,6 +103,7 @@
       }
     },
     "rules": {
+      "arrow-parens": ["error", "always"],
       "arrow-body-style": [
         2,
         "as-needed"
@@ -136,6 +137,9 @@
       "no-console": 1,
       "no-use-before-define": 0,
       "prefer-template": 2,
+      "class-methods-use-this": 0,
+      "react/forbid-prop-types": 0,
+      "react/jsx-first-prop-new-line": [2, "multiline"],
       "react/jsx-filename-extension": 0,
       "react/jsx-no-target-blank": 0,
       "react/require-extension": 0,
@@ -243,10 +247,10 @@
     "css-loader": "0.25.0",
     "enzyme": "2.4.1",
     "eslint": "3.5.0",
-    "eslint-config-airbnb": "10.0.1",
+    "eslint-config-airbnb": "11.1.0",
     "eslint-import-resolver-webpack": "0.5.1",
     "eslint-plugin-import": "1.14.0",
-    "eslint-plugin-jsx-a11y": "2.2.1",
+    "eslint-plugin-jsx-a11y": "2.2.2",
     "eslint-plugin-react": "6.2.0",
     "eventsource-polyfill": "0.9.6",
     "expect": "1.20.2",
