@@ -80,7 +80,7 @@ in between, somewhere up the tree will be route. (maybe only "/", but still a ro
 
 ### Where do I put the reducer?
 
-While you can include the reducer statically in `reducers.js`, we don't recommend this as you loose
+While you can include the reducer statically in `reducers.js`, we don't recommend this as you lose
 the benefits of code splitting. Instead, add it as a _composed reducer_. This means that you
 pass actions onward to a second reducer from a lower-level route reducer like so:
 
