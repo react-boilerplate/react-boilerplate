@@ -40,9 +40,9 @@
     "lint:staged": "lint-staged",
     "pretest": "npm run test:clean && npm run lint",
     "test:clean": "rimraf ./coverage",
-    "test": "cross-env NODE_ENV=test jest",
-    "test:watch": "cross-env NODE_ENV=test jest",
-    "coveralls": "cat ./coverage/lcov/lcov.info | coveralls"
+    "test": "cross-env NODE_ENV=test jest --no-cache --coverage",
+    "test:watch": "cross-env NODE_ENV=test jest --no-cache --watchAll --coverage",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
@@ -74,7 +74,7 @@
       },
       "test": {
         "plugins": [
-          "istanbul"
+          "transform-es2015-modules-commonjs"
         ]
       }
     }
@@ -85,7 +85,7 @@
     "env": {
       "browser": true,
       "node": true,
-      "jasmine": true,
+      "jest": true,
       "es6": true
     },
     "plugins": [
@@ -156,7 +156,7 @@
     "settings": {
       "import/resolver": {
         "webpack": {
-          "config": "./internals/webpack/webpack.test.babel.js"
+          "config": "./internals/webpack/webpack.dev.babel.js"
         }
       }
     }
@@ -180,12 +180,9 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "**/*.{js,jsx}",
-      "!**/node_modules/**",
-      "!internals/**",
-      "!coverage/**",
-      "!server/**",
-      "!mocks/**"
+      "app/**/*.{js,jsx}",
+      "!app/app.js",
+      "!app/routes.js"
     ],
     "moduleDirectories": [
       "node_modules",
@@ -233,7 +230,6 @@
     "babel-core": "6.18.0",
     "babel-eslint": "7.1.0",
     "babel-loader": "6.2.7",
-    "babel-plugin-istanbul": "2.0.3",
     "babel-plugin-react-intl": "2.2.0",
     "babel-plugin-react-transform": "2.0.2",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.11.5",
@@ -265,7 +261,7 @@
     "html-webpack-plugin": "2.24.0",
     "image-webpack-loader": "2.0.0",
     "imports-loader": "0.6.5",
-    "jest": "^15.1.1",
+    "jest-cli": "^15.1.1",
     "json-loader": "0.5.4",
     "ngrok": "2.2.3",
     "lint-staged": "3.2.0",

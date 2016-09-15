@@ -52,7 +52,6 @@ RepoListItem.propTypes = {
   currentUser: React.PropTypes.string,
 };
 
-export default connect(createSelector(
-  selectCurrentUser(),
-  (currentUser) => ({ currentUser })
-))(RepoListItem);
+export default connect(createStructuredSelector({
+  currentUser: selectCurrentUser(),
+}))(RepoListItem);
