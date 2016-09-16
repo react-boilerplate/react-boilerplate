@@ -6,9 +6,6 @@ import { shallow } from 'enzyme';
 import React from 'react';
 
 describe('<App />', () => {
-  before(() => App.__Rewire__('Banner', 'test.png'));
-  after(() => App.__ResetDependency__('Banner'));
-
   it('should render the logo', () => {
     const renderedComponent = shallow(
       <App />
