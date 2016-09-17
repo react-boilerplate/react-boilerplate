@@ -42,8 +42,12 @@ export function injectAsyncReducer(store, isValid) {
  * Inject an asynchronously loaded saga
  */
 export function injectAsyncSagas(store, isValid) {
-  return function injectSagas(sagas) {
+  return function injectSagas(name, sagas) {
     if (!isValid) checkStore(store);
+
+    if (store.asyncSagas[name]) {
+      return;
+    }
 
     invariant(
       Array.isArray(sagas),
@@ -56,6 +60,7 @@ export function injectAsyncSagas(store, isValid) {
     );
 
     sagas.map(store.runSaga);
+    store.asyncSagas[name] = sagas; // eslint-disable-line
   };
 }
 
