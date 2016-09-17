@@ -22,7 +22,7 @@ import enTranslationMessages from './translations/en.json';
 import deTranslationMessages from './translations/de.json';
 
 export const formatTranslationMessages = (locale, messages) => {
-  const defaultFormattedMessages = locale !== DEFAULT_LOCALE ? formatTranslationMessages(DEFAULT_LOCALE, eval(`${DEFAULT_LOCALE}TranslationMessages`)) : {}; // eslint-disable-line no-eval
+  const defaultFormattedMessages = locale !== DEFAULT_LOCALE ? formatTranslationMessages(DEFAULT_LOCALE, enTranslationMessages) : {};
   const formattedMessages = {};
   const messageKeys = Object.keys(messages);
   for (const messageKey of messageKeys) {
