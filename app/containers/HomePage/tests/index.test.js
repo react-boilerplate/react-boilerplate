@@ -45,11 +45,11 @@ describe('<HomePage />', () => {
       <IntlProvider locale="en">
         <HomePage
           username="Not Empty"
+          onChangeUsername={() => {}}
           onSubmitForm={submitSpy}
         />
       </IntlProvider>
     );
-
     expect(submitSpy).toHaveBeenCalled();
   });
 
