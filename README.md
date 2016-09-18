@@ -34,6 +34,9 @@
   <a href="#sponsors">
     <img src="https://opencollective.com/react-boilerplate/sponsors/badge.svg" alt="Sponsors" />
   </a>
+  <a href="http://thinkmill.com.au/?utm_source=github&utm_medium=badge&utm_campaign=react-boilerplate">
+    <img alt="Supported by Thinkmill" src="https://thinkmill.github.io/badge/heart.svg" />
+  </a>
   <!-- Gitter -->
   <a href="https://gitter.im/mxstbr/react-boilerplate">
     <img src="https://camo.githubusercontent.com/54dc79dc7da6b76b17bc8013342da9b4266d993c/68747470733a2f2f6261646765732e6769747465722e696d2f6d78737462722f72656163742d626f696c6572706c6174652e737667" alt="Gitter Chat" />

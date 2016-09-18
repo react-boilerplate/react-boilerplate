@@ -80,7 +80,7 @@ cp('internals/templates/index.html', 'app/index.html');
 cp('internals/templates/reducers.js', 'app/reducers.js');
 cp('internals/templates/routes.js', 'app/routes.js');
 cp('internals/templates/store.js', 'app/store.js');
-cp('internals/templates/store.test.js', 'app/store.test.js');
+cp('internals/templates/store.test.js', 'app/tests/store.test.js');
 
 // Remove the templates folder
 rm('-rf', 'internals/templates');

@@ -3,10 +3,10 @@
  */
 
 import expect from 'expect';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
 
-import { IntlProvider, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { NotFound } from '../index';
 import H1 from 'components/H1';
 import Button from 'components/Button';
@@ -33,21 +33,16 @@ describe('<NotFound />', () => {
     expect(renderedButton.length).toEqual(1);
   });
 
-  it('should link to "/"', () => {
-    const changeRouteSpy = expect.createSpy();
-    const onChangeRoute = (dest) => {
-      if (dest === '/') {
-        changeRouteSpy();
-      }
+  it('should link to "/"', (done) => {
+    const dispatch = (action) => {
+      expect(action.payload.args).toEqual('/');
+      done();
     };
 
-    const renderedComponent = mount(
-      <IntlProvider locale="en">
-        <NotFound changeRoute={onChangeRoute} />
-      </IntlProvider>
+    const renderedComponent = shallow(
+      <NotFound dispatch={dispatch} />
     );
-    const button = renderedComponent.find('button');
-    button.simulate('click');
-    expect(changeRouteSpy).toHaveBeenCalled();
+    const button = renderedComponent.find(Button);
+    button.prop('handleRoute')();
   });
 });

@@ -4,13 +4,13 @@
 const exec = require('child_process').exec;
 
 module.exports = {
-  description: 'Add a langauge',
+  description: 'Add a language',
   prompts: [{
     type: 'input',
     name: 'language',
     message: 'What is the language you want to add i18n support for (e.g. "fr", "de")?',
     default: 'fr',
-    validate: value => {
+    validate: (value) => {
       if ((/.+/).test(value) && value.length === 2) {
         return true;
       }

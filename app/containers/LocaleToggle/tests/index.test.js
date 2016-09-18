@@ -1,4 +1,5 @@
-import LocaleToggle from '../index';
+import LocaleToggle, { mapDispatchToProps } from '../index';
+import { changeLocale } from '../../LanguageProvider/actions';
 import LanguageProvider from '../../LanguageProvider';
 
 import expect from 'expect';
@@ -36,5 +37,24 @@ describe('<LocaleToggle />', () => {
       </Provider>
     );
     expect(renderedComponent.contains(<option value="en">en</option>)).toEqual(true);
+  });
+
+  describe('mapDispatchToProps', () => {
+    describe('onLocaleToggle', () => {
+      it('should be injected', () => {
+        const dispatch = expect.createSpy();
+        const result = mapDispatchToProps(dispatch);
+        expect(result.onLocaleToggle).toExist();
+      });
+
+      it('should dispatch changeLocale when called', () => {
+        const dispatch = expect.createSpy();
+        const result = mapDispatchToProps(dispatch);
+        const locale = 'de';
+        const evt = { target: { value: locale } };
+        result.onLocaleToggle(evt);
+        expect(dispatch).toHaveBeenCalledWith(changeLocale(locale));
+      });
+    });
   });
 });
