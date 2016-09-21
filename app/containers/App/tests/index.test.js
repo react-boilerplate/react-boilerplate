@@ -1,8 +1,9 @@
-import App from '../index';
+import { App } from '../index';
 import Footer from 'components/Footer';
+import ProgressBar from 'components/ProgressBar';
 
 import expect from 'expect';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import React from 'react';
 
 describe('<App />', () => {
@@ -28,5 +29,12 @@ describe('<App />', () => {
       <App />
     );
     expect(renderedComponent.find(Footer).length).toEqual(1);
+  });
+
+  it('should render <ProgressBar />', () => {
+    const renderedComponent = shallow(
+      <App />
+    );
+    expect(renderedComponent.find(ProgressBar).length).toEqual(1);
   });
 });
