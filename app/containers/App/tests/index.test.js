@@ -3,7 +3,7 @@ import Footer from 'components/Footer';
 import ProgressBar from 'components/ProgressBar';
 
 import expect from 'expect';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
 
 describe('<App />', () => {
