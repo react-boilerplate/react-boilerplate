@@ -15,7 +15,7 @@
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
     "analyze": "node ./internals/scripts/analyze.js",
-    "extract-intl": "babel-node --presets es2015,stage-0 -- ./internals/scripts/extract-intl.js",
+    "extract-intl": "babel-node --presets latest,stage-0 -- ./internals/scripts/extract-intl.js",
     "npmcheckversion": "node ./internals/scripts/npmcheckversion.js",
     "preinstall": "npm run npmcheckversion",
     "postinstall": "npm run build:dll",
@@ -56,9 +56,11 @@
   "babel": {
     "presets": [
       [
-        "es2015",
+        "latest",
         {
-          "modules": false
+          "es2015": {
+            "modules": false
+          }
         }
       ],
       "react",
@@ -236,7 +238,7 @@
     "babel-plugin-transform-react-constant-elements": "6.9.1",
     "babel-plugin-transform-react-inline-elements": "6.8.0",
     "babel-plugin-transform-react-remove-prop-types": "0.2.9",
-    "babel-preset-es2015": "6.14.0",
+    "babel-preset-latest": "6.14.0",
     "babel-preset-react": "6.11.1",
     "babel-preset-react-hmre": "1.1.1",
     "babel-preset-stage-0": "6.5.0",
