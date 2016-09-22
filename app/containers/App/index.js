@@ -28,15 +28,22 @@ export class App extends React.Component {
   };
 
   componentDidMount() {
-    this.props.router.listen(() => this.setState({ progress: 0 }));
+    // Store a reference to the listener.
+    this.unsubscribeHistory = this.props.router.listen(() => this.setState({ progress: 0 }));
   }
 
   componentDidUpdate() {
+    // Add a condition to prevent infinite loop.
     if (this.state.progress !== 100) {
       this.setState({ // eslint-disable-line
         progress: 100,
       });
     }
+  }
+
+  componentWillUnmount() {
+    // Prevent memory leak since listeners won't be garbage collected.
+    this.unsubscribeHistory = undefined;
   }
 
   render() {

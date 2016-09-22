@@ -82,7 +82,7 @@ class ProgressBar extends React.Component { // eslint-disable-line react/prefer-
   render() {
     const { percent } = this.state;
     const className = `${styles.reactProgressBar} ${percent < 0 || percent >= 100 ? `${styles.reactProgressBarHide}` : ''}`;
-    const style = { width: `${(percent < 0 ? 0 : percent)}%` };
+    const style = { width: `${(percent <= 0 ? 100 : percent)}%` };
     return (
       <div className={className}>
         <div className={styles.reactProgressBarPercent} style={style}></div>
