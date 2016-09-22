@@ -1,6 +1,7 @@
 language: node_js
 node_js:
-  - "5.0"
+  - 6
+  - 5
 script: npm run build
 before_install:
   - export CHROME_BIN=chromium-browser
