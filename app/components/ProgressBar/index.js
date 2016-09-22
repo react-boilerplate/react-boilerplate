@@ -32,9 +32,11 @@ class ProgressBar extends React.Component { // eslint-disable-line react/prefer-
   componentWillReceiveProps(nextProps) {
     if (this.interval) {
       clearInterval(this.interval);
+      this.interval = undefined;
     }
     if (this.timeout) {
       clearTimeout(this.timeout);
+      this.timeout = undefined;
     }
     this.handleProps(nextProps);
   }
@@ -42,9 +44,11 @@ class ProgressBar extends React.Component { // eslint-disable-line react/prefer-
   componentWillUnmount() {
     if (this.interval) {
       clearInterval(this.interval);
+      this.interval = undefined;
     }
     if (this.timeout) {
       clearTimeout(this.timeout);
+      this.timeout = undefined;
     }
   }
 

@@ -56,6 +56,30 @@ describe('<ProgressBar />', () => {
     ProgressBar.prototype.componentWillReceiveProps.restore();
   });
 
+  it('should unset ProgressBar.interval after getting new props', function() { // eslint-disable-line
+    const renderedComponent = mount( // eslint-disable-line
+      <ProgressBar percent={0} />
+    );
+    const inst = renderedComponent.instance();
+
+    this.clock.tick(1000);
+    expect(inst.interval).toExist();
+    inst.componentWillReceiveProps({ percent: 50 });
+    expect(inst.interval).toNotExist();
+  });
+
+  it('should unset ProgressBar.timeout after getting new props', function() { // eslint-disable-line
+    const renderedComponent = mount( // eslint-disable-line
+      <ProgressBar percent={100} />
+    );
+    const inst = renderedComponent.instance();
+
+    this.clock.tick(1000);
+    expect(inst.timeout).toExist();
+    inst.componentWillReceiveProps({ percent: 50 });
+    expect(inst.timeout).toNotExist();
+  });
+
   it('should set state to -1 after new route mounts', function() { //eslint-disable-line
     const renderedComponent = mount(
       <ProgressBar percent={0} />
@@ -64,6 +88,45 @@ describe('<ProgressBar />', () => {
     this.clock.tick(401);
     expect(renderedComponent.state().percent).toEqual(-1);
   });
+
+  it('should call componentWillUnmount', () => {
+    sinon.spy(ProgressBar.prototype, 'componentWillUnmount');
+    const renderedComponent = mount( // eslint-disable-line
+      <ProgressBar percent={0} />
+    );
+    renderedComponent.unmount();
+    expect(ProgressBar.prototype.componentWillUnmount.calledOnce).toEqual(1);
+    ProgressBar.prototype.componentWillUnmount.restore();
+  });
+
+  it('should unset ProgressBar.interval after unmounting', function() { // eslint-disable-line
+    sinon.spy(ProgressBar.prototype, 'componentWillUnmount');
+    const renderedComponent = mount( // eslint-disable-line
+      <ProgressBar percent={0} />
+    );
+    const inst = renderedComponent.instance();
+
+    this.clock.tick(1000);
+    expect(inst.interval).toExist();
+    renderedComponent.unmount();
+    expect(inst.interval).toNotExist();
+    ProgressBar.prototype.componentWillUnmount.restore();
+  });
+
+  it('should unset ProgressBar.timeout after unmounting', function() { // eslint-disable-line
+    sinon.spy(ProgressBar.prototype, 'componentWillUnmount');
+    const renderedComponent = mount( // eslint-disable-line
+      <ProgressBar percent={100} />
+    );
+    const inst = renderedComponent.instance();
+
+    this.clock.tick(1000);
+    expect(inst.timeout).toExist();
+    renderedComponent.unmount();
+    expect(inst.timeout).toNotExist();
+    ProgressBar.prototype.componentWillUnmount.restore();
+  });
+
 
   /**
    * Note that multiple lines have been disabled for linting.
