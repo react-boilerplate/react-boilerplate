@@ -1,9 +1,20 @@
 language: node_js
+
 sudo: true
+
 dist: trusty
+
 node_js:
-  - "5.0"
+  - 6
+  - 5
+  - 4
+
+install:
+  - npm i -g npm@latest
+  - npm install
+
 script: npm run build
+
 before_install:
   - export CHROME_BIN=/usr/bin/google-chrome
   - export DISPLAY=:99.0
@@ -12,7 +23,9 @@ before_install:
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - sudo dpkg -i google-chrome*.deb
   - sh -e /etc/init.d/xvfb start
+
 notifications:
   email:
     on_failure: change
+
 after_success: 'npm run coveralls'
