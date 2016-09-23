@@ -18,7 +18,9 @@ const addDevMiddlewares = (app, webpackConfig) => {
   });
 
   app.use(middleware);
-  app.use(webpackHotMiddleware(compiler));
+
+  const hotMiddleware = webpackHotMiddleware(compiler);
+  app.use(hotMiddleware);
 
   // Since webpackDevMiddleware uses memory-fs internally to store build
   // artifacts, we use it instead
@@ -40,6 +42,8 @@ const addDevMiddlewares = (app, webpackConfig) => {
       }
     });
   });
+
+  return [middleware, hotMiddleware];
 };
 
 // Production middlewares
@@ -54,6 +58,8 @@ const addProdMiddlewares = (app, options) => {
   app.use(publicPath, express.static(outputPath));
 
   app.get('*', (req, res) => res.sendFile(path.resolve(outputPath, 'index.html')));
+
+  return [];
 };
 
 /**
@@ -63,11 +69,8 @@ module.exports = (app, options) => {
   const isProd = process.env.NODE_ENV === 'production';
 
   if (isProd) {
-    addProdMiddlewares(app, options);
-  } else {
-    const webpackConfig = require('../../internals/webpack/webpack.dev.babel');
-    addDevMiddlewares(app, webpackConfig);
+    return addProdMiddlewares(app, options);
   }
-
-  return app;
+  const webpackConfig = require('../../internals/webpack/webpack.dev.babel');
+  return addDevMiddlewares(app, webpackConfig);
 };

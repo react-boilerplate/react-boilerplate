@@ -2,11 +2,10 @@
 
 const express = require('express');
 const logger = require('./logger');
+const browserSync = require('../internals/scripts/browserSync');
 
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
-const isDev = process.env.NODE_ENV !== 'production';
-const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
 const app = express();
 
@@ -14,7 +13,7 @@ const app = express();
 // app.use('/api', myApi);
 
 // In production we need to pass these values in instead of relying on webpack
-setup(app, {
+const middleware = setup(app, {
   outputPath: resolve(process.cwd(), 'build'),
   publicPath: '/',
 });
@@ -28,16 +27,15 @@ app.listen(port, (err) => {
     return logger.error(err.message);
   }
 
-  // Connect to ngrok in dev mode
-  if (ngrok) {
-    ngrok.connect(port, (innerErr, url) => {
+  // Configure browserSync in dev mode
+  if (process.env.NODE_ENV !== 'production') {
+    browserSync(port, middleware, (innerErr) => {
       if (innerErr) {
         return logger.error(innerErr);
       }
-
-      logger.appStarted(port, url);
+      logger.appStarted();
     });
   } else {
-    logger.appStarted(port);
+    logger.appStarted();
   }
 });
