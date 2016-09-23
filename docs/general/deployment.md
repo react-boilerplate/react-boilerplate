@@ -1,8 +1,6 @@
-# Deployment
+# Deploying React-Boilerplate
 
 ## Heroku
-
-### Easy 5-Step Deployment Process
 
 **Step 1:** Create a `Procfile` with the following line: `web: npm run start:prod`. We are doing this because heroku runs `npm run start` by default, so we need this setting to override the default run command. 
 
