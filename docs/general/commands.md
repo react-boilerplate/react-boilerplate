@@ -193,7 +193,7 @@ Only lints your CSS.
 * Make sure that you stand on the root directory of the project.
 
 1. **Build docker image:** `docker build -t {YOUR_PROJECT_NAME} internals/docker`
-2. **Start the container**: `docker run --rm -it -p 3000:3000 -v `pwd`:/reactapp {YOUR_PROJECT_NAME} bash`
+2. **Start the container**: ``docker run --rm -it -p 3000:3000 -v `pwd`:/reactapp {YOUR_PROJECT_NAME} bash``
 3. Now, your prompt will looks difference, because you are now in the container!
 4. **Install dependencies:** `npm install`
 5. **Start application:** `npm start`
