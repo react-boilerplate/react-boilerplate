@@ -189,33 +189,13 @@ npm run lint:css
 
 Only lints your CSS.
 
-## Docker
-First, you need to build your image. Make sure that you stand on the root directory of the project.
-Then, run the below command. You can specify the image name after -t (e.g. `myweb_image`)
-```
-docker build -t myweb_image .
-```
-If everything goes well, you can summon the docker image up by running below command.
-```
-docker run -d -p 3000:3000 --name myweb_container myweb_image
-```
-Now, you should be accessible to your very first time of this boilerplate by accessing `http://localhost:3000`
+## Using Docker in development
+* Make sure that you stand on the root directory of the project.
 
-However, you cannot made any change in that example app yet. We need to link docker container directory
-to what we have in our local machine. First, let's destroy the old container.
-```
-docker rm -f myweb_container
-```
-Then, let's run below command to create new container with a link directory to your local machine
-```
-docker run -it -p 3000:3000 -v {YOUR_PROJECT_ROOT_FULL_PATH}:/reactapp --name myweb_container myweb_image bash
-```
-Now, your prompt will looks difference, because you are now in the container!
-Let's start with install all node dependencies
-```
-npm install
-```
-After finish installed, try start the app and you're now good to go!
-```
-npm start
-```
+1. **Build docker image:** `docker build -t {YOUR_PROJECT_NAME} internals/docker`
+2. **Start the container**: `docker run --rm -it -p 3000:3000 -v `pwd`:/reactapp {YOUR_PROJECT_NAME} bash`
+3. Now, your prompt will looks difference, because you are now in the container!
+4. **Install dependencies:** `npm install`
+5. **Start application:** `npm start`
+
+**Note:** If you want to exit the container, just type `exit` in the prompt. And the next time you want to start develop, just only run 2) & 5) and you're good to go!
