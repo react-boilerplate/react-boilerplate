@@ -1,3 +1,0 @@
-sut:
-  build: .
-  command: npm test

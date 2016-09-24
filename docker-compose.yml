@@ -1,7 +1,0 @@
-version: '2'
-services:
-  app:
-    build: .
-    ports:
-      - 3000:3000
-    command: bash -c " npm start"
