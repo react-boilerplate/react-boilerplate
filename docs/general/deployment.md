@@ -26,9 +26,10 @@
 ### Step to deploy using docker container in production
 1. Make sure you are stand on the project root directory.
 2. `mv internals/docker/.dockerignore ./`
-3. `docker build -t {DOCKERHUB_USERNAME}/{REACT_PROJECT_NAME} -f internals/docker/Dockerfile.prod .`
+3. `docker build -t {DOCKERHUB_USERNAME}/{REACT_PROJECT_NAME} -f internals/docker/Dockerfile .`
 4. `docker push {DOCKERHUB_USERNAME}/{REACT_PROJECT_NAME}` to push the docker image to docker registry.
-5. `ssh` to your server instance, and run `docker run -p 80:3000 -d {DOCKERHUB_USERNAME}/{REACT_PROJECT_NAME}:latest`
+5. `ssh` to your server instance, and run `docker run -p 80:3000 -d {DOCKERHUB_USERNAME}/{REACT_PROJECT_NAME}`
 6. You can now access your react application by your server's public ip.
+7. To stop the docker container, run `docker ps` and `docker stop <APPLICAITON_NAME>`
 
 **Note:** Make sure you replace `{DOCKERHUB_USERNAME}` and `{REACT_PROJECT_NAME}` as your value.
