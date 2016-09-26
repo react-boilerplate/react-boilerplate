@@ -1,6 +1,6 @@
 {
   "name": "react-boilerplate",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
   "repository": {
     "type": "git",
@@ -105,7 +105,10 @@
       }
     },
     "rules": {
-      "arrow-parens": ["error", "always"],
+      "arrow-parens": [
+        "error",
+        "always"
+      ],
       "arrow-body-style": [
         2,
         "as-needed"
@@ -141,7 +144,10 @@
       "prefer-template": 2,
       "class-methods-use-this": 0,
       "react/forbid-prop-types": 0,
-      "react/jsx-first-prop-new-line": [2, "multiline"],
+      "react/jsx-first-prop-new-line": [
+        2,
+        "multiline"
+      ],
       "react/jsx-filename-extension": 0,
       "react/jsx-no-target-blank": 0,
       "react/require-extension": 0,
