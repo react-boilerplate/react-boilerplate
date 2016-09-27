@@ -271,7 +271,7 @@
     "karma-coverage": "1.1.1",
     "karma-firefox-launcher": "1.0.0",
     "karma-ie-launcher": "1.0.0",
-    "karma-mocha": "1.1.1",
+    "karma-mocha": "1.2.0",
     "karma-mocha-reporter": "2.2.0",
     "karma-safari-launcher": "1.0.0",
     "karma-sourcemap-loader": "0.3.7",
