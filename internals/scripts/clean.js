@@ -38,6 +38,7 @@ cp('internals/templates/homePage/messages.js', 'app/containers/HomePage/messages
 mkdir('-p', 'app/translations');
 cp('internals/templates/translations/en.json',
   'app/translations/en.json');
+rm('app/translations/de.json');
 
 // move i18n file
 cp('internals/templates/i18n.js',
