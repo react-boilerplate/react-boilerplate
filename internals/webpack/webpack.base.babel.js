@@ -89,6 +89,7 @@ module.exports = (options) => ({
       '.react.js',
     ],
     mainFields: [
+      'browser',
       'jsnext:main',
       'main',
     ],
