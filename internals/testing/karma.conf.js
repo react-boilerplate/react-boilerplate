@@ -3,14 +3,21 @@ const argv = require('minimist')(process.argv.slice(2));
 const path = require('path');
 
 module.exports = (config) => {
+  let testBrowser;
+  if (process.env.TRAVIS) {
+    testBrowser = ['ChromeTravis'];
+  } else if (process.env.APPVEYOR) {
+    testBrowser = ['IE'];
+  } else if (process.env.KARMA_BROWSER) {
+    testBrowser = [process.env.KARMA_BROWSER];
+  } else {
+    testBrowser = ['Chrome'];
+  }
+
   config.set({
     frameworks: ['mocha'],
     reporters: ['coverage', 'mocha'],
-    browsers: process.env.TRAVIS // eslint-disable-line no-nested-ternary
-      ? ['ChromeTravis']
-      : process.env.APPVEYOR
-        ? ['IE'] : ['Chrome'],
-
+    browsers: testBrowser,
     autoWatch: false,
     singleRun: true,
 

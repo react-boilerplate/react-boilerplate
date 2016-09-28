@@ -1,5 +1,6 @@
 FROM node:6-slim
 
+ENV KARMA_BROWSER PhantomJS
 RUN apt-get update && apt-get install libpng12-0
 
 WORKDIR /reactapp
