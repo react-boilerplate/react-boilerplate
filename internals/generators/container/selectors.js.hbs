@@ -16,7 +16,7 @@ const select{{ properCase name }}Domain = () => (state) => state.get('{{ camelCa
 
 const select{{ properCase name }} = () => createSelector(
   select{{ properCase name }}Domain(),
-  (substate) => substate.toJS()
+  (substate) => (substate ? substate.toJS() : {})
 );
 
 export default select{{ properCase name }};
