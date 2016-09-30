@@ -105,7 +105,10 @@
       }
     },
     "rules": {
-      "arrow-parens": ["error", "always"],
+      "arrow-parens": [
+        "error",
+        "always"
+      ],
       "arrow-body-style": [
         2,
         "as-needed"
@@ -141,7 +144,10 @@
       "prefer-template": 2,
       "class-methods-use-this": 0,
       "react/forbid-prop-types": 0,
-      "react/jsx-first-prop-new-line": [2, "multiline"],
+      "react/jsx-first-prop-new-line": [
+        2,
+        "multiline"
+      ],
       "react/jsx-filename-extension": 0,
       "react/jsx-no-target-blank": 0,
       "react/require-extension": 0,
@@ -243,7 +249,7 @@
     "babel-preset-react-hmre": "1.1.1",
     "babel-preset-stage-0": "6.5.0",
     "chai": "3.5.0",
-    "chai-enzyme": "0.5.1",
+    "chai-enzyme": "0.5.2",
     "cheerio": "0.22.0",
     "coveralls": "2.11.14",
     "css-loader": "0.25.0",
