@@ -35,10 +35,10 @@ cp('internals/templates/homePage/homePage.js', 'app/containers/HomePage/index.js
 cp('internals/templates/homePage/messages.js', 'app/containers/HomePage/messages.js');
 
 // Handle Translations
+rm('-rf', 'app/translations/*')
 mkdir('-p', 'app/translations');
 cp('internals/templates/translations/en.json',
   'app/translations/en.json');
-rm('app/translations/de.json');
 
 // move i18n file
 cp('internals/templates/i18n.js',
