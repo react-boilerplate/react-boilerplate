@@ -2,6 +2,7 @@
  * Gets the repositories of the user from Github
  */
 
+import { takeLatest } from 'redux-saga';
 import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { LOAD_REPOS } from 'containers/App/constants';
@@ -32,9 +33,7 @@ export function* getRepos() {
  * Watches for LOAD_REPOS action and calls handler
  */
 export function* getReposWatcher() {
-  while (yield take(LOAD_REPOS)) {
-    yield call(getRepos);
-  }
+  yield fork(takeLatest, LOAD_REPOS, getRepos);
 }
 
 /**
