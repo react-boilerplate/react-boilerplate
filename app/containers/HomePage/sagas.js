@@ -30,7 +30,8 @@ export function* getRepos() {
 }
 
 /**
- * Watches for LOAD_REPOS action and calls handler
+ * Watches for LOAD_REPOS actions and calls getRepos when one comes in.
+ * By using `takeLatest` only the result of the latest API call is applied.
  */
 export function* getReposWatcher() {
   yield fork(takeLatest, LOAD_REPOS, getRepos);
