@@ -4,7 +4,7 @@
 
 import expect from 'expect';
 import { takeLatest } from 'redux-saga';
-import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
+import { take, call, put, select, fork } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import { getRepos, getReposWatcher, githubData } from '../sagas';
@@ -77,12 +77,4 @@ describe('githubDataSaga Saga', () => {
     const takeDescriptor = githubDataSaga.next();
     expect(takeDescriptor.value).toEqual(take(LOCATION_CHANGE));
   });
-
-  it('should finally cancel() the forked getReposWatcher saga',
-    function* githubDataSagaCancellable() {
-      // reuse open fork for more integrated approach
-      forkDescriptor = githubDataSaga.next(put(LOCATION_CHANGE));
-      expect(forkDescriptor.value).toEqual(cancel(forkDescriptor));
-    }
-  );
 });
