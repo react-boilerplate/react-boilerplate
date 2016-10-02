@@ -3,7 +3,7 @@
  */
 
 import { takeLatest } from 'redux-saga';
-import { take, call, put, select, fork } from 'redux-saga/effects';
+import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { LOAD_REPOS } from 'containers/App/constants';
 import { reposLoaded, repoLoadingError } from 'containers/App/actions';
@@ -42,10 +42,11 @@ export function* getReposWatcher() {
  */
 export function* githubData() {
   // Fork watcher so we can continue execution
-  yield fork(getReposWatcher);
+  const watcher = yield fork(getReposWatcher);
 
   // Suspend execution until location changes
   yield take(LOCATION_CHANGE);
+  yield cancel(watcher);
 }
 
 // Bootstrap sagas
