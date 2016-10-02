@@ -1,4 +1,4 @@
-.reactProgressBar {
+.progressBar {
   position: fixed;
   top: 0;
   left: 0;
@@ -9,13 +9,13 @@
   z-index: 9999;
 }
 
-.reactProgressBar.reactProgressBarHide {
+.progressBar.progressBarHide {
   opacity: 0;
   visibility: hidden;
   z-index: -10;
 }
 
-.reactProgressBarPercent {
+.progressBarPercent {
   height: 2px;
   background: #29D;
   transition: all 200ms ease;

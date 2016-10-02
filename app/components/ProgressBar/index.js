@@ -1,14 +1,14 @@
 /**
-*
-* ProgressBar
-*
+ *
+ * ProgressBar
+ *
 */
 
 import React, { PropTypes } from 'react';
 
 import styles from './styles.css';
 
-class ProgressBar extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class ProgressBar extends React.Component {
 
   static defaultProps = {
     percent: -1,
@@ -31,17 +31,21 @@ class ProgressBar extends React.Component { // eslint-disable-line react/prefer-
 
   componentWillReceiveProps(nextProps) {
     if (this.interval) {
+      // stop progress when new props come in
       clearInterval(this.interval);
       this.interval = undefined;
     }
     if (this.timeout) {
+      // clear timeout when new props come in
       clearTimeout(this.timeout);
       this.timeout = undefined;
     }
+    // start progress with updated props
     this.handleProps(nextProps);
   }
 
   componentWillUnmount() {
+    // cleaning up interval and timeout
     if (this.interval) {
       clearInterval(this.interval);
       this.interval = undefined;
@@ -53,6 +57,10 @@ class ProgressBar extends React.Component { // eslint-disable-line react/prefer-
   }
 
   increment() {
+    /**
+     * Increment the percent randomly.
+     * Only used when autoIncrement is set to true
+    */
     let { percent } = this.state;
     percent += ((Math.random() + 1) - Math.random());
     percent = percent < 99 ? percent : 99;
@@ -62,9 +70,19 @@ class ProgressBar extends React.Component { // eslint-disable-line react/prefer-
   }
 
   handleProps(props) {
+    /**
+     * Increment progress bar if auto increment is set to true
+     * and progress percent is less than 99.
+    */
     if (props.autoIncrement && props.percent >= 0 && props.percent < 99) {
       this.interval = setInterval(this.increment, props.intervalTime);
     }
+
+    /**
+     * Reset the progress bar when percent hits 100
+     * For better visual effects, percent is set to 99.9
+     * and then cleared in the callback after some time.
+    */
 
     if (props.percent >= 100) {
       this.setState({
@@ -85,11 +103,15 @@ class ProgressBar extends React.Component { // eslint-disable-line react/prefer-
 
   render() {
     const { percent } = this.state;
-    const className = `${styles.reactProgressBar} ${percent < 0 || percent >= 100 ? `${styles.reactProgressBarHide}` : ''}`;
+
+    // Hide progress bar if percent is less than 0.
+    const className = `${styles.progressBar} ${percent < 0 || percent >= 100 ? `${styles.progressBarHide}` : ''}`;
+
+    // Set `state.percent` as width.
     const style = { width: `${(percent <= 0 ? 100 : percent)}%` };
     return (
       <div className={className}>
-        <div className={styles.reactProgressBarPercent} style={style}></div>
+        <div className={styles.progressBarPercent} style={style}></div>
       </div>
     );
   }
