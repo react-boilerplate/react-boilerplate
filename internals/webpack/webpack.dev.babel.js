@@ -60,7 +60,7 @@ module.exports = require('./webpack.base.babel')({
  */
 function dependencyHandlers() {
   // Don't do anything during the DLL Build step
-  if (process.env.BUILDING_DLL) { return []; }
+  if (process.env.NODE_ENV === 'build') { return []; }
 
   // If the package.json does not have a dllPlugin property, use the CommonsChunkPlugin
   if (!dllPlugin) {

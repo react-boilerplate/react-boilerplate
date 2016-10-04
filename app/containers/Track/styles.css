@@ -1,0 +1,8 @@
+.Wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.Player {
+  max-width: inherit;
+}

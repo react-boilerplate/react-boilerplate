@@ -24,6 +24,8 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import { useScroll } from 'react-router-scroll';
 import configureStore from './store';
+import useRelay from 'react-router-relay';
+import Relay from './relay';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
@@ -81,11 +83,12 @@ const render = (messages) => {
       <LanguageProvider messages={messages}>
         <Router
           history={history}
+          environment={Relay.Store}
           routes={rootRoute}
           render={
             // Scroll to top when going to a new page, imitating default browser
             // behaviour
-            applyRouterMiddleware(useScroll())
+            applyRouterMiddleware(useRelay, useScroll())
           }
         />
       </LanguageProvider>
