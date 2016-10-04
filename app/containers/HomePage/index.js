@@ -8,11 +8,9 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import { createStructuredSelector } from 'reselect';
 
 import AtPrefix from './AtPrefix';
-import Button from 'components/Button';
 import CenteredSection from './CenteredSection';
 import Form from './Form';
 import H2 from 'components/H2';
@@ -37,21 +35,6 @@ export class HomePage extends React.Component {
       this.props.onSubmitForm();
     }
   }
-  /**
-   * Changes the route
-   *
-   * @param  {string} route The route we want to go to
-   */
-  openRoute = (route) => {
-    this.props.changeRoute(route);
-  };
-
-  /**
-   * Changed route to '/features'
-   */
-  openFeaturesPage = () => {
-    this.openRoute('/features');
-  };
 
   render() {
     let mainContent = null;
@@ -110,9 +93,6 @@ export class HomePage extends React.Component {
             </Form>
             {mainContent}
           </Section>
-          <Button handleRoute={this.openFeaturesPage}>
-            <FormattedMessage {...messages.featuresButton} />
-          </Button>
         </div>
       </article>
     );
@@ -120,7 +100,6 @@ export class HomePage extends React.Component {
 }
 
 HomePage.propTypes = {
-  changeRoute: React.PropTypes.func,
   loading: React.PropTypes.bool,
   error: React.PropTypes.oneOfType([
     React.PropTypes.object,
@@ -138,13 +117,10 @@ HomePage.propTypes = {
 export function mapDispatchToProps(dispatch) {
   return {
     onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-    changeRoute: (url) => dispatch(push(url)),
     onSubmitForm: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadRepos());
     },
-
-    dispatch,
   };
 }
 

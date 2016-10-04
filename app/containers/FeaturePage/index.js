@@ -4,23 +4,16 @@
  * List all the features
  */
 import React from 'react';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import Helmet from 'react-helmet';
 
 import messages from './messages';
 import { FormattedMessage } from 'react-intl';
-import Button from 'components/Button';
 import H1 from 'components/H1';
 import List from './List';
 import ListItem from './ListItem';
 import ListItemTitle from './ListItemTitle';
 
-export class FeaturePage extends React.Component {
-  openHomePage = () => {
-    this.props.dispatch(push('/'));
-  };
-
+export default class FeaturePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
@@ -79,16 +72,7 @@ export class FeaturePage extends React.Component {
             </p>
           </ListItem>
         </List>
-        <Button handleRoute={this.openHomePage}>
-          <FormattedMessage {...messages.homeButton} />
-        </Button>
       </div>
     );
   }
 }
-
-FeaturePage.propTypes = {
-  dispatch: React.PropTypes.func,
-};
-
-export default connect()(FeaturePage);

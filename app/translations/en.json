@@ -1,12 +1,13 @@
 {
   "boilerplate.components.Footer.author.message": "Made with love by {author}.",
   "boilerplate.components.Footer.license.message": "This project is licensed under the MIT license.",
+  "boilerplate.components.Header.home": "Home",
+  "boilerplate.containers.Header.features": "Features",
   "boilerplate.containers.FeaturePage.css.header": "Features",
   "boilerplate.containers.FeaturePage.css.message": "Next generation CSS",
   "boilerplate.containers.FeaturePage.feedback.header": "Instant feedback",
   "boilerplate.containers.FeaturePage.feedback.message": "Enjoy the best DX and code your app at the speed of thought! Your\n    saved changes to the CSS and JS are reflected instantaneously\n    without refreshing the page. Preserve application state even when\n    you update something in the underlying code!",
   "boilerplate.containers.FeaturePage.header": "Features",
-  "boilerplate.containers.FeaturePage.home": "Home",
   "boilerplate.containers.FeaturePage.internationalization.header": "Complete i18n Standard Internationalization & Pluralization",
   "boilerplate.containers.FeaturePage.internationalization.message": "Scalable apps need to support multiple languages, easily add and support multiple languages with `react-intl`.",
   "boilerplate.containers.FeaturePage.javascript.header": "Next generation JavaScript",
@@ -19,12 +20,10 @@
   "boilerplate.containers.FeaturePage.scaffolding.message": "Automate the creation of components, containers, routes, selectors\n  and sagas - and their tests - right from the CLI!",
   "boilerplate.containers.FeaturePage.state_management.header": "Predictable state management",
   "boilerplate.containers.FeaturePage.state_management.message": "Unidirectional data flow allows for change logging and time travel\n    debugging.",
-  "boilerplate.containers.HomePage.features.Button": "Features",
   "boilerplate.containers.HomePage.start_project.header": "Start your next react project in seconds",
   "boilerplate.containers.HomePage.start_project.message": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
   "boilerplate.containers.HomePage.tryme.atPrefix": "@",
   "boilerplate.containers.HomePage.tryme.header": "Try me!",
   "boilerplate.containers.HomePage.tryme.message": "Show Github repositories by",
-  "boilerplate.containers.NotFoundPage.header": "Page not found.",
-  "boilerplate.containers.NotFoundPage.home": "Home"
+  "boilerplate.containers.NotFoundPage.header": "Page not found."
 }
