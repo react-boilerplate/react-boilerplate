@@ -1,3 +1,5 @@
+@import '../../containers/App/colors.css';
+
 .buttonWrapper {
   width: 100%;
   text-align: center;
@@ -19,11 +21,11 @@
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 16px;
-  border: 2px solid #41ADDD;
-  color: #41ADDD;
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
 }
 
 .button:active {
-  background: #41ADDD;
-  color: #FFF;
+  background: var(--color-accent);
+  color: var(--color-secondary-light);
 }

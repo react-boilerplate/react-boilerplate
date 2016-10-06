@@ -1,5 +1,7 @@
 /* Global styles */
 
+@import './colors.css';
+
 html,
 body {
   height: 100%;
@@ -15,7 +17,7 @@ body.fontLoaded {
 }
 
 :global(#app) {
-  background-color: #FAFAFA;
+  background-color: var(--color-secondary);
   min-height: 100%;
   min-width: 100%;
 }

@@ -1,3 +1,5 @@
+@import '../App/colors.css';
+
 .textSection {
   margin: 3em auto;
 }
@@ -26,10 +28,10 @@ label {
 
 .input {
   outline: none;
-  border-bottom: 1px dotted #999;
+  border-bottom: 1px dotted var(--color-primary-light);
 }
 
 .atPrefix {
-  color: black;
+  color: var(--color-primary);
   margin-left: 0.4em;
 }

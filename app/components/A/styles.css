@@ -1,7 +1,9 @@
+@import '../../containers/App/colors.css';
+
 .link {
-  color: #41ADDD;
+  color: var(--color-accent);
 }
 
 .link:hover {
-  color: #6CC0E5;
+  color: var(--color-accent-light);
 }

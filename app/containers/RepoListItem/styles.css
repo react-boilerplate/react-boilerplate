@@ -1,3 +1,5 @@
+@import '../../containers/App/colors.css';
+
 .linkWrapper {
   width: 100%;
   height: 100%;
@@ -7,14 +9,14 @@
 
 .linkRepo {
   height: 100%;
-  color: black;
+  color: var(--color-primary);
   display: flex;
   align-items: center;
   width: 100%;
 }
 
 .linkIssues {
-  color: black;
+  color: var(--color-primary);
   height: 100%;
   display: flex;
   align-items: center;
@@ -22,6 +24,6 @@
 }
 
 .issueIcon {
-  fill: #CCC;
+  fill: var(--color-primary-light);
   margin-right: 0.25em;
 }
