@@ -56,11 +56,11 @@ The fix is to kill the process and rerun `npm start`.
     > e.g. given the output from the example above, `YOUR_PID` is `28344`, hence
     that would mean you would run `taskkill /F /PID 28344`
 
-## Issue with local caching when running in production mode (F5 / ctrl+F5 weird behavior)
+## Issue with local caching when running in production mode (F5 / ctrl+F5 / cmd+r weird behavior)
 
 Your production site isn't working? You update the code and nothing changes? It drives you insane?
 
-#### Quick fix for on your local browser:
+#### Quick fix on your local browser:
 
 To fix it on your local browser, just do the following. (Suited when you're testing the production mode locally)
 
@@ -68,7 +68,7 @@ To fix it on your local browser, just do the following. (Suited when you're test
 
 #### Full in-depth explanation
 
-Reade more at https://github.com/NekR/offline-plugin/blob/master/docs/updates.md
+Read more at https://github.com/NekR/offline-plugin/blob/master/docs/updates.md
 
 ## Local webfonts not working for development
 
