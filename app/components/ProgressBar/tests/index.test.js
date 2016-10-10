@@ -127,13 +127,6 @@ describe('<ProgressBar />', () => {
     ProgressBar.prototype.componentWillUnmount.restore();
   });
 
-
-  /**
-   * Note that multiple lines have been disabled for linting.
-   * This is because arrow functions capture the `this` value of the enclosing context.
-   * So we need to use normal function(){} syntax instead.
-   */
-
   describe('increment progress', () => {
     beforeEach(() => {
       this.clock = sinon.useFakeTimers();
