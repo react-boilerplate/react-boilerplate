@@ -69,5 +69,9 @@ function deleteFileInCurrentDir(file, callback) {
  * Installs dependencies
  */
 function installDeps(callback) {
-  exec('npm install', addCheckMark.bind(null, callback));
+  if (process.env.USE_YARN === 'true') {
+    exec('yarn install', addCheckMark.bind(null, callback));
+  } else {
+    exec('npm install', addCheckMark.bind(null, callback));
+  }
 }
