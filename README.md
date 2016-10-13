@@ -98,7 +98,7 @@ There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on ho
 ## Quick start
 
 1. Clone this repo using `git clone --depth=1 https://github.com/mxstbr/react-boilerplate.git`
-1. As an alternative to npm, you can use yarn for dependency management, which might make the installation process easier for different platforms to do so: `USE_YARN=true npm run setup`. If you dont have `yarn` installed check out <a href="https://yarnpkg.com/en/docs/install" target="_blank">here</a> how to install yarn on your OS or do a `npm i -g yarn`
+1. As an alternative to npm, you can use yarn for dependency management, which might make the installation process easier for different platforms to do so: `USE_YARN=true npm run setup`. If you don't have `yarn` installed check out <a href="https://yarnpkg.com/en/docs/install" target="_blank">here</a> how to install yarn on your OS or do a `npm i -g yarn`
 1. (Skip this if you have done setup with `yarn`). Run `npm run setup` to install dependencies and clean the git repo.<br />
    *At this point you can run `npm start` to see the example app at `http://localhost:3000`.*
 1. Run `npm run clean` to delete the example app.
