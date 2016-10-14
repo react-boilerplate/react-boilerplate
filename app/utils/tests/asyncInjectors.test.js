@@ -5,13 +5,16 @@
 import expect from 'expect';
 import configureStore from '../../store';
 import { memoryHistory } from 'react-router';
-import { put } from 'redux-saga/effects';
+import { put, fork, take, cancel } from 'redux-saga/effects';
+import { createMockTask } from 'redux-saga/utils';
+import { LOCATION_CHANGE } from 'react-router-redux';
 import { fromJS } from 'immutable';
 
 import {
   injectAsyncReducer,
   injectAsyncSagas,
   getAsyncInjectors,
+  combineSagas,
 } from '../asyncInjectors';
 
 // Fixtures
@@ -125,6 +128,34 @@ describe('asyncInjectors', () => {
         }
 
         expect(result).toEqual(true);
+      });
+    });
+
+    describe('combineSagas', () => {
+      let combinedSagas;
+      let forkedSagas;
+      let forkedTasks;
+
+      before(() => {
+        combinedSagas = combineSagas(sagas);
+        forkedSagas = combinedSagas.next().value;
+        forkedTasks = forkedSagas.map(createMockTask);
+      });
+
+      it('should fork all sagas in a given array of sagas', () => {
+        expect(forkedSagas).toEqual(sagas.map(fork));
+      });
+
+      it('should wait until a LOCATION_CHANGE action', () => {
+        expect(combinedSagas.next(forkedTasks).value).toEqual(take(LOCATION_CHANGE));
+      });
+
+      it('should finally cancel all forked sagas', () => {
+        expect(combinedSagas.next().value).toEqual(forkedTasks.map(cancel));
+      });
+
+      it('should finish running', () => {
+        expect(combinedSagas.next().done).toEqual(true);
       });
     });
 
