@@ -1,6 +1,7 @@
 import React from 'react';
 
-import styles from './styles.css';
+import Ul from './Ul';
+import Wrapper from './Wrapper';
 
 function List(props) {
   const ComponentToRender = props.component;
@@ -17,11 +18,11 @@ function List(props) {
   }
 
   return (
-    <div className={styles.listWrapper}>
-      <ul className={styles.list}>
+    <Wrapper>
+      <Ul>
         {content}
-      </ul>
-    </div>
+      </Ul>
+    </Wrapper>
   );
 }
 

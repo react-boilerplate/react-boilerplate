@@ -1,6 +1,6 @@
 # Frequently Asked Questions
 
-## Where are Babel, ESLint and stylelint configured?
+## Where are Babel and ESLint configured?
 
 In package.json
 
