@@ -3,7 +3,7 @@ const argv = require('minimist')(process.argv.slice(2));
 const path = require('path');
 
 module.exports = (config) => {
-  let testBrowser;
+  var testBrowser; // eslint-disable-line no-var
   if (process.env.TRAVIS) {
     testBrowser = ['ChromeTravis'];
   } else if (process.env.APPVEYOR) {

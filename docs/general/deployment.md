@@ -20,7 +20,7 @@
 
 ## Docker Container
 ### Requirement
-* To deploy using docker container, you need to have an account in Docker Registry. You can set up one for free at https://hub.ddocker.com
+* To deploy using docker container, you need to have an account in Docker Registry. You can set up one for free at https://hub.docker.com
 * After finish setup your account, run `docker login` in ur command line and put your credential. It should then show `LOGIN SUCCEED` and you can proceed the deployment steps below.
 
 ### Step to deploy using docker container in production
