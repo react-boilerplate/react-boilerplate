@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-const shelljs = require('shelljs');
-const animateProgress = require('./helpers/progress');
-const chalk = require('chalk');
-const addCheckMark = require('./helpers/checkmark');
+var shelljs = require('shelljs');
+var animateProgress = require('./helpers/progress');
+var chalk = require('chalk');
+var addCheckMark = require('./helpers/checkmark');
 
-const progress = animateProgress('Generating stats');
+var progress = animateProgress('Generating stats');
 
 // Generate stats.json file with webpack
 shelljs.exec(
