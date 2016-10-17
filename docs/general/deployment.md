@@ -4,7 +4,7 @@
 
 ### Easy 5-Step Deployment Process
 
-*Step 1:* Create a Procfile with the following line: `web: npm run start:prod`. We are doing this because heroku runs `npm run start` by default, so we need this setting to override the default run command. 
+*Step 1:* Create a Procfile with the following line: `web: npm run start:production`. We are doing this because heroku runs `npm run start` by default, so we need this setting to override the default run command. 
 
 *Step 2:* Install heroku's buildpack on your heroku app by running the following command: `heroku buildpacks:set https://github.com/heroku/heroku-buildpack-nodejs#v90 -a [your app name]`. Make sure to replace `#v90` with whatever the latest buildpack is which you can [find here](https://github.com/heroku/heroku-buildpack-nodejs/releases).
 
