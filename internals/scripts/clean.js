@@ -1,5 +1,12 @@
 require('shelljs/global');
-const addCheckMark = require('./helpers/checkmark.js'); 
+
+/**
+ * Adds mark check symbol
+ */
+function addCheckMark(callback) {
+  process.stdout.write(' ✓');
+  callback();
+}
 
 if (!which('git')) {
   echo('Sorry, this script requires git');
@@ -78,7 +85,7 @@ cp('internals/templates/store.test.js', 'app/tests/store.test.js');
 // Remove the templates folder
 rm('-rf', 'internals/templates');
 
-addCheckMark();
+process.stdout.write(' ✓');
 
 // Commit the changes
 if (exec('git add . --all && git commit -qm "Remove default example"').code !== 0) {
