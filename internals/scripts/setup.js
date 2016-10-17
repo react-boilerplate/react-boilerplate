@@ -24,23 +24,7 @@ cleanRepo(function () {
   }, 500);
 
   process.stdout.write('Installing dependencies');
-  installDeps(function (error) {
-    clearInterval(interval);
-    if (error) {
-      process.stdout.write(error);
-    }
-
-    deleteFileInCurrentDir('setup.js', function () {
-      process.stdout.write('\n');
-      interval = animateProgress('Initialising new repository');
-      process.stdout.write('Initialising new repository');
-      initGit(function () {
-        clearInterval(interval);
-        process.stdout.write('\nDone!');
-        process.exit(0);
-      });
-    });
-  });
+  installDeps();
 });
 
 /**
@@ -68,10 +52,33 @@ function deleteFileInCurrentDir(file, callback) {
 /**
  * Installs dependencies
  */
-function installDeps(callback) {
-  if (process.env.USE_YARN === 'true') {
-    exec('yarn install', addCheckMark.bind(null, callback));
-  } else {
-    exec('npm install', addCheckMark.bind(null, callback));
+function installDeps() {
+  exec('yarn --version', function (err, stdout, stderr) {
+    if (parseFloat(stdout) < 0.15 || err || process.env.USE_YARN === 'false') {
+      exec('npm install', addCheckMark.bind(null, installDepsCallback));
+    } else {
+      exec('yarn install', addCheckMark.bind(null, installDepsCallback));
+    }
+  });
+}
+
+/**
+ * Callback function after installing dependencies
+ */
+function installDepsCallback(error) {
+  clearInterval(interval);
+  if (error) {
+    process.stdout.write(error);
   }
+
+  deleteFileInCurrentDir('setup.js', function () {
+    process.stdout.write('\n');
+    interval = animateProgress('Initialising new repository');
+    process.stdout.write('Initialising new repository');
+    initGit(function () {
+      clearInterval(interval);
+      process.stdout.write('\nDone!');
+      process.exit(0);
+    });
+  });
 }
