@@ -295,6 +295,7 @@
     "plop": "1.5.0",
     "postcss-cssnext": "2.8.0",
     "postcss-focus": "1.0.0",
+    "postcss-import": "8.1.0",
     "postcss-loader": "0.13.0",
     "postcss-reporter": "1.4.1",
     "pre-commit": "1.1.3",
