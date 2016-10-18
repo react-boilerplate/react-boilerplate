@@ -3,10 +3,9 @@
  */
 
 import expect from 'expect';
-import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
-import { LOCATION_CHANGE } from 'react-router-redux';
+import { take, call, put, select } from 'redux-saga/effects';
 
-import { getRepos, getReposWatcher, githubData } from '../sagas';
+import { getRepos, getReposWatcher } from '../sagas';
 
 import { LOAD_REPOS } from 'containers/App/constants';
 import { reposLoaded, repoLoadingError } from 'containers/App/actions';
@@ -65,28 +64,4 @@ describe('getReposWatcher Saga', () => {
     const callDescriptor = getReposWatcherGenerator.next(put(LOAD_REPOS)).value;
     expect(callDescriptor).toEqual(call(getRepos));
   });
-});
-
-describe('githubDataSaga Saga', () => {
-  const githubDataSaga = githubData();
-
-  let forkDescriptor;
-
-  it('should asyncronously fork getReposWatcher saga', () => {
-    forkDescriptor = githubDataSaga.next();
-    expect(forkDescriptor.value).toEqual(fork(getReposWatcher));
-  });
-
-  it('should yield until LOCATION_CHANGE action', () => {
-    const takeDescriptor = githubDataSaga.next();
-    expect(takeDescriptor.value).toEqual(take(LOCATION_CHANGE));
-  });
-
-  it('should finally cancel() the forked getReposWatcher saga',
-    function* githubDataSagaCancellable() {
-      // reuse open fork for more integrated approach
-      forkDescriptor = githubDataSaga.next(put(LOCATION_CHANGE));
-      expect(forkDescriptor.value).toEqual(cancel(forkDescriptor));
-    }
-  );
 });

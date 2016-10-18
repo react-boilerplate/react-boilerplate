@@ -1,4 +1,6 @@
 import { conformsTo, isEmpty, isFunction, isObject, isString } from 'lodash';
+import { LOCATION_CHANGE } from 'react-router-redux';
+import { fork, cancel, take } from 'redux-saga/effects';
 import invariant from 'invariant';
 import warning from 'warning';
 import createReducer from '../reducers';
@@ -57,8 +59,18 @@ export function injectAsyncSagas(store, isValid) {
       '(app/utils...) injectAsyncSagas: Received an empty `sagas` array'
     );
 
-    sagas.map(store.runSaga);
+    store.runSaga(combineSagas.bind(null, sagas));
   };
+}
+
+/**
+ * Combine asynchronously loaded sagas for injection
+ */
+export function* combineSagas(sagas) {
+  const forkedSagas = yield sagas.map(fork);
+  yield take(LOCATION_CHANGE);
+  yield forkedSagas.map(cancel);
+  return;
 }
 
 /**
