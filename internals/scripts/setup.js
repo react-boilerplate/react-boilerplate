@@ -1,18 +1,20 @@
 #!/usr/bin/env node
 
-var shell = require('shelljs');
-var exec = require('child_process').exec;
-var path = require('path');
-var fs   = require('fs');
-var animateProgress = require('./helpers/progress');
-var addCheckMark = require('./helpers/checkmark');
-var readline = require('readline');
+'use strict';
+
+const shell = require('shelljs');
+const exec = require('child_process').exec;
+const path = require('path');
+const fs   = require('fs');
+const animateProgress = require('./helpers/progress');
+const addCheckMark = require('./helpers/checkmark');
+const readline = require('readline');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
 
 process.stdout.write('\n');
-var interval = animateProgress('Cleaning old repository');
+let interval = animateProgress('Cleaning old repository');
 process.stdout.write('Cleaning old repository');
 
 cleanRepo(function () {
