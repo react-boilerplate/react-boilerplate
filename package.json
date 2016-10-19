@@ -209,6 +209,7 @@
     ]
   },
   "dependencies": {
+    "auth0-lock": "10.4.0",
     "babel-polyfill": "6.16.0",
     "chalk": "1.1.3",
     "cross-env": "3.1.3",

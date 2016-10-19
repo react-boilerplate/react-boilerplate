@@ -1,0 +1,7 @@
+.container {
+  margin: 2em 0;
+}
+
+:global .auth0-lock-header {
+  display: none;
+}

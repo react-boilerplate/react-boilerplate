@@ -269,6 +269,34 @@ atob@~1.1.0:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/atob/-/atob-1.1.3.tgz#95f13629b12c3a51a5d215abdce2aa9f32f80773"
 
+auth0-js@7.2.1:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/auth0-js/-/auth0-js-7.2.1.tgz#ffa88aabad31461eecc1cc1d46c4df8578ce8434"
+  dependencies:
+    Base64 "~0.1.3"
+    json-fallback "0.0.1"
+    jsonp "~0.0.4"
+    qs "^6.2.1"
+    reqwest "2.0.5"
+    trim "~0.0.1"
+    winchan auth0/winchan#v0.1.2
+    xtend "~2.1.1"
+
+auth0-lock@10.4.0:
+  version "10.4.0"
+  resolved "https://registry.yarnpkg.com/auth0-lock/-/auth0-lock-10.4.0.tgz#5048ae2d50097c555f6ba0bacdbc4c965114898e"
+  dependencies:
+    auth0-js "7.2.1"
+    blueimp-md5 "2.3.1"
+    fbjs "^0.3.1"
+    immutable "^3.7.3"
+    jsonp "^0.2.0"
+    password-sheriff "^1.0.0"
+    react "^15.0.0 || ^16.0.0"
+    react-addons-css-transition-group "^15.0.0 || ^16.0.0"
+    react-dom "^15.0.0 || ^16.0.0"
+    trim "0.0.1"
+
 autoprefixer@^6.0.0, autoprefixer@^6.0.2, autoprefixer@^6.3.1:
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-6.5.0.tgz#910de0aa0f22af4c7d50367cbc9d4d412945162f"
@@ -1106,6 +1134,10 @@ base64-url@^1.2.1:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/base64-url/-/base64-url-1.3.2.tgz#4b08113b49d23889f306be64372762d31412f7a8"
 
+Base64@~0.1.3:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/Base64/-/Base64-0.1.4.tgz#e9f6c6bef567fd635ea4162ab14dd329e74aa6de"
+
 Base64@~0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/Base64/-/Base64-0.2.1.tgz#ba3a4230708e186705065e66babdd4c35cf60028"
@@ -1233,6 +1265,10 @@ bluebird@^2.9.30:
 bluebird@^3.3.0, bluebird@^3.4.1:
   version "3.4.6"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.4.6.tgz#01da8d821d87813d158967e743d5fe6c62cf8c0f"
+
+blueimp-md5@2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/blueimp-md5/-/blueimp-md5-2.3.1.tgz#992a6737733b9da1edd641550dc3acab2e9cfc5a"
 
 bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
   version "4.11.6"
@@ -2302,7 +2338,7 @@ debug-fabulous@0.0.X:
     lazy-debug "0.X"
     object-assign "4.1.0"
 
-debug@^2.1.1, debug@^2.2.0, debug@~2.2.0, debug@2.2.0, debug@2.X:
+debug@*, debug@^2.1.1, debug@^2.2.0, debug@~2.2.0, debug@2.2.0, debug@2.X:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
   dependencies:
@@ -2311,6 +2347,12 @@ debug@^2.1.1, debug@^2.2.0, debug@~2.2.0, debug@2.2.0, debug@2.X:
 debug@~0.7.4, debug@0.7.4:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-0.7.4.tgz#06e1ea8082c2cb14e39806e22e2f6f757f92af39"
+
+debug@2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.1.3.tgz#ce8ab1b5ee8fbee2bfa3b633cab93d366b63418e"
+  dependencies:
+    ms "0.7.0"
 
 decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
@@ -3293,6 +3335,16 @@ fastparse@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.1.tgz#d1e2643b38a94d7583b479060e6c4affc94071f8"
 
+fbjs@^0.3.1:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.3.2.tgz#033a540595084b5de3509a405d06f1a2a8e5b9fb"
+  dependencies:
+    core-js "^1.0.0"
+    loose-envify "^1.0.0"
+    promise "^7.0.3"
+    ua-parser-js "^0.7.9"
+    whatwg-fetch "^0.9.0"
+
 fbjs@^0.8.4:
   version "0.8.5"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.5.tgz#f69ba8a876096cb1b9bffe4d7c1e71c19d39d008"
@@ -4227,7 +4279,7 @@ imagemin@^5.2.2:
     promise.pipe "^3.0.0"
     replace-ext "0.0.1"
 
-immutable@^3.7.6, immutable@3.8.1:
+immutable@^3.7.3, immutable@^3.7.6, immutable@3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.1.tgz#200807f11ab0f72710ea485542de088075f68cd2"
 
@@ -4844,6 +4896,10 @@ jsesc@~0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
 
+json-fallback@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/json-fallback/-/json-fallback-0.0.1.tgz#e8e3083c3fddad0f9b5f09d3312074442580d781"
+
 json-loader@0.5.4:
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/json-loader/-/json-loader-0.5.4.tgz#8baa1365a632f58a3c46d20175fc6002c96e37de"
@@ -4890,6 +4946,18 @@ jsonfilter@^1.1.2:
 jsonify@~0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
+
+jsonp@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/jsonp/-/jsonp-0.2.0.tgz#95fcd751cf0a67adb9a5a9c4628ffeb97bec63e8"
+  dependencies:
+    debug "2.1.3"
+
+jsonp@~0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/jsonp/-/jsonp-0.0.4.tgz#94665a4b771aabecb8aac84135b99594756918bd"
+  dependencies:
+    debug "*"
 
 jsonparse@0.0.5:
   version "0.0.5"
@@ -5733,6 +5801,10 @@ mocha@3.1.2:
     mkdirp "0.5.1"
     supports-color "3.1.2"
 
+ms@0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.0.tgz#865be94c2e7397ad8a57da6a633a6e2f30798b83"
+
 ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
@@ -5994,6 +6066,10 @@ object-is@^1.0.1:
 object-keys@^1.0.10, object-keys@^1.0.8, object-keys@^1.0.9:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.0.11.tgz#c54601778ad560f1142ce0e01bcca8b56d13426d"
+
+object-keys@~0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-0.4.0.tgz#28a6aae7428dd2c3a92f3d95f21335dd204e0336"
 
 object.assign@^4.0.3:
   version "4.0.4"
@@ -6262,6 +6338,12 @@ pascal-case@^2.0.0:
   dependencies:
     camel-case "^3.0.0"
     upper-case-first "^1.1.0"
+
+password-sheriff@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/password-sheriff/-/password-sheriff-1.0.1.tgz#fd63fbb44714258a26419f4800c3121e0dcb40b2"
+  dependencies:
+    underscore "^1.6.0"
 
 path-browserify@0.0.0:
   version "0.0.0"
@@ -7002,6 +7084,10 @@ qjobs@^1.1.4:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/qjobs/-/qjobs-1.1.5.tgz#659de9f2cf8dcc27a1481276f205377272382e73"
 
+qs@^6.2.1:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.3.0.tgz#f403b264f23bc01228c74131b407f18d5ea5d442"
+
 qs@~4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-4.0.0.tgz#c31d9b74ec27df75e543a86c78728ed8d4623607"
@@ -7071,6 +7157,10 @@ rc@^1.0.1, rc@^1.1.2, rc@^1.1.6, rc@~1.1.0:
     minimist "^1.2.0"
     strip-json-comments "~1.0.4"
 
+"react-addons-css-transition-group@^15.0.0 || ^16.0.0":
+  version "15.3.2"
+  resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.3.2.tgz#d8fa52bec9bb61bdfde8b9e4652b80297cbff667"
+
 "react-addons-test-utils@^0.14.8 || ^15.0.1":
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.3.2.tgz#c09a44f583425a4a9c1b38444d7a6c3e6f0f41f6"
@@ -7079,7 +7169,7 @@ react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
 
-"react-dom@^0.14.0 || ^15.0.0", react-dom@15.3.2:
+"react-dom@^0.14.0 || ^15.0.0", "react-dom@^15.0.0 || ^16.0.0", react-dom@15.3.2:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.3.2.tgz#c46b0aa5380d7b838e7a59c4a7beff2ed315531f"
 
@@ -7169,7 +7259,7 @@ react-transform-hmr@^1.0.3:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-"react@^0.14.8 || ^15.0.1", react@15.3.2:
+"react@^0.14.8 || ^15.0.1", "react@^15.0.0 || ^16.0.0", react@15.3.2:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.3.2.tgz#a7bccd2fee8af126b0317e222c28d1d54528d09e"
   dependencies:
@@ -7532,6 +7622,10 @@ require-uncached@^1.0.2:
 requires-port@1.x.x:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
+
+reqwest@2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/reqwest/-/reqwest-2.0.5.tgz#00fb15ac4918c419ca82b43f24c78882e66039a1"
 
 reselect@2.5.4:
   version "2.5.4"
@@ -8428,6 +8522,10 @@ trim-repeated@^1.0.0:
   dependencies:
     escape-string-regexp "^1.0.2"
 
+trim@~0.0.1, trim@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/trim/-/trim-0.0.1.tgz#5858547f6b290757ee95cccc666fb50084c460dd"
+
 tryit@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/tryit/-/tryit-1.0.2.tgz#c196b0073e6b1c595d93c9c830855b7acc32a453"
@@ -8514,6 +8612,10 @@ ultron@1.0.x:
 unc-path-regex@^0.1.0:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/unc-path-regex/-/unc-path-regex-0.1.2.tgz#e73dd3d7b0d7c5ed86fbac6b0ae7d8c6a69d50fa"
+
+underscore@^1.6.0:
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
 
 uniq@^1.0.1:
   version "1.0.1"
@@ -8852,6 +8954,10 @@ widest-line@^1.0.0:
   dependencies:
     string-width "^1.0.1"
 
+"winchan@github:auth0/winchan#v0.1.2":
+  version "0.1.2"
+  resolved "https://codeload.github.com/auth0/winchan/tar.gz/d96ec07cb3b7cfed4005b2970f8aa57e90c5bbca"
+
 window-size@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.4.tgz#f8e1aa1ee5a53ec5bf151ffa09742a6ad7697876"
@@ -8938,6 +9044,12 @@ xmlhttprequest-ssl@1.5.1:
 xtend@^4.0.0, xtend@^4.0.1, "xtend@>=4.0.0 <4.1.0-0", xtend@~4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
+
+xtend@~2.1.1:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/xtend/-/xtend-2.1.2.tgz#6efecc2a4dad8e6962c4901b337ce7ba87b5d28b"
+  dependencies:
+    object-keys "~0.4.0"
 
 y18n@^3.2.0, y18n@^3.2.1:
   version "3.2.1"

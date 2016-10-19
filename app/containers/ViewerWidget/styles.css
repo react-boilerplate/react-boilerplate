@@ -1,0 +1,47 @@
+.UserName {
+  margin: 0.5em;
+}
+
+.loginButton {
+  margin: 0.5em;
+}
+
+.dropDownButton {
+  padding: 0.5em;
+  border: none;
+  cursor: pointer;
+}
+
+.dropDown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropDownContent {
+  display: none;
+  position: absolute;
+  right: 0;
+  min-width: 7em;
+  font-size: smaller;
+  background-color: #FFF;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.dropDownContent a {
+  color: inherit;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  display: block;
+}
+
+.dropDownContent a:hover {
+  background-color: #EEE;
+}
+
+.dropDown:hover .dropDownContent {
+  display: block;
+}
+
+.dropDown:hover .dropDownButton {
+  color: #AAA;
+}

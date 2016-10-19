@@ -27,7 +27,7 @@ function App(props) {
           { name: 'description', content: 'A React.js Boilerplate application' },
         ]}
       />
-      <Header />
+      <Header location={props.location.pathname} />
       {React.Children.toArray(props.children)}
       <Footer />
     </div>
@@ -36,6 +36,9 @@ function App(props) {
 
 App.propTypes = {
   children: React.PropTypes.node,
+  location: React.PropTypes.shape({
+    pathname: React.PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default App;
