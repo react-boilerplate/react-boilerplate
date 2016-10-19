@@ -14,10 +14,8 @@ import { withRouter } from 'react-router';
 import 'sanitize.css/sanitize.css';
 
 import ProgressBar from 'components/ProgressBar';
-import Img from 'components/Img';
+import Header from 'components/Header';
 import Footer from 'components/Footer';
-import Banner from './banner-metal.jpg';
-import A from 'components/A';
 
 import styles from './styles.css';
 
@@ -57,9 +55,7 @@ export class App extends React.Component {
           ]}
         />
         <ProgressBar percent={this.state.progress} />
-        <A className={styles.logoWrapper} href="https://twitter.com/mxstbr">
-          <Img className={styles.logo} src={Banner} alt="react-boilerplate - Logo" />
-        </A>
+        <Header />
         {React.Children.toArray(this.props.children)}
         <Footer />
       </div>
