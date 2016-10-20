@@ -16,7 +16,7 @@ const logger = {
   },
 
   // Called when express.js app starts on given port w/o errors
-  appStarted: (port_or_socket, tunnelStarted) => {
+  appStarted: (portOrSocket, tunnelStarted) => {
     console.log(`Server started ${chalk.green('✓')}`);
 
     // If the tunnel started, log that and the URL it's available at
@@ -24,17 +24,17 @@ const logger = {
       console.log(`Tunnel initialised ${chalk.green('✓')}`);
     }
 
-    if (typeof(port_or_socket) === 'string') {
+    if (typeof (portOrSocket) === 'string') {
       console.log(`
   ${chalk.bold('Server listening on socket:')}${divider}
-  Socket: ${chalk.magenta(port_or_socket)}${divider}
+  Socket: ${chalk.magenta(portOrSocket)}${divider}
   ${chalk.blue(`Press ${chalk.italic('CTRL-C')} to stop`)}
       `);
     } else {
       console.log(`
   ${chalk.bold('Access URLs:')}${divider}
-  Localhost: ${chalk.magenta(`http://localhost:${port_or_socket}`)}
-        LAN: ${chalk.magenta(`http://${ip.address()}:${port_or_socket}`) +
+  Localhost: ${chalk.magenta(`http://localhost:${portOrSocket}`)}
+        LAN: ${chalk.magenta(`http://${ip.address()}:${portOrSocket}`) +
   (tunnelStarted ? `\n    Proxy: ${chalk.magenta(tunnelStarted)}` : '')}${divider}
   ${chalk.blue(`Press ${chalk.italic('CTRL-C')} to stop`)}
       `);

@@ -2,6 +2,7 @@
 
 const express = require('express');
 const logger = require('./logger');
+const fs = require('fs');
 
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
@@ -21,33 +22,32 @@ setup(app, {
 
 // get the intended port number, use port 3000 if not provided
 const port = argv.port || process.env.PORT || 3000;
-const socket_enabled = argv.socket_enabled || process.env.SOCKET_ENABLED || false
-const socket_path = argv.socket_path || process.env.SOCKET_PATH || '/tmp/node.sock'
-const socket_or_port = socket_enabled ? socket_path : port;
+const socketEnabled = argv.socketEnabled || process.env.SOCKET_ENABLED || false;
+const socketPath = argv.socketPath || process.env.SOCKET_PATH || '/tmp/node.sock';
+const socketOrPort = socketEnabled ? socketPath : port;
 
-if (socket_enabled) {
-  const fs = require('fs');
-  if (fs.existsSync(socket_or_port)) {
-    fs.unlinkSync(socket_or_port);
+if (socketEnabled) {
+  if (fs.existsSync(socketOrPort)) {
+    fs.unlinkSync(socketOrPort);
   }
 }
 
 // Start your app.
-  app.listen(socket_or_port, (err) => {
+app.listen(socketOrPort, (err) => {
   if (err) {
     return logger.error(err.message);
   }
 
   // Connect to ngrok in dev mode
   if (ngrok) {
-    ngrok.connect(socket_or_port, (innerErr, url) => {
+    ngrok.connect(socketOrPort, (innerErr, url) => {
       if (innerErr) {
         return logger.error(innerErr);
       }
 
-      logger.appStarted(socket_or_port, url);
+      logger.appStarted(socketOrPort, url);
     });
   } else {
-    logger.appStarted(socket_or_port);
+    logger.appStarted(socketOrPort);
   }
 });
