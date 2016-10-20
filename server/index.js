@@ -21,23 +21,33 @@ setup(app, {
 
 // get the intended port number, use port 3000 if not provided
 const port = argv.port || process.env.PORT || 3000;
+const socket_enabled = argv.socket_enabled || process.env.SOCKET_ENABLED || false
+const socket_path = argv.socket_path || process.env.SOCKET_PATH || '/tmp/node.sock'
+const socket_or_port = socket_enabled ? socket_path : port;
+
+if (socket_enabled) {
+  const fs = require('fs');
+  if (fs.existsSync(socket_or_port)) {
+    fs.unlinkSync(socket_or_port);
+  }
+}
 
 // Start your app.
-app.listen(port, (err) => {
+  app.listen(socket_or_port, (err) => {
   if (err) {
     return logger.error(err.message);
   }
 
   // Connect to ngrok in dev mode
   if (ngrok) {
-    ngrok.connect(port, (innerErr, url) => {
+    ngrok.connect(socket_or_port, (innerErr, url) => {
       if (innerErr) {
         return logger.error(innerErr);
       }
 
-      logger.appStarted(port, url);
+      logger.appStarted(socket_or_port, url);
     });
   } else {
-    logger.appStarted(port);
+    logger.appStarted(socket_or_port);
   }
 });
