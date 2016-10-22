@@ -62,11 +62,12 @@ module.exports = (options) => ({
       fetch: 'exports?self.fetch!whatwg-fetch',
     }),
 
-    // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
+    // Expose these vars to webpack, in order to use e.g `process.env.NODE_ENV`
     // inside your code for any environment checks; UglifyJS will automatically
     // drop any unreachable code.
     new webpack.DefinePlugin({
       'process.env': {
+        GRAPHQL_ENDPOINT: JSON.stringify(process.env.GRAPHQL_ENDPOINT),
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),

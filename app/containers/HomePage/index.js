@@ -53,6 +53,10 @@ export class HomePage extends React.Component {
     this.props.changeRoute(route);
   };
 
+  openPlayerPage = () => {
+    this.openRoute('/player');
+  };
+
   /**
    * Changed route to '/features'
    */
@@ -95,6 +99,11 @@ export class HomePage extends React.Component {
             <p>
               <FormattedMessage {...messages.startProjectMessage} />
             </p>
+          </section>
+          <section>
+            <Button handleRoute={this.openPlayerPage}>
+              GraphQL Relay demo
+            </Button>
           </section>
           <section className={styles.textSection}>
             <H2>
