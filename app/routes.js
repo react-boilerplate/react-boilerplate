@@ -3,6 +3,7 @@
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the code splitting business
 import { getAsyncInjectors } from './utils/asyncInjectors';
+import { requireAuth } from 'containers/Viewer/lib';
 
 const errorLoading = (err) => {
   console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
@@ -45,6 +46,34 @@ export default function createRoutes(store) {
         System.import('containers/FeaturePage')
           .then(loadModule(cb))
           .catch(errorLoading);
+      },
+      // for example's sake, require authentication to see /features
+      onEnter: requireAuth,
+    }, {
+      path: '/login',
+      name: 'login',
+      getComponent(nextState, cb) {
+        System.import('containers/Login')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    }, {
+      path: '/login/callback',
+      name: 'loginCallback',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/LoginCallback/sagas'),
+          System.import('containers/LoginCallback'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([sagas, component]) => {
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
       },
     }, {
       path: '*',

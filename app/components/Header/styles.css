@@ -8,3 +8,7 @@
   margin: 0 auto;
   display: block;
 }
+
+.buttons {
+  text-align: end;
+}

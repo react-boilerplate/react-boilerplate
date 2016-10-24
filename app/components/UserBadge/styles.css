@@ -1,0 +1,9 @@
+.UserBadge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0.5em;
+  padding: 2px;
+  border: 2px solid #999;
+}
