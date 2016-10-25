@@ -11,6 +11,7 @@ environment:
 
   matrix:
     # Node versions to run
+    - nodejs_version: 7
     - nodejs_version: 6
     - nodejs_version: 5
     - nodejs_version: 4
