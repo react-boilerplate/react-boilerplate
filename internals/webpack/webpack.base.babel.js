@@ -70,6 +70,7 @@ module.exports = (options) => ({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
+    new webpack.NamedModulesPlugin(),
   ]),
   postcss: () => [
     postcssFocus(), // Add a :focus to every :hover
