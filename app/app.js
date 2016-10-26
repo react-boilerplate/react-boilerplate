@@ -8,12 +8,12 @@
 // Needed for redux-saga es6 generator support
 import 'babel-polyfill';
 
-/* eslint-disable import/no-unresolved */
+/* eslint-disable import/no-unresolved, import/extensions */
 // Load the favicon, the manifest.json file and the .htaccess file
 import 'file?name=[name].[ext]!./favicon.ico';
 import '!file?name=[name].[ext]!./manifest.json';
 import 'file?name=[name].[ext]!./.htaccess';
-/* eslint-enable import/no-unresolved */
+/* eslint-enable import/no-unresolved, import/extensions */
 
 // Import all the third party stuff
 import React from 'react';
@@ -123,5 +123,6 @@ if (!window.Intl) {
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
 // we do not want it installed
-import { install } from 'offline-plugin/runtime';
-install();
+if (process.env.NODE_ENV === 'production') {
+  require('offline-plugin/runtime').install(); // eslint-disable-line global-require
+}

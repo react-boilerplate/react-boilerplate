@@ -70,6 +70,7 @@ module.exports = (options) => ({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
+    new webpack.NamedModulesPlugin(),
   ]),
   postcss: () => [
     postcssFocus(), // Add a :focus to every :hover
@@ -89,12 +90,12 @@ module.exports = (options) => ({
       '.react.js',
     ],
     mainFields: [
+      'browser',
       'jsnext:main',
       'main',
     ],
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
-  stats: false, // Don't show stats in the console
   progress: true,
 });
