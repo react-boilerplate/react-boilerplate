@@ -103,4 +103,4 @@ const newState = stateMap.withMutations( intermediateState => {
 ```
 
 From the [official docs](https://facebook.github.io/immutable-js/docs/#/Map/withMutations): 
-> Note: Not all methods can be used on a mutable collection or within withMutations! Only set and merge may be used mutatively. >
+> Note: Not all methods can be used on a mutable collection or within withMutations! Only set and merge may be used mutatively.
