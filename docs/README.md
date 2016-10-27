@@ -59,7 +59,7 @@
 
 ### Development
 
-Run `npm start` to see your app at `localhost:3000`
+Run `npm start` to see your app at `localhost:3000` and on your local network via BrowserSync, with hot reloading. 
 
 ### Building & Deploying
 
@@ -119,7 +119,7 @@ get a performance check right in your terminal!
 
 #### Browser testing
 
-`npm run start:tunnel` makes your locally-running app globally available on the web
+`npm run start:tunnel` makes your app available as with `npm start`, as well as on the web
 via a temporary URL: great for testing on different devices, client demos, etc!
 
 #### Unit testing

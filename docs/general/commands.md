@@ -19,7 +19,13 @@ history irreversibly by accident.
 npm run start
 ```
 
-Starts the development server running on `http://localhost:3000`
+Starts the development server and makes your application accessible with 
+[BrowserSync](https://www.browsersync.io/) at `localhost:3001` and on a local IP address (check your startup logs).
+
+This means that your changes will keep in sync on all your local devices, 
+even when you update the code or you scroll the page on one of them! 
+
+Make sure to check the BrowserSync dashboard at `localhost:3002`.
 
 ## Cleaning
 
@@ -53,9 +59,7 @@ generate container`)
 npm start
 ```
 
-Starts the development server and makes your application accessible at
-`localhost:3000`. Tunnels that server with `ngrok`, which means the website
-accessible anywhere! Changes in the application code will be hot-reloaded.
+Starts the development server and makes your hot-reloadable application accessible everywhere with BrowserSync.
 
 ### Production
 
@@ -141,8 +145,8 @@ Watches changes to your application and reruns tests whenever a file changes.
 ```Shell
 npm run start:tunnel
 ```
-Starts the development server and tunnels it with `ngrok`, making the website
-available on the entire world. Useful for testing on different devices in different locations!
+Starts the development server as usual for development, with an extra tunnels to make the website
+available to the entire world. Useful for testing on different devices in different locations!
 
 ### Performance testing
 
