@@ -7,6 +7,7 @@ const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
+const qrcode = require('qrcode-terminal');
 const resolve = require('path').resolve;
 const app = express();
 
@@ -36,6 +37,7 @@ app.listen(port, (err) => {
       }
 
       logger.appStarted(port, url);
+      qrcode.generate(url, { small: true }, (code) => console.log(code));
     });
   } else {
     logger.appStarted(port);

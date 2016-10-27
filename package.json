@@ -299,6 +299,7 @@
     "postcss-reporter": "1.4.1",
     "pre-commit": "1.1.3",
     "psi": "2.0.4",
+    "qrcode-terminal": "^0.11.0",
     "rimraf": "2.5.4",
     "shelljs": "0.7.4",
     "sinon": "2.0.0-pre",
