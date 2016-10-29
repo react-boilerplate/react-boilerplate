@@ -25,6 +25,7 @@ The fix is to kill the process and rerun `npm start`.
     > ```Shell
     > janedoe    29811  49.1  2.1  3394936 356956 s004  S+    4:45pm   2:40.07 node server
     > ```
+    > Note: If nothing is listed, you can try `lsof -i tcp:3000` 
 
 1. Then run
     ```Shell
