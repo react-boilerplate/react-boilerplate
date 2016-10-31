@@ -59,6 +59,3 @@ const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: selectLocationState(),
 });
 ```
-
-
-How does this look? 
