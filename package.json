@@ -17,7 +17,7 @@
     "analyze": "node ./internals/scripts/analyze.js",
     "extract-intl": "babel-node --presets latest,stage-0 -- ./internals/scripts/extract-intl.js",
     "npmcheckversion": "node ./internals/scripts/npmcheckversion.js",
-    "eslint:airbnb:peerDependencies": "npm info 'eslint-config-airbnb' peerDependencies --json | command sed 's/[{},]//g ; s/: /@/g' | xargs npm install --save-dev 'eslint-config-airbnb'",
+    "eslint:airbnb:peerDependencies": "node ./internals/scripts/eslint-airbnb-peerDependencies.js",
     "preinstall": "npm run npmcheckversion && npm run eslint:airbnb:peerDependencies",
     "postinstall": "npm run build:dll",
     "prebuild": "npm run build:clean && npm run test",
