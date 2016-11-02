@@ -19,13 +19,12 @@ export function* getRepos() {
   const username = yield select(selectUsername());
   const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
 
-  // Call our request helper (see 'utils/request')
-  const repos = yield call(request, requestURL);
-
-  if (!repos.err) {
-    yield put(reposLoaded(repos.data, username));
-  } else {
-    yield put(repoLoadingError(repos.err));
+  try {
+    // Call our request helper (see 'utils/request')
+    const repos = yield call(request, requestURL);
+    yield put(reposLoaded(repos, username));
+  } catch (err) {
+    yield put(repoLoadingError(err));
   }
 }
 
