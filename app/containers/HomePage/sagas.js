@@ -2,6 +2,7 @@
  * Gets the repositories of the user from Github
  */
 
+import { takeLatest } from 'redux-saga';
 import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { LOAD_REPOS } from 'containers/App/constants';
@@ -29,12 +30,11 @@ export function* getRepos() {
 }
 
 /**
- * Watches for LOAD_REPOS action and calls handler
+ * Watches for LOAD_REPOS actions and calls getRepos when one comes in.
+ * By using `takeLatest` only the result of the latest API call is applied.
  */
 export function* getReposWatcher() {
-  while (yield take(LOAD_REPOS)) {
-    yield call(getRepos);
-  }
+  yield fork(takeLatest, LOAD_REPOS, getRepos);
 }
 
 /**
