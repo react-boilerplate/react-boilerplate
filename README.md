@@ -106,6 +106,10 @@ Now you're ready to rumble!
 
 > Please note that this boilerplate is **not meant for beginners**! If you're just starting out with react or redux, please refer to https://github.com/petehunt/react-howto instead.
 
+## Is it production ready?
+
+This repo has a dev branch that unstable changes get merged into first. Only when we consider them stable we merge them into the master branch and release the changes for real. This means the master branch is stable enough to use in production.
+
 ## Documentation
 
 - [Intro](docs/general): What's included and why
