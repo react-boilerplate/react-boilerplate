@@ -26,7 +26,7 @@ import { changeUsername } from './actions';
 import { selectUsername } from './selectors';
 import { selectRepos, selectLoading, selectError } from 'containers/App/selectors';
 
-export class HomePage extends React.Component {
+export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
    * when initial state username is not null, submit the form to load repos
    */
