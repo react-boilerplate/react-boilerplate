@@ -5,35 +5,28 @@
  */
 
 import React from 'react';
+import Helmet from 'react-helmet';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import Helmet from 'react-helmet';
-
-import messages from './messages';
 import { createStructuredSelector } from 'reselect';
 
-import {
-  selectRepos,
-  selectLoading,
-  selectError,
-} from 'containers/App/selectors';
-
-import {
-  selectUsername,
-} from './selectors';
-
-import { changeUsername } from './actions';
-import { loadRepos } from '../App/actions';
-
-import { FormattedMessage } from 'react-intl';
-import RepoListItem from 'containers/RepoListItem';
+import AtPrefix from './AtPrefix';
 import Button from 'components/Button';
+import CenteredSection from './CenteredSection';
+import Form from './Form';
 import H2 from 'components/H2';
+import Input from './Input';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
-
-import styles from './styles.css';
+import RepoListItem from 'containers/RepoListItem';
+import Section from './Section';
+import messages from './messages';
+import { loadRepos } from '../App/actions';
+import { changeUsername } from './actions';
+import { selectUsername } from './selectors';
+import { selectRepos, selectLoading, selectError } from 'containers/App/selectors';
 
 export class HomePage extends React.Component {
   /**
@@ -88,36 +81,35 @@ export class HomePage extends React.Component {
           ]}
         />
         <div>
-          <section className={`${styles.textSection} ${styles.centered}`}>
+          <CenteredSection>
             <H2>
               <FormattedMessage {...messages.startProjectHeader} />
             </H2>
             <p>
               <FormattedMessage {...messages.startProjectMessage} />
             </p>
-          </section>
-          <section className={styles.textSection}>
+          </CenteredSection>
+          <Section>
             <H2>
               <FormattedMessage {...messages.trymeHeader} />
             </H2>
-            <form className={styles.usernameForm} onSubmit={this.props.onSubmitForm}>
+            <Form onSubmit={this.props.onSubmitForm}>
               <label htmlFor="username">
                 <FormattedMessage {...messages.trymeMessage} />
-                <span className={styles.atPrefix}>
+                <AtPrefix>
                   <FormattedMessage {...messages.trymeAtPrefix} />
-                </span>
-                <input
+                </AtPrefix>
+                <Input
                   id="username"
-                  className={styles.input}
                   type="text"
                   placeholder="mxstbr"
                   value={this.props.username}
                   onChange={this.props.onChangeUsername}
                 />
               </label>
-            </form>
+            </Form>
             {mainContent}
-          </section>
+          </Section>
           <Button handleRoute={this.openFeaturesPage}>
             <FormattedMessage {...messages.featuresButton} />
           </Button>

@@ -15,8 +15,7 @@
   - [Component Testing](testing/component-testing.md)
   - [Remote Testing](testing/remote-testing.md)
 - [CSS](css)
-  - [PostCSS](css/postcss.md)
-  - [CSS Modules](css/css-modules.md)
+  - [`styled-components`](css/styled-componets.md)
   - [sanitize.css](css/sanitize.md)
 - [JS](js)
   - [Redux](js/redux.md)
@@ -80,17 +79,13 @@ should not need to be touched.
 
 ### CSS
 
-Each component `import`s its styling dependencies from a co-located `styles.css`
-module.
+Utilising [tagged template literals](./docs/tagged-template-literals.md)
+(a recent addition to JavaScript) and the [power of CSS](./docs/css-we-support.md),
+`styled-components` allows you to write actual CSS code to style your components.
+It also removes the mapping between components and styles – using components as a
+low-level styling construct could not be easier!
 
-A production build transpiles these modules into page-specific CSS files (based
-on which components are actually used), while any shared styles are automatically
-extracted into a "common" stylesheet.
-
-This means the leanest, fastest payload for your users.
-
-See the [CSS documentation](./css/README.md) for more information about PostCSS
-and CSS modules.
+See the [CSS documentation](./css/README.md) for more information.
 
 ### JS
 

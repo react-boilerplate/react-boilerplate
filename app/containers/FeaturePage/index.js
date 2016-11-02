@@ -12,8 +12,9 @@ import messages from './messages';
 import { FormattedMessage } from 'react-intl';
 import Button from 'components/Button';
 import H1 from 'components/H1';
-
-import styles from './styles.css';
+import List from './List';
+import ListItem from './ListItem';
+import ListItemTitle from './ListItemTitle';
 
 export class FeaturePage extends React.Component {
   openHomePage = () => {
@@ -32,52 +33,52 @@ export class FeaturePage extends React.Component {
         <H1>
           <FormattedMessage {...messages.header} />
         </H1>
-        <ul className={styles.list}>
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>
+        <List>
+          <ListItem>
+            <ListItemTitle>
               <FormattedMessage {...messages.scaffoldingHeader} />
-            </p>
+            </ListItemTitle>
             <p>
               <FormattedMessage {...messages.scaffoldingMessage} />
             </p>
-          </li>
+          </ListItem>
 
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>
+          <ListItem>
+            <ListItemTitle>
               <FormattedMessage {...messages.feedbackHeader} />
-            </p>
+            </ListItemTitle>
             <p>
               <FormattedMessage {...messages.feedbackMessage} />
             </p>
-          </li>
+          </ListItem>
 
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>
+          <ListItem>
+            <ListItemTitle>
               <FormattedMessage {...messages.routingHeader} />
-            </p>
+            </ListItemTitle>
             <p>
               <FormattedMessage {...messages.routingMessage} />
             </p>
-          </li>
+          </ListItem>
 
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>
+          <ListItem>
+            <ListItemTitle>
               <FormattedMessage {...messages.networkHeader} />
-            </p>
+            </ListItemTitle>
             <p>
               <FormattedMessage {...messages.networkMessage} />
             </p>
-          </li>
+          </ListItem>
 
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>
+          <ListItem>
+            <ListItemTitle>
               <FormattedMessage {...messages.intlHeader} />
-            </p>
+            </ListItemTitle>
             <p>
               <FormattedMessage {...messages.intlMessage} />
             </p>
-          </li>
-        </ul>
+          </ListItem>
+        </List>
         <Button handleRoute={this.openHomePage}>
           <FormattedMessage {...messages.homeButton} />
         </Button>

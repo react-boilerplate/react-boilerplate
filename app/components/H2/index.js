@@ -1,11 +1,7 @@
-import React from 'react';
+import styled from 'styled-components';
 
-import styles from './styles.css';
-
-function H2(props) {
-  return (
-    <h2 className={styles.heading2} {...props} />
-  );
-}
+const H2 = styled.h2`
+  font-size: 1.5em;
+`;
 
 export default H2;
