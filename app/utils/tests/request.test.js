@@ -34,7 +34,7 @@ describe('request', () => {
       request('/thisurliscorrect')
         .catch(done)
         .then((json) => {
-          expect(json.data.hello).toEqual('world');
+          expect(json.hello).toEqual('world');
           done();
         });
     });
@@ -56,9 +56,9 @@ describe('request', () => {
 
     it('should catch errors', (done) => {
       request('/thisdoesntexist')
-        .then((json) => {
-          expect(json.err.response.status).toEqual(404);
-          expect(json.err.response.statusText).toEqual('Not Found');
+        .catch((err) => {
+          expect(err.response.status).toEqual(404);
+          expect(err.response.statusText).toEqual('Not Found');
           done();
         });
     });

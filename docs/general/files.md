@@ -18,7 +18,7 @@ they do.
 
 * `package.json`: Our `npm` configuration file has three functions:
 
-  1. It's where Babel, ESLint and stylelint are configured
+  1. It's where Babel and ESLint are configured
   1. It's the API for the project: a consistent interface for all its controls
   1. It lists the project's package dependencies
 

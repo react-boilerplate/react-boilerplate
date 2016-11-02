@@ -5,10 +5,10 @@ import React from 'react';
 import Header from '../index';
 
 describe('<Header />', () => {
-  it('should render the logo', () => {
+  it('should render a div', () => {
     const renderedComponent = shallow(
       <Header />
     );
-    expect(renderedComponent.find('Img').length).toEqual(1);
+    expect(renderedComponent.find('div').length).toEqual(1);
   });
 });
