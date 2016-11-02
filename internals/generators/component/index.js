@@ -11,7 +11,7 @@ module.exports = {
     name: 'type',
     message: 'Select the type of component',
     default: 'Stateless Function',
-    choices: () => ['ES6 Class', 'Stateless Function'],
+    choices: () => ['Stateless Function', 'ES6 Class (Pure)', 'ES6 Class'],
   }, {
     type: 'input',
     name: 'name',
@@ -32,10 +32,30 @@ module.exports = {
   }],
   actions: (data) => {
     // Generate index.js and index.test.js
+    let componentTemplate;
+
+    switch (data.type) {
+      case 'ES6 Class': {
+        componentTemplate = './component/es6.js.hbs';
+        break;
+      }
+      case 'ES6 Class (Pure)': {
+        componentTemplate = './component/es6.pure.js.hbs';
+        break;
+      }
+      case 'Stateless Function': {
+        componentTemplate = './component/stateless.js.hbs';
+        break;
+      }
+      default: {
+        componentTemplate = './component/es6.js.hbs';
+      }
+    }
+
     const actions = [{
       type: 'add',
       path: '../../app/components/{{properCase name}}/index.js',
-      templateFile: data.type === 'ES6 Class' ? './component/es6.js.hbs' : './component/stateless.js.hbs',
+      templateFile: componentTemplate,
       abortOnFail: true,
     }, {
       type: 'add',

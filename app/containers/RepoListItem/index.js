@@ -16,7 +16,7 @@ import RepoLink from './RepoLink';
 import Wrapper from './Wrapper';
 import { selectCurrentUser } from 'containers/App/selectors';
 
-export class RepoListItem extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class RepoListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     const item = this.props.item;
     let nameprefix = '';
