@@ -32,19 +32,8 @@ module.exports = require('./webpack.base.babel')({
       async: true,
     }),
 
-    // OccurrenceOrderPlugin is needed for long-term caching to work properly.
-    // See http://mxs.is/googmv
-    new webpack.optimize.OccurrenceOrderPlugin(true),
-
     // Merge all duplicate modules
     new webpack.optimize.DedupePlugin(),
-
-    // Minify and optimize the JavaScript
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false, // ...but do not show warnings in the console (there is a lot of them)
-      },
-    }),
 
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({

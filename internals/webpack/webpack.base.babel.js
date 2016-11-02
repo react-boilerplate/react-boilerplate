@@ -71,20 +71,26 @@ module.exports = (options) => ({
       },
     }),
     new webpack.NamedModulesPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        // 'context' needed for css-loader see
+        // https://github.com/mxstbr/react-boilerplate/pull/1032#issuecomment-249821676
+        context: __dirname,
+        postcss: () => [
+          postcssFocus(), // Add a :focus to every :hover
+          cssnext({ // Allow future CSS features to be used, also auto-prefixes the CSS...
+            browsers: ['last 2 versions', 'IE > 10'], // ...based on this browser list
+          }),
+          postcssReporter({ // Posts messages from plugins to the terminal
+            clearMessages: true,
+          }),
+        ],
+      },
+    }),
   ]),
-  postcss: () => [
-    postcssFocus(), // Add a :focus to every :hover
-    cssnext({ // Allow future CSS features to be used, also auto-prefixes the CSS...
-      browsers: ['last 2 versions', 'IE > 10'], // ...based on this browser list
-    }),
-    postcssReporter({ // Posts messages from plugins to the terminal
-      clearMessages: true,
-    }),
-  ],
   resolve: {
     modules: ['app', 'node_modules'],
     extensions: [
-      '',
       '.js',
       '.jsx',
       '.react.js',
@@ -97,5 +103,4 @@ module.exports = (options) => ({
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
-  progress: true,
 });
