@@ -20,7 +20,7 @@
     "preinstall": "npm run npmcheckversion",
     "postinstall": "npm run build:dll",
     "prebuild": "npm run build:clean && npm run test",
-    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p",
+    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress",
     "build:clean": "npm run test:clean && rimraf ./build",
     "build:dll": "node ./internals/scripts/dependencies.js",
     "start": "cross-env NODE_ENV=development node server",
@@ -306,7 +306,7 @@
     "stylelint": "7.5.0",
     "stylelint-config-standard": "14.0.0",
     "url-loader": "0.5.7",
-    "webpack": "2.1.0-beta.22",
+    "webpack": "2.1.0-beta.25",
     "webpack-dev-middleware": "1.8.4",
     "webpack-hot-middleware": "2.13.1"
   }
