@@ -31,21 +31,22 @@ export default function configureStore(initialState = {}, history) {
     compose(...enhancers)
   );
 
-  // Create hook for async sagas
+  // Extensions
   store.runSaga = sagaMiddleware.run;
+  store.asyncReducers = {}; // Async reducer registry
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
   if (module.hot) {
-    System.import('./reducers').then((reducerModule) => {
-      const createReducers = reducerModule.default;
-      const nextReducers = createReducers(store.asyncReducers);
+    module.hot.accept('./reducers', () => {
+      System.import('./reducers').then((reducerModule) => {
+        const createReducers = reducerModule.default;
+        const nextReducers = createReducers(store.asyncReducers);
 
-      store.replaceReducer(nextReducers);
+        store.replaceReducer(nextReducers);
+      });
     });
   }
 
-  // Initialize it with no other reducers
-  store.asyncReducers = {};
   return store;
 }

@@ -1,19 +1,19 @@
 import React from 'react';
 
-import styles from './styles.css';
+import Item from './Item';
+import Wrapper from './Wrapper';
 
 function ListItem(props) {
   return (
-    <li className={props.className || styles.item}>
-      <div className={styles.itemContent}>
+    <Wrapper>
+      <Item>
         {props.item}
-      </div>
-    </li>
+      </Item>
+    </Wrapper>
   );
 }
 
 ListItem.propTypes = {
-  className: React.PropTypes.string,
   item: React.PropTypes.any,
 };
 

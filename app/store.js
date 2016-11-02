@@ -9,7 +9,6 @@ import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
 
 const sagaMiddleware = createSagaMiddleware();
-const devtools = window.devToolsExtension || (() => (noop) => noop);
 
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
@@ -22,13 +21,17 @@ export default function configureStore(initialState = {}, history) {
 
   const enhancers = [
     applyMiddleware(...middlewares),
-    devtools(),
   ];
+
+  // If Redux DevTools Extension is installed use it, otherwise use Redux compose
+  /* eslint-disable no-underscore-dangle */
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  /* eslint-enable */
 
   const store = createStore(
     createReducer(),
     fromJS(initialState),
-    compose(...enhancers)
+    composeEnhancers(...enhancers)
   );
 
   // Extensions

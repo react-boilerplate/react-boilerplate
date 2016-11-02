@@ -8,7 +8,7 @@
 
 *Step 2:* Install heroku's buildpack on your heroku app by running the following command: `heroku buildpacks:set https://github.com/heroku/heroku-buildpack-nodejs#v90 -a [your app name]`. Make sure to replace `#v90` with whatever the latest buildpack is which you can [find here](https://github.com/heroku/heroku-buildpack-nodejs/releases).
 
-*Step 3:* Add this line to your Package.json file in the scripts area: `"postinstall": "npm run build:clean",`. This is because Heroku runs this as part of their build process (more of which you can [read about here](https://devcenter.heroku.com/articles/nodejs-support#build-behavior)).
+*Step 3:* Add this line to your Package.json file in the scripts area: `"postinstall": "npm run build:clean",`. This is because Heroku runs this as part of their build process (more of which you can [read about here](https://devcenter.heroku.com/articles/nodejs-support#build-behavior)). Then remove this line from your `package.json` file from the scripts area: `"prebuild": "npm run build:clean && npm run test",`, to avoid having Heroku try to run Karma in its dynamo.
 
 *Step 4:* Have heroku build your static files when deploying. Add this line to your Package.json file in the scripts area: `"heroku-postbuild": "npm run build",`. ([read about heroku-postbuild here](https://devcenter.heroku.com/articles/nodejs-support#heroku-specific-build-steps)).
 
