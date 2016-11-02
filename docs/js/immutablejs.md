@@ -74,3 +74,33 @@ const initialState = new StateRecord({}); // initialState is now a new StateReco
 
 Now, if you want to access `myData`, you can just write `state.myData` in your reducer code.
 
+## Making Complex Mutations Efficiently
+
+Because a new instance is created and returned each time a value is set or updated on an immutable data structure, complex mutations that aim to make changes to multiple parts of the data structure can cause a performance penalty.  
+To avoid creating multiple instances of the data structure, we can utilise ImmutableJS's [`.withMutations`](https://facebook.github.io/immutable-js/docs/#/Map/withMutations), batching all of our changes in to a single mutation.
+
+```JS
+const stateMap = Map({
+    a: 'A',
+    b: 'B',
+    c: 'C'
+});
+
+// Creates 3 new Map instances
+const newState = stateMap
+					.set('a', 1)
+					.set('b', 2)
+					.set('c', 3);
+...
+
+// Creates only 1 new Map instance - more performant
+const newState = stateMap.withMutations( intermediateState => {
+	intermediateState
+		.set('a', 1)
+		.set('b', 2)
+		.set('c', 3)
+});				
+```
+
+From the [official docs](https://facebook.github.io/immutable-js/docs/#/Map/withMutations): 
+> Note: Not all methods can be used on a mutable collection or within withMutations! Only set and merge may be used mutatively.
