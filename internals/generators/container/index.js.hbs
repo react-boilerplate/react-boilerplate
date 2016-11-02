@@ -20,7 +20,7 @@ import messages from './messages';
 import styles from './styles.css';
 {{/if}}
 
-export class {{ properCase name }} extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class {{ properCase name }} extends React.{{{ component }}} { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       {{#if wantCSS}}

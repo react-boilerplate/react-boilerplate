@@ -28,16 +28,19 @@ import configureStore from './store';
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
 
+// Import CSS reset and Global Styles
+import 'sanitize.css/sanitize.css';
+import './global-styles';
+
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
-import styles from 'containers/App/styles.css';
 const openSansObserver = new FontFaceObserver('Open Sans', {});
 
 // When Open Sans is loaded, add a font-family using Open Sans to the body
 openSansObserver.load().then(() => {
-  document.body.classList.add(styles.fontLoaded);
+  document.body.classList.add('fontLoaded');
 }, () => {
-  document.body.classList.remove(styles.fontLoaded);
+  document.body.classList.remove('fontLoaded');
 });
 
 // Import i18n messages
@@ -49,15 +52,6 @@ import { translationMessages } from './i18n';
 // e.g. `const browserHistory = useRouterHistory(createBrowserHistory)();`
 const initialState = {};
 const store = configureStore(initialState, browserHistory);
-
-// If you use Redux devTools extension, since v2.0.1, they added an
-// `updateStore`, so any enhancers that change the store object
-// could be used with the devTools' store.
-// As this boilerplate uses Redux & Redux-Saga, the `updateStore` is needed
-// if you want to `take` actions in your Sagas, dispatched from devTools.
-if (window.devToolsExtension) {
-  window.devToolsExtension.updateStore(store);
-}
 
 // Sync history and store, as the react-router-redux reducer
 // is under the non-default key ("routing"), selectLocationState
