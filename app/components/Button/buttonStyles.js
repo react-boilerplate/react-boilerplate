@@ -4,7 +4,6 @@ const buttonStyles = css`
   display: inline-block;
   box-sizing: border-box;
   padding: 0.25em 2em;
-  margin: 0;
   text-decoration: none;
   border-radius: 4px;
   -webkit-font-smoothing: antialiased;
