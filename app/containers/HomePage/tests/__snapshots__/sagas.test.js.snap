@@ -3,8 +3,8 @@ Object {
   "@@redux-saga/IO": true,
   "SELECT": Object {
     "args": Array [],
-    "selector": [Function selector]
-  }
+    "selector": [Function],
+  },
 }
 `;
 
@@ -13,11 +13,11 @@ Object {
   "@@redux-saga/IO": true,
   "CALL": Object {
     "args": Array [
-      "https://api.github.com/users/mxstbr/repos?type=all&sort=updated"
+      "https://api.github.com/users/mxstbr/repos?type=all&sort=updated",
     ],
     "context": null,
-    "fn": [Function request]
-  }
+    "fn": [Function],
+  },
 }
 `;
 
@@ -26,8 +26,8 @@ Object {
   "@@redux-saga/IO": true,
   "SELECT": Object {
     "args": Array [],
-    "selector": [Function selector]
-  }
+    "selector": [Function],
+  },
 }
 `;
 
@@ -36,10 +36,10 @@ Object {
   "@@redux-saga/IO": true,
   "CALL": Object {
     "args": Array [
-      "https://api.github.com/users/mxstbr/repos?type=all&sort=updated"
+      "https://api.github.com/users/mxstbr/repos?type=all&sort=updated",
     ],
     "context": null,
-    "fn": [Function request]
-  }
+    "fn": [Function],
+  },
 }
 `;

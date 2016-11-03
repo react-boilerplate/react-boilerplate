@@ -3,7 +3,7 @@
  */
 
 import { takeLatest } from 'redux-saga';
-import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
+import { take, put, fork } from 'redux-saga/effects';
 
 import { LOCATION_CHANGE } from 'react-router-redux';
 
