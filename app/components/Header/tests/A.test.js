@@ -1,5 +1,5 @@
 import React from 'react';
-import expect from 'expect';
+
 import { mount, render } from 'enzyme';
 
 import A from '../A';
@@ -12,7 +12,7 @@ describe('<A />', () => {
 
   it('should have a className attribute', () => {
     const renderedComponent = mount(<A />);
-    expect(renderedComponent.find('a').prop('className')).toExist();
+    expect(renderedComponent.find('a').prop('className')).toBeDefined();
   });
 
   it('should adopt a valid attribute', () => {
@@ -23,6 +23,6 @@ describe('<A />', () => {
 
   it('should not adopt an invalid attribute', () => {
     const renderedComponent = mount(<A attribute={'test'} />);
-    expect(renderedComponent.find('a').prop('attribute')).toNotExist();
+    expect(renderedComponent.find('a').prop('attribute')).toBeUndefined();
   });
 });
