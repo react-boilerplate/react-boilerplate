@@ -186,7 +186,7 @@
     ],
     "moduleDirectories": [
       "node_modules",
-      "<rootDir>/app"
+      "app"
     ],
     "moduleNameMapper": {
       ".*\\.css$": "<rootDir>/mocks/cssModule.js",
