@@ -4,3 +4,6 @@
   padding: 3em 0;
   border-top: 1px solid #666;
 }
+footer section:nth-child(2) {
+    margin-top: 11px;
+}
