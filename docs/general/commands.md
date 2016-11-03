@@ -188,3 +188,14 @@ npm run lint:css
 ```
 
 Only lints your CSS.
+
+## Using Docker in development
+* Make sure that you stand on the root directory of the project.
+
+1. **Build docker image:** `docker build -t {YOUR_PROJECT_NAME} internals/docker`
+2. **Start the container**: ``docker run --rm -it -p 3000:3000 -v `pwd`:/reactapp {YOUR_PROJECT_NAME} bash``
+3. Now, your prompt will looks difference, because you are now in the container!
+4. **Install dependencies:** `npm install`
+5. **Start application:** `npm start`
+
+**Note:** If you want to exit the container, just type `exit` in the prompt. And the next time you want to start develop, just only run 2) & 5) and you're good to go!
