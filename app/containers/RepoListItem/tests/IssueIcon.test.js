@@ -1,5 +1,5 @@
 import React from 'react';
-import expect from 'expect';
+
 import { shallow, render } from 'enzyme';
 
 import IssueIcon from '../IssueIcon';
@@ -12,7 +12,7 @@ describe('<IssueIcon />', () => {
 
   it('should have a className attribute', () => {
     const renderedComponent = shallow(<IssueIcon />);
-    expect(renderedComponent.prop('className')).toExist();
+    expect(renderedComponent.prop('className')).toBeDefined();
   });
 
   it('should adopt a valid attribute', () => {
@@ -23,6 +23,6 @@ describe('<IssueIcon />', () => {
 
   it('should adopt any attribute', () => {
     const renderedComponent = shallow(<IssueIcon attribute={'test'} />);
-    expect(renderedComponent.prop('attribute')).toExist();
+    expect(renderedComponent.prop('attribute')).toBeDefined();
   });
 });

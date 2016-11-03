@@ -41,14 +41,13 @@ describe('<Button />', () => {
 
   it('should have a className attribute', () => {
     const renderedComponent = renderComponent();
-    expect(renderedComponent.find('a').prop('className')).toExist();
+    expect(renderedComponent.find('a').prop('className')).toBeDefined();
   });
 
   it('should not adopt a type attribute when rendering an <a> tag', () => {
     const type = 'text/html';
     const renderedComponent = renderComponent({ href, type });
     expect(renderedComponent.find('a').prop('type')).toBeUndefined();
-
   });
 
   it('should not adopt a type attribute when rendering a button', () => {

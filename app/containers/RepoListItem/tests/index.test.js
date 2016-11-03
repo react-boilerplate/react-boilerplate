@@ -43,7 +43,7 @@ describe('<RepoListItem />', () => {
       item,
       currentUser: item.owner.login,
     });
-    expect(renderedComponent.text()).toExclude(item.owner.login);
+    expect(renderedComponent.text()).not.toContain(item.owner.login);
   });
 
   it('should render usernames that are not the current one', () => {
@@ -51,17 +51,17 @@ describe('<RepoListItem />', () => {
       item,
       currentUser: 'nikgraf',
     });
-    expect(renderedComponent.text()).toInclude(item.owner.login);
+    expect(renderedComponent.text()).toContain(item.owner.login);
   });
 
   it('should render the repo name', () => {
     const renderedComponent = renderComponent({ item });
-    expect(renderedComponent.text()).toInclude(item.name);
+    expect(renderedComponent.text()).toContain(item.name);
   });
 
   it('should render the issue count', () => {
     const renderedComponent = renderComponent({ item });
-    expect(renderedComponent.text()).toInclude(item.open_issues_count);
+    expect(renderedComponent.text()).toContain(item.open_issues_count);
   });
 
   it('should render the IssueIcon', () => {

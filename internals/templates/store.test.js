@@ -2,7 +2,7 @@
  * Test store addons
  */
 
-import expect from 'expect';
+
 import configureStore from '../store'; // eslint-disable-line
 import { browserHistory } from 'react-router';
 
