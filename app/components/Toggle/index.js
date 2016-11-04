@@ -20,7 +20,7 @@ function Toggle(props) {
   }
 
   return (
-    <Select onChange={props.onToggle}>
+    <Select value={props.value} onChange={props.onToggle}>
       {content}
     </Select>
   );
@@ -29,6 +29,7 @@ function Toggle(props) {
 Toggle.propTypes = {
   onToggle: React.PropTypes.func,
   values: React.PropTypes.array,
+  value: React.PropTypes.string,
   messages: React.PropTypes.object,
 };
 
