@@ -10,11 +10,11 @@ describe('<Toggle />', () => {
     const defaultDeMessage = 'someOtherContent';
     const messages = defineMessages({
       en: {
-        id: 'app.components.LocaleToggle.en',
+        id: 'boilerplate.containers.LocaleToggle.en',
         defaultMessage: defaultEnMessage,
       },
       de: {
-        id: 'app.components.LocaleToggle.en',
+        id: 'boilerplate.containers.LocaleToggle.en',
         defaultMessage: defaultDeMessage,
       },
     });
