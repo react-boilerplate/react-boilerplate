@@ -30,7 +30,7 @@ module.exports = {
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
-      pattern: /([\n\s'[a-z]+',)(?!.*[\n\s'[a-z]+',)/g,
+      pattern: /(\s+'[a-z]+',\n)(?!.*\s+'[a-z]+',)/g,
       templateFile: './language/app-locale.hbs',
     });
     actions.push({
