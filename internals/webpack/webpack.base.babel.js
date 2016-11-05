@@ -31,10 +31,19 @@ module.exports = (options) => ({
       loader: 'file-loader',
     }, {
       test: /\.(jpg|png|gif)$/,
-      loaders: [
-        'file-loader',
-        'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
-      ],
+      loaders: 'file-loader',
+    }, {
+      test: /\.(jpg|png|gif)$/,
+      loaders: 'image-webpack',
+      query: {
+        progressive: true,
+        optimizationLevel: 7,
+        interlaced: false,
+        pngquant: {
+          quality: '65-90',
+          speed: 4,
+        },
+      },
     }, {
       test: /\.html$/,
       loader: 'html-loader',
@@ -43,7 +52,10 @@ module.exports = (options) => ({
       loader: 'json-loader',
     }, {
       test: /\.(mp4|webm)$/,
-      loader: 'url-loader?limit=10000',
+      loader: 'url-loader',
+      query: {
+        limit: 10000,
+      },
     }],
   },
   plugins: options.plugins.concat([
