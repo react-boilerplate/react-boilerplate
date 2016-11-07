@@ -9,7 +9,7 @@ describe('<ToggleOption />', () => {
     const defaultEnMessage = 'someContent';
     const message = defineMessages({
       enMessage: {
-        id: 'app.components.LocaleToggle.en',
+        id: 'boilerplate.containers.LocaleToggle.en',
         defaultMessage: defaultEnMessage,
       },
     });

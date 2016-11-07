@@ -10,7 +10,7 @@ export function getLocaleMessages(locales) {
   return locales.reduce((messages, locale) =>
     Object.assign(messages, {
       [locale]: {
-        id: `app.components.LocaleToggle.${locale}`,
+        id: `boilerplate.containers.LocaleToggle.${locale}`,
         defaultMessage: `${locale}`,
       },
     }), {});
