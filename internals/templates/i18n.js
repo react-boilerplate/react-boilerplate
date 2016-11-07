@@ -5,7 +5,7 @@
  *
  */
 import { addLocaleData } from 'react-intl';
-import { DEFAULT_LOCALE } from 'containers/App/constants';
+import { DEFAULT_LOCALE } from './containers/App/constants'; // eslint-disable-line
 
 import enLocaleData from 'react-intl/locale-data/en';
 
