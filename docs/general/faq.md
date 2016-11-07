@@ -1,5 +1,27 @@
 # Frequently Asked Questions
 
+## Table of Contents
+
+- [Where are Babel and ESLint configured?](#where-are-babel-and-eslint-configured)
+- [Where are the files coming from when I run `npm start`?](#where-are-the-files-coming-from-when-i-run-npm-start)
+- [How do I fix `Error: listen EADDRINUSE 127.0.0.1:3000`?](#how-do-i-fix-error-listen-eaddrinuse-1270013000)
+  - [OS X / Linux](#os-x-linux)
+  - [Windows](#windows)
+- [Issue with local caching when running in production mode (F5 / ctrl+F5 / cmd+r weird behavior)](#issue-with-local-caching-when-running-in-production-mode-f5--ctrlf5--cmdr-weird-behavior)
+  - [Quick fix on your local browser:](#quick-fix-on-your-local-browser)
+  - [Full in-depth explanation](#full-in-depth-explanation)
+- [Local webfonts not working for development](#local-webfonts-not-working-for-development)
+- [Non-route containers](#non-route-containers)
+  - [Where do I put the reducer?](#where-do-i-put-the-reducer)
+  - [How do I run the saga?](#how-do-i-run-the-saga)
+- [Using this boilerplate with WebStorm](#using-this-boilerplate-with-webstorm)
+  - [Troubleshooting](#troubleshooting)
+  - [Enable ESLint](#enable-eslint)
+- [Use CI with bitbucket pipelines](#use-ci-with-bitbucket-pipelines)
+- [I'm using Node v0.12 and the server doesn't work?](#im-using-node-v012-and-the-server-doesnt-work)
+- [How to keep my project up-to-date with `react-boilerplate`?](#how-to-keep-my-project-up-to-date-with-react-boilerplate)
+- [Have another question?](#have-another-question)
+
 ## Where are Babel and ESLint configured?
 
 In package.json
@@ -209,6 +231,12 @@ of this writing those are v4, v5 and v6. We **highly recommend upgrading to a ne
 If you _have_ to use Node.js 0.12, you can hack around the server not running by using `babel-cli` to
 run the server: `npm install babel-cli`, and then replace all instances of `node server` in the `"scripts"`
 in the `package.json` with `babel server`!
+
+## How to keep my project up-to-date with `react-boilerplate`?
+
+While it's possible to keep your project up-to-date or "in sync" with `react-boilerplate`, it's usually
+very difficult and therefore ***at your own risk*** and not recommend. You should not need to do it either, as
+every version you use will be amazing! There is a long term goal to make this much easier but no ETA at the moment.
 
 ## Have another question?
 
