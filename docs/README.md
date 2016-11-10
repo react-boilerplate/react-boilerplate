@@ -16,7 +16,7 @@
   - [Component Testing](testing/component-testing.md)
   - [Remote Testing](testing/remote-testing.md)
 - [CSS](css)
-  - [`styled-components`](css/styled-componets.md)
+  - [`styled-components`](css/styled-components.md)
   - [sanitize.css](css/sanitize.md)
 - [JS](js)
   - [Redux](js/redux.md)
