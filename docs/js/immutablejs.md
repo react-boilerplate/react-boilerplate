@@ -80,7 +80,7 @@ Because a new instance is created and returned each time a value is set or updat
 To avoid creating multiple instances of the data structure, we can utilise ImmutableJS's [`.withMutations`](https://facebook.github.io/immutable-js/docs/#/Map/withMutations), batching all of our changes in to a single mutation.
 
 ```JS
-const stateMap = Map({
+const stateMap = Map({ // eslint-disable-next-line new-cap
   a: 'A',
   b: 'B',
   c: 'C'
