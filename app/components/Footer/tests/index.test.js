@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -14,26 +13,22 @@ describe('<Footer />', () => {
     );
     expect(renderedComponent.contains(
       <section>
-        <p>
-          <FormattedMessage {...messages.licenseMessage} />
-        </p>
+        <FormattedMessage {...messages.licenseMessage} />
       </section>
-    )).toEqual(true);
+    )).toBe(true);
   });
 
   it('should render the credits', () => {
     const renderedComponent = shallow(<Footer />);
     expect(renderedComponent.contains(
       <section>
-        <p>
-          <FormattedMessage
-            {...messages.authorMessage}
-            values={{
-              author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,
-            }}
-          />
-        </p>
+        <FormattedMessage
+          {...messages.authorMessage}
+          values={{
+            author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,
+          }}
+        />
       </section>
-    )).toEqual(true);
+    )).toBe(true);
   });
 });

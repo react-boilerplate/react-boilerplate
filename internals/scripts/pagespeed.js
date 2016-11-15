@@ -3,9 +3,9 @@
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
 
-var ngrok = require('ngrok');
-var psi = require('psi');
-var chalk = require('chalk');
+const ngrok = require('ngrok');
+const psi = require('psi');
+const chalk = require('chalk');
 
 log('\nStarting ngrok tunnel');
 

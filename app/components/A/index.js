@@ -2,29 +2,14 @@
  * A link to a certain page, an anchor tag
  */
 
-import React, { PropTypes } from 'react';
+import styled from 'styled-components';
 
-import styles from './styles.css';
+const A = styled.a`
+  color: #41addd;
 
-function A({ ...props }) {
-  const { className, children, href, target, ...rest } = props;
-  return (
-    <a
-      href={href}
-      target={target}
-      className={className || styles.link}
-      {...rest}
-    >
-      { children }
-    </a>
-  );
-}
-
-A.propTypes = {
-  className: PropTypes.string,
-  href: PropTypes.string.isRequired,
-  target: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
+  &:hover {
+    color: #6cc0e5;
+  }
+`;
 
 export default A;

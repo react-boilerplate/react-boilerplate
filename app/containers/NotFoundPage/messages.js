@@ -10,8 +10,4 @@ export default defineMessages({
     id: 'boilerplate.containers.NotFoundPage.header',
     defaultMessage: 'Page not found.',
   },
-  homeButton: {
-    id: 'boilerplate.containers.NotFoundPage.home',
-    defaultMessage: 'Home',
-  },
 });
