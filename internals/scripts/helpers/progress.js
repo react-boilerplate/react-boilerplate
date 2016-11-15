@@ -1,4 +1,6 @@
-var readline = require('readline');
+'use strict';
+
+const readline = require('readline');
 
 /**
  * Adds an animated progress indicator
@@ -11,11 +13,11 @@ function animateProgress(message, amountOfDots) {
     amountOfDots = 3;
   }
 
-  var i = 0;
-  return setInterval(function () {
+  let i = 0;
+  return setInterval(function() {
     readline.cursorTo(process.stdout, 0);
     i = (i + 1) % (amountOfDots + 1);
-    var dots = new Array(i + 1).join('.');
+    const dots = new Array(i + 1).join('.');
     process.stdout.write(message + dots);
   }, 500);
 }

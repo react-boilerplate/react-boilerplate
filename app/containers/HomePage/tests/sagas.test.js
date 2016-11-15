@@ -3,6 +3,7 @@
  */
 
 import expect from 'expect';
+import { takeLatest } from 'redux-saga';
 import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
@@ -33,23 +34,19 @@ describe('getRepos Saga', () => {
   });
 
   it('should dispatch the reposLoaded action if it requests the data successfully', () => {
-    const response = {
-      data: [{
-        name: 'First repo',
-      }, {
-        name: 'Second repo',
-      }],
-    };
+    const response = [{
+      name: 'First repo',
+    }, {
+      name: 'Second repo',
+    }];
     const putDescriptor = getReposGenerator.next(response).value;
-    expect(putDescriptor).toEqual(put(reposLoaded(response.data, username)));
+    expect(putDescriptor).toEqual(put(reposLoaded(response, username)));
   });
 
   it('should call the repoLoadingError action if the response errors', () => {
-    const response = {
-      err: 'Some error',
-    };
-    const putDescriptor = getReposGenerator.next(response).value;
-    expect(putDescriptor).toEqual(put(repoLoadingError(response.err)));
+    const response = new Error('Some error');
+    const putDescriptor = getReposGenerator.throw(response).value;
+    expect(putDescriptor).toEqual(put(repoLoadingError(response)));
   });
 });
 
@@ -58,12 +55,7 @@ describe('getReposWatcher Saga', () => {
 
   it('should watch for LOAD_REPOS action', () => {
     const takeDescriptor = getReposWatcherGenerator.next().value;
-    expect(takeDescriptor).toEqual(take(LOAD_REPOS));
-  });
-
-  it('should invoke getRepos saga on actions', () => {
-    const callDescriptor = getReposWatcherGenerator.next(put(LOAD_REPOS)).value;
-    expect(callDescriptor).toEqual(call(getRepos));
+    expect(takeDescriptor).toEqual(fork(takeLatest, LOAD_REPOS, getRepos));
   });
 });
 
@@ -83,10 +75,10 @@ describe('githubDataSaga Saga', () => {
   });
 
   it('should finally cancel() the forked getReposWatcher saga',
-    function* githubDataSagaCancellable() {
+     function* githubDataSagaCancellable() {
       // reuse open fork for more integrated approach
-      forkDescriptor = githubDataSaga.next(put(LOCATION_CHANGE));
-      expect(forkDescriptor.value).toEqual(cancel(forkDescriptor));
-    }
-  );
+       forkDescriptor = githubDataSaga.next(put(LOCATION_CHANGE));
+       expect(forkDescriptor.value).toEqual(cancel(forkDescriptor));
+     }
+   );
 });

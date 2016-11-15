@@ -5,13 +5,13 @@
 import Button from '../index';
 
 import expect from 'expect';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import React from 'react';
 
 const handleRoute = () => {};
 const href = 'http://mxstbr.com';
 const children = (<h1>Test</h1>);
-const renderComponent = (props = {}) => shallow(
+const renderComponent = (props = {}) => mount(
   <Button href={href} {...props}>
     {children}
   </Button>
@@ -23,7 +23,7 @@ describe('<Button />', () => {
     expect(renderedComponent.find('a').length).toEqual(1);
   });
 
-  it('should render a button to change route if the handleRoute prop is specified', () => {
+  it('should render a <button> tag to change route if the handleRoute prop is specified', () => {
     const renderedComponent = renderComponent({ handleRoute });
     expect(renderedComponent.find('button').length).toEqual(1);
   });
@@ -40,21 +40,20 @@ describe('<Button />', () => {
     expect(onClickSpy).toHaveBeenCalled();
   });
 
-  it('should adopt a className attribute', () => {
-    const className = 'test';
-    const renderedComponent = renderComponent({ className });
-    expect(renderedComponent.find('a').hasClass(className)).toEqual(true);
+  it('should have a className attribute', () => {
+    const renderedComponent = renderComponent();
+    expect(renderedComponent.find('a').prop('className')).toExist();
   });
 
   it('should not adopt a type attribute when rendering an <a> tag', () => {
     const type = 'text/html';
     const renderedComponent = renderComponent({ href, type });
-    expect(renderedComponent.prop('type')).toNotExist();
+    expect(renderedComponent.find('a').prop('type')).toNotExist();
   });
 
   it('should not adopt a type attribute when rendering a button', () => {
     const type = 'submit';
     const renderedComponent = renderComponent({ handleRoute, type });
-    expect(renderedComponent.prop('type')).toNotExist();
+    expect(renderedComponent.find('button').prop('type')).toNotExist();
   });
 });
