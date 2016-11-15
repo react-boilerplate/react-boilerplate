@@ -1,5 +1,5 @@
 require('shelljs/global');
-const addCheckMark = require('./helpers/checkmark.js'); 
+const addCheckMark = require('./helpers/checkmark.js');
 
 if (!which('git')) {
   echo('Sorry, this script requires git');
@@ -22,6 +22,7 @@ mkdir('-p', 'app/containers/App');
 mkdir('-p', 'app/containers/NotFoundPage');
 mkdir('-p', 'app/containers/HomePage');
 cp('internals/templates/appContainer.js', 'app/containers/App/index.js');
+cp('internals/templates/constants.js', 'app/containers/App/constants.js');
 cp('internals/templates/notFoundPage/notFoundPage.js', 'app/containers/NotFoundPage/index.js');
 cp('internals/templates/notFoundPage/messages.js', 'app/containers/NotFoundPage/messages.js');
 cp('internals/templates/homePage/homePage.js', 'app/containers/HomePage/index.js');

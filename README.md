@@ -105,7 +105,7 @@ There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on ho
 
 Now you're ready to rumble!
 
-> Please note that this boilerplate is **not meant for beginners**! If you're just starting out with react or redux, please refer to https://github.com/petehunt/react-howto instead.
+> Please note that this boilerplate is **production-ready and not meant for beginners**! If you're just starting out with react or redux, please refer to https://github.com/petehunt/react-howto instead. If you want a solid, battle-tested base to build your next product upon and have some experience with react, this is the perfect start for you.
 
 ## Documentation
 
@@ -119,14 +119,6 @@ Now you're ready to rumble!
 ## Supporters
 
 This project would not be possible without the support by these amazing folks. [**Become a sponsor**](https://opencollective.com/react-boilerplate) to get your company in front of thousands of engaged react developers and help us out!
-
-<div align="center">
-<a href="http://reactjsprogram.com/?utm_source=react-boilerplate&utm_medium=banner&utm_campaign=React%20Boilerplate">
-  <img src="https://cloud.githubusercontent.com/assets/7525670/16642421/09f0d97c-440b-11e6-92f6-05d680946629.png" alt="React.js Program – A linear approach to learning the React.js ecosystem!" height="120px">
-</a>
-</div>
-
-----
 
 <a href="https://opencollective.com/react-boilerplate/bronze-sponsor/0/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/0/avatar.svg"></a>
 <a href="https://opencollective.com/react-boilerplate/bronze-sponsor/1/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/1/avatar.svg"></a>

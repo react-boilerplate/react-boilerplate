@@ -4,7 +4,7 @@ const uniq = require('lodash/uniq');
 
 const ReactBoilerplate = {
   // This refers to the react-boilerplate version this project is based on.
-  version: '3.2.1',
+  version: '3.3.0',
 
   /**
    * The DLL Plugin provides a dramatic speed increase to webpack build and hot module reloading
