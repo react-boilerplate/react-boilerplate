@@ -4,11 +4,12 @@ import 'babel-polyfill'; // for regeneratorRuntime
 import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { createMemoryHistory, match, RouterContext } from 'react-router';
-import createStore from 'store';
-import Helmet from 'react-helmet';
-import createRoutes from 'routes';
 import { END } from 'redux-saga';
+import Helmet from 'react-helmet';
 import styleSheet from 'styled-components/lib/models/StyleSheet';
+
+import createStore from 'store';
+import createRoutes from 'routes';
 import HtmlDocument from 'components/HtmlDocument';
 
 import AppContainer from 'containers/AppContainer';
@@ -56,7 +57,7 @@ async function renderHtmlDocument({ store, renderProps, allTasks, assets, webpac
   return `<!DOCTYPE html>\n${doc}`;
 }
 
-module.exports = function ssr(url, { webpackDllNames = [], assets }, callback) {
+module.exports = function serverSideRenderAppToStringAtLocation(url, { webpackDllNames = [], assets }, callback) {
   const allTasks = [];
 
   const history = createMemoryHistory(url);
