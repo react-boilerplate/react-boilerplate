@@ -4,6 +4,14 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const extractVendorCSSPlugin = new ExtractTextPlugin('vendor.[contenthash].css');
+
+const vendorCSSLoaders = extractVendorCSSPlugin.extract({
+  fallbackLoader: 'style-loader',
+  loader: 'css-loader',
+});
 
 module.exports = (options) => ({
   entry: options.entry,
@@ -25,7 +33,7 @@ module.exports = (options) => ({
       // So, no need for ExtractTextPlugin here.
       test: /\.css$/,
       include: /node_modules/,
-      loaders: ['style-loader', 'css-loader'],
+      loaders: vendorCSSLoaders,
     }, {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
       loader: 'file-loader',
@@ -75,6 +83,7 @@ module.exports = (options) => ({
       },
     }),
     new webpack.NamedModulesPlugin(),
+    extractVendorCSSPlugin,
   ]),
   resolve: {
     modules: ['app', 'node_modules'],
