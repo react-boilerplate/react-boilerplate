@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
 
-module.exports = require('./webpack.base.babel')({
+const clientConfig = require('./webpack.base.babel')({
   // In production, we skip all hot-reloading stuff
   entry: [
     path.join(process.cwd(), 'app/app.js'),
@@ -71,3 +71,7 @@ module.exports = require('./webpack.base.babel')({
     }),
   ],
 });
+
+const serverConfig = require('./webpack.ssr.babel');
+
+module.exports = [clientConfig, serverConfig];

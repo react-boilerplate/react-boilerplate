@@ -1,8 +1,17 @@
 /* eslint-disable global-require */
+require('isomorphic-fetch');
+
 const express = require('express');
 const path = require('path');
 const compression = require('compression');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
+const handleSSR = require('./handleSSR');
+
+function injectWebpackDllNamesMiddleware(req, res, next) {
+  const dllNames = !pkg.dllPlugin.dlls ? ['reactBoilerplateDeps'] : Object.keys(pkg.dllPlugin.dlls);
+  req.webpackDllNames = dllNames; // eslint-disable-line no-param-reassign
+  next();
+}
 
 // Dev middleware
 const addDevMiddlewares = (app, webpackConfig) => {
@@ -20,10 +29,6 @@ const addDevMiddlewares = (app, webpackConfig) => {
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
 
-  // Since webpackDevMiddleware uses memory-fs internally to store build
-  // artifacts, we use it instead
-  const fs = middleware.fileSystem;
-
   if (pkg.dllPlugin) {
     app.get(/\.dll\.js$/, (req, res) => {
       const filename = req.path.replace(/^\//, '');
@@ -31,15 +36,9 @@ const addDevMiddlewares = (app, webpackConfig) => {
     });
   }
 
-  app.get('*', (req, res) => {
-    fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
-      if (err) {
-        res.sendStatus(404);
-      } else {
-        res.send(file.toString());
-      }
-    });
-  });
+  app.use(injectWebpackDllNamesMiddleware);
+
+  app.get('*', handleSSR);
 };
 
 // Production middlewares
@@ -53,7 +52,7 @@ const addProdMiddlewares = (app, options) => {
   app.use(compression());
   app.use(publicPath, express.static(outputPath));
 
-  app.get('*', (req, res) => res.sendFile(path.resolve(outputPath, 'index.html')));
+  app.get('*', handleSSR);
 };
 
 /**

@@ -6,7 +6,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const extractVendorCSSPlugin = new ExtractTextPlugin('vendor.[contenthash].css');
+const extractVendorCSSPlugin = new ExtractTextPlugin('vendor.css');
 
 const vendorCSSLoaders = extractVendorCSSPlugin.extract({
   fallbackLoader: 'style-loader',
