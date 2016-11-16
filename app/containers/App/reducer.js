@@ -75,8 +75,8 @@ const userData = combineReducers({
 });
 
 export default combineReducers({
-  error,
   loading,
+  error,
   currentUser,
   userData,
 });
