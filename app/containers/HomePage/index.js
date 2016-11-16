@@ -9,6 +9,7 @@ import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { Link } from 'react-router';
 
 import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
@@ -71,6 +72,12 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                   onChange={this.props.onChangeUsername}
                 />
               </label>
+              <FormattedMessage
+                {...messages.userLink}
+                values={{
+                  link: (<Link to={`/users/${this.props.username}`}>{this.props.username}</Link>),
+                }}
+              />
             </Form>
             <ReposList loading={loading} error={error} repos={repos} />
           </Section>

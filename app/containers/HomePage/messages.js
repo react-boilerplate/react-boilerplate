@@ -26,4 +26,8 @@ export default defineMessages({
     id: 'boilerplate.containers.HomePage.tryme.atPrefix',
     defaultMessage: '@',
   },
+  userLink: {
+    id: 'boilerplate.containers.HomePage.userLink',
+    defaultMessage: 'User page: {link}',
+  },
 });

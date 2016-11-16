@@ -30,7 +30,8 @@ export class UserPage extends React.PureComponent { // eslint-disable-line react
         <Helmet
           title="User page"
         />
-        <h1>{username}&apos;s repos:</h1>
+        <em>Try disabling JavaScript and refresh the page to see the Server Side Rendering working.</em>
+        <h1>{username}&apos;s repositories:</h1>
         <ReposList loading={loading} error={error} repos={repos} />
       </div>
     );
