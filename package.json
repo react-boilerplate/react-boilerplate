@@ -23,7 +23,8 @@
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress",
     "build:clean": "npm run test:clean && rimraf ./build",
     "build:dll": "node ./internals/scripts/dependencies.js",
-    "start": "cross-env NODE_ENV=development npm-run-all --parallel ssr:generate ssr:start start:dev",
+    "prestart": "npm run ssr:generate",
+    "start": "cross-env NODE_ENV=development npm-run-all --parallel ssr:generate:watch ssr:start start:dev",
     "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "start:production": "npm run build && npm run start:prod",
     "start:dev": "cross-env NODE_ENV=development node server",
@@ -44,7 +45,8 @@
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "ssr:generate": "cross-env NODE_ENV=development webpack --progress --config internals/webpack/webpack.ssr.babel.js --watch",
+    "ssr:generate": "cross-env NODE_ENV=development webpack --progress --config internals/webpack/webpack.ssr.babel.js",
+    "ssr:generate:watch": "npm run ssr:generate -- --watch",
     "ssr:start": "cross-env NODE_ENV=development nodemon --watch server/middlewares/*.generated.js --watch server/middlewares/handleSSR.js --watch server/devRenderService.js server/devRenderService.js"
   },
   "lint-staged": {

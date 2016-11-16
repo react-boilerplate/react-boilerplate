@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 require('isomorphic-fetch');
 
-const serverSideRenderAppToStringAtLocation = require('./serverSideRenderAppToStringAtLocation.generated');
+const serverSideRenderAppToStringAtLocation = require('./serverSideRenderAppToStringAtLocation.generated'); // eslint-disable-line import/no-unresolved
 
 function extractWebpackDllNamesFromPackage() {
   if (process.env.NODE_ENV === 'production') return [];
