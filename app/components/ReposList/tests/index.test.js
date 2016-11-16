@@ -46,4 +46,16 @@ describe('<ReposList />', () => {
 
     expect(renderedComponent.contains(<List items={repos} component={RepoListItem} />)).toEqual(true);
   });
+
+  it('should not render anything if nothing interesting is provided', () => {
+    const renderedComponent = shallow(
+      <ReposList
+        repos={false}
+        error={false}
+        loading={false}
+      />
+    );
+
+    expect(renderedComponent.html()).toEqual(null);
+  });
 });
