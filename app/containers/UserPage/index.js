@@ -3,9 +3,13 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 
 import ReposList from 'components/ReposList';
+import H1 from 'components/H1';
+import { FormattedMessage } from 'react-intl';
 
 import { loadRepos as actionLoadRepos } from 'containers/App/actions';
 import { selectRepos, selectLoading, selectError } from 'containers/App/selectors';
+
+import messages from './messages';
 
 export class UserPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -29,9 +33,14 @@ export class UserPage extends React.PureComponent { // eslint-disable-line react
       <div>
         <Helmet
           title="User page"
+          meta={[
+            { name: 'description', content: 'A React.js Boilerplate user page' },
+          ]}
         />
-        <em>Try disabling JavaScript and refresh the page to see the Server Side Rendering working.</em>
-        <h1>{username}&apos;s repositories:</h1>
+        <em><FormattedMessage {...messages.ssrInfo} /></em>
+        <H1>
+          <FormattedMessage {...messages.header} values={{ username }} />
+        </H1>
         <ReposList loading={loading} error={error} repos={repos} />
       </div>
     );

@@ -28,5 +28,7 @@
   "boilerplate.containers.LocaleToggle.de": "de",
   "boilerplate.containers.LocaleToggle.en": "en",
   "boilerplate.containers.HomePage.userLink": "User page: {link}",
-  "boilerplate.containers.NotFoundPage.header": "Page not found."
+  "boilerplate.containers.NotFoundPage.header": "Page not found.",
+  "boilerplate.containers.UserPage.header": "{username}'s repositories:",
+  "boilerplate.containers.UserPage.ssrInfo": "Try disabling JavaScript and refresh the page to see the Server Side Rendering working!"
 }
