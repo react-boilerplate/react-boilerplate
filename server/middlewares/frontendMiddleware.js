@@ -1,17 +1,5 @@
 /* eslint-disable global-require */
-require('isomorphic-fetch');
-
-const express = require('express');
 const path = require('path');
-const compression = require('compression');
-const pkg = require(path.resolve(process.cwd(), 'package.json'));
-const handleSSR = require('./handleSSR');
-
-function injectWebpackDllNamesMiddleware(req, res, next) {
-  const dllNames = !pkg.dllPlugin.dlls ? ['reactBoilerplateDeps'] : Object.keys(pkg.dllPlugin.dlls);
-  req.webpackDllNames = dllNames; // eslint-disable-line no-param-reassign
-  next();
-}
 
 // Dev middleware
 const addDevMiddlewares = (app, webpackConfig) => {
@@ -19,6 +7,11 @@ const addDevMiddlewares = (app, webpackConfig) => {
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const compiler = webpack(webpackConfig);
+  const renderServiceProxyPort = require('../devRenderService').port;
+  const httpProxy = require('http-proxy');
+  const proxy = httpProxy.createProxyServer({});
+  const dllPlugin = require('./dllPlugin');
+
   const middleware = webpackDevMiddleware(compiler, {
     noInfo: true,
     publicPath: webpackConfig.output.publicPath,
@@ -29,20 +22,28 @@ const addDevMiddlewares = (app, webpackConfig) => {
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
 
-  if (pkg.dllPlugin) {
+  if (dllPlugin) {
     app.get(/\.dll\.js$/, (req, res) => {
       const filename = req.path.replace(/^\//, '');
-      res.sendFile(path.join(process.cwd(), pkg.dllPlugin.path, filename));
+      res.sendFile(path.join(process.cwd(), dllPlugin.path, filename));
     });
   }
 
-  app.use(injectWebpackDllNamesMiddleware);
-
-  app.get('*', handleSSR);
+  const renderServiceUrl = `http://localhost:${renderServiceProxyPort}`;
+  app.use((req, res) => {
+    proxy.web(req, res, { target: renderServiceUrl }, (error) => {
+      console.error(error); // eslint-disable-line no-console
+      res.status(500).send('Proxying failed for page rendering service');
+    });
+  });
 };
 
 // Production middlewares
 const addProdMiddlewares = (app, options) => {
+  const express = require('express');
+  const compression = require('compression');
+  const handleSSR = require('./handleSSR');
+
   const publicPath = options.publicPath || '/';
   const outputPath = options.outputPath || path.resolve(process.cwd(), 'build');
 

@@ -3,8 +3,10 @@
 const express = require('express');
 const logger = require('./logger');
 
-const argv = require('minimist')(process.argv.slice(2));
+const argv = require('./argv');
 const setup = require('./middlewares/frontendMiddleware');
+const port = require('./port');
+
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
@@ -18,9 +20,6 @@ setup(app, {
   outputPath: resolve(process.cwd(), 'build'),
   publicPath: '/',
 });
-
-// get the intended port number, use port 3000 if not provided
-const port = argv.port || process.env.PORT || 3000;
 
 // Start your app.
 app.listen(port, (err) => {

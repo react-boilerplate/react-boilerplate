@@ -42,7 +42,9 @@
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "ssr:generate": "cross-env NODE_ENV=development webpack --progress --config internals/webpack/webpack.ssr.babel.js --watch",
+    "ssr:start": "cross-env NODE_ENV=development nodemon --watch server/middlewares/*.generated.js --watch server/middlewares/handleSSR.js --watch server/devRenderService.js server/devRenderService.js"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
@@ -266,12 +268,14 @@
     "file-loader": "0.9.0",
     "html-loader": "0.4.4",
     "html-webpack-plugin": "2.24.1",
+    "http-proxy": "1.15.2",
     "image-webpack-loader": "3.0.0",
     "imports-loader": "0.6.5",
     "jest-cli": "17.0.0",
     "json-loader": "0.5.4",
     "ngrok": "2.2.3",
     "lint-staged": "3.2.1",
+    "nodemon": "1.11.0",
     "null-loader": "0.1.1",
     "offline-plugin": "3.4.2",
     "plop": "1.6.0",
