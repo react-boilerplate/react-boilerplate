@@ -17,7 +17,6 @@ export default function HtmlDocument({ lang, head, css, appContent, state, asset
 
         {head.title.toComponent()}
         {head.meta.toComponent()}
-        {head.link.toComponent()}
 
         {/* external css. TODO: figure out how to use hashed name */}
         <link href={assets.main.css} rel="stylesheet" />
