@@ -190,7 +190,9 @@
     "collectCoverageFrom": [
       "app/**/*.{js,jsx}",
       "!app/app.js",
-      "!app/routes.js"
+      "!app/routes.js",
+      "!app/ensureIntlSupport.js",
+      "!app/global-styles.js"
     ],
     "moduleDirectories": [
       "node_modules",
