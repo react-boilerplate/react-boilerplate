@@ -48,6 +48,25 @@ function createChildRoutes(store) {
           .catch(errorLoading);
       },
     }, {
+      path: '/users/:username',
+      name: 'user',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/UserPage/sagas'),
+          System.import('containers/UserPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([sagas, component]) => {
+          injectSagas(sagas.default);
+
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
