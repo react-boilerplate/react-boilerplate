@@ -11,14 +11,16 @@ import { END } from 'redux-saga';
 import styleSheet from 'styled-components/lib/models/StyleSheet';
 import HtmlDocument from 'components/HtmlDocument';
 
-import Root from './Root';
+import AppContainer from 'containers/AppContainer';
 import { translationMessages } from './i18n';
+
+import './global-styles';
 
 function renderAppToString(store, renderProps) {
   return renderToString(
-    <Root store={store} messages={translationMessages}>
+    <AppContainer store={store} messages={translationMessages}>
       <RouterContext {...renderProps} />
-    </Root>
+    </AppContainer>
   );
 }
 

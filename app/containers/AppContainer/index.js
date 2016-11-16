@@ -1,10 +1,14 @@
+/*
+ *
+ * AppContainer
+ *
+ */
+
 import React, { PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import LanguageProvider from 'containers/LanguageProvider';
 
-import './global-styles';
-
-export class Root extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class AppContainer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     store: PropTypes.object.isRequired,
     messages: PropTypes.object.isRequired,
@@ -23,4 +27,4 @@ export class Root extends React.PureComponent { // eslint-disable-line react/pre
   }
 }
 
-export default Root;
+export default AppContainer;
