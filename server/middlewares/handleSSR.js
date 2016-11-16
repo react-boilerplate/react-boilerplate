@@ -2,6 +2,7 @@
 require('isomorphic-fetch');
 
 const serverSideRenderAppToStringAtLocation = require('./serverSideRenderAppToStringAtLocation.generated'); // eslint-disable-line import/no-unresolved
+const assets = require('./assets.generated.json');
 
 function extractWebpackDllNamesFromPackage() {
   if (process.env.NODE_ENV === 'production') return [];
@@ -12,6 +13,7 @@ function extractWebpackDllNamesFromPackage() {
 
 module.exports = function handleSSR(req, res) {
   const options = {
+    assets,
     webpackDllNames: extractWebpackDllNamesFromPackage(),
   };
 

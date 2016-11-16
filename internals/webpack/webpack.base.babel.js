@@ -5,8 +5,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const AssetsPlugin = require('assets-webpack-plugin');
+const assetsPluginInstance = new AssetsPlugin({
+  path: path.join(process.cwd(), 'server', 'middlewares'),
+  filename: 'assets.generated.json',
+});
 
-const extractVendorCSSPlugin = new ExtractTextPlugin('vendor.css');
+const extractVendorCSSPlugin = new ExtractTextPlugin('vendor.[contenthash].css');
+const isBuildingDll = Boolean(process.env.BUILDING_DLL);
 
 const vendorCSSLoaders = extractVendorCSSPlugin.extract({
   fallbackLoader: 'style-loader',
@@ -84,7 +90,9 @@ module.exports = (options) => ({
     }),
     new webpack.NamedModulesPlugin(),
     extractVendorCSSPlugin,
-  ]),
+  ]).concat(
+    isBuildingDll ? [] : [assetsPluginInstance]
+  ),
   resolve: {
     modules: ['app', 'node_modules'],
     extensions: [

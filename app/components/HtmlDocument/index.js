@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import htmlescape from 'htmlescape';
 
 // We use this component only on the server side.
-export default function HtmlDocument({ lang, head, css, appContent, state, webpackDllNames }) {
+export default function HtmlDocument({ lang, head, css, appContent, state, assets, webpackDllNames }) {
   const attrs = head.htmlAttributes.toComponent();
   return (
     <html lang={lang} {...attrs}>
@@ -20,7 +20,7 @@ export default function HtmlDocument({ lang, head, css, appContent, state, webpa
         {head.link.toComponent()}
 
         {/* external css. TODO: figure out how to use hashed name */}
-        <link href="/vendor.css" rel="stylesheet" />
+        <link href={assets.main.css} rel="stylesheet" />
         <style type="text/css" dangerouslySetInnerHTML={{ __html: css }} />
       </head>
       <body>
@@ -41,7 +41,7 @@ export default function HtmlDocument({ lang, head, css, appContent, state, webpa
         )}
 
         {/* our app code */}
-        <script type="text/javascript" src="/main.js"></script>
+        <script type="text/javascript" src={assets.main.js}></script>
 
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" />
       </body>
@@ -55,5 +55,11 @@ HtmlDocument.propTypes = {
   css: PropTypes.string.isRequired,
   appContent: PropTypes.string.isRequired,
   state: PropTypes.object.isRequired,
+  assets: PropTypes.shape({
+    main: PropTypes.shape({
+      js: PropTypes.string.isRequired,
+      css: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
   webpackDllNames: PropTypes.arrayOf(PropTypes.string),
 };

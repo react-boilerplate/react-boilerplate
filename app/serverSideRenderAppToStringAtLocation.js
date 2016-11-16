@@ -22,7 +22,7 @@ function renderAppToString(store, renderProps) {
   );
 }
 
-async function renderHtmlDocument({ store, renderProps, allTasks, webpackDllNames }) {
+async function renderHtmlDocument({ store, renderProps, allTasks, assets, webpackDllNames }) {
   // 1st render phase - triggers the sagas
   renderAppToString(store, renderProps);
 
@@ -46,6 +46,7 @@ async function renderHtmlDocument({ store, renderProps, allTasks, webpackDllName
       lang={state.language.locale}
       state={state}
       head={Helmet.rewind()}
+      assets={assets}
       css={css}
       webpackDllNames={webpackDllNames}
     />
@@ -53,7 +54,7 @@ async function renderHtmlDocument({ store, renderProps, allTasks, webpackDllName
   return `<!DOCTYPE html>\n${doc}`;
 }
 
-module.exports = function ssr(url, { webpackDllNames = [] }, callback) {
+module.exports = function ssr(url, { webpackDllNames = [], assets }, callback) {
   const allTasks = [];
 
   const history = createMemoryHistory(url);
@@ -74,7 +75,7 @@ module.exports = function ssr(url, { webpackDllNames = [] }, callback) {
     } else if (redirectLocation) {
       callback(error, redirectLocation);
     } else if (renderProps) {
-      renderHtmlDocument({ store, renderProps, allTasks, webpackDllNames })
+      renderHtmlDocument({ store, renderProps, allTasks, assets, webpackDllNames })
         .then((html) => callback(error, redirectLocation, html))
         .catch(callback);
     } else {
