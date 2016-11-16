@@ -33,7 +33,11 @@ const addDevMiddlewares = (app, webpackConfig) => {
   app.use((req, res) => {
     proxy.web(req, res, { target: renderServiceUrl }, (error) => {
       console.error(error); // eslint-disable-line no-console
-      res.status(500).send('Proxying failed for page rendering service');
+      res.status(500).send(`
+        Proxying failed for page rendering service.
+        Check the console for more information.
+        The service maybe restarting so try again in a second.
+      `);
     });
   });
 };
