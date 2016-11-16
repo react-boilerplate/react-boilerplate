@@ -47,7 +47,7 @@ export class UserPage extends React.PureComponent { // eslint-disable-line react
   }
 }
 
-function mapStateToProps(state, ownProps) {
+export function mapStateToProps(state, ownProps) {
   const { params: { username } } = ownProps;
   return {
     username,
@@ -57,7 +57,7 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
   return {
     loadRepos: (username) => dispatch(actionLoadRepos(username)),
   };
