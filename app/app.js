@@ -16,21 +16,16 @@ import 'file?name=[name].[ext]!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 // Import all the third party stuff
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
-import { useScroll } from 'react-router-scroll';
 import configureStore from './store';
-
-// Import Language Provider
-import LanguageProvider from 'containers/LanguageProvider';
 
 // Import CSS reset and Global Styles
 import 'sanitize.css/sanitize.css';
-import './global-styles';
+
+import renderInBrowser from './renderInBrowser';
+import ensureIntlSupport from './ensureIntlSupport';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -61,58 +56,22 @@ const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: selectLocationState(),
 });
 
-// Set up the router, wrapping all Routes in the App component
-import App from 'containers/App';
-import createRoutes from './routes';
-const rootRoute = {
-  component: App,
-  childRoutes: createRoutes(store),
-};
+import createRootRoute from './routes';
+const rootRoute = createRootRoute(store);
 
-const render = (messages) => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <LanguageProvider messages={messages}>
-        <Router
-          history={history}
-          routes={rootRoute}
-          render={
-            // Scroll to top when going to a new page, imitating default browser
-            // behaviour
-            applyRouterMiddleware(useScroll())
-          }
-        />
-      </LanguageProvider>
-    </Provider>,
-    document.getElementById('app')
-  );
-};
+function render() {
+  renderInBrowser({ messages: translationMessages, store, rootRoute, history });
+}
 
 // Hot reloadable translation json files
 if (module.hot) {
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
-  module.hot.accept('./i18n', () => {
-    render(translationMessages);
-  });
+  module.hot.accept('./i18n', render);
 }
 
-// Chunked polyfill for browsers without Intl support
-if (!window.Intl) {
-  (new Promise((resolve) => {
-    resolve(System.import('intl'));
-  }))
-    .then(() => Promise.all([
-      System.import('intl/locale-data/jsonp/en.js'),
-      System.import('intl/locale-data/jsonp/de.js'),
-    ]))
-    .then(() => render(translationMessages))
-    .catch((err) => {
-      throw err;
-    });
-} else {
-  render(translationMessages);
-}
+ensureIntlSupport()
+  .then(render);
 
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
