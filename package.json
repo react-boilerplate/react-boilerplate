@@ -47,7 +47,7 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "ssr:generate": "cross-env NODE_ENV=development webpack --progress --config internals/webpack/webpack.ssr.babel.js",
     "ssr:generate:watch": "npm run ssr:generate -- --watch",
-    "ssr:start": "cross-env NODE_ENV=development nodemon --watch server/middlewares/*.generated.js --watch server/middlewares/handleSSR.js --watch server/devRenderService.js server/devRenderService.js"
+    "ssr:start": "cross-env NODE_ENV=development nodemon --ext js,json --watch server/middlewares --watch server/devRenderService.js server/devRenderService.js"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
