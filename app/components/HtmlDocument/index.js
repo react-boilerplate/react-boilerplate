@@ -24,7 +24,6 @@ export default function HtmlDocument({ lang, head, css, appContent, state, webpa
         <style type="text/css" dangerouslySetInnerHTML={{ __html: css }} />
       </head>
       <body>
-
         {/* Display a message if JS has been disabled on the browser. */}
         <noscript>
           If you are seeing this message, that means <strong>JavaScript has been disabled on your browser</strong>
