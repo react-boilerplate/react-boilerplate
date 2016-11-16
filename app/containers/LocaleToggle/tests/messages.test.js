@@ -1,21 +1,20 @@
-import assert from 'assert';
 import { getLocaleMessages } from '../messages';
 
 describe('getLocaleMessages', () => {
   it('should create i18n messages for all locales', () => {
     const expected = {
       en: {
-        id: 'app.components.LocaleToggle.en',
+        id: 'boilerplate.containers.LocaleToggle.en',
         defaultMessage: 'en',
       },
       fr: {
-        id: 'app.components.LocaleToggle.fr',
+        id: 'boilerplate.containers.LocaleToggle.fr',
         defaultMessage: 'fr',
       },
     };
 
     const actual = getLocaleMessages(['en', 'fr']);
 
-    assert.deepEqual(expected, actual);
+    expect(actual).toEqual(expected);
   });
 });

@@ -1,6 +1,5 @@
 import LanguageProvider from '../index';
 
-import expect from 'expect';
 import { shallow } from 'enzyme';
 import { FormattedMessage, defineMessages } from 'react-intl';
 import configureStore from '../../../store';
@@ -12,7 +11,7 @@ import { translationMessages } from '../../../i18n';
 describe('<LanguageProvider />', () => {
   let store;
 
-  before(() => {
+  beforeAll(() => {
     store = configureStore({}, browserHistory);
   });
 
@@ -30,6 +29,6 @@ describe('<LanguageProvider />', () => {
         </LanguageProvider>
       </Provider>
     );
-    expect(renderedComponent.contains(<FormattedMessage {...messages.someMessage} />)).toEqual(true);
+    expect(renderedComponent.contains(<FormattedMessage {...messages.someMessage} />)).toBe(true);
   });
 });

@@ -4,7 +4,6 @@
 
 import A from '../index';
 
-import expect from 'expect';
 import { shallow } from 'enzyme';
 import React from 'react';
 
@@ -32,7 +31,7 @@ describe('<A />', () => {
     expect(renderedComponent.contains(children)).toEqual(true);
   });
 
-  it('should adopt a className attribute', () => {
+  it('should have a className attribute', () => {
     const className = 'test';
     const renderedComponent = renderComponent({ className });
     expect(renderedComponent.find('a').hasClass(className)).toEqual(true);

@@ -92,8 +92,4 @@ export default defineMessages({
     id: 'boilerplate.containers.FeaturePage.internationalization.message',
     defaultMessage: 'Scalable apps need to support multiple languages, easily add and support multiple languages with `react-intl`.',
   },
-  homeButton: {
-    id: 'boilerplate.containers.FeaturePage.home',
-    defaultMessage: 'Home',
-  },
 });

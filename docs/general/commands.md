@@ -60,10 +60,10 @@ accessible anywhere! Changes in the application code will be hot-reloaded.
 ### Production
 
 ```Shell
-npm run start:prod
+npm run start:production
 ```
 
-Starts the production server, configured for optimal performance: assets are
+Starts the production server, building the app for optimal performance: assets are
 minified and served gzipped.
 
 ### Port

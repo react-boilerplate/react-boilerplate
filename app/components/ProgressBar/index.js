@@ -5,8 +5,7 @@
 */
 
 import React, { PropTypes } from 'react';
-
-import styles from './styles.css';
+import { ProgressBarWrapper, ProgressBarPercent } from './styles';
 
 class ProgressBar extends React.Component {
 
@@ -105,14 +104,15 @@ class ProgressBar extends React.Component {
     const { percent } = this.state;
 
     // Hide progress bar if percent is less than 0.
-    const className = `${styles.progressBar} ${percent < 0 || percent >= 100 ? `${styles.progressBarHide}` : ''}`;
+    const isHidden = percent < 0 || percent >= 100;
 
     // Set `state.percent` as width.
     const style = { width: `${(percent <= 0 ? 100 : percent)}%` };
+
     return (
-      <div className={className}>
-        <div className={styles.progressBarPercent} style={style}></div>
-      </div>
+      <ProgressBarWrapper hidden={isHidden}>
+        <ProgressBarPercent style={style} />
+      </ProgressBarWrapper>
     );
   }
 }
