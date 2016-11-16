@@ -1,10 +1,10 @@
 /**
- * Tests for HomePage sagas
+ * Tests for UserPage sagas
  */
 
 import { takeLatest } from 'redux-saga';
-import { take, put, fork } from 'redux-saga/effects';
-
+import { take, put, fork, cancel } from 'redux-saga/effects';
+import { createMockTask } from 'redux-saga/utils';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import { getRepos, getReposWatcher, githubData } from '../sagas';
@@ -53,17 +53,29 @@ describe('getReposWatcher Saga', () => {
 });
 
 describe('githubDataSaga Saga', () => {
-  const githubDataSaga = githubData();
+  let generator;
+  let taskMock;
 
-  let forkDescriptor;
+  beforeEach(() => {
+    generator = githubData();
+    taskMock = createMockTask();
+  });
 
   it('should asyncronously fork getReposWatcher saga', () => {
-    forkDescriptor = githubDataSaga.next();
+    const forkDescriptor = generator.next();
     expect(forkDescriptor.value).toEqual(fork(getReposWatcher));
   });
 
   it('should yield until LOCATION_CHANGE action', () => {
-    const takeDescriptor = githubDataSaga.next();
+    generator.next();
+    const takeDescriptor = generator.next();
     expect(takeDescriptor.value).toEqual(take(LOCATION_CHANGE));
+  });
+
+  it('should cancel after LOCATION_CHANGE action', () => {
+    generator.next();
+    generator.next(taskMock);
+    const cancelDescriptor = generator.next();
+    expect(cancelDescriptor.value).toEqual(cancel(taskMock));
   });
 });
