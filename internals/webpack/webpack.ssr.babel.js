@@ -14,7 +14,7 @@ module.exports = {
   ],
   output: {
     path: outputPath,
-    filename: 'serverSideRenderAppToStringAtLocation.generated.js',
+    filename: 'generated.serverSideRenderAppToStringAtLocation.js',
     publicPath: '/',
     libraryTarget: 'commonjs2',
   },

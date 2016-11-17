@@ -8,7 +8,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const assetsPluginInstance = new AssetsPlugin({
   path: path.join(process.cwd(), 'server', 'middlewares'),
-  filename: 'assets.generated.json',
+  filename: 'generated.assets.json',
 });
 
 const extractVendorCSSPlugin = new ExtractTextPlugin('vendor.[contenthash].css');

@@ -8,8 +8,8 @@ In order to be able to use our client code on server it has to be transpiled int
 Webpack takes care of that with `target` option set to `"node"`.
 
 The entry point for the server webpack build is `app/serverSideRenderAppToStringAtLocation.js`.
-Webpack will generate a couple of files and place them in `server/middleware`. These files
-will have `".generated."` string in their names. Git is instructed to ignore them.
+Webpack will generate a couple of files and place them in `server/middleware`. The names of these files will
+start with `"generated."`. They shouldn't be added to the repository (git).
 
 In production mode the web server will use the generated files directly to create a pre-rendered version of
 the requested page.
