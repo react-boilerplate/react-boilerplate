@@ -239,7 +239,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
-    "assets-webpack-plugin": "^3.5.0",
+    "assets-webpack-plugin": "3.5.0",
     "babel-cli": "6.18.0",
     "babel-core": "6.18.2",
     "babel-eslint": "7.1.0",
