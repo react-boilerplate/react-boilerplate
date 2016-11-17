@@ -17,7 +17,6 @@ import 'file?name=[name].[ext]!./.htaccess';
 
 // Import all the third party stuff
 import { browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import configureStore from './store';
 
@@ -52,10 +51,8 @@ const store = configureStore(initialState, browserHistory);
 // Sync history and store, as the react-router-redux reducer
 // is under the non-default key ("routing"), selectLocationState
 // must be provided for resolving how to retrieve the "route" in the state
-import { selectLocationState } from 'containers/App/selectors';
-const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState: selectLocationState(),
-});
+import syncHistoryWithStore from './syncHistoryWithStore';
+const history = syncHistoryWithStore(browserHistory, store);
 
 import createRootRoute from './routes';
 const rootRoute = createRootRoute(store);

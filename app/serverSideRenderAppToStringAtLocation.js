@@ -14,6 +14,7 @@ import HtmlDocument from 'components/HtmlDocument';
 
 import AppContainer from 'containers/AppContainer';
 import { translationMessages } from './i18n';
+import syncHistoryWithStore from './syncHistoryWithStore';
 
 import './global-styles';
 
@@ -25,7 +26,7 @@ function renderAppToString(store, renderProps) {
   );
 }
 
-async function renderHtmlDocument({ store, renderProps, allTasks, assets, webpackDllNames }) {
+async function renderHtmlDocument({ store, renderProps, sagasDone, assets, webpackDllNames }) {
   // 1st render phase - triggers the sagas
   renderAppToString(store, renderProps);
 
@@ -33,7 +34,7 @@ async function renderHtmlDocument({ store, renderProps, allTasks, assets, webpac
   store.dispatch(END);
 
   // wait for all tasks to finish
-  await Promise.all(allTasks.map((t) => t.done));
+  await sagasDone();
 
   // capture the state after the first render
   const state = store.getState().toJS();
@@ -57,20 +58,30 @@ async function renderHtmlDocument({ store, renderProps, allTasks, assets, webpac
   return `<!DOCTYPE html>\n${doc}`;
 }
 
-module.exports = function serverSideRenderAppToStringAtLocation(url, { webpackDllNames = [], assets }, callback) {
+function monitorSagas(store) {
   const allTasks = [];
-
-  const history = createMemoryHistory(url);
-  const store = createStore({}, history);
-
   const saveRunSaga = store.runSaga;
-  store.runSaga = function interceptRunSaga(saga) {
+
+  store.runSaga = function interceptRunSaga(saga) { // eslint-disable-line no-param-reassign
     const task = saveRunSaga.call(store, saga);
     allTasks.push(task);
     return task;
   };
 
+  return function done() {
+    return Promise.all(allTasks.map((t) => t.done));
+  };
+}
+
+module.exports = function serverSideRenderAppToStringAtLocation(url, { webpackDllNames = [], assets }, callback) {
+  const memHistory = createMemoryHistory(url);
+  const store = createStore({}, memHistory);
+
+  syncHistoryWithStore(memHistory, store);
+
   const routes = createRoutes(store);
+
+  const sagasDone = monitorSagas(store);
 
   match({ routes, location: url }, (error, redirectLocation, renderProps) => {
     if (error) {
@@ -78,7 +89,7 @@ module.exports = function serverSideRenderAppToStringAtLocation(url, { webpackDl
     } else if (redirectLocation) {
       callback(error, redirectLocation);
     } else if (renderProps) {
-      renderHtmlDocument({ store, renderProps, allTasks, assets, webpackDllNames })
+      renderHtmlDocument({ store, renderProps, sagasDone, assets, webpackDllNames })
         .then((html) => callback(error, redirectLocation, html))
         .catch(callback);
     } else {
