@@ -73,6 +73,13 @@ describe('rendering to string', () => {
       });
     });
 
+    describe('404', () => {
+      it('should call the callback with null as html', () => {
+        matchCallback(null, null, null);
+        expect(callback).toHaveBeenCalledWith(null, null, null);
+      });
+    });
+
     describe('match found', () => {
       const dummyHtml = '<html>TADAM!</html>';
 
