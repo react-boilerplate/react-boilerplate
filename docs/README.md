@@ -6,6 +6,7 @@
   - [**CLI Commands**](general/commands.md)
   - [Tool Configuration](general/files.md)
   - [Server Configurations](general/server-configs.md)
+  - [Server side rendering](general/server-side-rendering.md)
   - [Deployment](general/deployment.md) *(currently Heroku specific)*
   - [FAQ](general/faq.md)
   - [Gotchas](general/gotchas.md)
