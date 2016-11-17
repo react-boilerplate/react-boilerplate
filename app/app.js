@@ -54,11 +54,11 @@ const store = configureStore(initialState, browserHistory);
 import syncHistoryWithStore from './syncHistoryWithStore';
 const history = syncHistoryWithStore(browserHistory, store);
 
-import createRootRoute from './routes';
-const rootRoute = createRootRoute(store);
+import createRoutes from './routes';
+const routes = createRoutes(store);
 
 function render() {
-  renderInBrowser({ messages: translationMessages, store, rootRoute, history });
+  renderInBrowser({ messages: translationMessages, store, routes, history });
 }
 
 // Hot reloadable translation json files
