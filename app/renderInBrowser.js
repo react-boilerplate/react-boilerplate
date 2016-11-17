@@ -4,8 +4,6 @@ import { match, applyRouterMiddleware, Router } from 'react-router';
 import { useScroll } from 'react-router-scroll';
 import AppContainer from 'containers/AppContainer';
 
-import './global-styles';
-
 export default function renderInBrowser({ messages, store, routes, history }) {
   match({ history, routes }, (error, redirectLocation, renderProps) => {
     ReactDOM.render(

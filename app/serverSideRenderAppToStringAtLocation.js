@@ -16,8 +16,6 @@ import AppContainer from 'containers/AppContainer';
 import { translationMessages } from './i18n';
 import syncHistoryWithStore from './syncHistoryWithStore';
 
-import './global-styles';
-
 function renderAppToString(store, renderProps) {
   return renderToString(
     <AppContainer store={store} messages={translationMessages}>

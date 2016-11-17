@@ -10,6 +10,10 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 
+// Global styles should be injected before any other scoped style, so make sure
+// this file is included before any styled component.
+import './global-styles';
+
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
