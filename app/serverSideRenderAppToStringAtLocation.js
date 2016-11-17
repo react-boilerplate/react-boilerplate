@@ -71,6 +71,10 @@ function monitorSagas(store) {
   };
 }
 
+function is404(routes) {
+  return routes.some((r) => r.name === 'notfound');
+}
+
 module.exports = function serverSideRenderAppToStringAtLocation(url, { webpackDllNames = [], assets }, callback) {
   const memHistory = createMemoryHistory(url);
   const store = createStore({}, memHistory);
@@ -83,15 +87,18 @@ module.exports = function serverSideRenderAppToStringAtLocation(url, { webpackDl
 
   match({ routes, location: url }, (error, redirectLocation, renderProps) => {
     if (error) {
-      callback(error);
+      callback({ error });
     } else if (redirectLocation) {
-      callback(error, redirectLocation);
+      callback({ redirectLocation: redirectLocation.pathname + redirectLocation.search });
     } else if (renderProps) {
       renderHtmlDocument({ store, renderProps, sagasDone, assets, webpackDllNames })
-        .then((html) => callback(error, redirectLocation, html))
-        .catch(callback);
+        .then((html) => {
+          const notFound = is404(renderProps.routes);
+          callback({ html, notFound });
+        })
+        .catch((e) => callback({ error: e }));
     } else {
-      callback(error, redirectLocation, null);
+      callback({ error: new Error('Unknown error') });
     }
   });
 };

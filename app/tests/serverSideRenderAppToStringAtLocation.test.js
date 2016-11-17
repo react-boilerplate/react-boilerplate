@@ -61,27 +61,24 @@ describe('rendering to string', () => {
       it('should call the callback with the error', () => {
         const err = 'The Error';
         matchCallback(err);
-        expect(callback).toHaveBeenCalledWith(err);
+        expect(callback).toHaveBeenCalledWith({ error: err });
       });
     });
 
     describe('redirect', () => {
       it('should call the callback with the redirect location', () => {
-        const redirectLocation = 'The Redirect Location';
+        const redirectLocation = {
+          pathname: 'xxx',
+          search: 'yyy',
+        };
         matchCallback(null, redirectLocation);
-        expect(callback).toHaveBeenCalledWith(null, redirectLocation);
-      });
-    });
-
-    describe('404', () => {
-      it('should call the callback with null as html', () => {
-        matchCallback(null, null, null);
-        expect(callback).toHaveBeenCalledWith(null, null, null);
+        expect(callback).toHaveBeenCalledWith({ redirectLocation: 'xxxyyy' });
       });
     });
 
     describe('match found', () => {
       const dummyHtml = '<html>TADAM!</html>';
+      const expectedHtml = `<!DOCTYPE html>\n${dummyHtml}`;
 
       beforeEach(() => {
         styleSheet.rules = jest.fn().mockReturnValue([]);
@@ -90,11 +87,31 @@ describe('rendering to string', () => {
         Helmet.rewind.mockReturnValue({});
       });
 
+      describe('404', () => {
+        it('should call the callback with null as html', () => {
+          const renderProps = {
+            routes: [
+              { name: 'aaa' },
+              { name: 'notfound' },
+              { name: 'bbb' },
+            ],
+          };
+          matchCallback(null, null, renderProps);
+          return waitFor(() => callback.mock.calls.length > 0)
+            .then(() => {
+              expect(callback).toHaveBeenCalledWith({ notFound: true, html: expectedHtml });
+            });
+        });
+      });
+
       it('should call the callback with the rendered page', () => {
-        matchCallback(null, null, {});
+        const renderProps = {
+          routes: [],
+        };
+        matchCallback(null, null, renderProps);
         return waitFor(() => callback.mock.calls.length > 0)
           .then(() => {
-            expect(callback).toHaveBeenCalledWith(null, null, `<!DOCTYPE html>\n${dummyHtml}`);
+            expect(callback).toHaveBeenCalledWith({ notFound: false, html: expectedHtml });
           });
       });
 

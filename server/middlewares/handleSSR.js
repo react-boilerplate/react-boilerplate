@@ -17,15 +17,15 @@ module.exports = function handleSSR(req, res) {
     webpackDllNames: extractWebpackDllNamesFromPackage(),
   };
 
-  serverSideRenderAppToStringAtLocation(req.url, options, (error, redirectLocation, html) => {
-    if (error) {
-      res.status(500).send(error.message);
-    } else if (redirectLocation) {
-      res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-    } else if (html) {
-      res.status(200).send(html);
+  serverSideRenderAppToStringAtLocation(req.url, options, (response) => {
+    if (response.error) {
+      res.status(500).send(response.error.message);
+    } else if (response.redirectLocation) {
+      res.redirect(302, response.redirectLocation);
+    } else if (response.notFound) {
+      res.status(404).send(response.html);
     } else {
-      res.status(404).send('not found');
+      res.status(200).send(response.html);
     }
   });
 };
