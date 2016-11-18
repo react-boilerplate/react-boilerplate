@@ -23,19 +23,6 @@ module.exports = {
       test: /\.jsx?$/, // Transform all .js files required somewhere with Babel
       loader: 'babel',
       exclude: /node_modules/,
-      query: {
-        only: ['app'],
-        presets: [
-          ['es2015', { modules: false }],
-          'react',
-          'stage-0',
-        ],
-        plugins: [
-          'transform-react-remove-prop-types',
-          'transform-react-constant-elements',
-          'transform-react-inline-elements',
-        ],
-      },
     }, {
       test: /\.json$/,
       loader: 'json-loader',
