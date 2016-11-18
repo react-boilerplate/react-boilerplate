@@ -192,9 +192,9 @@
       "app/**/*.{js,jsx}",
       "!app/app.js",
       "!app/routes.js",
-      "!app/ensureIntlSupport.js",
-      "!app/global-styles.js",
-      "!app/openSansObserver.js"
+      "!app/containers/App/global-styles.js",
+      "!app/setup/ensureIntlSupport.js",
+      "!app/setup/openSansObserver.js"
     ],
     "moduleDirectories": [
       "node_modules",
