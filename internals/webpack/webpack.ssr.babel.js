@@ -2,6 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
+const imageWebpackQuery = require('./imageWebpackQuery');
 
 const outputPath = path.join(process.cwd(), 'server', 'middlewares');
 
@@ -37,15 +38,7 @@ module.exports = {
         },
         {
           loader: 'image-webpack',
-          query: {
-            progressive: true,
-            optimizationLevel: 7,
-            interlaced: false,
-            pngquant: {
-              quality: '65-90',
-              speed: 4,
-            },
-          },
+          query: imageWebpackQuery,
         },
       ],
     }],

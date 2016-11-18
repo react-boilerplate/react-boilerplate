@@ -12,6 +12,8 @@ const assetsPluginInstance = new AssetsPlugin({
 });
 
 const extractVendorCSSPlugin = new ExtractTextPlugin('vendor.[contenthash].css');
+const imageWebpackQuery = require('./imageWebpackQuery');
+
 const isBuildingDll = Boolean(process.env.BUILDING_DLL);
 
 const vendorCSSLoaders = extractVendorCSSPlugin.extract({
@@ -49,15 +51,7 @@ module.exports = (options) => ({
         'file-loader',
         {
           loader: 'image-webpack',
-          query: {
-            progressive: true,
-            optimizationLevel: 7,
-            interlaced: false,
-            pngquant: {
-              quality: '65-90',
-              speed: 4,
-            },
-          },
+          query: imageWebpackQuery,
         },
       ],
     }, {
