@@ -21,7 +21,7 @@
     "postinstall": "npm run build:dll",
     "prebuild": "npm run build:clean && npm run test",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress",
-    "build:clean": "npm run test:clean && rimraf ./build",
+    "build:clean": "npm run test:clean && rimraf ./build && npm run ssr:clean",
     "build:dll": "node ./internals/scripts/dependencies.js",
     "prestart": "npm run ssr:generate",
     "start": "cross-env NODE_ENV=development npm-run-all --parallel ssr:generate:watch ssr:start start:dev",
@@ -47,7 +47,8 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "ssr:generate": "cross-env NODE_ENV=development webpack --progress --config internals/webpack/webpack.ssr.babel.js",
     "ssr:generate:watch": "npm run ssr:generate -- --watch",
-    "ssr:start": "cross-env NODE_ENV=development nodemon -q --ext js,json --watch server/middlewares --watch server/devRenderService.js server/devRenderService.js"
+    "ssr:start": "cross-env NODE_ENV=development nodemon -q --ext js,json --watch server/middlewares --watch server/devRenderService.js server/devRenderService.js",
+    "ssr:clean": "rimraf server/middlewares/generated.*"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
