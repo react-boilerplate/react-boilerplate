@@ -1,3 +1,4 @@
+/* global which, echo, exit, rm, mkdir, cp, exec */
 require('shelljs/global');
 const addCheckMark = require('./helpers/checkmark.js');
 
@@ -29,7 +30,7 @@ cp('internals/templates/homePage/homePage.js', 'app/containers/HomePage/index.js
 cp('internals/templates/homePage/messages.js', 'app/containers/HomePage/messages.js');
 
 // Handle Translations
-rm('-rf', 'app/translations/*')
+rm('-rf', 'app/translations/*');
 mkdir('-p', 'app/translations');
 cp('internals/templates/translations/en.json',
   'app/translations/en.json');
