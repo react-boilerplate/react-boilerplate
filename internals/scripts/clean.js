@@ -16,13 +16,17 @@ process.stdout.write('Cleanup started...');
 
 // Cleanup components folder
 rm('-rf', 'app/components/*');
+mkdir('-p', 'app/components/HtmlDocument');
+cp('internals/templates/htmlDocument.js', 'app/components/HtmlDocument/index.js');
 
 // Cleanup containers folder
 rm('-rf', 'app/containers/*');
 mkdir('-p', 'app/containers/App');
+mkdir('-p', 'app/containers/AppRoot');
 mkdir('-p', 'app/containers/NotFoundPage');
 mkdir('-p', 'app/containers/HomePage');
 cp('internals/templates/appContainer.js', 'app/containers/App/index.js');
+cp('internals/templates/appRoot.js', 'app/containers/AppRoot/index.js');
 cp('internals/templates/constants.js', 'app/containers/App/constants.js');
 cp('internals/templates/notFoundPage/notFoundPage.js', 'app/containers/NotFoundPage/index.js');
 cp('internals/templates/notFoundPage/messages.js', 'app/containers/NotFoundPage/messages.js');
@@ -70,12 +74,15 @@ cp('internals/templates/asyncInjectors.test.js',
   'app/utils/tests/asyncInjectors.test.js');
 
 // Replace the files in the root app/ folder
+mkdir('-p', 'app/setup');
 cp('internals/templates/app.js', 'app/app.js');
-cp('internals/templates/index.html', 'app/index.html');
 cp('internals/templates/reducers.js', 'app/reducers.js');
 cp('internals/templates/routes.js', 'app/routes.js');
 cp('internals/templates/store.js', 'app/store.js');
 cp('internals/templates/store.test.js', 'app/tests/store.test.js');
+cp('internals/templates/setup/*.js', 'app/setup');
+cp('internals/templates/renderInBrowser.js', 'app/renderInBrowser.js');
+cp('internals/templates/serverSideRenderAppToStringAtLocation.js', 'app/serverSideRenderAppToStringAtLocation.js');
 
 // Remove the templates folder
 rm('-rf', 'internals/templates');
