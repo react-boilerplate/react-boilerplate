@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { match, applyRouterMiddleware, Router } from 'react-router';
 import { useScroll } from 'react-router-scroll';
-import AppContainer from 'containers/AppContainer';
+import AppRoot from 'containers/AppRoot';
 
 export default function renderInBrowser({ messages, store, routes, history }) {
   match({ history, routes }, (error, redirectLocation, renderProps) => {
     ReactDOM.render(
-      <AppContainer store={store} messages={messages}>
+      <AppRoot store={store} messages={messages}>
         <Router
           {...renderProps}
           render={
@@ -16,7 +16,7 @@ export default function renderInBrowser({ messages, store, routes, history }) {
             applyRouterMiddleware(useScroll())
           }
         />
-      </AppContainer>,
+      </AppRoot>,
       document.getElementById('app')
     );
   });

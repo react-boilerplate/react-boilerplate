@@ -2,7 +2,7 @@ jest.mock('react-dom');
 jest.mock('react-router');
 
 import ReactDOM from 'react-dom';
-import AppContainer from 'containers/AppContainer';
+import AppRoot from 'containers/AppRoot';
 
 import renderInBrowser from '../renderInBrowser';
 import { match } from 'react-router';
@@ -42,11 +42,11 @@ describe('rendering in browser', () => {
     expect(args[1]).toEqual(domEl);
   });
 
-  it('should render the AppContainer', () => {
+  it('should render the AppRoot', () => {
     matchAndRender();
     const mock = ReactDOM.render.mock;
     const args = mock.calls[0];
     expect(document.getElementById).toHaveBeenCalledWith('app');
-    expect(args[0].type).toBe(AppContainer);
+    expect(args[0].type).toBe(AppRoot);
   });
 });

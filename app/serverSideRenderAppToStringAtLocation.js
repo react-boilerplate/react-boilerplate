@@ -12,7 +12,7 @@ import createStore from 'store';
 import createRoutes from 'routes';
 
 import HtmlDocument from 'components/HtmlDocument';
-import AppContainer from 'containers/AppContainer';
+import AppRoot from 'containers/AppRoot';
 
 import syncHistoryWithStore from 'setup/syncHistoryWithStore';
 
@@ -20,9 +20,9 @@ import { translationMessages } from './i18n';
 
 function renderAppToString(store, renderProps) {
   return renderToString(
-    <AppContainer store={store} messages={translationMessages}>
+    <AppRoot store={store} messages={translationMessages}>
       <RouterContext {...renderProps} />
-    </AppContainer>
+    </AppRoot>
   );
 }
 

@@ -1,18 +1,18 @@
-import { AppContainer } from '../index';
+import AppRoot from '../index';
 
 import { shallow } from 'enzyme';
 import React from 'react';
 import configureStore from '../../../store';
 
-describe('<AppContainer />', () => {
+describe('<AppRoot />', () => {
   it('uses redux Provider', () => {
     const store = configureStore({});
     const messages = {};
 
     const renderedComponent = shallow(
-      <AppContainer store={store} messages={messages}>
+      <AppRoot store={store} messages={messages}>
         <div>a child</div>
-      </AppContainer>
+      </AppRoot>
     );
 
     expect(renderedComponent.find('Provider').length).toEqual(1);

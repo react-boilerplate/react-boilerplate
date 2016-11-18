@@ -8,7 +8,7 @@ import { match } from 'react-router';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import Helmet from 'react-helmet';
 
-import AppContainer from 'containers/AppContainer';
+import AppRoot from 'containers/AppRoot';
 
 import styleSheet from 'styled-components/lib/models/StyleSheet';
 
@@ -115,13 +115,13 @@ describe('rendering to string', () => {
           });
       });
 
-      it('should render the AppContainer', () => {
+      it('should render the AppRoot', () => {
         matchCallback(null, null, {});
         return waitFor(() => callback.mock.calls.length > 0)
           .then(() => {
             expect(renderToString).toHaveBeenCalled();
             const args = renderToString.mock.calls[0];
-            expect(args[0].type).toEqual(AppContainer);
+            expect(args[0].type).toEqual(AppRoot);
           });
       });
     });
