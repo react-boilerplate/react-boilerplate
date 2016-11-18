@@ -10,9 +10,10 @@ import styleSheet from 'styled-components/lib/models/StyleSheet';
 
 import createStore from 'store';
 import createRoutes from 'routes';
-import HtmlDocument from 'components/HtmlDocument';
 
+import HtmlDocument from 'components/HtmlDocument';
 import AppContainer from 'containers/AppContainer';
+
 import { translationMessages } from './i18n';
 import syncHistoryWithStore from './syncHistoryWithStore';
 
@@ -38,13 +39,14 @@ async function renderHtmlDocument({ store, renderProps, sagasDone, assets, webpa
   const state = store.getState().toJS();
 
   // 2nd render phase - the sagas triggered in the first phase are resolved by now
-  const appContent = renderAppToString(store, renderProps);
+  const appMarkup = renderAppToString(store, renderProps);
 
   // capture the generated css
   const css = styleSheet.rules().map((rule) => rule.cssText).join('\n');
+
   const doc = renderToStaticMarkup(
     <HtmlDocument
-      appContent={appContent}
+      appMarkup={appMarkup}
       lang={state.language.locale}
       state={state}
       head={Helmet.rewind()}

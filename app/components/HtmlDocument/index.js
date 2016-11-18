@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import htmlescape from 'htmlescape';
 
 // We use this component only on the server side.
-export default function HtmlDocument({ lang, head, css, appContent, state, assets, webpackDllNames }) {
+export default function HtmlDocument({ lang, head, css, appMarkup, state, assets, webpackDllNames }) {
   const attrs = head.htmlAttributes.toComponent();
   return (
     <html lang={lang} {...attrs}>
@@ -18,8 +18,10 @@ export default function HtmlDocument({ lang, head, css, appContent, state, asset
         {head.title.toComponent()}
         {head.meta.toComponent()}
 
-        {/* external css. TODO: figure out how to use hashed name */}
+        {/* vendor.css */}
         <link href={assets.main.css} rel="stylesheet" />
+
+        {/* app css */}
         <style type="text/css" dangerouslySetInnerHTML={{ __html: css }} />
       </head>
       <body>
@@ -30,8 +32,11 @@ export default function HtmlDocument({ lang, head, css, appContent, state, asset
         </noscript>
 
         <div id="app">
-          <div dangerouslySetInnerHTML={{ __html: appContent }} />
+          {/* our app markup */}
+          <div dangerouslySetInnerHTML={{ __html: appMarkup }} />
         </div>
+
+        {/* our app state */}
         <script dangerouslySetInnerHTML={{ __html: `APP_STATE = ${htmlescape(state)}` }} />
 
         {/* dev only */}
@@ -42,6 +47,7 @@ export default function HtmlDocument({ lang, head, css, appContent, state, asset
         {/* our app code */}
         <script type="text/javascript" src={assets.main.js}></script>
 
+        {/* see app/openSansObserver.js */}
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" />
       </body>
     </html>
@@ -52,7 +58,7 @@ HtmlDocument.propTypes = {
   lang: PropTypes.string.isRequired,
   head: PropTypes.object.isRequired,
   css: PropTypes.string.isRequired,
-  appContent: PropTypes.string.isRequired,
+  appMarkup: PropTypes.string.isRequired,
   state: PropTypes.object.isRequired,
   assets: PropTypes.shape({
     main: PropTypes.shape({
