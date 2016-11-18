@@ -18,15 +18,16 @@ import 'file?name=[name].[ext]!./.htaccess';
 // Import CSS reset
 import 'sanitize.css/sanitize.css';
 
+import syncHistoryWithStore from 'setup/syncHistoryWithStore';
+import ensureIntlSupport from 'setup/ensureIntlSupport';
+import 'setup/openSansObserver';
+
 // Import all the third party stuff
 import { browserHistory } from 'react-router';
 import configureStore from './store';
-import syncHistoryWithStore from './syncHistoryWithStore';
 import renderInBrowser from './renderInBrowser';
-import ensureIntlSupport from './ensureIntlSupport';
 import createRoutes from './routes';
 import { translationMessages as messages } from './i18n';
-import './openSansObserver';
 
 // The initial state of the app can be set on the server
 const initialState = window.APP_STATE || {};

@@ -2,7 +2,7 @@ jest.mock('react-dom/server');
 jest.mock('react-router');
 jest.mock('styled-components/lib/models/StyleSheet');
 jest.mock('react-helmet');
-jest.mock('../syncHistoryWithStore');
+jest.mock('setup/syncHistoryWithStore');
 
 import { match } from 'react-router';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
@@ -12,7 +12,7 @@ import AppContainer from 'containers/AppContainer';
 
 import styleSheet from 'styled-components/lib/models/StyleSheet';
 
-import syncHistoryWithStore from '../syncHistoryWithStore';
+import syncHistoryWithStore from 'setup/syncHistoryWithStore';
 
 import serverSideRenderAppToStringAtLocation from '../serverSideRenderAppToStringAtLocation';
 

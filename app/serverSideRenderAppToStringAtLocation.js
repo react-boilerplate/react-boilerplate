@@ -14,8 +14,9 @@ import createRoutes from 'routes';
 import HtmlDocument from 'components/HtmlDocument';
 import AppContainer from 'containers/AppContainer';
 
+import syncHistoryWithStore from 'setup/syncHistoryWithStore';
+
 import { translationMessages } from './i18n';
-import syncHistoryWithStore from './syncHistoryWithStore';
 
 function renderAppToString(store, renderProps) {
   return renderToString(
