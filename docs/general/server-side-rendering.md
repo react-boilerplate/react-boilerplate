@@ -9,7 +9,7 @@ Webpack takes care of that with `target` option set to `"node"`.
 
 The entry point for the server webpack build is `app/serverSideRenderAppToStringAtLocation.js`.
 Webpack will generate a couple of files and place them in `server/middleware`. The names of these files will
-start with `"generated."`. They shouldn't be added to the repository (git).
+start with `"generated."`. They shouldn't be checked into git.
 
 In production mode the web server will use the generated files directly to create a pre-rendered version of
 the requested page.
