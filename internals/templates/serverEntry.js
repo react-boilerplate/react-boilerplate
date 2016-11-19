@@ -1,4 +1,11 @@
-/* eslint-disable react/jsx-filename-extension */
+/**
+ * Server side rendering application entry module.
+ *
+ * This module is being transpiled by webpack and placed under
+ * server/middlewares/ as `generated.serverEntry.js`.
+ *
+ * The server uses it to render the app at given location.
+ */
 import 'babel-polyfill'; // for regeneratorRuntime
 
 import React from 'react';
@@ -13,10 +20,11 @@ import createRoutes from 'routes';
 
 import HtmlDocument from 'components/HtmlDocument';
 import AppRoot from 'containers/AppRoot';
+import { changeLocale } from 'containers/LanguageProvider/actions';
 
 import syncHistoryWithStore from 'setup/syncHistoryWithStore';
 
-import { translationMessages } from './i18n';
+import { appLocales, translationMessages } from './i18n';
 
 function renderAppToString(store, renderProps) {
   return renderToString(
@@ -80,7 +88,7 @@ function is404(routes) {
   return routes.some((r) => r.name === 'notfound');
 }
 
-module.exports = function serverSideRenderAppToStringAtLocation(url, { webpackDllNames = [], assets }, callback) {
+function renderAppToStringAtLocation(url, { webpackDllNames = [], assets, lang }, callback) {
   const memHistory = createMemoryHistory(url);
   const store = createStore({}, memHistory);
 
@@ -89,6 +97,8 @@ module.exports = function serverSideRenderAppToStringAtLocation(url, { webpackDl
   const routes = createRoutes(store);
 
   const sagasDone = monitorSagas(store);
+
+  store.dispatch(changeLocale(lang));
 
   match({ routes, location: url }, (error, redirectLocation, renderProps) => {
     if (error) {
@@ -106,4 +116,9 @@ module.exports = function serverSideRenderAppToStringAtLocation(url, { webpackDl
       callback({ error: new Error('Unknown error') });
     }
   });
+}
+
+export {
+  appLocales,
+  renderAppToStringAtLocation,
 };

@@ -3,8 +3,8 @@ require('isomorphic-fetch');
 
 const assets = require('./generated.assets.json'); // eslint-disable-line import/no-unresolved
 
-const serverEntry = require('./generated.serverSideRenderAppToStringAtLocation'); // eslint-disable-line import/no-unresolved
-const serverSideRenderAppToStringAtLocation = serverEntry.serverSideRenderAppToStringAtLocation;
+const serverEntry = require('./generated.serverEntry'); // eslint-disable-line import/no-unresolved
+const renderAppToStringAtLocation = serverEntry.renderAppToStringAtLocation;
 const appLocales = serverEntry.appLocales;
 
 function extractWebpackDllNamesFromPackage() {
@@ -25,7 +25,7 @@ module.exports = function handleSSR(req, res) {
     lang: req.acceptsLanguages(appLocales),
   };
 
-  serverSideRenderAppToStringAtLocation(req.url, options, (response) => {
+  renderAppToStringAtLocation(req.url, options, (response) => {
     if (response.error) {
       res.status(500).send(response.error.message);
       printError(response.error);

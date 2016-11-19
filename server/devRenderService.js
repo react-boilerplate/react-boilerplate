@@ -12,19 +12,19 @@ const chalk = require('chalk');
 const debug = console.log.bind(console, chalk.cyan('[ssr service]'));
 
 function ensureAllGeneratedFilesExist() {
-  const filenames = [
+  const modules = [
     path.join(__dirname, 'middlewares', 'generated.assets.json'),
-    path.join(__dirname, 'middlewares', 'generated.serverSideRenderAppToStringAtLocation'),
+    path.join(__dirname, 'middlewares', 'generated.serverEntry'),
   ];
 
-  let filename;
+  let modulePath;
   try {
-    for (filename of filenames) {
-      require(filename);
+    for (modulePath of modules) {
+      require(modulePath);
     }
   } catch (e) {
     if (e.code === 'MODULE_NOT_FOUND') {
-      debug(chalk.gray(`...waiting for '${filename}'`));
+      debug(chalk.gray(`...waiting for '${modulePath}'`));
       process.exit(1);
     } else {
       throw e;

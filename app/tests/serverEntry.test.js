@@ -3,6 +3,7 @@ jest.mock('react-router');
 jest.mock('styled-components/lib/models/StyleSheet');
 jest.mock('react-helmet');
 jest.mock('setup/syncHistoryWithStore');
+jest.mock('components/HtmlDocument');
 
 import { match } from 'react-router';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
@@ -14,7 +15,7 @@ import styleSheet from 'styled-components/lib/models/StyleSheet';
 
 import syncHistoryWithStore from 'setup/syncHistoryWithStore';
 
-import serverSideRenderAppToStringAtLocation from '../serverSideRenderAppToStringAtLocation';
+import { renderAppToStringAtLocation } from '../serverEntry';
 
 describe('rendering to string', () => {
   const url = 'http://www.example.com/user/tomazy';
@@ -37,14 +38,14 @@ describe('rendering to string', () => {
   });
 
   it('should resolve route for the given url', () => {
-    serverSideRenderAppToStringAtLocation(url, options, callback);
+    renderAppToStringAtLocation(url, options, callback);
     expect(match).toHaveBeenCalledTimes(1);
     const args = match.mock.calls[0];
     expect(args[0].location).toEqual(url);
   });
 
   it('should sync the router state', () => {
-    serverSideRenderAppToStringAtLocation(url, options, callback);
+    renderAppToStringAtLocation(url, options, callback);
     expect(syncHistoryWithStore).toHaveBeenCalledTimes(1);
   });
 
@@ -52,7 +53,7 @@ describe('rendering to string', () => {
     let matchCallback;
 
     beforeEach(() => {
-      serverSideRenderAppToStringAtLocation(url, options, callback);
+      renderAppToStringAtLocation(url, options, callback);
       const args = match.mock.calls[0];
       matchCallback = args[1];
     });

@@ -82,7 +82,7 @@ cp('internals/templates/store.js', 'app/store.js');
 cp('internals/templates/store.test.js', 'app/tests/store.test.js');
 cp('internals/templates/setup/*.js', 'app/setup');
 cp('internals/templates/renderInBrowser.js', 'app/renderInBrowser.js');
-cp('internals/templates/serverSideRenderAppToStringAtLocation.js', 'app/serverSideRenderAppToStringAtLocation.js');
+cp('internals/templates/serverEntry.js', 'app/serverEntry.js');
 
 // Remove the templates folder
 rm('-rf', 'internals/templates');

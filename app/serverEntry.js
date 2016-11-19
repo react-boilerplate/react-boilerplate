@@ -1,4 +1,11 @@
-/* eslint-disable react/jsx-filename-extension */
+/**
+ * Server side rendering application entry module.
+ *
+ * This module is being transpiled by webpack and placed under
+ * server/middlewares/ as `generated.serverEntry.js`.
+ *
+ * The server uses it to render the app at given location.
+ */
 import 'babel-polyfill'; // for regeneratorRuntime
 
 import React from 'react';
@@ -81,7 +88,7 @@ function is404(routes) {
   return routes.some((r) => r.name === 'notfound');
 }
 
-function serverSideRenderAppToStringAtLocation(url, { webpackDllNames = [], assets, lang }, callback) {
+function renderAppToStringAtLocation(url, { webpackDllNames = [], assets, lang }, callback) {
   const memHistory = createMemoryHistory(url);
   const store = createStore({}, memHistory);
 
@@ -113,5 +120,5 @@ function serverSideRenderAppToStringAtLocation(url, { webpackDllNames = [], asse
 
 export {
   appLocales,
-  serverSideRenderAppToStringAtLocation,
+  renderAppToStringAtLocation,
 };

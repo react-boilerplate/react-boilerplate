@@ -11,11 +11,11 @@ module.exports = {
   target: 'node',
   externals: [nodeExternals()],
   entry: [
-    path.join(process.cwd(), 'app/serverSideRenderAppToStringAtLocation.js'),
+    path.join(process.cwd(), 'app/serverEntry.js'),
   ],
   output: {
     path: outputPath,
-    filename: 'generated.serverSideRenderAppToStringAtLocation.js',
+    filename: 'generated.serverEntry.js',
     publicPath: '/',
     libraryTarget: 'commonjs2',
   },
