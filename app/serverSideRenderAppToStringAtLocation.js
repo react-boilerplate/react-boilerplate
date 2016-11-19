@@ -43,7 +43,9 @@ async function renderHtmlDocument({ store, renderProps, sagasDone, assets, webpa
   const appMarkup = renderAppToString(store, renderProps);
 
   // capture the generated css
-  const css = styleSheet.rules().map((rule) => rule.cssText).join('\n');
+  const css = styleSheet.injected
+    ? styleSheet.rules().map((rule) => rule.cssText).join('\n')
+    : '';
 
   const doc = renderToStaticMarkup(
     <HtmlDocument
