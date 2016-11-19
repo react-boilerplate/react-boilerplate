@@ -11,6 +11,10 @@ function extractWebpackDllNamesFromPackage() {
   return dllPlugin.dlls ? Object.keys(dllPlugin.dlls) : ['reactBoilerplateDeps'];
 }
 
+function printError(e) {
+  console.error((e.stack && e.stack) || e); // eslint-disable-line no-console
+}
+
 module.exports = function handleSSR(req, res) {
   const options = {
     assets,
@@ -20,6 +24,7 @@ module.exports = function handleSSR(req, res) {
   serverSideRenderAppToStringAtLocation(req.url, options, (response) => {
     if (response.error) {
       res.status(500).send(response.error.message);
+      printError(response.error);
     } else if (response.redirectLocation) {
       res.redirect(302, response.redirectLocation);
     } else if (response.notFound) {
