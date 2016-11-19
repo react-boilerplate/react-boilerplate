@@ -1,8 +1,11 @@
 /* eslint-disable global-require */
 require('isomorphic-fetch');
 
-const serverSideRenderAppToStringAtLocation = require('./generated.serverSideRenderAppToStringAtLocation'); // eslint-disable-line import/no-unresolved
 const assets = require('./generated.assets.json'); // eslint-disable-line import/no-unresolved
+
+const serverEntry = require('./generated.serverSideRenderAppToStringAtLocation'); // eslint-disable-line import/no-unresolved
+const serverSideRenderAppToStringAtLocation = serverEntry.serverSideRenderAppToStringAtLocation;
+const appLocales = serverEntry.appLocales;
 
 function extractWebpackDllNamesFromPackage() {
   if (process.env.NODE_ENV === 'production') return [];
@@ -19,6 +22,7 @@ module.exports = function handleSSR(req, res) {
   const options = {
     assets,
     webpackDllNames: extractWebpackDllNamesFromPackage(),
+    lang: req.acceptsLanguages(appLocales),
   };
 
   serverSideRenderAppToStringAtLocation(req.url, options, (response) => {
