@@ -35,10 +35,10 @@ export class App extends React.Component {
     this.unsubscribeHistory = this.props.router.listen(() => this.setState({ progress: 0 }));
   }
 
-  componentDidUpdate() {
-    // Add a condition to prevent infinite loop.
-    if (this.state.progress !== 100) {
-      this.setState({ // eslint-disable-line
+  componentWillReceiveProps(newProps) {
+    // Official Docs on `componentWillReceiveProps()` - https://goo.gl/Yu1tYL
+    if (newProps.location.pathname === this.props.location.pathname) {
+      this.setState({
         progress: 100,
       });
     }
@@ -71,6 +71,7 @@ export class App extends React.Component {
 App.propTypes = {
   children: React.PropTypes.node,
   router: React.PropTypes.object,
+  location: React.PropTypes.object,
 };
 
 export default withRouter(App);
