@@ -84,7 +84,7 @@ describe('<ProgressBar />', () => {
       <ProgressBar percent={0} />
     );
     renderedComponent.setProps({ percent: 100 });
-    clock.tick(401);
+    clock.tick(501);
     expect(renderedComponent.state().percent).toEqual(-1);
   });
 
