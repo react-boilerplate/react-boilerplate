@@ -37,7 +37,7 @@ export class App extends React.Component {
 
   componentWillReceiveProps(newProps) {
     // Official Docs on `componentWillReceiveProps()` - https://goo.gl/Yu1tYL
-    if (newProps.location.pathname === this.props.location.pathname) {
+    if (newProps.location.pathname === this.props.location.pathname && this.state.progress !== 100) {
       this.setState({
         progress: 100,
       });
