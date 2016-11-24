@@ -15,19 +15,30 @@ import {
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
 } from './constants';
-import { fromJS } from 'immutable';
+import { Record } from 'immutable';
 
-// The initial state of the App
-const initialState = fromJS({
+// A Record is an immutable similar to Map, but can be accessed
+// with dot notation
+// see https://facebook.github.io/immutable-js/docs/#/Record
+const UserDataRecord = Record({ // eslint-disable-line
+  repositories: false,
+},
+'UserData'
+);
+
+const GlobalRecord = Record({ // eslint-disable-line
   loading: false,
   error: false,
   currentUser: false,
-  userData: fromJS({
-    repositories: false,
-  }),
-});
+  userData: new UserDataRecord({}),
+},
+'GlobalRecord'
+);
 
-function homeReducer(state = initialState, action) {
+// The initial state of the App initialised by default record
+const initialState = new GlobalRecord({});
+
+function globalReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_REPOS:
       return state
@@ -48,4 +59,4 @@ function homeReducer(state = initialState, action) {
   }
 }
 
-export default homeReducer;
+export default globalReducer;
