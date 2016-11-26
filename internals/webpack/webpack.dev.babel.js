@@ -22,7 +22,7 @@ const plugins = [
   new CircularDependencyPlugin({
     exclude: /a\.js|node_modules/, // exclude node_modules
     failOnError: false, // show a warning when there is a circular dependency
-  })
+  }),
 ];
 
 module.exports = require('./webpack.base.babel')({
