@@ -152,8 +152,8 @@
       "redux-saga/no-yield-in-race": 2,
       "redux-saga/yield-effects": 2,
       "require-yield": 0,
-      "import/no-webpack-loader-syntax": 0,
-      "import/first": 0,
+      "import/no-webpack-loader-syntax": 2,
+      "import/first": 2,
       "no-restricted-syntax": 0
     },
     "settings": {

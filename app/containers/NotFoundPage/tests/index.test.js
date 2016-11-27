@@ -2,10 +2,10 @@
  * Testing the NotFoundPage
  */
 
-import { shallow } from 'enzyme';
 import React from 'react';
-
+import { shallow } from 'enzyme';
 import { FormattedMessage } from 'react-intl';
+
 import NotFound from '../index';
 import H1 from 'components/H1';
 

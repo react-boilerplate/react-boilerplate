@@ -58,6 +58,9 @@ module.exports = (options) => ({
       query: {
         limit: 10000,
       },
+    }, {
+      test: /^(manifest.json|favicon.ico|.htaccess)$/,
+      loader: 'file-loader?name=[name].[ext]',
     }],
   },
   plugins: options.plugins.concat([

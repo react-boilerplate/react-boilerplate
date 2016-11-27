@@ -8,13 +8,6 @@
 // Needed for redux-saga es6 generator support
 import 'babel-polyfill';
 
-/* eslint-disable import/no-unresolved, import/extensions */
-// Load the favicon, the manifest.json file and the .htaccess file
-import 'file?name=[name].[ext]!./favicon.ico';
-import '!file?name=[name].[ext]!./manifest.json';
-import 'file?name=[name].[ext]!./.htaccess';
-/* eslint-enable import/no-unresolved, import/extensions */
-
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -23,13 +16,24 @@ import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import { useScroll } from 'react-router-scroll';
+import 'sanitize.css/sanitize.css';
+
 import configureStore from './store';
+
+/* eslint-disable import/extensions */
+// Load the favicon, the manifest.json file and the .htaccess file
+import './favicon.ico';
+import './manifest.json';
+import './.htaccess';
+/* eslint-enable import/extensions */
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
 
+// Import i18n messages
+import { translationMessages } from './i18n';
+
 // Import CSS reset and Global Styles
-import 'sanitize.css/sanitize.css';
 import './global-styles';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
@@ -42,9 +46,6 @@ openSansObserver.load().then(() => {
 }, () => {
   document.body.classList.remove('fontLoaded');
 });
-
-// Import i18n messages
-import { translationMessages } from './i18n';
 
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router

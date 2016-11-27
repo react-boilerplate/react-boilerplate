@@ -4,7 +4,6 @@
 
 import { takeLatest } from 'redux-saga';
 import { take, put, fork } from 'redux-saga/effects';
-
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import { getRepos, getReposWatcher, githubData } from '../sagas';

@@ -5,10 +5,11 @@
 import { takeLatest } from 'redux-saga';
 import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { LOAD_REPOS } from 'containers/App/constants';
-import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
+
+import { LOAD_REPOS } from 'containers/App/constants';
+import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 import { selectUsername } from 'containers/HomePage/selectors';
 
 /**

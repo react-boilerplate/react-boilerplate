@@ -2,10 +2,10 @@
  * Test the repo list item
  */
 
-import { shallow, render } from 'enzyme';
 import React from 'react';
-
+import { shallow, render } from 'enzyme';
 import { IntlProvider } from 'react-intl';
+
 import { RepoListItem } from '../index';
 import ListItem from 'components/ListItem';
 

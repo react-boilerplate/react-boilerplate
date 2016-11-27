@@ -1,7 +1,8 @@
+import { fromJS } from 'immutable';
+
 import {
   selectLanguage,
 } from '../selectors';
-import { fromJS } from 'immutable';
 
 describe('selectLanguage', () => {
   const globalSelector = selectLanguage();
