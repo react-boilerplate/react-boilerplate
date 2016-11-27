@@ -36,6 +36,13 @@ import { translationMessages } from './i18n';
 // Import CSS reset and Global Styles
 import './global-styles';
 
+// Import selector for `syncHistoryWithStore`
+import { selectLocationState } from 'containers/App/selectors';
+
+// Import root app and routes
+import App from 'containers/App';
+import createRoutes from './routes';
+
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
 const openSansObserver = new FontFaceObserver('Open Sans', {});
@@ -57,14 +64,11 @@ const store = configureStore(initialState, browserHistory);
 // Sync history and store, as the react-router-redux reducer
 // is under the non-default key ("routing"), selectLocationState
 // must be provided for resolving how to retrieve the "route" in the state
-import { selectLocationState } from 'containers/App/selectors';
 const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: selectLocationState(),
 });
 
 // Set up the router, wrapping all Routes in the App component
-import App from 'containers/App';
-import createRoutes from './routes';
 const rootRoute = {
   component: App,
   childRoutes: createRoutes(store),
