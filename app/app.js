@@ -21,7 +21,7 @@ import 'sanitize.css/sanitize.css';
 import configureStore from './store';
 
 // Load the favicon, the manifest.json file and the .htaccess file
-/* eslint-disable-line import/no-webpack-loader-syntax */
+/* eslint-disable import/no-webpack-loader-syntax */
 import '!file?name=[name].[ext]!./favicon.ico';
 import '!file?name=[name].[ext]!./manifest.json';
 import 'file?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/extensions
