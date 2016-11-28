@@ -1,5 +1,5 @@
 import React from 'react';
-import expect from 'expect';
+
 import { shallow } from 'enzyme';
 
 import CenteredSection from '../CenteredSection';
@@ -12,7 +12,7 @@ describe('<CenteredSection />', () => {
 
   it('should have a className attribute', () => {
     const renderedComponent = shallow(<CenteredSection />);
-    expect(renderedComponent.prop('className')).toExist();
+    expect(renderedComponent.prop('className')).toBeDefined();
   });
 
   it('should adopt a valid attribute', () => {
@@ -23,6 +23,6 @@ describe('<CenteredSection />', () => {
 
   it('should not adopt an invalid attribute', () => {
     const renderedComponent = shallow(<CenteredSection attribute={'test'} />);
-    expect(renderedComponent.prop('attribute')).toNotExist();
+    expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

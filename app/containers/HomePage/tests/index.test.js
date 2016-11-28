@@ -2,7 +2,6 @@
  * Test the HomePage
  */
 
-import expect from 'expect';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 
@@ -19,7 +18,7 @@ describe('<HomePage />', () => {
     const renderedComponent = shallow(
       <HomePage loading />
     );
-    expect(renderedComponent.contains(<List component={LoadingIndicator} />)).toEqual(true);
+    expect(renderedComponent.contains(<List component={LoadingIndicator} />)).toBe(true);
   });
 
   it('should render an error if loading failed', () => {
@@ -39,7 +38,7 @@ describe('<HomePage />', () => {
   });
 
   it('should render fetch the repos on mount if a username exists', () => {
-    const submitSpy = expect.createSpy();
+    const submitSpy = jest.fn();
     mount(
       <IntlProvider locale="en">
         <HomePage
@@ -75,13 +74,13 @@ describe('<HomePage />', () => {
   describe('mapDispatchToProps', () => {
     describe('onChangeUsername', () => {
       it('should be injected', () => {
-        const dispatch = expect.createSpy();
+        const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
-        expect(result.onChangeUsername).toExist();
+        expect(result.onChangeUsername).toBeDefined();
       });
 
       it('should dispatch changeUsername when called', () => {
-        const dispatch = expect.createSpy();
+        const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
         const username = 'mxstbr';
         result.onChangeUsername({ target: { value: username } });
@@ -92,20 +91,20 @@ describe('<HomePage />', () => {
 
   describe('onSubmitForm', () => {
     it('should be injected', () => {
-      const dispatch = expect.createSpy();
+      const dispatch = jest.fn();
       const result = mapDispatchToProps(dispatch);
-      expect(result.onSubmitForm).toExist();
+      expect(result.onSubmitForm).toBeDefined();
     });
 
     it('should dispatch loadRepos when called', () => {
-      const dispatch = expect.createSpy();
+      const dispatch = jest.fn();
       const result = mapDispatchToProps(dispatch);
       result.onSubmitForm();
       expect(dispatch).toHaveBeenCalledWith(loadRepos());
     });
 
     it('should preventDefault if called with event', () => {
-      const preventDefault = expect.createSpy();
+      const preventDefault = jest.fn();
       const result = mapDispatchToProps(() => {});
       const evt = { preventDefault };
       result.onSubmitForm(evt);
