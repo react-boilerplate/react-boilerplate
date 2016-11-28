@@ -153,8 +153,7 @@
       "redux-saga/yield-effects": 2,
       "require-yield": 0,
       "import/no-webpack-loader-syntax": 0,
-      "import/first": 0,
-      "no-restricted-syntax": 0
+      "import/first": 0
     },
     "settings": {
       "import/resolver": {
