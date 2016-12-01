@@ -80,8 +80,8 @@ should not need to be touched.
 
 ### CSS
 
-Utilising [tagged template literals](./docs/tagged-template-literals.md)
-(a recent addition to JavaScript) and the [power of CSS](./docs/css-we-support.md),
+Utilising [tagged template literals](https://github.com/styled-components/styled-components/blob/master/docs/tagged-template-literals.md)
+(a recent addition to JavaScript) and the [power of CSS](https://github.com/styled-components/styled-components/blob/master/docs/css-we-support.md),
 `styled-components` allows you to write actual CSS code to style your components.
 It also removes the mapping between components and styles – using components as a
 low-level styling construct could not be easier!

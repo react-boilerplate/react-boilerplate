@@ -136,6 +136,7 @@
       "jsx-a11y/role-supports-aria-props": 2,
       "max-len": 0,
       "newline-per-chained-call": 0,
+      "no-confusing-arrow": 0,
       "no-console": 1,
       "no-use-before-define": 0,
       "prefer-template": 2,
@@ -153,13 +154,12 @@
       "redux-saga/yield-effects": 2,
       "require-yield": 0,
       "import/no-webpack-loader-syntax": 0,
-      "import/first": 0,
-      "no-restricted-syntax": 0
+      "import/first": 0
     },
     "settings": {
       "import/resolver": {
         "webpack": {
-          "config": "./internals/webpack/webpack.dev.babel.js"
+          "config": "./internals/webpack/webpack.prod.babel.js"
         }
       }
     }
@@ -263,6 +263,7 @@
     "file-loader": "0.9.0",
     "html-loader": "0.4.4",
     "html-webpack-plugin": "2.24.1",
+    "circular-dependency-plugin": "2.0.0",
     "image-webpack-loader": "3.0.0",
     "imports-loader": "0.6.5",
     "jest-cli": "17.0.3",
