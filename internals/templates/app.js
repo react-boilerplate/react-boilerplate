@@ -4,6 +4,8 @@
  * This is the entry file for the application, only setup and boilerplate
  * code.
  */
+
+// Needed for redux-saga es6 generator support
 import 'babel-polyfill';
 
 // Import all the third party stuff
@@ -13,31 +15,27 @@ import { Provider } from 'react-redux';
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { useScroll } from 'react-router-scroll';
-
-// Install ServiceWorker and AppCache in the end since
-// it's not most important operation and if main code fails,
-// we do not want it installed
-import { install } from 'offline-plugin/runtime';
-
-// Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import 'sanitize.css/sanitize.css';
 
-/* eslint-disable import/no-unresolved, import/extensions, import/no-webpack-loader-syntax */
-// Load the manifest.json file and the .htaccess file
-import 'file?name=[name].[ext]!./favicon.ico';
-import '!file?name=[name].[ext]!./manifest.json';
-/* eslint-enable import/no-unresolved, import/extensions, import/no-webpack-loader-syntax */
-
-import LanguageProvider from 'containers/LanguageProvider';
 import configureStore from './store';
+
+// Load the favicon, the manifest.json file and the .htaccess file
+/* eslint-disable import/no-unresolved, import/extensions */
+import '!file?name=[name].[ext]!./favicon.ico';
+import '!file?name=[name].[ext]!./manifest.json';
+import 'file?name=[name].[ext]!./.htaccess';
+/* eslint-enable import/no-unresolved, import/extensions */
+
+// Import Language Provider
+import LanguageProvider from 'containers/LanguageProvider';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
 
-// Import selector for syncHistoryWithStore
+// Import selector for `syncHistoryWithStore`
 import { selectLocationState } from 'containers/App/selectors';
 
-// Import root App and route creator
+// Import root app and routes
 import App from 'containers/App';
 import createRoutes from './routes';
 
@@ -61,10 +59,10 @@ const rootRoute = {
   childRoutes: createRoutes(store),
 };
 
-const render = (translatedMessages) => {
+const render = (messages) => {
   ReactDOM.render(
     <Provider store={store}>
-      <LanguageProvider messages={translatedMessages}>
+      <LanguageProvider messages={messages}>
         <Router
           history={history}
           routes={rootRoute}
@@ -79,7 +77,6 @@ const render = (translatedMessages) => {
     document.getElementById('app')
   );
 };
-
 
 // Hot reloadable translation json files
 if (module.hot) {
@@ -96,6 +93,7 @@ if (!window.Intl) {
     resolve(System.import('intl'));
   }))
     .then(() => Promise.all([
+      System.import('intl/locale-data/jsonp/en.js'),
       System.import('intl/locale-data/jsonp/de.js'),
     ]))
     .then(() => render(translationMessages))
@@ -106,4 +104,9 @@ if (!window.Intl) {
   render(translationMessages);
 }
 
-install();
+// Install ServiceWorker and AppCache in the end since
+// it's not most important operation and if main code fails,
+// we do not want it installed
+if (process.env.NODE_ENV === 'production') {
+  require('offline-plugin/runtime').install(); // eslint-disable-line global-require
+}
