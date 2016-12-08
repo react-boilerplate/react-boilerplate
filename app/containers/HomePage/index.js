@@ -23,8 +23,8 @@ import Section from './Section';
 import messages from './messages';
 import { loadRepos } from '../App/actions';
 import { changeUsername } from './actions';
-import { selectUsername } from './selectors';
-import { selectRepos, selectLoading, selectError } from 'containers/App/selectors';
+import { makeSelectUsername } from './selectors';
+import { makeSelectRepos, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
@@ -125,10 +125,10 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  repos: selectRepos(),
-  username: selectUsername(),
-  loading: selectLoading(),
-  error: selectError(),
+  repos: makeSelectRepos(),
+  username: makeSelectUsername(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
 });
 
 // Wrap the component to inject dispatch and state into it
