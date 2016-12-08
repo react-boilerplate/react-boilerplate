@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 {{/if}}
 {{#if wantActionsAndReducer}}
-import select{{properCase name}} from './selectors';
+import makeSelect{{properCase name}} from './selectors';
 {{/if}}
 {{#if wantMessages}}
 import { FormattedMessage } from 'react-intl';
@@ -38,7 +38,7 @@ export class {{ properCase name }} extends React.{{{ component }}} { // eslint-d
 }
 
 {{#if wantActionsAndReducer}}
-const mapStateToProps = select{{properCase name}}();
+const mapStateToProps = makeSelect{{properCase name}}();
 {{/if}}
 
 function mapDispatchToProps(dispatch) {
