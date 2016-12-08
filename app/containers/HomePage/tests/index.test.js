@@ -6,12 +6,12 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { IntlProvider } from 'react-intl';
 
-import { HomePage, mapDispatchToProps } from '../index';
-import { changeUsername } from '../actions';
-import { loadRepos } from '../../App/actions';
 import RepoListItem from 'containers/RepoListItem';
 import List from 'components/List';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { HomePage, mapDispatchToProps } from '../index';
+import { changeUsername } from '../actions';
+import { loadRepos } from '../../App/actions';
 
 describe('<HomePage />', () => {
   it('should render the loading indicator when its loading', () => {

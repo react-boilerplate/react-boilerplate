@@ -18,7 +18,14 @@ import FontFaceObserver from 'fontfaceobserver';
 import { useScroll } from 'react-router-scroll';
 import 'sanitize.css/sanitize.css';
 
-import configureStore from './store';
+// Import root app
+import App from 'containers/App';
+
+// Import selector for `syncHistoryWithStore`
+import { selectLocationState } from 'containers/App/selectors';
+
+// Import Language Provider
+import LanguageProvider from 'containers/LanguageProvider';
 
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable import/no-webpack-loader-syntax */
@@ -27,8 +34,7 @@ import '!file?name=[name].[ext]!./manifest.json';
 import 'file?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/extensions
 /* eslint-enable import/no-webpack-loader-syntax */
 
-// Import Language Provider
-import LanguageProvider from 'containers/LanguageProvider';
+import configureStore from './store';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
@@ -36,11 +42,7 @@ import { translationMessages } from './i18n';
 // Import CSS reset and Global Styles
 import './global-styles';
 
-// Import selector for `syncHistoryWithStore`
-import { selectLocationState } from 'containers/App/selectors';
-
-// Import root app and routes
-import App from 'containers/App';
+// Import routes
 import createRoutes from './routes';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in

@@ -17,7 +17,14 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { useScroll } from 'react-router-scroll';
 import 'sanitize.css/sanitize.css';
 
-import configureStore from './store';
+// Import root app
+import App from 'containers/App';
+
+// Import selector for `syncHistoryWithStore`
+import { selectLocationState } from 'containers/App/selectors';
+
+// Import Language Provider
+import LanguageProvider from 'containers/LanguageProvider';
 
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable import/no-unresolved, import/extensions */
@@ -26,17 +33,12 @@ import '!file?name=[name].[ext]!./manifest.json';
 import 'file?name=[name].[ext]!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
-// Import Language Provider
-import LanguageProvider from 'containers/LanguageProvider';
+import configureStore from './store';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
 
-// Import selector for `syncHistoryWithStore`
-import { selectLocationState } from 'containers/App/selectors';
-
-// Import root app and routes
-import App from 'containers/App';
+// Import root routes
 import createRoutes from './routes';
 
 // Create redux store with history

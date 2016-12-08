@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import App from '../index';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import App from '../index';
 
 describe('<App />', () => {
   it('should render the header', () => {
