@@ -9,32 +9,14 @@ import { IntlProvider } from 'react-intl';
 import { HomePage, mapDispatchToProps } from '../index';
 import { changeUsername } from '../actions';
 import { loadRepos } from '../../App/actions';
-import RepoListItem from 'containers/RepoListItem';
-import List from 'components/List';
-import LoadingIndicator from 'components/LoadingIndicator';
+import ReposList from 'components/ReposList';
 
 describe('<HomePage />', () => {
-  it('should render the loading indicator when its loading', () => {
+  it('should render the repos list', () => {
     const renderedComponent = shallow(
-      <HomePage loading />
+      <HomePage loading error={false} repos={[]} />
     );
-    expect(renderedComponent.contains(<List component={LoadingIndicator} />)).toBe(true);
-  });
-
-  it('should render an error if loading failed', () => {
-    const renderedComponent = mount(
-      <IntlProvider locale="en">
-        <HomePage
-          loading={false}
-          error={{ message: 'Loading failed!' }}
-        />
-      </IntlProvider>
-    );
-    expect(
-      renderedComponent
-        .text()
-        .indexOf('Something went wrong, please try again!')
-      ).toBeGreaterThan(-1);
+    expect(renderedComponent.contains(<ReposList loading error={false} repos={[]} />)).toEqual(true);
   });
 
   it('should render fetch the repos on mount if a username exists', () => {
@@ -49,26 +31,6 @@ describe('<HomePage />', () => {
       </IntlProvider>
     );
     expect(submitSpy).toHaveBeenCalled();
-  });
-
-  it('should render the repositories if loading was successful', () => {
-    const repos = [{
-      owner: {
-        login: 'mxstbr',
-      },
-      html_url: 'https://github.com/mxstbr/react-boilerplate',
-      name: 'react-boilerplate',
-      open_issues_count: 20,
-      full_name: 'mxstbr/react-boilerplate',
-    }];
-    const renderedComponent = shallow(
-      <HomePage
-        repos={repos}
-        error={false}
-      />
-    );
-
-    expect(renderedComponent.contains(<List items={repos} component={RepoListItem} />)).toEqual(true);
   });
 
   describe('mapDispatchToProps', () => {
