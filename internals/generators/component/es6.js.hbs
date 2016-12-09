@@ -14,11 +14,7 @@ import messages from './messages';
 class {{ properCase name }} extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      {{#if wantCSS}}
-      <div className={{curly true}}styles.{{ camelCase name }}{{curly}}>
-      {{else}}
       <div>
-      {{/if}}
       {{#if wantMessages}}
         <FormattedMessage {...messages.header} />
       {{/if}}
