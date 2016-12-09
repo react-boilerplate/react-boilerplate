@@ -13,6 +13,7 @@ import { getRepos, getReposWatcher, githubData } from '../sagas';
 
 const username = 'mxstbr';
 
+/* eslint-disable redux-saga/yield-effects */
 describe('getRepos Saga', () => {
   let getReposGenerator;
 
