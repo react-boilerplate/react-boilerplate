@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { shallow, render } from 'enzyme';
 
 import IssueIcon from '../IssueIcon';

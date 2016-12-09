@@ -2,10 +2,10 @@
  * Testing our Button component
  */
 
-import Button from '../index';
-
-import { mount } from 'enzyme';
 import React from 'react';
+import { mount } from 'enzyme';
+
+import Button from '../index';
 
 const handleRoute = () => {};
 const href = 'http://mxstbr.com';

@@ -1,6 +1,5 @@
 import { fromJS } from 'immutable';
 
-
 import { makeSelectLocationState } from 'containers/App/selectors';
 
 describe('makeSelectLocationState', () => {

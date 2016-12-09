@@ -4,13 +4,12 @@
 
 import { takeLatest } from 'redux-saga';
 import { take, put, fork } from 'redux-saga/effects';
-
 import { LOCATION_CHANGE } from 'react-router-redux';
-
-import { getRepos, getReposWatcher, githubData } from '../sagas';
 
 import { LOAD_REPOS } from 'containers/App/constants';
 import { reposLoaded, repoLoadingError } from 'containers/App/actions';
+
+import { getRepos, getReposWatcher, githubData } from '../sagas';
 
 const username = 'mxstbr';
 

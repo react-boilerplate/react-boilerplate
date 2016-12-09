@@ -1,8 +1,8 @@
-import ToggleOption from '../index';
-
+import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { IntlProvider, defineMessages } from 'react-intl';
-import React from 'react';
+
+import ToggleOption from '../index';
 
 describe('<ToggleOption />', () => {
   it('should render default language messages', () => {
