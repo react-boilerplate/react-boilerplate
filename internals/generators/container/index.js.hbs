@@ -14,7 +14,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 {{/if}}
 {{#if wantActionsAndReducer}}
-import select{{properCase name}} from './selectors';
+import makeSelect{{properCase name}} from './selectors';
 {{/if}}
 
 export class {{ properCase name }} extends React.{{{ component }}} { // eslint-disable-line react/prefer-stateless-function
@@ -38,7 +38,7 @@ export class {{ properCase name }} extends React.{{{ component }}} { // eslint-d
 }
 
 {{#if wantActionsAndReducer}}
-const mapStateToProps = select{{properCase name}}();
+const mapStateToProps = makeSelect{{properCase name}}();
 {{/if}}
 
 function mapDispatchToProps(dispatch) {

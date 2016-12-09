@@ -22,7 +22,7 @@ import 'sanitize.css/sanitize.css';
 import App from 'containers/App';
 
 // Import selector for `syncHistoryWithStore`
-import { selectLocationState } from 'containers/App/selectors';
+import { makeSelectLocationState } from 'containers/App/selectors';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
@@ -67,7 +67,7 @@ const store = configureStore(initialState, browserHistory);
 // is under the non-default key ("routing"), selectLocationState
 // must be provided for resolving how to retrieve the "route" in the state
 const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState: selectLocationState(),
+  selectLocationState: makeSelectLocationState(),
 });
 
 // Set up the router, wrapping all Routes in the App component
