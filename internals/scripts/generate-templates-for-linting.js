@@ -11,7 +11,7 @@ const rimraf = require('rimraf');
 
 const xmark = require('./helpers/xmark');
 
-process.chdir(path.join(process.cwd(), 'internals/generators'));
+process.chdir(path.join(__dirname, '../generators'));
 
 const prettyStringify = (data) => JSON.stringify(data, null, 2);
 
