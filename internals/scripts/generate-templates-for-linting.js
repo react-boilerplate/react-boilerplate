@@ -1,3 +1,9 @@
+/**
+ * This script is for internal `react-boilerplate`'s usage. The only purpose of generating all of these templates is
+ * to be able to lint them and detect critical errors. Every generated component's name has to start with
+ * 'RbGenerated' so it can be easily excluded from the test coverage reports.
+ */
+
 const nodePlop = require('node-plop');
 const path = require('path');
 const chalk = require('chalk');
@@ -22,24 +28,24 @@ const reportErrorsFor = (title) => (err) => {
 };
 
 // Generated tests are designed to fail, which would in turn fail CI builds
-const removeTestsDir = (relativePath) => () => rimraf.sync(path.join(__dirname, '/../../app/', relativePath, '/tests'));
+const removeTestsDirFrom = (relativePath) => () => rimraf.sync(path.join(__dirname, '/../../app/', relativePath, '/tests'));
 
 const plop = nodePlop('./index');
 
 const componentGen = plop.getGenerator('component');
 const ComponentEsclass = componentGen.runActions({ name: 'RbGeneratedComponentEsclass', type: 'ES6 Class', wantMessages: true })
   .then(checkForErrors)
-  .then(removeTestsDir('components/RbGeneratedComponentEsclass'))
+  .then(removeTestsDirFrom('components/RbGeneratedComponentEsclass'))
   .catch(reportErrorsFor('component/ES6 Class'));
 
 componentGen.runActions({ name: 'RbGeneratedComponentEsclasspure', type: 'ES6 Class (Pure)', wantMessages: true })
   .then(checkForErrors)
-  .then(removeTestsDir('components/RbGeneratedComponentEsclasspure'))
+  .then(removeTestsDirFrom('components/RbGeneratedComponentEsclasspure'))
   .catch(reportErrorsFor('component/ES6 Class (Pure)'));
 
 componentGen.runActions({ name: 'RbGeneratedComponentStatelessfunction', type: 'Stateless Function', wantMessages: true })
   .then(checkForErrors)
-  .then(removeTestsDir('components/RbGeneratedComponentStatelessfunction'))
+  .then(removeTestsDirFrom('components/RbGeneratedComponentStatelessfunction'))
   .catch(reportErrorsFor('component/Stateless Function'));
 
 const containerGen = plop.getGenerator('container');
@@ -52,7 +58,7 @@ containerGen.runActions({
   wantMessages: true
 })
   .then(checkForErrors)
-  .then(removeTestsDir('containers/RbGeneratedContainerPureComponent'))
+  .then(removeTestsDirFrom('containers/RbGeneratedContainerPureComponent'))
   .catch(reportErrorsFor('container/PureComponent'));
 
 const ContainerComponent = containerGen.runActions({
@@ -64,7 +70,7 @@ const ContainerComponent = containerGen.runActions({
   wantMessages: true
 })
   .then(checkForErrors)
-  .then(removeTestsDir('containers/RbGeneratedContainerComponent'))
+  .then(removeTestsDirFrom('containers/RbGeneratedContainerComponent'))
   .catch(reportErrorsFor('container/Component'));
 
 const routeGen = plop.getGenerator('route');
