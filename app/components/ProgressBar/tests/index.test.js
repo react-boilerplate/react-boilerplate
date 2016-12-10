@@ -1,8 +1,10 @@
-import ProgressBar from '../index';
-import { ProgressBarWrapper, ProgressBarPercent } from '../styles';
+import React from 'react';
 import sinon from 'sinon';
 import { shallow, mount } from 'enzyme';
-import React from 'react';
+
+import ProgressBar from '../index';
+import { ProgressBarWrapper, ProgressBarPercent } from '../styles';
+
 let clock = null;
 
 describe('<ProgressBar />', () => {
