@@ -37,6 +37,7 @@ test_script:
   # Output debugging info
   - node --version
   - npm --version
+  - node ./internals/scripts/generate-templates-for-linting
   # run build and run tests
   - npm run build
 
