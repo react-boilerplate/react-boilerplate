@@ -1,10 +1,10 @@
-import { App } from '../index';
+import React from 'react';
+import { shallow } from 'enzyme';
+
+import ProgressBar from 'components/ProgressBar';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import ProgressBar from 'components/ProgressBar';
-
-import { shallow } from 'enzyme';
-import React from 'react';
+import App from '../index';
 
 describe('<App />', () => {
   it('should render the header', () => {

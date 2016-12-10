@@ -9,12 +9,12 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { FormattedNumber } from 'react-intl';
 
+import { makeSelectCurrentUser } from 'containers/App/selectors';
+import ListItem from 'components/ListItem';
 import IssueIcon from './IssueIcon';
 import IssueLink from './IssueLink';
-import ListItem from 'components/ListItem';
 import RepoLink from './RepoLink';
 import Wrapper from './Wrapper';
-import { makeSelectCurrentUser } from 'containers/App/selectors';
 
 export class RepoListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {

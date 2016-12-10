@@ -9,12 +9,12 @@ import { connect } from 'react-redux';
 {{#if wantHeaders}}
 import Helmet from 'react-helmet';
 {{/if}}
-{{#if wantActionsAndReducer}}
-import makeSelect{{properCase name}} from './selectors';
-{{/if}}
 {{#if wantMessages}}
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+{{/if}}
+{{#if wantActionsAndReducer}}
+import makeSelect{{properCase name}} from './selectors';
 {{/if}}
 
 export class {{ properCase name }} extends React.{{{ component }}} { // eslint-disable-line react/prefer-stateless-function

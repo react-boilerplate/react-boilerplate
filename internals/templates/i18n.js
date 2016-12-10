@@ -5,15 +5,14 @@
  *
  */
 import { addLocaleData } from 'react-intl';
-import { DEFAULT_LOCALE } from './containers/App/constants'; // eslint-disable-line
-
 import enLocaleData from 'react-intl/locale-data/en';
+
+import { DEFAULT_LOCALE } from './containers/App/constants'; // eslint-disable-line
+import enTranslationMessages from './translations/en.json';
 
 export const appLocales = [
   'en',
 ];
-
-import enTranslationMessages from './translations/en.json';
 
 addLocaleData(enLocaleData);
 
