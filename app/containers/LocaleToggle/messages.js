@@ -4,18 +4,14 @@
  * This contains all the text for the LanguageToggle component.
  */
 import { defineMessages } from 'react-intl';
-import { appLocales } from '../../i18n';
 
-export function getLocaleMessages(locales) {
-  return locales.reduce((messages, locale) =>
-    Object.assign(messages, {
-      [locale]: {
-        id: `boilerplate.containers.LocaleToggle.${locale}`,
-        defaultMessage: `${locale}`,
-      },
-    }), {});
-}
-
-export default defineMessages(
-  getLocaleMessages(appLocales)
-);
+export default defineMessages({
+  en: {
+    id: 'boilerplate.containers.LocaleToggle.en',
+    defaultMessage: 'en',
+  },
+  de: {
+    id: 'boilerplate.containers.LocaleToggle.de',
+    defaultMessage: 'de',
+  },
+});

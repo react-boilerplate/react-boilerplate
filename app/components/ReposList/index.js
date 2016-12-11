@@ -7,7 +7,6 @@ import RepoListItem from 'containers/RepoListItem';
 
 function ReposList({ loading, error, repos }) {
   if (loading) {
-    // Show a loading indicator when we're loading
     return <List component={LoadingIndicator} />;
   }
 

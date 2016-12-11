@@ -11,18 +11,18 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router';
 
+import { makeSelectRepos, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
+import H2 from 'components/H2';
+import ReposList from 'components/ReposList';
 import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
 import Form from './Form';
-import H2 from 'components/H2';
 import Input from './Input';
-import ReposList from 'components/ReposList';
 import Section from './Section';
 import messages from './messages';
 import { loadRepos } from '../App/actions';
 import { changeUsername } from './actions';
-import { selectUsername } from './selectors';
-import { selectRepos, selectLoading, selectError } from 'containers/App/selectors';
+import { makeSelectUsername } from './selectors';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
@@ -36,6 +36,11 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 
   render() {
     const { loading, error, repos } = this.props;
+    const reposListProps = {
+      loading,
+      error,
+      repos,
+    };
 
     return (
       <article>
@@ -81,7 +86,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                 />
               </div>
             </Form>
-            <ReposList loading={loading} error={error} repos={repos} />
+            <ReposList {...reposListProps} />
           </Section>
         </div>
       </article>
@@ -115,10 +120,10 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  repos: selectRepos(),
-  username: selectUsername(),
-  loading: selectLoading(),
-  error: selectError(),
+  repos: makeSelectRepos(),
+  username: makeSelectUsername(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
 });
 
 // Wrap the component to inject dispatch and state into it

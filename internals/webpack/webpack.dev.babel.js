@@ -5,6 +5,7 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 const logger = require('../../server/logger');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
 const dllPlugin = pkg.dllPlugin;
@@ -12,6 +13,10 @@ const dllPlugin = pkg.dllPlugin;
 const plugins = [
   new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
   new webpack.NoErrorsPlugin(),
+  new CircularDependencyPlugin({
+    exclude: /a\.js|node_modules/, // exclude node_modules
+    failOnError: false, // show a warning when there is a circular dependency
+  }),
 ];
 
 module.exports = require('./webpack.base.babel')({

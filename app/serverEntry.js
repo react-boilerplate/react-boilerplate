@@ -38,7 +38,7 @@ async function renderHtmlDocument({ store, renderProps, sagasDone, assets, webpa
   // 1st render phase - triggers the sagas
   renderAppToString(store, renderProps);
 
-  // send singal to sagas that we're done
+  // send signal to sagas that we're done
   store.dispatch(END);
 
   // wait for all tasks to finish

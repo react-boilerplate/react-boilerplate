@@ -1,3 +1,4 @@
+/* eslint-disable import/first */
 jest.mock('react-router-redux');
 
 import { syncHistoryWithStore } from 'react-router-redux';

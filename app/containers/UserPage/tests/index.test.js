@@ -1,12 +1,12 @@
-import { shallow, mount } from 'enzyme';
 import React from 'react';
-
+import { browserHistory } from 'react-router';
 import { IntlProvider, FormattedMessage } from 'react-intl';
-import messages from '../messages';
-import { UserPage, mapStateToProps, mapDispatchToProps } from '../index';
+import { shallow, mount } from 'enzyme';
+
 import H1 from 'components/H1';
 import configureStore from 'store';
-import { browserHistory } from 'react-router';
+import messages from '../messages';
+import { UserPage, mapStateToProps, mapDispatchToProps } from '../index';
 
 describe('<UserPage />', () => {
   let loadReposSpy;

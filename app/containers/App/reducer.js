@@ -11,13 +11,13 @@
  */
 
 import { combineReducers } from 'redux-immutable';
+import { List } from 'immutable';
 
 import {
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
 } from './constants';
-import { List } from 'immutable';
 
 function loading(state = false, action) {
   switch (action.type) {

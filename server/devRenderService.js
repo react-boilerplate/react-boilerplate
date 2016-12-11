@@ -19,7 +19,7 @@ function ensureAllGeneratedFilesExist() {
 
   let modulePath;
   try {
-    for (modulePath of modules) {
+    for (modulePath of modules) { // eslint-disable-line no-restricted-syntax
       require(modulePath);
     }
   } catch (e) {

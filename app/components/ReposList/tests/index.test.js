@@ -1,11 +1,11 @@
 import { shallow, mount } from 'enzyme';
 import React from 'react';
-
 import { IntlProvider } from 'react-intl';
-import ReposList from '../index';
+
 import RepoListItem from 'containers/RepoListItem';
 import List from 'components/List';
 import LoadingIndicator from 'components/LoadingIndicator';
+import ReposList from '../index';
 
 describe('<ReposList />', () => {
   it('should render the loading indicator when its loading', () => {

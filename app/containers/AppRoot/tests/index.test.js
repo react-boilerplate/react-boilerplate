@@ -1,7 +1,7 @@
-import AppRoot from '../index';
-
-import { shallow } from 'enzyme';
 import React from 'react';
+import { shallow } from 'enzyme';
+
+import AppRoot from '../index';
 import configureStore from '../../../store';
 
 describe('<AppRoot />', () => {

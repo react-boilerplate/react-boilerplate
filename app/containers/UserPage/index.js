@@ -7,7 +7,7 @@ import H1 from 'components/H1';
 import { FormattedMessage } from 'react-intl';
 
 import { loadRepos as actionLoadRepos } from 'containers/App/actions';
-import { selectRepos, selectLoading, selectError } from 'containers/App/selectors';
+import { makeSelectRepos, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
 
 import messages from './messages';
 
@@ -51,9 +51,9 @@ export function mapStateToProps(state, ownProps) {
   const { params: { username } } = ownProps;
   return {
     username,
-    repos: selectRepos()(state),
-    loading: selectLoading()(state),
-    error: selectError()(state),
+    repos: makeSelectRepos()(state),
+    loading: makeSelectLoading()(state),
+    error: makeSelectError()(state),
   };
 }
 

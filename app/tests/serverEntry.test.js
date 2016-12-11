@@ -1,3 +1,4 @@
+/* eslint-disable import/first */
 jest.mock('react-dom/server');
 jest.mock('react-router');
 jest.mock('styled-components/lib/models/StyleSheet');

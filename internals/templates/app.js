@@ -7,6 +7,7 @@
 
 // Needed for redux-saga es6 generator support
 import 'babel-polyfill';
+import { browserHistory } from 'react-router';
 
 /* eslint-disable import/no-unresolved, import/extensions */
 // Load the favicon, the manifest.json file and the .htaccess file
@@ -18,12 +19,10 @@ import 'file?name=[name].[ext]!./.htaccess';
 // Import CSS reset
 import 'sanitize.css/sanitize.css';
 
-import syncHistoryWithStore from 'setup/syncHistoryWithStore';
-import ensureIntlSupport from 'setup/ensureIntlSupport';
-import 'setup/openSansObserver';
-
 // Import all the third party stuff
-import { browserHistory } from 'react-router';
+import './setup/openSansObserver';
+import syncHistoryWithStore from './setup/syncHistoryWithStore';
+import ensureIntlSupport from './setup/ensureIntlSupport';
 import configureStore from './store';
 import renderInBrowser from './renderInBrowser';
 import createRoutes from './routes';
@@ -40,9 +39,6 @@ const store = configureStore(initialState, browserHistory);
 
 const routes = createRoutes(store);
 
-// Sync history and store, as the react-router-redux reducer
-// is under the non-default key ("routing"), selectLocationState
-// must be provided for resolving how to retrieve the "route" in the state
 const history = syncHistoryWithStore(browserHistory, store);
 
 function render() {

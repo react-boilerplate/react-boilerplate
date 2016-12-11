@@ -1,11 +1,13 @@
+/* eslint-disable import/first */
 jest.mock('react-dom');
 jest.mock('react-router');
 
 import ReactDOM from 'react-dom';
+import { match } from 'react-router';
+
 import AppRoot from 'containers/AppRoot';
 
 import renderInBrowser from '../renderInBrowser';
-import { match } from 'react-router';
 
 describe('rendering in browser', () => {
   const domEl = '!! dom element !!';

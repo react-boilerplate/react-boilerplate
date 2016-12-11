@@ -11,8 +11,7 @@ export default function renderInBrowser({ messages, store, routes, history }) {
         <Router
           {...renderProps}
           render={
-            // Scroll to top when going to a new page, imitating default browser
-            // behaviour
+            // Scroll to top when going to a new page, imitating default browser behaviour
             applyRouterMiddleware(useScroll())
           }
         />

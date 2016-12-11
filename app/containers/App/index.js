@@ -14,8 +14,8 @@ import styled from 'styled-components';
 // this file is included before any styled component.
 import './global-styles';
 
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+import Header from 'components/Header'; // eslint-disable-line import/first
+import Footer from 'components/Footer'; // eslint-disable-line import/first
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);

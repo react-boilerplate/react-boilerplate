@@ -1,8 +1,8 @@
-import Toggle from '../index';
-
+import React from 'react';
 import { shallow } from 'enzyme';
 import { IntlProvider, defineMessages } from 'react-intl';
-import React from 'react';
+
+import Toggle from '../index';
 
 describe('<Toggle />', () => {
   it('should contain default text', () => {
