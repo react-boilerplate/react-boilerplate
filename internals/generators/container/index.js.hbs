@@ -11,11 +11,13 @@ import Helmet from 'react-helmet';
 {{/if}}
 {{#if wantMessages}}
 import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 {{/if}}
 {{#if wantActionsAndReducer}}
-import { createStructuredSelector } from 'reselect'; // eslint-disable-line import/first
+import { createStructuredSelector } from 'reselect';
 import makeSelect{{properCase name}} from './selectors';
+{{/if}}
+{{#if wantMessages}}
+import messages from './messages';
 {{/if}}
 
 export class {{ properCase name }} extends React.{{{ component }}} { // eslint-disable-line react/prefer-stateless-function
