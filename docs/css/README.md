@@ -9,6 +9,6 @@ data-driven cross-browser normalisation.
 
 Learn more:
 
-- [`syled-components`](styled-components.md)
+- [`styled-components`](styled-components.md)
 - [sanitize.css](sanitize.md)
 - [Using Sass](sass.md)
