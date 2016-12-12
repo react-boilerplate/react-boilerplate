@@ -1,10 +1,10 @@
-import { shallow } from 'enzyme';
 import React from 'react';
+import { shallow } from 'enzyme';
 import { FormattedMessage } from 'react-intl';
 
+import A from 'components/A';
 import messages from '../messages';
 import Footer from '../index';
-import A from 'components/A';
 
 describe('<Footer />', () => {
   it('should render the copyright notice', () => {
