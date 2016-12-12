@@ -228,7 +228,7 @@
     "react-intl": "2.1.5",
     "react-redux": "4.4.6",
     "react-router": "3.0.0",
-    "react-router-redux": "4.0.6",
+    "react-router-redux": "4.0.7",
     "react-router-scroll": "0.4.1",
     "redux": "3.6.0",
     "redux-immutable": "3.0.8",
