@@ -1,5 +1,4 @@
 import React from 'react';
-import expect from 'expect';
 import { shallow } from 'enzyme';
 
 import StyledButton from '../StyledButton';
@@ -12,7 +11,7 @@ describe('<StyledButton />', () => {
 
   it('should have a className attribute', () => {
     const renderedComponent = shallow(<StyledButton />);
-    expect(renderedComponent.prop('className')).toExist();
+    expect(renderedComponent.prop('className')).toBeDefined();
   });
 
   it('should adopt a valid attribute', () => {
@@ -23,6 +22,6 @@ describe('<StyledButton />', () => {
 
   it('should not adopt an invalid attribute', () => {
     const renderedComponent = shallow(<StyledButton attribute={'test'} />);
-    expect(renderedComponent.prop('attribute')).toNotExist();
+    expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

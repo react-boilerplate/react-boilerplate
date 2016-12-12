@@ -1,28 +1,26 @@
 import React from 'react';
-import expect from 'expect';
 import { mount, render } from 'enzyme';
 
 import Img from '../Img';
 
 describe('<Img />', () => {
   it('should render an <img> tag', () => {
-    const renderedComponent = render(<Img />);
+    const renderedComponent = render(<Img src={'http://example.com/test.jpg'} alt={'test'} />);
     expect(renderedComponent.find('img').length).toEqual(1);
   });
 
   it('should have a className attribute', () => {
-    const renderedComponent = mount(<Img />);
-    expect(renderedComponent.find('img').prop('className')).toExist();
+    const renderedComponent = mount(<Img src={'http://example.com/test.jpg'} alt={'test'} />);
+    expect(renderedComponent.find('img').prop('className')).toBeDefined();
   });
 
   it('should adopt a valid attribute', () => {
-    const alt = 'test';
-    const renderedComponent = mount(<Img alt={alt} />);
-    expect(renderedComponent.find('img').prop('alt')).toEqual(alt);
+    const renderedComponent = mount(<Img src={'http://example.com/test.jpg'} alt={'test'} />);
+    expect(renderedComponent.find('img').prop('alt')).toEqual('test');
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = mount(<Img attribute={'test'} />);
-    expect(renderedComponent.find('img').prop('attribute')).toNotExist();
+    const renderedComponent = mount(<Img src={'http://example.com/test.jpg'} attribute={'test'} alt={'test'} />);
+    expect(renderedComponent.find('img').prop('attribute')).toBeUndefined();
   });
 });

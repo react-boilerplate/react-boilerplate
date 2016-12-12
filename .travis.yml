@@ -1,11 +1,13 @@
 language: node_js
 
 node_js:
+  - 7
   - 6
   - 5
-  - 4
 
-script: npm run build
+script:
+  - node ./internals/scripts/generate-templates-for-linting
+  - npm run build
 
 install:
   - npm i -g npm@latest
