@@ -190,12 +190,22 @@
   "jest": {
     "collectCoverageFrom": [
       "app/**/*.{js,jsx}",
+      "!app/**/*.test.{js,jsx}",
+      "!app/*/RbGenerated*/*.{js,jsx}",
       "!app/app.js",
       "!app/routes.js",
       "!app/containers/App/global-styles.js",
       "!app/setup/ensureIntlSupport.js",
       "!app/setup/openSansObserver.js"
     ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 98,
+        "branches": 91,
+        "functions": 98,
+        "lines": 98
+      }
+    },
     "moduleDirectories": [
       "node_modules",
       "app"
@@ -282,6 +292,7 @@
     "jest-cli": "17.0.3",
     "json-loader": "0.5.4",
     "ngrok": "2.2.4",
+    "node-plop": "0.5.4",
     "lint-staged": "3.2.1",
     "nodemon": "1.11.0",
     "npm-run-all": "3.1.1",

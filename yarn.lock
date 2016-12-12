@@ -5624,7 +5624,7 @@ node-notifier@^4.6.1:
     shellwords "^0.1.0"
     which "^1.0.5"
 
-node-plop@~0.5.3:
+node-plop@0.5.4, node-plop@~0.5.3:
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/node-plop/-/node-plop-0.5.4.tgz#1edfecb20955c7ba2b5c0d9ffa7a27b4109b295b"
   dependencies:
