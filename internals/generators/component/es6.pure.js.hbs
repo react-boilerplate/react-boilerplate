@@ -5,6 +5,7 @@
 */
 
 import React from 'react';
+// import styled from 'styled-components';
 
 {{#if wantMessages}}
 import { FormattedMessage } from 'react-intl';
@@ -22,5 +23,9 @@ class {{ properCase name }} extends React.PureComponent { // eslint-disable-line
     );
   }
 }
+
+{{ properCase name }}.propTypes = {
+
+};
 
 export default {{ properCase name }};
