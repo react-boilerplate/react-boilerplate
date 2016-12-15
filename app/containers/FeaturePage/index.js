@@ -4,21 +4,22 @@
  * List all the features
  */
 import React from 'react';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import Helmet from 'react-helmet';
 
 import messages from './messages';
 import { FormattedMessage } from 'react-intl';
-import Button from 'components/Button';
 import H1 from 'components/H1';
+import List from './List';
+import ListItem from './ListItem';
+import ListItemTitle from './ListItemTitle';
 
-import styles from './styles.css';
+export default class FeaturePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
-export class FeaturePage extends React.Component {
-  openHomePage = () => {
-    this.props.dispatch(push('/'));
-  };
+  // Since state and props are static,
+  // there's no need to re-render this component
+  shouldComponentUpdate() {
+    return false;
+  }
 
   render() {
     return (
@@ -32,62 +33,53 @@ export class FeaturePage extends React.Component {
         <H1>
           <FormattedMessage {...messages.header} />
         </H1>
-        <ul className={styles.list}>
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>
+        <List>
+          <ListItem>
+            <ListItemTitle>
               <FormattedMessage {...messages.scaffoldingHeader} />
-            </p>
+            </ListItemTitle>
             <p>
               <FormattedMessage {...messages.scaffoldingMessage} />
             </p>
-          </li>
+          </ListItem>
 
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>
+          <ListItem>
+            <ListItemTitle>
               <FormattedMessage {...messages.feedbackHeader} />
-            </p>
+            </ListItemTitle>
             <p>
               <FormattedMessage {...messages.feedbackMessage} />
             </p>
-          </li>
+          </ListItem>
 
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>
+          <ListItem>
+            <ListItemTitle>
               <FormattedMessage {...messages.routingHeader} />
-            </p>
+            </ListItemTitle>
             <p>
               <FormattedMessage {...messages.routingMessage} />
             </p>
-          </li>
+          </ListItem>
 
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>
+          <ListItem>
+            <ListItemTitle>
               <FormattedMessage {...messages.networkHeader} />
-            </p>
+            </ListItemTitle>
             <p>
               <FormattedMessage {...messages.networkMessage} />
             </p>
-          </li>
+          </ListItem>
 
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>
+          <ListItem>
+            <ListItemTitle>
               <FormattedMessage {...messages.intlHeader} />
-            </p>
+            </ListItemTitle>
             <p>
               <FormattedMessage {...messages.intlMessage} />
             </p>
-          </li>
-        </ul>
-        <Button handleRoute={this.openHomePage}>
-          <FormattedMessage {...messages.homeButton} />
-        </Button>
+          </ListItem>
+        </List>
       </div>
     );
   }
 }
-
-FeaturePage.propTypes = {
-  dispatch: React.PropTypes.func,
-};
-
-export default connect()(FeaturePage);

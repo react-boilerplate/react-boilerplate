@@ -10,7 +10,7 @@ module.exports = {
     name: 'language',
     message: 'What is the language you want to add i18n support for (e.g. "fr", "de")?',
     default: 'fr',
-    validate: value => {
+    validate: (value) => {
       if ((/.+/).test(value) && value.length === 2) {
         return true;
       }
@@ -30,7 +30,7 @@ module.exports = {
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
-      pattern: /([\n\s'[a-z]+',)(?!.*[\n\s'[a-z]+',)/g,
+      pattern: /(\s+'[a-z]+',\n)(?!.*\s+'[a-z]+',)/g,
       templateFile: './language/app-locale.hbs',
     });
     actions.push({
@@ -48,7 +48,7 @@ module.exports = {
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
-      pattern: /([a-z]+:\sformatTranslationMessages\([a-z]+TranslationMessages\),\n)(?!.*[a-z]+:\sformatTranslationMessages\([a-z]+TranslationMessages\),)/g,
+      pattern: /([a-z]+:\sformatTranslationMessages\('[a-z]+',\s[a-z]+TranslationMessages\),\n)(?!.*[a-z]+:\sformatTranslationMessages\('[a-z]+',\s[a-z]+TranslationMessages\),)/g,
       templateFile: './language/format-translation-messages.hbs',
     });
     actions.push({

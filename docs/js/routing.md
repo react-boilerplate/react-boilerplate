@@ -87,6 +87,45 @@ For example, if you have a route called `about` at `/about` and want to make a c
 }
 ```
 
+## Index routes
+
+To add an index route, use the following pattern:
+
+```JS
+{
+  path: '/',
+  name: 'home',
+  getComponent(nextState, cb) {
+    const importModules = Promise.all([
+      System.import('containers/HomePage')
+    ]);
+
+    const renderRoute = loadModule(cb);
+
+    importModules.then(([component]) => {
+      renderRoute(component);
+    });
+
+    importModules.catch(errorLoading);
+  },
+  indexRoute: {
+    getComponent(partialNextState, cb) {
+      const importModules = Promise.all([
+        System.import('containers/HomeView')
+      ]);
+
+      const renderRoute = loadModule(cb);
+
+      importModules.then(([component]) => {
+        renderRoute(component);
+      });
+
+      importModules.catch(errorLoading);
+    },
+  },
+}
+```
+
 ## Dynamic routes
 
 To go to a dynamic route such as 'post/:slug' eg 'post/cool-new-post', firstly add the route to your `routes.js`, as per documentation:
@@ -158,7 +197,7 @@ export function* getXhrPodcast(slug) {
 
 Wait (`take`) for the LOAD_POST constant, which contains the slug payload from the `getPost()` function in actions.js. 
 
-When the action is fired then dispatch the `getXhrPodcast()` function to get the reponse from your api. On success dispatch the `postLoaded()` action (`yield put`) which sends back the reponse and can be added into the reducer state.
+When the action is fired then dispatch the `getXhrPodcast()` function to get the response from your api. On success dispatch the `postLoaded()` action (`yield put`) which sends back the response and can be added into the reducer state.
 
 
 You can read more on [`react-router`'s documentation](https://github.com/reactjs/react-router/blob/master/docs/API.md#props-3).

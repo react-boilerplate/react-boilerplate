@@ -49,17 +49,17 @@ you can see, play back and change your action history!
 ## Next generation JavaScript
 
 Use ESNext template strings, object destructuring, arrow functions, JSX syntax
-and more, today. This is possible thanks to Babel with the `es2015`, `stage-0`
+and more, today. This is possible thanks to Babel with the `latest`, `stage-0`
 and `react` presets!
 
 ## Next generation CSS
 
-Write composable CSS that's co-located with your components using [CSS modules]
+Write composable CSS that's co-located with your components using [`styled-components`]
 for complete modularity. Unique generated class names keep the specificity low
 while eliminating style clashes. Ship only the styles that are used on the
 visible page for the best performance.
 
-[CSS modules]: ../css/css-modules.md
+[`styled-components`]: ../css/styled-components.md
 
 ## Industry-standard routing
 

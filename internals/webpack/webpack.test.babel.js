@@ -10,11 +10,6 @@ const modules = [
 
 module.exports = {
   devtool: 'inline-source-map',
-  isparta: {
-    babel: {
-      presets: ['es2015', 'react', 'stage-0'],
-    },
-  },
   module: {
     // Some libraries don't like being run through babel.
     // If they gripe, put them here.
@@ -73,7 +68,6 @@ module.exports = {
     'react/lib/ReactContext': 'window',
   },
   resolve: {
-    modulesDirectories: modules,
     modules,
     alias: {
       // required for enzyme to work properly
