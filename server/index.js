@@ -23,7 +23,7 @@ setup(app, {
 const host = argv.host || process.env.HOST || 'localhost';
 const port = argv.port || process.env.PORT || 3000;
 
-console.log(argv);
+console.log(argv); // eslint-disable-line no-console
 
 // Start your app.
 app.listen(port, host, (err) => {

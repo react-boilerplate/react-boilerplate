@@ -14,14 +14,14 @@ const pkg = require('../../package.json');
 const presets = pkg.babel.presets;
 const plugins = pkg.babel.plugins || [];
 
-const i18n = require('../../app/i18n');
-import { DEFAULT_LOCALE } from '../../app/containers/App/constants';
-
 require('shelljs/global');
+
+import { DEFAULT_LOCALE } from '../../app/containers/App/constants';
+import { appLocales } from '../../app/containers/App/constants';
 
 // Glob to match all js files except test files
 const FILES_TO_PARSE = 'app/**/!(*.test).js';
-const locales = i18n.appLocales;
+const locales = appLocales;
 
 const newLine = () => process.stdout.write('\n');
 
@@ -56,6 +56,7 @@ const writeFile = (fileName, data) => new Promise((resolve, reject) => {
 // Store existing translations into memory
 const oldLocaleMappings = [];
 const localeMappings = [];
+
 // Loop to run once per locale
 for (const locale of locales) {
   oldLocaleMappings[locale] = {};
@@ -94,6 +95,7 @@ for (const locale of locales) {
   ```
 */
 plugins.push(['react-intl'])
+const recentlyChangedIds = [];
 
 const extractFromFile = async (fileName) => {
   try {
@@ -103,11 +105,26 @@ const extractFromFile = async (fileName) => {
     for (const message of result['react-intl'].messages) {
       for (const locale of locales) {
         const oldLocaleMapping = oldLocaleMappings[locale][message.id];
-        // Merge old translations into the babel extracted instances where react-intl is used
-        const newMsg = ( locale === DEFAULT_LOCALE) ? message.defaultMessage : '';
-        localeMappings[locale][message.id] = (oldLocaleMapping)
+        const isDefalutLocale = locale === DEFAULT_LOCALE;
+        // Collect newly changed default locale ids
+        if (oldLocaleMapping !== message.defaultMessage  && isDefalutLocale ) {
+          recentlyChangedIds.push(message.id);
+        }
+        const newMsg = isDefalutLocale ? message.defaultMessage : '';
+        /* 
+          Merge old translations into the babel extracted instances where react-intl is used.
+          Don't override existing `oldMapping` for all non-default locales, Otherwise
+          Empty `newMsg` message for all non-default locales or updated `newMsg` for default locale 
+         */
+        localeMappings[locale][message.id] = (oldLocaleMapping && !isDefalutLocale)
           ? oldLocaleMapping
           : newMsg;
+
+        const hadMsg = localeMappings[locale][message.id].length > 0;
+        // Add helper `(new)` for non-default locales on recentlyChangedIds
+        if (recentlyChangedIds.includes(message.id)  && !isDefalutLocale && hadMsg) {
+          localeMappings[locale][message.id] += '(new)';
+        }
       }
     }
   } catch (error) {
