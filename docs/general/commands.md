@@ -144,16 +144,6 @@ npm run start:tunnel
 Starts the development server and tunnels it with `ngrok`, making the website
 available on the entire world. Useful for testing on different devices in different locations!
 
-### Performance testing
-
-```Shell
-npm run pagespeed
-```
-
-With the remote server running (i.e. while `npm run start:prod` is running in
-another terminal session), enter this command to run Google PageSpeed Insights
-and get a performance check right in your terminal!
-
 ### Dependency size test
 
 ```Shell
