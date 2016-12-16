@@ -1,6 +1,11 @@
-import { conformsTo, isEmpty, isFunction, isObject, isString } from 'lodash';
+import conformsTo from 'lodash/conformsTo';
+import isEmpty from 'lodash/isEmpty';
+import isFunction from 'lodash/isFunction';
+import isObject from 'lodash/isObject';
+import isString from 'lodash/isString';
 import invariant from 'invariant';
 import warning from 'warning';
+
 import createReducer from '../reducers';
 
 /**
@@ -32,6 +37,8 @@ export function injectAsyncReducer(store, isValid) {
       isString(name) && !isEmpty(name) && isFunction(asyncReducer),
       '(app/utils...) injectAsyncReducer: Expected `asyncReducer` to be a reducer function'
     );
+
+    if (Reflect.has(store.asyncReducers, name)) return;
 
     store.asyncReducers[name] = asyncReducer; // eslint-disable-line no-param-reassign
     store.replaceReducer(createReducer(store.asyncReducers));

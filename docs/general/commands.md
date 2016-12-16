@@ -60,17 +60,17 @@ accessible anywhere! Changes in the application code will be hot-reloaded.
 ### Production
 
 ```Shell
-npm run start:prod
+npm run start:production
 ```
 
-Starts the production server, configured for optimal performance: assets are
+Starts the production server, building the app for optimal performance: assets are
 minified and served gzipped.
 
-### Port
+### Host and Port
 
-To change the port the app is accessible at pass the `--port` option to the command
-with `--`. E.g. to make the app visible at `localhost:5000`, run the following:
-`npm start -- --port 5000`
+To change the host and/or port the app is accessible at, pass the `--host` and/or `--port` option to the command
+with `--`. E.g. to make the app visible at `my-local-hostname:5000`, run the following:
+`npm start -- --host my-local-hostname --port 5000`
 
 ## Building
 

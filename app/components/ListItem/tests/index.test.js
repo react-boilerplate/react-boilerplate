@@ -1,20 +1,19 @@
+import React from 'react';
+import { mount } from 'enzyme';
+
 import ListItem from '../index';
 
-import expect from 'expect';
-import { shallow } from 'enzyme';
-import React from 'react';
-
 describe('<ListItem />', () => {
-  it('should adopt the className', () => {
-    const renderedComponent = shallow(<ListItem className="test" />);
-    expect(renderedComponent.find('li').hasClass('test')).toEqual(true);
+  it('should have a className', () => {
+    const renderedComponent = mount(<ListItem className="test" />);
+    expect(renderedComponent.find('li').prop('className')).toBeDefined();
   });
 
   it('should render the content passed to it', () => {
-    const content = 'Hello world!';
-    const renderedComponent = shallow(
+    const content = (<div>Hello world!</div>);
+    const renderedComponent = mount(
       <ListItem item={content} />
     );
-    expect(renderedComponent.contains(content)).toEqual(true);
+    expect(renderedComponent.contains(content)).toBe(true);
   });
 });

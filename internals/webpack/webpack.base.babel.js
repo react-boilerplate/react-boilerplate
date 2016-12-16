@@ -18,11 +18,6 @@ module.exports = (options) => ({
       exclude: /node_modules/,
       query: options.babelQuery,
     }, {
-      // Transform our own .css files with PostCSS and CSS-modules
-      test: /\.css$/,
-      exclude: /node_modules/,
-      loader: options.cssLoaders,
-    }, {
       // Do not transform vendor's CSS with CSS-modules
       // The point is that they remain in global scope.
       // Since we require these CSS files in our JS or CSS files,
@@ -38,7 +33,18 @@ module.exports = (options) => ({
       test: /\.(jpg|png|gif)$/,
       loaders: [
         'file-loader',
-        'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
+        {
+          loader: 'image-webpack',
+          query: {
+            progressive: true,
+            optimizationLevel: 7,
+            interlaced: false,
+            pngquant: {
+              quality: '65-90',
+              speed: 4,
+            },
+          },
+        },
       ],
     }, {
       test: /\.html$/,
@@ -48,7 +54,10 @@ module.exports = (options) => ({
       loader: 'json-loader',
     }, {
       test: /\.(mp4|webm)$/,
-      loader: 'url-loader?limit=10000',
+      loader: 'url-loader',
+      query: {
+        limit: 10000,
+      },
     }],
   },
   plugins: options.plugins.concat([
@@ -65,23 +74,21 @@ module.exports = (options) => ({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
+    new webpack.NamedModulesPlugin(),
   ]),
-  postcss: () => options.postcssPlugins,
   resolve: {
     modules: ['app', 'node_modules'],
     extensions: [
-      '',
       '.js',
       '.jsx',
       '.react.js',
     ],
     mainFields: [
+      'browser',
       'jsnext:main',
       'main',
     ],
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
-  stats: false, // Don't show stats in the console
-  progress: true,
 });

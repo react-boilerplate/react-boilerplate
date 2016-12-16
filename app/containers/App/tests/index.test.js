@@ -1,16 +1,16 @@
-import expect from 'expect';
-import { shallow } from 'enzyme';
 import React from 'react';
+import { shallow } from 'enzyme';
 
-import App from '../index';
+import Header from 'components/Header';
 import Footer from 'components/Footer';
+import App from '../index';
 
 describe('<App />', () => {
-  it('should render the logo', () => {
+  it('should render the header', () => {
     const renderedComponent = shallow(
       <App />
     );
-    expect(renderedComponent.find('Img').length).toEqual(1);
+    expect(renderedComponent.find(Header).length).toBe(1);
   });
 
   it('should render its children', () => {
@@ -20,13 +20,13 @@ describe('<App />', () => {
         {children}
       </App>
     );
-    expect(renderedComponent.contains(children)).toEqual(true);
+    expect(renderedComponent.contains(children)).toBe(true);
   });
 
   it('should render the footer', () => {
     const renderedComponent = shallow(
       <App />
     );
-    expect(renderedComponent.find(Footer).length).toEqual(1);
+    expect(renderedComponent.find(Footer).length).toBe(1);
   });
 });

@@ -11,7 +11,7 @@ module.exports = {
     name: 'name',
     message: 'What should it be called?',
     default: 'Form',
-    validate: value => {
+    validate: (value) => {
       if ((/.+/).test(value)) {
         return componentExists(value) ? 'A component or container with this name already exists' : true;
       }
@@ -19,20 +19,21 @@ module.exports = {
       return 'The name is required';
     },
   }, {
+    type: 'list',
+    name: 'component',
+    message: 'Select a base component:',
+    default: 'PureComponent',
+    choices: () => ['PureComponent', 'Component'],
+  }, {
     type: 'confirm',
     name: 'wantHeaders',
     default: false,
     message: 'Do you want headers?',
   }, {
     type: 'confirm',
-    name: 'wantCSS',
-    default: false,
-    message: 'Does it have styling?',
-  }, {
-    type: 'confirm',
     name: 'wantActionsAndReducer',
     default: true,
-    message: 'Do you want an actions/constants/selectors/reducer tupel for this container?',
+    message: 'Do you want an actions/constants/selectors/reducer tuple for this container?',
   }, {
     type: 'confirm',
     name: 'wantSagas',
@@ -44,7 +45,7 @@ module.exports = {
     default: true,
     message: 'Do you want i18n messages (i.e. will this component use text)?',
   }],
-  actions: data => {
+  actions: (data) => {
     // Generate index.js and index.test.js
     const actions = [{
       type: 'add',
@@ -57,16 +58,6 @@ module.exports = {
       templateFile: './container/test.js.hbs',
       abortOnFail: true,
     }];
-
-    // If they want a CSS file, add styles.css
-    if (data.wantCSS) {
-      actions.push({
-        type: 'add',
-        path: '../../app/containers/{{properCase name}}/styles.css',
-        templateFile: './container/styles.css.hbs',
-        abortOnFail: true,
-      });
-    }
 
     // If component wants messages
     if (data.wantMessages) {
