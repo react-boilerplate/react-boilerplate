@@ -6261,25 +6261,6 @@ pseudomap@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
 
-psi@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/psi/-/psi-2.0.4.tgz#79312479fb84df386bc2fca6a27d7282fc9c77f7"
-  dependencies:
-    chalk "^1.1.1"
-    download "^4.4.1"
-    googleapis "^7.1.0"
-    humanize-url "^1.0.1"
-    lodash "^4.5.1"
-    meow "^3.5.0"
-    object-assign "^4.0.1"
-    pify "^2.3.0"
-    pinkie-promise "^2.0.0"
-    prepend-http "^1.0.3"
-    pretty-bytes "^3.0.1"
-    repeating "^2.0.0"
-    sort-on "^1.2.2"
-    update-notifier "^0.6.0"
-
 public-encrypt@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/public-encrypt/-/public-encrypt-4.0.0.tgz#39f699f3a46560dd5ebacbca693caf7c65c18cc6"
