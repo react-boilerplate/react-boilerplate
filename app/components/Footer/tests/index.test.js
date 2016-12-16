@@ -1,11 +1,10 @@
-import expect from 'expect';
-import { shallow } from 'enzyme';
 import React from 'react';
+import { shallow } from 'enzyme';
 import { FormattedMessage } from 'react-intl';
 
+import A from 'components/A';
 import messages from '../messages';
 import Footer from '../index';
-import A from 'components/A';
 
 describe('<Footer />', () => {
   it('should render the copyright notice', () => {
@@ -16,7 +15,7 @@ describe('<Footer />', () => {
       <section>
         <FormattedMessage {...messages.licenseMessage} />
       </section>
-    )).toEqual(true);
+    )).toBe(true);
   });
 
   it('should render the credits', () => {
@@ -30,6 +29,6 @@ describe('<Footer />', () => {
           }}
         />
       </section>
-    )).toEqual(true);
+    )).toBe(true);
   });
 });

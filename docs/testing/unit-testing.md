@@ -116,7 +116,7 @@ time given the same input.
 First, we have to import `expect` at the top of our file, before the tests:
 
 ```javascript
-import expect from 'expect';
+
 
 describe('add()', () => {
   // [...]
@@ -239,7 +239,7 @@ First, we have to import `expect`, the reducer and the constant.
 ```javascript
 // NavBar.reducer.test.js
 
-import expect from 'expect';
+
 import NavBarReducer from '../NavBar.reducer';
 import { TOGGLE_NAV } from '../NavBar.constants';
 ```
@@ -313,7 +313,7 @@ Start by `import`ing rewire **at the top** of your test file:
 ```javascript
 // `NavBar.reducer.test.js`
 
-import expect from 'expect';
+
 import rewire from 'rewire';
 import NavBarReducer from '../NavBar.reducer';
 import { TOGGLE_NAV } from '../NavBar.constants';
@@ -355,7 +355,7 @@ return and `expect`:
 
 import { toggleNav } from '../NavBar.actions';
 import { TOGGLE_NAV } from '../NavBar.constants';
-import expect from 'expect';
+
 ```
 
 Then we `describe` the actions:
