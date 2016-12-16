@@ -184,9 +184,19 @@
   "jest": {
     "collectCoverageFrom": [
       "app/**/*.{js,jsx}",
+      "!app/**/*.test.{js,jsx}",
+      "!app/*/RbGenerated*/*.{js,jsx}",
       "!app/app.js",
       "!app/routes.js"
     ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 98,
+        "branches": 91,
+        "functions": 98,
+        "lines": 98
+      }
+    },
     "moduleDirectories": [
       "node_modules",
       "app"
@@ -264,11 +274,12 @@
     "html-loader": "0.4.4",
     "html-webpack-plugin": "2.24.1",
     "circular-dependency-plugin": "2.0.0",
-    "image-webpack-loader": "3.0.0",
+    "image-webpack-loader": "2.0.0",
     "imports-loader": "0.6.5",
     "jest-cli": "17.0.3",
     "json-loader": "0.5.4",
     "ngrok": "2.2.4",
+    "node-plop": "0.5.4",
     "lint-staged": "3.2.1",
     "null-loader": "0.1.1",
     "offline-plugin": "4.5.2",
