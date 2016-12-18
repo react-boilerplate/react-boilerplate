@@ -16,7 +16,6 @@ import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import { useScroll } from 'react-router-scroll';
-import { addLocaleData } from 'react-intl';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
@@ -38,20 +37,13 @@ import 'file?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/exten
 import configureStore from './store';
 
 // Import i18n messages
-import { translationMessages, appLocales } from './i18n';
+import { translationMessages } from './i18n';
 
 // Import CSS reset and Global Styles
 import './global-styles';
 
 // Import routes
 import createRoutes from './routes';
-
-// Add locales' data
-appLocales.forEach((locale) => {
-  System.import(`react-intl/locale-data/${locale}`).then((data) => {
-    addLocaleData(data);
-  });
-});
 
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in

@@ -17,7 +17,7 @@ const plugins = pkg.babel.plugins || [];
 require('shelljs/global');
 
 import { DEFAULT_LOCALE } from '../../app/containers/App/constants';
-import { appLocales } from '../../app/containers/App/constants';
+import { appLocales } from '../../app/i18n';
 
 // Glob to match all js files except test files
 const FILES_TO_PARSE = 'app/**/!(*.test).js';
