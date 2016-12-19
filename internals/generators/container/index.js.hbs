@@ -4,17 +4,20 @@
  *
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 {{#if wantHeaders}}
 import Helmet from 'react-helmet';
 {{/if}}
 {{#if wantMessages}}
 import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 {{/if}}
 {{#if wantActionsAndReducer}}
+import { createStructuredSelector } from 'reselect';
 import makeSelect{{properCase name}} from './selectors';
+{{/if}}
+{{#if wantMessages}}
+import messages from './messages';
 {{/if}}
 
 export class {{ properCase name }} extends React.{{{ component }}} { // eslint-disable-line react/prefer-stateless-function
@@ -37,8 +40,14 @@ export class {{ properCase name }} extends React.{{{ component }}} { // eslint-d
   }
 }
 
+{{ properCase name }}.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
 {{#if wantActionsAndReducer}}
-const mapStateToProps = makeSelect{{properCase name}}();
+const mapStateToProps = createStructuredSelector({
+  {{name}}: makeSelect{{properCase name}}(),
+});
 {{/if}}
 
 function mapDispatchToProps(dispatch) {

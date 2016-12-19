@@ -108,12 +108,6 @@ write head tags can be found [here](https://github.com/nfl/react-helmet#examples
 For a thorough explanation of the testing procedure, see the
 [testing documentation](./testing/README.md)!
 
-#### Performance testing
-
-With the production server running (i.e. while `npm run start:production` is running in
-another tab), enter `npm run pagespeed` to run Google PageSpeed Insights and
-get a performance check right in your terminal!
-
 #### Browser testing
 
 `npm run start:tunnel` makes your locally-running app globally available on the web
