@@ -12,6 +12,7 @@ efficient tooling and cleanest project structure.
 - [**CLI Commands**](commands.md)
 - [Tool Configuration](files.md)
 - [Server Configurations](server-configs.md)
+- [Deployment](deployment.md) *(currently Heroku specific)*
 - [FAQ](faq.md)
 - [Gotchas](gotchas.md)
 
@@ -22,7 +23,7 @@ efficient tooling and cleanest project structure.
 Automate the creation of components, containers, routes, selectors and sagas -
 and their tests - right from the CLI!
 
-Run `$ npm run generate` in your terminal and choose one of the parts you want
+Run `npm run generate` in your terminal and choose one of the parts you want
 to generate. They'll automatically be imported in the correct places and have
 everything set up correctly.
 
@@ -48,17 +49,17 @@ you can see, play back and change your action history!
 ## Next generation JavaScript
 
 Use ESNext template strings, object destructuring, arrow functions, JSX syntax
-and more, today. This is possible thanks to Babel with the `es2015`, `stage-0`
+and more, today. This is possible thanks to Babel with the `latest`, `stage-0`
 and `react` presets!
 
 ## Next generation CSS
 
-Write composable CSS that's co-located with your components using [CSS modules]
+Write composable CSS that's co-located with your components using [`styled-components`]
 for complete modularity. Unique generated class names keep the specificity low
 while eliminating style clashes. Ship only the styles that are used on the
 visible page for the best performance.
 
-[CSS modules]: ../css/css-modules.md
+[`styled-components`]: ../css/styled-components.md
 
 ## Industry-standard routing
 
@@ -99,7 +100,7 @@ these fonts are downloaded. That means a lot of waiting time in which users
 could already read the content.
 
 [FontFaceObserver](https://github.com/bramstein/fontfaceobserver) adds a class
-to the `body` when the fonts have loaded. (see [`app.js`](../../app/app.js#L29-L39)
+to the `body` when the fonts have loaded. (see [`app.js`](../../app/app.js#L26-L36)
 and [`App/styles.css`](../../app/containers/App/styles.css))
 
 ### Adding a new font
@@ -113,3 +114,12 @@ with only web-save fonts. In the `body.jsFontLoaded` tag, specify your
 `font-family` stack with your web font.
 
 3. In `app.js` add a `<fontName>Observer` for your font.
+
+## Image optimization
+
+Images often represent the majority of bytes downloaded on a web page, so image
+optimization can often be a notable performance improvement. Thanks to Webpack's
+[`image-loader`](https://github.com/tcoopman/image-webpack-loader), every PNG, JPEG, GIF and SVG images
+is optimized.
+
+See [`image-loader`](https://github.com/tcoopman/image-webpack-loader) to customize optimizations options.

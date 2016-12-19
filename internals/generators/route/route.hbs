@@ -1,7 +1,8 @@
  {
       path: '{{ path }}',
+      name: '{{ camelCase component }}',
       getComponent(location, cb) {
-        System.import('components/{{ properCase component }}')
+        System.import('{{{directory (properCase component)}}}')
           .then(loadModule(cb))
           .catch(errorLoading);
       },

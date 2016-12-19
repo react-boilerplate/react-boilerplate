@@ -1,19 +1,24 @@
 const webpackConfig = require('../webpack/webpack.test.babel');
+const argv = require('minimist')(process.argv.slice(2));
 const path = require('path');
 
 module.exports = (config) => {
   config.set({
     frameworks: ['mocha'],
     reporters: ['coverage', 'mocha'],
-    /*eslint-disable */
-    browsers: process.env.TRAVIS
+    browsers: process.env.TRAVIS // eslint-disable-line no-nested-ternary
       ? ['ChromeTravis']
       : process.env.APPVEYOR
         ? ['IE'] : ['Chrome'],
-    /*eslint-enable */
 
     autoWatch: false,
     singleRun: true,
+
+    client: {
+      mocha: {
+        grep: argv.grep,
+      },
+    },
 
     files: [
       {
@@ -25,7 +30,7 @@ module.exports = (config) => {
     ],
 
     preprocessors: {
-      ['./test-bundler.js']: ['webpack', 'sourcemap'], // eslint-disable-line  no-useless-computed-key
+      ['./test-bundler.js']: ['webpack', 'sourcemap'], // eslint-disable-line no-useless-computed-key
     },
 
     webpack: webpackConfig,
@@ -33,6 +38,7 @@ module.exports = (config) => {
     // make Webpack bundle generation quiet
     webpackMiddleware: {
       noInfo: true,
+      stats: 'errors-only',
     },
 
     customLaunchers: {

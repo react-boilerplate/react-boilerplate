@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/mxstbr/react-boilerplate-brand/master/assets/banner-metal.jpg" alt="react boilerplate banner" align="center" />
+<img src="https://raw.githubusercontent.com/mxstbr/react-boilerplate-brand/master/assets/banner-metal-optimized.jpg" alt="react boilerplate banner" align="center" />
 
 <br />
 
@@ -24,9 +24,22 @@
   <a href="https://coveralls.io/r/mxstbr/react-boilerplate">
     <img src="https://coveralls.io/repos/github/mxstbr/react-boilerplate/badge.svg" alt="Test Coverage" />
   </a>
-  <!-- Donations -->
-  <a href="https://cash.me/$mxstbr">
-    <img src="https://img.shields.io/badge/square-donate-yellow.svg" alt="Donate with Square Cash" />
+</div>
+<div align="center">
+    <!-- Backers -->
+  <a href="#backers">
+    <img src="https://opencollective.com/react-boilerplate/backers/badge.svg" alt="Backers" />
+  </a>
+      <!-- Sponsors -->
+  <a href="#sponsors">
+    <img src="https://opencollective.com/react-boilerplate/sponsors/badge.svg" alt="Sponsors" />
+  </a>
+  <a href="http://thinkmill.com.au/?utm_source=github&utm_medium=badge&utm_campaign=react-boilerplate">
+    <img alt="Supported by Thinkmill" src="https://thinkmill.github.io/badge/heart.svg" />
+  </a>
+  <!-- Gitter -->
+  <a href="https://gitter.im/mxstbr/react-boilerplate">
+    <img src="https://camo.githubusercontent.com/54dc79dc7da6b76b17bc8013342da9b4266d993c/68747470733a2f2f6261646765732e6769747465722e696d2f6d78737462722f72656163742d626f696c6572706c6174652e737667" alt="Gitter Chat" />
   </a>
 </div>
 
@@ -57,31 +70,42 @@
   <dt>Industry-standard routing</dt>
   <dd>It's natural to want to add pages (e.g. `/about`) to your application, and routing makes this possible.</dd>
 
+  <dt>Industry-standard i18n internationalization support</dt>
+  <dd>Scalable apps need to support multiple languages, easily add and support multiple languages with `react-intl`.</dd>
+
   <dt>Offline-first</dt>
   <dd>The next frontier in performant web apps: availability without a network connection from the instant your users load the app.</dd>
+
+  <dt>SEO</dt>
+  <dd>We support SEO (document head tags management) for search engines that support indexing of JavaScript content. (eg. Google)</dd>
 </dl>
 
 But wait... there's more!
 
   - *The best test setup:* Automatically guarantee code quality and non-breaking
     changes. (Seen a react app with 99% test coverage before?)
-  - *Native web app:* Your app's new home? The homescreen of your users' phones.
+  - *Native web app:* Your app's new home? The home screen of your users' phones.
   - *The fastest fonts:* Say goodbye to vacant text.
   - *Stay fast*: Profile your app's performance from the comfort of your command
     line!
   - *Catch problems:* AppVeyor and TravisCI setups included by default, so your
     tests get run automatically on Windows and Unix.
 
-<sub><i>Keywords: React.js, Redux, Hot Reloading, ESNext, Babel, PostCSS, Autoprefixer, react-router, Offline First, ServiceWorker, CSS Modules, redux-saga, FontFaceObserver, PageSpeed Insights</i></sub>
+There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on how to structure your React.js apps with scalability in mind. It provides rationale for the majority of boilerplate's design decisions.
+
+<sub><i>Keywords: React.js, Redux, Hot Reloading, ESNext, Babel, react-router, Offline First, ServiceWorker, `styled-components`, redux-saga, FontFaceObserver, PageSpeed Insights</i></sub>
 
 ## Quick start
 
-1. Clone this repo using `$ git clone --depth=1 https://github.com/mxstbr/react-boilerplate.git`
-1. Run `$ npm run setup` to install dependencies and clean the git repo.<br />
-   *At this point you can run `$ npm start` to see the example app at `http://localhost:3000`.*
-1. Run `$ npm run clean` to delete the example app.
+1. Clone this repo using `git clone --depth=1 https://github.com/mxstbr/react-boilerplate.git`
+1. Run `npm run setup` to install dependencies and clean the git repo.<br />
+   *We auto-detect `yarn` for installing packages by default, if you wish to force `npm` usage do: `USE_YARN=false npm run setup`*<br />
+   *At this point you can run `npm start` to see the example app at `http://localhost:3000`.*
+1. Run `npm run clean` to delete the example app.
 
 Now you're ready to rumble!
+
+> Please note that this boilerplate is **production-ready and not meant for beginners**! If you're just starting out with react or redux, please refer to https://github.com/petehunt/react-howto instead. If you want a solid, battle-tested base to build your next product upon and have some experience with react, this is the perfect start for you.
 
 ## Documentation
 
@@ -92,13 +116,36 @@ Now you're ready to rumble!
 - [Your app](docs/js): Supercharging your app with Routing, Redux, simple
   asynchronicity helpers, etc.
 
+## Supporters
+
+This project would not be possible without the support by these amazing folks. [**Become a sponsor**](https://opencollective.com/react-boilerplate) to get your company in front of thousands of engaged react developers and help us out!
+
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/0/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/1/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/2/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/3/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/4/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/5/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/6/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/7/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/8/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/bronze-sponsor/9/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/9/avatar.svg"></a>
+
+----
+
+<a href="https://opencollective.com/react-boilerplate/backer/0/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/0/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/1/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/1/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/2/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/2/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/3/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/3/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/4/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/4/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/5/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/5/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/6/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/6/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/7/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/7/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/8/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/8/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/9/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/9/avatar.svg"></a>
+
+
 ## License
 
 This project is licensed under the MIT license, Copyright (c) 2016 Maximilian
 Stoiber. For more information see `LICENSE.md`.
-
-## Donate
-
-This project is a labor of love. I ([Max](https://twitter.com/mxstbr)) have
-spent a lot of time building and maintaining react-boilerplate, and if you're
-using it I'd be immensely grateful for [a donation](https://cash.me/$mxstbr).

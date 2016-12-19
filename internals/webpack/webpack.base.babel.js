@@ -18,11 +18,6 @@ module.exports = (options) => ({
       exclude: /node_modules/,
       query: options.babelQuery,
     }, {
-      // Transform our own .css files with PostCSS and CSS-modules
-      test: /\.css$/,
-      exclude: /node_modules/,
-      loader: options.cssLoaders,
-    }, {
       // Do not transform vendor's CSS with CSS-modules
       // The point is that they remain in global scope.
       // Since we require these CSS files in our JS or CSS files,
@@ -32,30 +27,26 @@ module.exports = (options) => ({
       include: /node_modules/,
       loaders: ['style-loader', 'css-loader'],
     }, {
-      test: /\.jpe?g$|\.gif$|\.png$|\.svg$/i,
-      loader: 'url-loader?limit=10000',
+      test: /\.(eot|svg|ttf|woff|woff2)$/,
+      loader: 'file-loader',
     }, {
-      test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file?name=fonts/[name].[hash].[ext]&mimetype=application/font-woff',
-    }, {
-      test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file?name=fonts/[name].[hash].[ext]&mimetype=application/font-woff',
-    }, {
-      test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file?name=fonts/[name].[hash].[ext]&mimetype=application/octet-stream',
-    }, {
-      test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file?name=fonts/[name].[hash].[ext]',
+      test: /\.(jpg|png|gif)$/,
+      loaders: [
+        'file-loader',
+        'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
+      ],
     }, {
       test: /\.html$/,
       loader: 'html-loader',
     }, {
       test: /\.json$/,
       loader: 'json-loader',
+    }, {
+      test: /\.(mp4|webm)$/,
+      loader: 'url-loader?limit=10000',
     }],
   },
   plugins: options.plugins.concat([
-    new webpack.optimize.CommonsChunkPlugin('common.js'),
     new webpack.ProvidePlugin({
       // make fetch available
       fetch: 'exports?self.fetch!whatwg-fetch',
@@ -69,23 +60,21 @@ module.exports = (options) => ({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
+    new webpack.NamedModulesPlugin(),
   ]),
-  postcss: () => options.postcssPlugins,
   resolve: {
     modules: ['app', 'node_modules'],
     extensions: [
-      '',
       '.js',
       '.jsx',
       '.react.js',
     ],
-    packageMains: [
+    mainFields: [
+      'browser',
       'jsnext:main',
       'main',
     ],
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
-  stats: false, // Don't show stats in the console
-  progress: true,
 });

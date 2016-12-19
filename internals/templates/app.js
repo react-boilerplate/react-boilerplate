@@ -6,10 +6,11 @@
  */
 import 'babel-polyfill';
 
-// TODO constrain eslint import/no-unresolved rule to this block
+/* eslint-disable import/no-unresolved, import/extensions */
 // Load the manifest.json file and the .htaccess file
-import 'file?name=[name].[ext]!./manifest.json';  // eslint-disable-line import/no-unresolved
-import 'file?name=[name].[ext]!./.htaccess';      // eslint-disable-line import/no-unresolved
+import '!file?name=[name].[ext]!./manifest.json';
+import 'file?name=[name].[ext]!./.htaccess';
+/* eslint-enable import/no-unresolved, import/extensions */
 
 // Import all the third party stuff
 import React from 'react';
@@ -17,11 +18,15 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import useScroll from 'react-router-scroll';
+import { useScroll } from 'react-router-scroll';
+import LanguageProvider from 'containers/LanguageProvider';
 import configureStore from './store';
 
+// Import i18n messages
+import { translationMessages } from './i18n';
+
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
-import 'sanitize.css/lib/sanitize.css';
+import 'sanitize.css/sanitize.css';
 
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
@@ -46,34 +51,51 @@ const rootRoute = {
   childRoutes: createRoutes(store),
 };
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router
-      history={history}
-      routes={rootRoute}
-      render={
-        // Scroll to top when going to a new page, imitating default browser
-        // behaviour
-        applyRouterMiddleware(
-          useScroll(
-            (prevProps, props) => {
-              if (!prevProps || !props) {
-                return true;
-              }
 
-              if (prevProps.location.pathname !== props.location.pathname) {
-                return [0, 0];
-              }
+const render = (translatedMessages) => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <LanguageProvider messages={translatedMessages}>
+        <Router
+          history={history}
+          routes={rootRoute}
+          render={
+            // Scroll to top when going to a new page, imitating default browser
+            // behaviour
+            applyRouterMiddleware(useScroll())
+          }
+        />
+      </LanguageProvider>
+    </Provider>,
+    document.getElementById('app')
+  );
+};
 
-              return true;
-            }
-          )
-        )
-      }
-    />
-  </Provider>,
-  document.getElementById('app')
-);
+
+// Hot reloadable translation json files
+if (module.hot) {
+  // modules.hot.accept does not accept dynamic dependencies,
+  // have to be constants at compile-time
+  module.hot.accept('./i18n', () => {
+    render(translationMessages);
+  });
+}
+
+// Chunked polyfill for browsers without Intl support
+if (!window.Intl) {
+  (new Promise((resolve) => {
+    resolve(System.import('intl'));
+  }))
+    .then(() => Promise.all([
+      System.import('intl/locale-data/jsonp/de.js'),
+    ]))
+    .then(() => render(translationMessages))
+    .catch((err) => {
+      throw err;
+    });
+} else {
+  render(translationMessages);
+}
 
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,

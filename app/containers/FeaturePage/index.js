@@ -3,99 +3,83 @@
  *
  * List all the features
  */
-/* eslint-disable react/prefer-stateless-function */
-
 import React from 'react';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import Helmet from 'react-helmet';
 
-import Button from 'components/Button';
+import messages from './messages';
+import { FormattedMessage } from 'react-intl';
 import H1 from 'components/H1';
+import List from './List';
+import ListItem from './ListItem';
+import ListItemTitle from './ListItemTitle';
 
-import styles from './styles.css';
+export default class FeaturePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
-export class FeaturePage extends React.Component {
-
-  /**
-   * Changes the route
-   *
-   * @param  {string} route The route we want to go to
-   */
-  openRoute = (route) => {
-    this.props.changeRoute(route);
-  };
-
-  /**
-   * Changed route to '/'
-   */
-  openHomePage = () => {
-    this.openRoute('/');
-  };
+  // Since state and props are static,
+  // there's no need to re-render this component
+  shouldComponentUpdate() {
+    return false;
+  }
 
   render() {
     return (
       <div>
-        <H1>Features</H1>
-        <ul className={styles.list}>
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>Quick scaffolding</p>
-            <p>Automate the creation of components, containers, routes, selectors
-            and sagas - and their tests - right from the CLI!</p>
-          </li>
+        <Helmet
+          title="Feature Page"
+          meta={[
+            { name: 'description', content: 'Feature page of React.js Boilerplate application' },
+          ]}
+        />
+        <H1>
+          <FormattedMessage {...messages.header} />
+        </H1>
+        <List>
+          <ListItem>
+            <ListItemTitle>
+              <FormattedMessage {...messages.scaffoldingHeader} />
+            </ListItemTitle>
+            <p>
+              <FormattedMessage {...messages.scaffoldingMessage} />
+            </p>
+          </ListItem>
 
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>Instant feedback</p>
-            <p>Enjoy the best DX and code your app at the speed of thought! Your
-            saved changes to the CSS and JS are reflected instantaneously
-            without refreshing the page. Preserve application state even when
-            you update something in the underlying code!</p>
-          </li>
+          <ListItem>
+            <ListItemTitle>
+              <FormattedMessage {...messages.feedbackHeader} />
+            </ListItemTitle>
+            <p>
+              <FormattedMessage {...messages.feedbackMessage} />
+            </p>
+          </ListItem>
 
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>Predictable state management</p>
-            <p>Unidirectional data flow allows for change logging and time travel
-            debugging.</p>
-          </li>
+          <ListItem>
+            <ListItemTitle>
+              <FormattedMessage {...messages.routingHeader} />
+            </ListItemTitle>
+            <p>
+              <FormattedMessage {...messages.routingMessage} />
+            </p>
+          </ListItem>
 
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>Next generation JavaScript</p>
-            <p>Use template strings, object destructuring, arrow functions, JSX
-            syntax and more, today.</p>
-          </li>
+          <ListItem>
+            <ListItemTitle>
+              <FormattedMessage {...messages.networkHeader} />
+            </ListItemTitle>
+            <p>
+              <FormattedMessage {...messages.networkMessage} />
+            </p>
+          </ListItem>
 
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>Next generation CSS</p>
-            <p>Write composable CSS that's co-located with your components for
-            complete modularity. Unique generated class names keep the
-            specificity low while eliminating style clashes. Ship only the
-            styles that are on the page for the best performance.</p>
-          </li>
-
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>Industry-standard routing</p>
-            <p>It's natural to want to add pages (e.g. `/about`) to your
-            application, and routing makes this possible.</p>
-          </li>
-
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>Offline-first</p>
-            <p>The next frontier in performant web apps: availability without a
-            network connection from the instant your users load the app.</p>
-          </li>
-        </ul>
-        <Button handleRoute={this.openHomePage}>Home</Button>
+          <ListItem>
+            <ListItemTitle>
+              <FormattedMessage {...messages.intlHeader} />
+            </ListItemTitle>
+            <p>
+              <FormattedMessage {...messages.intlMessage} />
+            </p>
+          </ListItem>
+        </List>
       </div>
     );
   }
 }
-FeaturePage.propTypes = {
-  changeRoute: React.PropTypes.func,
-};
-
-function mapDispatchToProps(dispatch) {
-  return {
-    changeRoute: (url) => dispatch(push(url)),
-  };
-}
-
-export default connect(null, mapDispatchToProps)(FeaturePage);

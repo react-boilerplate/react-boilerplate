@@ -6,7 +6,10 @@ import expect from 'expect';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 
-import { HomePage } from '../index';
+import { IntlProvider } from 'react-intl';
+import { HomePage, mapDispatchToProps } from '../index';
+import { changeUsername } from '../actions';
+import { loadRepos } from '../../App/actions';
 import RepoListItem from 'containers/RepoListItem';
 import List from 'components/List';
 import LoadingIndicator from 'components/LoadingIndicator';
@@ -21,16 +24,32 @@ describe('<HomePage />', () => {
 
   it('should render an error if loading failed', () => {
     const renderedComponent = mount(
-      <HomePage
-        loading={false}
-        error={{ message: 'Loading failed!' }}
-      />
+      <IntlProvider locale="en">
+        <HomePage
+          loading={false}
+          error={{ message: 'Loading failed!' }}
+        />
+      </IntlProvider>
     );
     expect(
       renderedComponent
         .text()
         .indexOf('Something went wrong, please try again!')
       ).toBeGreaterThan(-1);
+  });
+
+  it('should render fetch the repos on mount if a username exists', () => {
+    const submitSpy = expect.createSpy();
+    mount(
+      <IntlProvider locale="en">
+        <HomePage
+          username="Not Empty"
+          onChangeUsername={() => {}}
+          onSubmitForm={submitSpy}
+        />
+      </IntlProvider>
+    );
+    expect(submitSpy).toHaveBeenCalled();
   });
 
   it('should render the repositories if loading was successful', () => {
@@ -53,21 +72,44 @@ describe('<HomePage />', () => {
     expect(renderedComponent.contains(<List items={repos} component={RepoListItem} />)).toEqual(true);
   });
 
-  it('should link to /features', () => {
-    const openRouteSpy = expect.createSpy();
+  describe('mapDispatchToProps', () => {
+    describe('onChangeUsername', () => {
+      it('should be injected', () => {
+        const dispatch = expect.createSpy();
+        const result = mapDispatchToProps(dispatch);
+        expect(result.onChangeUsername).toExist();
+      });
 
-    // Spy on the openRoute method of the HomePage
-    const openRoute = (dest) => {
-      if (dest === '/features') {
-        openRouteSpy();
-      }
-    };
+      it('should dispatch changeUsername when called', () => {
+        const dispatch = expect.createSpy();
+        const result = mapDispatchToProps(dispatch);
+        const username = 'mxstbr';
+        result.onChangeUsername({ target: { value: username } });
+        expect(dispatch).toHaveBeenCalledWith(changeUsername(username));
+      });
+    });
+  });
 
-    const renderedComponent = mount(
-      <HomePage loading changeRoute={openRoute} />
-    );
-    const button = renderedComponent.find('button');
-    button.simulate('click');
-    expect(openRouteSpy).toHaveBeenCalled();
+  describe('onSubmitForm', () => {
+    it('should be injected', () => {
+      const dispatch = expect.createSpy();
+      const result = mapDispatchToProps(dispatch);
+      expect(result.onSubmitForm).toExist();
+    });
+
+    it('should dispatch loadRepos when called', () => {
+      const dispatch = expect.createSpy();
+      const result = mapDispatchToProps(dispatch);
+      result.onSubmitForm();
+      expect(dispatch).toHaveBeenCalledWith(loadRepos());
+    });
+
+    it('should preventDefault if called with event', () => {
+      const preventDefault = expect.createSpy();
+      const result = mapDispatchToProps(() => {});
+      const evt = { preventDefault };
+      result.onSubmitForm(evt);
+      expect(preventDefault).toHaveBeenCalledWith();
+    });
   });
 });

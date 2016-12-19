@@ -11,7 +11,7 @@ module.exports = {
     name: 'name',
     message: 'What should it be called?',
     default: 'Form',
-    validate: value => {
+    validate: (value) => {
       if ((/.+/).test(value)) {
         return componentExists(value) ? 'A component or container with this name already exists' : true;
       }
@@ -19,10 +19,16 @@ module.exports = {
       return 'The name is required';
     },
   }, {
+    type: 'list',
+    name: 'component',
+    message: 'Select a base component:',
+    default: 'PureComponent',
+    choices: () => ['PureComponent', 'Component'],
+  }, {
     type: 'confirm',
-    name: 'wantCSS',
+    name: 'wantHeaders',
     default: false,
-    message: 'Does it have styling?',
+    message: 'Do you want headers?',
   }, {
     type: 'confirm',
     name: 'wantActionsAndReducer',
@@ -33,8 +39,13 @@ module.exports = {
     name: 'wantSagas',
     default: true,
     message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
+  }, {
+    type: 'confirm',
+    name: 'wantMessages',
+    default: true,
+    message: 'Do you want i18n messages (i.e. will this component use text)?',
   }],
-  actions: data => {
+  actions: (data) => {
     // Generate index.js and index.test.js
     const actions = [{
       type: 'add',
@@ -48,12 +59,12 @@ module.exports = {
       abortOnFail: true,
     }];
 
-    // If they want a CSS file, add styles.css
-    if (data.wantCSS) {
+    // If component wants messages
+    if (data.wantMessages) {
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/styles.css',
-        templateFile: './container/styles.css.hbs',
+        path: '../../app/containers/{{properCase name}}/messages.js',
+        templateFile: './container/messages.js.hbs',
         abortOnFail: true,
       });
     }
@@ -109,18 +120,6 @@ module.exports = {
         path: '../../app/containers/{{properCase name}}/tests/reducer.test.js',
         templateFile: './container/reducer.test.js.hbs',
         abortOnFail: true,
-      });
-      actions.push({ // Add the reducer to the reducer.js file
-        type: 'modify',
-        path: '../../app/reducers.js',
-        pattern: /(\.\.\.asyncReducers,\n {2}}\);)/gi,
-        template: '{{camelCase name}}: {{camelCase name}}Reducer,\n    $1',
-      });
-      actions.push({
-        type: 'modify',
-        path: '../../app/reducers.js',
-        pattern: /(export default function createReducer)/gi,
-        template: 'import {{camelCase name}}Reducer from \'containers/{{properCase name}}/reducer\';\n$1',
       });
     }
 

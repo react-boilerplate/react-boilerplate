@@ -1,0 +1,3 @@
+approvals = 2
+pattern  = "(?i):shipit:|LGTM"
+self_approval_off = true

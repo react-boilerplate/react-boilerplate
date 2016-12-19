@@ -22,12 +22,12 @@ const initialState = fromJS({
   loading: false,
   error: false,
   currentUser: false,
-  userData: fromJS({
+  userData: {
     repositories: false,
-  }),
+  },
 });
 
-function homeReducer(state = initialState, action) {
+function appReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_REPOS:
       return state
@@ -48,4 +48,4 @@ function homeReducer(state = initialState, action) {
   }
 }
 
-export default homeReducer;
+export default appReducer;

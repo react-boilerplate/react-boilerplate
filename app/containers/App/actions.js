@@ -4,7 +4,7 @@
  * Actions change things in your application
  * Since this boilerplate uses a uni-directional data flow, specifically redux,
  * we have these actions which are the only way your application interacts with
- * your appliction state. This guarantees that your state is up to date and nobody
+ * your application state. This guarantees that your state is up to date and nobody
  * messes it up weirdly somewhere.
  *
  * To add a new Action:
@@ -22,7 +22,7 @@ import {
 } from './constants';
 
 /**
- * Load the repositories, this action starts the getGithubData saga
+ * Load the repositories, this action starts the request saga
  *
  * @return {object} An action object with a type of LOAD_REPOS
  */
@@ -33,7 +33,7 @@ export function loadRepos() {
 }
 
 /**
- * Dispatched when the repositories are loaded by the getGithubData saga
+ * Dispatched when the repositories are loaded by the request saga
  *
  * @param  {array} repos The repository data
  * @param  {string} username The current username

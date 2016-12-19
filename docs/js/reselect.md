@@ -28,7 +28,7 @@ export {
 ### Complex selectors
 
 If we need to, we can combine simple selectors to build more complex ones which
-get nested state parts with reselects `createSelector` function. We import other
+get nested state parts with reselect's `createSelector` function. We import other
 selectors and pass them to the `createSelector` call:
 
 ```javascript

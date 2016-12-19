@@ -3,11 +3,18 @@
  */
 
 import expect from 'expect';
-import { shallow, mount } from 'enzyme';
+import { shallow, render } from 'enzyme';
 import React from 'react';
 
+import { IntlProvider } from 'react-intl';
 import { RepoListItem } from '../index';
 import ListItem from 'components/ListItem';
+
+const renderComponent = (props = {}) => render(
+  <IntlProvider locale="en">
+    <RepoListItem {...props} />
+  </IntlProvider>
+);
 
 describe('<RepoListItem />', () => {
   let item;
@@ -33,37 +40,33 @@ describe('<RepoListItem />', () => {
   });
 
   it('should not render the current username', () => {
-    const renderedComponent = mount(
-      <RepoListItem item={item} currentUser={item.owner.login} />
-    );
-    expect(renderedComponent.text().indexOf(item.owner.login)).toBeLessThan(0);
+    const renderedComponent = renderComponent({
+      item,
+      currentUser: item.owner.login,
+    });
+    expect(renderedComponent.text()).toExclude(item.owner.login);
   });
 
   it('should render usernames that are not the current one', () => {
-    const renderedComponent = mount(
-      <RepoListItem item={item} currentUser="nikgraf" />
-    );
-    expect(renderedComponent.text().indexOf(item.owner.login)).toBeGreaterThan(-1);
+    const renderedComponent = renderComponent({
+      item,
+      currentUser: 'nikgraf',
+    });
+    expect(renderedComponent.text()).toInclude(item.owner.login);
   });
 
   it('should render the repo name', () => {
-    const renderedComponent = mount(
-      <RepoListItem item={item} />
-    );
-    expect(renderedComponent.text().indexOf(item.name)).toBeGreaterThan(-1);
+    const renderedComponent = renderComponent({ item });
+    expect(renderedComponent.text()).toInclude(item.name);
   });
 
   it('should render the issue count', () => {
-    const renderedComponent = mount(
-      <RepoListItem item={item} />
-    );
-    expect(renderedComponent.text().indexOf(item.open_issues_count)).toBeGreaterThan(1);
+    const renderedComponent = renderComponent({ item });
+    expect(renderedComponent.text()).toInclude(item.open_issues_count);
   });
 
   it('should render the IssueIcon', () => {
-    const renderedComponent = mount(
-      <RepoListItem item={item} />
-    );
+    const renderedComponent = renderComponent({ item });
     expect(renderedComponent.find('svg').length).toEqual(1);
   });
 });

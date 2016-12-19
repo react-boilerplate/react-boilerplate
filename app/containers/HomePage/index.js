@@ -5,52 +5,36 @@
  */
 
 import React from 'react';
+import Helmet from 'react-helmet';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import shouldPureComponentUpdate from 'react-pure-render/function';
+import { createStructuredSelector } from 'reselect';
 
-import { createSelector } from 'reselect';
-
-import {
-  selectRepos,
-  selectLoading,
-  selectError,
-} from 'containers/App/selectors';
-
-import {
-  selectUsername,
-} from './selectors';
-
-import { changeUsername } from './actions';
-import { loadRepos } from '../App/actions';
-
-import RepoListItem from 'containers/RepoListItem';
-import Button from 'components/Button';
+import AtPrefix from './AtPrefix';
+import CenteredSection from './CenteredSection';
+import Form from './Form';
 import H2 from 'components/H2';
+import Input from './Input';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
+import RepoListItem from 'containers/RepoListItem';
+import Section from './Section';
+import messages from './messages';
+import { loadRepos } from '../App/actions';
+import { changeUsername } from './actions';
+import { selectUsername } from './selectors';
+import { selectRepos, selectLoading, selectError } from 'containers/App/selectors';
 
-import styles from './styles.css';
-
-export class HomePage extends React.Component {
-  shouldComponentUpdate = shouldPureComponentUpdate;
-
+export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
-   * Changes the route
-   *
-   * @param  {string} route The route we want to go to
+   * when initial state username is not null, submit the form to load repos
    */
-  openRoute = (route) => {
-    this.props.changeRoute(route);
-  };
-
-  /**
-   * Changed route to '/features'
-   */
-  openFeaturesPage = () => {
-    this.openRoute('/features');
-  };
+  componentDidMount() {
+    if (this.props.username && this.props.username.trim().length > 0) {
+      this.props.onSubmitForm();
+    }
+  }
 
   render() {
     let mainContent = null;
@@ -73,29 +57,42 @@ export class HomePage extends React.Component {
 
     return (
       <article>
+        <Helmet
+          title="Home Page"
+          meta={[
+            { name: 'description', content: 'A React.js Boilerplate application homepage' },
+          ]}
+        />
         <div>
-          <section className={`${styles.textSection} ${styles.centered}`}>
-            <H2>Start your next react project in seconds</H2>
-            <p>A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices</p>
-          </section>
-          <section className={styles.textSection}>
-            <H2>Try me!</H2>
-            <form className={styles.usernameForm} onSubmit={this.props.onSubmitForm}>
-              <label htmlFor="username">Show Github repositories by
-                <span className={styles.atPrefix}>@</span>
-                <input
+          <CenteredSection>
+            <H2>
+              <FormattedMessage {...messages.startProjectHeader} />
+            </H2>
+            <p>
+              <FormattedMessage {...messages.startProjectMessage} />
+            </p>
+          </CenteredSection>
+          <Section>
+            <H2>
+              <FormattedMessage {...messages.trymeHeader} />
+            </H2>
+            <Form onSubmit={this.props.onSubmitForm}>
+              <label htmlFor="username">
+                <FormattedMessage {...messages.trymeMessage} />
+                <AtPrefix>
+                  <FormattedMessage {...messages.trymeAtPrefix} />
+                </AtPrefix>
+                <Input
                   id="username"
-                  className={styles.input}
                   type="text"
                   placeholder="mxstbr"
                   value={this.props.username}
                   onChange={this.props.onChangeUsername}
                 />
               </label>
-            </form>
+            </Form>
             {mainContent}
-          </section>
-          <Button handleRoute={this.openFeaturesPage}>Features</Button>
+          </Section>
         </div>
       </article>
     );
@@ -103,7 +100,6 @@ export class HomePage extends React.Component {
 }
 
 HomePage.propTypes = {
-  changeRoute: React.PropTypes.func,
   loading: React.PropTypes.bool,
   error: React.PropTypes.oneOfType([
     React.PropTypes.object,
@@ -118,24 +114,22 @@ HomePage.propTypes = {
   onChangeUsername: React.PropTypes.func,
 };
 
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
   return {
     onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-    changeRoute: (url) => dispatch(push(url)),
     onSubmitForm: (evt) => {
-      evt.preventDefault();
+      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadRepos());
     },
-
-    dispatch,
   };
 }
 
+const mapStateToProps = createStructuredSelector({
+  repos: selectRepos(),
+  username: selectUsername(),
+  loading: selectLoading(),
+  error: selectError(),
+});
+
 // Wrap the component to inject dispatch and state into it
-export default connect(createSelector(
-  selectRepos(),
-  selectUsername(),
-  selectLoading(),
-  selectError(),
-  (repos, username, loading, error) => ({ repos, username, loading, error })
-), mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

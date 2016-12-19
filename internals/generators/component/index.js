@@ -11,13 +11,13 @@ module.exports = {
     name: 'type',
     message: 'Select the type of component',
     default: 'Stateless Function',
-    choices: () => ['ES6 Class', 'Stateless Function'],
+    choices: () => ['Stateless Function', 'ES6 Class (Pure)', 'ES6 Class'],
   }, {
     type: 'input',
     name: 'name',
     message: 'What should it be called?',
     default: 'Button',
-    validate: value => {
+    validate: (value) => {
       if ((/.+/).test(value)) {
         return componentExists(value) ? 'A component or container with this name already exists' : true;
       }
@@ -26,16 +26,36 @@ module.exports = {
     },
   }, {
     type: 'confirm',
-    name: 'wantCSS',
+    name: 'wantMessages',
     default: true,
-    message: 'Does it have styling?',
+    message: 'Do you want i18n messages (i.e. will this component use text)?',
   }],
-  actions: data => {
+  actions: (data) => {
     // Generate index.js and index.test.js
+    let componentTemplate;
+
+    switch (data.type) {
+      case 'ES6 Class': {
+        componentTemplate = './component/es6.js.hbs';
+        break;
+      }
+      case 'ES6 Class (Pure)': {
+        componentTemplate = './component/es6.pure.js.hbs';
+        break;
+      }
+      case 'Stateless Function': {
+        componentTemplate = './component/stateless.js.hbs';
+        break;
+      }
+      default: {
+        componentTemplate = './component/es6.js.hbs';
+      }
+    }
+
     const actions = [{
       type: 'add',
       path: '../../app/components/{{properCase name}}/index.js',
-      templateFile: data.type === 'ES6 Class' ? './component/es6.js.hbs' : './component/stateless.js.hbs',
+      templateFile: componentTemplate,
       abortOnFail: true,
     }, {
       type: 'add',
@@ -44,12 +64,12 @@ module.exports = {
       abortOnFail: true,
     }];
 
-    // If they want a CSS file, add styles.css
-    if (data.wantCSS) {
+    // If they want a i18n messages file
+    if (data.wantMessages) {
       actions.push({
         type: 'add',
-        path: '../../app/components/{{properCase name}}/styles.css',
-        templateFile: './component/styles.css.hbs',
+        path: '../../app/components/{{properCase name}}/messages.js',
+        templateFile: './component/messages.js.hbs',
         abortOnFail: true,
       });
     }
