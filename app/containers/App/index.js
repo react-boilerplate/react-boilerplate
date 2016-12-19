@@ -37,7 +37,7 @@ export class App extends React.Component {
   componentDidMount() {
     // Store a reference to the listener.
     this.unsubscribeHistory = this.props.router.listen(() => {
-      const { loadedRoutes } = this.state
+      const { loadedRoutes } = this.state;
       const { pathname } = this.props.location;
 
       // Do not show progress bar for already loaded routes
@@ -50,7 +50,7 @@ export class App extends React.Component {
   componentWillUpdate(newProps) {
     // Complete progress when route changes
     if (newProps.location.pathname !== this.props.location.pathname && this.state.progress !== 100) {
-      console.log('called', this.state.loadedRoutes);
+      // console.log('called', this.state.loadedRoutes);
       this.setState({
         progress: 100,
         loadedRoutes: this.state.loadedRoutes.concat([newProps.location.pathname]),
