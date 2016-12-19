@@ -26,20 +26,34 @@ const AppWrapper = styled.div`
 
 export class App extends React.Component {
 
-  state = {
-    progress: -1,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      progress: -1,
+      loadedRoutes: [this.props.location.pathname],
+    };
+  }
 
   componentDidMount() {
     // Store a reference to the listener.
-    this.unsubscribeHistory = this.props.router.listen(() => this.setState({ progress: 0 }));
+    this.unsubscribeHistory = this.props.router.listen(() => {
+      const { loadedRoutes } = this.state;
+      const { pathname } = this.props.location;
+
+      // Do not show progress bar for already loaded routes
+      if (!loadedRoutes.includes(pathname)) {
+        this.setState({ progress: 0 });
+      }
+    });
   }
 
-  componentWillReceiveProps(newProps) {
-    // Official Docs on `componentWillReceiveProps()` - https://goo.gl/Yu1tYL
-    if (newProps.location.pathname === this.props.location.pathname && this.state.progress !== 100) {
+  componentWillUpdate(newProps) {
+    // Complete progress when route changes
+    if (newProps.location.pathname !== this.props.location.pathname && this.state.progress !== 100) {
+      // console.log('called', this.state.loadedRoutes);
       this.setState({
         progress: 100,
+        loadedRoutes: this.state.loadedRoutes.concat([newProps.location.pathname]),
       });
     }
   }
