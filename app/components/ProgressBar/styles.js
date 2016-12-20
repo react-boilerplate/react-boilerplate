@@ -8,7 +8,7 @@ export const ProgressBarWrapper = styled.div`
   width: 100%;
   visibility: ${(props) => props.hidden ? 'hidden' : 'visible'};
   opacity: ${(props) => props.hidden ? '0' : '1'};
-  transition: all 400ms ease-in-out;
+  transition: all 500ms ease-in-out;
   z-index: ${(props) => props.hidden ? '-10' : '9999'};
 `;
 /* eslint-enable */
@@ -16,5 +16,5 @@ export const ProgressBarWrapper = styled.div`
 export const ProgressBarPercent = styled.div`
   height: 2px;
   background: #29D;
-  transition: all 200ms ease;
+  transition: all 300ms ease;
 `;

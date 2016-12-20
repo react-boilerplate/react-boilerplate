@@ -90,7 +90,7 @@ class ProgressBar extends React.Component {
         this.timeout = setTimeout(() => {
           this.setState({
             percent: -1,
-          });
+          }, () => props.updateProgress(-1));
         }, 500);
       });
     } else {

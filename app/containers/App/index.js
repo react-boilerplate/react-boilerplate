@@ -30,30 +30,31 @@ export class App extends React.Component {
     super(props);
     this.state = {
       progress: -1,
-      loadedRoutes: [this.props.location.pathname],
+      loadedRoutes: props.location && [props.location.pathname],
     };
+    this.updateProgress = this.updateProgress.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     // Store a reference to the listener.
-    this.unsubscribeHistory = this.props.router.listen(() => {
-      const { loadedRoutes } = this.state;
-      const { pathname } = this.props.location;
-
+    this.unsubscribeHistory = this.props.router && this.props.router.listenBefore((location) => {
       // Do not show progress bar for already loaded routes
-      if (!loadedRoutes.includes(pathname)) {
-        this.setState({ progress: 0 });
+      if (this.state.loadedRoutes.indexOf(location.pathname) === -1) {
+        this.updateProgress(0);
       }
     });
   }
 
-  componentWillUpdate(newProps) {
+  componentWillUpdate(newProps, newState) {
     // Complete progress when route changes
-    if (newProps.location.pathname !== this.props.location.pathname && this.state.progress !== 100) {
-      // console.log('called', this.state.loadedRoutes);
+    const { loadedRoutes, progress } = this.state;
+    const { pathname } = newProps.location;
+
+    // Prevent state update while re-rendering
+    if (loadedRoutes.indexOf(pathname) === -1 && progress !== -1 && newState.progress < 100) {
+      this.updateProgress(100);
       this.setState({
-        progress: 100,
-        loadedRoutes: this.state.loadedRoutes.concat([newProps.location.pathname]),
+        loadedRoutes: loadedRoutes.concat([pathname]),
       });
     }
   }
@@ -61,6 +62,10 @@ export class App extends React.Component {
   componentWillUnmount() {
     // Prevent memory leak since listeners won't be garbage collected.
     this.unsubscribeHistory = undefined;
+  }
+
+  updateProgress(progress) {
+    this.setState({ progress });
   }
 
   render() {
@@ -73,7 +78,7 @@ export class App extends React.Component {
             { name: 'description', content: 'A React.js Boilerplate application' },
           ]}
         />
-        <ProgressBar percent={this.state.progress} />
+        <ProgressBar percent={this.state.progress} updateProgress={this.updateProgress} />
         <Header />
         {React.Children.toArray(this.props.children)}
         <Footer />
