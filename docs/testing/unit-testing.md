@@ -295,7 +295,7 @@ describe('NavBarReducer', () => {
   it('returns the initial state', () => {
     expect(NavBarReducer(undefined, {}).equals(fromJs({
       open: false
-    }));
+    })).toEqual(true);
   });
 
   it('handles the toggleNav action', () => {
