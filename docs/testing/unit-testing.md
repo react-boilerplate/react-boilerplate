@@ -287,6 +287,22 @@ describe('NavBarReducer', () => {
   });
 });
 ```
+> Note: If you are using Immutable for your state management, then you should compare
+using `Immutable.is(newState, expectState)` or `newState.equals(expectState)` like this:
+
+```javascript
+describe('NavBarReducer', () => {
+  it('returns the initial state', () => {
+    expect(NavBarReducer(undefined, {}).equals(fromJs({
+      open: false
+    }));
+  });
+
+  it('handles the toggleNav action', () => {
+
+  });
+});
+```
 
 This works, but we have one problem: We also test the initial state itself. When
 somebody changes the initial state, this test will fail, even though the reducer
