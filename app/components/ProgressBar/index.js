@@ -12,7 +12,7 @@ class ProgressBar extends React.Component {
   static defaultProps = {
     percent: -1,
     autoIncrement: true,
-    intervalTime: 75,
+    intervalTime: 100,
   };
 
   constructor(props) {
@@ -30,21 +30,21 @@ class ProgressBar extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.interval) {
-      // stop progress when new props come in
+      // stop progress when new props come in.
       clearInterval(this.interval);
       this.interval = undefined;
     }
     if (this.timeout) {
-      // clear timeout when new props come in
+      // clear timeout when new props come in.
       clearTimeout(this.timeout);
       this.timeout = undefined;
     }
-    // start progress with updated props
+    // start progress with updated props.
     this.handleProps(nextProps);
   }
 
   componentWillUnmount() {
-    // cleaning up interval and timeout
+    // cleaning up interval and timeout.
     if (this.interval) {
       clearInterval(this.interval);
       this.interval = undefined;
@@ -58,7 +58,7 @@ class ProgressBar extends React.Component {
   increment() {
     /**
      * Increment the percent randomly.
-     * Only used when autoIncrement is set to true
+     * Only used when autoIncrement is set to true.
     */
     let { percent } = this.state;
     percent += ((Math.random() + 1) - Math.random());
@@ -91,7 +91,7 @@ class ProgressBar extends React.Component {
           this.setState({
             percent: -1,
           }, () => props.updateProgress(-1));
-        }, 500);
+        }, 300);
       });
     } else {
       this.setState({
@@ -107,7 +107,7 @@ class ProgressBar extends React.Component {
     const isHidden = percent < 0 || percent >= 100;
 
     // Set `state.percent` as width.
-    const style = { width: `${(percent <= 0 ? 100 : percent)}%` };
+    const style = { width: `${(percent <= 0 ? 0 : percent)}%` };
 
     return (
       <ProgressBarWrapper hidden={isHidden}>
