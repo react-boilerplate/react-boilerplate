@@ -12,7 +12,7 @@ class ProgressBar extends React.Component {
   static defaultProps = {
     percent: -1,
     autoIncrement: true,
-    intervalTime: 100,
+    intervalTime: 75,
   };
 
   constructor(props) {
