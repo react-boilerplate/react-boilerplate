@@ -2,6 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
 
+import ProgressBar from 'components/ProgressBar';
 import withProgressBar from '../withProgressBar';
 
 let clock = null;
@@ -33,6 +34,14 @@ describe('withProgressBar()', () => {
     );
 
     expect(renderedComponent.find(Component).length).toBe(1);
+  });
+
+  it('Should render <ProgressBar />', () => {
+    const renderedComponent = mount(
+      <HocComponent />
+    );
+
+    expect(renderedComponent.find(ProgressBar).length).toBe(1);
   });
 
   it('Should initially have state.progress = -1', () => {
