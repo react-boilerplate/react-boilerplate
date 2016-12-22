@@ -87,7 +87,7 @@ describe('withProgressBar()', () => {
 
     renderedComponent.setState({ loadedRoutes: [], progress: 10 });
     renderedComponent.setProps({ location: { pathname: '/abc' }, router });
-    clock.tick(1000);
+    clock.tick(10);
     expect(renderedComponent.state().progress).toBe(100);
   });
 });

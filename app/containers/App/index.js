@@ -10,7 +10,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 
-import ProgressBar from 'components/ProgressBar';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import withProgressBar from './withProgressBar';
@@ -34,7 +33,6 @@ export function App(props) {
           { name: 'description', content: 'A React.js Boilerplate application' },
         ]}
       />
-      <ProgressBar percent={props.progress} updateProgress={props.updateProgress} />
       <Header />
       {React.Children.toArray(props.children)}
       <Footer />
@@ -44,8 +42,6 @@ export function App(props) {
 
 App.propTypes = {
   children: React.PropTypes.node,
-  progress: React.PropTypes.number,
-  updateProgress: React.PropTypes.func,
 };
 
 export default withProgressBar(App);
