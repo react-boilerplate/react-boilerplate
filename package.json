@@ -153,7 +153,13 @@
       "redux-saga/no-yield-in-race": 2,
       "redux-saga/yield-effects": 2,
       "require-yield": 0,
-      "import/no-webpack-loader-syntax": 0
+      "import/no-webpack-loader-syntax": 0,
+      "new-cap": [
+        0,
+        {
+          "capIsNew": false
+        }
+      ]
     },
     "settings": {
       "import/resolver": {
@@ -255,6 +261,7 @@
     "chai": "3.5.0",
     "chai-enzyme": "0.6.1",
     "cheerio": "0.22.0",
+    "circular-dependency-plugin": "2.0.0",
     "coveralls": "2.11.15",
     "css-loader": "0.26.1",
     "enzyme": "2.6.0",
@@ -269,16 +276,16 @@
     "eventsource-polyfill": "0.9.6",
     "exports-loader": "0.6.3",
     "file-loader": "0.9.0",
+    "happypack": "^3.0.1",
     "html-loader": "0.4.4",
     "html-webpack-plugin": "2.24.1",
-    "circular-dependency-plugin": "2.0.0",
     "image-webpack-loader": "2.0.0",
     "imports-loader": "0.6.5",
     "jest-cli": "17.0.3",
     "json-loader": "0.5.4",
+    "lint-staged": "3.2.1",
     "ngrok": "2.2.4",
     "node-plop": "0.5.4",
-    "lint-staged": "3.2.1",
     "null-loader": "0.1.1",
     "offline-plugin": "4.5.2",
     "plop": "1.7.2",
