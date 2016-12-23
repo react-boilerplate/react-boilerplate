@@ -1,7 +1,7 @@
-import expect from 'expect';
 import {
   changeLocale,
 } from '../actions';
+
 import {
   CHANGE_LOCALE,
 } from '../constants';

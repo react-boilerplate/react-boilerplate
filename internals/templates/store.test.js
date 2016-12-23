@@ -2,14 +2,13 @@
  * Test store addons
  */
 
-import expect from 'expect';
-import configureStore from '../store'; // eslint-disable-line
 import { browserHistory } from 'react-router';
+import configureStore from '../store'; // eslint-disable-line
 
 describe('configureStore', () => {
   let store;
 
-  before(() => {
+  beforeAll(() => {
     store = configureStore({}, browserHistory);
   });
 

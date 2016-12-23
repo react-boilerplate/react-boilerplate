@@ -11,9 +11,9 @@ environment:
 
   matrix:
     # Node versions to run
+    - nodejs_version: 7
     - nodejs_version: 6
     - nodejs_version: 5
-    - nodejs_version: 4
 
 # Fix line endings in Windows. (runs before repo cloning)
 init:
@@ -37,8 +37,13 @@ test_script:
   # Output debugging info
   - node --version
   - npm --version
+  - node ./internals/scripts/generate-templates-for-linting
   # run build and run tests
   - npm run build
+
+# Cache node_modules for faster builds
+cache:
+  - node_modules -> package.json
 
 # remove, as appveyor doesn't support secure variables on pr builds
 # so `COVERALLS_REPO_TOKEN` cannot be set, without hard-coding in this file

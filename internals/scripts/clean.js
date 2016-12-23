@@ -1,12 +1,5 @@
 require('shelljs/global');
-
-/**
- * Adds mark check symbol
- */
-function addCheckMark(callback) {
-  process.stdout.write(' ✓');
-  callback();
-}
+const addCheckMark = require('./helpers/checkmark.js');
 
 if (!which('git')) {
   echo('Sorry, this script requires git');
@@ -29,6 +22,7 @@ mkdir('-p', 'app/containers/App');
 mkdir('-p', 'app/containers/NotFoundPage');
 mkdir('-p', 'app/containers/HomePage');
 cp('internals/templates/appContainer.js', 'app/containers/App/index.js');
+cp('internals/templates/constants.js', 'app/containers/App/constants.js');
 cp('internals/templates/notFoundPage/notFoundPage.js', 'app/containers/NotFoundPage/index.js');
 cp('internals/templates/notFoundPage/messages.js', 'app/containers/NotFoundPage/messages.js');
 cp('internals/templates/homePage/homePage.js', 'app/containers/HomePage/index.js');
@@ -57,7 +51,6 @@ cp('internals/templates/languageProvider/reducer.js',
   'app/containers/LanguageProvider/reducer.js');
 cp('internals/templates/languageProvider/selectors.js',
   'app/containers/LanguageProvider/selectors.js');
-cp('internals/templates/styles.css', 'app/containers/App/styles.css');
 
 // Copy selectors
 mkdir('app/containers/App/tests');
@@ -86,7 +79,7 @@ cp('internals/templates/store.test.js', 'app/tests/store.test.js');
 // Remove the templates folder
 rm('-rf', 'internals/templates');
 
-process.stdout.write(' ✓');
+addCheckMark();
 
 // Commit the changes
 if (exec('git add . --all && git commit -qm "Remove default example"').code !== 0) {

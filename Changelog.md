@@ -44,7 +44,6 @@ website!
 - **Performance**
   - _Code splitting_: splitting/chunking by route means the leanest, meanest
     payload (because the fastest code is the code you don't load!)
-  - _PageSpeed Metrics_ are built right in with `npm run pagespeed`
 
 - **Testing setup**: Thanks to @jbinto's herculean efforts, testing is now a
   first-class citizen of this boilerplate. (the example app has _99% test coverage!_)

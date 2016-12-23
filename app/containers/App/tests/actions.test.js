@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import {
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,

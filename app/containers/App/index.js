@@ -8,61 +8,40 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
-import { withRouter } from 'react-router';
+import styled from 'styled-components';
 
-// Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
-import 'sanitize.css/sanitize.css';
-
-import ProgressBar from 'components/ProgressBar';
-import Img from 'components/Img';
+import Header from 'components/Header';
 import Footer from 'components/Footer';
-import Banner from './banner-metal.jpg';
-import A from 'components/A';
+import withProgressBar from './withProgressBar';
 
-import styles from './styles.css';
+const AppWrapper = styled.div`
+  max-width: calc(768px + 16px * 2);
+  margin: 0 auto;
+  display: flex;
+  min-height: 100%;
+  padding: 0 16px;
+  flex-direction: column;
+`;
 
-export class App extends React.Component {
-
-  state = {
-    progress: -1,
-  };
-
-  componentDidMount() {
-    this.props.router.listen(() => this.setState({ progress: 0 }));
-  }
-
-  componentDidUpdate() {
-    if (this.state.progress !== 100) {
-      this.setState({ // eslint-disable-line
-        progress: 100,
-      });
-    }
-  }
-
-  render() {
-    return (
-      <div className={styles.wrapper}>
-        <Helmet
-          titleTemplate="%s - React.js Boilerplate"
-          defaultTitle="React.js Boilerplate"
-          meta={[
-            { name: 'description', content: 'A React.js Boilerplate application' },
-          ]}
-        />
-        <ProgressBar percent={this.state.progress} />
-        <A className={styles.logoWrapper} href="https://twitter.com/mxstbr">
-          <Img className={styles.logo} src={Banner} alt="react-boilerplate - Logo" />
-        </A>
-        {React.Children.toArray(this.props.children)}
-        <Footer />
-      </div>
-    );
-  }
+export function App(props) {
+  return (
+    <AppWrapper>
+      <Helmet
+        titleTemplate="%s - React.js Boilerplate"
+        defaultTitle="React.js Boilerplate"
+        meta={[
+          { name: 'description', content: 'A React.js Boilerplate application' },
+        ]}
+      />
+      <Header />
+      {React.Children.toArray(props.children)}
+      <Footer />
+    </AppWrapper>
+  );
 }
 
 App.propTypes = {
   children: React.PropTypes.node,
-  router: React.PropTypes.object.isRequired,
 };
 
-export default withRouter(App);
+export default withProgressBar(App);

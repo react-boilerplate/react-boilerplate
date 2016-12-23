@@ -87,6 +87,45 @@ For example, if you have a route called `about` at `/about` and want to make a c
 }
 ```
 
+## Index routes
+
+To add an index route, use the following pattern:
+
+```JS
+{
+  path: '/',
+  name: 'home',
+  getComponent(nextState, cb) {
+    const importModules = Promise.all([
+      System.import('containers/HomePage')
+    ]);
+
+    const renderRoute = loadModule(cb);
+
+    importModules.then(([component]) => {
+      renderRoute(component);
+    });
+
+    importModules.catch(errorLoading);
+  },
+  indexRoute: {
+    getComponent(partialNextState, cb) {
+      const importModules = Promise.all([
+        System.import('containers/HomeView')
+      ]);
+
+      const renderRoute = loadModule(cb);
+
+      importModules.then(([component]) => {
+        renderRoute(component);
+      });
+
+      importModules.catch(errorLoading);
+    },
+  },
+}
+```
+
 ## Dynamic routes
 
 To go to a dynamic route such as 'post/:slug' eg 'post/cool-new-post', firstly add the route to your `routes.js`, as per documentation:

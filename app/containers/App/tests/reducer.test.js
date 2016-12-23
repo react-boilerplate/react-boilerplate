@@ -1,11 +1,11 @@
-import expect from 'expect';
+import { fromJS } from 'immutable';
+
 import appReducer from '../reducer';
 import {
   loadRepos,
   reposLoaded,
   repoLoadingError,
 } from '../actions';
-import { fromJS } from 'immutable';
 
 describe('appReducer', () => {
   let state;
