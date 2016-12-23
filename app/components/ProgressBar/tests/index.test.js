@@ -1,13 +1,13 @@
 import React from 'react';
+import { mount } from 'enzyme';
 import sinon from 'sinon';
-import { shallow, mount } from 'enzyme';
 
-import ProgressBar from '../index';
-import { ProgressBarWrapper, ProgressBarPercent } from '../styles';
+import withProgressBar from '../index';
+import ProgressBar from '../ProgressBar';
 
 let clock = null;
 
-describe('<ProgressBar />', () => {
+describe('withProgressBar()', () => {
   beforeEach(() => {
     clock = sinon.useFakeTimers();
   });
@@ -16,144 +16,87 @@ describe('<ProgressBar />', () => {
     clock = sinon.restore();
   });
 
-  it('should initially render hidden progress bar', () => {
-    const renderedComponent = shallow(
-      <ProgressBar />
+  function Component() {
+    return (
+      <div></div>
     );
-    expect(renderedComponent.find(ProgressBarWrapper).length).toEqual(1);
-  });
+  }
 
-  it('should render render horizontal progress bar', () => {
-    const renderedComponent = shallow(
-      <ProgressBar />
-    );
-    expect(renderedComponent.find(ProgressBarPercent).length).toEqual(1);
-  });
+  const router = {
+    listenBefore: () => (() => {}),
+  };
 
-  it('should set state.percent as props.percent', () => {
-    const expected = 50;
+  const HocComponent = withProgressBar(Component);
+
+  it('Should exist', () => {
     const renderedComponent = mount(
-      <ProgressBar percent={expected} />
+      <HocComponent />
     );
-    expect(renderedComponent.state().percent).toEqual(expected);
+
+    expect(renderedComponent.find(Component).length).toBe(1);
   });
 
-  it('should call componentDidMount', () => {
-    sinon.spy(ProgressBar.prototype, 'componentDidMount');
-    const renderedComponent = mount( // eslint-disable-line
-      <ProgressBar percent={0} updateProgress={(noop) => noop} />
-    );
-    expect(ProgressBar.prototype.componentDidMount.calledOnce).toEqual(true);
-    ProgressBar.prototype.componentDidMount.restore();
-  });
-
-  it('should call componentWillReceiveProps', () => {
-    sinon.spy(ProgressBar.prototype, 'componentWillReceiveProps');
-    const renderedComponent = mount( // eslint-disable-line
-      <ProgressBar percent={0} updateProgress={(noop) => noop} />
-    );
-    renderedComponent.setProps({ percent: 50 });
-    expect(ProgressBar.prototype.componentWillReceiveProps.calledOnce).toEqual(true);
-    ProgressBar.prototype.componentWillReceiveProps.restore();
-  });
-
-  it('should unset ProgressBar.interval after getting new props', () => {
-    const renderedComponent = mount( // eslint-disable-line
-      <ProgressBar percent={0} updateProgress={(noop) => noop} />
-    );
-    const inst = renderedComponent.instance();
-
-    clock.tick(1000);
-    expect(inst.interval).toBeDefined();
-    inst.componentWillReceiveProps({ percent: 50 });
-    expect(inst.interval).toBeUndefined();
-  });
-
-  it('should unset ProgressBar.timeout after getting new props', () => {
-    const renderedComponent = mount( // eslint-disable-line
-      <ProgressBar percent={100} updateProgress={(noop) => noop} />
-    );
-    const inst = renderedComponent.instance();
-
-    clock.tick(1000);
-    expect(inst.timeout).toBeDefined();
-    inst.componentWillReceiveProps({ percent: 50 });
-    expect(inst.timeout).toBeUndefined();
-  });
-
-  it('should set state to -1 after new route mounts', () => {
+  it('Should render <ProgressBar />', () => {
     const renderedComponent = mount(
-      <ProgressBar percent={0} updateProgress={(noop) => noop} />
+      <HocComponent />
     );
-    renderedComponent.setProps({ percent: 100 });
-    clock.tick(501);
-    expect(renderedComponent.state().percent).toEqual(-1);
+
+    expect(renderedComponent.find(ProgressBar).length).toBe(1);
   });
 
-  it('should call componentWillUnmount', () => {
-    sinon.spy(ProgressBar.prototype, 'componentWillUnmount');
-    const renderedComponent = mount( // eslint-disable-line
-      <ProgressBar percent={0} updateProgress={(noop) => noop} />
+  it('Should initially have state.progress = -1', () => {
+    const renderedComponent = mount(
+      <HocComponent />
     );
-    renderedComponent.unmount();
-    expect(ProgressBar.prototype.componentWillUnmount.calledOnce).toEqual(true);
-    ProgressBar.prototype.componentWillUnmount.restore();
+
+    expect(renderedComponent.state().progress).toBe(-1);
   });
 
-  it('should unset ProgressBar.interval after unmounting', () => {
-    sinon.spy(ProgressBar.prototype, 'componentWillUnmount');
-    const renderedComponent = mount( // eslint-disable-line
-      <ProgressBar percent={0} updateProgress={(noop) => noop} />
+  it('Should initially have state.loadedRoutes = current route', () => {
+    const renderedComponent = mount(
+      <HocComponent location={{ pathname: '/' }} />
     );
+
+    expect(renderedComponent.state().loadedRoutes[0]).toBe('/');
+  });
+
+  it('Should listen to route changes', () => {
+    const renderedComponent = mount(
+      <HocComponent location={{ pathname: '/' }} router={router} />
+    );
+
     const inst = renderedComponent.instance();
-
-    clock.tick(1000);
-    expect(inst.interval).toBeDefined();
-    renderedComponent.unmount();
-    expect(inst.interval).toBeUndefined();
-    ProgressBar.prototype.componentWillUnmount.restore();
+    expect(inst.unsubscribeHistory).toBeTruthy();
   });
 
-  it('should unset ProgressBar.timeout after unmounting', () => {
-    sinon.spy(ProgressBar.prototype, 'componentWillUnmount');
-    const renderedComponent = mount( // eslint-disable-line
-      <ProgressBar percent={100} updateProgress={(noop) => noop} />
+  it('Should unset listener when unmounted', () => {
+    const renderedComponent = mount(
+      <HocComponent location={{ pathname: '/' }} router={router} />
     );
-    const inst = renderedComponent.instance();
 
-    clock.tick(1000);
-    expect(inst.timeout).toBeDefined();
-    renderedComponent.unmount();
-    expect(inst.timeout).toBeUndefined();
-    ProgressBar.prototype.componentWillUnmount.restore();
+    const inst = renderedComponent.instance();
+    inst.componentWillUnmount();
+    expect(inst.unsubscribeHistory).toBeFalsy();
   });
 
-  describe('increment progress', () => {
-    beforeEach(() => {
-      clock = sinon.useFakeTimers();
-    });
+  it('Should update state.progress when called updateProgress()', () => {
+    const renderedComponent = mount(
+      <HocComponent location={{ pathname: '/' }} router={router} />
+    );
 
-    afterEach(() => {
-      clock = sinon.restore();
-    });
+    const inst = renderedComponent.instance();
+    inst.updateProgress(10);
+    expect(renderedComponent.state().progress).toBe(10);
+  });
 
-    it('should start incrementing progress if 0 <= percent < 100', () => {
-      const initialPercent = 50;
-      const renderedComponent = mount(
-        <ProgressBar percent={initialPercent} updateProgress={(noop) => noop} />
-      );
-      clock.tick(1000);
-      expect(renderedComponent.state().percent).toBeGreaterThan(initialPercent);
-    });
+  it('Should start progress bar for a new route', () => {
+    const renderedComponent = mount(
+      <HocComponent location={{ pathname: '/' }} router={router} />
+    );
 
-    it('should stop incrementing progress if percent >= 100', () => {
-      const initialPercent = 100;
-      const expected = -1;
-      const renderedComponent = mount(
-        <ProgressBar percent={initialPercent} updateProgress={(noop) => noop} />
-      );
-      clock.tick(1000);
-      expect(renderedComponent.state().percent).toEqual(expected);
-    });
+    renderedComponent.setState({ loadedRoutes: [], progress: 10 });
+    renderedComponent.setProps({ location: { pathname: '/abc' }, router });
+    clock.tick(10);
+    expect(renderedComponent.state().progress).toBe(100);
   });
 });
