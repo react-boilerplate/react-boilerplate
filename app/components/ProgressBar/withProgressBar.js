@@ -1,5 +1,5 @@
 import React from 'react';
-import ProgressBar from 'components/ProgressBar';
+import ProgressBar from './index';
 
 function withProgressBar(WrappedComponent) {
   class AppWithProgressBar extends React.Component {

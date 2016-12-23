@@ -12,7 +12,7 @@ import styled from 'styled-components';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import withProgressBar from './withProgressBar';
+import withProgressBar from 'components/ProgressBar/withProgressBar';
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
