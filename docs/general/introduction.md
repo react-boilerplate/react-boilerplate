@@ -30,6 +30,12 @@ Here's a curated list of packages (in no particular order) that you should have 
 
 There are 80+ node packages in `package.json`. If you're willing to go that extra mile, we'd suggest you do a google on each and every package and find out how it works and fits in this boilerplate. That will give you a sense of how even the smallest of things work.
 
+Note that several features of react-boilerplate are optional and there are instructions in the docs on how to remove them.
+- Redux-saga and reselect [here](https://github.com/mxstbr/react-boilerplate/blob/master/docs/js/remove.md).
+- Offline-first, add to homescreen, performant web font loading and image optimization [here](https://github.com/mxstbr/react-boilerplate/blob/master/docs/general/remove.md)
+- Sanitize.css [here](https://github.com/mxstbr/react-boilerplate/blob/master/docs/css/remove.md)
+- i18n and react-intl [here](https://github.com/mxstbr/react-boilerplate/blob/0f88f55ed905f8432c3dd7b452d713df5fb76d8e/docs/js/i18n.md#removing-i18n-and-react-intl)
+
 ## Project Structure
 Let's start with understanding why this boilerplate has chosen this particular structure. It has been an [evolving discussion](https://github.com/mxstbr/react-boilerplate/issues/27). 
 - Your source code will reside in the `app` folder. 
@@ -41,7 +47,7 @@ Let's start with understanding why this boilerplate has chosen this particular s
 We use [container/component architecture](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.4rmjqneiw). `containers/` contains React components which are connected to the redux store. `components/` contains dumb React components which depend on containers for data. Generally, you'd want to treat one webpage (such as Login, Home etc.) as one container and a small part (such as Login form, Navigation bar) of that page as a component. But there are no rigid rules. You can bend this structure to your needs.
 
 ### `internals/`
-You can call this area the build engine of your `app/`. Your source code cannot be executed as-is in the web broweser. It needs to pass through webpack to get converted into a form that web browsers understand.
+You can call this area the build engine of your `app/`. Your source code cannot be executed as-is in the web browser. It needs to pass through webpack to get converted into a form that web browsers understand.
 
 `internals/webpack`: You'll most probably use EcmaScript 6 or EcmaScript 7 to write the source code of your app. [EcmaScript](http://stackoverflow.com/a/33748400/5241520) is the standard for JavaScript. Most people are still using browsers which understand EcmaScript 5. So your code must be [transpiled](https://scotch.io/tutorials/javascript-transpilers-what-they-are-why-we-need-them) into browser-understandable code. To apply the transpiler to your source code, you will use webpack. Feeling the jitters already? [Don't worry](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f#.d2uasw2n6). Take a tea-break and then read on.
 
@@ -129,7 +135,7 @@ Let's see how the three features of reselect help.
 ### Redux Saga:
 If your application is going to interact with some back-end application for data, we recommend using redux saga for side effect management. Too much of jargon? Let's simplify.
 
-Imagine that your application is fetching data in json format from a back-end. For a every API call, ideally you should define at least three kinds of [action creators](http://redux.js.org/docs/basics/Actions.html):
+Imagine that your application is fetching data in json format from a back-end. For every API call, ideally you should define at least three kinds of [action creators](http://redux.js.org/docs/basics/Actions.html):
 
 1. `API_REQUEST`: Upon dispatching this, your application should show a spinner to let the user know that something's happening.
 2. `API_SUCCESS`: Upon dispatching this, your application should show the data to the user.
