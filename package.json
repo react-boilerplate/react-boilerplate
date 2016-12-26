@@ -1,6 +1,6 @@
 {
   "name": "react-boilerplate",
-  "version": "3.3.0",
+  "version": "3.3.3",
   "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
   "repository": {
     "type": "git",
@@ -283,7 +283,7 @@
     "offline-plugin": "4.5.2",
     "plop": "1.7.2",
     "pre-commit": "1.1.3",
-    "react-addons-test-utils": "15.4.1",
+    "react-addons-test-utils": "15.3.2",
     "rimraf": "2.5.4",
     "shelljs": "0.7.5",
     "sinon": "2.0.0-pre",
