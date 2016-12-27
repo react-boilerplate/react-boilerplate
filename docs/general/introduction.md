@@ -148,7 +148,7 @@ And this is only for **_one_** API call. In a real-world scenario, one page of y
 ## Example App: Behind the scenes
 The react-boilerplate building blocks interoperate to produce a seamless application. Let's join these pieces together.
 
-<img src="Workflow.png" alt="boilerplate workflow" align="center" />
+<img src="workflow.png" alt="boilerplate workflow" align="center" />
 
 ### Workflow
 The example application is a simple service which shows a list of repositories for github users using github's public API. You type in a username and the application will show you a list of repositories for that user. It also shows how navigating away to a different route can be done. You can switch between English and German language by selecting the desired option from the menu in the footer.
