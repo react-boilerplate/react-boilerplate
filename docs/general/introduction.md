@@ -37,11 +37,11 @@ Note that several features of react-boilerplate are optional and there are instr
 - i18n and react-intl [here](https://github.com/mxstbr/react-boilerplate/blob/0f88f55ed905f8432c3dd7b452d713df5fb76d8e/docs/js/i18n.md#removing-i18n-and-react-intl)
 
 ## Project Structure
-Let's start with understanding why this boilerplate has chosen this particular structure. It has been an [evolving discussion](https://github.com/mxstbr/react-boilerplate/issues/27). 
-- Your source code will reside in the `app` folder. 
+Let's start with understanding why this boilerplate has chosen this particular structure. It has been an [evolving discussion](https://github.com/mxstbr/react-boilerplate/issues/27).
+- Your source code will reside in the `app` folder.
 - Configuration, Generator and Template files reside in the `internals` folder.
 - The files in `mocks` are maintained autmatically by Jest.
-- The `server` folder contains development and production server configuration files. 
+- The `server` folder contains development and production server configuration files.
 
 ### `app/`
 We use [container/component architecture](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.4rmjqneiw). `containers/` contains React components which are connected to the redux store. `components/` contains dumb React components which depend on containers for data. Generally, you'd want to treat one webpage (such as Login, Home etc.) as one container and a small part (such as Login form, Navigation bar) of that page as a component. But there are no rigid rules. You can bend this structure to your needs.
@@ -81,9 +81,9 @@ Before launching the server, Webpack requires an entry point to your application
 - Hot module replacement setup.
 - i18n internationalization support setup.
 - Offline plugin support to make your app [offline-first](https://developers.google.com/web/fundamentals/getting-started/codelabs/offline/).
-- `ReactDOM.render()` not only renders the [root react component](https://github.com/mxstbr/react-boilerplate/blob/master/app/containers/App/index.js) called `<App />`, of your application, but it renders it with `<Provider />`, `<LanguageProvider />` and `<Router />`. 
- * `<Provider />` connects your app with the redux `store`. 
- * `<LanguageProvider />` provides language translation support to your app. 
+- `ReactDOM.render()` not only renders the [root react component](https://github.com/mxstbr/react-boilerplate/blob/master/app/containers/App/index.js) called `<App />`, of your application, but it renders it with `<Provider />`, `<LanguageProvider />` and `<Router />`.
+ * `<Provider />` connects your app with the redux `store`.
+ * `<LanguageProvider />` provides language translation support to your app.
  * `<Router />` will have information for your application routes.
 
 ### React Router:
@@ -148,7 +148,7 @@ And this is only for **_one_** API call. In a real-world scenario, one page of y
 ## Example App: Behind the scenes
 The react-boilerplate building blocks interoperate to produce a seamless application. Let's join these pieces together.
 
-<img src="https://s28.postimg.org/wwz21f5fx/Workflow.png" alt="boilerplate workflow" align="center" />
+<img src="Workflow.png" alt="boilerplate workflow" align="center" />
 
 ### Workflow
 The example application is a simple service which shows a list of repositories for github users using github's public API. You type in a username and the application will show you a list of repositories for that user. It also shows how navigating away to a different route can be done. You can switch between English and German language by selecting the desired option from the menu in the footer.
@@ -175,9 +175,9 @@ You must be wondering where does the list of repositories come from! Sagas are p
 
 Sagas are nothing but ES6 [generator functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*). These functions act as normal functions, the only difference is that they can be "paused" and "resumed" at any point in time. Redux saga provides an intuitive API for managing asynchronous operations.
 
-Check out [HomePage/sagas.js](https://github.com/mxstbr/react-boilerplate/blob/master/app/containers/HomePage/sagas.js). It can be confusing for untrained eyes. But the API of redux-saga is self-descriptive. 
-- You can `fork` a saga to send it to the background. That way, your code will not get blocked even when the saga is continuously running. 
-- `takeLatest` is used for listening for a particular action. In this case, it will wait for a `LOAD_REPOS` action. Whenever you disptach this action, the saga will understand that you want to fetch repos from github's public API by calling `getRepos()`. 
+Check out [HomePage/sagas.js](https://github.com/mxstbr/react-boilerplate/blob/master/app/containers/HomePage/sagas.js). It can be confusing for untrained eyes. But the API of redux-saga is self-descriptive.
+- You can `fork` a saga to send it to the background. That way, your code will not get blocked even when the saga is continuously running.
+- `takeLatest` is used for listening for a particular action. In this case, it will wait for a `LOAD_REPOS` action. Whenever you disptach this action, the saga will understand that you want to fetch repos from github's public API by calling `getRepos()`.
 - If the API successfully returns some data, a `reposLoaded()` action will be dispatched which carries the data. When redux store receives this action, [a reducer](https://github.com/mxstbr/react-boilerplate/blob/master/app/containers/App/reducer.js) will set incoming data in the new state tree.
 
 _An update has occurred!_ `mapStateToProps()` will be triggered. `<HomePage />` will receive the new data. It's now the  container's responsibility to properly display the list of repositories.
