@@ -52,8 +52,7 @@ speech like and easy to use.
 > Note: The official documentation for Jest can be found [here](https://facebook.github.io/jest/).
 
 We're going to add a second file called `add.test.js` with our unit tests
-inside. Running said unit tests requires us to enter `jest add.test.js` on
-the command line.
+inside.
 
 First, we `import` the function in our `add.test.js` file:
 
