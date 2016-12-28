@@ -6,8 +6,7 @@ do the thing we expect them to do. We assert that, given a set of inputs, our
 functions return the proper values and handle problems.
 
 This boilerplate uses the [Jest](https://github.com/facebook/jest) test
-framework to run the tests and for
-assertions. This library makes writing tests as easy as speaking - you
+framework to run tests and make assertions. This library makes writing tests as easy as speaking - you
 `describe` a unit of your code and `expect` `it` to do the correct thing.
 
 <!-- TOC depthFrom:2 depthTo:4 withLinks:1 updateOnSave:1 orderedList:0 -->
@@ -39,10 +38,10 @@ export function add(x, y) {
 }
 ```
 
-> Note: The `export` here is ES6 syntax, and you will need an ES6 transpiler
+> Note: The `export` here is ES6 syntax, and you would need an ES6 transpiler
   (e.g. babel.js) to run this JavaScript.
 
-> The `export` exports our function as a module, which we can `import` and use
+> The `export` makes our function available as a module, which we can `import` and use
   in other files. Continue below to see what that looks like.
 
 ### Jest
@@ -50,10 +49,10 @@ export function add(x, y) {
 Jest is our unit testing framework. Its API, which we write tests with, is
 speech like and easy to use.
 
-> Note: This is the [official documentation](https://facebook.github.io/jest/) of Jest.
+> Note: The official documentation for Jest can be found [here](https://facebook.github.io/jest/).
 
 We're going to add a second file called `add.test.js` with our unit tests
-inside. Running said unit tests requires us to enter `jest add.test.js` into
+inside. Running said unit tests requires us to enter `jest add.test.js` on
 the command line.
 
 First, we `import` the function in our `add.test.js` file:
@@ -89,7 +88,7 @@ describe('add()', () => {
 });
 ```
 
-Now, We're going to test that our little function correctly adds two numbers first.
+Now, We're going to test that our little function correctly adds two numbers.
 We are going to take some chosen inputs, and `expect` the result `toEqual` the
 corresponding output:
 
@@ -176,7 +175,7 @@ NavBar          # Wrapping folder
 
 
 This boilerplate uses Redux, partially because it turns our data flow into
-testable (pure) functions. Using `NavBar` component above,
+testable (pure) functions. Using the `NavBar` component above,
 let's see what testing the actions and the reducer would look like.
 
 This is what our `NavBar` actions look like:
@@ -224,7 +223,6 @@ First, we have to import the reducer and the constant.
 
 ```javascript
 // reducer.test.js
-
 
 import NavBarReducer from '../reducer';
 import { TOGGLE_NAV } from '../constants';
