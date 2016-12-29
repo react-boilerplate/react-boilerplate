@@ -90,42 +90,17 @@ about our testing setup!
 ## Unit testing
 
 ```Shell
-npm run test
+npm test
 ```
 
-Tests your application with the unit tests specified in the `*test.js` files
+Tests your application with the unit tests specified in the `**/tests/*.js` files
 throughout the application.  
-All the `test` commands allow an optional `-- --grep string` argument to filter
-the tests ran by Karma. Useful if you need to run a specific test only.
+All the `test` commands allow an optional `-- [string]` argument to filter
+the tests run by Jest. Useful if you need to run a specific test only.
 
 ```Shell
 # Run only the Button component tests
-npm run test:watch -- --grep Button
-```
-
-### Browsers
-
-To choose the browser to run your unit tests in (Chrome by default), run one of
-the following commands:
-
-#### Firefox
-
-```Shell
-npm run test:firefox
-```
-
-#### Safari
-
-```Shell
-npm run test:safari
-```
-
-#### Internet Explorer
-
-*Windows only!*
-
-```Shell
-npm run test:ie
+npm test -- Button
 ```
 
 ### Watching
@@ -134,7 +109,7 @@ npm run test:ie
 npm run test:watch
 ```
 
-Watches changes to your application and reruns tests whenever a file changes.
+Watches changes to your application and re-runs tests whenever a file changes.
 
 ### Remote testing
 
