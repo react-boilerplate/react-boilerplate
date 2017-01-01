@@ -2,14 +2,15 @@
  * Tests for HomePage sagas
  */
 
-import { takeLatest } from 'redux-saga';
-import { take, put, fork } from 'redux-saga/effects';
+import { cancel, take, put, takeLatest } from 'redux-saga/effects';
+import { createMockTask } from 'redux-saga/lib/utils';
+
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import { LOAD_REPOS } from 'containers/App/constants';
 import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
-import { getRepos, getReposWatcher, githubData } from '../sagas';
+import { getRepos, githubData } from '../sagas';
 
 const username = 'mxstbr';
 
@@ -46,27 +47,22 @@ describe('getRepos Saga', () => {
   });
 });
 
-describe('getReposWatcher Saga', () => {
-  const getReposWatcherGenerator = getReposWatcher();
-
-  it('should watch for LOAD_REPOS action', () => {
-    const takeDescriptor = getReposWatcherGenerator.next().value;
-    expect(takeDescriptor).toEqual(fork(takeLatest, LOAD_REPOS, getRepos));
-  });
-});
-
 describe('githubDataSaga Saga', () => {
   const githubDataSaga = githubData();
+  const mockedTask = createMockTask();
 
-  let forkDescriptor;
-
-  it('should asyncronously fork getReposWatcher saga', () => {
-    forkDescriptor = githubDataSaga.next();
-    expect(forkDescriptor.value).toEqual(fork(getReposWatcher));
+  it('should start task to watch for LOAD_REPOS action', () => {
+    const takeLatestDescriptor = githubDataSaga.next().value;
+    expect(takeLatestDescriptor).toEqual(takeLatest(LOAD_REPOS, getRepos));
   });
 
   it('should yield until LOCATION_CHANGE action', () => {
-    const takeDescriptor = githubDataSaga.next();
-    expect(takeDescriptor.value).toEqual(take(LOCATION_CHANGE));
+    const takeDescriptor = githubDataSaga.next(mockedTask).value;
+    expect(takeDescriptor).toEqual(take(LOCATION_CHANGE));
+  });
+
+  it('should cancel the forked task when LOCATION_CHANGE happens', () => {
+    const cancelDescriptor = githubDataSaga.next().value;
+    expect(cancelDescriptor).toEqual(cancel(mockedTask));
   });
 });
