@@ -4,6 +4,8 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const HappyPack = require('happypack');
+const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
 
 module.exports = (options) => ({
   entry: options.entry,
@@ -14,7 +16,8 @@ module.exports = (options) => ({
   module: {
     loaders: [{
       test: /\.js$/, // Transform all .js files required somewhere with Babel
-      loader: 'babel',
+      loaders: ['happypack/loader?id=js'],
+      // loader: 'babel',
       exclude: /node_modules/,
       query: options.babelQuery,
     }, {
@@ -25,7 +28,8 @@ module.exports = (options) => ({
       // So, no need for ExtractTextPlugin here.
       test: /\.css$/,
       include: /node_modules/,
-      loaders: ['style-loader', 'css-loader'],
+      loaders: ['happypack/loader?id=style'],
+      // loaders: ['style-loader', 'css-loader'],
     }, {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
       loader: 'file-loader',
@@ -75,6 +79,16 @@ module.exports = (options) => ({
       },
     }),
     new webpack.NamedModulesPlugin(),
+    new HappyPack({
+      id: 'js',
+      loaders: ['babel'],
+      threadPool: happyThreadPool,
+    }),
+    new HappyPack({
+      id: 'style',
+      loaders: ['style-loader', 'css-loader'],
+      threadPool: happyThreadPool,
+    }),
   ]),
   resolve: {
     modules: ['app', 'node_modules'],
