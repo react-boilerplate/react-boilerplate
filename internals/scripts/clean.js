@@ -16,17 +16,28 @@ process.stdout.write('Cleanup started...');
 // Cleanup components folder
 rm('-rf', 'app/components/*');
 
+// Save LanguageProvider tests
+mv('app/containers/LanguageProvider/tests', 'internals/templates/languageProvider/');
+
 // Cleanup containers folder
 rm('-rf', 'app/containers/*');
-mkdir('-p', 'app/containers/App');
-mkdir('-p', 'app/containers/NotFoundPage');
-mkdir('-p', 'app/containers/HomePage');
-cp('internals/templates/appContainer.js', 'app/containers/App/index.js');
-cp('internals/templates/constants.js', 'app/containers/App/constants.js');
-cp('internals/templates/notFoundPage/notFoundPage.js', 'app/containers/NotFoundPage/index.js');
+mkdir('-p', 'app/containers/App/tests');
+mkdir('-p', 'app/containers/NotFoundPage/tests');
+mkdir('-p', 'app/containers/HomePage/tests');
+
+cp('internals/templates/appContainer/index.js', 'app/containers/App/index.js');
+cp('internals/templates/appContainer/tests/index.test.js', 'app/containers/App/tests/index.test.js');
+cp('internals/templates/appContainer/constants.js', 'app/containers/App/constants.js');
+cp('internals/templates/appContainer/selectors.js', 'app/containers/App/selectors.js');
+cp('internals/templates/appContainer/tests/selectors.test.js', 'app/containers/App/tests/selectors.test.js');
+
+cp('internals/templates/notFoundPage/index.js', 'app/containers/NotFoundPage/index.js');
 cp('internals/templates/notFoundPage/messages.js', 'app/containers/NotFoundPage/messages.js');
-cp('internals/templates/homePage/homePage.js', 'app/containers/HomePage/index.js');
+cp('internals/templates/notFoundPage/tests/index.test.js', 'app/containers/NotFoundPage/tests/index.test.js');
+
+cp('internals/templates/homePage/index.js', 'app/containers/HomePage/index.js');
 cp('internals/templates/homePage/messages.js', 'app/containers/HomePage/messages.js');
+cp('internals/templates/homePage/tests/index.test.js', 'app/containers/HomePage/tests/index.test.js');
 
 // Handle Translations
 rm('-rf', 'app/translations/*')
@@ -40,7 +51,7 @@ cp('internals/templates/i18n.js',
 
 // Copy LanguageProvider
 mkdir('-p', 'app/containers/LanguageProvider');
-mkdir('-p', 'app/containers/LanguageProvider/tests');
+mv('internals/templates/languageProvider/tests', 'app/containers/LanguageProvider');
 cp('internals/templates/languageProvider/actions.js',
   'app/containers/LanguageProvider/actions.js');
 cp('internals/templates/languageProvider/constants.js',
@@ -52,21 +63,9 @@ cp('internals/templates/languageProvider/reducer.js',
 cp('internals/templates/languageProvider/selectors.js',
   'app/containers/LanguageProvider/selectors.js');
 
-// Copy selectors
-mkdir('app/containers/App/tests');
-cp('internals/templates/selectors.js',
-  'app/containers/App/selectors.js');
-cp('internals/templates/selectors.test.js',
-  'app/containers/App/tests/selectors.test.js');
-
 // Utils
 rm('-rf', 'app/utils');
-mkdir('app/utils');
-mkdir('app/utils/tests');
-cp('internals/templates/asyncInjectors.js',
-  'app/utils/asyncInjectors.js');
-cp('internals/templates/asyncInjectors.test.js',
-  'app/utils/tests/asyncInjectors.test.js');
+mv('internals/templates/utils', 'app')
 
 // Replace the files in the root app/ folder
 cp('internals/templates/app.js', 'app/app.js');
@@ -74,7 +73,7 @@ cp('internals/templates/index.html', 'app/index.html');
 cp('internals/templates/reducers.js', 'app/reducers.js');
 cp('internals/templates/routes.js', 'app/routes.js');
 cp('internals/templates/store.js', 'app/store.js');
-cp('internals/templates/store.test.js', 'app/tests/store.test.js');
+cp('internals/templates/appTests/store.test.js', 'app/tests/store.test.js');
 
 // Remove the templates folder
 rm('-rf', 'internals/templates');
