@@ -24,4 +24,6 @@ notifications:
 
 after_success: 'npm run coveralls'
 
-cache: false
+cache:
+  directories:
+    - node_modules
