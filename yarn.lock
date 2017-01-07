@@ -7358,7 +7358,7 @@ ua-parser-js@^0.7.9:
   version "0.7.12"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.12.tgz#04c81a99bdd5dc52263ea29d24c6bf8d4818a4bb"
 
-uglify-js@2.7.x, uglify-js@^2.6, uglify-js@~2.7.3:
+uglify-js@2.7.x, uglify-js@^2.6, uglify-js@^2.7.5:
   version "2.7.5"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.7.5.tgz#4612c0c7baaee2ba7c487de4904ae122079f2ca8"
   dependencies:
@@ -7620,9 +7620,9 @@ webpack-dev-middleware@1.9.0:
     path-is-absolute "^1.0.0"
     range-parser "^1.0.3"
 
-webpack-hot-middleware@2.13.2:
-  version "2.13.2"
-  resolved "https://registry.yarnpkg.com/webpack-hot-middleware/-/webpack-hot-middleware-2.13.2.tgz#6500b15e6d4f1a9590f8df708183f4d2ac2c3e9e"
+webpack-hot-middleware@2.15.0:
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/webpack-hot-middleware/-/webpack-hot-middleware-2.15.0.tgz#71995af7c0025f109df482f86f1e10379526d026"
   dependencies:
     ansi-html "0.0.6"
     html-entities "^1.2.0"
@@ -7636,9 +7636,9 @@ webpack-sources@^0.1.0:
     source-list-map "~0.1.0"
     source-map "~0.5.3"
 
-webpack@2.2.0-rc.0:
-  version "2.2.0-rc.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-2.2.0-rc.0.tgz#a58dbdc2a06d382093bc43866a43afae768356c9"
+webpack@2.2.0-rc.3:
+  version "2.2.0-rc.3"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-2.2.0-rc.3.tgz#ac072c06c88aae75abdfd33510e7c5fd965f843f"
   dependencies:
     acorn "^4.0.3"
     acorn-dynamic-import "^2.0.0"
@@ -7657,7 +7657,7 @@ webpack@2.2.0-rc.0:
     source-map "^0.5.3"
     supports-color "^3.1.0"
     tapable "~0.2.5"
-    uglify-js "~2.7.3"
+    uglify-js "^2.7.5"
     watchpack "^1.0.0"
     webpack-sources "^0.1.0"
     yargs "^6.0.0"
