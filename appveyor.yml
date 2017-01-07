@@ -35,7 +35,6 @@ build: off
 test_script:
   # Output debugging info
   - node --version
-  - yarn version
   - node ./internals/scripts/generate-templates-for-linting
   # run build and run tests
   - yarn run build
