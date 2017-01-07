@@ -17,6 +17,7 @@
 - Showcase reselects `createStructuredSelector` in the example, thanks to @Dattaya 
 - Exclude test files from coverage report, thanks to @samit4me 
 - Lint the templates for the generators, thanks to @Dattaya 
+- Huge improvement to DX testing a freshly cleaned project, thanks to @outdooricon 
 
 ## Other Updates
 
@@ -35,7 +36,7 @@
 - Add an Introductory document to help people get started, thanks to @KarandikarMihir 
 - Add security configuration recommendations for Nginx (`.nginx.conf`), thanks to @supergicko
 - Add and fix lots to stuff in the documentation, thanks to @pavlin-policar, @samit4me @outdooricon @PierrickGT @nndung179
-- A wide variety of small fixes, thanks to @Dattaya @gihrig 
+- A wide variety of small fixes, thanks to @Dattaya @gihrig @outdooricon
 
 # News
 
