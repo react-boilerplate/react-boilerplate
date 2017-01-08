@@ -62,7 +62,8 @@ export function injectAsyncSagas(store, isValid) {
       '(app/utils...) injectAsyncSagas: Received an empty `sagas` array'
     );
 
-    sagas.map(store.runSaga);
+    // return redux-saga Tasks, so they can be canceled on router events
+    return sagas.map(store.runSaga);
   };
 }
 
