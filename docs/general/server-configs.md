@@ -8,7 +8,6 @@ This boilerplate includes an `app/.htaccess` file that does three things:
    traffic.
 1. Rewrite all pages (e.g. `yourdomain.com/subpage`) to `yourdomain.com/index.html`
    to let `react-router` take care of presenting the correct page.
-
 1. Ensure that sw.js is not cached. This is required for updates to be downloaded in offline-first mode.
 
 > Note: For performance reasons you should probably adapt it to run as a static
