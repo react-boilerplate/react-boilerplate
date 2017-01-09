@@ -238,6 +238,18 @@ While it's possible to keep your project up-to-date or "in sync" with `react-boi
 very difficult and therefore ***at your own risk*** and not recommend. You should not need to do it either, as
 every version you use will be amazing! There is a long term goal to make this much easier but no ETA at the moment.
 
+## How to turn off Webpack performance warnings after production build?
+
+Webpack recommends having those performance hints turned off in development but to keep them on in production. If you still want to disable them, add the next lines to the config in `webpack.prod.babel.js`:
+  
+```js
+  performance: {
+    hints: false
+  }
+```
+You can find more information about the `performance` option in the Webpack documentation: [Configuration/Performance](https://webpack.js.org/configuration/performance/).
+
+
 ## Have another question?
 
 Submit an [issue](https://github.com/mxstbr/react-boilerplate/issues),
