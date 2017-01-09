@@ -3,11 +3,11 @@
       name: '{{ camelCase component }}',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          System.import('containers/{{ properCase component }}/reducer'),
+          import('containers/{{ properCase component }}/reducer'),
           {{#if useSagas}}
-          System.import('containers/{{ properCase component }}/sagas'),
+          import('containers/{{ properCase component }}/sagas'),
           {{/if}}
-          System.import('containers/{{ properCase component }}'),
+          import('containers/{{ properCase component }}'),
         ]);
 
         const renderRoute = loadModule(cb);
