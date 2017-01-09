@@ -93,7 +93,7 @@ Before launching the server, Webpack requires an entry point to your application
 - Path `"/features"` corresponds to container `<FeaturePage />`
 - Path `"*"` i.e. all other paths correspond to the `<NotFoundPage />`
 
-These containers along with their corresponding reducer and sagas are loaded asynchronously with the help of `System.import()`. Whenever webpack encouters `System.import()` in the code, it creates a separate chunk for those imports. That means for every route, there will be a separate chunk. And by corollary, only those javascript chunks will be downloaded by the browser which are required for the current route. So when you navigate to `"/"`, only chunks related to `<HomePage />` will be downloaded and subsequently executed. This makes your application incredibly lightweight and lightning fast.
+These containers along with their corresponding reducer and sagas are loaded asynchronously with the help of dynamic `import()`. Whenever webpack encounters `import()` in the code, it creates a separate chunk for those imports. That means for every route, there will be a separate chunk. And by corollary, only those javascript chunks will be downloaded by the browser which are required for the current route. So when you navigate to `"/"`, only chunks related to `<HomePage />` will be downloaded and subsequently executed. This makes your application incredibly lightweight and lightning fast.
 
 ### Redux:
 Redux is going to play a huge role in your application. If you're new to redux, we'd strongly suggest you to complete this checklist and then come back-
