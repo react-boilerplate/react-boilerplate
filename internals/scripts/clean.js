@@ -21,14 +21,14 @@ cp('app/tests/i18n.test.js', 'internals/templates/tests/i18n.test.js');
 rm('-rf', 'app/components/*');
 
 // Handle containers/
-rm('-rf', 'app/containers/*');
+rm('-rf', 'app/containers');
 mv('internals/templates/containers', 'app');
 
 // Handle tests/
 mv('internals/templates/tests', 'app');
 
 // Handle translations/
-rm('-rf', 'app/translations/*')
+rm('-rf', 'app/translations')
 mv('internals/templates/translations', 'app');
 
 // Handle utils/
