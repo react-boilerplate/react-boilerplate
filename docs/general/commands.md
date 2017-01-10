@@ -63,9 +63,9 @@ accessible anywhere! Changes in the application code will be hot-reloaded.
 npm run start:production
 ```
 
-Runs tests (see `npm test`)
-Builds your app (see `npm run build`)
-Starts the production server
+ * Runs tests (see `npm test`)
+ * Builds your app (see `npm run build`)
+ * Starts the production server (see `npm run start:prod`)
 
 The app is built for optimal performance: assets are
 minified and served gzipped.
