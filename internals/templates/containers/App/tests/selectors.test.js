@@ -12,4 +12,17 @@ describe('makeSelectLocationState', () => {
     });
     expect(makeSelectLocationState()(mockedState)).toEqual(route.toJS());
   });
+
+  it('should return cached js routeState for same concurrent calls', () => {
+    const route = fromJS({
+      locationBeforeTransitions: null,
+    });
+    const mockedState = fromJS({
+      route,
+    });
+    const selectLocationState = makeSelectLocationState();
+
+    const firstRouteStateJS = selectLocationState(mockedState);
+    expect(selectLocationState(mockedState)).toBe(firstRouteStateJS);
+  });
 });
