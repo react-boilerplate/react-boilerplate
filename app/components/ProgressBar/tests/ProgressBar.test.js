@@ -3,7 +3,8 @@ import sinon from 'sinon';
 import { shallow, mount } from 'enzyme';
 
 import ProgressBar from '../ProgressBar';
-import { ProgressBarWrapper, ProgressBarPercent } from '../styles';
+import Wrapper from '../Wrapper';
+import Percent from '../Percent';
 
 let clock = null;
 
@@ -20,14 +21,14 @@ describe('<ProgressBar />', () => {
     const renderedComponent = shallow(
       <ProgressBar />
     );
-    expect(renderedComponent.find(ProgressBarWrapper).length).toEqual(1);
+    expect(renderedComponent.find(Wrapper).length).toEqual(1);
   });
 
   it('should render render horizontal progress bar', () => {
     const renderedComponent = shallow(
       <ProgressBar />
     );
-    expect(renderedComponent.find(ProgressBarPercent).length).toEqual(1);
+    expect(renderedComponent.find(Percent).length).toEqual(1);
   });
 
   it('should set state.percent as props.percent', () => {
