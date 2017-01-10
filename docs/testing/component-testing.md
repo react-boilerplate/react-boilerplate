@@ -97,7 +97,7 @@ Lets test our `<Button>` component! We're going to assess three things: First,
 that it renders a HTML `<button>` tag, second that it renders its children we
 pass it and third that handles clicks!
 
-This is our Mocha setup:
+This is our Jest setup:
 
 ```javascript
 describe('<Button />', () => {
