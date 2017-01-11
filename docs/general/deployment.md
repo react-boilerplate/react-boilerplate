@@ -20,7 +20,7 @@
 
 ## AWS S3
 
-### Easy 5-Step Deployment Process
+### Easy 7-Step Deployment Process
 
 *Step 1:* Run `yarn` to install dependencies, then `npm run build` to create the `./build` folder.
 
@@ -34,4 +34,4 @@
 
 *Step 6:* Click on your new S3 bucket on the left to open the bucket. Click `Upload` and select all the files within your `./build` folder. Click `Start Upload`. Once the files are done, select all of the files, right-click on the selected files (or click on the `Actions` button) and select `Make Public`.
 
-*Step 7:* Click on the `Properties` tab, open the `Static Website Hosting`, and click on the *Endpoint* link. The app should be running on that URL.
+*Step 7:* Click on the `Properties` tab, open `Static Website Hosting`, and click on the *Endpoint* link. The app should be running on that URL.
