@@ -171,13 +171,5 @@ about the bundle size.
 npm run lint
 ```
 
-Lints your JavaScript and CSS.
-
-### JavaScript
-
-```Shell
-npm run lint:js
-```
-
-Only lints your JavaScript.
+Lints your JavaScript.
 
