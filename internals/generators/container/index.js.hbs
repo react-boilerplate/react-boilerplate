@@ -4,16 +4,19 @@
  *
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 {{#if wantHeaders}}
 import Helmet from 'react-helmet';
 {{/if}}
-{{#if wantActionsAndReducer}}
-import select{{properCase name}} from './selectors';
-{{/if}}
 {{#if wantMessages}}
 import { FormattedMessage } from 'react-intl';
+{{/if}}
+{{#if wantActionsAndReducer}}
+import { createStructuredSelector } from 'reselect';
+import makeSelect{{properCase name}} from './selectors';
+{{/if}}
+{{#if wantMessages}}
 import messages from './messages';
 {{/if}}
 
@@ -37,8 +40,14 @@ export class {{ properCase name }} extends React.{{{ component }}} { // eslint-d
   }
 }
 
+{{ properCase name }}.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
 {{#if wantActionsAndReducer}}
-const mapStateToProps = select{{properCase name}}();
+const mapStateToProps = createStructuredSelector({
+  {{name}}: makeSelect{{properCase name}}(),
+});
 {{/if}}
 
 function mapDispatchToProps(dispatch) {

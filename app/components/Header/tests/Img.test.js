@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { mount, render } from 'enzyme';
 
 import Img from '../Img';
