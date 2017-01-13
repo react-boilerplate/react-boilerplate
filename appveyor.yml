@@ -25,7 +25,7 @@ install:
   - choco install -y googlechrome
   # Install the latest stable version of Node
   - ps: Install-Product node $env:nodejs_version
-  - set PATH=%APPDATA%\npm;%PATH%
+  - set PATH=%APPDATA%\yarn;%PATH%
   - yarn
 
 # Disable automatic builds
@@ -36,7 +36,8 @@ test_script:
   # Output debugging info
   - node --version
   - node ./internals/scripts/generate-templates-for-linting
-  # run build and run tests
+  # run tests and run build
+  - yarn run test
   - yarn run build
 
 # Cache node_modules for faster builds
