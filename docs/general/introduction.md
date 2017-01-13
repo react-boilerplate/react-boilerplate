@@ -21,7 +21,6 @@ Here's a curated list of packages (in no particular order) that you should have 
 - [ ] [Webpack](https://webpack.js.org/)
 
 ### Unit Testing
-- [ ] [Chai](http://chaijs.com/)
 - [ ] [Jest](http://facebook.github.io/jest/)
 - [ ] [Enzyme](http://airbnb.io/enzyme/)
 

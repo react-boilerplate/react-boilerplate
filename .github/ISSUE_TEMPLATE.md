@@ -26,5 +26,6 @@ https://github.com/mxstbr/react-boilerplate/issues?q=is%3Aissue+is%3Aclosed
 
 # Versions
 
+- React-Boilerplate (see `package.json`):
 - Node/NPM:
 - Browser:
