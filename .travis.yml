@@ -7,11 +7,10 @@ node_js:
 
 script:
   - node ./internals/scripts/generate-templates-for-linting
-  - npm run build
 
 install:
-  - npm i -g npm@latest
-  - npm install
+  - npm run test
+  - npm run build
 
 before_install:
   - export CHROME_BIN=chromium-browser
@@ -25,5 +24,6 @@ notifications:
 after_success: 'npm run coveralls'
 
 cache:
+  yarn: true
   directories:
     - node_modules

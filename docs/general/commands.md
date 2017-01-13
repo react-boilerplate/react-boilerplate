@@ -63,7 +63,11 @@ accessible anywhere! Changes in the application code will be hot-reloaded.
 npm run start:production
 ```
 
-Starts the production server, building the app for optimal performance: assets are
+ * Runs tests (see `npm test`)
+ * Builds your app (see `npm run build`)
+ * Starts the production server (see `npm run start:prod`)
+
+The app is built for optimal performance: assets are
 minified and served gzipped.
 
 ### Host and Port
@@ -78,8 +82,9 @@ with `--`. E.g. to make the app visible at `my-local-hostname:5000`, run the fol
 npm run build
 ```
 
-Preps your app for deployment. Optimizes and minifies all files, piping them to
-a folder called `build`. Upload the contents of `build` to your web server to
+Preps your app for deployment (does not run tests). Optimizes and minifies all files, piping them to the `build` folder.
+
+Upload the contents of `build` to your web server to
 see your work live!
 
 ## Testing
@@ -136,20 +141,5 @@ about the bundle size.
 npm run lint
 ```
 
-Lints your JavaScript and CSS.
+Lints your JavaScript.
 
-### JavaScript
-
-```Shell
-npm run lint:js
-```
-
-Only lints your JavaScript.
-
-### CSS
-
-```Shell
-npm run lint:css
-```
-
-Only lints your CSS.

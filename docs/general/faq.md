@@ -247,7 +247,7 @@ Webpack recommends having those performance hints turned off in development but 
     hints: false
   }
 ```
-You can find more information about the `performance` option in the Webpack documentation: [Configuration/Performance](https://webpack.js.org/configuration/performance/).
+You can find more information about the `performance` option (how to change maximum allowed size of a generated file, how to exclude some files from being checked and so on) in the [Webpack documentation](https://webpack.js.org/configuration/performance/).
 
 
 ## Have another question?
