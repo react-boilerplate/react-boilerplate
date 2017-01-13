@@ -254,8 +254,6 @@
     "babel-preset-react": "6.16.0",
     "babel-preset-react-hmre": "1.1.1",
     "babel-preset-stage-0": "6.16.0",
-    "chai": "3.5.0",
-    "chai-enzyme": "0.6.1",
     "cheerio": "0.22.0",
     "circular-dependency-plugin": "2.0.0",
     "coveralls": "2.11.15",
