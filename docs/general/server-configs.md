@@ -21,7 +21,7 @@ This boilerplate includes an `app/.htaccess` file that does three things:
 
 ## Nginx
 
-Also an `app/.nginx.conf` file is included that does the same on an Nginx server.
+An `app/.nginx.conf` file is included that does the same on an Nginx server.
 
 ### security
 
