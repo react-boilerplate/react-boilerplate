@@ -23,7 +23,7 @@ _Note: It is well worth reading the [source](https://stackoverflow.com/questions
 of this quote in its entirety!_
 
 To learn more about this amazing way to handle concurrent flows, start with the
-[official documentation](https://github.com/yelouafi/redux-saga) and explore
+[official documentation](https://redux-saga.github.io/redux-saga) and explore
 some examples! (read [this comparison](https://stackoverflow.com/questions/34930735/pros-cons-of-using-redux-saga-with-es6-generators-vs-redux-thunk-with-es7-async/34933395) if you're used to `redux-thunk`)
 
 ## Usage
@@ -52,9 +52,9 @@ Then, in your `routes.js`, add injection for the newly added saga:
 ```JS
 getComponent(nextState, cb) {
   const importModules = Promise.all([
-    System.import('containers/YourComponent/reducer'),
-    System.import('containers/YourComponent/sagas'),
-    System.import('containers/YourComponent'),
+    import('containers/YourComponent/reducer'),
+    import('containers/YourComponent/sagas'),
+    import('containers/YourComponent'),
   ]);
 
   const renderRoute = loadModule(cb);

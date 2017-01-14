@@ -1,9 +1,9 @@
-import expect from 'expect';
+import { fromJS } from 'immutable';
+
 import homeReducer from '../reducer';
 import {
   changeUsername,
 } from '../actions';
-import { fromJS } from 'immutable';
 
 describe('homeReducer', () => {
   let state;

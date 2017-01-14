@@ -5,6 +5,7 @@
  */
 
 import { fromJS } from 'immutable';
+
 import {
   CHANGE_LOCALE,
 } from './constants';

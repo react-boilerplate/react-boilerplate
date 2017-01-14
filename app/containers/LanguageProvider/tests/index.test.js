@@ -1,35 +1,49 @@
-import LanguageProvider from '../index';
-
-import expect from 'expect';
-import { shallow } from 'enzyme';
-import { FormattedMessage, defineMessages } from 'react-intl';
-import configureStore from '../../../store';
 import React from 'react';
+import { shallow, mount } from 'enzyme';
+import { FormattedMessage, defineMessages } from 'react-intl';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router';
+
+import ConnectedLanguageProvider, { LanguageProvider } from '../index';
+import configureStore from '../../../store';
+
 import { translationMessages } from '../../../i18n';
 
+const messages = defineMessages({
+  someMessage: {
+    id: 'some.id',
+    defaultMessage: 'This is some default message',
+    en: 'This is some en message',
+  },
+});
+
 describe('<LanguageProvider />', () => {
+  it('should render its children', () => {
+    const children = (<h1>Test</h1>);
+    const renderedComponent = shallow(
+      <LanguageProvider messages={messages} locale="en">
+        {children}
+      </LanguageProvider>
+    );
+    expect(renderedComponent.contains(children)).toBe(true);
+  });
+});
+
+describe('<ConnectedLanguageProvider />', () => {
   let store;
 
-  before(() => {
+  beforeAll(() => {
     store = configureStore({}, browserHistory);
   });
 
   it('should render the default language messages', () => {
-    const messages = defineMessages({
-      someMessage: {
-        id: 'some.id',
-        defaultMessage: 'This is some default message',
-      },
-    });
-    const renderedComponent = shallow(
+    const renderedComponent = mount(
       <Provider store={store}>
-        <LanguageProvider messages={translationMessages}>
+        <ConnectedLanguageProvider messages={translationMessages}>
           <FormattedMessage {...messages.someMessage} />
-        </LanguageProvider>
+        </ConnectedLanguageProvider>
       </Provider>
     );
-    expect(renderedComponent.contains(<FormattedMessage {...messages.someMessage} />)).toEqual(true);
+    expect(renderedComponent.contains(<FormattedMessage {...messages.someMessage} />)).toBe(true);
   });
 });

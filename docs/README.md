@@ -4,19 +4,22 @@
 
 - [General](general)
   - [**CLI Commands**](general/commands.md)
+  - [Introduction ](general/introduction.md)
   - [Tool Configuration](general/files.md)
   - [Server Configurations](general/server-configs.md)
   - [Deployment](general/deployment.md) *(currently Heroku specific)*
   - [FAQ](general/faq.md)
   - [Gotchas](general/gotchas.md)
   - [Remove](general/remove.md)
+  - [Extracting components](general/components.md)
 - [Testing](testing)
   - [Unit Testing](testing/unit-testing.md)
   - [Component Testing](testing/component-testing.md)
   - [Remote Testing](testing/remote-testing.md)
 - [CSS](css)
-  - [`styled-components`](css/styled-componets.md)
+  - [`styled-components`](css/styled-components.md)
   - [sanitize.css](css/sanitize.md)
+  - [Using Sass](css/sass.md)
 - [JS](js)
   - [Redux](js/redux.md)
   - [ImmutableJS](js/immutablejs.md)
@@ -79,8 +82,8 @@ should not need to be touched.
 
 ### CSS
 
-Utilising [tagged template literals](./docs/tagged-template-literals.md)
-(a recent addition to JavaScript) and the [power of CSS](./docs/css-we-support.md),
+Utilising [tagged template literals](https://github.com/styled-components/styled-components/blob/master/docs/tagged-template-literals.md)
+(a recent addition to JavaScript) and the [power of CSS](https://github.com/styled-components/styled-components/blob/master/docs/css-we-support.md),
 `styled-components` allows you to write actual CSS code to style your components.
 It also removes the mapping between components and styles – using components as a
 low-level styling construct could not be easier!
@@ -105,12 +108,6 @@ write head tags can be found [here](https://github.com/nfl/react-helmet#examples
 
 For a thorough explanation of the testing procedure, see the
 [testing documentation](./testing/README.md)!
-
-#### Performance testing
-
-With the production server running (i.e. while `npm run start:production` is running in
-another tab), enter `npm run pagespeed` to run Google PageSpeed Insights and
-get a performance check right in your terminal!
 
 #### Browser testing
 

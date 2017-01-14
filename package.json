@@ -1,13 +1,14 @@
 {
   "name": "react-boilerplate",
-  "version": "3.3.3",
+  "version": "3.4.0",
   "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
   "repository": {
     "type": "git",
     "url": "git://github.com/mxstbr/react-boilerplate.git"
   },
   "engines": {
-    "npm": ">=3"
+    "npm": ">=3",
+    "node": ">=5"
   },
   "author": "Max Stoiber",
   "license": "MIT",
@@ -19,15 +20,14 @@
     "npmcheckversion": "node ./internals/scripts/npmcheckversion.js",
     "preinstall": "npm run npmcheckversion",
     "postinstall": "npm run build:dll",
-    "prebuild": "npm run build:clean && npm run test",
+    "prebuild": "npm run build:clean",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress",
     "build:clean": "npm run test:clean && rimraf ./build",
     "build:dll": "node ./internals/scripts/dependencies.js",
     "start": "cross-env NODE_ENV=development node server",
     "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
-    "start:production": "npm run build && npm run start:prod",
+    "start:production": "npm run test && npm run build && npm run start:prod",
     "start:prod": "cross-env NODE_ENV=production node server",
-    "pagespeed": "node ./internals/scripts/pagespeed.js",
     "presetup": "npm i chalk shelljs",
     "setup": "node ./internals/scripts/setup.js",
     "postsetup": "npm run build:dll",
@@ -40,12 +40,9 @@
     "lint:staged": "lint-staged",
     "pretest": "npm run test:clean && npm run lint",
     "test:clean": "rimraf ./coverage",
-    "test": "cross-env NODE_ENV=test karma start internals/testing/karma.conf.js --single-run",
-    "test:watch": "npm run test -- --auto-watch --no-single-run",
-    "test:firefox": "npm run test -- --browsers Firefox",
-    "test:safari": "npm run test -- --browsers Safari",
-    "test:ie": "npm run test -- --browsers IE",
-    "coveralls": "cat ./coverage/lcov/lcov.info | coveralls"
+    "test": "cross-env NODE_ENV=test jest --coverage",
+    "test:watch": "cross-env NODE_ENV=test jest --watchAll",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
@@ -77,7 +74,8 @@
       },
       "test": {
         "plugins": [
-          "istanbul"
+          "transform-es2015-modules-commonjs",
+          "dynamic-import-node"
         ]
       }
     }
@@ -88,7 +86,7 @@
     "env": {
       "browser": true,
       "node": true,
-      "mocha": true,
+      "jest": true,
       "es6": true
     },
     "plugins": [
@@ -139,6 +137,7 @@
       "jsx-a11y/role-supports-aria-props": 2,
       "max-len": 0,
       "newline-per-chained-call": 0,
+      "no-confusing-arrow": 0,
       "no-console": 1,
       "no-use-before-define": 0,
       "prefer-template": 2,
@@ -154,12 +153,13 @@
       "react/self-closing-comp": 0,
       "redux-saga/no-yield-in-race": 2,
       "redux-saga/yield-effects": 2,
-      "require-yield": 0
+      "require-yield": 0,
+      "import/no-webpack-loader-syntax": 0
     },
     "settings": {
       "import/resolver": {
         "webpack": {
-          "config": "./internals/webpack/webpack.test.babel.js"
+          "config": "./internals/webpack/webpack.prod.babel.js"
         }
       }
     }
@@ -181,101 +181,115 @@
       "eventsource-polyfill"
     ]
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "app/**/*.{js,jsx}",
+      "!app/**/*.test.{js,jsx}",
+      "!app/*/RbGenerated*/*.{js,jsx}",
+      "!app/app.js",
+      "!app/routes.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 98,
+        "branches": 91,
+        "functions": 98,
+        "lines": 98
+      }
+    },
+    "moduleDirectories": [
+      "node_modules",
+      "app"
+    ],
+    "moduleNameMapper": {
+      ".*\\.(css|less|styl|scss|sass)$": "<rootDir>/internals/mocks/cssModule.js",
+      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/image.js"
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/internals/testing/test-bundler.js",
+    "testRegex": "tests/.*\\.test\\.js$"
+  },
   "dependencies": {
-    "babel-polyfill": "6.16.0",
+    "babel-polyfill": "6.20.0",
     "chalk": "1.1.3",
     "compression": "1.6.2",
     "cross-env": "3.1.3",
     "express": "4.14.0",
-    "fontfaceobserver": "2.0.5",
+    "fontfaceobserver": "2.0.7",
     "immutable": "3.8.1",
     "intl": "1.2.5",
-    "invariant": "2.2.1",
-    "ip": "1.1.3",
-    "lodash": "4.16.4",
+    "invariant": "2.2.2",
+    "ip": "1.1.4",
+    "lodash": "4.17.2",
     "minimist": "1.2.0",
-    "react": "15.3.2",
-    "react-dom": "15.3.2",
-    "react-helmet": "3.1.0",
+    "react": "15.4.1",
+    "react-dom": "15.4.1",
+    "react-helmet": "3.2.2",
     "react-intl": "2.1.5",
-    "react-redux": "4.4.5",
+    "react-redux": "4.4.6",
     "react-router": "3.0.0",
     "react-router-redux": "4.0.6",
-    "react-router-scroll": "0.3.3",
+    "react-router-scroll": "0.4.1",
     "redux": "3.6.0",
     "redux-immutable": "3.0.8",
-    "redux-saga": "0.12.0",
+    "redux-saga": "0.14.0",
     "reselect": "2.5.4",
     "sanitize.css": "4.1.0",
-    "styled-components": "1.0.3",
+    "styled-components": "1.1.2",
     "warning": "3.0.0",
-    "whatwg-fetch": "1.0.0"
+    "whatwg-fetch": "2.0.1"
   },
   "devDependencies": {
     "babel-cli": "6.18.0",
-    "babel-core": "6.18.0",
-    "babel-eslint": "7.1.0",
-    "babel-loader": "6.2.7",
-    "babel-plugin-istanbul": "2.0.3",
+    "babel-core": "6.21.0",
+    "babel-eslint": "7.1.1",
+    "babel-loader": "6.2.10",
+    "babel-plugin-dynamic-import-node": "1.0.0",
     "babel-plugin-react-intl": "2.2.0",
     "babel-plugin-react-transform": "2.0.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.18.0",
     "babel-plugin-transform-react-constant-elements": "6.9.1",
     "babel-plugin-transform-react-inline-elements": "6.8.0",
-    "babel-plugin-transform-react-remove-prop-types": "0.2.10",
+    "babel-plugin-transform-react-remove-prop-types": "0.2.11",
     "babel-preset-latest": "6.16.0",
     "babel-preset-react": "6.16.0",
     "babel-preset-react-hmre": "1.1.1",
     "babel-preset-stage-0": "6.16.0",
-    "chai": "3.5.0",
-    "chai-enzyme": "0.5.2",
     "cheerio": "0.22.0",
-    "coveralls": "2.11.14",
-    "css-loader": "0.25.0",
-    "enzyme": "2.5.1",
-    "eslint": "3.9.0",
-    "eslint-config-airbnb": "12.0.0",
-    "eslint-config-airbnb-base": "9.0.0",
-    "eslint-import-resolver-webpack": "0.6.0",
-    "eslint-plugin-import": "2.0.1",
+    "circular-dependency-plugin": "2.0.0",
+    "coveralls": "2.11.15",
+    "css-loader": "0.26.1",
+    "enzyme": "2.6.0",
+    "eslint": "3.11.1",
+    "eslint-config-airbnb": "13.0.0",
+    "eslint-config-airbnb-base": "10.0.1",
+    "eslint-import-resolver-webpack": "0.8.0",
+    "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "2.2.3",
-    "eslint-plugin-react": "6.4.1",
+    "eslint-plugin-react": "6.7.1",
     "eslint-plugin-redux-saga": "0.1.5",
     "eventsource-polyfill": "0.9.6",
-    "expect": "1.20.2",
-    "expect-jsx": "2.6.0",
     "exports-loader": "0.6.3",
     "file-loader": "0.9.0",
     "html-loader": "0.4.4",
-    "html-webpack-plugin": "2.24.0",
+    "html-webpack-plugin": "2.24.1",
     "image-webpack-loader": "2.0.0",
     "imports-loader": "0.6.5",
-    "json-loader": "0.5.4",
-    "karma": "1.3.0",
-    "karma-chrome-launcher": "2.0.0",
-    "karma-coverage": "1.1.1",
-    "karma-firefox-launcher": "1.0.0",
-    "karma-ie-launcher": "1.0.0",
-    "karma-mocha": "1.2.0",
-    "karma-mocha-reporter": "2.2.0",
-    "karma-safari-launcher": "1.0.0",
-    "karma-sourcemap-loader": "0.3.7",
-    "karma-webpack": "1.8.0",
-    "lint-staged": "3.2.0",
-    "mocha": "3.1.2",
-    "ngrok": "2.2.3",
+    "jest-cli": "18.0.0",
+    "lint-staged": "3.2.1",
+    "ngrok": "2.2.4",
+    "node-plop": "0.5.4",
     "null-loader": "0.1.1",
-    "offline-plugin": "3.4.2",
-    "plop": "1.5.0",
+    "offline-plugin": "4.5.2",
+    "plop": "1.7.3",
     "pre-commit": "1.1.3",
-    "psi": "2.0.4",
-    "react-addons-test-utils": "15.3.2",
+    "react-addons-test-utils": "15.4.1",
     "rimraf": "2.5.4",
     "shelljs": "0.7.5",
     "sinon": "2.0.0-pre",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
-    "webpack": "2.1.0-beta.25",
-    "webpack-dev-middleware": "1.8.4",
-    "webpack-hot-middleware": "2.13.1"
+    "webpack": "2.2.0-rc.3",
+    "webpack-dev-middleware": "1.9.0",
+    "webpack-hot-middleware": "2.15.0"
   }
 }
