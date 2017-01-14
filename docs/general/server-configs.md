@@ -10,10 +10,26 @@ This boilerplate includes an `app/.htaccess` file that does three things:
    to let `react-router` take care of presenting the correct page.
 1. Ensure that sw.js is not cached. This is required for updates to be downloaded in offline-first mode.
 
-> Note: For performance reasons you should probably adapt it to run as a static
+> Note: For performance reasons you should probably adapt this to run as a static
   `.conf` file (typically under `/etc/apache2/sites-enabled` or similar) so that
-  your server doesn't have to apply its rules dynamically per request)
+  your server doesn't have to apply these rules dynamically per request)
+
+### security
+`.htaccess` can only provide security by redirecting HTTP to HTTPS
+
+> Note: For a detailled security configuration in apache httpd, a `.conf` file is necessary. You can use [Mozillas TLS Configurator](https://mozilla.github.io/server-side-tls/ssl-config-generator/) to get some examples.
 
 ## Nginx
 
 Also an `app/.nginx.conf` file is included that does the same on an Nginx server.
+
+### security
+
+Additionally, the `.nginx.conf` provides TLS security configuration settings based on [Mozillas TLS Guidelines](https://wiki.mozilla.org/Security/Server_Side_TLS), including:
+
+- HSTS Header
+- TLS 1.2 only
+- Prefer server-side ciphersuites
+- Strong ciphersuites
+- Own DH Key (optional)
+- OCSP & SSL Stapling (optional)
