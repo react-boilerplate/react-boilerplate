@@ -1,8 +1,7 @@
-import Img from '../index';
-
-import expect from 'expect';
-import { shallow } from 'enzyme';
 import React from 'react';
+import { shallow } from 'enzyme';
+
+import Img from '../index';
 
 const src = 'test.png';
 const alt = 'test';
@@ -28,7 +27,7 @@ describe('<Img />', () => {
 
   it('should not have a className attribute', () => {
     const renderedComponent = renderComponent();
-    expect(renderedComponent.prop('className')).toNotExist();
+    expect(renderedComponent.prop('className')).toBeUndefined();
   });
 
   it('should adopt a className attribute', () => {
@@ -40,6 +39,6 @@ describe('<Img />', () => {
   it('should not adopt a srcset attribute', () => {
     const srcset = 'test-HD.png 2x';
     const renderedComponent = renderComponent({ srcset });
-    expect(renderedComponent.prop('srcset')).toNotExist();
+    expect(renderedComponent.prop('srcset')).toBeUndefined();
   });
 });

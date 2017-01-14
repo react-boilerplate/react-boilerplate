@@ -1,5 +1,4 @@
 import React from 'react';
-import expect from 'expect';
 import { shallow, render } from 'enzyme';
 
 import IssueLink from '../IssueLink';
@@ -12,7 +11,7 @@ describe('<IssueLink />', () => {
 
   it('should have a className attribute', () => {
     const renderedComponent = shallow(<IssueLink />);
-    expect(renderedComponent.prop('className')).toExist();
+    expect(renderedComponent.prop('className')).toBeDefined();
   });
 
   it('should adopt a valid attribute', () => {
@@ -23,6 +22,6 @@ describe('<IssueLink />', () => {
 
   it('should not adopt an invalid attribute', () => {
     const renderedComponent = shallow(<IssueLink attribute={'test'} />);
-    expect(renderedComponent.prop('attribute')).toNotExist();
+    expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

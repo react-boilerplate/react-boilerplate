@@ -1,5 +1,4 @@
 import React from 'react';
-import expect from 'expect';
 import { shallow } from 'enzyme';
 
 import ListItem from '../ListItem';
@@ -12,7 +11,7 @@ describe('<ListItem />', () => {
 
   it('should have a className attribute', () => {
     const renderedComponent = shallow(<ListItem />);
-    expect(renderedComponent.prop('className')).toExist();
+    expect(renderedComponent.prop('className')).toBeDefined();
   });
 
   it('should adopt a valid attribute', () => {
@@ -23,6 +22,6 @@ describe('<ListItem />', () => {
 
   it('should not adopt an invalid attribute', () => {
     const renderedComponent = shallow(<ListItem attribute={'test'} />);
-    expect(renderedComponent.prop('attribute')).toNotExist();
+    expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });
