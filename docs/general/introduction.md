@@ -46,7 +46,6 @@ If not, here's the TL;DR:
 
 - You will write your app in the `app` folder. This is the folder you will spend most, if not all, of your time in.
 - Configuration, generators and templates are in the `internals` folder.
-- The files in `mocks` are automatically created by Jest and used for testing.
 - The `server` folder contains development and production server configuration files.
 
 ### `app/`
@@ -64,6 +63,8 @@ You can call this area the "engine" of your app. Your source code cannot be exec
 > ([ECMAScript](http://stackoverflow.com/a/33748400/5241520) is the standard for JavaScript. Most people are still using browsers which understand ECMAScript 5. So your code must be [transpiled](https://scotch.io/tutorials/javascript-transpilers-what-they-are-why-we-need-them) into browser-understandable code. To apply the transpiler to your source code, you will use webpack. Feeling the jitters already? [Don't worry](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f#.d2uasw2n6). Take a tea-break and then read on)
 
 - `internals/generators`: This folder has the code to scaffold out new components, containers and routes. Read [more about scaffolding](https://github.com/mxstbr/react-boilerplate/tree/master/docs/general#quick-scaffolding) in the docs.
+
+- `internals/mocks`: This folder contains mocks which Jest uses when testing your app, e.g. for images.
 
 The other folders are mostly for the maintainers and/or the setup, and you should absolutely never need to touch them so we are going skip them for the sake of brevity.
 
