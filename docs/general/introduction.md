@@ -10,7 +10,7 @@ This is a production-ready boilerplate, and as such optimized for browsers, not 
 
 ## Tech Stack
 
-Here's a curated list of packages (in no particular order) that you should have knowledge of, before starting your awesome project. However, the best way to have a complete list of dependencies is to see [package.json](https://github.com/mxstbr/react-boilerplate/blob/master/package.json).
+Here's a curated list of packages that you should have knowledge of, before starting your awesome project. However, the best way to have a complete list of dependencies is to see [package.json](https://github.com/mxstbr/react-boilerplate/blob/master/package.json).
 
 ### Core
 
