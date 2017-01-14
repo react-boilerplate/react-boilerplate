@@ -40,7 +40,7 @@ Note that while `react-boilerplate` includes a lot of features, many of them are
 
 ## Project Structure
 
-Let's start with understanding why we have chosen our particular structure. It has been an [evolving discussion](https://github.com/mxstbr/react-boilerplate/issues/27), and if you have an afternoon or two recommend to read the full thread.
+Let's start with understanding why we have chosen our particular structure. It has been an [evolving discussion](https://github.com/mxstbr/react-boilerplate/issues/27), and if you have an afternoon or two we recommend you read the full thread.
 
 If not, here's the TL;DR:
 
@@ -79,7 +79,7 @@ You can launch the example app by running `npm start`. To fully understand its i
 
 ### How does the application boot up?
 
-Like any other webpage your app starts with the [`app/index.html`](https://github.com/mxstbr/react-boilerplate/blob/master/app/index.html) file. Into the `div#app` React will render your application.
+Like any other webpage your app starts with the [`app/index.html`](https://github.com/mxstbr/react-boilerplate/blob/master/app/index.html) file. React will render your application into the `div#app` .
 
 But how do we include all of your react components into a single html file? That's where webpack comes into the picture. Webpack will literally pack your application into small javascript files. These files will be injected into the `index.html` as `<script>` tags.
 
@@ -87,7 +87,7 @@ When your application is deployed on a server, browsers will load this html file
 
 ### `app/app.js`:
 
-When you run `npm start`, a server will be launched inside your terminal for development. You can then open [http://localhost:3000](http://localhost:3000) to access the server and see your app.
+When you run `npm start`, a server will be launched in your terminal for development. You can then open [http://localhost:3000](http://localhost:3000) to access the server and see your app.
 
 Webpack requires an entry point to your application. Think of it as a door to your source code. In this boilerplate [`app/app.js`](https://github.com/mxstbr/react-boilerplate/blob/master/app/app.js) is that entry point. Webpack will access the entire app from this file, transpile the application into ES5 and create small chunks of transpiled code. Only the required chunks will be loaded in the browser so that you don't have to worry about the size of your application.
 
@@ -95,7 +95,7 @@ Webpack requires an entry point to your application. Think of it as a door to yo
 
 - `babel-polyfill` is imported. This enables cool stuff like generator functions, `Promise`s, etc.
 - A redux `store` is instantiated.
-- A `history` object is created, which remembers all the browsing history of your app. This is used by the router to know which page your users visit. (very useful for analytics, by the way)
+- A `history` object is created, which remembers all the browsing history for your app. This is used by the router to know which page your users visit. (very useful for analytics, by the way)
 - A Router is set up, with all of your routes. See [`routes.js`](https://github.com/mxstbr/react-boilerplate/blob/master/app/routes.js)
 - Hot module replacement setup.
 - i18n internationalization support setup.
@@ -136,7 +136,7 @@ The store is created with the `createStore()` factory, which accepts three param
 In our application we are using two such middleware.
 
 1. **Router middleware:** Keeps your routes in sync with the redux `store`.
-2. **Redux saga:** Used for managing _side-effects_ such as dispatching actions asynchronously or accessing browser data.
+2. **Redux saga:** Is used for managing _side-effects_ such as dispatching actions asynchronously or accessing browser data.
 
 ### Reselect
 
@@ -163,7 +163,7 @@ Let's see how the three features of reselect help.
 
 ### Redux Saga
 
-If your application is going to interact with some back-end application for data, we recommend using redux saga for side effect management. Too much of jargon? Let's simplify.
+If your application is going to interact with some back-end application for data, we recommend using redux saga for side effect management. Too much jargon? Let's simplify.
 
 Imagine that your application is fetching data in json format from a back-end. For every API call, ideally you should define at least three kinds of [action creators](http://redux.js.org/docs/basics/Actions.html):
 
@@ -196,7 +196,7 @@ Run `npm start` to launch the application. If you start browsing at [https://loc
 Together these two methods work like magic. When you type something in the textbox the following things will happen in a sequential manner:
 
 1. `changeUsername()` will send text to the Redux store. The text can be accessed using `evt.target.value`. Here, `evt` is the `onChange` event emmited by pressing a key.
-2. The Redux store will consult with its corresponding reducer, since a reducer knows what to with the data.
+2. The Redux store will consult with its corresponding reducer, since a reducer knows what to do with the data.
 3. When a reducer computes a new state tree, the store will update its state with the newly typed data.
 4. An update has occured in the state, therefore `mapStateToProps()` will be triggered and your react component will get the new data.
 5. The updated data will be set as the `value` to your `<Input />`.
@@ -221,6 +221,6 @@ _An update has occurred!_ `mapStateToProps()` will be triggered. `<HomePage />` 
 
 Quite an understandable question!
 
-In the example app, we're basically using a [bazooka](https://en.wikipedia.org/wiki/Bazooka) to kill a fly. The primary purpose of this boilerplate is to provide a robust and scalable infrastructure for large scale project. Every bit of your project should be predictable. You should have granular control over all the operations. It's overkill for the example app, but not for the real world.
+In the example app, we're basically using a [bazooka](https://en.wikipedia.org/wiki/Bazooka) to kill a fly. The primary purpose of this boilerplate is to provide a robust and scalable infrastructure for large scale projects. Every bit of your project should be predictable. You should have granular control over all the operations. It's overkill for the example app, but not for the real world.
 
 If you want to build a mature application you're going to need a mature infrastructure. That's what this boilerplate provides.
