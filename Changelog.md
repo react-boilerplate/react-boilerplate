@@ -2,51 +2,55 @@
 
 ## 3.4 January 2017
 
-## Main
+### Main
 
-- **Switch to Jest for testing**, massive thanks to @dmitriiabramov 
+- **Switch to Jest for testing**, massive thanks to @dmitriiabramov
+- **Update to webpack 2 RC** (includes switching from `System.import` to `import()`), thanks to @Dattaya
 - **Add progress bar while loading code splitted routes**, thanks to @KarandikarMihir
+- **Add the "Hitchhikers Guide to `react-boilerplate` to the docs**, massive thanks to @KarandikarMihir
 - Update all dependencies, as always huge thanks to @gihrig, our master of dependencies
-- Enable `import/first` eslint rule and rewrite all imports, huge thanks to @KarandikarMihir 
+- Enable `import/first` eslint rule and rewrite all imports, huge thanks to @KarandikarMihir
 - Add Node v7 support and deprecate v4 support, thanks to @samit4me @MariusRumpf
-- Prevent i18n language duplication, thanks to @harijoe 
+- Prevent i18n language duplication, thanks to @harijoe
 - Add the webpack circular dependency plugin to avoid hard to debug errors, thanks to @haikyuu
-- Refactor all selectors and generators with new naming convention, thanks to @Dattaya 
-- Update generator templates, thanks to @Virsaviya @jeremyadavis 
-- Add support for the `--host` parameter when running `npm start`, thanks to @ifedotov 
-- Showcase reselects `createStructuredSelector` in the example, thanks to @Dattaya 
-- Exclude test files from coverage report, thanks to @samit4me 
-- Lint the templates for the generators, thanks to @Dattaya 
-- Huge improvement to DX testing a freshly cleaned project, thanks to @outdooricon 
+- Refactor all selectors and generators with new naming convention, thanks to @Dattaya
+- Update generator templates, thanks to @Virsaviya @jeremyadavis
+- Add support for the `--host` parameter when running `npm start`, thanks to @ifedotov
+- Showcase reselects `createStructuredSelector` in the example, thanks to @Dattaya
+- Exclude test files from coverage report, thanks to @samit4me
+- Lint the templates for the generators, thanks to @Dattaya
+- Huge improvement to DX testing a freshly cleaned project, thanks to @outdooricon
 
-## Other Updates
+### Other Updates
 
-- **Remove the webpack DedupePlugin** as it leads to errors in production and is now included by default, thanks to @samit4me 
-- Remove the `npm run pagespeed` command and all related dependencies and files, thanks to @mkhazov 
-- Trigger a full page reload when HMR fails, thanks @kachkaev 
-- Don't import all of lodash, thanks to @jwinn 
+- **Remove the webpack DedupePlugin** as it leads to errors in production and is now included by default, thanks to @samit4me
+- Remove the `npm run pagespeed` command and all related dependencies and files, thanks to @mkhazov
+- Trigger a full page reload when HMR fails, thanks @kachkaev
+- Don't import all of lodash, thanks to @jwinn
 - Improve `.editconfig`, thanks to @avdeev
 - Improve the example components, thanks to @tomazy
-- Fix `npm run clean` not working as expected, thanks to @adjnor 
+- Fix `npm run clean` not working as expected, thanks to @adjnor
 - Fix the i18n button not updating with new state, thanks to @adjnor
-- Fix console error when changing language, thanks to @samit4me 
+- Fix console error when changing language, thanks to @samit4me
 - Fix default polyfill language, thanks to @web2style
-- Fix language generation, thanks to @chaintng 
+- Fix language generation, thanks to @chaintng
 - Switch to new webpack query syntax, thanks to @shrynx
-- Add an Introductory document to help people get started, thanks to @KarandikarMihir 
+- Add an Introductory document to help people get started, thanks to @KarandikarMihir
 - Add security configuration recommendations for Nginx (`.nginx.conf`), thanks to @supergicko
-- Add and fix lots to stuff in the documentation, thanks to @pavlin-policar, @samit4me @outdooricon @PierrickGT @nndung179
+- Add and fix lots to stuff in the documentation, thanks to @pavlin-policar, @samit4me @outdooricon @PierrickGT @nndung179 @outdooricon @kelsonic @jimmyheaddon
 - A wide variety of small fixes, thanks to @Dattaya @gihrig @outdooricon
 
-# News
+### News
+
+Welcome @KarandikarMihir to the team! Karandikar has been all over the repo, providing fixes and features. Happy to have him on board to make `react-boilerplate` even better!
 
 Special thanks as always to @gihrig for diligently testing everything and keeping our dependencies up to date!
 
-Also, huge props to @samit4me and @Dattaya for being everywhere and fixing so many issues and to @KarandikarMihir for all his hard work.
+Also, huge props to @samit4me and @Dattaya for being everywhere and fixing so many issues and of course to @KarandikarMihir for all his hard work.
 
 If you want to help us make react-boilerplate great, please use the `dev` branch, test all the things and report all the bugs!
 
-# Supporters
+### Supporters
 
 This release was made possible by [Fullstack React](https://www.fullstackreact.com/) and [Serverless](http://serverless.com)! _Want to support us too? [Click here!](http://opencollective.com/react-boilerplate)_
 
