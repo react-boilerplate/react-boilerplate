@@ -298,6 +298,25 @@ Jest is now the one responsible for tracking the definition of the initial state
 
 For more details on Jest snapshots, please view [Kent Dodd's feature video](https://egghead.io/lessons/javascript-use-jest-s-snapshot-testing-feature).
 
+This is how our finished reducer test might look like:
+
+```javascript
+// NavBar.reducer.test.js
+
+import NavBarReducer from '../NavBar.reducer';
+import { toggleNav } from '../NavBar.actions';
+
+describe('NavBarReducer', () => {
+  it('returns the initial state', () => {
+    expect(NavBarReducer(undefined, {})).toMatchSnapshot();
+  });
+
+  it('handles the toggleNav action', () => {
+    expect(NavBarReducer({}, toggleNav())).toMatchSnapshot();
+  });
+});
+```
+
 Lets see how we can test actions next.
 
 ### Actions
