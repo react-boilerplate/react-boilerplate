@@ -1,5 +1,5 @@
 /**
--*
+ *
  * Button.js
  *
  * A common button, if you pass it a prop "route" it'll render a link to a react-router route
