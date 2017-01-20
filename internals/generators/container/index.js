@@ -20,10 +20,10 @@ module.exports = {
     },
   }, {
     type: 'list',
-    name: 'component',
-    message: 'Select a base component:',
-    default: 'PureComponent',
-    choices: () => ['PureComponent', 'Component'],
+    name: 'type',
+    message: 'Select the base component type:',
+    default: 'Stateless Function',
+    choices: () => ['Stateless Function', 'PureComponent', 'Component'],
   }, {
     type: 'confirm',
     name: 'wantHeaders',
@@ -47,10 +47,22 @@ module.exports = {
   }],
   actions: (data) => {
     // Generate index.js and index.test.js
+    let componentTemplate;
+
+    switch (data.type) {
+      case 'Stateless Function': {
+        componentTemplate = './container/stateless.js.hbs';
+        break;
+      }
+      default: {
+        componentTemplate = './container/class.js.hbs';
+      }
+    }
+
     const actions = [{
       type: 'add',
       path: '../../app/containers/{{properCase name}}/index.js',
-      templateFile: './container/index.js.hbs',
+      templateFile: componentTemplate,
       abortOnFail: true,
     }, {
       type: 'add',
