@@ -23,6 +23,7 @@ text:
 ```javascript
 // Button.js
 
+import React from 'react';
 import CheckmarkIcon from './CheckmarkIcon';
 
 function Button(props) {
@@ -100,6 +101,10 @@ pass it and third that handles clicks!
 This is our Jest setup:
 
 ```javascript
+import React from 'react';
+import { shallow } from 'enzyme';
+import Button from '../Button.react';
+
 describe('<Button />', () => {
   it('renders a <button>', () => {});
 
@@ -118,7 +123,7 @@ it('renders a <button>', () => {
     <Button></Button>
   );
   expect(
-    renderedComponent.find("button").node
+    renderedComponent.find('button').node
   ).toBeDefined();
 });
 ```
@@ -132,7 +137,7 @@ exists:
 
 ```javascript
 it('renders its children', () => {
-  const text = "Click me!";
+  const text = 'Click me!';
   const renderedComponent = shallow(
     <Button>{ text }</Button>
   );
@@ -157,4 +162,42 @@ it('handles clicks', () => {
 });
 ```
 
+Our finished test file looks like this:
+
+```javascript
+import React from 'react';
+import { shallow } from 'enzyme';
+import Button from '../Button.react';
+
+describe('<Button />', () => {
+  it('renders a <button>', () => {
+    const renderedComponent = shallow(
+      <Button></Button>
+    );
+    expect(
+      renderedComponent.find('button').node
+    ).toBeDefined();
+  });
+
+  it('renders its children', () => {
+    const text = 'Click me!';
+    const renderedComponent = shallow(
+      <Button>{ text }</Button>
+    );
+    expect(
+      renderedComponent.contains(text)
+    ).toEqual(true);
+  });
+
+  it('handles clicks', () => {
+    const onClickSpy = jest.fn();
+    const renderedComponent = shallow(<Button onClick={onClickSpy} />);
+    renderedComponent.find('button').simulate('click');
+    expect(onClickSpy).toHaveBeenCalled();
+  });
+});
+```
+
 And that's how you unit test your components and make sure they work correctly!
+
+*Continue to learn how to test your components [remotely](remote-testing.md)!*
