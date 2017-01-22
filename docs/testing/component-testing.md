@@ -21,10 +21,10 @@ This component renders a `<button>` element containing a checkmark icon and some
 text:
 
 ```javascript
-// Button.react.js
+// Button.js
 
 import React from 'react';
-import CheckmarkIcon from './CheckmarkIcon.react';
+import CheckmarkIcon from './CheckmarkIcon';
 
 function Button(props) {
   return (
@@ -43,9 +43,9 @@ _Note: This is a [state**less** ("dumb") component](../js/README.md#architecture
 It might be used in another component like this:
 
 ```javascript
-// HomePage.react.js
+// HomePage.js
 
-import Button from './Button.react';
+import Button from './Button';
 
 class HomePage extends React.Component {
   render() {
