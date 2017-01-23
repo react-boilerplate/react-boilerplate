@@ -51,11 +51,11 @@ componentGen.runActions({ name: 'RbGeneratedComponentStatelessfunction', type: '
 const containerGen = plop.getGenerator('container');
 containerGen.runActions({
   name: 'RbGeneratedContainerPureComponent',
-  component: 'PureComponent',
+  type: 'PureComponent',
   wantHeaders: true,
   wantActionsAndReducer: true,
   wantSagas: true,
-  wantMessages: true
+  wantMessages: true,
 })
   .then(checkForErrors)
   .then(removeTestsDirFrom('containers/RbGeneratedContainerPureComponent'))
@@ -63,15 +63,27 @@ containerGen.runActions({
 
 const ContainerComponent = containerGen.runActions({
   name: 'RbGeneratedContainerComponent',
-  component: 'Component',
+  type: 'Component',
   wantHeaders: true,
   wantActionsAndReducer: true,
   wantSagas: true,
-  wantMessages: true
+  wantMessages: true,
 })
   .then(checkForErrors)
   .then(removeTestsDirFrom('containers/RbGeneratedContainerComponent'))
   .catch(reportErrorsFor('container/Component'));
+
+containerGen.runActions({
+  name: 'RbGeneratedContainerStateless',
+  type: 'Stateless Function',
+  wantHeaders: true,
+  wantActionsAndReducer: true,
+  wantSagas: true,
+  wantMessages: true,
+})
+  .then(checkForErrors)
+  .then(removeTestsDirFrom('containers/RbGeneratedContainerStateless'))
+  .catch(reportErrorsFor('container/Stateless'));
 
 const routeGen = plop.getGenerator('route');
 
