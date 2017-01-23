@@ -1,11 +1,10 @@
-import expect from 'expect';
-import { shallow } from 'enzyme';
 import React from 'react';
-
+import { shallow } from 'enzyme';
 import { FormattedMessage } from 'react-intl';
+
+import H1 from 'components/H1';
 import messages from '../messages';
 import FeaturePage from '../index';
-import H1 from 'components/H1';
 
 describe('<FeaturePage />', () => {
   it('should render its heading', () => {
@@ -16,6 +15,6 @@ describe('<FeaturePage />', () => {
       <H1>
         <FormattedMessage {...messages.header} />
       </H1>
-    )).toEqual(true);
+    )).toBe(true);
   });
 });

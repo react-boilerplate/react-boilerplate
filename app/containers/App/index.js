@@ -1,6 +1,6 @@
 /**
  *
- * App.react.js
+ * App
  *
  * This component is the skeleton around the actual pages, and should only
  * contain code that should be seen on all pages. (e.g. navigation bar)
@@ -12,6 +12,7 @@ import styled from 'styled-components';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import withProgressBar from 'components/ProgressBar';
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -22,7 +23,7 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-function App(props) {
+export function App(props) {
   return (
     <AppWrapper>
       <Helmet
@@ -43,4 +44,4 @@ App.propTypes = {
   children: React.PropTypes.node,
 };
 
-export default App;
+export default withProgressBar(App);

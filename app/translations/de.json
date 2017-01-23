@@ -1,10 +1,8 @@
 {
-  "app.components.LocaleToggle.de": "",
-  "app.components.LocaleToggle.en": "",
   "boilerplate.components.Footer.author.message": "Mit Liebe gemacht von {author}.",
   "boilerplate.components.Footer.license.message": "Dieses Projekt wird unter der MIT-Lizenz veröffentlicht.",
+  "boilerplate.components.Header.features": "",
   "boilerplate.components.Header.home": "",
-  "boilerplate.containers.Header.features": "",
   "boilerplate.containers.FeaturePage.css.header": "",
   "boilerplate.containers.FeaturePage.css.message": "Die nächste Generation von CSS",
   "boilerplate.containers.FeaturePage.feedback.header": "Sofortiges Feedback",
@@ -27,5 +25,7 @@
   "boilerplate.containers.HomePage.tryme.atPrefix": "",
   "boilerplate.containers.HomePage.tryme.header": "Probiere mich!",
   "boilerplate.containers.HomePage.tryme.message": "Zeige die Github Repositories von",
+  "boilerplate.containers.LocaleToggle.de": "",
+  "boilerplate.containers.LocaleToggle.en": "",
   "boilerplate.containers.NotFoundPage.header": "Seite nicht gefunden."
 }
