@@ -120,3 +120,14 @@ included in the project:
 
 **IMPORTANT**: By submitting a patch, you agree to allow the project
 owners to license your work under the terms of the [MIT License](https://github.com/mxstbr/react-boilerplate/blob/master/LICENSE.md).
+
+# Collaborating guidelines
+You can find the list of all maintainers in [MAINTAINERS.md](./MAINTAINERS.md).
+
+There are few basic rules to ensure high quality of the boilerplate:
+ 
+ - Before merging, a PR requires at least two approvals from the collaborators unless it's an architectural change, a large feature, etc. If it is, then review from [@mxstbr](http://github.com/mxstbr) is also necessary. If one of the collaborators is against a contribution, the project owner also decides what to do.
+ - A PR should remain open for at least two days before merging (does not apply for trivial contributions like fixing a typo). This way everyone has enough time to look into it.
+
+
+You are always welcome to discuss and propose improvements to this guideline.

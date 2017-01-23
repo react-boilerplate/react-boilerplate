@@ -27,7 +27,7 @@ module.exports = (options) => ({
       include: /node_modules/,
       loaders: ['style-loader', 'css-loader'],
     }, {
-      test: /\.(eot|svg|ttf|woff|woff2)$/,
+      test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
       loader: 'file-loader',
     }, {
       test: /\.(jpg|png|gif)$/,
