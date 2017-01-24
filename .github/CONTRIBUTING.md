@@ -8,7 +8,7 @@ Following these guidelines helps to communicate that you respect the time of the
 
 ## Using the issue tracker
 
-The [issue tracker](https://github.com/mxstbr/react-boilerplate/issues) is
+The [issue tracker](https://github.com/react-boilerplate/react-boilerplate/issues) is
 the preferred channel for [bug reports](#bugs), [features requests](#features)
 and [submitting pull requests](#pull-requests).
 
@@ -85,7 +85,7 @@ included in the project:
    # Navigate to the newly cloned directory
    cd react-boilerplate
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/mxstbr/react-boilerplate.git
+   git remote add upstream https://github.com/react-boilerplate/react-boilerplate.git
    ```
 
 2. If you cloned a while ago, get the latest changes from upstream:
@@ -119,4 +119,4 @@ included in the project:
     with a clear title and description.
 
 **IMPORTANT**: By submitting a patch, you agree to allow the project
-owners to license your work under the terms of the [MIT License](https://github.com/mxstbr/react-boilerplate/blob/master/LICENSE.md).
+owners to license your work under the terms of the [MIT License](https://github.com/react-boilerplate/react-boilerplate/blob/master/LICENSE.md).
