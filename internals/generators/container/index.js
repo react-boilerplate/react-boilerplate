@@ -3,6 +3,7 @@
  */
 
 const componentExists = require('../utils/componentExists');
+const chalk = require('chalk');
 
 module.exports = {
   description: 'Add a container component',
@@ -33,6 +34,14 @@ module.exports = {
     name: 'wantActionsAndReducer',
     default: true,
     message: 'Do you want an actions/constants/selectors/reducer tupel for this container?',
+  }, {
+    when: function (response) {
+      return response.wantActionsAndReducer
+    },
+    name: 'actionsAndReducerWarning',
+    type: 'confirm',
+    default: false,
+    message: chalk.yellow('️ ️⚠️️ ️You need to combine your reducer after you create this component/container!')
   }, {
     type: 'confirm',
     name: 'wantSagas',
