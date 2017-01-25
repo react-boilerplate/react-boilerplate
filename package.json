@@ -4,7 +4,7 @@
   "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mxstbr/react-boilerplate.git"
+    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
   },
   "engines": {
     "npm": ">=3",
