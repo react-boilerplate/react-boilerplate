@@ -155,8 +155,7 @@
       "redux-saga/yield-effects": 2,
       "require-yield": 0,
       "import/no-webpack-loader-syntax": 0,
-      "react/require-default-props": 0,
-      "react/no-array-index-key": 0
+      "react/require-default-props": 0
     },
     "settings": {
       "import/resolver": {
