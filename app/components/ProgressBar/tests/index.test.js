@@ -6,6 +6,7 @@ import withProgressBar from '../index';
 import ProgressBar from '../ProgressBar';
 
 let clock = null;
+const sandbox = sinon.sandbox.create();
 
 describe('withProgressBar()', () => {
   beforeEach(() => {
@@ -13,7 +14,7 @@ describe('withProgressBar()', () => {
   });
 
   afterEach(() => {
-    clock = sinon.restore();
+    clock = sandbox.restore();
   });
 
   function Component() {
