@@ -36,13 +36,11 @@ module.exports = {
     default: true,
     message: 'Do you want an actions/constants/selectors/reducer tuple for this container?',
   }, {
-    when: function (response) {
-      return response.wantActionsAndReducer
-    },
+    when: (response) => response.wantActionsAndReducer,
     name: 'actionsAndReducerWarning',
     type: 'confirm',
     default: false,
-    message: chalk.yellow('️ ️⚠️️ ️You need to combine your reducer after you create this component/container!')
+    message: chalk.yellow('️ ️⚠️️ ️You need to combine your reducer after you create this component/container!'),
   }, {
     type: 'confirm',
     name: 'wantSagas',
