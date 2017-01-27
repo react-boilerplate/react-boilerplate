@@ -103,6 +103,14 @@ There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on ho
    *At this point you can run `npm start` to see the example app at `http://localhost:3000`.*
 1. Run `npm run clean` to delete the example app.
 
+Or you can quickly create a free development environment for this project in the cloud on [Nitrous.io](https://www.nitrous.io) by clicking the button below.
+
+<a href="https://www.nitrous.io/quickstart">
+  <img src="https://nitrous-image-icons.s3.amazonaws.com/quickstart.png" alt="Nitrous Quickstart" width=142 height=34>
+</a>
+
+In the IDE, start React Boilerplate via `Run > Start React Boilerplate` and access your site via `Preview > 3000`.
+
 Now you're ready to rumble!
 
 > Please note that this boilerplate is **production-ready and not meant for beginners**! If you're just starting out with react or redux, please refer to https://github.com/petehunt/react-howto instead. If you want a solid, battle-tested base to build your next product upon and have some experience with react, this is the perfect start for you.
