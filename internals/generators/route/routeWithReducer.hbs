@@ -1,6 +1,5 @@
  {
       path: '{{ path }}',
-      name: '{{ camelCase component }}',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('containers/{{ properCase component }}/reducer'),

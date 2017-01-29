@@ -9,12 +9,12 @@ out into JS where we believe those features belong.
 If you _really_ still want (or need) to use Sass then...
 
 1. You will need to add a [sass-loader](https://github.com/jtangelder/sass-loader)
-to the loaders section in `internals/webpack/webpack.base.babel.js` so it reads something like
+to the loaders/rules section in `internals/webpack/webpack.base.babel.js` so it reads something like
    ```javascript
    {
       test: /\.scss$/,
       exclude: /node_modules/,
-      loaders: ['style', 'css', 'sass']
+      loaders: ['style-loader', 'css-loader', 'sass-loader']
     }
     ```
 

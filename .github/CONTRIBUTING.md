@@ -8,7 +8,7 @@ Following these guidelines helps to communicate that you respect the time of the
 
 ## Using the issue tracker
 
-The [issue tracker](https://github.com/mxstbr/react-boilerplate/issues) is
+The [issue tracker](https://github.com/react-boilerplate/react-boilerplate/issues) is
 the preferred channel for [bug reports](#bugs), [features requests](#features)
 and [submitting pull requests](#pull-requests).
 
@@ -85,7 +85,7 @@ included in the project:
    # Navigate to the newly cloned directory
    cd react-boilerplate
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/mxstbr/react-boilerplate.git
+   git remote add upstream https://github.com/react-boilerplate/react-boilerplate.git
    ```
 
 2. If you cloned a while ago, get the latest changes from upstream:
@@ -119,4 +119,15 @@ included in the project:
     with a clear title and description.
 
 **IMPORTANT**: By submitting a patch, you agree to allow the project
-owners to license your work under the terms of the [MIT License](https://github.com/mxstbr/react-boilerplate/blob/master/LICENSE.md).
+owners to license your work under the terms of the [MIT License](https://github.com/react-boilerplate/react-boilerplate/blob/master/LICENSE.md).
+
+# Collaborating guidelines
+You can find the list of all maintainers in [MAINTAINERS.md](./MAINTAINERS.md).
+
+There are few basic rules to ensure high quality of the boilerplate:
+
+ - Before merging, a PR requires at least two approvals from the collaborators unless it's an architectural change, a large feature, etc. If it is, then at least 50% of the core team have to agree to merge it, with every team member having a full veto right. (i.e. every single one can block any PR)
+ - A PR should remain open for at least two days before merging (does not apply for trivial contributions like fixing a typo). This way everyone has enough time to look into it.
+
+
+You are always welcome to discuss and propose improvements to this guideline.
