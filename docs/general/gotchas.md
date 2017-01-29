@@ -21,3 +21,50 @@ import 'file?name=[name].[ext]!../img/yourimg.png';
 ```
 
 Then webpack will correctly transfer the image to the build folder.
+
+## Load reducers optimistically
+
+If you have some `containers` that aren't _route specific_ and that should be available throughout the app, like a `NavigationBar`, you need to add their respective reducers to the root reducer with the help of `combineReducers`.
+
+``` js
+// In app/reducers.js
+
+...
+import { combineReducers } from 'redux-immutable';
+...
+
+import navigationBarReducer from 'containers/NavigationBar/reducer';
+
+export default combineReducers({
+  route: routeReducer,
+  global: globalReducer,
+  language: languageProviderReducer,
+  navigationBar: navigationBarReducer,
+  ...asyncReducers,
+});
+```
+
+## Exclude modules from Babel processing
+Excluding modules from babel processing has never been so easy! Just add the package name to `exclude` array in `internals/config.js` and you're all set!
+
+``` js
+// in internals/config.js
+
+exclude: [
+  'chalk',
+  'compression',
+  'cross-env',
+  'express',
+  'ip',
+  'minimist',
+  'sanitize.css',
+  'your-unwanted-package', <- add your-unwanted-package
+  ...
+]
+```
+
+## Running tests in `watch` mode
+
+You may have to install `watchman` to run tests in watch mode. If you're using a Mac, simply run `brew install watchman`
+
+You can also install `watchman` from source. Please visit their [official guide](https://facebook.github.io/watchman/docs/install.html) for more information.
