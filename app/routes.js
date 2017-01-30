@@ -26,8 +26,9 @@ export default function createRoutes(store) {
 
       importModules.then(([sagas, component]) => {
         injectSagas(sagas.default);
-      renderRoute(component);
-    });
+
+        renderRoute(component);
+      });
 
       importModules.catch(errorLoading);
     },
@@ -70,6 +71,6 @@ export default function createRoutes(store) {
             .catch(errorLoading);
         },
       },
-    ]
+    ],
   };
 }
