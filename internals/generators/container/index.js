@@ -40,7 +40,7 @@ module.exports = {
     name: 'actionsAndReducerWarning',
     type: 'confirm',
     default: false,
-    message: chalk.yellow('️ ️⚠️️ ️You need to combine your reducer after you create this component/container!'),
+    message: chalk.yellow('️ ️⚠️ Remember to add this reducer to combineReducers in app/reducers.js!'),
   }, {
     type: 'confirm',
     name: 'wantSagas',
