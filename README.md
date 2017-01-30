@@ -97,8 +97,6 @@ There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on ho
 
 ## Quick start
 
-**We strongly recommend that you use yarn over npm because yarn installs dependencies in a stable and predictable way. As a bonus, you'll get faster installation and cleaner console!**
-
 1. Clone this repo using `git clone --depth=1 https://github.com/react-boilerplate/react-boilerplate.git`
 1. Run `npm run setup` to install dependencies and clean the git repo.<br />
    *We auto-detect `yarn` for installing packages by default, if you wish to force `npm` usage do: `USE_YARN=false npm run setup`*<br />
@@ -112,9 +110,8 @@ Now you're ready to rumble!
 ## When in doubt, re-install!
 If you're facing any inexplicable problems while installing dependencies, building your project or running tests, try reinstalling dependencies. It works for most cases. Run following commands in the exact order-
 
-Remove node_modules and build
+Remove node_modules
 - `rm -rf node_modules`
-- `rm -rf build`
 
 Using yarn (recommended)
 - `yarn install`
@@ -122,6 +119,9 @@ Using yarn (recommended)
 Using npm
 - `npm cache clean`
 - `npm install`
+
+Build project
+- `npm run build`
 
 ## Documentation
 
