@@ -40,7 +40,7 @@ module.exports = {
     name: 'actionsAndReducerWarning',
     type: 'confirm',
     default: false,
-    message: chalk.yellow('️ ️⚠️ Remember to add this reducer to combineReducers in app/reducers.js!'),
+    message: chalk.yellow('️⚠️ Not loading in a route?, Add to app/reducers.js: combineReducers. Ref #1407.'),
   }, {
     type: 'confirm',
     name: 'wantSagas',

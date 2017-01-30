@@ -6567,9 +6567,9 @@ require-uncached@^1.0.2:
     caller-path "^0.1.0"
     resolve-from "^1.0.0"
 
-reselect@2.5.4:
+reselect:
   version "2.5.4"
-  resolved "https://registry.yarnpkg.com/reselect/-/reselect-2.5.4.tgz#b7d23fdf00b83fa7ad0279546f8dbbbd765c7047"
+  resolved "http://registry.npm.taobao.org/reselect/download/reselect-2.5.4.tgz#b7d23fdf00b83fa7ad0279546f8dbbbd765c7047"
 
 resolve-dir@^0.1.0:
   version "0.1.1"
