@@ -16,44 +16,60 @@ export default function createRoutes(store) {
   // create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store);
 
-  return [
-    {
-      path: '/',
-      name: 'home',
-      getComponent(nextState, cb) {
-        const importModules = Promise.all([
-          import('containers/HomePage/reducer'),
-          import('containers/HomePage/sagas'),
-          import('containers/HomePage'),
-        ]);
+  return {
+    getComponent(nextState, cb) {
+      const importModules = Promise.all([
+        import('containers/App'),
+      ]);
 
-        const renderRoute = loadModule(cb);
+      const renderRoute = loadModule(cb);
 
-        importModules.then(([reducer, sagas, component]) => {
-          injectReducer('home', reducer.default);
-          injectSagas(sagas.default);
+      importModules.then(([sagas, component]) => {
+        injectSagas(sagas.default);
+      renderRoute(component);
+    });
 
-          renderRoute(component);
-        });
-
-        importModules.catch(errorLoading);
-      },
-    }, {
-      path: '/features',
-      name: 'features',
-      getComponent(nextState, cb) {
-        import('containers/FeaturePage')
-          .then(loadModule(cb))
-          .catch(errorLoading);
-      },
-    }, {
-      path: '*',
-      name: 'notfound',
-      getComponent(nextState, cb) {
-        import('containers/NotFoundPage')
-          .then(loadModule(cb))
-          .catch(errorLoading);
-      },
+      importModules.catch(errorLoading);
     },
-  ];
+    childRoutes: [
+      {
+        path: '/',
+        name: 'home',
+        getComponent(nextState, cb) {
+          const importModules = Promise.all([
+            import('containers/HomePage/reducer'),
+            import('containers/HomePage/sagas'),
+            import('containers/HomePage'),
+          ]);
+
+          const renderRoute = loadModule(cb);
+
+          importModules.then(([reducer, sagas, component]) => {
+            injectReducer('home', reducer.default);
+            injectSagas(sagas.default);
+
+            renderRoute(component);
+          });
+
+          importModules.catch(errorLoading);
+        },
+      }, {
+        path: '/features',
+        name: 'features',
+        getComponent(nextState, cb) {
+          import('containers/FeaturePage')
+            .then(loadModule(cb))
+            .catch(errorLoading);
+        },
+      }, {
+        path: '*',
+        name: 'notfound',
+        getComponent(nextState, cb) {
+          import('containers/NotFoundPage')
+            .then(loadModule(cb))
+            .catch(errorLoading);
+        },
+      },
+    ]
+  };
 }
