@@ -71,6 +71,6 @@ exclude: [
 
 ## Running tests in `watch` mode
 
-If you are unable to run tests in watch mode, you may have to install `watchman` to run tests in watch mode. If you're using a Mac, simply run `brew install watchman`
+If you are unable to run tests in watch mode, you may have to install `watchman` for this to work. If you're using a Mac, simply run `brew install watchman`
 
 You can also install `watchman` from source. Please visit their [official guide](https://facebook.github.io/watchman/docs/install.html) for more information.
