@@ -234,7 +234,7 @@
     "redux": "3.6.0",
     "redux-immutable": "3.0.10",
     "redux-saga": "0.14.3",
-    "reselect": "^2.5.4",
+    "reselect": "2.5.4",
     "sanitize.css": "4.1.0",
     "styled-components": "1.3.1",
     "warning": "3.0.0",
