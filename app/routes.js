@@ -56,19 +56,9 @@ export default function createRoutes(store) {
 
   return {
     getComponent(nextState, cb) {
-      const importModules = Promise.all([
-        import('containers/App'),
-      ]);
-
-      const renderRoute = loadModule(cb);
-
-      importModules.then(([sagas, component]) => {
-        injectSagas(sagas.default);
-
-        renderRoute(component);
-      });
-
-      importModules.catch(errorLoading);
+      import('containers/App')
+        .then(loadModule(cb))
+        .catch(errorLoading);
     },
     childRoutes,
   };

@@ -30,7 +30,7 @@ export function* sagaName() {
 }
 ```
 
-Next we'll import the `sagas.js` file into our `App` route configuration
+Next we'll import the `sagas.js` file into our `App` route configuration by updating our `getComponent` function to asynchronosly load our files. You can just replace it with the one below.
 ######app/routes.js
 ```JS
 export default function createRoutes(store) {
