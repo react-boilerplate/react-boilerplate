@@ -77,7 +77,7 @@ If you are unable to run tests in watch mode, you may have to install `watchman`
 You can also install `watchman` from source. Please visit their [official guide](https://facebook.github.io/watchman/docs/install.html) for more information.
 
 ## When in doubt, re-install!
-If you're facing any inexplicable problems while installing dependencies, building your project or running tests, try reinstalling dependencies. It works for most cases. Run following commands in the exact order-
+If you're facing any inexplicable problems while installing dependencies, building your project or running tests, try reinstalling dependencies. It works for most cases. Run the following commands in the exact order given:
 
 Remove node_modules
 - `rm -rf node_modules`
