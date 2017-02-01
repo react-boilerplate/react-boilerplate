@@ -6,6 +6,7 @@ These are some things to be aware of when using this boilerplate.
 2. [Load reducers optimistically](#load-reducers-optimistically)
 3. [Exclude modules from Babel processing](#exclude-modules-from-babel-processing)
 4. [Running tests in watch mode](#running-tests-in-watch-mode)
+5. [When in doubt, re-install!](#when-in-doubt-re-install)
 
 ## Special images in HTML files
 
@@ -74,3 +75,19 @@ exclude: [
 If you are unable to run tests in watch mode, you may have to install `watchman` for this to work. If you're using a Mac, simply run `brew install watchman`
 
 You can also install `watchman` from source. Please visit their [official guide](https://facebook.github.io/watchman/docs/install.html) for more information.
+
+## When in doubt, re-install!
+If you're facing any inexplicable problems while installing dependencies, building your project or running tests, try reinstalling dependencies. It works for most cases. Run following commands in the exact order-
+
+Remove node_modules
+- `rm -rf node_modules`
+
+Using yarn (recommended)
+- `yarn install`
+
+Using npm
+- `npm cache clean`
+- `npm install`
+
+Build project
+- `npm run build`

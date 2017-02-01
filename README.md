@@ -107,22 +107,6 @@ Now you're ready to rumble!
 
 > Please note that this boilerplate is **production-ready and not meant for beginners**! If you're just starting out with react or redux, please refer to https://github.com/petehunt/react-howto instead. If you want a solid, battle-tested base to build your next product upon and have some experience with react, this is the perfect start for you.
 
-## When in doubt, re-install!
-If you're facing any inexplicable problems while installing dependencies, building your project or running tests, try reinstalling dependencies. It works for most cases. Run following commands in the exact order-
-
-Remove node_modules
-- `rm -rf node_modules`
-
-Using yarn (recommended)
-- `yarn install`
-
-Using npm
-- `npm cache clean`
-- `npm install`
-
-Build project
-- `npm run build`
-
 ## Documentation
 
 - [**The Hitchhikers Guide to `react-boilerplate`**](docs/general/introduction.md): An introduction for newcomers to this boilerplate.
@@ -132,6 +116,7 @@ Build project
 - [Styling](docs/css): How to work with the CSS tooling
 - [Your app](docs/js): Supercharging your app with Routing, Redux, simple
   asynchronicity helpers, etc.
+- [**Troubleshooting**](docs/general/gotchas.md): Solutions to common problems faced by the developers.
 
 ## Supporters
 
