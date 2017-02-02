@@ -4,6 +4,7 @@
 
 - [General](general)
   - [**CLI Commands**](general/commands.md)
+  - [Introduction ](general/introduction.md)
   - [Tool Configuration](general/files.md)
   - [Server Configurations](general/server-configs.md)
   - [Server side rendering](general/server-side-rendering.md)
@@ -78,7 +79,7 @@ JavaScript, HTML and tests.
 The rest of the folders and files only exist to make your life easier, and
 should not need to be touched.
 
-*(If they do have to be changed, please [submit an issue](https://github.com/mxstbr/react-boilerplate/issues)!)*
+*(If they do have to be changed, please [submit an issue](https://github.com/react-boilerplate/react-boilerplate/issues)!)*
 
 ### CSS
 
@@ -108,12 +109,6 @@ write head tags can be found [here](https://github.com/nfl/react-helmet#examples
 
 For a thorough explanation of the testing procedure, see the
 [testing documentation](./testing/README.md)!
-
-#### Performance testing
-
-With the production server running (i.e. while `npm run start:production` is running in
-another tab), enter `npm run pagespeed` to run Google PageSpeed Insights and
-get a performance check right in your terminal!
 
 #### Browser testing
 

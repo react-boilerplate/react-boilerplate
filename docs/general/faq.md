@@ -178,7 +178,7 @@ WebStorm is a powerful IDE, and why not also use it as debugger tool? Here is th
 
 1.  [Install JetBrain Chrome Extension](https://chrome.google.com/webstore/detail/jetbrains-ide-support/hmhgeddbohgjknpmjagkdomcpobmllji)
 2.  [Setting up the PORT](https://www.jetbrains.com/help/webstorm/2016.1/using-jetbrains-chrome-extension.html)
-3.  Change WebPack devtool config to `source-map` [(This line)](https://github.com/mxstbr/react-boilerplate/blob/56eb5a0ec4aa691169ef427f3a0122fde5a5aa24/internals/webpack/webpack.dev.babel.js#L65)
+3.  Change WebPack devtool config to `source-map` [(This line)](https://github.com/react-boilerplate/react-boilerplate/blob/56eb5a0ec4aa691169ef427f3a0122fde5a5aa24/internals/webpack/webpack.dev.babel.js#L65)
 4.  Run web server (`npm run start`)
 5.  Create Run Configuration (Run > Edit Configurations)
 6.  Add new `JavaScript Debug`
@@ -238,8 +238,20 @@ While it's possible to keep your project up-to-date or "in sync" with `react-boi
 very difficult and therefore ***at your own risk*** and not recommend. You should not need to do it either, as
 every version you use will be amazing! There is a long term goal to make this much easier but no ETA at the moment.
 
+## How to turn off Webpack performance warnings after production build?
+
+Webpack recommends having those performance hints turned off in development but to keep them on in production. If you still want to disable them, add the next lines to the config in `webpack.prod.babel.js`:
+  
+```js
+  performance: {
+    hints: false
+  }
+```
+You can find more information about the `performance` option (how to change maximum allowed size of a generated file, how to exclude some files from being checked and so on) in the [Webpack documentation](https://webpack.js.org/configuration/performance/).
+
+
 ## Have another question?
 
-Submit an [issue](https://github.com/mxstbr/react-boilerplate/issues),
+Submit an [issue](https://github.com/react-boilerplate/react-boilerplate/issues),
 hop onto the [Gitter channel](https://gitter.im/mxstbr/react-boilerplate)
 or contact Max direct on [twitter](https://twitter.com/mxstbr)!

@@ -22,8 +22,13 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.jsx?$/, // Transform all .js files required somewhere with Babel
-      loader: 'babel',
+      loader: 'babel-loader',
       exclude: /node_modules/,
+      query: {
+        plugins: [
+          'dynamic-import-node',
+        ],
+      },
     }, {
       test: /\.json$/,
       loader: 'json-loader',
@@ -37,7 +42,7 @@ module.exports = {
           },
         },
         {
-          loader: 'image-webpack',
+          loader: 'image-webpack-loader',
           query: imageWebpackQuery,
         },
       ],

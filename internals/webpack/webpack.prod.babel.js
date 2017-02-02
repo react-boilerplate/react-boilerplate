@@ -23,9 +23,6 @@ const clientConfig = require('./webpack.base.babel')({
       async: true,
     }),
 
-    // Merge all duplicate modules
-    new webpack.optimize.DedupePlugin(),
-
     // Put it in the end to capture all the HtmlWebpackPlugin's
     // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
     new OfflinePlugin({
@@ -51,6 +48,10 @@ const clientConfig = require('./webpack.base.babel')({
       AppCache: false,
     }),
   ],
+
+  performance: {
+    assetFilter: (assetFilename) => !(/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename)),
+  },
 });
 
 const serverConfig = require('./webpack.ssr.babel');

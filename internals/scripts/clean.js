@@ -1,4 +1,4 @@
-/* global which, echo, exit, rm, mkdir, cp, exec */
+/* global which, echo, exit, rm, mkdir, cp, exec, mv */
 require('shelljs/global');
 const addCheckMark = require('./helpers/checkmark.js');
 
@@ -14,75 +14,40 @@ if (!test('-e', 'internals/templates')) {
 
 process.stdout.write('Cleanup started...');
 
-// Cleanup components folder
-rm('-rf', 'app/components/*');
-mkdir('-p', 'app/components/HtmlDocument');
-cp('internals/templates/htmlDocument.js', 'app/components/HtmlDocument/index.js');
-
-// Cleanup containers folder
-rm('-rf', 'app/containers/*');
-mkdir('-p', 'app/containers/App');
-mkdir('-p', 'app/containers/AppRoot');
-mkdir('-p', 'app/containers/NotFoundPage');
-mkdir('-p', 'app/containers/HomePage');
-cp('internals/templates/appContainer.js', 'app/containers/App/index.js');
-cp('internals/templates/appRoot.js', 'app/containers/AppRoot/index.js');
-cp('internals/templates/constants.js', 'app/containers/App/constants.js');
-cp('internals/templates/notFoundPage/notFoundPage.js', 'app/containers/NotFoundPage/index.js');
-cp('internals/templates/notFoundPage/messages.js', 'app/containers/NotFoundPage/messages.js');
-cp('internals/templates/homePage/homePage.js', 'app/containers/HomePage/index.js');
-cp('internals/templates/homePage/messages.js', 'app/containers/HomePage/messages.js');
+// Reuse existing LanguageProvider and i18n tests
+mv('app/containers/LanguageProvider/tests', 'internals/templates/containers/LanguageProvider');
+cp('app/tests/i18n.test.js', 'internals/templates/tests/i18n.test.js');
 
 // Handle Translations
-rm('-rf', 'app/translations/*');
-mkdir('-p', 'app/translations');
-cp('internals/templates/translations/en.json',
-  'app/translations/en.json');
+rm('-rf', 'app/translations');
+mv('internals/templates/translations', 'app');
 
-// move i18n file
-cp('internals/templates/i18n.js',
-  'app/i18n.js');
+// Handle containers/
+rm('-rf', 'app/containers');
+mv('internals/templates/containers', 'app');
 
-// Copy LanguageProvider
-mkdir('-p', 'app/containers/LanguageProvider');
-mkdir('-p', 'app/containers/LanguageProvider/tests');
-cp('internals/templates/languageProvider/actions.js',
-  'app/containers/LanguageProvider/actions.js');
-cp('internals/templates/languageProvider/constants.js',
-  'app/containers/LanguageProvider/constants.js');
-cp('internals/templates/languageProvider/languageProvider.js',
-  'app/containers/LanguageProvider/index.js');
-cp('internals/templates/languageProvider/reducer.js',
-  'app/containers/LanguageProvider/reducer.js');
-cp('internals/templates/languageProvider/selectors.js',
-  'app/containers/LanguageProvider/selectors.js');
+// Handle components/
+rm('-rf', 'app/components');
+mv('internals/templates/components', 'app');
 
-// Copy selectors
-mkdir('app/containers/App/tests');
-cp('internals/templates/selectors.js',
-  'app/containers/App/selectors.js');
-cp('internals/templates/selectors.test.js',
-  'app/containers/App/tests/selectors.test.js');
+// Handle tests/
+mv('internals/templates/tests', 'app');
 
-// Utils
+// Handle utils/
 rm('-rf', 'app/utils');
-mkdir('app/utils');
-mkdir('app/utils/tests');
-cp('internals/templates/asyncInjectors.js',
-  'app/utils/asyncInjectors.js');
-cp('internals/templates/asyncInjectors.test.js',
-  'app/utils/tests/asyncInjectors.test.js');
+mv('internals/templates/utils', 'app');
+
+rm('-rf', 'app/setup');
+mv('internals/templates/setup', 'app');
 
 // Replace the files in the root app/ folder
-mkdir('-p', 'app/setup');
 cp('internals/templates/app.js', 'app/app.js');
 cp('internals/templates/reducers.js', 'app/reducers.js');
 cp('internals/templates/routes.js', 'app/routes.js');
 cp('internals/templates/store.js', 'app/store.js');
-cp('internals/templates/store.test.js', 'app/tests/store.test.js');
-cp('internals/templates/setup/*.js', 'app/setup');
 cp('internals/templates/renderInBrowser.js', 'app/renderInBrowser.js');
 cp('internals/templates/serverEntry.js', 'app/serverEntry.js');
+cp('internals/templates/i18n.js', 'app/i18n.js');
 
 // Remove the templates folder
 rm('-rf', 'internals/templates');

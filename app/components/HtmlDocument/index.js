@@ -40,8 +40,8 @@ export default function HtmlDocument({ lang, head, css, appMarkup, state, assets
         <script dangerouslySetInnerHTML={{ __html: `APP_STATE = ${htmlescape(state)}` }} />
 
         {/* dev only */}
-        {(webpackDllNames || []).map((dllName, i) =>
-          <script data-dll key={i} src={`/${dllName}.dll.js`}></script>
+        {(webpackDllNames || []).map((dllName) =>
+          <script data-dll key={dllName} src={`/${dllName}.dll.js`}></script>
         )}
 
         {/* our app code */}

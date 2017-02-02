@@ -2,18 +2,18 @@
  * Tests for UserPage sagas
  */
 
-import { takeLatest } from 'redux-saga';
-import { take, put, fork, cancel } from 'redux-saga/effects';
+import { take, put, cancel, takeLatest } from 'redux-saga/effects';
 import { createMockTask } from 'redux-saga/utils';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import { LOAD_REPOS } from 'containers/App/constants';
 import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
-import { getRepos, getReposWatcher, githubData } from '../sagas';
+import { getRepos, githubData } from '../sagas';
 
 const username = 'mxstbr';
 
+/* eslint-disable redux-saga/yield-effects */
 describe('getRepos Saga', () => {
   let getReposGenerator;
 
@@ -43,15 +43,6 @@ describe('getRepos Saga', () => {
   });
 });
 
-describe('getReposWatcher Saga', () => {
-  const getReposWatcherGenerator = getReposWatcher();
-
-  it('should watch for LOAD_REPOS action', () => {
-    const takeDescriptor = getReposWatcherGenerator.next().value;
-    expect(takeDescriptor).toEqual(fork(takeLatest, LOAD_REPOS, getRepos));
-  });
-});
-
 describe('githubDataSaga Saga', () => {
   let generator;
   let taskMock;
@@ -61,9 +52,9 @@ describe('githubDataSaga Saga', () => {
     taskMock = createMockTask();
   });
 
-  it('should asyncronously fork getReposWatcher saga', () => {
-    const forkDescriptor = generator.next();
-    expect(forkDescriptor.value).toEqual(fork(getReposWatcher));
+  it('should start task to watch for LOAD_REPOS action', () => {
+    const takeLatestDescriptor = generator.next().value;
+    expect(takeLatestDescriptor).toEqual(takeLatest(LOAD_REPOS, getRepos));
   });
 
   it('should yield until LOCATION_CHANGE action', () => {

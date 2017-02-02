@@ -28,7 +28,7 @@
   RewriteRule ^(.*) https://%{HTTP_HOST}/$1 [R,L]
 
   # If we get to here, it means we are on https://
-  
+
   # If the file with the specified name in the browser doesn't exist
   RewriteCond %{REQUEST_FILENAME} !-f
 
@@ -42,3 +42,11 @@
   RewriteRule ^(.*) /
 
 </ifModule>
+
+<IfModule mod_headers.c>
+  # Do not cache sw.js, required for offline-first updates.
+  <FilesMatch "sw\.js$">
+    Header set Cache-Control "private, no-cache, no-store, proxy-revalidate, no-transform"
+    Header set Pragma "no-cache"
+  </FilesMatch>
+</IfModule>

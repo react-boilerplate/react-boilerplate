@@ -20,10 +20,9 @@ function createChildRoutes(store) {
   return [
     {
       path: '/',
-      name: 'home',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          System.import('containers/HomePage'),
+          import('containers/HomePage'),
         ]);
 
         const renderRoute = loadModule(cb);
@@ -36,9 +35,8 @@ function createChildRoutes(store) {
       },
     }, {
       path: '*',
-      name: 'notfound',
       getComponent(nextState, cb) {
-        System.import('containers/NotFoundPage')
+        import('containers/NotFoundPage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },

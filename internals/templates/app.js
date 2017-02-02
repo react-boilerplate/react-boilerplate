@@ -11,10 +11,11 @@ import { browserHistory } from 'react-router';
 
 /* eslint-disable import/no-unresolved, import/extensions */
 // Load the favicon, the manifest.json file and the .htaccess file
-import 'file?name=[name].[ext]!./favicon.ico';
-import '!file?name=[name].[ext]!./manifest.json';
-import 'file?name=[name].[ext]!./.htaccess';
-/* eslint-enable import/no-unresolved, import/extensions */
+/* eslint-disable import/no-webpack-loader-syntax */
+import '!file-loader?name=[name].[ext]!./favicon.ico';
+import '!file-loader?name=[name].[ext]!./manifest.json';
+import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/extensions
+/* eslint-enable import/no-webpack-loader-syntax */
 
 // Import CSS reset
 import 'sanitize.css/sanitize.css';
@@ -26,6 +27,7 @@ import ensureIntlSupport from './setup/ensureIntlSupport';
 import configureStore from './store';
 import renderInBrowser from './renderInBrowser';
 import createRoutes from './routes';
+// Import i18n messages
 import { translationMessages as messages } from './i18n';
 
 // The initial state of the app can be set on the server
