@@ -7,6 +7,7 @@ These are some things to be aware of when using this boilerplate.
 3. [Exclude modules from Babel processing](#exclude-modules-from-babel-processing)
 4. [Running tests in watch mode](#running-tests-in-watch-mode)
 5. [When in doubt, re-install!](#when-in-doubt-re-install)
+6. [Cleaning up Jest cache](#cleaning-up-jest-cache)
 
 ## Special images in HTML files
 
@@ -52,7 +53,7 @@ export default combineReducers({
 
 ## Exclude modules from Babel processing
 
-You need to exclude node packages from babel processing which are not intended for browsers. Just add the package name to `exclude` array in `internals/config.js` and you're all set!
+You need to exclude packages which are not intended to be processed by babel. For e.g. Server packages such as 'express' or a CSS file. Just add the package name to `exclude` array in `internals/config.js` and you're all set!
 
 ``` js
 // in internals/config.js
@@ -77,6 +78,7 @@ If you are unable to run tests in watch mode, you may have to install `watchman`
 You can also install `watchman` from source. Please visit their [official guide](https://facebook.github.io/watchman/docs/install.html) for more information.
 
 ## When in doubt, re-install!
+
 If you're facing any inexplicable problems while installing dependencies, building your project or running tests, try reinstalling dependencies. It works for most cases. Run the following commands in the exact order given:
 
 Remove node_modules
@@ -91,3 +93,7 @@ Using npm
 
 Build project
 - `npm run build`
+
+## Cleaning up Jest cache
+
+By default, Jest caches transformed modules, which may lead to faulty coverage reports. To prevent this, you'll have to clear the cache by running `npm run test -- --no-cache` as pointed out in [Jest docs](https://facebook.github.io/jest/docs/cli.html#cache)
