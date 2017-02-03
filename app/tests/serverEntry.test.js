@@ -65,6 +65,15 @@ describe('rendering to string', () => {
         matchCallback(err);
         expect(callback).toHaveBeenCalledWith({ error: err });
       });
+
+      describe('unknown error', () => {
+        it('should call the callback with the error', () => {
+          matchCallback(undefined, undefined, undefined);
+          expect(callback).toHaveBeenCalled();
+          const args = callback.mock.calls[0];
+          expect(args[0].error).toBeDefined();
+        });
+      });
     });
 
     describe('redirect', () => {
@@ -89,7 +98,21 @@ describe('rendering to string', () => {
         Helmet.rewind.mockReturnValue({});
       });
 
-      describe('404', () => {
+      describe('error while rendering', () => {
+        beforeEach(() => {
+          renderToString.mockImplementation(() => { throw new Error('grrr!'); });
+        });
+        it('should call the callback with the error', () => {
+          matchCallback(null, null, {});
+          return waitFor(() => callback.mock.calls.length > 0)
+            .then(() => {
+              const args = callback.mock.calls[0];
+              expect(args[0].error.message).toMatch('grrr!');
+            });
+        });
+      });
+
+      describe('error 404', () => {
         it('should call the callback with null as html', () => {
           const renderProps = {
             routes: [
@@ -106,25 +129,49 @@ describe('rendering to string', () => {
         });
       });
 
-      it('should call the callback with the rendered page', () => {
+      describe('happy path', () => {
         const renderProps = {
           routes: [],
         };
-        matchCallback(null, null, renderProps);
-        return waitFor(() => callback.mock.calls.length > 0)
-          .then(() => {
-            expect(callback).toHaveBeenCalledWith({ notFound: false, html: expectedHtml });
-          });
-      });
 
-      it('should render the AppRoot', () => {
-        matchCallback(null, null, {});
-        return waitFor(() => callback.mock.calls.length > 0)
-          .then(() => {
-            expect(renderToString).toHaveBeenCalled();
-            const args = renderToString.mock.calls[0];
-            expect(args[0].type).toEqual(AppRoot);
+        it('should call the callback with the rendered page', () => {
+          matchCallback(null, null, renderProps);
+          return waitFor(() => callback.mock.calls.length > 0)
+            .then(() => {
+              expect(callback).toHaveBeenCalledWith({ notFound: false, html: expectedHtml });
+            });
+        });
+
+        describe('rendering css', () => {
+          beforeEach(() => {
+            styleSheet.injected = true;
+            styleSheet.rules = jest.fn().mockReturnValue([
+              { cssText: 'css1' },
+              { cssText: 'css2' },
+            ]);
           });
+
+          it('should inject the css', () => {
+            matchCallback(null, null, renderProps);
+            return waitFor(() => callback.mock.calls.length > 0)
+              .then(() => {
+                expect(renderToStaticMarkup).toHaveBeenCalled();
+                const args = renderToStaticMarkup.mock.calls[0];
+                const component = args[0];
+                expect(component.props.css).toMatch('css1\ncss2');
+              });
+          });
+        });
+
+        it('should render the AppRoot', () => {
+          matchCallback(null, null, renderProps);
+          return waitFor(() => callback.mock.calls.length > 0)
+            .then(() => {
+              expect(renderToString).toHaveBeenCalled();
+              const args = renderToString.mock.calls[0];
+              expect(args[0].type).toEqual(AppRoot);
+            });
+        });
       });
     });
   });
