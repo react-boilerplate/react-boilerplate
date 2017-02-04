@@ -16,7 +16,7 @@ process.stdout.write('Cleanup started...');
 
 // Reuse existing LanguageProvider and i18n tests
 mv('app/containers/LanguageProvider/tests', 'internals/templates/containers/LanguageProvider');
-cp('app/tests/i18n.test.js', 'internals/templates/tests/i18n.test.js');
+cp('app/tests/i18n.test.js', 'internals/templates/tests/');
 
 // Handle Translations
 rm('-rf', 'app/translations');
@@ -41,14 +41,14 @@ rm('-rf', 'app/setup');
 mv('internals/templates/setup', 'app');
 
 // Replace the files in the root app/ folder
-cp('internals/templates/app.js', 'app/app.js');
-cp('internals/templates/reducers.js', 'app/reducers.js');
-cp('internals/templates/routes.js', 'app/routes.js');
-cp('internals/templates/store.js', 'app/store.js');
-cp('internals/templates/renderInBrowser.js', 'app/renderInBrowser.js');
-cp('internals/templates/serverEntry.js', 'app/serverEntry.js');
-cp('internals/templates/i18n.js', 'app/i18n.js');
+cp('internals/templates/app.js', 'app/');
 cp('internals/templates/global-styles.js', 'app/');
+cp('internals/templates/i18n.js', 'app/');
+cp('internals/templates/reducers.js', 'app/');
+cp('internals/templates/renderInBrowser.js', 'app/');
+cp('internals/templates/routes.js', 'app/');
+cp('internals/templates/serverEntry.js', 'app/');
+cp('internals/templates/store.js', 'app/');
 
 // Remove the templates folder
 rm('-rf', 'internals/templates');
