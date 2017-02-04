@@ -15,6 +15,10 @@ import { END } from 'redux-saga';
 import Helmet from 'react-helmet';
 import styleSheet from 'styled-components/lib/models/StyleSheet';
 
+// Global styles should be injected before any other scoped style, so make sure
+// this file is imported before any styled component.
+import 'global-styles';
+
 import createStore from 'store';
 import createRoutes from 'routes';
 

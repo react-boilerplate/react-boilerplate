@@ -9,7 +9,6 @@
 import 'babel-polyfill';
 import { browserHistory } from 'react-router';
 
-/* eslint-disable import/no-unresolved, import/extensions */
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable import/no-webpack-loader-syntax */
 import '!file-loader?name=[name].[ext]!./favicon.ico';
@@ -19,6 +18,10 @@ import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line impor
 
 // Import CSS reset
 import 'sanitize.css/sanitize.css';
+
+// Global styles should be injected before any other scoped style, so make sure
+// this file is imported before any styled component.
+import 'global-styles';
 
 // Import all the third party stuff
 import './setup/openSansObserver';

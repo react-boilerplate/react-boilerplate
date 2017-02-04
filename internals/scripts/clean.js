@@ -48,6 +48,7 @@ cp('internals/templates/store.js', 'app/store.js');
 cp('internals/templates/renderInBrowser.js', 'app/renderInBrowser.js');
 cp('internals/templates/serverEntry.js', 'app/serverEntry.js');
 cp('internals/templates/i18n.js', 'app/i18n.js');
+cp('internals/templates/global-styles.js', 'app/');
 
 // Remove the templates folder
 rm('-rf', 'internals/templates');

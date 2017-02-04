@@ -15,6 +15,10 @@ import { END } from 'redux-saga';
 import Helmet from 'react-helmet';
 import styleSheet from 'styled-components/lib/models/StyleSheet';
 
+// Global styles should be injected before any other scoped style, so make sure
+// this file is imported before any styled component.
+import 'global-styles';
+
 import createStore from 'store';
 import createRoutes from 'routes';
 
@@ -23,6 +27,7 @@ import AppRoot from 'containers/AppRoot';
 import { changeLocale } from 'containers/LanguageProvider/actions';
 
 import syncHistoryWithStore from 'setup/syncHistoryWithStore';
+import monitorSagas from 'utils/monitorSagas';
 
 import { appLocales, translationMessages } from './i18n';
 
@@ -38,7 +43,7 @@ async function renderHtmlDocument({ store, renderProps, sagasDone, assets, webpa
   // 1st render phase - triggers the sagas
   renderAppToString(store, renderProps);
 
-  // send singal to sagas that we're done
+  // send signal to sagas that we're done
   store.dispatch(END);
 
   // wait for all tasks to finish
@@ -67,21 +72,6 @@ async function renderHtmlDocument({ store, renderProps, sagasDone, assets, webpa
     />
   );
   return `<!DOCTYPE html>\n${doc}`;
-}
-
-function monitorSagas(store) {
-  const allTasks = [];
-  const saveRunSaga = store.runSaga;
-
-  store.runSaga = function interceptRunSaga(saga) { // eslint-disable-line no-param-reassign
-    const task = saveRunSaga.call(store, saga);
-    allTasks.push(task);
-    return task;
-  };
-
-  return function done() {
-    return Promise.all(allTasks.map((t) => t.done));
-  };
 }
 
 function is404(routes) {
