@@ -16,7 +16,7 @@ function withProgressBar(WrappedComponent) {
       // Bind listener to the current instance of component
       if (this.props.router) {
         /* istanbul ignore next */
-        this.props.router.listenBefore.bind(this);
+        this.props.router.listenBefore = this.props.router.listenBefore.bind(this);
       }
 
       // Store a reference to the listener.
