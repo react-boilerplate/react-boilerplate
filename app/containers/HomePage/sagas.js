@@ -2,8 +2,7 @@
  * Gets the repositories of the user from Github
  */
 
-import { fork, call, put, select } from 'redux-saga/effects';
-import { takeLatest } from 'redux-saga';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { LOAD_REPOS } from 'containers/App/constants';
 import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
@@ -27,15 +26,12 @@ export function* getRepos() {
   }
 }
 
-export function* repListen() {
-  yield* takeLatest(LOAD_REPOS, getRepos);
-}
 /**
  * Root saga manages watcher lifecycle
  */
 export function* githubData() {
   // Watches for LOAD_REPOS actions and calls getRepos when one comes in.
-  yield fork(repListen);
+  yield takeLatest(LOAD_REPOS, getRepos);
 }
 
 // Bootstrap sagas
