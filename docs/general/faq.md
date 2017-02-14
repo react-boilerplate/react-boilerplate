@@ -20,6 +20,8 @@
 - [Use CI with bitbucket pipelines](#use-ci-with-bitbucket-pipelines)
 - [I'm using Node v0.12 and the server doesn't work?](#im-using-node-v012-and-the-server-doesnt-work)
 - [How to keep my project up-to-date with `react-boilerplate`?](#how-to-keep-my-project-up-to-date-with-react-boilerplate)
+- [How to turn off Webpack performance warnings after production build?](#how-to-turn-off-webpack-performance-warnings-after-production-build)
+- [Styles getting overridden?](#styles-getting-overridden)
 - [Have another question?](#have-another-question)
 
 ## Where are Babel and ESLint configured?
@@ -249,6 +251,23 @@ Webpack recommends having those performance hints turned off in development but 
 ```
 You can find more information about the `performance` option (how to change maximum allowed size of a generated file, how to exclude some files from being checked and so on) in the [Webpack documentation](https://webpack.js.org/configuration/performance/).
 
+## Styles getting overridden?
+
+There is a strong chance that your styles are getting imported in the wrong order. Confused? Let me try and explain!
+
+- `styled-components` generates a stylesheet that is injected at the end of `<head>`.
+- Imported CSS / SCSS (e.g. `import './styles.css'`) are also injected at the end of `<head>`.
+
+The above awesomeness is achieved via [webpack](https://webpack.js.org/).
+At the time of writing there is an open issue ["CSS resolving order"](https://github.com/webpack/webpack/issues/215),
+which essentially means you cannot control the order in which the stylesheets are injected.
+Therefore, the normal rules of specificity apply (e.g. last wins).
+
+To resolve the issue, you can either:
+- Increase the specificity of the CSS you want to win, OR
+- Import the external CSS in the `<head>` of your `index.html` manually (e.g. `<link rel="stylesheet" href="https://...css">`)
+
+More information is available in the [official documents](https://github.com/styled-components/styled-components/blob/master/docs/existing-css.md).
 
 ## Have another question?
 
