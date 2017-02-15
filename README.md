@@ -46,7 +46,7 @@
 <br />
 
 <div align="center">
-  <sub>Created by <a href="https://twitter.com/mxstbr">Max Stoiber</a> and maintained with ❤️ by an amazing <a href="https://github.com/orgs/react-boilerplate/teams/core">team of developers</a>.</sub>
+  <sub>Created by <a href="https://twitter.com/mxstbr">Max Stoiber</a> and maintained with ❤️ by an amazing <a href="https://github.com/orgs/react-boilerplate/people">team of developers</a>.</sub>
 </div>
 
 ## Features
@@ -116,6 +116,7 @@ Now you're ready to rumble!
 - [Styling](docs/css): How to work with the CSS tooling
 - [Your app](docs/js): Supercharging your app with Routing, Redux, simple
   asynchronicity helpers, etc.
+- [**Troubleshooting**](docs/general/gotchas.md): Solutions to common problems faced by developers.
 
 ## Supporters
 
