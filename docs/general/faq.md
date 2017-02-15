@@ -253,7 +253,8 @@ You can find more information about the `performance` option (how to change maxi
 
 ## Styles getting overridden?
 
-There is a strong chance that your styles are getting imported in the wrong order. Confused? Let me try and explain!
+There is a strong chance that your styles are getting imported in the wrong order. Confused?
+Let me try and explain with an example!
 
 ```
 // MyStyledComponent.js
@@ -282,20 +283,21 @@ const ContrivedExample = (props) => (
 ```
 
 With the magic of [webpack](https://webpack.js.org/), both `MyStyledComponent.js` and `styles.css`
-will each generate a stylesheet that is injected at the end of `<head>`.
-The styles will then be applied via the [`class`
-attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-class).
+will each generate a stylesheet that will be injected at the end of `<head>` and applied to `<MyStyledComponent>`
+via the [`class` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-class).
 
 So, will `<ContrivedExample>` have a green background or a red background?
 
 Applying the rules of [specificity](https://developer.mozilla.org/en/docs/Web/CSS/Specificity), you
-might choose red because `styles.css` was imported last. Unfortunately, at the time of writing 
+may think red as `styles.css` was imported last. Unfortunately, at the time of writing 
 an open issue ["CSS resolving order"](https://github.com/webpack/webpack/issues/215)
 means you cannot control the order in which the stylesheets are injected. So, with this contrived
 example, the background could be either green or red.
 
 To resolve the issue, you can either:
-1. Increase the specificity of the CSS you want to win
+
+1) Increase the specificity of the CSS you want to win
+
 ```
 // styles.css
 .alert.alert {
@@ -311,7 +313,7 @@ const MyStyledComponent = styled.div`
 `;
 ```
 
-2. Import the CSS in the `<head>` of your `index.html` manually (e.g. `<link rel="stylesheet" href="https://...css">`).
+2) Import the CSS in the `<head>` of your `index.html` manually (e.g. `<link rel="stylesheet" href="https://...css">`).
 This is a good choice if you are having issues with third-party styles and `global-styles.js`
 ```
 // Import bootstrap style
