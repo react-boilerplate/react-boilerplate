@@ -255,17 +255,71 @@ You can find more information about the `performance` option (how to change maxi
 
 There is a strong chance that your styles are getting imported in the wrong order. Confused? Let me try and explain!
 
-- `styled-components` generates a stylesheet that is injected at the end of `<head>`.
-- Imported CSS / SCSS (e.g. `import './styles.css'`) are also injected at the end of `<head>`.
+```
+// MyStyledComponent.js
+const MyStyledComponent = styled.div`
+  background-color: green;
+`;
+```
 
-The above awesomeness is achieved via [webpack](https://webpack.js.org/).
-At the time of writing there is an open issue ["CSS resolving order"](https://github.com/webpack/webpack/issues/215),
-which essentially means you cannot control the order in which the stylesheets are injected.
-Therefore, the normal rules of specificity apply (e.g. last wins).
+```
+// styles.css
+.alert {
+  background-color: red;
+}
+```
+
+```
+// ContrivedExample.js
+import MyStyledComponent from './MyStyledComponent';
+import './styles.css';
+
+const ContrivedExample = (props) => (
+  <MyStyledComponent className={styles.alert}>
+    {props.children}
+  </MyStyledComponent>
+);
+```
+
+With the magic of [webpack](https://webpack.js.org/), both `MyStyledComponent.js` and `styles.css`
+will each generate a stylesheet that is injected at the end of `<head>`.
+The styles will then be applied via the [`class`
+attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-class).
+
+So, will `<ContrivedExample>` have a green background or a red background?
+
+Applying the rules of [specificity](https://developer.mozilla.org/en/docs/Web/CSS/Specificity), you
+might choose red because `styles.css` was imported last. Unfortunately, at the time of writing 
+an open issue ["CSS resolving order"](https://github.com/webpack/webpack/issues/215)
+means you cannot control the order in which the stylesheets are injected. So, with this contrived
+example, the background could be either green or red.
 
 To resolve the issue, you can either:
-- Increase the specificity of the CSS you want to win, OR
-- Import the external CSS in the `<head>` of your `index.html` manually (e.g. `<link rel="stylesheet" href="https://...css">`)
+1. Increase the specificity of the CSS you want to win
+```
+// styles.css
+.alert.alert {
+  background-color: red;
+}
+```
+```
+// MyStyledComponent.js
+const MyStyledComponent = styled.div`
+  && {
+    background-color: green;
+  }
+`;
+```
+
+2. Import the CSS in the `<head>` of your `index.html` manually (e.g. `<link rel="stylesheet" href="https://...css">`).
+This is a good choice if you are having issues with third-party styles and `global-styles.js`
+```
+// Import bootstrap style
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+// Import CSS reset and Global Styles
+import './global-styles';
+```
 
 More information is available in the [official documents](https://github.com/styled-components/styled-components/blob/master/docs/existing-css.md).
 
