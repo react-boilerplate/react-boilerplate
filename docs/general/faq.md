@@ -296,16 +296,16 @@ example, the background could be either green or red.
 
 To resolve the issue, you can either:
 
-1) Increase the specificity of the CSS you want to win
+### 1) Increase the specificity of the CSS you want to win
 
 ```
-// styles.css
+// styles.css (imported css to win)
 .alert.alert {
   background-color: red;
 }
 ```
 ```
-// MyStyledComponent.js
+// MyStyledComponent.js (styled-component css to win)
 const MyStyledComponent = styled.div`
   && {
     background-color: green;
@@ -313,7 +313,7 @@ const MyStyledComponent = styled.div`
 `;
 ```
 
-2) Import the CSS in the `<head>` of your `index.html` manually (e.g. `<link rel="stylesheet" href="https://...css">`).
+### 2) Import the CSS in the `<head>` of your `index.html` manually (e.g. `<link rel="stylesheet" href="https://...css">`).
 This is a good choice if you are having issues with third-party styles and `global-styles.js`
 ```
 // Import bootstrap style (e.g. move this into the <head> of index.html)
