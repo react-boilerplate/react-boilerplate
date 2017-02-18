@@ -256,21 +256,21 @@ You can find more information about the `performance` option (how to change maxi
 There is a strong chance that your styles are getting imported in the wrong order. Confused?
 Let me try and explain with an example!
 
-```
+```javascript
 // MyStyledComponent.js
 const MyStyledComponent = styled.div`
   background-color: green;
 `;
 ```
 
-```
-// styles.css
+```css
+/* styles.css */
 .alert {
   background-color: red;
 }
 ```
 
-```
+```javascript
 // ContrivedExample.js
 import MyStyledComponent from './MyStyledComponent';
 import './styles.css';
@@ -298,13 +298,13 @@ To resolve the issue, you can either:
 
 **1) Increase the specificity of the CSS you want to win**
 
-```
-// styles.css (imported css to win)
+```css
+/* styles.css (imported css to win) */
 .alert.alert {
   background-color: red;
 }
 ```
-```
+```javascript
 // MyStyledComponent.js (styled-component css to win)
 const MyStyledComponent = styled.div`
   && {
@@ -316,7 +316,7 @@ const MyStyledComponent = styled.div`
 **2) Import the CSS in the `<head>` of your `index.html` manually**
 
 This is a good choice if you are having issues with third-party styles and `global-styles.js`
-```
+```javascript
 // Import bootstrap style (e.g. move this into the <head> of index.html)
 import 'bootstrap/dist/css/bootstrap.min.css'
 
