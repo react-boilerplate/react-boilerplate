@@ -1,6 +1,6 @@
 /**
  *
- * Img.react.js
+ * Img.js
  *
  * Renders an image, enforcing the usage of the alt="" tag
  */

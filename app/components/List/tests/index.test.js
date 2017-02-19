@@ -14,11 +14,12 @@ describe('<List />', () => {
 
   it('should render the items', () => {
     const items = [
-      'Hello',
-      'World',
+      { id: 1, name: 'Hello' },
+      { id: 2, name: 'World' },
     ];
+    const item = ({ name }) => <div>{name}</div>; // eslint-disable-line react/prop-types
     const renderedComponent = render(
-      <List items={items} component={ListItem} />
+      <List items={items} component={item} />
     );
     expect(renderedComponent.find(items)).toBeDefined();
   });
