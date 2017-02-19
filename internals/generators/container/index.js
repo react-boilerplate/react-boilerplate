@@ -38,8 +38,6 @@ module.exports = {
   }, {
     when: (response) => response.wantActionsAndReducer,
     name: 'actionsAndReducerWarning',
-    type: 'confirm',
-    default: false,
     message: chalk.yellow('️⚠️ Not loading in a route?, Add to app/reducers.js: combineReducers. Ref #1407.'),
   }, {
     type: 'confirm',
