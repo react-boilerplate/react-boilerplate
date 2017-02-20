@@ -54,7 +54,7 @@ containerGen.runActions({
   component: 'PureComponent',
   wantHeaders: true,
   wantActionsAndReducer: true,
-  wantSagas: true,
+  wantEpics: true,
   wantMessages: true
 })
   .then(checkForErrors)
@@ -66,7 +66,7 @@ const ContainerComponent = containerGen.runActions({
   component: 'Component',
   wantHeaders: true,
   wantActionsAndReducer: true,
-  wantSagas: true,
+  wantEpics: true,
   wantMessages: true
 })
   .then(checkForErrors)

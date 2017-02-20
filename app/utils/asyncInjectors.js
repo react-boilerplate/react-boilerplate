@@ -17,7 +17,7 @@ export function checkStore(store) {
     subscribe: isFunction,
     getState: isFunction,
     replaceReducer: isFunction,
-    runSaga: isFunction,
+    epic$: isObject,
     asyncReducers: isObject,
   };
   invariant(
@@ -46,23 +46,23 @@ export function injectAsyncReducer(store, isValid) {
 }
 
 /**
- * Inject an asynchronously loaded saga
+ * Inject an asynchronously loaded epic
  */
-export function injectAsyncSagas(store, isValid) {
-  return function injectSagas(sagas) {
+export function injectAsyncEpics(store, isValid) {
+  return function injectEpics(epics) {
     if (!isValid) checkStore(store);
 
     invariant(
-      Array.isArray(sagas),
-      '(app/utils...) injectAsyncSagas: Expected `sagas` to be an array of generator functions'
+      Array.isArray(epics),
+      '(app/utils...) injectAsyncEpics: Expected `epics` to be an array of functions'
     );
 
     warning(
-      !isEmpty(sagas),
-      '(app/utils...) injectAsyncSagas: Received an empty `sagas` array'
+      !isEmpty(epics),
+      '(app/utils...) injectAsyncEpics: Received an empty `epics` array'
     );
 
-    sagas.map(store.runSaga);
+    epics.forEach((epic) => store.epic$.next(epic));
   };
 }
 
@@ -74,6 +74,6 @@ export function getAsyncInjectors(store) {
 
   return {
     injectReducer: injectAsyncReducer(store, true),
-    injectSagas: injectAsyncSagas(store, true),
+    injectEpics: injectAsyncEpics(store, true),
   };
 }

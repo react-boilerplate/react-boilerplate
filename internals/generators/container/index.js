@@ -36,9 +36,9 @@ module.exports = {
     message: 'Do you want an actions/constants/selectors/reducer tuple for this container?',
   }, {
     type: 'confirm',
-    name: 'wantSagas',
+    name: 'wantEpics',
     default: true,
-    message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
+    message: 'Do you want epics for asynchronous flows? (e.g. fetching data)',
   }, {
     type: 'confirm',
     name: 'wantMessages',
@@ -123,18 +123,18 @@ module.exports = {
       });
     }
 
-    // Sagas
-    if (data.wantSagas) {
+    // Epics
+    if (data.wantEpics) {
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/sagas.js',
-        templateFile: './container/sagas.js.hbs',
+        path: '../../app/containers/{{properCase name}}/epics.js',
+        templateFile: './container/epics.js.hbs',
         abortOnFail: true,
       });
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/tests/sagas.test.js',
-        templateFile: './container/sagas.test.js.hbs',
+        path: '../../app/containers/{{properCase name}}/tests/epics.test.js',
+        templateFile: './container/epics.test.js.hbs',
         abortOnFail: true,
       });
     }
