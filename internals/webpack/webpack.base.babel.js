@@ -22,14 +22,17 @@ module.exports = (options) => ({
         },
       },
       {
-        // Tip: Some 3rd party modules (i.e. located in node_modules) include CSS which may get
-        // preprocessed by this loader. So, if you want to do anything special with
-        // your CSS (e.g. CSS Modules), then it's a good idea to have two CSS loaders,
-        // one for 3rd party CSS and the other for your own CSS.
-        // To ensure they preprocess the correct CSS you can add:
-        // - "include: /node_modules/" to this loader, so that 3rd party CSS is processed normally.
-        // - "exclude: /node_modules/" to the other loader that contains the special preprocessing.
+        // Preprocess our own .css files
+        // This is the place to add your own loaders (e.g. sass/less etc.)
+        // for a list of loaders, see https://webpack.js.org/loaders/#styling
         test: /\.css$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        // Preprocess 3rd party .css files located in node_modules
+        test: /\.css$/,
+        include: /node_modules/,
         use: ['style-loader', 'css-loader'],
       },
       {
