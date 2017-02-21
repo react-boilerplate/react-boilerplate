@@ -14,9 +14,9 @@ to the loaders/rules section in `internals/webpack/webpack.base.babel.js` so it 
    {
       test: /\.scss$/,
       exclude: /node_modules/,
-      loaders: ['style-loader', 'css-loader', 'sass-loader']
-    }
-    ```
+      use: ['style-loader', 'css-loader', 'sass-loader'],
+   }
+   ```
 
     Then run `npm i -D sass-loader node-sass`
 
