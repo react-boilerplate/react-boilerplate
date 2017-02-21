@@ -1,28 +1,28 @@
-## Removing `redux-saga`
+## Removing `redux-observable`
 
-**We don't recommend removing `redux-saga`**, as we strongly feel that it's the
+**We don't recommend removing `redux-observable`**, as we strongly feel that it's the
 way to go for most redux based applications.
 
 If you really want to get rid of it, you will have to delete its traces from several places.
 
 **app/store.js**
 
-1. Remove statement `import createSagaMiddleware from 'redux-saga'`.
-2. Remove statement `const sagaMiddleware = createSagaMiddleware()`.
-3. Remove `sagaMiddleware` from `middlewares` array.
-4. Remove statement `store.runSaga = sagaMiddleware.run`
+1. Remove statement `import createEpicMiddleware from 'redux-epic'`.
+2. Remove statement `const epicMiddleware = createEpicMiddleware()`.
+3. Remove `epicMiddleware` from `middlewares` array.
+4. Remove statement `store.runEpic = epicMiddleware.run`
 
 **app/utils/asyncInjectors.js**
 
-1. Remove `runSaga: isFunction` from `shape`.
-2. Remove function `injectAsyncSagas`.
-3. Do not export `injectSagas: injectAsyncSagas(store, true)`.
+1. Remove `runEpic: isFunction` from `shape`.
+2. Remove function `injectAsyncEpics`.
+3. Do not export `injectEpics: injectAsyncEpics(store, true)`.
 
 **app/routes.js**
 
-1. Do not pull out `injectSagas` from `getAsyncInjectors()`.
-2. Remove `sagas` from `importModules.then()`.
-3. Remove `injectSagas(sagas.default)` from every route that uses Saga.
+1. Do not pull out `injectEpics` from `getAsyncInjectors()`.
+2. Remove `epics` from `importModules.then()`.
+3. Remove `injectEpics(epics.default)` from every route that uses Epic.
 
 **Finally, remove it from the `package.json`. Then you should be good to go with whatever
 side-effect management library you want to use!**

@@ -13,7 +13,7 @@
 - [Local webfonts not working for development](#local-webfonts-not-working-for-development)
 - [Non-route containers](#non-route-containers)
   - [Where do I put the reducer?](#where-do-i-put-the-reducer)
-  - [How do I run the saga?](#how-do-i-run-the-saga)
+  - [How do I run the epic?](#how-do-i-run-the-epic)
 - [Using this boilerplate with WebStorm](#using-this-boilerplate-with-webstorm)
   - [Troubleshooting](#troubleshooting)
   - [Enable ESLint](#enable-eslint)
@@ -47,7 +47,7 @@ The fix is to kill the process and rerun `npm start`.
     > ```Shell
     > janedoe    29811  49.1  2.1  3394936 356956 s004  S+    4:45pm   2:40.07 node server
     > ```
-    > Note: If nothing is listed, you can try `lsof -i tcp:3000` 
+    > Note: If nothing is listed, you can try `lsof -i tcp:3000`
 
 1. Then run
     ```Shell
@@ -138,37 +138,38 @@ call that includes all of them by default.
 
 *See [this and the following lesson](https://egghead.io/lessons/javascript-redux-reducer-composition-with-arrays?course=getting-started-with-redux) of the egghead.io Redux course for more information about reducer composition!*
 
-### How do I run the saga?
+### How do I run the epic?
 
 Since a container will always be within a route, one we can simply add it to the exported array in
-`sagas.js` of the route container somewhere up the tree:
+`epics.js` of the route container somewhere up the tree:
 
 ```JS
-// /containers/SomeContainer/sagas.js
+// /containers/SomeContainer/epics.js
 
-import { someOtherSagaFromNestedContainer } from './containers/SomeNestedContainer/sagas';
+import { someOtherEpicFromNestedContainer } from './containers/SomeNestedContainer/epics';
 
-function* someSaga() { /* … */ }
+const someEpic = (action$, store) =>
+  /* */
 
 export default [
-  someSaga,
-  someOtherSagaFromNestedContainer,
+  someEpic,
+  someOtherEpicFromNestedContainer,
 ];
 ```
 
-Or, if you have multiple sagas in the nested container:
+Or, if you have multiple epics in the nested container:
 
 
 ```JS
-// /containers/SomeContainer/sagas.js
+// /containers/SomeContainer/epics.js
 
-import nestedContainerSagas from './containers/SomeNestedContainer/sagas';
+import nestedContainerEpics from './containers/SomeNestedContainer/epics';
 
-function* someSaga() { /* … */ }
+function* someEpic() { /* … */ }
 
 export default [
-  someSaga,
-  ...nestedContainerSagas,
+  someEpic,
+  ...nestedContainerEpics,
 ];
 ```
 
@@ -241,7 +242,7 @@ every version you use will be amazing! There is a long term goal to make this mu
 ## How to turn off Webpack performance warnings after production build?
 
 Webpack recommends having those performance hints turned off in development but to keep them on in production. If you still want to disable them, add the next lines to the config in `webpack.prod.babel.js`:
-  
+
 ```js
   performance: {
     hints: false

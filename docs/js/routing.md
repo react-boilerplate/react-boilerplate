@@ -136,15 +136,15 @@ name: 'post',
 getComponent(nextState, cb) {
  const importModules = Promise.all([
    import('containers/Post/reducer'),
-   import('containers/Post/sagas'),
+   import('containers/Post/epics'),
    import('containers/Post'),
  ]);
 
  const renderRoute = loadModule(cb);
 
- importModules.then(([reducer, sagas, component]) => {
+ importModules.then(([reducer, epics, component]) => {
    injectReducer('post', reducer.default);
-   injectSagas(sagas.default);
+   injectEpics(epics.default);
    renderRoute(component);
  });
 
@@ -178,26 +178,25 @@ export function postLoaded(post) {
 }
 ```
 
-###Saga:
+###Epic:
 
 ```JS
-const { slug } = yield take(LOAD_POST);
-yield call(getXhrPodcast, slug);
-
-export function* getXhrPodcast(slug) {
-  const requestURL = `http://your.api.com/api/posts/${slug}`;
-  const post = yield call(request, requestURL);
-  if (!post.err) {
-    yield put(postLoaded(post));
-  } else {
-    yield put(postLoadingError(post.err));
-  }
+const api = {
+  fetchPosts: (slug) => ajax.getJSON(`http://your.api.com/api/posts/${slug}`);
 }
+
+const getXhrPodcast = (action$, store, call = indirect.call) =>
+  action$.ofType(LOAD_POST)
+    .mergeMap((action) =>
+      call(api.fetchPosts, action.slug)
+        .map((post) => postLoaded(post))
+        .catch((err) => postLoadingError(err))
+      );
 ```
 
-Wait (`take`) for the LOAD_POST constant, which contains the slug payload from the `getPost()` function in actions.js. 
+Listen for the LOAD_POST constant, which contains the slug payload from the `getPost()` function in actions.js.
 
-When the action is fired then dispatch the `getXhrPodcast()` function to get the response from your api. On success dispatch the `postLoaded()` action (`yield put`) which sends back the response and can be added into the reducer state.
+When the action is fired then dispatch the `getXhrPodcast()` function to get the response from your api. On success transform the action with postLoaded() which sends back the response and can be added into the reducer state.
 
 
 You can read more on [`react-router`'s documentation](https://github.com/reactjs/react-router/blob/master/docs/API.md#props-3).
