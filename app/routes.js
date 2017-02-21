@@ -19,7 +19,6 @@ export default function createRoutes(store) {
   return [
     {
       path: '/',
-      name: 'home',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('containers/HomePage/reducer'),
@@ -40,7 +39,6 @@ export default function createRoutes(store) {
       },
     }, {
       path: '/features',
-      name: 'features',
       getComponent(nextState, cb) {
         import('containers/FeaturePage')
           .then(loadModule(cb))
@@ -48,7 +46,6 @@ export default function createRoutes(store) {
       },
     }, {
       path: '*',
-      name: 'notfound',
       getComponent(nextState, cb) {
         import('containers/NotFoundPage')
           .then(loadModule(cb))
