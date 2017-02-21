@@ -13,14 +13,20 @@ function withProgressBar(WrappedComponent) {
     }
 
     componentWillMount() {
-      // Store a reference to the listener.
-      /* istanbul ignore next */
-      this.unsubscribeHistory = this.props.router && this.props.router.listenBefore((location) => {
-        // Do not show progress bar for already loaded routes.
-        if (this.state.loadedRoutes.indexOf(location.pathname) === -1) {
-          this.updateProgress(0);
-        }
-      });
+      if (this.props.router) {
+        // Bind listener to the current instance of component
+        /* istanbul ignore next */
+        this.props.router.listenBefore = this.props.router.listenBefore.bind(this);
+
+        // Store a reference to the listener.
+        /* istanbul ignore next */
+        this.unsubscribeHistory = this.props.router.listenBefore((location) => {
+          // Do not show progress bar for already loaded routes.
+          if (this.state.loadedRoutes.indexOf(location.pathname) === -1) {
+            this.updateProgress(0);
+          }
+        });
+      }
     }
 
     componentWillUpdate(newProps, newState) {
