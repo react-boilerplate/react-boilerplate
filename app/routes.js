@@ -14,7 +14,7 @@ const loadModule = (cb) => (componentModule) => {
 
 export default function createRoutes(store) {
   // create reusable async injectors using getAsyncInjectors factory
-  const { injectReducer } = getAsyncInjectors(store);
+  const { injectReducer, injectEpics } = getAsyncInjectors(store);
 
   return [
     {
@@ -23,13 +23,15 @@ export default function createRoutes(store) {
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('containers/HomePage/reducer'),
+          import('containers/HomePage/epics'),
           import('containers/HomePage'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([reducer, component]) => {
+        importModules.then(([reducer, epics, component]) => {
           injectReducer('home', reducer.default);
+          injectEpics(epics.default);
 
           renderRoute(component);
         });

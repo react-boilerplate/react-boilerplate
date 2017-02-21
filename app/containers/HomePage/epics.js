@@ -24,7 +24,7 @@ export const api = {
 /**
  * Github repos request/response handler
  */
-const getReposEpic = (action$, store, call = indirect.call) =>
+export const getReposEpic = (action$, store, call = indirect.call) =>
   action$.ofType(LOAD_REPOS)
     .mergeMap(() =>
       call(api.fetchGithub, selectUsername(store))
@@ -32,7 +32,6 @@ const getReposEpic = (action$, store, call = indirect.call) =>
         .catch((err) => Observable.of(repoLoadingError(err)))
       );
 
-export {
+export default [
   getReposEpic,
-};
-
+];
