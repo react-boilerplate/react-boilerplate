@@ -125,7 +125,7 @@ to look like:
 +     loader: 'css-loader',
 +     options: {
 +       modules: true,
-+     }
++     },
 +   },
 + ],
 }
@@ -174,7 +174,8 @@ to look like:
 
 ```diff
 {
-  test: /\.scss$/,
+- test: /\.css$/,
++ test: /\.scss$/,
   exclude: /node_modules/,
 - use: ['style-loader', 'css-loader'],
 + use: ['style-loader', 'css-loader', 'sass-loader'],
@@ -185,7 +186,7 @@ to look like:
 
 **`Button.scss`**
 ```scss
-@import '../../sass/colors';
+$error-color: red;
 
 .danger {
   background-color: $error-color;
@@ -218,7 +219,8 @@ to look like:
 
 ```diff
 {
-  test: /\.less$/,
+- test: /\.css$/,
++ test: /\.less$/,
   exclude: /node_modules/,
 - use: ['style-loader', 'css-loader'],
 + use: [
@@ -226,10 +228,10 @@ to look like:
 + {
 +   loader: 'css-loader',
 +   options: {
-+     importLoaders: 1
-+   }
++     importLoaders: 1,
++   },
 + },
-+ 'sass-loader'
++ 'less-loader',
 +],
 }
 ```
@@ -238,7 +240,7 @@ to look like:
 
 **`Button.less`**
 ```less
-@import '../../sass/colors';
+@error-color: red;
 
 .danger {
   background-color: @error-color;
@@ -248,7 +250,7 @@ to look like:
 **`Button.js`**
 ```js
 import React from 'react';
-import './Button.scss';
+import './Button.less';
 
 class Button extends React.Component {
   render() {
