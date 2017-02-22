@@ -156,7 +156,7 @@ class Button extends Component {
 **IMPORTANT: if you enable this rule, [stylesheets](#stylesheet) will no longer work,
 it's one or the other unless you include or exclude specific directories.**
 
-## [Using Sass](sass.md)
+## [Sass](sass.md)
 
 ### Setup
 
