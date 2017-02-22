@@ -23,6 +23,7 @@
   - [Stylesheet](css/README.md#stylesheet)
   - [CSS Modules](css/README.md#css-modules)
   - [Sass](css/README.md#sass)
+  - [LESS](css/README.md#less)
 - [JS](js)
   - [Redux](js/redux.md)
   - [ImmutableJS](js/immutablejs.md)
