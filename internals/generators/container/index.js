@@ -7,6 +7,12 @@ const componentExists = require('../utils/componentExists');
 module.exports = {
   description: 'Add a container component',
   prompts: [{
+    type: 'list',
+    name: 'type',
+    message: 'Select the base component type:',
+    default: 'Stateless Function',
+    choices: () => ['Stateless Function', 'React.PureComponent', 'React.Component'],
+  }, {
     type: 'input',
     name: 'name',
     message: 'What should it be called?',
@@ -18,12 +24,6 @@ module.exports = {
 
       return 'The name is required';
     },
-  }, {
-    type: 'list',
-    name: 'type',
-    message: 'Select the base component type:',
-    default: 'Stateless Function',
-    choices: () => ['Stateless Function', 'PureComponent', 'Component'],
   }, {
     type: 'confirm',
     name: 'wantHeaders',
