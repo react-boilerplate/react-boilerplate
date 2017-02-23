@@ -4,7 +4,7 @@
 
 - [Next Generation CSS](#next-generation-css)
 - [CSS Support](#css-we-support)
-- [`styled-components`](#styled-components)
+- [styled-components](#styled-components)
 - [Stylesheet](#stylesheet)
 - [CSS Modules](#css-modules)
 - [Sass](#sass)
@@ -33,12 +33,12 @@ We support and recommend the use of [`styled-components`](#components).
 We also support the use of CSS [stylesheets](#stylesheet).
 
 There are many ways to style web applications, unfortunately, we cannot support them all.
-However, you can integrate the following by the guides below:
+However, you can integrate the following by using the guides below:
 - [CSS Modules](#css-modules)
 - [Sass](#sass)
 - [LESS](#less)
 
-## [`styled-components`](https://github.com/styled-components/styled-components)
+## styled-components
 
 Below creates two styled react components (`<Title>`, `<Wrapper>`) and renders them
 as children of the `<Header>` component:
@@ -78,10 +78,9 @@ class Button extends React.Component {
 
 *(The CSS rules are automatically vendor prefixed, so you don't have to think about it!)*
 
-For further examples see the
-[official documentation](https://github.com/styled-components/styled-components)
+> For more information about `styled-components` see https://github.com/styled-components/styled-components
 
-## [Stylesheet](https://github.com/webpack-contrib/css-loader)
+## Stylesheet
 
 [Webpack](https://webpack.js.org/) allows you to import more than JavaScript.
 Using the [`css-loader`](https://webpack.js.org/loaders/css-loader/) you can import CSS
@@ -107,11 +106,13 @@ class Button extends React.Component {
 }
 ```
 
-## [CSS Modules](https://github.com/css-modules/css-modules)
+> For more information about Stylesheets and the `css-loader` see https://github.com/webpack-contrib/css-loader
+
+## CSS Modules
 
 ### Setup
 
-Modify [`webpack.base.babel.js`](../../internals/webpack/webpack.base.babel.js)
+Modify [`webpack.base.babel.js`][WebpackConfig]
 to look like:
 
 ```diff
@@ -160,7 +161,9 @@ class Button extends React.Component {
 **IMPORTANT: if you enable this rule, [stylesheets](#stylesheet) will no longer work,
 it's one or the other unless you include or exclude specific directories.**
 
-## [Sass](https://github.com/webpack-contrib/sass-loader)
+> For more information about CSS Modules see https://github.com/css-modules/css-modules
+
+## Sass
 
 ### Setup
 
@@ -169,7 +172,7 @@ Install `sass-loader` and the `node-sass` dependancy.
 npm i -D sass-loader node-sass
 ```
 
-Modify [`webpack.base.babel.js`](../../internals/webpack/webpack.base.babel.js)
+Modify [`webpack.base.babel.js`][WebpackConfig]
 to look like:
 
 ```diff
@@ -205,7 +208,9 @@ class Button extends React.Component {
 }
 ```
 
-## [LESS](https://github.com/webpack-contrib/less-loader)
+> For more information about Sass and the `sass-loader` see https://github.com/webpack-contrib/sass-loader
+
+## LESS
 
 ### Setup
 
@@ -214,7 +219,7 @@ Install `less-loader` and the `less` dependancy.
 npm i -D less-loader less
 ```
 
-Modify [`webpack.base.babel.js`](../../internals/webpack/webpack.base.babel.js)
+Modify [`webpack.base.babel.js`][WebpackConfig]
 to look like:
 
 ```diff
@@ -258,3 +263,7 @@ class Button extends React.Component {
   }
 }
 ```
+
+> For more information about LESS and the `less-loader` see https://github.com/webpack-contrib/less-loader.
+
+[WebpackConfig]: ../../internals/webpack/webpack.base.babel.js "Webpack config"

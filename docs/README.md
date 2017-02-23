@@ -19,7 +19,7 @@
 - [Styling (CSS)](css/README.md)
   - [Next Generation CSS](css/README.md#next-generation-css)
   - [CSS Support](css/README.md#css-we-support)
-  - [`styled-components`](css/README.md#styled-components)
+  - [styled-components](css/README.md#styled-components)
   - [Stylesheet](css/README.md#stylesheet)
   - [CSS Modules](css/README.md#css-modules)
   - [Sass](css/README.md#sass)
