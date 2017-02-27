@@ -4,6 +4,30 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const dotenv = require('dotenv').config(); // eslint-disable-line no-unused-vars
+
+const rawEnvVars = Object
+  .keys(process.env)
+  .filter((key) => /^RB_/i.test(key))
+  .reduce((env, key) => {
+    env[key] = process.env[key]; // eslint-disable-line no-param-reassign
+    return env;
+  }, {
+    // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
+    // inside your code for any environment checks; UglifyJS will automatically
+    // drop any unreachable code.
+    NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+  })
+;
+
+const StringifiedEnvVars = {
+  'process.env': Object
+    .keys(rawEnvVars)
+    .reduce((env, key) => {
+      env[key] = JSON.stringify(rawEnvVars[key]); // eslint-disable-line no-param-reassign
+      return env;
+    }, {}),
+};
 
 module.exports = (options) => ({
   entry: options.entry,
@@ -81,15 +105,7 @@ module.exports = (options) => ({
       // make fetch available
       fetch: 'exports-loader?self.fetch!whatwg-fetch',
     }),
-
-    // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
-    // inside your code for any environment checks; UglifyJS will automatically
-    // drop any unreachable code.
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      },
-    }),
+    new webpack.DefinePlugin(StringifiedEnvVars),
     new webpack.NamedModulesPlugin(),
   ]),
   resolve: {
