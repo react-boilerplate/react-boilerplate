@@ -1,10 +1,10 @@
 /**
  * COMMON WEBPACK CONFIGURATION
  */
+require('dotenv').config();
 
 const path = require('path');
 const webpack = require('webpack');
-const dotenv = require('dotenv').config(); // eslint-disable-line no-unused-vars
 
 const rawEnvVars = Object
   .keys(process.env)
