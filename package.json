@@ -240,7 +240,7 @@
     "react-intl": "2.2.3",
     "react-redux": "5.0.2",
     "react-router": "3.0.2",
-    "react-router-redux": "4.0.7",
+    "react-router-redux": "4.0.8",
     "react-router-scroll": "0.4.1",
     "redux": "3.6.0",
     "redux-immutable": "3.0.11",
@@ -252,7 +252,7 @@
     "whatwg-fetch": "2.0.2"
   },
   "devDependencies": {
-    "assets-webpack-plugin": "3.5.0",
+    "assets-webpack-plugin": "3.5.1",
     "babel-cli": "6.22.2",
     "babel-core": "6.22.1",
     "babel-eslint": "7.1.1",
@@ -283,7 +283,7 @@
     "eslint-plugin-redux-saga": "0.3.0",
     "eventsource-polyfill": "0.9.6",
     "exports-loader": "0.6.3",
-    "extract-text-webpack-plugin": "2.0.0-beta.4",
+    "extract-text-webpack-plugin": "2.0.0",
     "file-loader": "0.10.0",
     "html-loader": "0.4.4",
     "html-webpack-plugin": "2.28.0",
@@ -295,7 +295,7 @@
     "ngrok": "2.2.6",
     "node-plop": "0.5.5",
     "nodemon": "1.11.0",
-    "npm-run-all": "3.1.1",
+    "npm-run-all": "4.0.2",
     "null-loader": "0.1.1",
     "offline-plugin": "4.6.1",
     "plop": "1.7.4",
@@ -308,7 +308,7 @@
     "url-loader": "0.5.7",
     "webpack": "2.2.1",
     "webpack-dev-middleware": "1.10.0",
-    "webpack-hot-middleware": "2.16.1",
+    "webpack-hot-middleware": "2.17.1",
     "webpack-node-externals": "1.5.4"
   }
 }

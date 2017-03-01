@@ -17,8 +17,8 @@ const imageWebpackQuery = require('./imageWebpackQuery');
 const isBuildingDll = Boolean(process.env.BUILDING_DLL);
 
 const vendorCSSLoaders = extractVendorCSSPlugin.extract({
-  fallbackLoader: 'style-loader',
-  loader: 'css-loader',
+  fallback: 'style-loader',
+  use: 'css-loader',
 });
 
 module.exports = (options) => ({
