@@ -29,7 +29,7 @@ function createServerRenderProxyMiddleware(serviceUrl) {
   return function serverRenderMiddleware(req, res) {
     renderProxy.web(req, res, { target: serviceUrl }, (error) => {
       console.error(error); // eslint-disable-line no-console
-      res.header("Content-Type", "text/html");
+      res.header('Content-Type', 'text/html');
       res.status(500).send(`
         <html>
         <body>Proxying failed for page rendering service,<br>
