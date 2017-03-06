@@ -26,6 +26,7 @@ export default function HtmlDocument({ lang, head, css, appMarkup, state, assets
 
         {head.title.toComponent()}
         {head.meta.toComponent()}
+        {head.link.toComponent()}
 
         {/* vendor.css */}
         <link href={assets.main.css} rel="stylesheet" />
