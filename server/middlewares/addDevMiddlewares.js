@@ -29,10 +29,14 @@ function createServerRenderProxyMiddleware(serviceUrl) {
   return function serverRenderMiddleware(req, res) {
     renderProxy.web(req, res, { target: serviceUrl }, (error) => {
       console.error(error); // eslint-disable-line no-console
+      res.header("Content-Type", "text/html");
       res.status(500).send(`
-        Proxying failed for page rendering service.\n
-        The service maybe restarting so try again in a second.\n
-        Check the console for more information.
+        <html>
+        <body>Proxying failed for page rendering service,<br>
+        The service maybe restarting so the page is going to be reloaded.<br>
+        Check the console for more information.</body>
+        <script >window.location.reload()</script>
+        </html>
       `);
     });
   };
