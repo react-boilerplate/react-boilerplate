@@ -302,6 +302,7 @@
     "pre-commit": "1.2.2",
     "react-addons-test-utils": "15.4.2",
     "rimraf": "2.5.4",
+    "server-destroy": "1.0.1",
     "shelljs": "0.7.6",
     "sinon": "2.0.0-pre.5",
     "style-loader": "0.13.1",

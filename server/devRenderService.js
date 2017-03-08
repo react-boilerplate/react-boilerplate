@@ -8,6 +8,7 @@ const http = require('http');
 const appPort = require('./port');
 const port = exports.port = appPort + 1;
 const chalk = require('chalk');
+const enableDestroy = require('server-destroy');
 
 const debug = console.log.bind(console, chalk.cyan('[ssr service]'));
 
@@ -40,11 +41,21 @@ if (require.main === module) {
   const app = express();
   app.use(handleSSR);
 
-  http.createServer(app).listen(port, (err) => {
+  const server = http.createServer(app).listen(port, (err) => {
     if (err) {
       console.error(err);
     } else {
-      debug(chalk.gray(`ready @ http://localhost:${port}`));
+      debug(chalk.gray('ready!'));
     }
+  });
+
+  enableDestroy(server);
+
+  // see: https://github.com/remy/nodemon#controlling-shutdown-of-your-script
+  process.once('SIGUSR2', () => {
+    server.destroy(() => {
+      debug(chalk.gray('restarting...'));
+      process.kill(process.pid, 'SIGUSR2');
+    });
   });
 }
