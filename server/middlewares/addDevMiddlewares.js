@@ -28,7 +28,10 @@ function createServerRenderProxyMiddleware(serviceUrl) {
 
   return function serverRenderMiddleware(req, res) {
     renderProxy.web(req, res, { target: serviceUrl }, (error) => {
-      console.error(error); // eslint-disable-line no-console
+      if (!error || error.code !== 'ECONNREFUSED') {
+        console.error('Render proxy failed', error); // eslint-disable-line no-console
+      }
+
       res.status(500).send(`
         Proxying failed for page rendering service.\n
         The service maybe restarting so try again in a second.\n
