@@ -37,7 +37,7 @@ function createServerRenderProxyMiddleware(serviceUrl) {
         <body>Proxying failed for page rendering service,<br>
         The service maybe restarting so the page is going to be reloaded.<br>
         Check the console for more information.</body>
-        <script >window.location.reload()</script>
+        <script>window.location.reload(true)</script>
         </html>
       `);
     });
