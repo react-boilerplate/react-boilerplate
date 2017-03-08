@@ -31,11 +31,14 @@ function createServerRenderProxyMiddleware(serviceUrl) {
       if (!error || error.code !== 'ECONNREFUSED') {
         console.error('Render proxy failed', error); // eslint-disable-line no-console
       }
-
+      res.header('Content-Type', 'text/html');
       res.status(500).send(`
-        Proxying failed for page rendering service.\n
-        The service maybe restarting so try again in a second.\n
-        Check the console for more information.
+        <html>
+        <body>Proxying failed for page rendering service,<br>
+        The service maybe restarting so the page is going to be reloaded.<br>
+        Check the console for more information.</body>
+        <script>window.location.reload(true)</script>
+        </html>
       `);
     });
   };
