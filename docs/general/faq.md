@@ -277,7 +277,7 @@ import MyStyledComponent from './MyStyledComponent';
 import './styles.css';
 
 const ContrivedExample = (props) => (
-  <MyStyledComponent className={styles.alert}>
+  <MyStyledComponent className="alert">
     {props.children}
   </MyStyledComponent>
 );
