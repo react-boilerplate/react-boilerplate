@@ -6,11 +6,11 @@ This boilerplate manages application state using [Redux](redux.md), makes it
 immutable with [`ImmutableJS`](immutablejs.md) and keeps access performant
 via [`reselect`](reselect.md).
 
-For managing asynchronous flows (e.g. logging in) we use [`redux-saga`](redux-saga.md).
+For managing asynchronous flows (e.g. logging in) we use [`redux-observable`](redux-observable.md).
 
 For routing, we use [`react-router` in combination with `react-router-redux`](routing.md).
 
-We include a generator for components, containers, sagas, routes and selectors.
+We include a generator for components, containers, epics, routes and selectors.
 Run `npm run generate` to choose from the available generators, and automatically
 add new parts of your application!
 
@@ -22,7 +22,7 @@ add new parts of your application!
 - [Redux](redux.md)
 - [ImmutableJS](immutablejs.md)
 - [reselect](reselect.md)
-- [redux-saga](redux-saga.md)
+- [redux-observable](redux-observable.md)
 - [react-intl](i18n.md)
 - [routing](routing.md)
 

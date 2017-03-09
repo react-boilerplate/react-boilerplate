@@ -17,7 +17,7 @@ export default defineMessages({
   scaffoldingMessage: {
     id: 'boilerplate.containers.FeaturePage.scaffolding.message',
     defaultMessage: `Automate the creation of components, containers, routes, selectors
-  and sagas - and their tests - right from the CLI!`,
+  and epics - and their tests - right from the CLI!`,
   },
   feedbackHeader: {
     id: 'boilerplate.containers.FeaturePage.feedback.header',

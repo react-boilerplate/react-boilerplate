@@ -20,7 +20,7 @@ efficient tooling and cleanest project structure.
 
 ## Quick scaffolding
 
-Automate the creation of components, containers, routes, selectors and sagas -
+Automate the creation of components, containers, routes, selectors and epics -
 and their tests - right from the CLI!
 
 Run `npm run generate` in your terminal and choose one of the parts you want

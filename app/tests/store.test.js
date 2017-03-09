@@ -18,9 +18,9 @@ describe('configureStore', () => {
     });
   });
 
-  describe('runSaga', () => {
-    it('should contain a hook for `sagaMiddleware.run`', () => {
-      expect(typeof store.runSaga).toBe('function');
+  describe('asyncEpics', () => {
+    it('should contain an object for async epic$', () => {
+      expect(typeof store.epic$).toBe('object');
     });
   });
 });

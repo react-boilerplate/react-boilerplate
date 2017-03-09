@@ -17,7 +17,7 @@
   "boilerplate.containers.FeaturePage.routing.header": "Standard Routing",
   "boilerplate.containers.FeaturePage.routing.message": "Schreiben Sie CSS, das am selben Ort wie ihre Komponenten ist. Deterministisch generierte, einzigartige Klassennamen halten die Spezifität niedrig während styling Konflikte vermieden werden. Senden Sie nur das CSS an ihre Benutzer welches dann wirklich sichtbar ist für die schnellste Performance!",
   "boilerplate.containers.FeaturePage.scaffolding.header": "Schnelles Scaffolding",
-  "boilerplate.containers.FeaturePage.scaffolding.message": "Automatisieren Sie die Kreation von Komponenten, Containern, Routen, Selektoren und Sagas – und ihre Tests – direkt von dem Terminal!",
+  "boilerplate.containers.FeaturePage.scaffolding.message": "Automatisieren Sie die Kreation von Komponenten, Containern, Routen, Selektoren und Epics – und ihre Tests – direkt von dem Terminal!",
   "boilerplate.containers.FeaturePage.state_management.header": "Berechenbare Stateverwaltung",
   "boilerplate.containers.FeaturePage.state_management.message": "Unidirectional data flow erlaubt uns alle Änderungen ihrer Applikation zu loggen und time travel debugging einzusetzen.",
   "boilerplate.containers.HomePage.start_project.header": "Beginnen Sie Ihr nächstes React Projekt in Sekunden",
