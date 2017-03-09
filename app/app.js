@@ -127,3 +127,15 @@ if (!window.Intl) {
 if (process.env.NODE_ENV === 'production') {
   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
 }
+
+// Performance Profile Tool
+//
+// In browser console
+// ReactPerf.start() // starts profiling. click within app to collect information
+// ReactPerf.stop() // stops profiling.
+// ReactPerf.printWasted() // prints report that highlights unnecessary renders
+//
+// Additional Info: https://facebook.github.io/react/docs/perf.html
+if (process.env.NODE_ENV === 'development') {
+  window.ReactPerf = require('react-addons-perf'); // eslint-disable-line global-require
+}
