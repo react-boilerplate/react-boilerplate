@@ -9,6 +9,7 @@ describe('<HtmlDocument />', () => {
       htmlAttributes: { toComponent: () => null },
       title: { toComponent: () => null },
       meta: { toComponent: () => null },
+      link: { toComponent: () => null },
     };
     const renderedComponent = shallow(
       <HtmlDocument
