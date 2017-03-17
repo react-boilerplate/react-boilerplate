@@ -163,7 +163,7 @@ Imagine a navigation bar, this is what its folder might look like:
 
 ```
 NavBar          # Wrapping folder
-├── index.js      # Actual component
+├── footerLink.js      # Actual component
 ├── actions.js    # Actions
 ├── constants.js  # Constants
 ├── reducer.js    # Reducer

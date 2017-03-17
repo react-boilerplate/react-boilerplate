@@ -13,11 +13,10 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectRepos, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
 import H2 from 'components/H2';
 import ReposList from 'components/ReposList';
-import AtPrefix from './AtPrefix';
+
 import CenteredSection from './CenteredSection';
 import Form from './Form';
 import Input from './Input';
-import Section from './Section';
 import messages from './messages';
 import { loadRepos } from '../App/actions';
 import { changeUsername } from './actions';
@@ -28,7 +27,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
    * when initial state username is not null, submit the form to load repos
    */
   componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
+    if (this.props.searchText && this.props.searchText.trim().length > 0) {
       this.props.onSubmitForm();
     }
   }
@@ -46,39 +45,32 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
         <Helmet
           title="Home Page"
           meta={[
-            { name: 'description', content: 'A React.js Boilerplate application homepage' },
+            { name: 'description', content: 'Never Pay more than you have to.  Find out out to get the best price.' },
           ]}
         />
         <div>
           <CenteredSection>
             <H2>
-              <FormattedMessage {...messages.startProjectHeader} />
+              <FormattedMessage {...messages.searchHeader} />
             </H2>
             <p>
-              <FormattedMessage {...messages.startProjectMessage} />
+              <FormattedMessage {...messages.searchMessage} />
             </p>
           </CenteredSection>
-          <Section>
-            <H2>
-              <FormattedMessage {...messages.trymeHeader} />
-            </H2>
+          <CenteredSection>
             <Form onSubmit={this.props.onSubmitForm}>
               <label htmlFor="username">
-                <FormattedMessage {...messages.trymeMessage} />
-                <AtPrefix>
-                  <FormattedMessage {...messages.trymeAtPrefix} />
-                </AtPrefix>
                 <Input
                   id="username"
                   type="text"
-                  placeholder="mxstbr"
-                  value={this.props.username}
-                  onChange={this.props.onChangeUsername}
+                  placeholder="search to shop"
+                  value={this.props.searchText}
+                  onChange={this.props.onChangeSearchText}
                 />
               </label>
             </Form>
             <ReposList {...reposListProps} />
-          </Section>
+          </CenteredSection>
         </div>
       </article>
     );
@@ -96,8 +88,8 @@ HomePage.propTypes = {
     React.PropTypes.bool,
   ]),
   onSubmitForm: React.PropTypes.func,
-  username: React.PropTypes.string,
-  onChangeUsername: React.PropTypes.func,
+  searchText: React.PropTypes.string,
+  onChangeSearchText: React.PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
@@ -112,7 +104,7 @@ export function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   repos: makeSelectRepos(),
-  username: makeSelectUsername(),
+  searchText: makeSelectUsername(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
 });

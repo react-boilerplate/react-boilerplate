@@ -39,10 +39,18 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
-      path: '/features',
-      name: 'features',
+      path: '/privacy',
+      name: 'privacy',
       getComponent(nextState, cb) {
-        import('containers/FeaturePage')
+        import('containers/PrivacyPolicyPage')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    }, {
+      path: '/contact',
+      name: 'contact',
+      getComponent(nextState, cb) {
+        import('containers/ContactUsPage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },

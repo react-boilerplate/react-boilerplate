@@ -81,14 +81,14 @@ transpiled code in a `lib/` directory.
 In your `package.json`, you probably have something like this:
 
 ```json
-  "main": "lib/index.js"
+  "main": "lib/footerLink.js"
 ```
 
 This is what you want when you publish to the registry, but during development
 you probably want to change this to
 
 ```json
-  "main": "src/index.js"
+  "main": "src/footerLink.js"
 ```
 
 This will make sure that your main project always includes your most recent

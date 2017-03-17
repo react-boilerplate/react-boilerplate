@@ -6,14 +6,41 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  licenseMessage: {
-    id: 'boilerplate.components.Footer.license.message',
-    defaultMessage: 'This project is licensed under the MIT license.',
+  copyrightMessage: {
+    id: 'neverpaymore.components.Footer.copyright',
+    defaultMessage: '2017 NeverPayMore.net',
   },
-  authorMessage: {
-    id: 'boilerplate.components.Footer.author.message',
+  section1Title: {
+    id: 'neverpaymore.components.Footer.section1Title',
     defaultMessage: `
-      Made with love by {author}.
+      Links
     `,
+  },
+  section2Title: {
+    id: 'neverpaymore.components.Footer.section2Title',
+    defaultMessage: `
+      Other Links
+    `,
+  },
+  section3Title: {
+    id: 'neverpaymore.components.Footer.section3Title',
+    defaultMessage: `      NeveryPayMore.net
+    `,
+  },
+  section4Title: {
+    id: 'neverpaymore.components.Footer.section4Title',
+    defaultMessage: 'NeveryPayMore.net',
+  },
+  ourMission: {
+    id: 'neverpaymore.component.Footer.ourMission',
+    defaultMessage: 'Our Mission',
+  },
+  contactUs: {
+    id: 'neverpaymore.component.Footer.contactUs',
+    defaultMessage: 'Contact Us',
+  },
+  privacyPolicy: {
+    id: 'neverpaymore.component.Footer.privacyPolicy',
+    defaultMessage: 'Privacy Policy',
   },
 });
