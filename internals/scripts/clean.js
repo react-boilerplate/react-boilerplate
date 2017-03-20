@@ -47,11 +47,11 @@ cp('internals/templates/store.js', 'app/store.js');
 // Remove the templates folder
 rm('-rf', 'internals/templates');
 
-// remove clean script
-rm('-f', `${__dirname}/clean.js`);
+// Remove clean script
+rm('-f', __dirname + '/clean.js');
 
-// remove clean command
-sed('-i', /"clean": *".*",?/, '', `${__dirname}/../../package.json`);
+// Remove clean command
+sed('-i', /"clean": *".*",?/, '', __dirname + '/../../package.json');
 
 addCheckMark();
 
