@@ -83,6 +83,11 @@ function installDepsCallback(error) {
   }
 
   deleteFileInCurrentDir('setup.js', function () {
+    // remove setup commands
+    shell.sed('-i', /"presetup": *".*",?/, '', `${__dirname}/../../package.json`);
+    shell.sed('-i', /"setup": *".*",?/, '', `${__dirname}/../../package.json`);
+    shell.sed('-i', /"postsetup": *".*",?/, '', `${__dirname}/../../package.json`);
+
     interval = animateProgress('Initialising new repository');
     process.stdout.write('Initialising new repository');
     initGit(function () {
