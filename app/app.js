@@ -17,7 +17,7 @@ import Router from 'react-router/lib/Router';
 import browserHistory from 'react-router/lib/browserHistory';
 import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
-import { useScroll } from 'react-router-scroll';
+import useScroll from 'react-router-scroll/lib/useScroll';
 import 'sanitize.css/sanitize.css';
 
 // Import root app

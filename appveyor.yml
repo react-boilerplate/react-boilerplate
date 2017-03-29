@@ -22,7 +22,7 @@ init:
 # Install scripts--runs after repo cloning
 install:
   # Install chrome
-  - choco install -y googlechrome
+  - choco install -y googlechrome --ignore-checksums
   # Install the latest stable version of Node
   - ps: Install-Product node $env:nodejs_version
   - set PATH=%APPDATA%\yarn;%PATH%
