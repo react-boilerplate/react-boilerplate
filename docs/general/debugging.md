@@ -2,9 +2,35 @@
 
 ## Table of Contents
 
+- [Debugging with VC Code](#debugging-with-vscode)
 - [Debugging with WebStorm](#debugging-with-webStorm)
   - [Troubleshooting](#troubleshooting)
   - [Enable ESLint](#enable-eslint)
+
+## Debugging with VS Code
+
+You can super charge your React debugging workflow with VS Code and Chrome debugging by using this `launch.json` config:
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceRoot}/src",
+            "userDataDir": "${workspaceRoot}/.chrome",
+            "sourceMapPathOverrides": {
+                "webpack:///src/*": "${webRoot}/*"
+            }
+        }
+    ]
+}
+```
+
+You can read more in [Live edit and debug your React apps directly from VS Code — without leaving the editor 🔥 🎉🎈](https://medium.com/front-end-hacking/live-edit-and-debug-your-react-apps-directly-from-vs-code-without-leaving-the-editor-3da489ed905f)
 
 ## Debugging with WebStorm
 
