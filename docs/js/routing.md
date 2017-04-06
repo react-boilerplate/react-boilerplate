@@ -195,9 +195,9 @@ export function* getXhrPodcast(slug) {
 }
 ```
 
-Wait (`take`) for the LOAD_POST constant, which contains the slug payload from the `getPost()` function in actions.js. 
+Wait (`take`) for the LOAD_POST constant, which contains the slug payload from the `getPost()` function in actions.js.
 
 When the action is fired then dispatch the `getXhrPodcast()` function to get the response from your api. On success dispatch the `postLoaded()` action (`yield put`) which sends back the response and can be added into the reducer state.
 
 
-You can read more on [`react-router`'s documentation](https://github.com/reactjs/react-router/blob/master/docs/API.md#props-3).
+You can read more on [`react-router`'s documentation](https://reacttraining.com/react-router/web/api).
