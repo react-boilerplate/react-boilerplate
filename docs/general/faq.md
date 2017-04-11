@@ -20,6 +20,8 @@
 - [Use CI with bitbucket pipelines](#use-ci-with-bitbucket-pipelines)
 - [I'm using Node v0.12 and the server doesn't work?](#im-using-node-v012-and-the-server-doesnt-work)
 - [How to keep my project up-to-date with `react-boilerplate`?](#how-to-keep-my-project-up-to-date-with-react-boilerplate)
+- [How to turn off Webpack performance warnings after production build?](#how-to-turn-off-webpack-performance-warnings-after-production-build)
+- [Styles getting overridden?](#styles-getting-overridden)
 - [Have another question?](#have-another-question)
 
 ## Where are Babel and ESLint configured?
@@ -249,6 +251,80 @@ Webpack recommends having those performance hints turned off in development but 
 ```
 You can find more information about the `performance` option (how to change maximum allowed size of a generated file, how to exclude some files from being checked and so on) in the [Webpack documentation](https://webpack.js.org/configuration/performance/).
 
+## Styles getting overridden?
+
+There is a strong chance that your styles are getting imported in the wrong order. Confused?
+Let me try and explain with an example!
+
+```javascript
+// MyStyledComponent.js
+const MyStyledComponent = styled.div`
+  background-color: green;
+`;
+```
+
+```css
+/* styles.css */
+.alert {
+  background-color: red;
+}
+```
+
+```javascript
+// ContrivedExample.js
+import MyStyledComponent from './MyStyledComponent';
+import './styles.css';
+
+const ContrivedExample = (props) => (
+  <MyStyledComponent className="alert">
+    {props.children}
+  </MyStyledComponent>
+);
+```
+
+With the magic of [webpack](https://webpack.js.org/), both `MyStyledComponent.js` and `styles.css`
+will each generate a stylesheet that will be injected at the end of `<head>` and applied to `<MyStyledComponent>`
+via the [`class` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-class).
+
+So, will `<ContrivedExample>` have a green background or a red background?
+
+Applying the rules of [specificity](https://developer.mozilla.org/en/docs/Web/CSS/Specificity), you
+may think red as `styles.css` was imported last. Unfortunately, at the time of writing 
+an open issue ["CSS resolving order"](https://github.com/webpack/webpack/issues/215)
+means you cannot control the order in which the stylesheets are injected. So, with this contrived
+example, the background could be either green or red.
+
+To resolve the issue, you can either:
+
+**1) Increase the specificity of the CSS you want to win**
+
+```css
+/* styles.css (imported css to win) */
+.alert.alert {
+  background-color: red;
+}
+```
+```javascript
+// MyStyledComponent.js (styled-component css to win)
+const MyStyledComponent = styled.div`
+  && {
+    background-color: green;
+  }
+`;
+```
+
+**2) Import the CSS in the `<head>` of your `index.html` manually**
+
+This is a good choice if you are having issues with third-party styles and `global-styles.js`
+```javascript
+// Import bootstrap style (e.g. move this into the <head> of index.html)
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+// Import CSS reset and Global Styles
+import './global-styles';
+```
+
+More information is available in the [official documents](https://github.com/styled-components/styled-components/blob/master/docs/existing-css.md).
 
 ## Have another question?
 
