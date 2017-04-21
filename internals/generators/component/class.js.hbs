@@ -12,7 +12,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 {{/if}}
 
-class {{ properCase name }} extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class {{ properCase name }} extends {{{ type }}} { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
