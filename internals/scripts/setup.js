@@ -29,10 +29,27 @@ cleanRepo(function () {
 });
 
 /**
- * Deletes the .git folder in dir
+ * Deletes the .git folder in dir only if cloned from our repo
  */
 function cleanRepo(callback) {
-  shell.rm('-rf', '.git/');
+  try {
+    let gitDir = fs.statSync('.git');
+    //check if git directory exists
+    if(gitDir !== null) {
+      let configData = fs.readFileSync('.git/config', 'utf8');
+      //check if git remote url is ONLY react-boilerplate's url
+      if(typeof configData === 'string' && (configData.match(/url\s*=/g) || []).length === 1
+        && /react-boilerplate\/react-boilerplate\.git/.test(configData)) {
+        shell.rm('-rf', '.git/');
+      } else {
+        process.stdout.write('\nHey, it\'s your repository, not nuking it!');
+      }
+    } else {
+      process.stdout.write('\nOops. Not a repository');
+    }
+  } catch(e) {
+    shell.rm('-rf', '.git/');
+  }
   addCheckMark(callback);
 }
 
