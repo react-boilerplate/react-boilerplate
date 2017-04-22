@@ -8,7 +8,14 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
+import { Switch } from 'react-router';
 import styled from 'styled-components';
+
+import AsyncRoute from 'routing/AsyncRoute';
+
+import createHomePageLoader from 'containers/HomePage/loader';
+import createFeaturePageLoader from 'containers/FeaturePage/loader';
+import createNotFoundPageLoader from 'containers/NotFoundPage/loader';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -34,14 +41,25 @@ export function App(props) {
         ]}
       />
       <Header />
-      {React.Children.toArray(props.children)}
       <Footer />
+
+      <Switch>
+        <AsyncRoute
+          exact path="/" load={createHomePageLoader(props.store)}
+        />
+        <AsyncRoute
+          exact path="/features" load={createFeaturePageLoader(props.store)}
+        />
+        <AsyncRoute
+          path="" load={createNotFoundPageLoader(props.store)}
+        />
+      </Switch>
     </AppWrapper>
   );
 }
 
 App.propTypes = {
-  children: React.PropTypes.node,
+  store: React.PropTypes.object,
 };
 
 export default withProgressBar(App);

@@ -1,4 +1,6 @@
 import React from 'react';
+import { withRouter } from 'react-router';
+
 import ProgressBar from './ProgressBar';
 
 function withProgressBar(WrappedComponent) {
@@ -60,7 +62,7 @@ function withProgressBar(WrappedComponent) {
     router: React.PropTypes.object,
   };
 
-  return AppWithProgressBar;
+  return withRouter(AppWithProgressBar);
 }
 
 export default withProgressBar;
