@@ -12,18 +12,26 @@
  */
 
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+import Routes from 'routes';
 
-  static propTypes = {
-    children: React.PropTypes.node,
-  };
+import { makeSelectLocation } from './selectors';
+
+export class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   render() {
     return (
       <div>
-        {React.Children.toArray(this.props.children)}
+        <Routes />
       </div>
     );
   }
 }
+
+const mapStateToProps = createStructuredSelector({
+  location: makeSelectLocation(),
+});
+
+export default connect(mapStateToProps)(App);

@@ -8,11 +8,17 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import withProgressBar from 'components/ProgressBar';
+
+import Routes from 'routes';
+
+import { makeSelectLocation } from './selectors';
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -23,7 +29,7 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-export function App(props) {
+export function App() {
   return (
     <AppWrapper>
       <Helmet
@@ -34,14 +40,14 @@ export function App(props) {
         ]}
       />
       <Header />
-      {React.Children.toArray(props.children)}
+      <Routes />
       <Footer />
     </AppWrapper>
   );
 }
 
-App.propTypes = {
-  children: React.PropTypes.node,
-};
+const mapStateToProps = createStructuredSelector({
+  location: makeSelectLocation(),
+});
 
-export default withProgressBar(App);
+export default withProgressBar(connect(mapStateToProps)(App));

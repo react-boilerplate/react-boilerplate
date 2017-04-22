@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
 
-import withProgressBar from '../index';
+import { withProgressBar } from '../index';
 import ProgressBar from '../ProgressBar';
 
 let clock = null;

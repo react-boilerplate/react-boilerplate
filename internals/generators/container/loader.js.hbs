@@ -1,0 +1,40 @@
+/*
+ *
+ * Asynchronously loads the components for {{ properCase name }}
+ *
+ */
+
+{{#if wantActionsAndReducer}}
+import { errorLoading, getAsyncInjectors } from 'utils/asyncInjectors';
+
+export default (store) => {
+  const { injectReducer{{#if wantSagas}}, injectSagas{{/if}} } = getAsyncInjectors(store);
+  return (cb) => {
+    const importModules = Promise.all([
+      import('./reducer'),
+      {{#if wantSagas}}
+      import('./sagas'),
+      {{/if}}
+      import('./index'),
+    ]);
+
+    importModules.then(([reducer,{{#if wantSagas}} sagas,{{/if}} component]) => {
+      injectReducer('{{ camelCase name }}', reducer.default);
+      {{#if wantSagas}}
+      injectSagas(sagas.default);
+      {{/if}}
+      cb(component);
+    });
+
+    importModules.catch(errorLoading);
+  };
+};
+{{else}}
+import { errorLoading } from 'utils/asyncInjectors';
+
+export default () => (cb) => {
+  import('./index')
+    .then(cb)
+    .catch(errorLoading);
+};
+{{/if}}

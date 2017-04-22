@@ -4,6 +4,7 @@
  */
 
 import { fromJS } from 'immutable';
+
 import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
@@ -14,13 +15,13 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
  * routeReducer
  *
  * The reducer merges route location changes into our immutable state.
- * The change is necessitated by moving to react-router-redux@4
+ * The change is necessitated by moving to react-router-redux@5
  *
  */
 
 // Initial routing state
 const routeInitialState = fromJS({
-  locationBeforeTransitions: null,
+  location: null,
 });
 
 /**
@@ -31,7 +32,7 @@ function routeReducer(state = routeInitialState, action) {
     /* istanbul ignore next */
     case LOCATION_CHANGE:
       return state.merge({
-        locationBeforeTransitions: action.payload,
+        location: action.payload,
       });
     default:
       return state;

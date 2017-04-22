@@ -1,8 +1,4 @@
- {
-      path: '{{ path }}',
-      getComponent(location, cb) {
-        import('{{{directory (properCase component)}}}')
-          .then(loadModule(cb))
-          .catch(errorLoading);
-      },
-    },$1
+
+        <AsyncRoute
+          exact path="{{ path }}" load={create{{properCase component}}Loader(store)}
+        />$1

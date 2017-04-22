@@ -2,43 +2,36 @@
 // They are all wrapped in the App component, which should contain the navbar etc
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the code splitting business
-import { getAsyncInjectors } from 'utils/asyncInjectors';
 
-const errorLoading = (err) => {
-  console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
-};
+import React from 'react';
+import { Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-const loadModule = (cb) => (componentModule) => {
-  cb(null, componentModule.default);
-};
+import AsyncRoute from 'routing/AsyncRoute';
+import { makeSelectLocation } from 'containers/App/selectors';
 
-export default function createRoutes(store) {
-  // Create reusable async injectors using getAsyncInjectors factory
-  const { injectReducer, injectSagas } = getAsyncInjectors(store); // eslint-disable-line no-unused-vars
+import createHomePageLoader from 'containers/HomePage/loader';
+import createNotFoundPageLoader from 'containers/NotFoundPage/loader';
 
-  return [
-    {
-      path: '/',
-      getComponent(nextState, cb) {
-        const importModules = Promise.all([
-          import('containers/HomePage'),
-        ]);
-
-        const renderRoute = loadModule(cb);
-
-        importModules.then(([component]) => {
-          renderRoute(component);
-        });
-
-        importModules.catch(errorLoading);
-      },
-    }, {
-      path: '*',
-      getComponent(nextState, cb) {
-        import('containers/NotFoundPage')
-          .then(loadModule(cb))
-          .catch(errorLoading);
-      },
-    },
-  ];
+class Routes extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  render() {
+    const store = this.context.store;
+    return (
+      <Switch>
+        <AsyncRoute
+          exact path="/" load={createHomePageLoader(store)}
+        />
+        <AsyncRoute
+          exact path="" load={createNotFoundPageLoader(store)}
+        />
+      </Switch>
+    );
+  }
 }
+
+const mapStateToProps = createStructuredSelector({
+  location: makeSelectLocation(),
+});
+
+export default connect(mapStateToProps)(Routes);
