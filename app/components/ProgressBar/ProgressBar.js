@@ -10,16 +10,6 @@ import Percent from './Percent';
 
 class ProgressBar extends React.Component {
 
-  static propTypes = {
-    percent: PropTypes.number.isRequired,
-  };
-
-  static defaultProps = {
-    percent: -1,
-    autoIncrement: true,
-    intervalTime: 75,
-  };
-
   state = {
     percent: this.props.percent,
   };
@@ -116,5 +106,15 @@ class ProgressBar extends React.Component {
     );
   }
 }
+
+ProgressBar.propTypes = {
+  percent: PropTypes.number.isRequired,
+};
+
+ProgressBar.defaultProps = {
+  percent: -1,
+  autoIncrement: true,
+  intervalTime: 75,
+};
 
 export default ProgressBar;

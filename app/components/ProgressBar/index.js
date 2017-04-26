@@ -4,11 +4,6 @@ import ProgressBar from './ProgressBar';
 function withProgressBar(WrappedComponent) {
   class AppWithProgressBar extends React.Component {
 
-    static propTypes = {
-      location: React.PropTypes.object,
-      router: React.PropTypes.object,
-    };
-
     state = {
       progress: -1,
       loadedRoutes: this.props.location && [this.props.location.pathname],
@@ -62,6 +57,11 @@ function withProgressBar(WrappedComponent) {
       );
     }
   }
+
+  AppWithProgressBar.propTypes = {
+    location: React.PropTypes.object,
+    router: React.PropTypes.object,
+  };
 
   return AppWithProgressBar;
 }
