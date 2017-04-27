@@ -131,7 +131,7 @@ npm run analyze
 ```
 
 This command will generate a `stats.json` file from your production build, which
-you can upload to the [webpack analyzer](https://webpack.github.io/analyse/). This
+you can upload to the [webpack analyzer](https://webpack.github.io/analyse/) or [Webpack Visualizer](https://chrisbateman.github.io/webpack-visualizer/). This
 analyzer will visualize your dependencies and chunks with detailed statistics
 about the bundle size.
 
