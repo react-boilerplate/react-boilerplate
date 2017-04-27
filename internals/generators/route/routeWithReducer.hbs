@@ -1,6 +1,6 @@
  {
       path: '{{ path }}',
-      getComponent(nextState, cb) {
+      getComponent: memoizeComponent((renderRoute) => {
         const importModules = Promise.all([
           import('containers/{{ properCase component }}/reducer'),
           {{#if useSagas}}
@@ -8,8 +8,6 @@
           {{/if}}
           import('containers/{{ properCase component }}'),
         ]);
-
-        const renderRoute = loadModule(cb);
 
         importModules.then(([reducer,{{#if useSagas}} sagas,{{/if}} component]) => {
           injectReducer('{{ camelCase component }}', reducer.default);
@@ -20,5 +18,5 @@
         });
 
         importModules.catch(errorLoading);
-      },
+      }),
     },$1

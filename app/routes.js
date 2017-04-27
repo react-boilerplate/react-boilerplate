@@ -12,6 +12,21 @@ const loadModule = (cb) => (componentModule) => {
   cb(null, componentModule.default);
 };
 
+export const memoizeComponent = (loadComponent) => {
+  let savedComponent;
+  return (nextState, cb) => {
+    const renderRoute = loadModule(cb);
+    if (savedComponent) {
+      renderRoute(savedComponent);
+    } else {
+      loadComponent((loadedComponent) => {
+        savedComponent = loadedComponent;
+        renderRoute(savedComponent);
+      });
+    }
+  };
+};
+
 export default function createRoutes(store) {
   // create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store);
@@ -19,14 +34,12 @@ export default function createRoutes(store) {
   return [
     {
       path: '/',
-      getComponent(nextState, cb) {
+      getComponent: memoizeComponent((renderRoute) => {
         const importModules = Promise.all([
           import('containers/HomePage/reducer'),
           import('containers/HomePage/sagas'),
           import('containers/HomePage'),
         ]);
-
-        const renderRoute = loadModule(cb);
 
         importModules.then(([reducer, sagas, component]) => {
           injectReducer('home', reducer.default);
@@ -36,21 +49,21 @@ export default function createRoutes(store) {
         });
 
         importModules.catch(errorLoading);
-      },
+      }),
     }, {
       path: '/features',
-      getComponent(nextState, cb) {
+      getComponent: memoizeComponent((renderRoute) => {
         import('containers/FeaturePage')
-          .then(loadModule(cb))
+          .then(renderRoute)
           .catch(errorLoading);
-      },
+      }),
     }, {
       path: '*',
-      getComponent(nextState, cb) {
+      getComponent: memoizeComponent((renderRoute) => {
         import('containers/NotFoundPage')
-          .then(loadModule(cb))
+          .then(renderRoute)
           .catch(errorLoading);
-      },
+      }),
     },
   ];
 }
