@@ -50,14 +50,12 @@ export function* sagaName() {
 Then, in your `routes.js`, add injection for the newly added saga:
 
 ```JS
-getComponent(nextState, cb) {
+getComponent: memoizeComponent((renderRoute) => {
   const importModules = Promise.all([
     import('containers/YourComponent/reducer'),
     import('containers/YourComponent/sagas'),
     import('containers/YourComponent'),
   ]);
-
-  const renderRoute = loadModule(cb);
 
   importModules.then(([reducer, sagas, component]) => {
     injectReducer('home', reducer.default);
@@ -67,7 +65,7 @@ getComponent(nextState, cb) {
   });
 
   importModules.catch(errorLoading);
-},
+}),
 ```
 
 Now add as many sagas to your `sagas.js` file as you want!
