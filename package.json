@@ -252,6 +252,7 @@
     "babel-plugin-transform-react-constant-elements": "6.22.0",
     "babel-plugin-transform-react-inline-elements": "6.22.0",
     "babel-plugin-transform-react-remove-prop-types": "0.2.12",
+    "babel-preset-env": "1.4.0",
     "babel-preset-latest": "6.22.0",
     "babel-preset-react": "6.22.0",
     "babel-preset-react-hmre": "1.1.1",
