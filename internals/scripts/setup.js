@@ -14,11 +14,10 @@ process.stdin.resume();
 process.stdin.setEncoding('utf8');
 
 process.stdout.write('\n');
-let interval = animateProgress('Cleaning old repository');
-process.stdout.write('Cleaning old repository');
+let interval;
+let clearRepo = true;
 
 cleanRepo(function () {
-  clearInterval(interval);
   process.stdout.write('\nInstalling dependencies... (This might take a while)');
   setTimeout(function () {
     readline.cursorTo(process.stdout, 0);
@@ -32,25 +31,28 @@ cleanRepo(function () {
  * Deletes the .git folder in dir only if cloned from our repo
  */
 function cleanRepo(callback) {
-  try {
-    let gitDir = fs.statSync('.git');
-    //check if git directory exists
-    if(gitDir !== null) {
-      let configData = fs.readFileSync('.git/config', 'utf8');
-      //check if git remote url is ONLY react-boilerplate's url
-      if(typeof configData === 'string' && (configData.match(/url\s*=/g) || []).length === 1
-        && /react-boilerplate\/react-boilerplate\.git/.test(configData)) {
-        shell.rm('-rf', '.git/');
-      } else {
-        process.stdout.write('\nHey, it\'s your repository, not nuking it!');
-      }
+  fs.stat('.git', function(err, stats) {
+    if(!err) {
+      fs.readFile('.git/config', 'utf8', function(err, data) {
+        if(!err) {
+          if(typeof data === 'string' && (data.match(/url\s*=/g) || []).length === 1
+            && /react-boilerplate\/react-boilerplate\.git/.test(data)) {
+            process.stdout.write('\nRemoving old repository');
+            shell.rm('-rf', '.git/');
+            addCheckMark(callback);
+          } else {
+            clearRepo = false;
+            process.stdout.write('\nLeaving your repository untouched');
+            addCheckMark(callback);
+          }
+        } else {
+          callback();
+        }
+      });
     } else {
-      process.stdout.write('\nOops. Not a repository');
+      callback();
     }
-  } catch(e) {
-    shell.rm('-rf', '.git/');
-  }
-  addCheckMark(callback);
+  });
 }
 
 /**
@@ -100,12 +102,14 @@ function installDepsCallback(error) {
   }
 
   deleteFileInCurrentDir('setup.js', function () {
-    interval = animateProgress('Initialising new repository');
-    process.stdout.write('Initialising new repository');
-    initGit(function () {
-      clearInterval(interval);
-      process.stdout.write('\nDone!');
-      process.exit(0);
-    });
+    if(clearRepo) {
+      interval = animateProgress('Initialising new repository');
+      process.stdout.write('Initialising new repository');
+      initGit(function () {
+        clearInterval(interval);
+        process.stdout.write('\nDone!');
+        process.exit(0);
+      });
+    }
   });
 }
