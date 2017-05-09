@@ -17,6 +17,9 @@
 - [Using this boilerplate with WebStorm](#using-this-boilerplate-with-webstorm)
   - [Troubleshooting](#troubleshooting)
   - [Enable ESLint](#enable-eslint)
+- [Using this boilerplate with Visual Studio Code](#using-this-boilerplate-with-visual-studio-code)
+  - [Enable VSCode Jest Auto Runner](#enable-vscode-jest-auto-runner)
+  - [Enable VSCode ESLint](#enable-vscode-eslint)
 - [Use CI with bitbucket pipelines](#use-ci-with-bitbucket-pipelines)
 - [I'm using Node v0.12 and the server doesn't work?](#im-using-node-v012-and-the-server-doesnt-work)
 - [How to keep my project up-to-date with `react-boilerplate`?](#how-to-keep-my-project-up-to-date-with-react-boilerplate)
@@ -205,6 +208,72 @@ ESLint help making all developer follow the same coding format. Please also sett
 3. Click `Enable`
 
 ![Setting up ESLint](webstorm-eslint.png)
+
+
+## Using this boilerplate with Visual Studio Code
+
+1.  [Install VS Code -Debugger for Chrome Extension](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
+2.  There are two different ways to connect. The first is attaching to your Chrome instanance or Launching a new one (with the debugging port automatically configured). For `Attach to Chrome` you first need to close/quite all chrome instances. Then in a terminal run on Mac `/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222` or have a look at the [chrome devtools protocoll](https://chromedevtools.github.io/devtools-protocol/) for windows
+3.  Change WebPack devtool config to `source-map` [(This line)](https://github.com/react-boilerplate/react-boilerplate/blob/56eb5a0ec4aa691169ef427f3a0122fde5a5aa24/internals/webpack/webpack.dev.babel.js#L65)
+4.  Run web server (`npm run start`)
+5.  Create Launch Configuration for Debugging Chrome and tests with jest (Command Palette: ">Debug: Open launch.json")
+6.  Add Configuration
+```JS
+{
+    // Use IntelliSense to learn about possible Node.js debug attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+         {
+            "name": "Attach to Chrome",
+            "type": "chrome",
+            "request": "attach",
+            "url": "http://localhost:3000/",
+            "webRoot": "${workspaceRoot}/",
+            "port": 9222,
+            "sourceMapPathOverrides": {
+                "webpack:///./~/*": "${webRoot}/node_modules/*",
+                "webpack:///./*":   "${webRoot}/*",
+                "webpack:///*":     "*",
+                "webpack:///app/*": "${webRoot}/app/*"
+            }
+        },
+        {
+            "name": "Debug Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000/*",
+            "webRoot": "${workspaceRoot}/",
+            "userDataDir": "${workspaceRoot}/.vscode/.chrome",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack:///./~/*": "${webRoot}/node_modules/*",
+                "webpack:///./*":   "${webRoot}/*",
+                "webpack:///*":     "*",
+                "webpack:///app/*": "${webRoot}/app/*"
+            }
+        }
+    ]
+}
+```
+7.  In order to the attach configuration to work, the application has to be run and the url opened in chrome. Import is that you add the asterisk `"url": "http://localhost:3000/*"` in order to attach to any route automatically.
+8.  Select the the "Attach to Chrome" configuration in the Debug View
+9.  Hit F5 or enter in the Command Palette: `> Debug: Start Debugging`
+10. You can also just use the "Debug Chrome" configuration in order to launch and automatically attach to chrome. When closing the currently opened TAB the debugging session is closed.
+
+### Enable VSCode Jest Auto Runner
+
+1.  Install [Jest for VS code](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest)
+2.  Open your testfile and jest will automatically run your tests and add success/failure markers
+
+
+### Enable VSCode ESLint
+
+1.  Install [ESLint Extensions for VS code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+2.  Optionally configure `eslint.autoFixOnSave` for automatically formatting your code according to your eslint config.
+
+
 
 ## Use CI with bitbucket pipelines
 
