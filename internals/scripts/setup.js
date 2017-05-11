@@ -37,13 +37,21 @@ function cleanRepo(callback) {
         if(!err) {
           if(typeof data === 'string' && (data.match(/url\s*=/g) || []).length === 1
             && /react-boilerplate\/react-boilerplate\.git/.test(data)) {
-            process.stdout.write('\nRemoving old repository');
-            shell.rm('-rf', '.git/');
-            addCheckMark(callback);
+            process.stdout.write('\nDo you want to clear old repository? [Y/n] ');
+            process.stdin.resume();
+            process.stdin.on("data", function (data) {
+              let val = data.toString().trim();
+              if(val === 'y' || val === 'Y' || val === '') {
+                process.stdout.write('Removing old repository');
+                shell.rm('-rf', '.git/');
+                addCheckMark(callback);
+              } else {
+                dontClearRepo('', callback); 
+              }
+            });
+            /**/
           } else {
-            clearRepo = false;
-            process.stdout.write('\nLeaving your repository untouched');
-            addCheckMark(callback);
+            dontClearRepo('\n', callback);
           }
         } else {
           callback();
@@ -53,6 +61,15 @@ function cleanRepo(callback) {
       callback();
     }
   });
+}
+
+/**
+ * Function which indicates that we are not cleaning git repo
+ */
+function dontClearRepo(nl, callback) {
+  clearRepo = false;
+  process.stdout.write(nl + 'Leaving your repository untouched');
+  addCheckMark(callback);
 }
 
 /**
