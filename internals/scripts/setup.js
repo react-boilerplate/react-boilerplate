@@ -124,9 +124,9 @@ function installDepsCallback(error) {
       process.stdout.write('Initialising new repository');
       initGit(function () {
         clearInterval(interval);
-        process.stdout.write('\nDone!');
-        process.exit(0);
       });
     }
+    process.stdout.write('\nDone!');
+    process.exit(0);
   });
 }
