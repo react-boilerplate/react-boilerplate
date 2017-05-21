@@ -81,7 +81,7 @@ describe('add()', () => {
 
   });
 
-  it("doesn't add the third number", () => {
+  it('doesn't add the third number', () => {
 
   });
 });
@@ -104,7 +104,7 @@ third number if one is present:
 
 ```javascript
 // [...]
-it("doesn't add the third number", () => {
+it('doesn't add the third number', () => {
  expect(add(2, 3, 5)).toEqual(add(2, 3));
 });
 // [...]
