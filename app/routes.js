@@ -21,10 +21,14 @@ class Routes extends React.PureComponent { // eslint-disable-line react/prefer-s
     store: React.PropTypes.object,
   };
 
+  static propTypes = {
+    location: React.PropTypes.object,
+  };
+
   render() {
     const store = this.context.store;
     return (
-      <Switch>
+      <Switch location={this.props.location}>
         <AsyncRoute
           exact path="/" load={createHomePageLoader(store)}
         />
@@ -32,7 +36,7 @@ class Routes extends React.PureComponent { // eslint-disable-line react/prefer-s
           exact path="/features" load={createFeaturePageLoader(store)}
         />
         <AsyncRoute
-          exact path="" load={createNotFoundPageLoader(store)}
+          path="" load={createNotFoundPageLoader(store)}
         />
       </Switch>
     );

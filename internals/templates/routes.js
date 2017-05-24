@@ -23,7 +23,7 @@ class Routes extends React.PureComponent { // eslint-disable-line react/prefer-s
           exact path="/" load={createHomePageLoader(store)}
         />
         <AsyncRoute
-          exact path="" load={createNotFoundPageLoader(store)}
+          path="" load={createNotFoundPageLoader(store)}
         />
       </Switch>
     );

@@ -4,7 +4,7 @@ const selectRoute = (state) => state.get('route');
 
 const makeSelectLocation = () => createSelector(
   selectRoute,
-  (routeState) => routeState.get('location')
+  (routeState) => routeState.get('location').toJS()
 );
 
 export {
