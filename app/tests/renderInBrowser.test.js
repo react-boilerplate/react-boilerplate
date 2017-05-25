@@ -1,9 +1,9 @@
 /* eslint-disable import/first */
 jest.mock('react-dom');
-jest.mock('react-router');
+jest.mock('react-router/lib/match');
 
 import ReactDOM from 'react-dom';
-import { match } from 'react-router';
+import match from 'react-router/lib/match';
 
 import AppRoot from 'containers/AppRoot';
 
