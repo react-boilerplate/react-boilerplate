@@ -12,6 +12,11 @@ import { Route } from 'react-router-dom';
  * A wrapper component that will lazily render a component after it has been loaded.
  */
 class Bundle extends Component {
+
+  static contextTypes = {
+    store: React.PropTypes.object,
+  };
+
   state = {
     // short for "module" but that's a keyword in js, so "mod"
     mod: null,
@@ -32,7 +37,7 @@ class Bundle extends Component {
     this.setState({
       mod: null,
     });
-    props.load((mod) => {
+    props.load(this.context.store, (mod) => {
       this.setState({
         // handle both es imports and cjs
         mod: mod.default ? mod.default : mod,

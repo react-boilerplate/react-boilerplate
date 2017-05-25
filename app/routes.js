@@ -11,37 +11,29 @@ import { createStructuredSelector } from 'reselect';
 import AsyncRoute from 'routing/AsyncRoute';
 import { makeSelectLocation } from 'containers/App/selectors';
 
-import createHomePageLoader from 'containers/HomePage/loader';
-import createFeaturePageLoader from 'containers/FeaturePage/loader';
-import createNotFoundPageLoader from 'containers/NotFoundPage/loader';
+import loadHomePage from 'containers/HomePage/loader';
+import loadFeaturePage from 'containers/FeaturePage/loader';
+import loadNotFoundPage from 'containers/NotFoundPage/loader';
 
-class Routes extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-
-  static contextTypes = {
-    store: React.PropTypes.object,
-  };
-
-  static propTypes = {
-    location: React.PropTypes.object,
-  };
-
-  render() {
-    const store = this.context.store;
-    return (
-      <Switch location={this.props.location}>
-        <AsyncRoute
-          exact path="/" load={createHomePageLoader(store)}
-        />
-        <AsyncRoute
-          exact path="/features" load={createFeaturePageLoader(store)}
-        />
-        <AsyncRoute
-          path="" load={createNotFoundPageLoader(store)}
-        />
-      </Switch>
-    );
-  }
+function Routes({ location }) {
+  return (
+    <Switch location={location}>
+      <AsyncRoute
+        exact path="/" load={loadHomePage}
+      />
+      <AsyncRoute
+        exact path="/features" load={loadFeaturePage}
+      />
+      <AsyncRoute
+        path="" load={loadNotFoundPage}
+      />
+    </Switch>
+  );
 }
+
+Routes.propTypes = {
+  location: React.PropTypes.object,
+};
 
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation(),

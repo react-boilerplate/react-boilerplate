@@ -3,15 +3,13 @@ import createMemoryHistory from 'history/createMemoryHistory';
 import configureStore from 'store';
 
 import {{ properCase name }} from '../index';
-import createLoader from '../loader';
+import loader from '../loader';
 
 describe('{{ properCase name }} loader', () => {
   const store = configureStore({}, createMemoryHistory());
 
-  const loader = createLoader(store);
-
   it('loads {{ properCase name }}', () => {
-    const loaded = new Promise((resolve) => (loader(resolve)));
+    const loaded = new Promise((resolve) => (loader(store, resolve)));
     expect.assertions(1);
     return loaded.then((comp) => expect(comp.default).toEqual({{ properCase name }}));
   });

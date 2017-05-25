@@ -12,7 +12,7 @@ function trimTemplateFile(template) {
 
 function hasLoader(component) {
   return fs.readFileSync(path.join(__dirname, '../../../app/routes.js'), 'utf8')
-    .includes(`import create${component}Loader`);
+    .includes(`import load${component}`);
 }
 
 module.exports = {
@@ -58,7 +58,7 @@ module.exports = {
       actions.push({
         type: 'modify',
         path: '../../app/routes.js',
-        pattern: /(import createNotFoundPageLoader)/g,
+        pattern: /(import loadNotFoundPage)/g,
         template: trimTemplateFile('importLoader.hbs'),
       });
     }

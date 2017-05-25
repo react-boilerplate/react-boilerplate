@@ -7,32 +7,30 @@
 {{#if wantActionsAndReducer}}
 import { errorLoading, getAsyncInjectors } from 'utils/asyncInjectors';
 
-export default (store) => {
+export default (store, cb) => {
   const { injectReducer{{#if wantSagas}}, injectSagas{{/if}} } = getAsyncInjectors(store);
-  return (cb) => {
-    const importModules = Promise.all([
-      import('./reducer'),
-      {{#if wantSagas}}
-      import('./sagas'),
-      {{/if}}
-      import('./index'),
-    ]);
+  const importModules = Promise.all([
+    import('./reducer'),
+    {{#if wantSagas}}
+    import('./sagas'),
+    {{/if}}
+    import('./index'),
+  ]);
 
-    importModules.then(([reducer,{{#if wantSagas}} sagas,{{/if}} component]) => {
-      injectReducer('{{ camelCase name }}', reducer.default);
-      {{#if wantSagas}}
-      injectSagas(sagas.default);
-      {{/if}}
-      cb(component);
-    });
+  importModules.then(([reducer,{{#if wantSagas}} sagas,{{/if}} component]) => {
+    injectReducer('{{ camelCase name }}', reducer.default);
+    {{#if wantSagas}}
+    injectSagas(sagas.default);
+    {{/if}}
+    cb(component);
+  });
 
-    importModules.catch(errorLoading);
-  };
+  importModules.catch(errorLoading);
 };
 {{else}}
 import { errorLoading } from 'utils/asyncInjectors';
 
-export default () => (cb) => {
+export default (store, cb) => {
   import('./index')
     .then(cb)
     .catch(errorLoading);
