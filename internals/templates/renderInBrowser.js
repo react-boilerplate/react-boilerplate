@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { match, applyRouterMiddleware, Router } from 'react-router';
-import { useScroll } from 'react-router-scroll';
+import match from 'react-router/lib/match';
+import applyRouterMiddleware from 'react-router/lib/applyRouterMiddleware';
+import Router from 'react-router/lib/Router';
+import useScroll from 'react-router-scroll/lib/useScroll';
 import AppRoot from 'containers/AppRoot';
 
 export default function renderInBrowser({ messages, store, routes, history }) {

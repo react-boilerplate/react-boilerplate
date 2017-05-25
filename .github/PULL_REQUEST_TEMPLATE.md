@@ -1,6 +1,6 @@
 ## React Boilerplate
 
-Thank you for contributing! Please take a moment to review our [**contributing guidelines**](https://github.com/react-boilerplate/react-boilerplate/blob/master/.github/CONTRIBUTING.md)
+Thank you for contributing! Please take a moment to review our [**contributing guidelines**](https://github.com/react-boilerplate/react-boilerplate/blob/master/CONTRIBUTING.md)
 to make the process easy and effective for everyone involved.
 
 **Please open an issue** before embarking on any significant pull request, especially those that
@@ -9,7 +9,7 @@ on something that might not end up being merged into the project.
 
 Before opening a pull request, please ensure:
 
-- [ ] You have followed our [**contributing guidelines**](https://github.com/react-boilerplate/react-boilerplate/blob/master/.github/CONTRIBUTING.md)
+- [ ] You have followed our [**contributing guidelines**](https://github.com/react-boilerplate/react-boilerplate/blob/master/CONTRIBUTING.md)
 - [ ] double-check your branch is based on `dev` and targets `dev` 
 - [ ] Pull request has tests (we are going for 100% coverage!)
 - [ ] Code is well-commented, linted and follows project conventions

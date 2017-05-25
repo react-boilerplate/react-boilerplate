@@ -7,7 +7,7 @@
 
 // Needed for redux-saga es6 generator support
 import 'babel-polyfill';
-import { browserHistory } from 'react-router';
+import browserHistory from 'react-router/lib/browserHistory';
 
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable import/no-webpack-loader-syntax */

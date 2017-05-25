@@ -8,7 +8,7 @@
   - [Tool Configuration](general/files.md)
   - [Server Configurations](general/server-configs.md)
   - [Server side rendering](general/server-side-rendering.md)
-  - [Deployment](general/deployment.md) *(currently Heroku specific)*
+  - [Deployment](general/deployment.md) *(currently Heroku and AWS S3 specific)*
   - [FAQ](general/faq.md)
   - [Gotchas](general/gotchas.md)
   - [Remove](general/remove.md)
