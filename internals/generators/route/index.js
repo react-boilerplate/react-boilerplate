@@ -49,7 +49,7 @@ module.exports = {
       {
         type: 'modify',
         path: '../../app/routes.js',
-        pattern: /(\s+<AsyncRoute\n\s+ exact path="")/g,
+        pattern: /(\s+<AsyncRoute\n\s+ path="")/g,
         template: trimTemplateFile('route.hbs'),
       },
     ];
