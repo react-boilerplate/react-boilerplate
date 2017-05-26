@@ -62,4 +62,7 @@ async function main() {
   server.kill('SIGTERM');
 }
 
-main();
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
