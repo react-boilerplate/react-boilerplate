@@ -14,6 +14,10 @@ start with `"generated."`. They shouldn't be checked into git.
 In production mode the web server will use the generated files directly to create a pre-rendered version of
 the requested page.
 
+## Pre-rendering static pages
+
+During the build process we will generate static pages for routes defined in `./static-pages.js`.
+
 ## development mode
 
 During development we want to be able to see the changes in our code as soon as possible.

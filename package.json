@@ -22,6 +22,7 @@
     "postinstall": "npm run build:dll",
     "prebuild": "npm run build:clean",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules",
+    "postbuild": "npm run ssr:render-static-pages",
     "build:clean": "rimraf ./build  && npm run ssr:clean",
     "build:dll": "node ./internals/scripts/dependencies.js",
     "prestart": "npm run ssr:generate",
@@ -48,7 +49,8 @@
     "ssr:generate": "cross-env NODE_ENV=development webpack --progress --config internals/webpack/webpack.ssr.babel.js",
     "ssr:generate:watch": "npm run ssr:generate -- --watch",
     "ssr:start": "cross-env NODE_ENV=development nodemon -q --ext js,json --watch server/middlewares --watch server/devRenderService.js server/devRenderService.js",
-    "ssr:clean": "rimraf server/middlewares/generated.*"
+    "ssr:clean": "rimraf server/middlewares/generated.*",
+    "ssr:render-static-pages": "babel-node --presets latest,stage-0 -- ./internals/scripts/render-static-pages.js "
   },
   "lint-staged": {
     "*.js": "lint:eslint"
@@ -269,6 +271,7 @@
     "babel-preset-react-hmre": "1.1.1",
     "babel-preset-stage-0": "6.22.0",
     "cheerio": "0.22.0",
+    "child_process": "^1.0.2",
     "circular-dependency-plugin": "2.0.0",
     "coveralls": "2.11.15",
     "css-loader": "0.26.1",
@@ -292,7 +295,9 @@
     "imports-loader": "0.7.0",
     "jest-cli": "18.1.0",
     "lint-staged": "3.3.0",
+    "mkdirp": "^0.5.1",
     "ngrok": "2.2.6",
+    "node-fetch": "^1.7.0",
     "node-plop": "0.5.5",
     "nodemon": "1.11.0",
     "npm-run-all": "4.0.2",
