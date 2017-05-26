@@ -1,10 +1,11 @@
 // Most of this code is stolen from https://github.com/kriasoft/react-starter-kit
-import cp from 'child_process';
+import spawn from 'cross-spawn';
 import path from 'path';
 import fetch from 'node-fetch';
 import mkdirp from 'mkdirp';
 import fs from 'fs';
 import chalk from 'chalk';
+import kill from 'tree-kill';
 
 import routes from '../../static-pages';
 
@@ -20,10 +21,9 @@ function runServer() {
   const RUNNING_REGEXP = /Localhost: http:\/\/(.+)/;
   return new Promise((resolve) => {
     function onStdOut(data) {
-      const match = data.toString('utf8').match(RUNNING_REGEXP);
-
       process.stdout.write(data);
 
+      const match = data.toString('utf8').match(RUNNING_REGEXP);
       if (match) {
         server.host = match[1];
 
@@ -34,15 +34,28 @@ function runServer() {
       }
     }
 
-    const server = cp.spawn('npm', ['run', '-s', 'start:prod']);
+    const server = spawn('npm', ['run', '-s', 'start:prod'], {
+      stdio: ['ignore', 'pipe', 'inherit'],
+    });
     server.stdout.on('data', onStdOut);
-    server.stderr.pipe(process.stderr);
+
+    server.on('error', (err) => {
+      console.error(err);
+    });
+
+    process.once('exit', () => {
+      if (server) {
+        server.kill('SIGTERM');
+      }
+    });
   });
 }
 
 async function main() {
   console.info(chalk.blue('Generating static pages'));
   const server = await runServer();
+
+  console.info(chalk.gray('Server started.'));
 
   await Promise.all(routes.map(async (route, index) => {
     const url = `http://${server.host}${route}`;
@@ -59,7 +72,8 @@ async function main() {
     console.info(`#${index + 1} ${chalk.green(target)} => ${response.status} ${response.statusText} (${time} ms)`);
   }));
 
-  server.kill('SIGTERM');
+  console.info(chalk.gray('Stopping the server...'));
+  kill(server.pid);
 }
 
 main().catch((err) => {
