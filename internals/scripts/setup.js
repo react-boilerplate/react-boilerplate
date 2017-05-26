@@ -17,7 +17,7 @@ process.stdout.write('\n');
 let interval;
 let clearRepo = true;
 
-cleanRepo(function () {
+cleanRepo(() => {
   process.stdout.write('\nInstalling dependencies... (This might take a while)');
   setTimeout(function () {
     readline.cursorTo(process.stdout, 0);
@@ -31,32 +31,27 @@ cleanRepo(function () {
  * Deletes the .git folder in dir only if cloned from our repo
  */
 function cleanRepo(callback) {
-  fs.stat('.git', function(err, stats) {
+  fs.readFile('.git/config', 'utf8', (err, data) => {
     if(!err) {
-      fs.readFile('.git/config', 'utf8', function(err, data) {
-        if(!err) {
-          if(typeof data === 'string' && (data.match(/url\s*=/g) || []).length === 1
-            && /react-boilerplate\/react-boilerplate\.git/.test(data)) {
-            process.stdout.write('\nDo you want to clear old repository? [Y/n] ');
-            process.stdin.resume();
-            process.stdin.on("data", function (data) {
-              let val = data.toString().trim();
-              if(val === 'y' || val === 'Y' || val === '') {
-                process.stdout.write('Removing old repository');
-                shell.rm('-rf', '.git/');
-                addCheckMark(callback);
-              } else {
-                dontClearRepo('', callback); 
-              }
-            });
-            /**/
+      let isClonedRepo = typeof data === 'string' 
+        && (data.match(/url\s*=/g) || []).length === 1
+        && /react-boilerplate\/react-boilerplate\.git/.test(data);
+      if(isClonedRepo) {
+        process.stdout.write('\nDo you want to clear old repository? [Y/n] ');
+        process.stdin.resume();
+        process.stdin.on('data', (data) => {
+          let val = data.toString().trim();
+          if(val === 'y' || val === 'Y' || val === '') {
+            process.stdout.write('Removing old repository');
+            shell.rm('-rf', '.git/');
+            addCheckMark(callback);
           } else {
-            dontClearRepo('\n', callback);
+            dontClearRepo('', callback); 
           }
-        } else {
-          callback();
-        }
-      });
+        });
+      } else {
+        dontClearRepo('\n', callback);
+      }
     } else {
       callback();
     }
