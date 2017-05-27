@@ -47,6 +47,12 @@ cp('internals/templates/store.js', 'app/store.js');
 // Remove the templates folder
 rm('-rf', 'internals/templates');
 
+// Remove clean script
+rm('-f', __dirname + '/clean.js');
+
+// Remove clean command
+sed('-i', /"clean": *".*",?/, '', __dirname + '/../../package.json');
+
 addCheckMark();
 
 // Commit the changes
