@@ -26,12 +26,12 @@ function withProgressBar(WrappedComponent) {
       }
     }
 
-    componentWillUpdate(newProps, newState) {
+    componentWillReceiveProps(newProps) {
       const { loadedRoutes, progress } = this.state;
       const { pathname } = newProps.location;
 
       // Complete progress when route changes. But prevent state update while re-rendering.
-      if (loadedRoutes.indexOf(pathname) === -1 && progress !== -1 && newState.progress < 100) {
+      if (loadedRoutes.indexOf(pathname) === -1 && progress !== -1 && progress < 100) {
         this.updateProgress(100);
         this.setState({
           loadedRoutes: loadedRoutes.concat([pathname]),
