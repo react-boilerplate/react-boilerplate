@@ -33,15 +33,15 @@ const removeTestsDirFrom = (relativePath) => () => rimraf.sync(path.join(__dirna
 const plop = nodePlop('./index');
 
 const componentGen = plop.getGenerator('component');
-const ComponentEsclass = componentGen.runActions({ name: 'RbGeneratedComponentEsclass', type: 'ES6 Class', wantMessages: true })
+const ComponentEsclass = componentGen.runActions({ name: 'RbGeneratedComponentEsclass', type: 'React.Component', wantMessages: true })
   .then(checkForErrors)
   .then(removeTestsDirFrom('components/RbGeneratedComponentEsclass'))
-  .catch(reportErrorsFor('component/ES6 Class'));
+  .catch(reportErrorsFor('component/React.Component'));
 
-componentGen.runActions({ name: 'RbGeneratedComponentEsclasspure', type: 'ES6 Class (Pure)', wantMessages: true })
+componentGen.runActions({ name: 'RbGeneratedComponentEsclasspure', type: 'React.PureComponent', wantMessages: true })
   .then(checkForErrors)
   .then(removeTestsDirFrom('components/RbGeneratedComponentEsclasspure'))
-  .catch(reportErrorsFor('component/ES6 Class (Pure)'));
+  .catch(reportErrorsFor('component/React.PureComponent'));
 
 componentGen.runActions({ name: 'RbGeneratedComponentStatelessfunction', type: 'Stateless Function', wantMessages: true })
   .then(checkForErrors)
@@ -51,27 +51,39 @@ componentGen.runActions({ name: 'RbGeneratedComponentStatelessfunction', type: '
 const containerGen = plop.getGenerator('container');
 containerGen.runActions({
   name: 'RbGeneratedContainerPureComponent',
-  component: 'PureComponent',
+  type: 'React.PureComponent',
   wantHeaders: true,
   wantActionsAndReducer: true,
   wantSagas: true,
-  wantMessages: true
+  wantMessages: true,
 })
   .then(checkForErrors)
   .then(removeTestsDirFrom('containers/RbGeneratedContainerPureComponent'))
-  .catch(reportErrorsFor('container/PureComponent'));
+  .catch(reportErrorsFor('container/React.PureComponent'));
 
 const ContainerComponent = containerGen.runActions({
   name: 'RbGeneratedContainerComponent',
-  component: 'Component',
+  type: 'React.Component',
   wantHeaders: true,
   wantActionsAndReducer: true,
   wantSagas: true,
-  wantMessages: true
+  wantMessages: true,
 })
   .then(checkForErrors)
   .then(removeTestsDirFrom('containers/RbGeneratedContainerComponent'))
-  .catch(reportErrorsFor('container/Component'));
+  .catch(reportErrorsFor('container/React.Component'));
+
+containerGen.runActions({
+  name: 'RbGeneratedContainerStateless',
+  type: 'Stateless Function',
+  wantHeaders: true,
+  wantActionsAndReducer: true,
+  wantSagas: true,
+  wantMessages: true,
+})
+  .then(checkForErrors)
+  .then(removeTestsDirFrom('containers/RbGeneratedContainerStateless'))
+  .catch(reportErrorsFor('container/Stateless'));
 
 const routeGen = plop.getGenerator('route');
 
