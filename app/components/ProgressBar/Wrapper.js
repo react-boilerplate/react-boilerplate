@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div`
+const ProgressBarWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -10,3 +10,5 @@ export default styled.div`
   transition: all 500ms ease-in-out;
   z-index: ${(props) => props.hidden ? '-10' : '9999'};
 `;
+
+export default ProgressBarWrapper;
