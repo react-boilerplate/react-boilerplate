@@ -1,4 +1,4 @@
-var shell = require('shelljs');
+const shell = require('shelljs');
 const addCheckMark = require('./helpers/checkmark.js');
 
 if (!shell.which('git')) {
