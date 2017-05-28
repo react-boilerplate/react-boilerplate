@@ -3,14 +3,11 @@ import ProgressBar from './ProgressBar';
 
 function withProgressBar(WrappedComponent) {
   class AppWithProgressBar extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        progress: -1,
-        loadedRoutes: props.location && [props.location.pathname],
-      };
-      this.updateProgress = this.updateProgress.bind(this);
-    }
+
+    state = {
+      progress: -1,
+      loadedRoutes: this.props.location && [this.props.location.pathname],
+    };
 
     componentWillMount() {
       if (this.props.router) {
@@ -47,7 +44,7 @@ function withProgressBar(WrappedComponent) {
       this.unsubscribeHistory = undefined;
     }
 
-    updateProgress(progress) {
+    updateProgress = (progress) => {
       this.setState({ progress });
     }
 
