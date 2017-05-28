@@ -3,6 +3,7 @@
  */
 
 const componentExists = require('../utils/componentExists');
+const chalk = require('chalk');
 
 module.exports = {
   description: 'Add a container component',
@@ -34,6 +35,10 @@ module.exports = {
     name: 'wantActionsAndReducer',
     default: true,
     message: 'Do you want an actions/constants/selectors/reducer tuple for this container?',
+  }, {
+    when: (response) => response.wantActionsAndReducer,
+    name: 'actionsAndReducerWarning',
+    message: chalk.yellow('️⚠️ Not loading in a route?, Add to app/reducers.js: combineReducers. Ref #1407.'),
   }, {
     type: 'confirm',
     name: 'wantSagas',
