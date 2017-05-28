@@ -200,7 +200,7 @@ in the `package.json` with `babel server`!
 ## How to keep my project up-to-date with `react-boilerplate`?
 
 While it's possible to keep your project up-to-date or "in sync" with `react-boilerplate`, it's usually
-very difficult and therefore ***at your own risk*** and not recommend. You should not need to do it either, as
+very difficult and is therefore ***at your own risk*** and not recommended. You should not need to do it either, as
 every version you use will be amazing! There is a long term goal to make this much easier but no ETA at the moment.
 
 ## How to turn off Webpack performance warnings after production build?
