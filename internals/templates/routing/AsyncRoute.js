@@ -57,9 +57,9 @@ Bundle.propTypes = {
   load: React.PropTypes.func,
 };
 
-const AsyncRoute = ({ path, load }) => (
+const AsyncRoute = ({ load, ...others }) => (
   <Route
-    path={path} render={(props) => (
+    {...others} render={(props) => (
       <Bundle load={load} {...props} />
   )}
   />
