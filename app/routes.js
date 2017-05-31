@@ -50,8 +50,8 @@ function createChildRoutes(store) {
       name: 'user',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          System.import('containers/UserPage/sagas'),
-          System.import('containers/UserPage'),
+          import('containers/UserPage/sagas'),
+          import('containers/UserPage'),
         ]);
 
         const renderRoute = loadModule(cb);
