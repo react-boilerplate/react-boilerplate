@@ -3,14 +3,11 @@ import ProgressBar from './ProgressBar';
 
 function withProgressBar(WrappedComponent) {
   class AppWithProgressBar extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        progress: -1,
-        loadedRoutes: props.location && [props.location.pathname],
-      };
-      this.updateProgress = this.updateProgress.bind(this);
-    }
+
+    state = {
+      progress: -1,
+      loadedRoutes: this.props.location && [this.props.location.pathname],
+    };
 
     componentWillMount() {
       if (this.props.router) {
@@ -29,12 +26,12 @@ function withProgressBar(WrappedComponent) {
       }
     }
 
-    componentWillUpdate(newProps, newState) {
+    componentWillReceiveProps(newProps) {
       const { loadedRoutes, progress } = this.state;
       const { pathname } = newProps.location;
 
       // Complete progress when route changes. But prevent state update while re-rendering.
-      if (loadedRoutes.indexOf(pathname) === -1 && progress !== -1 && newState.progress < 100) {
+      if (loadedRoutes.indexOf(pathname) === -1 && progress !== -1 && progress < 100) {
         this.updateProgress(100);
         this.setState({
           loadedRoutes: loadedRoutes.concat([pathname]),
@@ -47,7 +44,7 @@ function withProgressBar(WrappedComponent) {
       this.unsubscribeHistory = undefined;
     }
 
-    updateProgress(progress) {
+    updateProgress = (progress) => {
       this.setState({ progress });
     }
 

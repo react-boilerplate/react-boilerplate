@@ -16,7 +16,7 @@
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
     "analyze": "node ./internals/scripts/analyze.js",
-    "extract-intl": "babel-node --presets latest,stage-0 -- ./internals/scripts/extract-intl.js",
+    "extract-intl": "babel-node --presets env,stage-0 -- ./internals/scripts/extract-intl.js",
     "npmcheckversion": "node ./internals/scripts/npmcheckversion.js",
     "preinstall": "npm run npmcheckversion",
     "postinstall": "npm run build:dll",
@@ -57,9 +57,12 @@
   },
   "pre-commit": "lint:staged",
   "babel": {
+    "plugins": [
+      "styled-components"
+    ],
     "presets": [
       [
-        "latest",
+        "env",
         {
           "es2015": {
             "modules": false
@@ -249,7 +252,7 @@
     "redux-saga": "0.14.3",
     "reselect": "2.5.4",
     "sanitize.css": "4.1.0",
-    "styled-components": "1.4.3",
+    "styled-components": "2.0.0",
     "warning": "3.0.0",
     "whatwg-fetch": "2.0.2"
   },
@@ -262,11 +265,12 @@
     "babel-plugin-dynamic-import-node": "1.0.0",
     "babel-plugin-react-intl": "2.3.1",
     "babel-plugin-react-transform": "2.0.2",
+    "babel-plugin-styled-components": "1.1.4",
     "babel-plugin-transform-es2015-modules-commonjs": "6.22.0",
     "babel-plugin-transform-react-constant-elements": "6.22.0",
     "babel-plugin-transform-react-inline-elements": "6.22.0",
     "babel-plugin-transform-react-remove-prop-types": "0.2.12",
-    "babel-preset-latest": "6.22.0",
+    "babel-preset-env": "1.4.0",
     "babel-preset-react": "6.22.0",
     "babel-preset-react-hmre": "1.1.1",
     "babel-preset-stage-0": "6.22.0",
