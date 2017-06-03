@@ -50,7 +50,7 @@
     "ssr:generate:watch": "npm run ssr:generate -- --watch",
     "ssr:start": "cross-env NODE_ENV=development nodemon -q --ext js,json --watch server/middlewares --watch server/devRenderService.js server/devRenderService.js",
     "ssr:clean": "rimraf server/middlewares/generated.*",
-    "ssr:render-static-pages": "babel-node --presets latest,stage-0 -- ./internals/scripts/render-static-pages.js "
+    "ssr:render-static-pages": "babel-node --presets stage-0 -- ./internals/scripts/render-static-pages.js "
   },
   "lint-staged": {
     "*.js": "lint:eslint"
