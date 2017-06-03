@@ -6,8 +6,6 @@
  *
  * The server uses it to render the app at given location.
  */
-import 'babel-polyfill'; // for regeneratorRuntime
-
 import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { createMemoryHistory, match, RouterContext } from 'react-router';

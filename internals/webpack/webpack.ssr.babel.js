@@ -11,6 +11,7 @@ module.exports = {
   target: 'node',
   externals: [nodeExternals()],
   entry: [
+    'babel-polyfill',
     path.join(process.cwd(), 'app/serverEntry.js'),
   ],
   output: {
