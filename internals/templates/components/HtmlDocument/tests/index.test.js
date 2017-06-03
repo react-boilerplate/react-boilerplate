@@ -11,11 +11,18 @@ describe('<HtmlDocument />', () => {
       meta: { toComponent: () => null },
       link: { toComponent: () => null },
     };
+    const css = [
+      <style type="text/css">
+        {
+          'body { color: red }'
+        }
+      </style>,
+    ];
     const renderedComponent = shallow(
       <HtmlDocument
         lang="en"
         head={head}
-        css="body { color: red }"
+        css={css}
         appMarkup="<h1>Hello</h1>"
         state={{}}
         assets={{ main: { js: 'xxx', css: 'yyy' } }}

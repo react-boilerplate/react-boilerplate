@@ -31,8 +31,8 @@ export default function HtmlDocument({ lang, head, css, appMarkup, state, assets
         {/* vendor.css */}
         <link href={assets.main.css} rel="stylesheet" />
 
-        {/* app css */}
-        <style type="text/css" dangerouslySetInnerHTML={{ __html: css }} />
+        {/* server side rendered css style tags */}
+        { css }
       </head>
       <body>
         {/* Display a message if JS has been disabled on the browser. */}
@@ -67,7 +67,7 @@ export default function HtmlDocument({ lang, head, css, appMarkup, state, assets
 HtmlDocument.propTypes = {
   lang: PropTypes.string.isRequired,
   head: PropTypes.object.isRequired,
-  css: PropTypes.string.isRequired,
+  css: PropTypes.arrayOf(PropTypes.node).isRequired,
   appMarkup: PropTypes.string.isRequired,
   state: PropTypes.object.isRequired,
   assets: PropTypes.shape({

@@ -11,7 +11,7 @@ import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { createMemoryHistory, match, RouterContext } from 'react-router';
 import { END } from 'redux-saga';
 import Helmet from 'react-helmet';
-import styleSheet from 'styled-components/lib/models/StyleSheet';
+import { ServerStyleSheet } from 'styled-components';
 
 // Global styles should be injected before any other scoped style, so make sure
 // this file is imported before any styled component.
@@ -29,11 +29,15 @@ import monitorSagas from 'utils/monitorSagas';
 
 import { appLocales, translationMessages } from './i18n';
 
-function renderAppToString(store, renderProps) {
-  return renderToString(
+function renderAppToString(store, renderProps, styleSheet) {
+  const app = (
     <AppRoot store={store} messages={translationMessages}>
       <RouterContext {...renderProps} />
     </AppRoot>
+  );
+
+  return renderToString(
+    styleSheet ? styleSheet.collectStyles(app) : app
   );
 }
 
@@ -50,13 +54,14 @@ async function renderHtmlDocument({ store, renderProps, sagasDone, assets, webpa
   // capture the state after the first render
   const state = store.getState().toJS();
 
+  // prepare style sheet to collect generated css
+  const styleSheet = new ServerStyleSheet();
+
   // 2nd render phase - the sagas triggered in the first phase are resolved by now
-  const appMarkup = renderAppToString(store, renderProps);
+  const appMarkup = renderAppToString(store, renderProps, styleSheet);
 
   // capture the generated css
-  const css = styleSheet.injected
-    ? styleSheet.rules().map((rule) => rule.cssText).join('\n')
-    : '';
+  const css = styleSheet.getStyleElement();
 
   const doc = renderToStaticMarkup(
     <HtmlDocument

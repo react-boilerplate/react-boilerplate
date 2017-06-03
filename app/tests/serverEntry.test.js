@@ -1,7 +1,6 @@
 /* eslint-disable import/first */
 jest.mock('react-dom/server');
 jest.mock('react-router');
-jest.mock('styled-components/lib/models/StyleSheet');
 jest.mock('react-helmet');
 jest.mock('setup/syncHistoryWithStore');
 jest.mock('components/HtmlDocument');
@@ -9,10 +8,9 @@ jest.mock('components/HtmlDocument');
 import { match } from 'react-router';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import Helmet from 'react-helmet';
+import StyleSheet from 'styled-components/lib/models/StyleSheet';
 
 import AppRoot from 'containers/AppRoot';
-
-import styleSheet from 'styled-components/lib/models/StyleSheet';
 
 import syncHistoryWithStore from 'setup/syncHistoryWithStore';
 
@@ -36,6 +34,14 @@ describe('rendering to string', () => {
       assets,
     };
     callback = jest.fn();
+  });
+
+  beforeEach(() => {
+    StyleSheet.reset(true);
+  });
+
+  afterEach(() => {
+    StyleSheet.reset(false);
   });
 
   it('should resolve route for the given url', () => {
@@ -92,7 +98,6 @@ describe('rendering to string', () => {
       const expectedHtml = `<!DOCTYPE html>\n${dummyHtml}`;
 
       beforeEach(() => {
-        styleSheet.rules = jest.fn().mockReturnValue([]);
         renderToString.mockReturnValue('<div></div>');
         renderToStaticMarkup.mockReturnValue(dummyHtml);
         Helmet.rewind.mockReturnValue({});
@@ -144,11 +149,12 @@ describe('rendering to string', () => {
 
         describe('rendering css', () => {
           beforeEach(() => {
-            styleSheet.injected = true;
-            styleSheet.rules = jest.fn().mockReturnValue([
-              { cssText: 'css1' },
-              { cssText: 'css2' },
-            ]);
+            // this is very hacky - I'm not sure what's the right way of testing
+            // the styled components' server side rendering.
+            const sheet = StyleSheet.create(true);
+            sheet.toReactElements = () => ['css1', 'css2'];
+
+            StyleSheet.clone = () => sheet;
           });
 
           it('should inject the css', () => {
@@ -158,7 +164,7 @@ describe('rendering to string', () => {
                 expect(renderToStaticMarkup).toHaveBeenCalled();
                 const args = renderToStaticMarkup.mock.calls[0];
                 const component = args[0];
-                expect(component.props.css).toMatch('css1\ncss2');
+                expect(component.props.css).toEqual(['css1', 'css2']);
               });
           });
         });
