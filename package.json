@@ -290,6 +290,7 @@
     "plop": "1.8.0",
     "pre-commit": "1.2.2",
     "react-addons-test-utils": "15.5.1",
+    "react-test-renderer": "15.5.4",
     "rimraf": "2.6.1",
     "shelljs": "0.7.7",
     "sinon": "2.3.2",
