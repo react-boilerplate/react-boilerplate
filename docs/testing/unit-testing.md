@@ -270,6 +270,22 @@ describe('NavBarReducer', () => {
   });
 });
 ```
+> Note: If you are using Immutable for your state management, then you should compare
+using `Immutable.is(newState, expectState)` or `newState.equals(expectState)` like this:
+
+```javascript
+describe('NavBarReducer', () => {
+  it('returns the initial state', () => {
+    expect(NavBarReducer(undefined, {}).equals(fromJs({
+      open: false
+    })).toEqual(true);
+  });
+
+  it('handles the toggleNav action', () => {
+
+  });
+});
+```
 
 This works, but we have one problem: We also have to explicitly write the initial state itself. When
 somebody changes the initial state, they will also have to manually update this code to directly reflect it.
