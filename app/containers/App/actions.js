@@ -19,6 +19,7 @@ import {
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
+  ROUTE_LOADED,
 } from './constants';
 
 /**
@@ -59,5 +60,13 @@ export function repoLoadingError(error) {
   return {
     type: LOAD_REPOS_ERROR,
     error,
+  };
+}
+
+export function routeLoaded(path, component) {
+  return {
+    type: ROUTE_LOADED,
+    path,
+    component,
   };
 }

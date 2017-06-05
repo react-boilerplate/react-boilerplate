@@ -56,7 +56,7 @@ class ProgressBar extends React.Component {
     this.setState({
       percent,
     });
-  }
+  };
 
   handleProps = (props) => {
     /**
@@ -88,7 +88,7 @@ class ProgressBar extends React.Component {
         percent: props.percent,
       });
     }
-  }
+  };
 
   render() {
     const { percent } = this.state;

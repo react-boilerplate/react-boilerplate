@@ -16,10 +16,12 @@ import {
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
+  ROUTE_LOADED,
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
+  loadedRoutes: {},
   loading: false,
   error: false,
   currentUser: false,
@@ -44,6 +46,9 @@ function appReducer(state = initialState, action) {
       return state
         .set('error', action.error)
         .set('loading', false);
+    case ROUTE_LOADED:
+      return state
+        .setIn(['loadedRoutes', action.path], action.component);
     default:
       return state;
   }

@@ -6,7 +6,12 @@
  */
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+
+import { routeLoaded } from 'containers/App/actions';
+import { makeSelectLocation } from 'containers/App/selectors';
 
 /**
  * A wrapper component that will lazily render a component after it has been loaded.
@@ -38,10 +43,12 @@ class Bundle extends Component {
       mod: null,
     });
     props.load(this.context.store, (mod) => {
+      // handle both es imports and cjs
+      const component = mod.default ? mod.default : mod;
       this.setState({
-        // handle both es imports and cjs
-        mod: mod.default ? mod.default : mod,
+        mod: component,
       });
+      this.props.onRouteLoaded(this.props.location.pathname, component);
     });
   }
 
@@ -55,12 +62,26 @@ class Bundle extends Component {
 Bundle.propTypes = {
   children: React.PropTypes.node,
   load: React.PropTypes.func,
+  location: React.PropTypes.object,
+  onRouteLoaded: React.PropTypes.func,
 };
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onRouteLoaded: (path, component) => dispatch(routeLoaded(path, component)),
+  };
+}
+
+const mapStateToProps = createStructuredSelector({
+  location: makeSelectLocation(),
+});
+
+const ConnectedBundle = connect(mapStateToProps, mapDispatchToProps)(Bundle);
 
 const AsyncRoute = ({ load, ...others }) => (
   <Route
     {...others} render={(props) => (
-      <Bundle load={load} {...props} />
+      <ConnectedBundle load={load} {...props} />
   )}
   />
 );
