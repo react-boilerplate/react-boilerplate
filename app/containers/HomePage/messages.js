@@ -6,24 +6,20 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  startProjectHeader: {
-    id: 'boilerplate.containers.HomePage.start_project.header',
-    defaultMessage: 'Start your next react project in seconds',
+  searchHeader: {
+    id: 'boilerplate.containers.HomePage.searchHeader',
+    defaultMessage: 'Find the best price today!',
   },
-  startProjectMessage: {
-    id: 'boilerplate.containers.HomePage.start_project.message',
-    defaultMessage: 'A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices',
+  searchMessage: {
+    id: 'boilerplate.containers.HomePage.result.message',
+    defaultMessage: 'We search for the best price across the internet. ',
   },
   trymeHeader: {
     id: 'boilerplate.containers.HomePage.tryme.header',
     defaultMessage: 'Try me!',
   },
-  trymeMessage: {
-    id: 'boilerplate.containers.HomePage.tryme.message',
-    defaultMessage: 'Show Github repositories by',
-  },
-  trymeAtPrefix: {
-    id: 'boilerplate.containers.HomePage.tryme.atPrefix',
-    defaultMessage: '@',
+  productSearch: {
+    id: 'boilerplate.containers.HomePage.product.Search',
+    defaultMessage: 'Search for the best price: ',
   },
 });
