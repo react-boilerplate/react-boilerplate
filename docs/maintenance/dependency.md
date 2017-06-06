@@ -74,9 +74,9 @@ Identify problems that occur and try to resolve them by rolling back the respect
 - `npm run build`
 - `npm run start:prod`  > `localhost:3000/test`
 
-## Sample Update Log
+# Sample Update Log
 
-# Tooling Versions
+## Tooling Versions
 
 - Node 7.5.0
 - npm 4.1.2
@@ -84,7 +84,7 @@ Identify problems that occur and try to resolve them by rolling back the respect
 - Mac OS 10.11.6
 - Chrome 56.0.2924.87 (64-bit)
 
-# :spiral_notepad:  Notes
+## :spiral_notepad:  Notes
 1. `react-router` was not updated. Thanks to @anuraaga for all his work. Ref- #1746 
 2. `history` was not updated because of `react-router v3`'s dependency on it. Should go away when #1746 is merged.
 3. `cheerio` was not updated because it was breaking the HTML template. Pending investigation.
@@ -92,7 +92,7 @@ Identify problems that occur and try to resolve them by rolling back the respect
 > A few deprecation warnings were added in React 15.5. This supports the new APIs that React recommends. Ref. [#876](https://github.com/airbnb/enzyme/pull/876)
 5. If you see a package-name being repeated, note that the version number of the last occurrence will get precedence. 
 
-# :package: Version Diff  
+## :package: Version Diff  
 **[0] PATCH UPDATES**
 ```
  fontfaceobserver                        2.0.8  →    2.0.9 
@@ -191,7 +191,7 @@ Identify problems that occur and try to resolve them by rolling back the respect
 react-test-renderer                                     15.5.4
 ```
 
-# Errors Encountered
+## Errors Encountered
 
 - Incompatible per `npm info "eslint-config-airbnb@latest" peerDependencies` adjust eslint-config-airbnb compatible dependency versions. see: https://www.npmjs.com/package/eslint-config-airbnb
 
