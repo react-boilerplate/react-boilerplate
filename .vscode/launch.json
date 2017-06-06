@@ -8,7 +8,8 @@
             "url": "http://localhost:3000",
             "webRoot": "${workspaceRoot}/app",
             "sourceMapPathOverrides": {
-                "webpack:///./app/*": "${webRoot}/*"
+                "webpack:///./app/*": "${webRoot}/*",
+                "webpack:///app/*": "${webRoot}/*"
             }
         }
     ]
