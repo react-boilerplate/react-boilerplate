@@ -11,10 +11,12 @@ import messages from './messages';
 import { slide as Menu } from 'react-burger-menu'
 
 class Sidebar extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  showSettings (event) {
-    event.preventDefault(); 
+  showSettings (event) { 
+    // event.preventDefault(); 
+    this.isOpen = false;
   }
   render () {
+    // this.isOpen  = true;
     var styles = {
   bmBurgerButton: {
     position: 'fixed',
@@ -53,8 +55,8 @@ class Sidebar extends React.Component { // eslint-disable-line react/prefer-stat
 
 console.log('nameOfAnimation',Menu)
     return (
-      <Menu  styles={ styles }>
-          <HeaderLink to="/">
+      <Menu  styles={ styles } isOpen={ this.isOpen }>
+          <HeaderLink to="/" onClick={ this.showSettings() }>
             <FormattedMessage {...messages.home} />
           </HeaderLink>
           <HeaderLink to="/features">
