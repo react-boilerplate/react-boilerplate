@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function IssueIcon(props) {
   return (
@@ -13,7 +14,7 @@ function IssueIcon(props) {
 }
 
 IssueIcon.propTypes = {
-  className: React.PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default IssueIcon;

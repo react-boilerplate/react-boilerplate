@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import Helmet from 'react-helmet';
+import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 
 import Header from 'components/Header';
@@ -29,10 +30,9 @@ export function App(props) {
       <Helmet
         titleTemplate="%s - React.js Boilerplate"
         defaultTitle="React.js Boilerplate"
-        meta={[
-          { name: 'description', content: 'A React.js Boilerplate application' },
-        ]}
-      />
+      >
+        <meta name="description" content="A React.js Boilerplate application" />
+      </Helmet>
       <Header />
       {React.Children.toArray(props.children)}
       <Footer />
@@ -41,7 +41,7 @@ export function App(props) {
 }
 
 App.propTypes = {
-  children: React.PropTypes.node,
+  children: PropTypes.node,
 };
 
 export default withProgressBar(App);
