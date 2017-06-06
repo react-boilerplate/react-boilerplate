@@ -18,6 +18,16 @@ to the loaders section in `internals/webpack/webpack.base.babel.js` so it reads 
     }
     ```
 
+    - `internals/webpack/webpack.test.babel.js`
+
+    ```diff
+    loaders: [
+      { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.css$/, loader: 'null-loader' },
++ { test: /\.scss$/, loader: ['style-loader', 'css-loader', 'sass-loader'] },
+     ...
+    ```
+
     Then run `npm i -D sass-loader node-sass`
 
 ...and you should be good to go!
