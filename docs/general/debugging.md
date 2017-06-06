@@ -16,13 +16,13 @@ You can super charge your React debugging workflow with VS Code and Chrome debug
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Chrome",
             "type": "chrome",
             "request": "launch",
+            "name": "Launch Chrome",
             "url": "http://localhost:3000",
             "webRoot": "${workspaceRoot}/app",
             "sourceMapPathOverrides": {
-                "webpack:///app/*": "${webRoot}/*"
+                "webpack:///./app/*": "${webRoot}/*"
             }
         }
     ]
