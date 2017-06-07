@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { FormattedNumber } from 'react-intl';
@@ -48,8 +49,8 @@ export class RepoListItem extends React.PureComponent { // eslint-disable-line r
 }
 
 RepoListItem.propTypes = {
-  item: React.PropTypes.object,
-  currentUser: React.PropTypes.string,
+  item: PropTypes.object,
+  currentUser: PropTypes.string,
 };
 
 export default connect(createStructuredSelector({
