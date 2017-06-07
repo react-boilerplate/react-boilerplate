@@ -108,6 +108,10 @@ Now you're ready to rumble!
 
 > Please note that this boilerplate is **production-ready and not meant for beginners**! If you're just starting out with react or redux, please refer to https://github.com/petehunt/react-howto instead. If you want a solid, battle-tested base to build your next product upon and have some experience with react, this is the perfect start for you.
 
+## Is it production ready?
+
+This repo has a dev branch that unstable changes get merged into first. Only when we consider them stable we merge them into the master branch and release the changes for real. This means the master branch is stable enough to use in production.
+
 ## Documentation
 
 - [**The Hitchhikers Guide to `react-boilerplate`**](docs/general/introduction.md): An introduction for newcomers to this boilerplate.
