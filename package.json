@@ -1,16 +1,16 @@
 {
-  "name": "elo-ranking-app",
-  "version": "0.0.1",
-  "description": "An open-source Elo-based ranking app for foosball (built with react-boilerplate).",
+  "name": "react-boilerplate",
+  "version": "3.4.0",
+  "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jamesroseman/elo-ranking-app.git"
+    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
   },
   "engines": {
     "npm": ">=3",
     "node": ">=5"
   },
-  "author": "James Roseman",
+  "author": "Max Stoiber",
   "license": "MIT",
   "scripts": {
     "analyze:clean": "rimraf stats.json",
