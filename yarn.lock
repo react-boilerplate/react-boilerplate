@@ -1549,7 +1549,7 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-classnames@^2.1.1, classnames@^2.2.5:
+classnames@^2.1.1, classnames@^2.1.3, classnames@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -3128,6 +3128,10 @@ forever-agent@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/forever-agent/-/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
 
+form-data-to-object@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/form-data-to-object/-/form-data-to-object-0.2.0.tgz#f7a8e68ddd910a1100a65e25ac6a484143ff8168"
+
 form-data@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.0.0.tgz#6f0aebadcc5da16c13e1ecc11137d85f9b883b25"
@@ -3149,6 +3153,24 @@ formatio@1.1.1:
   resolved "https://registry.yarnpkg.com/formatio/-/formatio-1.1.1.tgz#5ed3ccd636551097383465d996199100e86161e9"
   dependencies:
     samsam "~1.1"
+
+formsy-material-ui@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/formsy-material-ui/-/formsy-material-ui-0.6.0.tgz#43f72264d0947da6b2b40cfea5f94f2f7fb47bce"
+  dependencies:
+    keycode "^2.1.0"
+
+formsy-react-components@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/formsy-react-components/-/formsy-react-components-0.10.1.tgz#6a1144e5ad801a02ebce4c46e5033e8ee305c41c"
+  dependencies:
+    classnames "^2.1.3"
+
+formsy-react@^0.19.2:
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/formsy-react/-/formsy-react-0.19.2.tgz#7fa818ff93c8c07195486c4d2e42b6da0c0ee4a3"
+  dependencies:
+    form-data-to-object "^0.2.0"
 
 forwarded@~0.1.0:
   version "0.1.0"
@@ -4552,7 +4574,7 @@ jsx-ast-utils@^1.0.0, jsx-ast-utils@^1.3.3:
     acorn-jsx "^3.0.1"
     object-assign "^4.1.0"
 
-keycode@^2.1.8:
+keycode@^2.1.0, keycode@^2.1.8:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.1.9.tgz#964a23c54e4889405b4861a5c9f0480d45141dfa"
 

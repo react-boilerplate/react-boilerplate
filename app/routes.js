@@ -38,7 +38,8 @@ export default function createRoutes(store) {
 
         importModules.catch(errorLoading);
       },
-    }, {
+    }, 
+    {
       path: '/features',
       name: 'features',
       getComponent(nextState, cb) {
@@ -46,7 +47,17 @@ export default function createRoutes(store) {
           .then(loadModule(cb))
           .catch(errorLoading);
       },
-    }, {
+    }, 
+    {
+      path: '/contact-us',
+      name: 'contact-us',
+      getComponent(nextState, cb) {
+        import('containers/ContactUsPage')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    }, 
+    {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

@@ -53,7 +53,6 @@ class Sidebar extends React.Component { // eslint-disable-line react/prefer-stat
 }
 
 
-console.log('nameOfAnimation',Menu)
     return (
       <Menu  styles={ styles } isOpen={ this.isOpen }>
           <HeaderLink to="/" onClick={ this.showSettings() }>
@@ -61,6 +60,9 @@ console.log('nameOfAnimation',Menu)
           </HeaderLink>
           <HeaderLink to="/features">
             <FormattedMessage {...messages.features} />
+          </HeaderLink>
+          <HeaderLink to="/contact-us">
+            <FormattedMessage {...messages.contactUs} />
           </HeaderLink>
       </Menu>
     );

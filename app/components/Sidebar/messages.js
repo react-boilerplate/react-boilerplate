@@ -14,4 +14,8 @@ export default defineMessages({
     id: 'boilerplate.components.Header.features',
     defaultMessage: 'Features',
   },
+  contactUs: {
+    id: 'boilerplate.components.Header.contactUs',
+    defaultMessage: 'Contact Us',
+  },
 });
