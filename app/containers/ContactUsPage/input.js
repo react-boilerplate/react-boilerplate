@@ -1,8 +1,23 @@
-import styled from 'styled-components';
+import React from 'react';
 
-const Input = styled.input`
-  outline: none;
-  border-bottom: 1px dotted #999;
-`;
+import Formsy from 'formsy-react';
+	
+import TextField from 'formsy-material-ui/lib/FormsyText';
 
-export default Input;
+var MyInput = React.createClass({
+  mixins: [Formsy.Mixin],
+  changeValue: function (event) {
+    console.log(this)
+    this.setValue(event.currentTarget.value);
+  },
+  render: function () {
+    return (
+      <TextField name="asdf" 
+      hintText="Your name here" 
+      floatingLabelText="Floating Label Text"
+      type="text" onChange={this.changeValue} value={this.getValue()}/>
+    );
+  }
+});
+ 
+export default MyInput;

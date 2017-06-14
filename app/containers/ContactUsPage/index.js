@@ -8,16 +8,49 @@ import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
 import H1 from 'components/H1';
 import messages from './messages'; 
 import Form from './form'
 import Input from './input'
+
+import Formsy from 'formsy-react';
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import TextField from 'formsy-material-ui/lib/FormsyText';
+import RaisedButton from 'material-ui/RaisedButton';
+
+
+ 
+
 export default class ContactUsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   // Since state and props are static,
   // there's no need to re-render this component
-  shouldComponentUpdate() {
-    return false;
+  
+    mixins: [Formsy.Mixin]
+
+  constructor(props) {
+    super(props);
+  injectTapEventPlugin();
+    this.state = {
+      user: {name:''},
+    };
+  }
+  submit = () => {
+    console.log('i am inside submit')
+    console.log(this.state)
+   
+  };
+
+  changeValue(event) {
+    console.log(this)
+    this.setValue(event.target.value);
+  }
+
+  getValue() {
+    return 'hi value'
   }
 
   render() {
@@ -32,12 +65,19 @@ export default class ContactUsPage extends React.Component { // eslint-disable-l
         <H1>
           <FormattedMessage {...messages.header} /> 
         </H1>
-        <Form onSubmit={(data) => { console.log('fff:ff:',data) }}>
-            <Input
-                name="firstname"
-                label="What is your first name?"
-            />
-        </Form>
+
+  <MuiThemeProvider>
+    <div>
+       <Formsy.Form >
+          
+      <Form name="testform"
+      /> 
+        </Formsy.Form>
+
+    <RaisedButton label="Submit" secondary={true} onTouchTap={this.submit} />
+    </div>
+  </MuiThemeProvider>
+ 
       </div>
     );
   }

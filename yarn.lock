@@ -6434,16 +6434,18 @@ react-side-effect@1.0.2:
   dependencies:
     fbjs "0.1.0-alpha.10"
 
-react-sidebar@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/react-sidebar/-/react-sidebar-2.3.2.tgz#ec140bea8a6f5fa3d8ea7a56479665b44cf4f9cf"
-
 react-table@^6.0.5:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/react-table/-/react-table-6.0.5.tgz#8a0e034e36304722447aed91cb7c069b640d035d"
   dependencies:
     classnames "^2.2.5"
     react-json-tree "^0.10.9"
+
+react-tap-event-plugin@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-tap-event-plugin/-/react-tap-event-plugin-2.0.1.tgz#316beb3bc6556e29ec869a7293e89c826a9074d2"
+  dependencies:
+    fbjs "^0.8.6"
 
 react-transform-catch-errors@^1.0.2:
   version "1.0.2"
