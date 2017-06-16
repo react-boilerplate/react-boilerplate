@@ -71,13 +71,13 @@ module.exports = {
       abortOnFail: true,
     }, {
       type: 'add',
-      path: '../../app/containers/{{properCase name}}/loader.js',
-      templateFile: './container/loader.js.hbs',
+      path: '../../app/containers/{{properCase name}}/Loader.js',
+      templateFile: './container/Loader.js.hbs',
       abortOnFail: true,
     }, {
       type: 'add',
-      path: '../../app/containers/{{properCase name}}/tests/loader.test.js',
-      templateFile: './container/loader.test.js.hbs',
+      path: '../../app/containers/{{properCase name}}/tests/Loader.test.js',
+      templateFile: './container/Loader.test.js.hbs',
       abortOnFail: true,
     }];
 

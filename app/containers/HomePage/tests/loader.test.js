@@ -3,7 +3,7 @@ import createMemoryHistory from 'history/createMemoryHistory';
 import configureStore from 'store';
 
 import HomePage from '../index';
-import loader from '../loader';
+import loader from '../Loader';
 
 describe('HomePage loader', () => {
   const store = configureStore({}, createMemoryHistory());

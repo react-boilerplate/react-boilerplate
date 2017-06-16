@@ -60,13 +60,13 @@ module.exports = {
       abortOnFail: true,
     }, {
       type: 'add',
-      path: '../../app/components/{{properCase name}}/loader.js',
-      templateFile: './component/loader.js.hbs',
+      path: '../../app/components/{{properCase name}}/Loader.js',
+      templateFile: './component/Loader.js.hbs',
       abortOnFail: true,
     }, {
       type: 'add',
-      path: '../../app/components/{{properCase name}}/tests/loader.test.js',
-      templateFile: './component/loader.test.js.hbs',
+      path: '../../app/components/{{properCase name}}/tests/Loader.test.js',
+      templateFile: './component/Loader.test.js.hbs',
       abortOnFail: true,
     }];
 

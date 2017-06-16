@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import AsyncRoute from 'routing/AsyncRoute';
 import { makeSelectLocation } from 'containers/App/selectors';
 
-import loadHomePage from 'containers/HomePage/loader';
+import loadHomePage from 'Loader.js';
 import loadNotFoundPage from 'containers/NotFoundPage/loader';
 
 function Routes({ location }) {

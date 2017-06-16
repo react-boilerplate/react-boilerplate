@@ -1,11 +1,8 @@
 /**
- * Asynchronously loads the components for FeaturePage
+ * Asynchronously loads the component for FeaturePage
  */
+import Loadable from 'routing/Loadable';
 
-import { errorLoading } from 'utils/asyncInjectors';
-
-export default (store, cb) => {
-  import('./index')
-    .then(cb)
-    .catch(errorLoading);
-};
+export default Loadable({
+  loader: () => import('./index'),
+});
