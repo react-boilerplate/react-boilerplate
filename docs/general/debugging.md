@@ -7,7 +7,7 @@
   - [Troubleshooting](#troubleshooting)
   - [Enable ESLint](#enable-eslint)
 
-## Debugging with VS Code
+## Debugging with Visual Studio Code
 
 You can super charge your React debugging workflow with VS Code and Chrome debugging by using this `launch.json` config:
 
@@ -31,6 +31,9 @@ You can super charge your React debugging workflow with VS Code and Chrome debug
 ```
 
 You can read more in [Live edit and debug your React apps directly from VS Code — without leaving the editor 🔥 🎉🎈](https://medium.com/front-end-hacking/live-edit-and-debug-your-react-apps-directly-from-vs-code-without-leaving-the-editor-3da489ed905f)
+
+**Note**: There's currently a [known problem](https://github.com/react-boilerplate/react-boilerplate/pull/1698) with source maps and VS Code. You can change your webpack config to use `inline-source-map` and the issue should be resolved.
+
 
 ## Debugging with WebStorm
 
