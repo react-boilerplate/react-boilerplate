@@ -4,7 +4,7 @@ import { IntlProvider } from 'react-intl';
 
 import RepoListItem from 'containers/RepoListItem';
 import List from 'components/List';
-import LoadingIndicator from 'routing/LoadingIndicator';
+import LoadingIndicator from 'components/LoadingIndicator';
 import ReposList from '../index';
 
 describe('<ReposList />', () => {

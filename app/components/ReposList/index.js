@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 import List from 'components/List';
 import ListItem from 'components/ListItem';
-import LoadingIndicator from 'routing/LoadingIndicator';
+import LoadingIndicator from 'components/LoadingIndicator';
 import RepoListItem from 'containers/RepoListItem';
 
 function ReposList({ loading, error, repos }) {

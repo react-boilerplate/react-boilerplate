@@ -16,7 +16,6 @@ import FeaturePage from 'containers/FeaturePage/Loader';
 import NotFoundPage from 'containers/NotFoundPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import withProgressBar from 'routing/ProgressBar';
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -48,4 +47,4 @@ export function App() {
   );
 }
 
-export default withProgressBar(App);
+export default App;
