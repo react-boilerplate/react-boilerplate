@@ -55,7 +55,7 @@ import createTeamPageLoader from 'containers/TeamPage/loader';
 class AboutPage extends React.PureComponent {
 
   static contextTypes = {
-    store: React.PropTypes.object,
+    store: PropTypes.object,
   };
 
 

@@ -7,6 +7,7 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 
 import AsyncRoute from 'routing/AsyncRoute';
 import { makeSelectLocation } from 'containers/App/selectors';
@@ -28,7 +29,7 @@ function Routes({ location }) {
 }
 
 Routes.propTypes = {
-  location: React.PropTypes.object,
+  location: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

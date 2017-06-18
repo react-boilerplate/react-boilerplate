@@ -7,6 +7,7 @@
 
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 /**
  * A wrapper component that will lazily render a component after it has been loaded.
@@ -14,7 +15,7 @@ import { Route } from 'react-router-dom';
 class Bundle extends Component {
 
   static contextTypes = {
-    store: React.PropTypes.object,
+    store: PropTypes.object,
   };
 
   state = {
@@ -53,8 +54,8 @@ class Bundle extends Component {
 }
 
 Bundle.propTypes = {
-  children: React.PropTypes.node,
-  load: React.PropTypes.func,
+  children: PropTypes.node,
+  load: PropTypes.func,
 };
 
 const AsyncRoute = ({ load, ...others }) => (
@@ -66,8 +67,8 @@ const AsyncRoute = ({ load, ...others }) => (
 );
 
 AsyncRoute.propTypes = {
-  path: React.PropTypes.string,
-  load: React.PropTypes.func,
+  path: PropTypes.string,
+  load: PropTypes.func,
 };
 
 export default AsyncRoute;

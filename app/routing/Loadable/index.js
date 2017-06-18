@@ -1,13 +1,14 @@
 import React from 'react';
 import Loadable from 'react-loadable';
+import PropTypes from 'prop-types';
 
 import { getAsyncInjectors } from 'utils/asyncInjectors';
 
 export default ({ loader, LoadingComponent: CustomLoadingComponent, ...rest }) =>
   class RbLoadable extends React.Component {
     static contextTypes = {
-      store: React.PropTypes.object,
-      defaultLoadingComponent: React.PropTypes.any,
+      store: PropTypes.object,
+      defaultLoadingComponent: PropTypes.any,
     };
 
     loaderWithAsyncInjectors = () => {

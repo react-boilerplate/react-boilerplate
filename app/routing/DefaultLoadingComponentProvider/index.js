@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class DefaultLoadingComponentProvider extends React.Component {
   static childContextTypes = {
-    defaultLoadingComponent: React.PropTypes.any,
+    defaultLoadingComponent: PropTypes.any,
   };
 
   static propTypes = {
-    component: React.PropTypes.any,
-    children: React.PropTypes.node,
+    component: PropTypes.any,
+    children: PropTypes.node,
   };
 
   getChildContext = () => ({
