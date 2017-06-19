@@ -33,6 +33,11 @@ module.exports = {
     name: 'wantMessages',
     default: true,
     message: 'Do you want i18n messages (i.e. will this component use text)?',
+  }, {
+    type: 'confirm',
+    name: 'wantLoadable',
+    default: false,
+    message: 'Do you want an async loader?',
   }],
   actions: (data) => {
     // Generate index.js and index.test.js
@@ -58,16 +63,6 @@ module.exports = {
       path: '../../app/components/{{properCase name}}/tests/index.test.js',
       templateFile: './component/test.js.hbs',
       abortOnFail: true,
-    }, {
-      type: 'add',
-      path: '../../app/components/{{properCase name}}/Loader.js',
-      templateFile: './component/Loader.js.hbs',
-      abortOnFail: true,
-    }, {
-      type: 'add',
-      path: '../../app/components/{{properCase name}}/tests/Loader.test.js',
-      templateFile: './component/Loader.test.js.hbs',
-      abortOnFail: true,
     }];
 
     // If they want a i18n messages file
@@ -76,6 +71,16 @@ module.exports = {
         type: 'add',
         path: '../../app/components/{{properCase name}}/messages.js',
         templateFile: './component/messages.js.hbs',
+        abortOnFail: true,
+      });
+    }
+
+    // If want Loadable.js to load the component asynchronously
+    if (data.wantLoadable) {
+      actions.push({
+        type: 'add',
+        path: '../../app/components/{{properCase name}}/Loadable.js',
+        templateFile: './component/loadable.js.hbs',
         abortOnFail: true,
       });
     }

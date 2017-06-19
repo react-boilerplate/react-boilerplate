@@ -16,5 +16,5 @@ export default Loadable({
       import('./sagas'),
       import('./index'),
     ])
-      .then(handleLoadedModules(injectReducer, injectSagas)),
+    .then(handleLoadedModules(injectReducer, injectSagas)),
 });
