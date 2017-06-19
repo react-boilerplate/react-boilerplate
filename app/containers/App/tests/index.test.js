@@ -1,11 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { Route } from 'react-router-dom';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-
-import Routes from 'routes';
-
 import { App } from '../index';
 
 describe('<App />', () => {
@@ -16,11 +14,11 @@ describe('<App />', () => {
     expect(renderedComponent.find(Header).length).toBe(1);
   });
 
-  it('should render routes', () => {
+  it('should render some routes', () => {
     const renderedComponent = shallow(
       <App />
     );
-    expect(renderedComponent.find(Routes).length).toBe(1);
+    expect(renderedComponent.find(Route).length).not.toBe(0);
   });
 
   it('should render the footer', () => {

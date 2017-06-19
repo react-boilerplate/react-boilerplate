@@ -1,11 +1,11 @@
 import React from 'react';
-import Loadable from 'react-loadable';
+import ReactLoadable from 'react-loadable';
 import PropTypes from 'prop-types';
 
 import { getAsyncInjectors } from 'utils/asyncInjectors';
 
-export default ({ loader, LoadingComponent: CustomLoadingComponent, ...rest }) =>
-  class RbLoadable extends React.Component {
+const Loadable = ({ loader, LoadingComponent: CustomLoadingComponent, ...rest }) =>
+  class InnerLoadable extends React.Component {
     static contextTypes = {
       store: PropTypes.object,
       defaultLoadingComponent: PropTypes.any,
@@ -21,7 +21,7 @@ export default ({ loader, LoadingComponent: CustomLoadingComponent, ...rest }) =
 
     emptyLoadingComponent = () => null;
 
-    loadableComponent = Loadable({
+    loadableComponent = ReactLoadable({
       ...rest,
       loader: this.loaderWithAsyncInjectors,
       LoadingComponent: CustomLoadingComponent || this.context.defaultLoadingComponent || this.emptyLoadingComponent,
@@ -31,3 +31,5 @@ export default ({ loader, LoadingComponent: CustomLoadingComponent, ...rest }) =
       return <this.loadableComponent />;
     }
   };
+
+export default Loadable;
