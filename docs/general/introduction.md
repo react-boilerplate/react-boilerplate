@@ -97,26 +97,14 @@ Webpack requires an entry point to your application. Think of it as a door to yo
 - `babel-polyfill` is imported. This enables cool stuff like generator functions, `Promise`s, etc.
 - A redux `store` is instantiated.
 - A `history` object is created, which remembers all the browsing history for your app. This is used by the router to know which page your users visit. (very useful for analytics, by the way)
-- A Router is set up, with all of your routes. See [`routes.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/routes.js)
+- A Router is connected to Redux.
+- A component that will be shown in place of a loaded component is set with the help of `DefaultLoadingComponentProvider`
 - Hot module replacement setup.
 - i18n internationalization support setup.
 - Offline plugin support to make your app [offline-first](https://developers.google.com/web/fundamentals/getting-started/codelabs/offline/).
 - `ReactDOM.render()` not only renders the [root react component](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/index.js) called `<App />`, of your application, but it renders it with `<Provider />`, `<LanguageProvider />` and `<Router />`.
  * `<Provider />` connects your app with the redux `store`.
- * `<LanguageProvider />` provides language translation support to your app.
- * `<Router />` will have information for your application routes.
-
-### React Router:
-
-`<Router />` sets up your routes. Check out [`routes.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/routes.js) to see how route `path`s are mapped with application containers.
-
-- Path `"/"` corresponds to container `<HomePage />`
-- Path `"/features"` corresponds to container `<FeaturePage />`
-- Path `"*"` i.e. all other paths correspond to the `<NotFoundPage />` (i.e. the 404 page)
-
-These containers, along with their corresponding reducer and sagas, are loaded asynchronously with the help of dynamic `import()`. Whenever webpack encounters `import()` in the code, it creates a separate file for those imports. That means for every route, there will be a separate file. And by corollary, only those javascript files will be downloaded by the browser which are required for the current route.
-
-**When you navigate to `"/"`, only files related to the Homepage will be downloaded and subsequently executed. This makes your application incredibly lightweight and lightning fast.**
+ * `<LanguageProvider />` provides language translation support to your app. 
 
 ### Redux
 

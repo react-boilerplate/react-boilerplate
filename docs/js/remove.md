@@ -18,11 +18,10 @@ If you really want to get rid of it, you will have to delete its traces from sev
 2. Remove function `injectAsyncSagas`.
 3. Do not export `injectSagas: injectAsyncSagas(store, true)`.
 
-**app/routes.js**
+**app/components/\*/Loadable.js, app/containers/\*/Loadable.js**
 
-1. Do not pull out `injectSagas` from `getAsyncInjectors()`.
-2. Remove `sagas` from `importModules.then()`.
-3. Remove `injectSagas(sagas.default)` from every route that uses Saga.
+1. Remove imported `sagas` from `loader`.
+2. Remove saga injection: `injectSagas(sagas.default)`.
 
 **Finally, remove it from the `package.json`. Then you should be good to go with whatever
 side-effect management library you want to use!**
