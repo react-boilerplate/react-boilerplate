@@ -7,20 +7,16 @@
 import Loadable from 'routing/Loadable';
 
 export default Loadable({
-  loader: ({ {{#if wantActionsAndReducer}}injectReducer, {{/if}}{{#if wantSagas}}injectSagas{{/if}} }) =>
+  loader: ({ injectReducer{{#if wantSagas}}, injectSagas{{/if}} }) =>
     Promise.all([
-      {{#if wantActionsAndReducer}}
-      import('./reducer'),
-      {{/if}}
+      import({{#unless wantLoadable}}/* webpackMode: "eager" */ {{/unless}}'./reducer'),
       {{#if wantSagas}}
-      import('./sagas'),
+      import({{#unless wantLoadable}}/* webpackMode: "eager" */ {{/unless}}'./sagas'),
       {{/if}}
-      import('./index'),
+      import({{#unless wantLoadable}}/* webpackMode: "eager" */ {{/unless}}'./index'),
     ])
-    .then(([{{#if wantActionsAndReducer}}reducer, {{/if}}{{#if wantSagas}}sagas{{/if}}, component]) => {
-      {{#if wantActionsAndReducer}}
+    .then(([reducer, {{#if wantSagas}}sagas, {{/if}}component]) => {
       injectReducer('{{ camelCase name }}', reducer.default);
-      {{/if}}
       {{#if wantSagas}}
       injectSagas(sagas.default);
       {{/if}}

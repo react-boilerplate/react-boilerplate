@@ -48,7 +48,7 @@ module.exports = {
     type: 'confirm',
     name: 'wantLoadable',
     default: true,
-    message: 'Do you want an async loader?',
+    message: 'Do you want to load resources asynchronously?',
   }],
   actions: (data) => {
     // Generate index.js and index.test.js
@@ -156,12 +156,19 @@ module.exports = {
       });
     }
 
-    // If want Loadable.js to load the component asynchronously
-    if (data.wantLoadable) {
+    // If want sagas or reducer add Loadable.js
+    if (data.wantActionsAndReducer || data.wantSagas) {
       actions.push({
         type: 'add',
         path: '../../app/containers/{{properCase name}}/Loadable.js',
         templateFile: './container/loadable.js.hbs',
+        abortOnFail: true,
+      });
+    } else if (data.wantLoadable) { // want async component only
+      actions.push({
+        type: 'add',
+        path: '../../app/containers/{{properCase name}}/Loadable.js',
+        templateFile: './component/loadable.js.hbs',
         abortOnFail: true,
       });
     }

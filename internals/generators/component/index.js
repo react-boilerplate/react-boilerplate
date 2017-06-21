@@ -37,7 +37,7 @@ module.exports = {
     type: 'confirm',
     name: 'wantLoadable',
     default: false,
-    message: 'Do you want an async loader?',
+    message: 'Do you want to load the component asynchronously?',
   }],
   actions: (data) => {
     // Generate index.js and index.test.js
