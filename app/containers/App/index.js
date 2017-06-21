@@ -26,7 +26,7 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-export class App extends React.Component {
+export class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <AppWrapper>
@@ -34,13 +34,13 @@ export class App extends React.Component {
           titleTemplate="%s - React.js Boilerplate"
           defaultTitle="React.js Boilerplate"
         >
-          <meta name="description" content="A React.js Boilerplate application"/>
+          <meta name="description" content="A React.js Boilerplate application" />
         </Helmet>
         <Header />
         <Switch>
-          <Route exact path="/" component={HomePage}/>
-          <Route path="/features" component={FeaturePage}/>
-          <Route path="" component={NotFoundPage}/>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/features" component={FeaturePage} />
+          <Route path="" component={NotFoundPage} />
         </Switch>
         <Footer />
       </AppWrapper>
