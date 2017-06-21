@@ -10,7 +10,7 @@ for more information)
 
 ## Usage
 
-To add a new route, simply import the `Route` component and use it standalone or inside the `Switch` component (all part of RR4 API):
+To add a new route, simply import the `Route` component and use it standalone or inside the `Switch` component (all part of [RR4 API](https://reacttraining.com/react-router/web/api)):
 
 ```JS
 <Route exact path="/" component={HomePage} />
