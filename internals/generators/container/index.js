@@ -44,6 +44,11 @@ module.exports = {
     name: 'wantMessages',
     default: true,
     message: 'Do you want i18n messages (i.e. will this component use text)?',
+  }, {
+    type: 'confirm',
+    name: 'wantLoadable',
+    default: true,
+    message: 'Do you want to load resources asynchronously?',
   }],
   actions: (data) => {
     // Generate index.js and index.test.js
@@ -68,16 +73,6 @@ module.exports = {
       type: 'add',
       path: '../../app/containers/{{properCase name}}/tests/index.test.js',
       templateFile: './container/test.js.hbs',
-      abortOnFail: true,
-    }, {
-      type: 'add',
-      path: '../../app/containers/{{properCase name}}/loader.js',
-      templateFile: './container/loader.js.hbs',
-      abortOnFail: true,
-    }, {
-      type: 'add',
-      path: '../../app/containers/{{properCase name}}/tests/loader.test.js',
-      templateFile: './container/loader.test.js.hbs',
       abortOnFail: true,
     }];
 
@@ -157,6 +152,23 @@ module.exports = {
         type: 'add',
         path: '../../app/containers/{{properCase name}}/tests/sagas.test.js',
         templateFile: './container/sagas.test.js.hbs',
+        abortOnFail: true,
+      });
+    }
+
+    // If want sagas or reducer add Loadable.js
+    if (data.wantActionsAndReducer || data.wantSagas) {
+      actions.push({
+        type: 'add',
+        path: '../../app/containers/{{properCase name}}/Loadable.js',
+        templateFile: './container/loadable.js.hbs',
+        abortOnFail: true,
+      });
+    } else if (data.wantLoadable) { // want async component only
+      actions.push({
+        type: 'add',
+        path: '../../app/containers/{{properCase name}}/Loadable.js',
+        templateFile: './component/loadable.js.hbs',
         abortOnFail: true,
       });
     }

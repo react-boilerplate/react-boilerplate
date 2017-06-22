@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`getRepos Saga should call the repoLoadingError action if the response errors 1`] = `
 Object {
   "@@redux-saga/IO": true,

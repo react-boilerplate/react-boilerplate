@@ -17,4 +17,12 @@ describe('<FeaturePage />', () => {
       </H1>
     )).toBe(true);
   });
+
+  it('should never re-render the component', () => {
+    const renderedComponent = shallow(
+      <FeaturePage />
+    );
+    const inst = renderedComponent.instance();
+    expect(inst.shouldComponentUpdate()).toBe(false);
+  });
 });

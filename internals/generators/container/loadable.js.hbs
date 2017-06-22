@@ -1,0 +1,26 @@
+/**
+ *
+ * Asynchronously loads the component for {{ properCase name }}
+ *
+ */
+
+import Loadable from 'routing/Loadable';
+
+export default Loadable({
+  loader: ({ injectReducer{{#if wantSagas}}, injectSagas{{/if}} }) =>
+    Promise.all([
+      import({{#unless wantLoadable}}/* webpackMode: "eager" */ {{/unless}}'./reducer'),
+      {{#if wantSagas}}
+      import({{#unless wantLoadable}}/* webpackMode: "eager" */ {{/unless}}'./sagas'),
+      {{/if}}
+      import({{#unless wantLoadable}}/* webpackMode: "eager" */ {{/unless}}'./index'),
+    ])
+    .then(([reducer, {{#if wantSagas}}sagas, {{/if}}component]) => {
+      injectReducer('{{ camelCase name }}', reducer.default);
+      {{#if wantSagas}}
+      injectSagas(sagas.default);
+      {{/if}}
+
+      return component;
+    }),
+});

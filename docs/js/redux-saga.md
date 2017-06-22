@@ -47,27 +47,22 @@ export function* sagaName() {
 }
 ```
 
-Then, in your `routes.js`, add injection for the newly added saga:
+Then, in your `Loadable.js`, add injection for the newly added saga:
 
 ```JS
-getComponent(nextState, cb) {
-  const importModules = Promise.all([
-    import('containers/YourComponent/reducer'),
-    import('containers/YourComponent/sagas'),
-    import('containers/YourComponent'),
-  ]);
-
-  const renderRoute = loadModule(cb);
-
-  importModules.then(([reducer, sagas, component]) => {
-    injectReducer('home', reducer.default);
-    injectSagas(sagas.default); // Inject the saga
-
-    renderRoute(component);
-  });
-
-  importModules.catch(errorLoading);
-},
+export default Loadable({
+  loader: ({ injectReducer, injectSagas }) =>
+    Promise.all([
+      import('./reducer'),
+      import('./sagas'),
+      import('./index'),
+    ])
+    .then(([reducer, sagas, component]) => {
+      injectReducer('home', reducer.default);
+      injectSagas(sagas.default);
+      return component;
+    }),
+});
 ```
 
 Now add as many sagas to your `sagas.js` file as you want!

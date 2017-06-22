@@ -12,26 +12,23 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import { Switch, Route } from 'react-router-dom';
 
-import Routes from 'routes';
+import HomePage from 'containers/HomePage/Loadable';
+import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
-import { makeSelectLocation } from './selectors';
-
-export class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
     return (
       <div>
-        <Routes />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="" component={NotFoundPage} />
+        </Switch>
       </div>
     );
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  location: makeSelectLocation(),
-});
-
-export default connect(mapStateToProps)(App);
+export default App;

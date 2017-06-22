@@ -10,15 +10,15 @@ for more information)
 
 ## Usage
 
-To add a new route, use the generator with `npm run generate route`.
-
-This is what a standard (generated) route looks like for a container:
+To add a new route, simply import the `Route` component and use it standalone or inside the `Switch` component (all part of [RR4 API](https://reacttraining.com/react-router/web/api)):
 
 ```JS
-<AsyncRoute
-  exact path="/" load={createHomePageLoader(store)}
-/>
+<Route exact path="/" component={HomePage} />
 ```
+
+Top level routes are located in `App.js`.
+
+If you want your route component (or any component for that matter) to be loaded asynchronously, use container or component generator with 'Do you want an async loader?' option activated. 
 
 To go to a new page use the `push` function by `react-router-redux`:
 
@@ -29,111 +29,27 @@ dispatch(push('/some/page'));
 ```
 
 ## Child Routes
-`npm run generate route` does not currently support automatically generating child routes if you need them, but they can be created manually.
-With React Router v4, it is the job of a parent component to render child routes.
+For example, if you have a route called `about` at `/about` and want to make a child route called `team` at `/about/our-team`, follow the example
+in `App.js` to create a `Switch` within the parent component. Also remove the `exact` property from the `about` parent route.
 
-For example, if you have a route called `about` at `/about` and want to make a child route called `team` at `/about/our-team`, first use
-the standard usage to generate a route to the parent page at `/about` and edit routes.js to remove the term exact. Then, follow the example
-in routes.js to create a `Switch` within the parent component.
-
-routes.js
 ```JS
-/* your app's other routes would already be in this component */
-<AsyncRoute
-  path="/about" load={createAboutPageLoader(store)}
-/>
-```
-
-AboutPage/index.js
-```JS
-import { Switch } from 'react-router';
-
-import AsyncRoute from 'routing/AsyncRoute';
-
-import createTeamPageLoader from 'containers/TeamPage/loader';
+// AboutPage/index.js
+import { Switch, Route } from 'react-router-dom';
 
 class AboutPage extends React.PureComponent {
-
-  static contextTypes = {
-    store: React.PropTypes.object,
-  };
-
-
   render() {
-    const store = this.context.store;
     return (
       <Switch>
-        <AsyncRoute
-          exact path="/about/our-team" load={createTeamPageLoader(store)}
-        />
+        <Route exact path="/about/our-team" />
       </Switch>
     );
   }
 }
 ```
 
-Note that with React Router v4, route re-rendering is handled by React's standard shouldComponentUpdate check. This
-means that when using a redux connected component or `PureComponent`, it is necessary for the component to have the
-location in its props to be able to re-render on location change. Any component directly rendered by `AsyncRoute` or
-`Route` will have a location prop, but for other cases, use `makeSelectLocation` in `containers/App/selectors` to select
-the location from the redux store in the parent page to ensure child routes re-render correctly.
+Note that with React Router v4, route re-rendering is handled by React's `setState`. This
+means that when using a redux connected component or `PureComponent` with a component that contains routes, it is necessary for the component to have the
+location in its props to be able to re-render on location change. Use `makeSelectLocation` in `containers/App/selectors` to select
+the location from the redux store in the parent page to ensure child routes re-render correctly. Read more about this in [Dealing with Update Blocking](https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking).
 
-## Dynamic routes
-
-To go to a dynamic route such as 'post/:slug' eg 'post/cool-new-post', firstly add the route to your `routes.js`, as per documentation:
-
-```JS
-<AsyncRoute
-  exact path="/posts/:slug" load={createPostLoader(store)}
-/>
-```
-
-###Container:
-
-```JSX
-<Link to={`/posts/${post.slug}`} key={post._id}>
-```
-
-Clickable link with payload (you could use push if needed).
-
-###Action:
-
-```JS
-export function getPost(slug) {
-  return {
-    type: LOAD_POST,
-    slug,
-  };
-}
-
-export function postLoaded(post) {
-  return {
-    type: LOAD_POST_SUCCESS,
-    podcast,
-  };
-}
-```
-
-###Saga:
-
-```JS
-const { slug } = yield take(LOAD_POST);
-yield call(getXhrPodcast, slug);
-
-export function* getXhrPodcast(slug) {
-  const requestURL = `http://your.api.com/api/posts/${slug}`;
-  const post = yield call(request, requestURL);
-  if (!post.err) {
-    yield put(postLoaded(post));
-  } else {
-    yield put(postLoadingError(post.err));
-  }
-}
-```
-
-Wait (`take`) for the LOAD_POST constant, which contains the slug payload from the `getPost()` function in actions.js.
-
-When the action is fired then dispatch the `getXhrPodcast()` function to get the response from your api. On success dispatch the `postLoaded()` action (`yield put`) which sends back the response and can be added into the reducer state.
-
-
-You can read more on [`react-router`'s documentation](https://reacttraining.com/react-router/web/api).
+You can read more in [`react-router`'s documentation](https://reacttraining.com/react-router/web/api).
