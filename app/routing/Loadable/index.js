@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { getAsyncInjectors } from 'utils/asyncInjectors';
 
-const Loadable = ({ loader, LoadingComponent: CustomLoadingComponent, ...rest }) =>
+const Loadable = ({ loader, loading: CustomLoadingComponent, ...rest }) =>
   class InnerLoadable extends React.Component {
     static contextTypes = {
       store: PropTypes.object,
@@ -24,7 +24,7 @@ const Loadable = ({ loader, LoadingComponent: CustomLoadingComponent, ...rest })
     loadableComponent = ReactLoadable({
       ...rest,
       loader: this.loaderWithAsyncInjectors,
-      LoadingComponent: CustomLoadingComponent || this.context.defaultLoadingComponent || this.emptyLoadingComponent,
+      loading: CustomLoadingComponent || this.context.defaultLoadingComponent || this.emptyLoadingComponent,
     });
 
     render() {
