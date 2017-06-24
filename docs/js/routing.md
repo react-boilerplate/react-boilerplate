@@ -17,20 +17,17 @@ This is what a standard (generated) route looks like for a container:
 ```JS
 {
   path: '/',
-  name: 'home',
-  getComponent(nextState, cb) {
+  getComponent: memoizeComponent((renderRoute) => {
     const importModules = Promise.all([
       import('containers/HomePage')
     ]);
-
-    const renderRoute = loadModule(cb);
 
     importModules.then(([component]) => {
       renderRoute(component);
     });
 
     importModules.catch(errorLoading);
-  },
+  }),
 }
 ```
 
@@ -51,37 +48,31 @@ For example, if you have a route called `about` at `/about` and want to make a c
 /* your app's other routes would already be in this array */
 {
   path: '/about',
-  name: 'about',
-  getComponent(nextState, cb) {
+  getComponent: memoizeComponent((renderRoute) => {
     const importModules = Promise.all([
       import('containers/AboutPage'),
     ]);
-
-    const renderRoute = loadModule(cb);
 
     importModules.then(([component]) => {
       renderRoute(component);
     });
 
     importModules.catch(errorLoading);
-  },
+  }),
   childRoutes: [
     {
       path: '/about/our-team',
-      name: 'team',
-      getComponent(nextState, cb) {
+      getComponent: memoizeComponent((renderRoute) => {
         const importModules = Promise.all([
           import('containers/TeamPage'),
         ]);
-
-        const renderRoute = loadModule(cb);
 
         importModules.then(([component]) => {
           renderRoute(component);
         });
 
         importModules.catch(errorLoading);
-      },
+      }),
     },
   ]
 }
@@ -94,34 +85,29 @@ To add an index route, use the following pattern:
 ```JS
 {
   path: '/',
-  name: 'home',
-  getComponent(nextState, cb) {
+  getComponent: memoizeComponent((renderRoute) => {
     const importModules = Promise.all([
       import('containers/HomePage')
     ]);
-
-    const renderRoute = loadModule(cb);
 
     importModules.then(([component]) => {
       renderRoute(component);
     });
 
     importModules.catch(errorLoading);
-  },
+  }),
   indexRoute: {
-    getComponent(partialNextState, cb) {
+    getComponent: memoizeComponent((renderRoute) => {
       const importModules = Promise.all([
         import('containers/HomeView')
       ]);
-
-      const renderRoute = loadModule(cb);
 
       importModules.then(([component]) => {
         renderRoute(component);
       });
 
       importModules.catch(errorLoading);
-    },
+    }),
   },
 }
 ```
@@ -132,24 +118,21 @@ To go to a dynamic route such as 'post/:slug' eg 'post/cool-new-post', firstly a
 
 ```JS
 path: '/posts/:slug',
-name: 'post',
-getComponent(nextState, cb) {
- const importModules = Promise.all([
-   import('containers/Post/reducer'),
-   import('containers/Post/sagas'),
-   import('containers/Post'),
- ]);
+getComponent: memoizeComponent((renderRoute) => {
+  const importModules = Promise.all([
+    import('containers/Post/reducer'),
+    import('containers/Post/sagas'),
+    import('containers/Post'),
+  ]);
 
- const renderRoute = loadModule(cb);
+  importModules.then(([reducer, sagas, component]) => {
+    injectReducer('post', reducer.default);
+    injectSagas(sagas.default);
+    renderRoute(component);
+  });
 
- importModules.then(([reducer, sagas, component]) => {
-   injectReducer('post', reducer.default);
-   injectSagas(sagas.default);
-   renderRoute(component);
- });
-
- importModules.catch(errorLoading);
-},
+  importModules.catch(errorLoading);
+}),
 ```
 
 ###Container:

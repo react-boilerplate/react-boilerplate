@@ -1,8 +1,8 @@
  {
       path: '{{ path }}',
-      getComponent(location, cb) {
+      getComponent: memoizeComponent((renderRoute) => {
         import('{{{directory (properCase component)}}}')
-          .then(loadModule(cb))
+          .then(renderRoute)
           .catch(errorLoading);
-      },
+      }),
     },$1
