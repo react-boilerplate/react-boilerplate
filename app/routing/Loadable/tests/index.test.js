@@ -49,22 +49,22 @@ describe('Loadable', () => {
     const LoadableComponent = Loadable({ loader });
     shallow(<LoadableComponent />, { context: { defaultLoadingComponent } });
 
-    expect(ReactLoadable.mock.calls[0][0].LoadingComponent).toBe(defaultLoadingComponent);
+    expect(ReactLoadable.mock.calls[0][0].loading).toBe(defaultLoadingComponent);
   });
 
-  it('should favor custom LoadingComponent over a default loading component', () => {
-    const LoadingComponent = () => null;
-    const LoadableComponent = Loadable({ loader, LoadingComponent });
+  it('should favor custom loading component over a default loading component', () => {
+    const loading = () => null;
+    const LoadableComponent = Loadable({ loader, loading });
     shallow(<LoadableComponent />, { context: { defaultLoadingComponent } });
 
-    expect(ReactLoadable.mock.calls[0][0].LoadingComponent).toBe(LoadingComponent);
+    expect(ReactLoadable.mock.calls[0][0].loading).toBe(loading);
   });
 
   it('should return empty component if default and custom loading components are not passed', () => {
     const LoadableComponent = Loadable({ loader });
     const renderedComponent = shallow(<LoadableComponent />);
 
-    expect(ReactLoadable.mock.calls[0][0].LoadingComponent).toBe(renderedComponent.instance().emptyLoadingComponent);
+    expect(ReactLoadable.mock.calls[0][0].loading).toBe(renderedComponent.instance().emptyLoadingComponent);
     expect(renderedComponent.instance().emptyLoadingComponent()).toBe(null);
   });
 

@@ -28,7 +28,7 @@ if (process.env.NODE_ENV !== 'production') {
   DefaultLoadingComponentProvider.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
     warning(
       this.defaultLoadingComponent === nextProps.component,
-      '<DefaultLoadingComponentProvider> does not support dynamic <LoadingComponent>'
+      '<DefaultLoadingComponentProvider> does not support dynamic loading component'
     );
   };
 }

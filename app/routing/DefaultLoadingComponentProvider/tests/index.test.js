@@ -35,7 +35,7 @@ describe('DefaultLoadingComponentProvider', () => {
     expect(renderedComponent.instance().getChildContext().defaultLoadingComponent).toBe(loadingComponent);
   });
 
-  it('should warn against using dynamic <LoadingComponent>', () => {
+  it('should warn against using dynamic loading component', () => {
     const loadingComponent2 = () => null;
 
     const renderedComponent = shallow(
@@ -46,6 +46,6 @@ describe('DefaultLoadingComponentProvider', () => {
 
     renderedComponent.setProps({ component: loadingComponent2 });
 
-    expect(warning).toHaveBeenCalledWith(false, '<DefaultLoadingComponentProvider> does not support dynamic <LoadingComponent>');
+    expect(warning).toHaveBeenCalledWith(false, '<DefaultLoadingComponentProvider> does not support dynamic loading component');
   });
 });

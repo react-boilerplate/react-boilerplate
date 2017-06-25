@@ -22,17 +22,17 @@ export default Loadable({
       injectSagas(sagas.default);
       return component;
     }),
-  LoadingComponent: () => (<div>Loading...</div>)
+  loading: () => (<div>Loading...</div>)
 });
 ```
 
 `routing/Loadable` accepts the same arguments as `react-loadable`. In addition it passes
 async injectors to the `loader`: `loader: ({ injectReducer, injectSagas })` that you can 
-use to inject reducers and sagas. It also allows to configure default `LoadingComponent`.
+use to inject reducers and sagas. It also allows to configure default `loading` component.
 
-## Set default `LoadingComponent`
+## Set default `loading` component
 You can use `routing/DefaultLoadingComponentProvider` to set a component that will be used 
-as a loading component if `LoadingComponent` option is missing. For an example 
+as a loading component if `loading` option is missing. For an example 
 take a look at `app.js` in the demo app:
 
 ```JS
