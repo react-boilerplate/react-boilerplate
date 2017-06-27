@@ -17,7 +17,7 @@ Here's a curated list of packages that you should have knowledge of, before star
 - [ ] [React](https://facebook.github.io/react/)
 - [ ] [React Router](https://github.com/ReactTraining/react-router)
 - [ ] [Redux](http://redux.js.org/)
-- [ ] [Redux Saga](http://yelouafi.github.io/redux-saga/)
+- [ ] [Redux Saga](https://redux-saga.js.org/)
 - [ ] [Reselect](https://github.com/reactjs/reselect)
 - [ ] [ImmutableJS](https://facebook.github.io/immutable-js/)
 - [ ] [Styled Components](https://github.com/styled-components/styled-components)
