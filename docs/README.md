@@ -22,7 +22,6 @@
   - [Using Sass](css/sass.md)
 - [JS](js)
   - [Redux](js/redux.md)
-  - [ImmutableJS](js/immutablejs.md)
   - [reselect](js/reselect.md)
   - [redux-saga](js/redux-saga.md)
   - [i18n](js/i18n.md)

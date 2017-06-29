@@ -3,15 +3,10 @@
  */
 
 import { createSelector } from 'reselect';
+import { prop } from 'ramda';
 
-const selectHome = (state) => state.get('home');
+const selectHome = prop('home');
 
-const makeSelectUsername = () => createSelector(
-  selectHome,
-  (homeState) => homeState.get('username')
-);
+const makeSelectUsername = () => createSelector(selectHome, prop('username'));
 
-export {
-  selectHome,
-  makeSelectUsername,
-};
+export { selectHome, makeSelectUsername };

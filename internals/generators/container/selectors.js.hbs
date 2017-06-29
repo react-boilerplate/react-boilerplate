@@ -1,9 +1,10 @@
 import { createSelector } from 'reselect';
+import { prop } from 'ramda';
 
 /**
  * Direct selector to the {{ camelCase name }} state domain
  */
-const select{{ properCase name }}Domain = () => (state) => state.get('{{ camelCase name }}');
+const select{{ properCase name }}Domain = () => prop('{{ camelCase name }}');
 
 /**
  * Other specific selectors
@@ -15,8 +16,7 @@ const select{{ properCase name }}Domain = () => (state) => state.get('{{ camelCa
  */
 
 const makeSelect{{ properCase name }} = () => createSelector(
-  select{{ properCase name }}Domain(),
-  (substate) => substate.toJS()
+  select{{ properCase name }}Domain()
 );
 
 export default makeSelect{{ properCase name }};
