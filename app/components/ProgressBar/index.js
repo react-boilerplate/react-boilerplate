@@ -34,6 +34,11 @@ function withProgressBar(WrappedComponent) {
           loadedRoutes: loadedRoutes.concat([pathname]),
         });
       }
+      
+      // Complete progress when route is replaced and user is returned back to previous route. Otherwise loader will not stop.
+      if (newProps.location.action === 'REPLACE' && progress !== -1 && progress === newState.progress && loadedRoutes.indexOf(pathname) !== -1) {
+        this.updateProgress(100);
+      }
     }
 
     componentWillUnmount() {
