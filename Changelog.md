@@ -82,7 +82,6 @@ website!
   tests are now co-located with the code that they validate.
 
 - **New industry-standard JS utilities** We're now making the most of...
-    - ImmutableJS
     - reselect
     - react-router-redux
     - redux-saga

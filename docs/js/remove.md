@@ -38,20 +38,19 @@ You'll also need to hook up the history directly to the store. Make changes to `
 2. Make necessary changes to `history` as follows:
 
 ```js
+import { equals } from 'ramda';
 
 const makeSelectLocationState = () => {
   let prevRoutingState;
-  let prevRoutingStateJS;
 
   return (state) => {
-    const routingState = state.get('route'); // or state.route
+    const routingState = state.route;
 
-    if (!routingState.equals(prevRoutingState)) {
+    if (!equals(routingState, prevRoutingState)) {
       prevRoutingState = routingState;
-      prevRoutingStateJS = routingState.toJS();
     }
 
-    return prevRoutingStateJS;
+    return prevRoutingState;
   };
 };
 

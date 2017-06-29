@@ -18,7 +18,7 @@ Simple selectors are just that: they take the application state and select a
 part of it.
 
 ```javascript
-const mySelector = (state) => state.get('someState');
+const mySelector = (state) => state.someState;
 
 export {
   mySelector,
@@ -37,7 +37,7 @@ import mySelector from 'mySelector';
 
 const myComplexSelector = createSelector(
   mySelector,
-  (myState) => myState.get('someNestedState')
+  (myState) => myState.someNestedState
 );
 
 export {

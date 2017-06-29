@@ -3,42 +3,31 @@
  */
 
 import { createSelector } from 'reselect';
+import { path, prop, equals } from 'ramda';
 
-const selectGlobal = (state) => state.get('global');
+const selectGlobal = prop('global');
 
-const makeSelectCurrentUser = () => createSelector(
-  selectGlobal,
-  (globalState) => globalState.get('currentUser')
-);
+const makeSelectCurrentUser = () =>
+  createSelector(selectGlobal, prop('currentUser'));
 
-const makeSelectLoading = () => createSelector(
-  selectGlobal,
-  (globalState) => globalState.get('loading')
-);
+const makeSelectLoading = () => createSelector(selectGlobal, prop('loading'));
 
-const makeSelectError = () => createSelector(
-  selectGlobal,
-  (globalState) => globalState.get('error')
-);
+const makeSelectError = () => createSelector(selectGlobal, prop('error'));
 
-const makeSelectRepos = () => createSelector(
-  selectGlobal,
-  (globalState) => globalState.getIn(['userData', 'repositories'])
-);
+const makeSelectRepos = () =>
+  createSelector(selectGlobal, path(['userData', 'repositories']));
 
 const makeSelectLocationState = () => {
   let prevRoutingState;
-  let prevRoutingStateJS;
 
   return (state) => {
-    const routingState = state.get('route'); // or state.route
+    const routingState = state.route; // or state.route
 
-    if (!routingState.equals(prevRoutingState)) {
+    if (!equals(routingState, prevRoutingState)) {
       prevRoutingState = routingState;
-      prevRoutingStateJS = routingState.toJS();
     }
 
-    return prevRoutingStateJS;
+    return prevRoutingState;
   };
 };
 
