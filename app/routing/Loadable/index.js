@@ -28,7 +28,7 @@ const Loadable = ({ loader, loading: CustomLoadingComponent, ...rest }) =>
     });
 
     render() {
-      return <this.loadableComponent />;
+      return <this.loadableComponent {...this.props} />;
     }
   };
 
