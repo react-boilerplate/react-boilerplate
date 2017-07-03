@@ -147,7 +147,6 @@ This project would not be possible without the support by these amazing folks. [
 <a href="https://opencollective.com/react-boilerplate/backer/9/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/9/avatar.svg"></a>
 
 
-## License
-
-This project is licensed under the MIT license, Copyright (c) 2017 Maximilian
-Stoiber. For more information see `LICENSE.md`.
+# Abdul ALeem
+popup notification
+https://github.com/LouisBarranqueiro/reapop
