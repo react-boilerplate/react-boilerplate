@@ -140,40 +140,6 @@ call that includes all of them by default.
 
 *See [this and the following lesson](https://egghead.io/lessons/javascript-redux-reducer-composition-with-arrays?course=getting-started-with-redux) of the egghead.io Redux course for more information about reducer composition!*
 
-### How do I run the saga?
-
-Since a container will always be within a route, one we can simply add it to the exported array in
-`sagas.js` of the route container somewhere up the tree:
-
-```JS
-// /containers/SomeContainer/sagas.js
-
-import { someOtherSagaFromNestedContainer } from './containers/SomeNestedContainer/sagas';
-
-function* someSaga() { /* … */ }
-
-export default [
-  someSaga,
-  someOtherSagaFromNestedContainer,
-];
-```
-
-Or, if you have multiple sagas in the nested container:
-
-
-```JS
-// /containers/SomeContainer/sagas.js
-
-import nestedContainerSagas from './containers/SomeNestedContainer/sagas';
-
-function* someSaga() { /* … */ }
-
-export default [
-  someSaga,
-  ...nestedContainerSagas,
-];
-```
-
 ## Using this boilerplate with WebStorm
 
 WebStorm is a powerful IDE, and why not also use it as debugger tool? Here is the steps

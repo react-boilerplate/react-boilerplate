@@ -221,6 +221,7 @@
     "express": "4.15.3",
     "fontfaceobserver": "2.0.9",
     "history": "4.6.1",
+    "hoist-non-react-statics": "2.0.0",
     "immutable": "3.8.1",
     "intl": "1.2.5",
     "invariant": "2.2.2",

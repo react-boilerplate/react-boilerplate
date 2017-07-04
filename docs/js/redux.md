@@ -9,6 +9,45 @@ and/or watch this [free video tutorial series](https://egghead.io/series/getting
 See above! As minimal as Redux is, the challenge it addresses - app state
 management - is a complex topic that is too involved to properly discuss here.
 
+You can attach a dynamic reducer to a component whether it's a regular component
+or a component that will be loaded dynamically. Dynamic means that it will be 
+injected when the component it attached to is mounted. In your component's `index.js`:
+
+```JS
+import injectReducer from 'utils/injectReducer';
+import reducer from './reducer';
+
+// ...
+
+export function mapDispatchToProps(dispatch) {
+  // ...
+}
+
+const mapStateToProps = createStructuredSelector({
+  // ...
+});
+
+const withMappedState = connect(mapStateToProps, mapDispatchToProps);
+
+// `mode` is an optional argument, default value is 'restart-on-remount'
+const withReducer = injectReducer({ name: 'yourcomponent', reducer });
+
+export default compose(
+  // Put `withReducer` before `withMappedState` 
+  withReducer,
+  withMappedState,
+)(YourComponent);
+```
+You don't need to do it by hand, a `container` generator will generate everything
+that's necessary. 
+
+A `mode` argument can be one of these two values:
+
+- `restart-on-remount` (default value)—starts a reducer when a component is being 
+mounted and removes it in `componentWillUnmount` for improved 
+performance;
+- `daemon`—starts a reducer on component mount and never removes it.
+
 ## Removing redux
 
 There are a few reasons why we chose to bundle redux with React Boilerplate, the

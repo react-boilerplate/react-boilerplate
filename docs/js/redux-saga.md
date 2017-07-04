@@ -29,43 +29,47 @@ some examples! (read [this comparison](https://stackoverflow.com/questions/34930
 ## Usage
 
 Sagas are associated with a container, just like actions, constants, selectors
-and reducers. If your container already has a `sagas.js` file, simply add your
-saga to that. If your container does not yet have a `sagas.js` file, add one with
+and reducers. If your container already has a `saga.js` file, simply add your
+saga to that. If your container does not yet have a `saga.js` file, add one with
 this boilerplate structure:
 
 ```JS
 import { take, call, put, select } from 'redux-saga/effects';
 
-// Your sagas for this container
-export default [
-  sagaName,
-];
-
-// Individual exports for testing
-export function* sagaName() {
-
+// Root saga
+export default function* sagaName() {
+  // if necessary, start multiple sagas at once with `all` 
+  yield all([
+    helloSaga(),
+    watchIncrementAsync()
+  ]);
 }
 ```
 
-Then, in your `Loadable.js`, add injection for the newly added saga:
+Then, in your `index.js`, use a decorator to inject the root saga:
 
 ```JS
-export default Loadable({
-  loader: ({ injectReducer, injectSagas }) =>
-    Promise.all([
-      import('./reducer'),
-      import('./sagas'),
-      import('./index'),
-    ])
-    .then(([reducer, sagas, component]) => {
-      injectReducer('home', reducer.default);
-      injectSagas(sagas.default);
-      return component;
-    }),
-});
+import injectSaga from 'utils/injectSaga';
+import saga from './saga';
+
+// ...
+
+// `mode` is an optional argument, default value is 'restart-on-remount'
+const withSaga = injectSaga({ name: 'yourcomponent', saga, mode: 'restart-on-remount' });
+
+export default compose(
+  withSaga,
+)(YourComponent);
 ```
 
-Now add as many sagas to your `sagas.js` file as you want!
+A `mode` argument can be one of three values:
+
+- `restart-on-remount` (default value)—starts a saga when a component is being mounted 
+and cancels with `task.cancel()` on component un-mount for improved performance;
+- `daemon`—starts a saga on component mount and never cancels it or starts again;
+- `once-till-unmount`—behaves like 'restart-on-remount' but never runs the saga again.
+
+Now add as many sagas to your `saga.js` file as you want!
 
 ---
 
