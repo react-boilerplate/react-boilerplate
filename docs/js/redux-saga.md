@@ -34,15 +34,15 @@ saga to that. If your container does not yet have a `saga.js` file, add one with
 this boilerplate structure:
 
 ```JS
-import { take, call, put, select } from 'redux-saga/effects';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
 
 // Root saga
-export default function* sagaName() {
+export default function* rootSaga() {
   // if necessary, start multiple sagas at once with `all` 
-  yield all([
-    helloSaga(),
-    watchIncrementAsync()
-  ]);
+  yield [
+    takeLatest(LOAD_REPOS, getRepos),
+    takeLatest(LOAD_USERS, getUsers),
+  ];
 }
 ```
 
