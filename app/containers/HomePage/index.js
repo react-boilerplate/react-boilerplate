@@ -121,7 +121,7 @@ const mapStateToProps = createStructuredSelector({
   error: makeSelectError(),
 });
 
-const withMappedState = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 const withReducer = injectReducer({ name: 'home', reducer });
 const withSaga = injectSaga({ name: 'home', saga });
@@ -129,5 +129,5 @@ const withSaga = injectSaga({ name: 'home', saga });
 export default compose(
   withReducer,
   withSaga,
-  withMappedState,
+  withConnect,
 )(HomePage);

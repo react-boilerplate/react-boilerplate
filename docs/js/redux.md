@@ -27,15 +27,15 @@ const mapStateToProps = createStructuredSelector({
   // ...
 });
 
-const withMappedState = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 // `mode` is an optional argument, default value is 'restart-on-remount'
 const withReducer = injectReducer({ name: 'yourcomponent', reducer });
 
 export default compose(
-  // Put `withReducer` before `withMappedState` 
+  // Put `withReducer` before `withConnect` 
   withReducer,
-  withMappedState,
+  withConnect,
 )(YourComponent);
 ```
 You don't need to do it by hand, a `container` generator will generate everything
