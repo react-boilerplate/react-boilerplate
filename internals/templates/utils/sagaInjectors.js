@@ -52,11 +52,8 @@ export function ejectSagaFactory(store, isValid) {
 
     checkMode(mode);
 
-    if (Reflect.has(store.injectedSagas, key)) {
-      const { task } = store.injectedSagas[key];
-      if (task && mode !== DAEMON) {
-        task.cancel();
-      }
+    if (mode !== DAEMON && Reflect.has(store.injectedSagas, key)) {
+      store.injectedSagas[key].task.cancel();
     }
   };
 }
