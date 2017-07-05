@@ -70,12 +70,12 @@ function mapDispatchToProps(dispatch) {
 {{#if wantActionsAndReducer}}
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ name: '{{ lowerCase name }}', reducer });
+const withReducer = injectReducer({ key: '{{ lowerCase name }}', reducer });
 {{else}}
 const withConnect = connect(null, mapDispatchToProps);
 {{/if}}
 {{#if wantSaga}}
-const withSaga = injectSaga({ name: '{{ lowerCase name }}', saga });
+const withSaga = injectSaga({ key: '{{ lowerCase name }}', saga });
 {{/if}}
 
 export default compose(

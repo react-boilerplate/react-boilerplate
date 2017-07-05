@@ -55,7 +55,7 @@ import saga from './saga';
 // ...
 
 // `mode` is an optional argument, default value is 'restart-on-remount'
-const withSaga = injectSaga({ name: 'yourcomponent', saga, mode: 'restart-on-remount' });
+const withSaga = injectSaga({ key: 'yourcomponent', saga, mode: 'restart-on-remount' });
 
 export default compose(
   withSaga,

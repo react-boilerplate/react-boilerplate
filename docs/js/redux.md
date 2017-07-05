@@ -30,7 +30,7 @@ const mapStateToProps = createStructuredSelector({
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 // `mode` is an optional argument, default value is 'restart-on-remount'
-const withReducer = injectReducer({ name: 'yourcomponent', reducer });
+const withReducer = injectReducer({ key: 'yourcomponent', reducer });
 
 export default compose(
   // Put `withReducer` before `withConnect` 

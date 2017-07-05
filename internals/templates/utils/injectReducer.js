@@ -4,7 +4,16 @@ import hoistNonReactStatics from 'hoist-non-react-statics';
 
 import getInjectors from './reducerInjectors';
 
-export default ({ name, reducer, mode }) => (WrappedComponent) => {
+/**
+ * Dynamically injects a reducer
+ *
+ * @param {string} key A key of the reducer
+ * @param {function} reducer A reducer that will be injected
+ * @param {string} [mode] By default ('restart-on-remount') the reducer will be started on component mount and removed
+ * on component un-mount for improved performance. Another option is 'daemon' that starts the reducer on component mount and
+ * never removes it.
+ */
+export default ({ key, reducer, mode }) => (WrappedComponent) => {
   class ReducerInjector extends React.Component {
     static WrappedComponent = WrappedComponent;
     static contextTypes = {
@@ -15,13 +24,13 @@ export default ({ name, reducer, mode }) => (WrappedComponent) => {
     componentWillMount() {
       const { injectReducer } = this.injectors;
 
-      injectReducer(name, reducer);
+      injectReducer(key, reducer);
     }
 
     componentWillUnmount() {
       const { ejectReducer } = this.injectors;
 
-      ejectReducer(name, mode);
+      ejectReducer(key, mode);
     }
 
     injectors = getInjectors(this.context.store);

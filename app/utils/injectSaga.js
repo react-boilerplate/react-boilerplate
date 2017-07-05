@@ -7,14 +7,14 @@ import getInjectors from './sagaInjectors';
 /**
  * Dynamically injects a saga, passes component's props as saga arguments
  *
- * @param {string} name Name of the saga
+ * @param {string} key A key of the saga
  * @param {function} saga A root saga that will be injected
  * @param {string} [mode] By default ('restart-on-remount') the saga will be started on component mount and cancelled with
  * `task.cancel()` on component un-mount for improved performance. Another two options: 'daemon'—starts the saga on
  * component mount and never cancels it or starts again, 'once-till-unmount'—behaves like 'restart-on-remount' but never
  * runs it again.
  */
-export default ({ name, saga, mode }) => (WrappedComponent) => {
+export default ({ key, saga, mode }) => (WrappedComponent) => {
   class InjectSaga extends React.Component {
     static WrappedComponent = WrappedComponent;
     static contextTypes = {
@@ -25,13 +25,13 @@ export default ({ name, saga, mode }) => (WrappedComponent) => {
     componentWillMount() {
       const { injectSaga } = this.injectors;
 
-      injectSaga(name, saga, this.props, mode);
+      injectSaga(key, saga, this.props, mode);
     }
 
     componentWillUnmount() {
       const { ejectSaga } = this.injectors;
 
-      ejectSaga(name, mode);
+      ejectSaga(key, mode);
     }
 
     injectors = getInjectors(this.context.store);

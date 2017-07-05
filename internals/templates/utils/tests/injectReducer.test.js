@@ -31,7 +31,7 @@ describe('injectReducer decorator', () => {
       injectReducer: jest.fn(),
       ejectReducer: jest.fn(),
     };
-    ComponentWithReducer = injectReducer({ name: 'test', reducer, mode: 'testMode' })(Component);
+    ComponentWithReducer = injectReducer({ key: 'test', reducer, mode: 'testMode' })(Component);
     reducerInjectors.default.mockClear();
   });
 
@@ -42,7 +42,7 @@ describe('injectReducer decorator', () => {
     expect(injectors.injectReducer).toHaveBeenCalledWith('test', reducer);
   });
 
-  it('should eject on unmount with a proper reducer name, and mode', () => {
+  it('should eject on unmount with a proper reducer key, and mode', () => {
     const props = { test: 'test' };
     const renderedComponent = shallow(<ComponentWithReducer {...props} />, { context: { store } });
     renderedComponent.unmount();
@@ -53,7 +53,7 @@ describe('injectReducer decorator', () => {
 
   it('should set a correct display name', () => {
     expect(ComponentWithReducer.displayName).toBe('withReducer(Component)');
-    expect(injectReducer({ name: 'test', reducer })(() => null).displayName).toBe('withReducer(Component)');
+    expect(injectReducer({ key: 'test', reducer })(() => null).displayName).toBe('withReducer(Component)');
   });
 
   it('should propagate props', () => {

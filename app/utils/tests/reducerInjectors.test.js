@@ -66,7 +66,7 @@ describe('reducer injectors', () => {
       expect(() => ejectReducer('test')).not.toThrow();
     });
 
-    it('should validate reducer\'s name', () => {
+    it('should validate reducer\'s key', () => {
       const ejectReducer = ejectReducerFactory(store, true);
 
       expect(() => ejectReducer('')).toThrow();
@@ -123,7 +123,7 @@ describe('reducer injectors', () => {
       expect(() => injectReducer('test', reducer)).not.toThrow();
     });
 
-    it('should validate a reducer and reducer\'s name', () => {
+    it('should validate a reducer and reducer\'s key', () => {
       const injectReducer = injectReducerFactory(store, true);
 
       expect(() => injectReducer('', reducer)).toThrow();

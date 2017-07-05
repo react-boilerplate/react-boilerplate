@@ -21,7 +21,7 @@ If you really want to get rid of it, you will have to delete its traces from sev
 
 Clean up containers that inject a dynamic saga
  
-1. Remove saga injections like: `const withSaga = injectSaga({ name: 'home', saga });`.
+1. Remove saga injections like: `const withSaga = injectSaga({ key: 'home', saga });`.
 
 **Finally, remove it from the `package.json`. Then you should be good to go with whatever
 side-effect management library you want to use!**

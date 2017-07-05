@@ -57,7 +57,7 @@ describe('injectors', () => {
       expect(() => ejectSaga('test')).not.toThrow();
     });
 
-    it('should validate saga\'s name', () => {
+    it('should validate saga\'s key', () => {
       const ejectSaga = ejectSagaFactory(store, true);
 
       expect(() => ejectSaga('')).toThrow();
@@ -121,7 +121,7 @@ describe('injectors', () => {
       expect(() => injectSaga('test', testSaga)).not.toThrow();
     });
 
-    it('should validate a saga and saga\'s name', () => {
+    it('should validate a saga and saga\'s key', () => {
       const injectSaga = injectSagaFactory(store, true);
 
       expect(() => injectSaga('', testSaga)).toThrow();

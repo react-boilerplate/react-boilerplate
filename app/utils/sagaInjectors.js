@@ -12,43 +12,43 @@ const checkMode = (mode) => invariant(
 );
 
 export function injectSagaFactory(store, isValid) {
-  return function injectSaga(name, saga, args, mode = 'restart-on-remount') {
+  return function injectSaga(key, saga, args, mode = 'restart-on-remount') {
     if (!isValid) checkStore(store);
 
     invariant(
-      isString(name) && !isEmpty(name) && isFunction(saga),
+      isString(key) && !isEmpty(key) && isFunction(saga),
       '(app/utils...) injectSaga: Expected `saga` to be a generator function'
     );
 
     checkMode(mode);
 
-    let hasSaga = Reflect.has(store.injectedSagas, name);
+    let hasSaga = Reflect.has(store.injectedSagas, key);
 
     // enable hot reloading of daemon and once-till-unmount sagas
-    if (hasSaga && store.injectedSagas[name].saga !== saga) {
-      store.injectedSagas[name].task.cancel();
+    if (hasSaga && store.injectedSagas[key].saga !== saga) {
+      store.injectedSagas[key].task.cancel();
       hasSaga = false;
     }
 
     if (!hasSaga || (hasSaga && mode !== 'daemon' && mode !== 'once-till-unmount')) {
-      store.injectedSagas[name] = { saga, task: store.runSaga(saga, args) }; // eslint-disable-line no-param-reassign
+      store.injectedSagas[key] = { saga, task: store.runSaga(saga, args) }; // eslint-disable-line no-param-reassign
     }
   };
 }
 
 export function ejectSagaFactory(store, isValid) {
-  return function ejectSaga(name, mode = 'restart-on-remount') {
+  return function ejectSaga(key, mode = 'restart-on-remount') {
     if (!isValid) checkStore(store);
 
     invariant(
-      isString(name) && !isEmpty(name),
-      '(app/utils...) injectSaga: Expected `name` to be a non empty string'
+      isString(key) && !isEmpty(key),
+      '(app/utils...) injectSaga: Expected `key` to be a non empty string'
     );
 
     checkMode(mode);
 
-    if (Reflect.has(store.injectedSagas, name)) {
-      const { task } = store.injectedSagas[name];
+    if (Reflect.has(store.injectedSagas, key)) {
+      const { task } = store.injectedSagas[key];
       if (task && mode !== 'daemon') {
         task.cancel();
       }
