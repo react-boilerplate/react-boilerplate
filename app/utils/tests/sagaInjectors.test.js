@@ -10,6 +10,11 @@ import getInjectors, {
   injectSagaFactory,
   ejectSagaFactory,
 } from '../sagaInjectors';
+import {
+  DAEMON,
+  ONCE_TILL_UNMOUNT,
+  RESTART_ON_REMOUNT,
+} from '../constants';
 
 function* testSaga() {
   yield put({ type: 'TEST', payload: 'yup' });
@@ -73,9 +78,9 @@ describe('injectors', () => {
 
       expect(() => ejectSaga('test', 'testMode')).toThrow();
       expect(() => ejectSaga('test', 1)).toThrow();
-      expect(() => ejectSaga('test1', 'restart-on-remount')).not.toThrow();
-      expect(() => ejectSaga('test2', 'daemon')).not.toThrow();
-      expect(() => ejectSaga('test3', 'once-till-unmount')).not.toThrow();
+      expect(() => ejectSaga('test1', RESTART_ON_REMOUNT)).not.toThrow();
+      expect(() => ejectSaga('test2', DAEMON)).not.toThrow();
+      expect(() => ejectSaga('test3', ONCE_TILL_UNMOUNT)).not.toThrow();
     });
 
     it('should cancel a saga in a default mode', () => {
@@ -91,7 +96,7 @@ describe('injectors', () => {
       const cancel = jest.fn();
       store.injectedSagas.test = { task: { cancel } };
       const ejectSaga = ejectSagaFactory(store, true);
-      ejectSaga('test', 'daemon');
+      ejectSaga('test', DAEMON);
 
       expect(cancel).not.toHaveBeenCalled();
     });
@@ -134,9 +139,9 @@ describe('injectors', () => {
 
       expect(() => injectSaga('test', testSaga, null, 'testMode')).toThrow();
       expect(() => injectSaga('test', testSaga, null, 1)).toThrow();
-      expect(() => injectSaga('test', testSaga, null, 'restart-on-remount')).not.toThrow();
-      expect(() => injectSaga('test', testSaga, null, 'daemon')).not.toThrow();
-      expect(() => injectSaga('test', testSaga, null, 'once-till-unmount')).not.toThrow();
+      expect(() => injectSaga('test', testSaga, null, RESTART_ON_REMOUNT)).not.toThrow();
+      expect(() => injectSaga('test', testSaga, null, DAEMON)).not.toThrow();
+      expect(() => injectSaga('test', testSaga, null, ONCE_TILL_UNMOUNT)).not.toThrow();
     });
 
     it('should pass args to saga.run', () => {
@@ -152,10 +157,10 @@ describe('injectors', () => {
       const injectSaga = injectSagaFactory(store);
       store.runSaga = jest.fn();
 
-      injectSaga('test1', testSaga, null, 'daemon');
-      injectSaga('test1', testSaga, null, 'daemon');
-      injectSaga('test2', testSaga, null, 'once-till-unmount');
-      injectSaga('test2', testSaga, null, 'once-till-unmount');
+      injectSaga('test1', testSaga, null, DAEMON);
+      injectSaga('test1', testSaga, null, DAEMON);
+      injectSaga('test2', testSaga, null, ONCE_TILL_UNMOUNT);
+      injectSaga('test2', testSaga, null, ONCE_TILL_UNMOUNT);
 
       expect(store.runSaga).toHaveBeenCalledTimes(2);
     });
@@ -165,8 +170,8 @@ describe('injectors', () => {
       store.runSaga = jest.fn();
 
       injectSaga('test1', testSaga);
-      injectSaga('test2', testSaga, null, 'daemon');
-      injectSaga('test3', testSaga, null, 'once-till-unmount');
+      injectSaga('test2', testSaga, null, DAEMON);
+      injectSaga('test3', testSaga, null, ONCE_TILL_UNMOUNT);
 
       expect(store.runSaga).toHaveBeenCalledTimes(3);
     });

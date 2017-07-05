@@ -5,8 +5,12 @@ import isString from 'lodash/isString';
 
 import checkStore from './checkStore';
 import createReducer from '../reducers';
+import {
+  DAEMON,
+  RESTART_ON_REMOUNT,
+} from './constants';
 
-const allowedModes = ['restart-on-remount', 'daemon'];
+const allowedModes = [RESTART_ON_REMOUNT, DAEMON];
 
 export function injectReducerFactory(store, isValid) {
   return function injectReducer(key, reducer) {
@@ -27,7 +31,7 @@ export function injectReducerFactory(store, isValid) {
 }
 
 export function ejectReducerFactory(store, isValid) {
-  return function ejectReducer(key, mode = 'restart-on-remount') {
+  return function ejectReducer(key, mode = RESTART_ON_REMOUNT) {
     if (!isValid) checkStore(store);
 
     invariant(
@@ -40,7 +44,7 @@ export function ejectReducerFactory(store, isValid) {
       `(app/utils...) injectReducer: Expected \`mode\` to be one of: ${allowedModes.join(', ')}`
     );
 
-    if (mode !== 'daemon') {
+    if (mode !== DAEMON) {
       Reflect.deleteProperty(store.injectedReducers, key);
       store.replaceReducer(createReducer(store.injectedReducers));
     }

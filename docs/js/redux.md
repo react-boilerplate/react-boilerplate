@@ -15,6 +15,7 @@ injected when the component it attached to is mounted. In your component's `inde
 
 ```JS
 import injectReducer from 'utils/injectReducer';
+import { RESTART_ON_REMOUNT } from 'utils/constants';
 import reducer from './reducer';
 
 // ...
@@ -29,8 +30,8 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-// `mode` is an optional argument, default value is 'restart-on-remount'
-const withReducer = injectReducer({ key: 'yourcomponent', reducer });
+// `mode` is an optional argument, default value is `RESTART_ON_REMOUNT`
+const withReducer = injectReducer({ key: 'yourcomponent', reducer, mode: RESTART_ON_REMOUNT });
 
 export default compose(
   // Put `withReducer` before `withConnect` 
@@ -41,12 +42,12 @@ export default compose(
 You don't need to do it by hand, a `container` generator will generate everything
 that's necessary. 
 
-A `mode` argument can be one of these two values:
+A `mode` argument can be one of these two constants (import them from `utils/constants`):
 
-- `restart-on-remount` (default value)—starts a reducer when a component is being 
+- `RESTART_ON_REMOUNT` (default value)—starts a reducer when a component is being 
 mounted and removes it in `componentWillUnmount` for improved 
 performance;
-- `daemon`—starts a reducer on component mount and never removes it.
+- `DAEMON`—starts a reducer on component mount and never removes it.
 
 ## Removing redux
 

@@ -50,24 +50,25 @@ Then, in your `index.js`, use a decorator to inject the root saga:
 
 ```JS
 import injectSaga from 'utils/injectSaga';
+import { RESTART_ON_REMOUNT } from 'utils/constants';
 import saga from './saga';
 
 // ...
 
-// `mode` is an optional argument, default value is 'restart-on-remount'
-const withSaga = injectSaga({ key: 'yourcomponent', saga, mode: 'restart-on-remount' });
+// `mode` is an optional argument, default value is `RESTART_ON_REMOUNT`
+const withSaga = injectSaga({ key: 'yourcomponent', saga, mode: RESTART_ON_REMOUNT });
 
 export default compose(
   withSaga,
 )(YourComponent);
 ```
 
-A `mode` argument can be one of three values:
+A `mode` argument can be one of three constants (import them from `utils/constants`):
 
-- `restart-on-remount` (default value)—starts a saga when a component is being mounted 
+- `RESTART_ON_REMOUNT` (default value)—starts a saga when a component is being mounted 
 and cancels with `task.cancel()` on component un-mount for improved performance;
-- `daemon`—starts a saga on component mount and never cancels it or starts again;
-- `once-till-unmount`—behaves like 'restart-on-remount' but never runs the saga again.
+- `DAEMON`—starts a saga on component mount and never cancels it or starts again;
+- `ONCE_TILL_UNMOUNT`—behaves like `RESTART_ON_REMOUNT` but never runs the saga again.
 
 Now add as many sagas to your `saga.js` file as you want!
 

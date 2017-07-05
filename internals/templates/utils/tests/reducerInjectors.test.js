@@ -12,6 +12,10 @@ import getInjectors, {
   injectReducerFactory,
   ejectReducerFactory,
 } from '../reducerInjectors';
+import {
+  DAEMON,
+  RESTART_ON_REMOUNT,
+} from '../constants';
 
 // Fixtures
 
@@ -78,8 +82,8 @@ describe('reducer injectors', () => {
 
       expect(() => ejectReducer('test', 'testMode')).toThrow();
       expect(() => ejectReducer('test', 1)).toThrow();
-      expect(() => ejectReducer('test', 'restart-on-remount')).not.toThrow();
-      expect(() => ejectReducer('test', 'daemon')).not.toThrow();
+      expect(() => ejectReducer('test', RESTART_ON_REMOUNT)).not.toThrow();
+      expect(() => ejectReducer('test', DAEMON)).not.toThrow();
     });
 
     it('should remove a reducer from a store in a default mode', () => {
@@ -98,7 +102,7 @@ describe('reducer injectors', () => {
       const injectReducer = injectReducerFactory(store, true);
       injectReducer('test', reducer);
       store.replaceReducer = jest.fn();
-      ejectReducer('test', 'daemon');
+      ejectReducer('test', DAEMON);
 
       expect(store.injectedReducers).toEqual({ test: reducer });
       expect(store.replaceReducer).not.toHaveBeenCalled();
