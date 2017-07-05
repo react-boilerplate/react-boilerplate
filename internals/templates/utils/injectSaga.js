@@ -13,6 +13,7 @@ import getInjectors from './sagaInjectors';
  * cancelled with `task.cancel()` on component un-mount for improved performance. Another two options:
  *   - constants.DAEMON—starts the saga on component mount and never cancels it or starts again,
  *   - constants.ONCE_TILL_UNMOUNT—behaves like 'RESTART_ON_REMOUNT' but never runs it again.
+ *
  */
 export default ({ key, saga, mode }) => (WrappedComponent) => {
   class InjectSaga extends React.Component {

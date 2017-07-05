@@ -31,7 +31,7 @@ export function injectReducerFactory(store, isValid) {
 }
 
 export function ejectReducerFactory(store, isValid) {
-  return function ejectReducer(key, mode = RESTART_ON_REMOUNT) {
+  return function ejectReducer(key, mode = DAEMON) {
     if (!isValid) checkStore(store);
 
     invariant(

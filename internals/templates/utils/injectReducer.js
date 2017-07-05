@@ -9,9 +9,10 @@ import getInjectors from './reducerInjectors';
  *
  * @param {string} key A key of the reducer
  * @param {function} reducer A reducer that will be injected
- * @param {string} [mode] By default (constants.RESTART_ON_REMOUNT) the reducer will be started on component mount and
- * removed on component un-mount for improved performance. Another option is constants.DAEMON mode that starts the
- * reducer on component mount and never removes it.
+ * @param {string} [mode] By default (constants.DAEMON) the reducer is injected on component mount and is never removed.
+ * Another option is constants.RESTART_ON_REMOUNT—the reducer is started when component mounts and is removed on
+ * component un-mount for improved performance.
+ *
  */
 export default ({ key, reducer, mode }) => (WrappedComponent) => {
   class ReducerInjector extends React.Component {

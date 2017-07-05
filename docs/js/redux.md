@@ -30,7 +30,7 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-// `mode` is an optional argument, default value is `RESTART_ON_REMOUNT`
+// `mode` is an optional argument, default mode is `DAEMON`
 const withReducer = injectReducer({ key: 'yourcomponent', reducer, mode: RESTART_ON_REMOUNT });
 
 export default compose(
@@ -44,10 +44,12 @@ that's necessary.
 
 A `mode` argument can be one of these two constants (import them from `utils/constants`):
 
-- `RESTART_ON_REMOUNT` (default value)—starts a reducer when a component is being 
-mounted and removes it in `componentWillUnmount` for improved 
-performance;
-- `DAEMON`—starts a reducer on component mount and never removes it.
+- `DAEMON` (default mode)—starts a reducer on component mount and never removes it;
+- `RESTART_ON_REMOUNT`—starts a reducer when a component is being mounted and 
+removes it in `componentWillUnmount` for improved performance. This mode could 
+come in handy for a complex app with a big number of reducers, just be careful
+not to put here sub reducers that are meant to handle actions for the rest of the 
+app's life as they will only function for as long as the component remains on the page.
 
 ## Removing redux
 

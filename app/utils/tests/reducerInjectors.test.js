@@ -86,14 +86,14 @@ describe('reducer injectors', () => {
       expect(() => ejectReducer('test', DAEMON)).not.toThrow();
     });
 
-    it('should remove a reducer from a store in a default mode', () => {
+    it('should not remove a reducer from a store in a default mode', () => {
       const ejectReducer = ejectReducerFactory(store, true);
       const injectReducer = injectReducerFactory(store, true);
       store.replaceReducer = jest.fn();
       injectReducer('test', reducer);
       ejectReducer('test');
 
-      expect(store.injectedReducers).toEqual({});
+      expect(store.injectedReducers).toEqual({ test: reducer });
       expect(store.replaceReducer).toHaveBeenCalled();
     });
 
