@@ -36,7 +36,7 @@ module.exports = {
     message: 'Do you want an actions/constants/selectors/reducer tuple for this container?',
   }, {
     type: 'confirm',
-    name: 'wantSagas',
+    name: 'wantSaga',
     default: true,
     message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
   }, {
@@ -141,30 +141,22 @@ module.exports = {
     }
 
     // Sagas
-    if (data.wantSagas) {
+    if (data.wantSaga) {
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/sagas.js',
-        templateFile: './container/sagas.js.hbs',
+        path: '../../app/containers/{{properCase name}}/saga.js',
+        templateFile: './container/saga.js.hbs',
         abortOnFail: true,
       });
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/tests/sagas.test.js',
-        templateFile: './container/sagas.test.js.hbs',
+        path: '../../app/containers/{{properCase name}}/tests/saga.test.js',
+        templateFile: './container/saga.test.js.hbs',
         abortOnFail: true,
       });
     }
 
-    // If want sagas or reducer add Loadable.js
-    if (data.wantActionsAndReducer || data.wantSagas) {
-      actions.push({
-        type: 'add',
-        path: '../../app/containers/{{properCase name}}/Loadable.js',
-        templateFile: './container/loadable.js.hbs',
-        abortOnFail: true,
-      });
-    } else if (data.wantLoadable) { // want async component only
+    if (data.wantLoadable) {
       actions.push({
         type: 'add',
         path: '../../app/containers/{{properCase name}}/Loadable.js',

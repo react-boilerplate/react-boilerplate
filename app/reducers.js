@@ -1,6 +1,5 @@
 /**
  * Combine all reducers in this file and export the combined reducers.
- * If we were to do this in store.js, reducers wouldn't be hot reloadable.
  */
 
 import { fromJS } from 'immutable';
@@ -40,13 +39,13 @@ function routeReducer(state = routeInitialState, action) {
 }
 
 /**
- * Creates the main reducer with the asynchronously loaded ones
+ * Creates the main reducer with the dynamically injected ones
  */
-export default function createReducer(asyncReducers) {
+export default function createReducer(injectedReducers) {
   return combineReducers({
     route: routeReducer,
     global: globalReducer,
     language: languageProviderReducer,
-    ...asyncReducers,
+    ...injectedReducers,
   });
 }
