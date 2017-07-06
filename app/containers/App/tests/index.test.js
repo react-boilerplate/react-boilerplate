@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import { App } from '../index';
+import App from '../index';
 
 describe('<App />', () => {
   it('should render the header', () => {
