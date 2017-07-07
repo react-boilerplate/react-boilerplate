@@ -48,8 +48,9 @@ class AboutPage extends React.PureComponent {
 ```
 
 Note that with React Router v4, route re-rendering is handled by React's `setState`. This
-means that when using a redux connected component or `PureComponent` with a component that contains routes, it is necessary for the component to have the
-location in its props to be able to re-render on location change. Use `makeSelectLocation` in `containers/App/selectors` to select
-the location from the redux store in the parent page to ensure child routes re-render correctly. Read more about this in [Dealing with Update Blocking](https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking).
+means that when wrapping route components in a redux connected container, or `PureComponent` or any other component with 
+`shouldComponentUpdate`, you need to create a [ConnectedSwitch](https://github.com/ReactTraining/react-router/issues/5072#issuecomment-310184271)
+container that receives `location` directly from a redux store. Read more about this in 
+[Dealing with Update Blocking](https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking).
 
 You can read more in [`react-router`'s documentation](https://reacttraining.com/react-router/web/api).

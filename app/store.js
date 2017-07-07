@@ -43,5 +43,18 @@ export default function configureStore(initialState = {}, history) {
   store.injectedReducers = {}; // Reducer registry
   store.injectedSagas = {}; // Saga registry
 
+  // Make reducers hot reloadable, see http://mxs.is/googmo
+  /* istanbul ignore next */
+  if (module.hot) {
+    module.hot.accept('./reducers', () => {
+      import('./reducers').then((reducerModule) => {
+        const createReducers = reducerModule.default;
+        const nextReducers = createReducers(store.injectedReducers);
+
+        store.replaceReducer(nextReducers);
+      });
+    });
+  }
+
   return store;
 }
