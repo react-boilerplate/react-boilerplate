@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { Link } from 'react-router';
 
 import { makeSelectRepos, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
 import H2 from 'components/H2';
@@ -62,19 +63,27 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
               <FormattedMessage {...messages.trymeHeader} />
             </H2>
             <Form onSubmit={this.props.onSubmitForm}>
-              <label htmlFor="username">
-                <FormattedMessage {...messages.trymeMessage} />
-                <AtPrefix>
-                  <FormattedMessage {...messages.trymeAtPrefix} />
-                </AtPrefix>
-                <Input
-                  id="username"
-                  type="text"
-                  placeholder="mxstbr"
-                  value={this.props.username}
-                  onChange={this.props.onChangeUsername}
+              <div>
+                <label htmlFor="username">
+                  <FormattedMessage {...messages.trymeMessage} />
+                  <AtPrefix>
+                    <FormattedMessage {...messages.trymeAtPrefix} />
+                  </AtPrefix>
+                  <Input
+                    id="username"
+                    type="text"
+                    placeholder="mxstbr"
+                    value={this.props.username}
+                    onChange={this.props.onChangeUsername}
+                  />
+                </label>
+                <FormattedMessage
+                  {...messages.userLink}
+                  values={{
+                    link: (<Link to={`/users/${this.props.username}`}>{this.props.username}</Link>),
+                  }}
                 />
-              </label>
+              </div>
             </Form>
             <ReposList {...reposListProps} />
           </Section>

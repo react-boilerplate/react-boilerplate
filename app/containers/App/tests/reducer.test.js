@@ -14,9 +14,9 @@ describe('appReducer', () => {
       loading: false,
       error: false,
       currentUser: false,
-      userData: fromJS({
+      userData: {
         repositories: false,
-      }),
+      },
     });
   });
 
@@ -56,5 +56,27 @@ describe('appReducer', () => {
       .set('loading', false);
 
     expect(appReducer(state, repoLoadingError(fixture))).toEqual(expectedResult);
+  });
+
+  describe('loading state from server', () => {
+    const sampleRepos = [
+      { name: 'sample repo' },
+    ];
+
+    beforeEach(() => {
+      state = fromJS({
+        loading: false,
+        error: false,
+        currentUser: false,
+        userData: {
+          repositories: sampleRepos,
+        },
+      });
+    });
+
+    it('should normalize the repos', () => {
+      const resposInState = appReducer(state, {}).getIn(['userData', 'repositories']);
+      expect(Array.isArray(resposInState)).toBe(true);
+    });
   });
 });

@@ -27,5 +27,8 @@
   "boilerplate.containers.HomePage.tryme.message": "Zeige die Github Repositories von",
   "boilerplate.containers.LocaleToggle.de": "",
   "boilerplate.containers.LocaleToggle.en": "",
-  "boilerplate.containers.NotFoundPage.header": "Seite nicht gefunden."
+  "boilerplate.containers.HomePage.userLink": "",
+  "boilerplate.containers.NotFoundPage.header": "Seite nicht gefunden.",
+  "boilerplate.containers.UserPage.header": "",
+  "boilerplate.containers.UserPage.ssrInfo": ""
 }
