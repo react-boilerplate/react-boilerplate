@@ -24,3 +24,13 @@ describe('configureStore', () => {
     });
   });
 });
+
+describe('configureStore params', () => {
+  it('should call window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__', () => {
+    /* eslint-disable no-underscore-dangle */
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ = jest.fn();
+    configureStore(undefined, browserHistory);
+    expect(window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__).toHaveBeenCalled();
+    /* eslint-enable */
+  });
+});
