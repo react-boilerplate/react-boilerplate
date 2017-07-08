@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import htmlescape from 'htmlescape';
 
 // We use this component only on the server side.
