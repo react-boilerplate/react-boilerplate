@@ -4,8 +4,10 @@
 
 const path = require('path');
 const fs = require('fs');
+const glob = require('glob');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const logger = require('../../server/logger');
 const cheerio = require('cheerio');
@@ -24,6 +26,17 @@ const plugins = [
     failOnError: false, // show a warning when there is a circular dependency
   }),
 ];
+
+if (dllPlugin) {
+  glob.sync(`${dllPlugin.path}/*.dll.js`).forEach((dllPath) => {
+    plugins.push(
+      new AddAssetHtmlPlugin({
+        filepath: dllPath,
+        includeSourcemap: false,
+      })
+    );
+  });
+}
 
 module.exports = require('./webpack.base.babel')({
   // Add hot reloading in development
