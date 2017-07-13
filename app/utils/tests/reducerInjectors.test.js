@@ -2,7 +2,7 @@
  * Test injectors
  */
 
-import { memoryHistory } from 'react-router';
+import { memoryHistory } from 'react-router-dom';
 import { fromJS } from 'immutable';
 import identity from 'lodash/identity';
 
