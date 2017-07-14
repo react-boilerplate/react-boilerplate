@@ -4,26 +4,16 @@
  *
 */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Wrapper from './Wrapper';
 import Percent from './Percent';
 
 class ProgressBar extends React.Component {
 
-  static defaultProps = {
-    percent: -1,
-    autoIncrement: true,
-    intervalTime: 75,
+  state = {
+    percent: this.props.percent,
   };
-
-  constructor(props) {
-    super(props);
-    this.handleProps = this.handleProps.bind(this);
-    this.increment = this.increment.bind(this);
-    this.state = {
-      percent: props.percent,
-    };
-  }
 
   componentDidMount() {
     this.handleProps(this.props);
@@ -56,7 +46,7 @@ class ProgressBar extends React.Component {
     }
   }
 
-  increment() {
+  increment = () => {
     /**
      * Increment the percent randomly.
      * Only used when autoIncrement is set to true.
@@ -69,7 +59,7 @@ class ProgressBar extends React.Component {
     });
   }
 
-  handleProps(props) {
+  handleProps = (props) => {
     /**
      * Increment progress bar if auto increment is set to true
      * and progress percent is less than 99.
@@ -120,6 +110,12 @@ class ProgressBar extends React.Component {
 
 ProgressBar.propTypes = {
   percent: PropTypes.number.isRequired,
+};
+
+ProgressBar.defaultProps = {
+  percent: -1,
+  autoIncrement: true,
+  intervalTime: 75,
 };
 
 export default ProgressBar;

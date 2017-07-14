@@ -12,10 +12,12 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
+import applyRouterMiddleware from 'react-router/lib/applyRouterMiddleware';
+import Router from 'react-router/lib/Router';
+import browserHistory from 'react-router/lib/browserHistory';
 import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
-import { useScroll } from 'react-router-scroll';
+import useScroll from 'react-router-scroll/lib/useScroll';
 import 'sanitize.css/sanitize.css';
 
 // Import selector for `syncHistoryWithStore`
@@ -26,7 +28,18 @@ import LanguageProvider from 'containers/LanguageProvider';
 
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable import/no-webpack-loader-syntax */
-import '!file-loader?name=[name].[ext]!./favicon.ico';
+import '!file-loader?name=[name].[ext]!./images/favicon.ico';
+import '!file-loader?name=[name].[ext]!./images/icon-72x72.png';
+import '!file-loader?name=[name].[ext]!./images/icon-96x96.png';
+import '!file-loader?name=[name].[ext]!./images/icon-120x120.png';
+import '!file-loader?name=[name].[ext]!./images/icon-128x128.png';
+import '!file-loader?name=[name].[ext]!./images/icon-144x144.png';
+import '!file-loader?name=[name].[ext]!./images/icon-152x152.png';
+import '!file-loader?name=[name].[ext]!./images/icon-167x167.png';
+import '!file-loader?name=[name].[ext]!./images/icon-180x180.png';
+import '!file-loader?name=[name].[ext]!./images/icon-192x192.png';
+import '!file-loader?name=[name].[ext]!./images/icon-384x384.png';
+import '!file-loader?name=[name].[ext]!./images/icon-512x512.png';
 import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/extensions
 /* eslint-enable import/no-webpack-loader-syntax */
