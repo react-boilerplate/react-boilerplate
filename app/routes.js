@@ -16,7 +16,7 @@ export default function createRoutes(store) {
   // create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store);
 
-  return [
+  const childRoutes = [
     {
       path: '/',
       getComponent(nextState, cb) {
@@ -53,4 +53,13 @@ export default function createRoutes(store) {
       },
     },
   ];
+
+  return {
+    getComponent(nextState, cb) {
+      import('containers/App')
+        .then(loadModule(cb))
+        .catch(errorLoading);
+    },
+    childRoutes,
+  };
 }

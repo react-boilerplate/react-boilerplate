@@ -20,9 +20,6 @@ import FontFaceObserver from 'fontfaceobserver';
 import useScroll from 'react-router-scroll/lib/useScroll';
 import 'sanitize.css/sanitize.css';
 
-// Import root app
-import App from 'containers/App';
-
 // Import selector for `syncHistoryWithStore`
 import { makeSelectLocationState } from 'containers/App/selectors';
 
@@ -84,10 +81,6 @@ const history = syncHistoryWithStore(browserHistory, store, {
 });
 
 // Set up the router, wrapping all Routes in the App component
-const rootRoute = {
-  component: App,
-  childRoutes: createRoutes(store),
-};
 
 const render = (messages) => {
   ReactDOM.render(
@@ -95,7 +88,7 @@ const render = (messages) => {
       <LanguageProvider messages={messages}>
         <Router
           history={history}
-          routes={rootRoute}
+          routes={createRoutes(store)}
           render={
             // Scroll to top when going to a new page, imitating default browser
             // behaviour
