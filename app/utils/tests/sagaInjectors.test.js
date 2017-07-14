@@ -59,7 +59,7 @@ describe('injectors', () => {
 
     it('should not check a store if the second argument is true', () => {
       Reflect.deleteProperty(store, 'dispatch');
-      injectSaga('test', testSaga);
+      injectSaga('test', { saga: testSaga });
 
       expect(() => ejectSaga('test')).not.toThrow();
     });
@@ -67,18 +67,6 @@ describe('injectors', () => {
     it('should validate saga\'s key', () => {
       expect(() => ejectSaga('')).toThrow();
       expect(() => ejectSaga(1)).toThrow();
-    });
-
-    it('should validate saga\'s mode', () => {
-      injectSaga('test1', testSaga);
-      injectSaga('test2', testSaga);
-      injectSaga('test3', testSaga);
-
-      expect(() => ejectSaga('test', 'testMode')).toThrow();
-      expect(() => ejectSaga('test', 1)).toThrow();
-      expect(() => ejectSaga('test1', RESTART_ON_REMOUNT)).not.toThrow();
-      expect(() => ejectSaga('test2', DAEMON)).not.toThrow();
-      expect(() => ejectSaga('test3', ONCE_TILL_UNMOUNT)).not.toThrow();
     });
 
     it('should cancel a saga in a default mode', () => {
@@ -91,8 +79,8 @@ describe('injectors', () => {
 
     it('should not cancel a daemon saga', () => {
       const cancel = jest.fn();
-      store.injectedSagas.test = { task: { cancel } };
-      ejectSaga('test', DAEMON);
+      store.injectedSagas.test = { task: { cancel }, mode: DAEMON };
+      ejectSaga('test');
 
       expect(cancel).not.toHaveBeenCalled();
     });
@@ -118,27 +106,28 @@ describe('injectors', () => {
     it('it should not check a store if the second argument is true', () => {
       Reflect.deleteProperty(store, 'dispatch');
 
-      expect(() => injectSaga('test', testSaga)).not.toThrow();
+      expect(() => injectSaga('test', { saga: testSaga })).not.toThrow();
     });
 
-    it('should validate a saga and saga\'s key', () => {
-      expect(() => injectSaga('', testSaga)).toThrow();
-      expect(() => injectSaga(1, testSaga)).toThrow();
-      expect(() => injectSaga(1, 1)).toThrow();
+    it('should validate saga\'s key', () => {
+      expect(() => injectSaga('', { saga: testSaga })).toThrow();
+      expect(() => injectSaga(1, { saga: testSaga })).toThrow();
     });
 
-    it('should validate saga\'s mode', () => {
-      expect(() => injectSaga('test', testSaga, null, 'testMode')).toThrow();
-      expect(() => injectSaga('test', testSaga, null, 1)).toThrow();
-      expect(() => injectSaga('test', testSaga, null, RESTART_ON_REMOUNT)).not.toThrow();
-      expect(() => injectSaga('test', testSaga, null, DAEMON)).not.toThrow();
-      expect(() => injectSaga('test', testSaga, null, ONCE_TILL_UNMOUNT)).not.toThrow();
+    it('should validate saga\'s descriptor', () => {
+      expect(() => injectSaga('test')).toThrow();
+      expect(() => injectSaga('test', { saga: 1 })).toThrow();
+      expect(() => injectSaga('test', { saga: testSaga, mode: 'testMode' })).toThrow();
+      expect(() => injectSaga('test', { saga: testSaga, mode: 1 })).toThrow();
+      expect(() => injectSaga('test', { saga: testSaga, mode: RESTART_ON_REMOUNT })).not.toThrow();
+      expect(() => injectSaga('test', { saga: testSaga, mode: DAEMON })).not.toThrow();
+      expect(() => injectSaga('test', { saga: testSaga, mode: ONCE_TILL_UNMOUNT })).not.toThrow();
     });
 
     it('should pass args to saga.run', () => {
       const args = {};
       store.runSaga = jest.fn();
-      injectSaga('test', testSaga, args);
+      injectSaga('test', { saga: testSaga }, args);
 
       expect(store.runSaga).toHaveBeenCalledWith(testSaga, args);
     });
@@ -146,10 +135,10 @@ describe('injectors', () => {
     it('should not start daemon and once-till-unmount sagas if were started before', () => {
       store.runSaga = jest.fn();
 
-      injectSaga('test1', testSaga, null, DAEMON);
-      injectSaga('test1', testSaga, null, DAEMON);
-      injectSaga('test2', testSaga, null, ONCE_TILL_UNMOUNT);
-      injectSaga('test2', testSaga, null, ONCE_TILL_UNMOUNT);
+      injectSaga('test1', { saga: testSaga, mode: DAEMON });
+      injectSaga('test1', { saga: testSaga, mode: DAEMON });
+      injectSaga('test2', { saga: testSaga, mode: ONCE_TILL_UNMOUNT });
+      injectSaga('test2', { saga: testSaga, mode: ONCE_TILL_UNMOUNT });
 
       expect(store.runSaga).toHaveBeenCalledTimes(2);
     });
@@ -157,9 +146,9 @@ describe('injectors', () => {
     it('should start any saga that was not started before', () => {
       store.runSaga = jest.fn();
 
-      injectSaga('test1', testSaga);
-      injectSaga('test2', testSaga, null, DAEMON);
-      injectSaga('test3', testSaga, null, ONCE_TILL_UNMOUNT);
+      injectSaga('test1', { saga: testSaga });
+      injectSaga('test2', { saga: testSaga, mode: DAEMON });
+      injectSaga('test3', { saga: testSaga, mode: ONCE_TILL_UNMOUNT });
 
       expect(store.runSaga).toHaveBeenCalledTimes(3);
     });
@@ -173,28 +162,10 @@ describe('injectors', () => {
         yield put({ type: 'TEST', payload: 'yup' });
       }
 
-      injectSaga('test', testSaga1);
+      injectSaga('test', { saga: testSaga1 });
 
       expect(cancel).toHaveBeenCalledTimes(1);
       expect(store.runSaga).toHaveBeenCalledWith(testSaga1, undefined);
-    });
-
-    it('should throw if passed invalid saga', () => {
-      let result = false;
-
-      try {
-        injectSaga('test', { testSaga });
-      } catch (err) {
-        result = err.name === 'Invariant Violation';
-      }
-
-      try {
-        injectSaga('test', testSaga);
-      } catch (err) {
-        result = err.name === 'Invariant Violation';
-      }
-
-      expect(result).toBe(true);
     });
   });
 });

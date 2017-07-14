@@ -2,7 +2,7 @@
  * Test injectors
  */
 
-import { memoryHistory } from 'react-router';
+import { memoryHistory } from 'react-router-dom';
 import { put } from 'redux-saga/effects';
 import { shallow } from 'enzyme';
 import React from 'react';
@@ -42,16 +42,16 @@ describe('injectSaga decorator', () => {
     shallow(<ComponentWithSaga {...props} />, { context: { store } });
 
     expect(injectors.injectSaga).toHaveBeenCalledTimes(1);
-    expect(injectors.injectSaga).toHaveBeenCalledWith('test', testSaga, props, 'testMode');
+    expect(injectors.injectSaga).toHaveBeenCalledWith('test', { saga: testSaga, mode: 'testMode' }, props);
   });
 
-  it('should eject on unmount with a proper saga key, and mode', () => {
+  it('should eject on unmount with a correct saga key', () => {
     const props = { test: 'test' };
     const renderedComponent = shallow(<ComponentWithSaga {...props} />, { context: { store } });
     renderedComponent.unmount();
 
     expect(injectors.ejectSaga).toHaveBeenCalledTimes(1);
-    expect(injectors.ejectSaga).toHaveBeenCalledWith('test', 'testMode');
+    expect(injectors.ejectSaga).toHaveBeenCalledWith('test');
   });
 
   it('should set a correct display name', () => {

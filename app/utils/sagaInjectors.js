@@ -2,6 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import isString from 'lodash/isString';
 import invariant from 'invariant';
+import conformsTo from 'lodash/conformsTo';
 
 import checkStore from './checkStore';
 import {
@@ -11,21 +12,29 @@ import {
 } from './constants';
 
 const allowedModes = [RESTART_ON_REMOUNT, DAEMON, ONCE_TILL_UNMOUNT];
-const checkMode = (mode) => invariant(
-  isString(mode) && allowedModes.includes(mode),
-  `(app/utils...) injectSaga: Expected \`mode\` to be one of: ${allowedModes.join(', ')}`
+
+const checkKey = (key) => invariant(
+  isString(key) && !isEmpty(key),
+  '(app/utils...) injectSaga: Expected `key` to be a non empty string'
 );
 
+const checkDescriptor = (descriptor) => {
+  const shape = {
+    saga: isFunction,
+    mode: (mode) => isString(mode) && allowedModes.includes(mode),
+  };
+  invariant(
+    conformsTo(descriptor, shape),
+    '(app/utils...) injectSaga: Expected a valid saga descriptor'
+  );
+};
+
 export function injectSagaFactory(store, isValid) {
-  return function injectSaga(key, saga, args, mode = RESTART_ON_REMOUNT) {
+  return function injectSaga(key, { saga, mode = RESTART_ON_REMOUNT } = {}, args) {
     if (!isValid) checkStore(store);
 
-    invariant(
-      isString(key) && !isEmpty(key) && isFunction(saga),
-      '(app/utils...) injectSaga: Expected `saga` to be a generator function'
-    );
-
-    checkMode(mode);
+    checkKey(key);
+    checkDescriptor({ saga, mode });
 
     let hasSaga = Reflect.has(store.injectedSagas, key);
 
@@ -36,24 +45,22 @@ export function injectSagaFactory(store, isValid) {
     }
 
     if (!hasSaga || (hasSaga && mode !== DAEMON && mode !== ONCE_TILL_UNMOUNT)) {
-      store.injectedSagas[key] = { saga, task: store.runSaga(saga, args) }; // eslint-disable-line no-param-reassign
+      store.injectedSagas[key] = { saga, task: store.runSaga(saga, args), mode }; // eslint-disable-line no-param-reassign
     }
   };
 }
 
 export function ejectSagaFactory(store, isValid) {
-  return function ejectSaga(key, mode = RESTART_ON_REMOUNT) {
+  return function ejectSaga(key) {
     if (!isValid) checkStore(store);
 
-    invariant(
-      isString(key) && !isEmpty(key),
-      '(app/utils...) injectSaga: Expected `key` to be a non empty string'
-    );
+    checkKey(key);
 
-    checkMode(mode);
-
-    if (mode !== DAEMON && Reflect.has(store.injectedSagas, key)) {
-      store.injectedSagas[key].task.cancel();
+    if (Reflect.has(store.injectedSagas, key)) {
+      const descriptor = store.injectedSagas[key];
+      if (descriptor.mode !== DAEMON) {
+        descriptor.task.cancel();
+      }
     }
   };
 }
