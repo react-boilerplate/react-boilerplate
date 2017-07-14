@@ -1,5 +1,10 @@
 # The Hitchhikers Guide to `react-boilerplate`
-
+<!---
+ ____   __   __ _  _ ____    ____   __   __ _  __  ___ 
+(    \ /  \ (  ( \(/(_  _)  (  _ \ / _\ (  ( \(  )/ __)
+ ) D ((  O )/    /    )(     ) __//    \/    / )(( (__ 
+(____/ \__/ \_)__)   (__)   (__)  \_/\_/\_)__)(__)\___)
+-->
 The [`README.md`](https://github.com/react-boilerplate/react-boilerplate#features) gives you adequate information on how to clone boilerplate files, install dependencies and launch the example app.
 
 Once you have done that, this document is intended to give you a taste of how `react-boilerplate` works. It still assumes basic knowledge of React, Redux and `react-router`. **If you're completely new to React, please refer to https://github.com/petehunt/react-howto instead!**
