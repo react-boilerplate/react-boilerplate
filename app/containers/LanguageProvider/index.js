@@ -29,9 +29,16 @@ LanguageProvider.propTypes = {
   children: React.PropTypes.element.isRequired,
 };
 
+
 const mapStateToProps = createSelector(
   makeSelectLocale(),
   (locale) => ({ locale })
 );
 
-export default connect(mapStateToProps)(LanguageProvider);
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LanguageProvider);
