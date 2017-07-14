@@ -10,12 +10,7 @@ import configureStore from '../../store';
 
 import getInjectors, {
   injectReducerFactory,
-  ejectReducerFactory,
 } from '../reducerInjectors';
-import {
-  DAEMON,
-  RESTART_ON_REMOUNT,
-} from '../constants';
 
 // Fixtures
 
@@ -33,7 +28,6 @@ const reducer = (state = initialState, action) => {
 describe('reducer injectors', () => {
   let store;
   let injectReducer;
-  let ejectReducer;
 
   describe('getInjectors', () => {
     beforeEach(() => {
@@ -43,7 +37,6 @@ describe('reducer injectors', () => {
     it('should return injectors', () => {
       expect(getInjectors(store)).toEqual(expect.objectContaining({
         injectReducer: expect.any(Function),
-        ejectReducer: expect.any(Function),
       }));
     });
 
@@ -54,61 +47,10 @@ describe('reducer injectors', () => {
     });
   });
 
-  describe('ejectReducer helper', () => {
-    beforeEach(() => {
-      store = configureStore({}, memoryHistory);
-      injectReducer = injectReducerFactory(store, true);
-      ejectReducer = ejectReducerFactory(store, true);
-    });
-
-    it('should check a store if the second argument is falsy', () => {
-      const eject = ejectReducerFactory({});
-
-      expect(() => eject('test')).toThrow();
-    });
-
-    it('should not check a store if the second argument is true', () => {
-      Reflect.deleteProperty(store, 'dispatch');
-
-      expect(() => ejectReducer('test')).not.toThrow();
-    });
-
-    it('should validate reducer\'s key', () => {
-      expect(() => ejectReducer('')).toThrow();
-      expect(() => ejectReducer(1)).toThrow();
-    });
-
-    it('should validate reducer\'s mode', () => {
-      expect(() => ejectReducer('test', 'testMode')).toThrow();
-      expect(() => ejectReducer('test', 1)).toThrow();
-      expect(() => ejectReducer('test', RESTART_ON_REMOUNT)).not.toThrow();
-      expect(() => ejectReducer('test', DAEMON)).not.toThrow();
-    });
-
-    it('should not remove a reducer from a store in a default mode', () => {
-      store.replaceReducer = jest.fn();
-      injectReducer('test', reducer);
-      ejectReducer('test');
-
-      expect(store.injectedReducers).toEqual({ test: reducer });
-      expect(store.replaceReducer).toHaveBeenCalled();
-    });
-
-    it('should not remove a daemon reducer', () => {
-      injectReducer('test', reducer);
-      store.replaceReducer = jest.fn();
-      ejectReducer('test', DAEMON);
-
-      expect(store.injectedReducers).toEqual({ test: reducer });
-      expect(store.replaceReducer).not.toHaveBeenCalled();
-    });
-  });
-
   describe('injectReducer helper', () => {
     beforeEach(() => {
       store = configureStore({}, memoryHistory);
       injectReducer = injectReducerFactory(store, true);
-      ejectReducer = ejectReducerFactory(store, true);
     });
 
     it('should check a store if the second argument is falsy', () => {

@@ -2,7 +2,7 @@
  * Test injectors
  */
 
-import { memoryHistory } from 'react-router';
+import { memoryHistory } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import React from 'react';
 import identity from 'lodash/identity';
@@ -29,9 +29,8 @@ describe('injectReducer decorator', () => {
     store = configureStore({}, memoryHistory);
     injectors = {
       injectReducer: jest.fn(),
-      ejectReducer: jest.fn(),
     };
-    ComponentWithReducer = injectReducer({ key: 'test', reducer, mode: 'testMode' })(Component);
+    ComponentWithReducer = injectReducer({ key: 'test', reducer })(Component);
     reducerInjectors.default.mockClear();
   });
 
@@ -40,15 +39,6 @@ describe('injectReducer decorator', () => {
 
     expect(injectors.injectReducer).toHaveBeenCalledTimes(1);
     expect(injectors.injectReducer).toHaveBeenCalledWith('test', reducer);
-  });
-
-  it('should eject on unmount with a proper reducer key, and mode', () => {
-    const props = { test: 'test' };
-    const renderedComponent = shallow(<ComponentWithReducer {...props} />, { context: { store } });
-    renderedComponent.unmount();
-
-    expect(injectors.ejectReducer).toHaveBeenCalledTimes(1);
-    expect(injectors.ejectReducer).toHaveBeenCalledWith('test', 'testMode');
   });
 
   it('should set a correct display name', () => {
