@@ -38,10 +38,12 @@ export function injectSagaFactory(store, isValid) {
 
     let hasSaga = Reflect.has(store.injectedSagas, key);
 
-    // enable hot reloading of daemon and once-till-unmount sagas
-    if (hasSaga && store.injectedSagas[key].saga !== saga) {
-      store.injectedSagas[key].task.cancel();
-      hasSaga = false;
+    if (process.env.NODE_ENV !== 'production') {
+      // enable hot reloading of daemon and once-till-unmount sagas
+      if (hasSaga && store.injectedSagas[key].saga !== saga) {
+        store.injectedSagas[key].task.cancel();
+        hasSaga = false;
+      }
     }
 
     if (!hasSaga || (hasSaga && mode !== DAEMON && mode !== ONCE_TILL_UNMOUNT)) {
@@ -60,6 +62,11 @@ export function ejectSagaFactory(store, isValid) {
       const descriptor = store.injectedSagas[key];
       if (descriptor.mode !== DAEMON) {
         descriptor.task.cancel();
+        // Clean up in production; in development we need `descriptor.saga` for hot reloading
+        if (process.env.NODE_ENV === 'production') {
+          // Need some value to be able to detect `ONCE_TILL_UNMOUNT` sagas in `injectSaga`
+          store.injectedSagas[key] = 'done'; // eslint-disable-line no-param-reassign
+        }
       }
     }
   };

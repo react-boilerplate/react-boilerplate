@@ -21,6 +21,7 @@ function* testSaga() {
 }
 
 describe('injectors', () => {
+  const originalNodeEnv = process.env.NODE_ENV;
   let store;
   let injectSaga;
   let ejectSaga;
@@ -87,6 +88,35 @@ describe('injectors', () => {
 
     it('should ignore saga that was not previously injected', () => {
       expect(() => ejectSaga('test')).not.toThrow();
+    });
+
+    it('should remove non daemon saga\'s descriptor in production', () => {
+      process.env.NODE_ENV = 'production';
+      injectSaga('test', { saga: testSaga, mode: RESTART_ON_REMOUNT });
+      injectSaga('test1', { saga: testSaga, mode: ONCE_TILL_UNMOUNT });
+
+      ejectSaga('test');
+      ejectSaga('test1');
+
+      expect(store.injectedSagas.test).toBe('done');
+      expect(store.injectedSagas.test1).toBe('done');
+      process.env.NODE_ENV = originalNodeEnv;
+    });
+
+    it('should not remove daemon saga\'s descriptor in production', () => {
+      process.env.NODE_ENV = 'production';
+      injectSaga('test', { saga: testSaga, mode: DAEMON });
+      ejectSaga('test');
+
+      expect(store.injectedSagas.test.saga).toBe(testSaga);
+      process.env.NODE_ENV = originalNodeEnv;
+    });
+
+    it('should not remove daemon saga\'s descriptor in development', () => {
+      injectSaga('test', { saga: testSaga, mode: DAEMON });
+      ejectSaga('test');
+
+      expect(store.injectedSagas.test.saga).toBe(testSaga);
     });
   });
 
@@ -166,6 +196,21 @@ describe('injectors', () => {
 
       expect(cancel).toHaveBeenCalledTimes(1);
       expect(store.runSaga).toHaveBeenCalledWith(testSaga1, undefined);
+    });
+
+    it('should not cancel saga if different implementation in production', () => {
+      process.env.NODE_ENV = 'production';
+      const cancel = jest.fn();
+      store.injectedSagas.test = { saga: testSaga, task: { cancel }, mode: RESTART_ON_REMOUNT };
+
+      function* testSaga1() {
+        yield put({ type: 'TEST', payload: 'yup' });
+      }
+
+      injectSaga('test', { saga: testSaga1, mode: DAEMON });
+
+      expect(cancel).toHaveBeenCalledTimes(0);
+      process.env.NODE_ENV = originalNodeEnv;
     });
   });
 });
