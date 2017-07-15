@@ -212,5 +212,10 @@ describe('injectors', () => {
       expect(cancel).toHaveBeenCalledTimes(0);
       process.env.NODE_ENV = originalNodeEnv;
     });
+
+    it('should save an entire descriptor in the saga registry', () => {
+      injectSaga('test', { saga: testSaga, foo: 'bar' });
+      expect(store.injectedSagas.test.foo).toBe('bar');
+    });
   });
 });
