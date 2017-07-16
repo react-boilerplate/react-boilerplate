@@ -6,10 +6,19 @@ injectGlobal`
   body {
     height: 100%;
     width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-start;
+
+    background-color: #fafafa;
   }
 
   body.fontLoaded {
@@ -17,14 +26,20 @@ injectGlobal`
   }
 
   #app {
-    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
     min-height: 100%;
     min-width: 100%;
-  }
 
-  p,
-  label {
-    font-family: Georgia, Times, 'Times New Roman', serif;
-    line-height: 1.5em;
+    & > div {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+      align-items: center;
+      justify-content: center;
+    }
   }
 `;
