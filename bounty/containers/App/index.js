@@ -25,9 +25,9 @@ export function App(props) {
           { name: 'description', content: 'A React.js Boilerplate application' },
         ]}
       />
-      <Header />
+      {/* <Header /> */}
       {React.Children.toArray(props.children)}
-      <Footer />
+      {/* <Footer /> */}
     </AppWrapper>
   );
 }

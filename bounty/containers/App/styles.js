@@ -11,9 +11,11 @@ export const AppWrapper = styled.div`
   flex-direction: column;
   flex: 1;
 
-  align-items: center;
+  align-items: stretch;
   justify-content: flex-start;
 
+  border-radius: 0.125rem;
+
   background-color: #f5f5f5;
-  box-shadow: 3px 3px 10px #b3b3b3;
+  filter: drop-shadow(5px 5px 5px rgba(179, 179, 179, 0.5));
 `;
