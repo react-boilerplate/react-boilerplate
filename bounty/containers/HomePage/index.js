@@ -6,11 +6,11 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { makeSelectRepos, makeSelectLoading, makeSelectError } from '../../../bounty/containers/App/selectors';
+// import { makeSelectRepos, makeSelectLoading, makeSelectError } from '../../../bounty/containers/App/selectors';
 // import H2 from '../../components/H2';
 // import ReposList from 'components/ReposList';
 // import AtPrefix from './AtPrefix';
@@ -28,7 +28,7 @@ import {
   CheckButton,
   Form,
 } from './styles';
-import messages from './messages';
+// import messages from './messages';
 import { loadBounty } from '../../../bounty/containers/App/actions';
 import {
   changeUserEmail,
