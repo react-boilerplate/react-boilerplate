@@ -1,0 +1,13 @@
+#!/bin/bash
+
+C=$(pwd)
+BUILD=$C/build
+
+rm -rf ./node_modules
+rm -rf ./$BUILD
+rm -f ./package-lock.json
+rm -f ./yarn.lock
+
+yarn install && yarn run build
+
+scp -rp -P 22 $BUILD/* dmitry@bounty.brickblock.dmx:/var/www/www.bounty.brickblock.dmx
