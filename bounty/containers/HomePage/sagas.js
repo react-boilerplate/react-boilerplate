@@ -16,9 +16,10 @@ import { makeSelectUserEmail } from '../../../bounty/containers/HomePage/selecto
 export function* getBounty() {
   // Select username from store
   const useremail = yield select(makeSelectUserEmail());
-  console.log('getBounty.useremail:', useremail);
-  const requestURL = `http://bounty.brickblock.dmx/check/${useremail}`;
-  console.log('getBounty.requestURL:', requestURL);
+  const protocol = window.location.protocol;
+  const host = window.location.host;
+
+  const requestURL = `${protocol}://${host}/check/${useremail}`;
 
   try {
     const data = yield call(request, requestURL);

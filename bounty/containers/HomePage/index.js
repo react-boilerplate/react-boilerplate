@@ -41,11 +41,11 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
   /**
    * when initial state username is not null, submit the form to load repos
    */
-  componentDidMount() {
-    if (this.props.useremail && this.props.useremail.trim().length > 0) {
-      this.props.onSubmitForm();
-    }
-  }
+  // componentDidMount() {
+  //   if (this.props.useremail && this.props.useremail.trim().length > 0) {
+  //     this.props.onSubmitForm();
+  //   }
+  // }
 
   // sendData() {
   //   const form = document.getElementById('email-form');
@@ -86,14 +86,18 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                 <FormattedMessage {...messages.trymeAtPrefix} />
               </AtPrefix> */}
               <Input
-                id="email"
+                id="email-input"
                 type="email"
                 placeholder="your email"
                 value={this.props.useremail}
                 onChange={this.props.onChangeUserEmail}
                 autoFocus
               />
-              <CheckButton value="check" type="submit" />
+              <CheckButton
+                id="check-button"
+                value="check"
+                type="submit"
+              />
             </EmailLabel>
           </Form>
         </TwoThirdSection>
@@ -125,12 +129,10 @@ export function mapDispatchToProps(dispatch) {
   return {
     onChangeUserEmail: (evt) => dispatch(changeUserEmail(evt.target.value)),
     onSubmitForm: (evt) => {
-      console.log('onSubmitForm:', evt, this);
       if (evt !== undefined && evt.preventDefault) {
         evt.preventDefault();
       }
       dispatch(loadBounty());
-      return false;
     },
   };
 }

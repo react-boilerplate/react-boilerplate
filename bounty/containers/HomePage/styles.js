@@ -82,6 +82,10 @@ export const CheckButton = styled.input`
     transform: translateY(0);
     box-shadow: inset ${bso}px ${bso}px ${bsw}px ${bwc}, inset -${bso}px -${bso}px ${bsw}px ${bwc};
   }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Form = styled.form`
