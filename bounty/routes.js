@@ -38,22 +38,24 @@ export default function createRoutes(store) {
 
         importModules.catch(errorLoading);
       },
-    }, {
-      path: '/features',
-      name: 'features',
-      getComponent(nextState, cb) {
-        import('containers/FeaturePage')
-          .then(loadModule(cb))
-          .catch(errorLoading);
-      },
-    }, {
-      path: '*',
-      name: 'notfound',
-      getComponent(nextState, cb) {
-        import('containers/NotFoundPage')
-          .then(loadModule(cb))
-          .catch(errorLoading);
-      },
     },
+    // {
+    //   path: '/features',
+    //   name: 'features',
+    //   getComponent(nextState, cb) {
+    //     import('containers/FeaturePage')
+    //       .then(loadModule(cb))
+    //       .catch(errorLoading);
+    //   },
+    // },
+    // {
+    //   path: '*',
+    //   name: 'notfound',
+    //   getComponent(nextState, cb) {
+    //     import('containers/NotFoundPage')
+    //       .then(loadModule(cb))
+    //       .catch(errorLoading);
+    //   },
+    // },
   ];
 }
