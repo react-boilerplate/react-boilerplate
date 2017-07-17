@@ -11,16 +11,21 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { makeSelectRepos, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
-import H2 from '../../components/H2';
-import ReposList from 'components/ReposList';
+// import H2 from '../../components/H2';
+// import ReposList from 'components/ReposList';
 import AtPrefix from './AtPrefix';
 // import CenteredSection from './CenteredSection';
 import Form from './Form';
-import Input from './Input';
+// import Input from './Input';
 import {
   Article,
-  Section,
-  CenteredSection,
+  // Section,
+  // CenteredSection,
+  TwoThirdSection,
+  OneThirtSection,
+  EmailLabel,
+  Input,
+  CheckButton,
 } from './styles';
 import messages from './messages';
 import { loadRepos } from '../App/actions';
@@ -39,11 +44,11 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 
   render() {
     const { loading, error, repos } = this.props;
-    const reposListProps = {
-      loading,
-      error,
-      repos,
-    };
+    // const reposListProps = {
+    //   loading,
+    //   error,
+    //   repos,
+    // };
 
     return (
       <Article>
@@ -53,31 +58,38 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
             { name: 'description', content: 'A React.js Boilerplate application homepage' },
           ]}
         />
-        <CenteredSection>
+        {/* <CenteredSection>
           <H2>
             <FormattedMessage {...messages.title} />
           </H2>
         </CenteredSection>
         <CenteredSection>
           <FormattedMessage {...messages.message} />
-        </CenteredSection>
-        <Section>
+        </CenteredSection> */}
+        {/* <Section> */}
+        <TwoThirdSection>
           <Form onSubmit={this.props.onSubmitForm}>
-            <label htmlFor="username">
-              <FormattedMessage {...messages.trymeMessage} />
+            <EmailLabel htmlFor="email">
+              {/* <FormattedMessage {...messages.trymeMessage} />
               <AtPrefix>
                 <FormattedMessage {...messages.trymeAtPrefix} />
-              </AtPrefix>
+              </AtPrefix> */}
               <Input
-                id="username"
-                type="text"
-                placeholder="mxstbr"
+                id="email"
+                type="email"
+                placeholder="your email"
                 value={this.props.username}
                 onChange={this.props.onChangeUsername}
+                autoFocus
               />
-            </label>
+              <CheckButton>check</CheckButton>
+            </EmailLabel>
           </Form>
-        </Section>
+        </TwoThirdSection>
+        <OneThirtSection>
+
+        </OneThirtSection>
+        {/* </Section> */}
       </Article>
     );
   }
