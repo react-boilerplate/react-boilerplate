@@ -6,12 +6,12 @@ import { createSelector } from 'reselect';
 
 const selectHome = (state) => state.get('home');
 
-const makeSelectUsername = () => createSelector(
+const makeSelectUserEmail = () => createSelector(
   selectHome,
-  (homeState) => homeState.get('username')
+  (homeState) => homeState.get('useremail')
 );
 
 export {
   selectHome,
-  makeSelectUsername,
+  makeSelectUserEmail,
 };

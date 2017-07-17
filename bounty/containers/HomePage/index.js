@@ -10,12 +10,12 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { makeSelectRepos, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
+import { makeSelectRepos, makeSelectLoading, makeSelectError } from '../../../bounty/containers/App/selectors';
 // import H2 from '../../components/H2';
 // import ReposList from 'components/ReposList';
-import AtPrefix from './AtPrefix';
+// import AtPrefix from './AtPrefix';
 // import CenteredSection from './CenteredSection';
-import Form from './Form';
+// import Form from './Form';
 // import Input from './Input';
 import {
   Article,
@@ -26,24 +26,35 @@ import {
   EmailLabel,
   Input,
   CheckButton,
+  Form,
 } from './styles';
 import messages from './messages';
-import { loadRepos } from '../App/actions';
-import { changeUsername } from './actions';
-import { makeSelectUsername } from './selectors';
+import { loadBounty } from '../../../bounty/containers/App/actions';
+import {
+  changeUserEmail,
+} from './actions';
+import {
+  makeSelectUserEmail,
+} from './selectors';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
    * when initial state username is not null, submit the form to load repos
    */
   componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
+    if (this.props.useremail && this.props.useremail.trim().length > 0) {
       this.props.onSubmitForm();
     }
   }
 
+  // sendData() {
+  //   const form = document.getElementById('email-form');
+  //   console.log('sendData:', form);
+  //   form.submit();
+  // }
+
   render() {
-    const { loading, error, repos } = this.props;
+    // const { loading, error, repos } = this.props;
     // const reposListProps = {
     //   loading,
     //   error,
@@ -68,7 +79,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
         </CenteredSection> */}
         {/* <Section> */}
         <TwoThirdSection>
-          <Form onSubmit={this.props.onSubmitForm}>
+          <Form id="email-form" onSubmit={this.props.onSubmitForm}>
             <EmailLabel htmlFor="email">
               {/* <FormattedMessage {...messages.trymeMessage} />
               <AtPrefix>
@@ -78,11 +89,11 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                 id="email"
                 type="email"
                 placeholder="your email"
-                value={this.props.username}
-                onChange={this.props.onChangeUsername}
+                value={this.props.useremail}
+                onChange={this.props.onChangeUserEmail}
                 autoFocus
               />
-              <CheckButton>check</CheckButton>
+              <CheckButton value="check" type="submit" />
             </EmailLabel>
           </Form>
         </TwoThirdSection>
@@ -96,35 +107,39 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 }
 
 HomePage.propTypes = {
-  loading: React.PropTypes.bool,
-  error: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool,
-  ]),
-  repos: React.PropTypes.oneOfType([
-    React.PropTypes.array,
-    React.PropTypes.bool,
-  ]),
+  // loading: React.PropTypes.bool,
+  // error: React.PropTypes.oneOfType([
+  //   React.PropTypes.object,
+  //   React.PropTypes.bool,
+  // ]),
+  // repos: React.PropTypes.oneOfType([
+  //   React.PropTypes.array,
+  //   React.PropTypes.bool,
+  // ]),
   onSubmitForm: React.PropTypes.func,
-  username: React.PropTypes.string,
-  onChangeUsername: React.PropTypes.func,
+  useremail: React.PropTypes.string,
+  onChangeUserEmail: React.PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
+    onChangeUserEmail: (evt) => dispatch(changeUserEmail(evt.target.value)),
     onSubmitForm: (evt) => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadRepos());
+      console.log('onSubmitForm:', evt, this);
+      if (evt !== undefined && evt.preventDefault) {
+        evt.preventDefault();
+      }
+      dispatch(loadBounty());
+      return false;
     },
   };
 }
 
 const mapStateToProps = createStructuredSelector({
-  repos: makeSelectRepos(),
-  username: makeSelectUsername(),
-  loading: makeSelectLoading(),
-  error: makeSelectError(),
+  // repos: makeSelectRepos(),
+  useremail: makeSelectUserEmail(),
+  // loading: makeSelectLoading(),
+  // error: makeSelectError(),
 });
 
 // Wrap the component to inject dispatch and state into it

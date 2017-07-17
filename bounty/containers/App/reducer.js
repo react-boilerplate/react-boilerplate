@@ -13,9 +13,10 @@
 import { fromJS } from 'immutable';
 
 import {
-  LOAD_REPOS_SUCCESS,
-  LOAD_REPOS,
-  LOAD_REPOS_ERROR,
+  LOAD_BOUNTY,
+  LOAD_BOUNTY_SUCCESS,
+  LOAD_BOUNTY_ERROR,
+
 } from './constants';
 
 // The initial state of the App
@@ -29,18 +30,21 @@ const initialState = fromJS({
 });
 
 function appReducer(state = initialState, action) {
+  console.log('appReducer:', action);
+
   switch (action.type) {
-    case LOAD_REPOS:
+    case LOAD_BOUNTY:
       return state
         .set('loading', true)
         .set('error', false)
-        .setIn(['userData', 'repositories'], false);
-    case LOAD_REPOS_SUCCESS:
+        .setIn(['userData', 'repositories'], false)
+        ;
+    case LOAD_BOUNTY_SUCCESS:
       return state
         .setIn(['userData', 'repositories'], action.repos)
         .set('loading', false)
         .set('currentUser', action.username);
-    case LOAD_REPOS_ERROR:
+    case LOAD_BOUNTY_ERROR:
       return state
         .set('error', action.error)
         .set('loading', false);

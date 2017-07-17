@@ -53,9 +53,10 @@ export const Input = styled.input`
   outline: none;
   border: none;
   border-radius: 0.125rem;
+  font-size: 2rem;
 `;
 
-export const CheckButton = styled.a`
+export const CheckButton = styled.input`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,4 +82,8 @@ export const CheckButton = styled.a`
     transform: translateY(0);
     box-shadow: inset ${bso}px ${bso}px ${bsw}px ${bwc}, inset -${bso}px -${bso}px ${bsw}px ${bwc};
   }
+`;
+
+export const Form = styled.form`
+  margin-bottom: 1em;
 `;
