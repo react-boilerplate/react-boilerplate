@@ -186,7 +186,7 @@
       "app/**/*.{js,jsx}",
       "!app/**/*.test.{js,jsx}",
       "!app/*/RbGenerated*/*.{js,jsx}",
-      "!bounty/app.js",
+      "!app/app.js",
       "!app/routes.js"
     ],
     "coverageThreshold": {

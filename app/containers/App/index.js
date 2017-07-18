@@ -1,29 +1,38 @@
 /**
  *
- * App.react.js
+ * App
  *
  * This component is the skeleton around the actual pages, and should only
  * contain code that should be seen on all pages. (e.g. navigation bar)
- *
- * NOTE: while this component should technically be a stateless functional
- * component (SFC), hot reloading does not currently support SFCs. If hot
- * reloading is not a necessity for you then you can refactor it and remove
- * the linting exception.
  */
 
 import React from 'react';
+import Helmet from 'react-helmet';
 
-export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+// import Header from '../../components/Header';
+// import Footer from '../../components/Footer';
+import withProgressBar from '../../components/ProgressBar';
+import { AppWrapper } from './styles';
 
-  static propTypes = {
-    children: React.PropTypes.node,
-  };
-
-  render() {
-    return (
-      <div>
-        {React.Children.toArray(this.props.children)}
-      </div>
-    );
-  }
+export function App(props) {
+  return (
+    <AppWrapper>
+      <Helmet
+        titleTemplate="%s - React.js Boilerplate"
+        defaultTitle="React.js Boilerplate"
+        meta={[
+          { name: 'description', content: 'A React.js Boilerplate application' },
+        ]}
+      />
+      {/* <Header /> */}
+      {React.Children.toArray(props.children)}
+      {/* <Footer /> */}
+    </AppWrapper>
+  );
 }
+
+App.propTypes = {
+  children: React.PropTypes.node,
+};
+
+export default withProgressBar(App);

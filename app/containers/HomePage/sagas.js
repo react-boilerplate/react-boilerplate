@@ -4,11 +4,11 @@
 
 import { take, call, put, select, cancel, takeLatest } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { LOAD_BOUNTY } from '../../../bounty/containers/App/constants';
-import { bountyLoaded, bountyLoadError } from '../../../bounty/containers/App/actions';
+import { LOAD_BOUNTY } from '../../containers/App/constants';
+import { bountyLoaded, bountyLoadError } from '../../containers/App/actions';
 
-import request from '../../../bounty/utils/request';
-import { makeSelectUserEmail } from '../../../bounty/containers/HomePage/selectors';
+import request from '../../utils/request';
+import { makeSelectUserEmail } from '../../containers/HomePage/selectors';
 
 /**
  * Github repos request/response handler

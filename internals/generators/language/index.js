@@ -69,7 +69,7 @@ module.exports = {
     });
     actions.push({
       type: 'modify',
-      path: '../../bounty/app.js',
+      path: '../../app/app.js',
       pattern: /(System\.import\('intl\/locale-data\/jsonp\/[a-z]+\.js'\),\n)(?!.*System\.import\('intl\/locale-data\/jsonp\/[a-z]+\.js'\),)/g,
       templateFile: './language/polyfill-intl-locale.hbs',
     });
