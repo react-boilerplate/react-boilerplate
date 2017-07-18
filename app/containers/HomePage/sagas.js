@@ -17,13 +17,13 @@ export function* getBounty() {
   // Select username from store
   const useremail = yield select(makeSelectUserEmail());
   const protocol = window.location.protocol;
-  const hostname = window.location.hostname;
-  const port = 16000;
+  const host = window.location.host;
 
-  // const requestURL = `${protocol}//${hostname}:${port}/check/${useremail}`;
-  const requestURL = '//bounty.brickblock.dmx/check/dmitry.medvedev@gmail.com';
-  // http://localhost:16000/check/dmitry.medvedev@gmail.com
-  console.log(`requestURL: ${requestURL}`);
+  const requestURL = process.env.NODE_ENV !== 'production' ?
+    `${protocol}//localhost:16000/check/${useremail}` :
+    `${protocol}//${host}/check/${useremail}`;
+
+  // console.log(`requestURL: ${requestURL}`);
 
   try {
     const data = yield call(request, requestURL);
