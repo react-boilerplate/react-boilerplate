@@ -47,15 +47,10 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
   //   }
   // }
 
-  // sendData() {
-  //   const form = document.getElementById('email-form');
-  //   console.log('sendData:', form);
-  //   form.submit();
-  // }
-
   render() {
-    // const { loading, error, repos } = this.props;
-    // console.log(loading, error);
+    // const { loading, error } = this.props;
+    console.log(`loading: ${this.props.loading}`);
+    console.log(`error: ${this.props.error}`);
     // const reposListProps = {
     //   loading,
     //   error,
@@ -105,7 +100,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           </Form>
         </TwoThirdSection>
         <OneThirtSection>
-          loading: {this.props.loading}, {this.props.error}
+          this.props.loading: {this.props.loading}
         </OneThirtSection>
         {/* </Section> */}
       </Article>
