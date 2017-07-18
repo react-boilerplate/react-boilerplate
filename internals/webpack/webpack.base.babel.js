@@ -77,7 +77,7 @@ module.exports = (options) => ({
     new webpack.NamedModulesPlugin(),
   ]),
   resolve: {
-    modules: ['bounty', 'node_modules'],
+    modules: ['app', 'bounty', 'node_modules'],
     extensions: [
       '.js',
       '.jsx',
