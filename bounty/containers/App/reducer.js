@@ -30,6 +30,7 @@ const initialState = fromJS({
 });
 
 function appReducer(state = initialState, action) {
+  console.log('appReducer:', state, action);
   switch (action.type) {
     case LOAD_BOUNTY:
       return state

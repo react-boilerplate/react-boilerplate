@@ -10,7 +10,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-// import { makeSelectRepos, makeSelectLoading, makeSelectError } from '../../../bounty/containers/App/selectors';
+import { /* makeSelectRepos, */ makeSelectLoading, makeSelectError } from '../../../bounty/containers/App/selectors';
 // import H2 from '../../components/H2';
 // import ReposList from 'components/ReposList';
 // import AtPrefix from './AtPrefix';
@@ -55,6 +55,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 
   render() {
     // const { loading, error, repos } = this.props;
+    // console.log(loading, error);
     // const reposListProps = {
     //   loading,
     //   error,
@@ -91,18 +92,20 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                 placeholder="your email"
                 value={this.props.useremail}
                 onChange={this.props.onChangeUserEmail}
+                disabled={this.props.loading}
                 autoFocus
               />
               <CheckButton
                 id="check-button"
                 value="check"
                 type="submit"
+                disabled={this.props.loading}
               />
             </EmailLabel>
           </Form>
         </TwoThirdSection>
         <OneThirtSection>
-
+          loading: {this.props.loading}, {this.props.error}
         </OneThirtSection>
         {/* </Section> */}
       </Article>
@@ -111,11 +114,11 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 }
 
 HomePage.propTypes = {
-  // loading: React.PropTypes.bool,
-  // error: React.PropTypes.oneOfType([
-  //   React.PropTypes.object,
-  //   React.PropTypes.bool,
-  // ]),
+  loading: React.PropTypes.bool,
+  error: React.PropTypes.oneOfType([
+    React.PropTypes.object,
+    React.PropTypes.bool,
+  ]),
   // repos: React.PropTypes.oneOfType([
   //   React.PropTypes.array,
   //   React.PropTypes.bool,
@@ -140,8 +143,8 @@ export function mapDispatchToProps(dispatch) {
 const mapStateToProps = createStructuredSelector({
   // repos: makeSelectRepos(),
   useremail: makeSelectUserEmail(),
-  // loading: makeSelectLoading(),
-  // error: makeSelectError(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
 });
 
 // Wrap the component to inject dispatch and state into it
