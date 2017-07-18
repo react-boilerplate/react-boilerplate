@@ -9,12 +9,9 @@ import getInjectors from './reducerInjectors';
  *
  * @param {string} key A key of the reducer
  * @param {function} reducer A reducer that will be injected
- * @param {string} [mode] By default (constants.DAEMON) the reducer is injected on component mount and is never removed.
- * Another option is constants.RESTART_ON_REMOUNT—the reducer is started when component mounts and is removed on
- * component un-mount for improved performance.
  *
  */
-export default ({ key, reducer, mode }) => (WrappedComponent) => {
+export default ({ key, reducer }) => (WrappedComponent) => {
   class ReducerInjector extends React.Component {
     static WrappedComponent = WrappedComponent;
     static contextTypes = {
@@ -26,12 +23,6 @@ export default ({ key, reducer, mode }) => (WrappedComponent) => {
       const { injectReducer } = this.injectors;
 
       injectReducer(key, reducer);
-    }
-
-    componentWillUnmount() {
-      const { ejectReducer } = this.injectors;
-
-      ejectReducer(key, mode);
     }
 
     injectors = getInjectors(this.context.store);

@@ -24,7 +24,7 @@ export default class App extends React.PureComponent { // eslint-disable-line re
       <div>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="" component={NotFoundPage} />
+          <Route component={NotFoundPage} />
         </Switch>
       </div>
     );
