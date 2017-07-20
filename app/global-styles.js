@@ -19,6 +19,9 @@ injectGlobal`
     justify-content: flex-start;
 
     background-color: #fafafa;
+
+    ${'' /* user-select: none;
+    pointer-events: none; */}
   }
 
   body.fontLoaded {

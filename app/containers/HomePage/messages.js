@@ -24,4 +24,13 @@ export default defineMessages({
     id: 'boilerplate.containers.HomePage.tryme.atPrefix',
     defaultMessage: '@',
   },
+  initial_message: {
+    id: 'bounty.HomePage.initial_message',
+  },
+  not_on_list: {
+    id: 'bounty.server.not-on-list',
+  },
+  no_token_given: {
+    id: 'bounty.server.no-token-given',
+  },
 });

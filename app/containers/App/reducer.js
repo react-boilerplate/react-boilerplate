@@ -23,29 +23,26 @@ import {
 const initialState = fromJS({
   loading: false,
   error: false,
-  currentUser: false,
-  userData: {
-    repositories: false,
+  bounty: {
+    message_id: 'bounty.HomePage.initial_message',
   },
 });
 
 function appReducer(state = initialState, action) {
-  console.log('appReducer:', state, action);
   switch (action.type) {
     case LOAD_BOUNTY:
       return state
         .set('loading', true)
-        .set('error', false)
-        .setIn(['userData', 'repositories'], false)
-        ;
+        .set('error', false);
     case LOAD_BOUNTY_SUCCESS:
       return state
-        .setIn(['userData', 'repositories'], action.repos)
+        .set('bounty', action.data.payload)
         .set('loading', false)
-        .set('currentUser', action.username);
+        .set('error', false);
     case LOAD_BOUNTY_ERROR:
       return state
-        .set('error', action.error)
+        .set('error', action.data.exception)
+        .setIn(['bounty', 'exception'], action.data.exception)
         .set('loading', false);
     default:
       return state;

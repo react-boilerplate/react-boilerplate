@@ -54,6 +54,15 @@ export const Input = styled.input`
   border: none;
   border-radius: 0.125rem;
   font-size: 2rem;
+
+  user-select: all;
+  pointer-events: all;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: progress;
+    pointer-events: none;
+  }
 `;
 
 export const CheckButton = styled.input`
@@ -72,20 +81,29 @@ export const CheckButton = styled.input`
   font-weight: 600;
   letter-spacing: 0.03rem;
 
-  &:hover {
+  pointer-events: all;
+
+  &:not(:disabled):hover {
     filter: drop-shadow(2px 2px 0px rgba(27, 65, 106, 0.25));
     transform: translateY(-1px);
   }
 
-  &:active {
+  &:not(:disabled):active {
     filter: none;
     transform: translateY(0);
     box-shadow: inset ${bso}px ${bso}px ${bsw}px ${bwc}, inset -${bso}px -${bso}px ${bsw}px ${bwc};
   }
 
-  &:focus {
+  &:not(:disabled):focus {
     outline: none;
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: progress;
+    pointer-events: none;
+  }
+
 `;
 
 export const Form = styled.form`

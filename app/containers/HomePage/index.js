@@ -17,6 +17,7 @@ import { /* makeSelectRepos, */ makeSelectLoading, makeSelectError } from '../..
 // import CenteredSection from './CenteredSection';
 // import Form from './Form';
 // import Input from './Input';
+import Message from '../../components/Message';
 import {
   Article,
   // Section,
@@ -28,7 +29,7 @@ import {
   CheckButton,
   Form,
 } from './styles';
-// import messages from './messages';
+import messages from './messages';
 import { loadBounty } from '../../containers/App/actions';
 import {
   changeUserEmail,
@@ -49,8 +50,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 
   render() {
     // const { loading, error } = this.props;
-    console.log(`loading: ${this.props.loading}`);
-    console.log(`error: ${this.props.error}`);
+    console.log('props:', this.props);
     // const reposListProps = {
     //   loading,
     //   error,
@@ -100,7 +100,8 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           </Form>
         </TwoThirdSection>
         <OneThirtSection>
-          this.props.loading: {this.props.loading}
+          {/* <FormattedMessage {...messages.initial_message} /> */}
+          <Message messageId={messages.initial_message.id} />
         </OneThirtSection>
         {/* </Section> */}
       </Article>
@@ -110,10 +111,10 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 
 HomePage.propTypes = {
   loading: React.PropTypes.bool,
-  error: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool,
-  ]),
+  // error: React.PropTypes.oneOfType([
+  //   React.PropTypes.object,
+  //   React.PropTypes.bool,
+  // ]),
   // repos: React.PropTypes.oneOfType([
   //   React.PropTypes.array,
   //   React.PropTypes.bool,
