@@ -78,8 +78,13 @@ const render = (messages) => {
   );
 };
 
-// Hot reloadable translation json files
 if (module.hot) {
+  // Hot reloadable React components
+  module.hot.accept('containers/App', () => {
+    render(translationMessages);
+  });
+
+  // Hot reloadable translation json files
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
   module.hot.accept('./i18n', () => {
