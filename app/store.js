@@ -1,5 +1,5 @@
 /**
- * Create the store with asynchronously loaded reducers
+ * Create the store with dynamic reducers
  */
 
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -40,7 +40,8 @@ export default function configureStore(initialState = {}, history) {
 
   // Extensions
   store.runSaga = sagaMiddleware.run;
-  store.asyncReducers = {}; // Async reducer registry
+  store.injectedReducers = {}; // Reducer registry
+  store.injectedSagas = {}; // Saga registry
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
@@ -48,7 +49,7 @@ export default function configureStore(initialState = {}, history) {
     module.hot.accept('./reducers', () => {
       import('./reducers').then((reducerModule) => {
         const createReducers = reducerModule.default;
-        const nextReducers = createReducers(store.asyncReducers);
+        const nextReducers = createReducers(store.injectedReducers);
 
         store.replaceReducer(nextReducers);
       });

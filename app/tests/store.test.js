@@ -2,7 +2,7 @@
  * Test store addons
  */
 
-import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router-dom';
 import configureStore from '../store';
 
 describe('configureStore', () => {
@@ -12,9 +12,15 @@ describe('configureStore', () => {
     store = configureStore({}, browserHistory);
   });
 
-  describe('asyncReducers', () => {
-    it('should contain an object for async reducers', () => {
-      expect(typeof store.asyncReducers).toBe('object');
+  describe('injectedReducers', () => {
+    it('should contain an object for reducers', () => {
+      expect(typeof store.injectedReducers).toBe('object');
+    });
+  });
+
+  describe('injectedSagas', () => {
+    it('should contain an object for sagas', () => {
+      expect(typeof store.injectedSagas).toBe('object');
     });
   });
 

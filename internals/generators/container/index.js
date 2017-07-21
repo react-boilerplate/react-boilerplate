@@ -36,7 +36,7 @@ module.exports = {
     message: 'Do you want an actions/constants/selectors/reducer tuple for this container?',
   }, {
     type: 'confirm',
-    name: 'wantSagas',
+    name: 'wantSaga',
     default: true,
     message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
   }, {
@@ -44,6 +44,11 @@ module.exports = {
     name: 'wantMessages',
     default: true,
     message: 'Do you want i18n messages (i.e. will this component use text)?',
+  }, {
+    type: 'confirm',
+    name: 'wantLoadable',
+    default: true,
+    message: 'Do you want to load resources asynchronously?',
   }],
   actions: (data) => {
     // Generate index.js and index.test.js
@@ -136,17 +141,26 @@ module.exports = {
     }
 
     // Sagas
-    if (data.wantSagas) {
+    if (data.wantSaga) {
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/sagas.js',
-        templateFile: './container/sagas.js.hbs',
+        path: '../../app/containers/{{properCase name}}/saga.js',
+        templateFile: './container/saga.js.hbs',
         abortOnFail: true,
       });
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/tests/sagas.test.js',
-        templateFile: './container/sagas.test.js.hbs',
+        path: '../../app/containers/{{properCase name}}/tests/saga.test.js',
+        templateFile: './container/saga.test.js.hbs',
+        abortOnFail: true,
+      });
+    }
+
+    if (data.wantLoadable) {
+      actions.push({
+        type: 'add',
+        path: '../../app/containers/{{properCase name}}/Loadable.js',
+        templateFile: './component/loadable.js.hbs',
         abortOnFail: true,
       });
     }
