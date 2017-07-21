@@ -4,10 +4,11 @@
  *
  */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 {{#if wantHeaders}}
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 {{/if}}
 {{#if wantMessages}}
 import { FormattedMessage } from 'react-intl';
@@ -25,12 +26,10 @@ export class {{ properCase name }} extends React.{{{ component }}} { // eslint-d
     return (
       <div>
       {{#if wantHeaders}}
-        <Helmet
-          title="{{properCase name}}"
-          meta={{curly true}}[
-            {{curly true}} name: 'description', content: 'Description of {{properCase name}}' {{curly}},
-          ]{{curly}}
-        />
+        <Helmet>
+          <title>{{properCase name}}</title>
+          <meta name="description" content="Description of {{properCase name}}" />
+        </Helmet>
       {{/if}}
       {{#if wantMessages}}
         <FormattedMessage {...messages.header} />

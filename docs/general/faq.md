@@ -140,40 +140,6 @@ call that includes all of them by default.
 
 *See [this and the following lesson](https://egghead.io/lessons/javascript-redux-reducer-composition-with-arrays?course=getting-started-with-redux) of the egghead.io Redux course for more information about reducer composition!*
 
-### How do I run the saga?
-
-Since a container will always be within a route, one we can simply add it to the exported array in
-`sagas.js` of the route container somewhere up the tree:
-
-```JS
-// /containers/SomeContainer/sagas.js
-
-import { someOtherSagaFromNestedContainer } from './containers/SomeNestedContainer/sagas';
-
-function* someSaga() { /* … */ }
-
-export default [
-  someSaga,
-  someOtherSagaFromNestedContainer,
-];
-```
-
-Or, if you have multiple sagas in the nested container:
-
-
-```JS
-// /containers/SomeContainer/sagas.js
-
-import nestedContainerSagas from './containers/SomeNestedContainer/sagas';
-
-function* someSaga() { /* … */ }
-
-export default [
-  someSaga,
-  ...nestedContainerSagas,
-];
-```
-
 ## Using this boilerplate with WebStorm
 
 WebStorm is a powerful IDE, and why not also use it as debugger tool? Here is the steps
@@ -237,7 +203,7 @@ in the `package.json` with `babel server`!
 ## How to keep my project up-to-date with `react-boilerplate`?
 
 While it's possible to keep your project up-to-date or "in sync" with `react-boilerplate`, it's usually
-very difficult and therefore ***at your own risk*** and not recommend. You should not need to do it either, as
+very difficult and is therefore ***at your own risk*** and not recommended. You should not need to do it either, as
 every version you use will be amazing! There is a long term goal to make this much easier but no ETA at the moment.
 
 ## How to turn off Webpack performance warnings after production build?

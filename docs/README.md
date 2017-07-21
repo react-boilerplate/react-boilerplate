@@ -7,7 +7,7 @@
   - [Introduction ](general/introduction.md)
   - [Tool Configuration](general/files.md)
   - [Server Configurations](general/server-configs.md)
-  - [Deployment](general/deployment.md) *(currently Heroku specific)*
+  - [Deployment](general/deployment.md) *(currently Heroku and AWS S3 specific)*
   - [FAQ](general/faq.md)
   - [Gotchas](general/gotchas.md)
   - [Remove](general/remove.md)
@@ -31,6 +31,8 @@
   - [redux-saga](js/redux-saga.md)
   - [i18n](js/i18n.md)
   - [routing](js/routing.md)
+- [Maintenance](maintenance)
+  - [Dependency Update](maintenance/dependency.md)
 
 ## Overview
 
@@ -47,7 +49,7 @@
 
     - Add a Github username to see Redux and Redux Sagas in action: effortless
       async state updates and side effects are now yours :)
-    - Edit the file at `./app/containers/HomePage/index.js` so that the text of
+    - Edit the file at `./app/components/Header/index.js` so that the text of
       the `<Button>` component reads "Features!!!"... Hot Module Reloading gives
       you a feedback loop with your UI so smooth it's almost conversational!
     - Click your (newly emphatic) Features button to see React Router in action...
@@ -86,7 +88,7 @@ should not need to be touched.
 
 ### CSS
 
-Utilising [tagged template literals](https://github.com/styled-components/styled-components/blob/master/docs/tagged-template-literals.md)
+Utilising [tagged template literals](https://www.styled-components.com/docs/advanced#tagged-template-literals)
 (a recent addition to JavaScript) and the [power of CSS](https://github.com/styled-components/styled-components/blob/master/docs/css-we-support.md),
 `styled-components` allows you to write actual CSS code to style your components.
 It also removes the mapping between components and styles – using components as a
