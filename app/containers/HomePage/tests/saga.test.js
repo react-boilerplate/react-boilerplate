@@ -2,15 +2,12 @@
  * Tests for HomePage sagas
  */
 
-import { cancel, take, put, takeLatest } from 'redux-saga/effects';
-import { createMockTask } from 'redux-saga/lib/utils';
-
-import { LOCATION_CHANGE } from 'react-router-redux';
+import { put, takeLatest } from 'redux-saga/effects';
 
 import { LOAD_REPOS } from 'containers/App/constants';
 import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
-import { getRepos, githubData } from '../sagas';
+import githubData, { getRepos } from '../saga';
 
 const username = 'mxstbr';
 
@@ -49,20 +46,9 @@ describe('getRepos Saga', () => {
 
 describe('githubDataSaga Saga', () => {
   const githubDataSaga = githubData();
-  const mockedTask = createMockTask();
 
   it('should start task to watch for LOAD_REPOS action', () => {
     const takeLatestDescriptor = githubDataSaga.next().value;
     expect(takeLatestDescriptor).toEqual(takeLatest(LOAD_REPOS, getRepos));
-  });
-
-  it('should yield until LOCATION_CHANGE action', () => {
-    const takeDescriptor = githubDataSaga.next(mockedTask).value;
-    expect(takeDescriptor).toEqual(take(LOCATION_CHANGE));
-  });
-
-  it('should cancel the forked task when LOCATION_CHANGE happens', () => {
-    const cancelDescriptor = githubDataSaga.next().value;
-    expect(cancelDescriptor).toEqual(cancel(mockedTask));
   });
 });
