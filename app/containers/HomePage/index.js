@@ -50,7 +50,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 
   render() {
     // const { loading, error } = this.props;
-    console.log('HomePage::props:', this.props);
+    // console.log('HomePage::props:', this.props);
     // const reposListProps = {
     //   loading,
     //   error,
