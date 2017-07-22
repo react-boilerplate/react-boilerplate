@@ -24,7 +24,9 @@ const initialState = fromJS({
   loading: false,
   error: false,
   bounty: {
-    message_id: 'bounty.HomePage.initial_message',
+    message_id: 'bounty.initial_message',
+    exception: null,
+    stakes: null,
   },
 });
 
@@ -36,7 +38,7 @@ function appReducer(state = initialState, action) {
         .set('error', false);
     case LOAD_BOUNTY_SUCCESS:
       return state
-        .set('bounty', action.data.payload)
+        .set('bounty', fromJS(action.data.payload))
         .set('loading', false)
         .set('error', false);
     case LOAD_BOUNTY_ERROR:

@@ -6,16 +6,16 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  'bounty.HomePage.initial_message': {
-    id: 'bounty.HomePage.initial_message',
+  'bounty.initial_message': {
+    id: 'bounty.initial_message',
   },
-  bounty_server_ok: {
+  'bounty.server.ok': {
     id: 'bounty.server.ok',
   },
-  not_on_list: {
+  'bounty.server.not-on-list': {
     id: 'bounty.server.not-on-list',
   },
-  no_token_given: {
+  'bounty.server.no-token-given': {
     id: 'bounty.server.no-token-given',
   },
 });

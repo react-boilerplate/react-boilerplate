@@ -25,7 +25,7 @@ export default defineMessages({
     defaultMessage: '@',
   },
   initial_message: {
-    id: 'bounty.HomePage.initial_message',
+    id: 'bounty.initial_message',
   },
   not_on_list: {
     id: 'bounty.server.not-on-list',

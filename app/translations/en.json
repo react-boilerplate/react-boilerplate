@@ -1,6 +1,8 @@
 {
-  "bounty.HomePage.initial_message": "Type in either your email or your ETH address to see if you are on the list and how many stakes you have",
+  "bounty.initial_message": "Type in either your email or your ETH address to see if you are on the list and how many stakes you have",
   "bounty.server.ok": "okey :)",
+  "bounty.server.not-on-list": "you are not on the list yet",
+  "bounty.server.no-token-given": "please, provide either your email or your ETH",
 
   "boilerplate.components.Footer.author.message": "Made with love by {author}.",
   "boilerplate.components.Footer.license.message": "This project is licensed under the MIT license.",
