@@ -17,25 +17,28 @@ class Message extends React.PureComponent { // eslint-disable-line react/prefer-
     console.log('Message::stakes:', this.props.stakes, typeof this.props.stakes);
     console.log(`messages[${this.props.messageId}].id:`, messages[this.props.messageId].id);
 
-    switch (this.props.stakes) {
-      case this.props.stakes === 0:
-        return (
-          <div>
-            <FormattedMessage id={messages[this.props.messageId].id} values={{ stakes: 'no' }} />
-          </div>
-        );
-      case this.props.stakes > 0:
-        return (
-          <div>
-            <FormattedMessage id={messages[this.props.messageId].id} values={{ stakes: this.props.stakes }} />
-          </div>
-        );
-      default:
-        return (
-          <div>
-            <FormattedMessage id={messages[this.props.messageId].id} />
-          </div>
-        );
+    if (this.props.stakes === 0) {
+      return (
+        <div>
+          <FormattedMessage id={messages[this.props.messageId].id} values={{ stakes: 'no' }} />
+        </div>
+      );
+    }
+
+    if (this.props.stakes > 0) {
+      return (
+        <div>
+          <FormattedMessage id={messages[this.props.messageId].id} values={{ stakes: this.props.stakes }} />
+        </div>
+      );
+    }
+
+    if (this.props.stakes === null) {
+      return (
+        <div>
+          <FormattedMessage id={messages[this.props.messageId].id} values={{ stakes: this.props.stakes }} />
+        </div>
+      );
     }
   }
 }
