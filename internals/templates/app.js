@@ -49,6 +49,7 @@ import './global-styles';
 const initialState = {};
 const history = createHistory();
 const store = configureStore(initialState, history);
+const MOUNT_NODE = document.getElementById('app');
 
 const render = (messages) => {
   ReactDOM.render(
@@ -59,13 +60,14 @@ const render = (messages) => {
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,
-    document.getElementById('app')
+    MOUNT_NODE
   );
 };
 
 if (module.hot) {
   // Hot reloadable React components
   module.hot.accept('containers/App', () => {
+    ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render(translationMessages);
   });
 
@@ -73,6 +75,7 @@ if (module.hot) {
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
   module.hot.accept('./i18n', () => {
+    ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render(translationMessages);
   });
 }
