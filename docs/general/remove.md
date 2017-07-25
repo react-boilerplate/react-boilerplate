@@ -5,7 +5,7 @@ application available when the users network connection isn't perfect.
 
 To remove offline capability, delete the `offline-plugin` from the
 [`package.json`](../../package.json), remove the import of the plugin in
-[`app.js`](../../app/app.js) and remove the plugin from the
+[`app.js`](../../bounty/app.js) and remove the plugin from the
 [`webpack.prod.babel.js`](../../internals/webpack/webpack.prod.babel.js).
 
 ### Removing add to homescreen functionality
@@ -18,7 +18,7 @@ Delete [`manifest.json`](../../app/manifest.json) and remove the
 
 **Careful** about removing this, as perceived performance might be highly impacted.
 
-To remove `FontFaceObserver`, don't import it in [`app.js`](../../app/app.js) and
+To remove `FontFaceObserver`, don't import it in [`app.js`](../../bounty/app.js) and
 remove it from the [`package.json`](../../package.json).
 
 ### Removing image optimization

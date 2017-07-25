@@ -13,36 +13,38 @@
 import { fromJS } from 'immutable';
 
 import {
-  LOAD_REPOS_SUCCESS,
-  LOAD_REPOS,
-  LOAD_REPOS_ERROR,
+  LOAD_BOUNTY,
+  LOAD_BOUNTY_SUCCESS,
+  LOAD_BOUNTY_ERROR,
+
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
   loading: false,
   error: false,
-  currentUser: false,
-  userData: {
-    repositories: false,
+  bounty: {
+    message_id: 'bounty.initial_message',
+    exception: null,
+    stakes: null,
   },
 });
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_REPOS:
+    case LOAD_BOUNTY:
       return state
         .set('loading', true)
-        .set('error', false)
-        .setIn(['userData', 'repositories'], false);
-    case LOAD_REPOS_SUCCESS:
+        .set('error', false);
+    case LOAD_BOUNTY_SUCCESS:
       return state
-        .setIn(['userData', 'repositories'], action.repos)
+        .set('bounty', fromJS(action.data.payload))
         .set('loading', false)
-        .set('currentUser', action.username);
-    case LOAD_REPOS_ERROR:
+        .set('error', false);
+    case LOAD_BOUNTY_ERROR:
       return state
-        .set('error', action.error)
+        .set('error', action.data.exception)
+        .setIn(['bounty', 'exception'], action.data.exception)
         .set('loading', false);
     default:
       return state;

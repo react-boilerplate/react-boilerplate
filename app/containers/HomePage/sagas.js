@@ -4,37 +4,43 @@
 
 import { take, call, put, select, cancel, takeLatest } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { LOAD_REPOS } from 'containers/App/constants';
-import { reposLoaded, repoLoadingError } from 'containers/App/actions';
+import { LOAD_BOUNTY } from '../../containers/App/constants';
+import { bountyLoaded, bountyLoadError } from '../../containers/App/actions';
 
-import request from 'utils/request';
-import { makeSelectUsername } from 'containers/HomePage/selectors';
+import request from '../../utils/request';
+import { makeSelectUserEmail } from '../../containers/HomePage/selectors';
 
 /**
  * Github repos request/response handler
  */
-export function* getRepos() {
+export function* getBounty() {
   // Select username from store
-  const username = yield select(makeSelectUsername());
-  const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
+  const useremail = yield select(makeSelectUserEmail());
+  const protocol = window.location.protocol;
+  const host = window.location.host;
+
+  const requestURL = process.env.NODE_ENV !== 'production' ?
+    `${protocol}//localhost:16000/check/${useremail}` :
+    `${protocol}//${host}/check/${useremail}`;
+
+  // console.log(`requestURL: ${requestURL}`);
 
   try {
-    // Call our request helper (see 'utils/request')
-    const repos = yield call(request, requestURL);
-    yield put(reposLoaded(repos, username));
+    const data = yield call(request, requestURL);
+    yield put(bountyLoaded(data));
   } catch (err) {
-    yield put(repoLoadingError(err));
+    yield put(bountyLoadError(err));
   }
 }
 
 /**
  * Root saga manages watcher lifecycle
  */
-export function* githubData() {
-  // Watches for LOAD_REPOS actions and calls getRepos when one comes in.
+export function* bountyData() {
+  // Watches for LOAD_BOUNTY actions and calls getBounty when one comes in.
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
-  const watcher = yield takeLatest(LOAD_REPOS, getRepos);
+  const watcher = yield takeLatest(LOAD_BOUNTY, getBounty);
 
   // Suspend execution until location changes
   yield take(LOCATION_CHANGE);
@@ -43,5 +49,5 @@ export function* githubData() {
 
 // Bootstrap sagas
 export default [
-  githubData,
+  bountyData,
 ];

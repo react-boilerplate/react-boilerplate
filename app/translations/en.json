@@ -1,4 +1,10 @@
 {
+  "bounty.header": "check your stakes",
+  "bounty.initial_message": "Type in either your email or your ETH address to see if you are on the list and how many stakes you have",
+  "bounty.server.ok": "You posess {stakes} stakes",
+  "bounty.server.not-on-list": "you are not on the list yet",
+  "bounty.server.no-token-given": "please, provide either your email or your ETH",
+
   "boilerplate.components.Footer.author.message": "Made with love by {author}.",
   "boilerplate.components.Footer.license.message": "This project is licensed under the MIT license.",
   "boilerplate.components.Header.features": "Features",
@@ -20,8 +26,10 @@
   "boilerplate.containers.FeaturePage.scaffolding.message": "Automate the creation of components, containers, routes, selectors\n  and sagas - and their tests - right from the CLI!",
   "boilerplate.containers.FeaturePage.state_management.header": "Predictable state management",
   "boilerplate.containers.FeaturePage.state_management.message": "Unidirectional data flow allows for change logging and time travel\n    debugging.",
-  "boilerplate.containers.HomePage.start_project.header": "Start your next react project in seconds",
-  "boilerplate.containers.HomePage.start_project.message": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
+
+  "bounty.HomePage.check_your_email.title": "check your email",
+  "bounty.HomePage.check_your_email.message": "type in your email to see if your are on the list and how many tokens you posess",
+
   "boilerplate.containers.HomePage.tryme.atPrefix": "@",
   "boilerplate.containers.HomePage.tryme.header": "Try me!",
   "boilerplate.containers.HomePage.tryme.message": "Show Github repositories by",

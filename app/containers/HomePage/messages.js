@@ -6,13 +6,14 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  startProjectHeader: {
-    id: 'boilerplate.containers.HomePage.start_project.header',
-    defaultMessage: 'Start your next react project in seconds',
+  'bounty.header': {
+    id: 'bounty.header',
   },
-  startProjectMessage: {
-    id: 'boilerplate.containers.HomePage.start_project.message',
-    defaultMessage: 'A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices',
+  title: {
+    id: 'bounty.HomePage.check_your_email.title',
+  },
+  message: {
+    id: 'bounty.HomePage.check_your_email.message',
   },
   trymeHeader: {
     id: 'boilerplate.containers.HomePage.tryme.header',
@@ -25,5 +26,14 @@ export default defineMessages({
   trymeAtPrefix: {
     id: 'boilerplate.containers.HomePage.tryme.atPrefix',
     defaultMessage: '@',
+  },
+  initial_message: {
+    id: 'bounty.initial_message',
+  },
+  not_on_list: {
+    id: 'bounty.server.not-on-list',
+  },
+  no_token_given: {
+    id: 'bounty.server.no-token-given',
   },
 });
