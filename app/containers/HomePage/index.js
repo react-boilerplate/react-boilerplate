@@ -17,6 +17,8 @@ import { /* makeSelectRepos, */ makeSelectLoading, makeSelectError } from '../..
 // import CenteredSection from './CenteredSection';
 // import Form from './Form';
 // import Input from './Input';
+import Logo from './logo.svg';
+
 import Message from '../../components/Message';
 import {
   Article,
@@ -30,6 +32,7 @@ import {
   Input,
   CheckButton,
   Form,
+  LogoSection,
 } from './styles';
 import messages from './messages';
 import { loadBounty } from '../../containers/App/actions';
@@ -109,6 +112,11 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
             <Message messageId={messages.initial_message.id} />
           </ResultMessage>
         </OneThirtSection>
+        <LogoSection>
+          <a href="https://brickblock.io/">
+            <img src={Logo} role="presentation" />
+          </a>
+        </LogoSection>
         {/* </Section> */}
       </Article>
     );
