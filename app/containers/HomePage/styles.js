@@ -25,7 +25,7 @@ export const CenteredSection = styled(Section)`
 
 export const TwoThirdSection = styled(Section)`
   flex-grow: 2;
-  justify-content: center;
+  justify-content: space-around;
   align-items: stretch;
 `;
 
@@ -33,6 +33,39 @@ export const OneThirtSection = styled(Section)`
   flex-grow: 1;
   justify-content: center;
   align-items: stretch;
+`;
+
+export const ResultMessage = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: stretch;
+
+  & > span {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    font-size: 1.125rem;
+    justify-content: center;
+  }
+`;
+
+export const Header = styled.div`
+  align-items: stretch;
+  display: flex;
+  justify-content: center;
+
+  & > span {
+    color: #407dc9;
+    display: flex;
+    flex: 1;
+    font-size: 2.0rem;
+    font-variant: small-caps;
+    font-weight: 600;
+    justify-content: center;
+    letter-spacing: 0.125rem;
+    line-height: 0;
+  }
 `;
 
 export const EmailLabel = styled.label`
@@ -52,16 +85,23 @@ export const Input = styled.input`
 
   outline: none;
   border: none;
-  border-radius: 0.125rem;
+  border-radius: 0.25rem;
   font-size: 2rem;
 
   user-select: all;
   pointer-events: all;
 
+  border: 2px solid rgba(64, 125, 201, 0.5);
+  color: #407dc9;
+
   &:disabled {
     opacity: 0.5;
     cursor: progress;
     pointer-events: none;
+  }
+
+  &:focus {
+    border-color: #407dc9;
   }
 `;
 
@@ -69,7 +109,7 @@ export const CheckButton = styled.input`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 6rem;
+  min-width: 10rem;
 
   cursor: pointer;
   margin-left: 0.5rem;

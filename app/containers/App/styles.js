@@ -16,6 +16,6 @@ export const AppWrapper = styled.div`
 
   border-radius: 0.125rem;
 
-  background-color: #f5f5f5;
+  background-color: #f7f7f7;
   filter: drop-shadow(5px 5px 5px rgba(179, 179, 179, 0.5));
 `;

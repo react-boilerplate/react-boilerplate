@@ -6,6 +6,9 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
+  'bounty.header': {
+    id: 'bounty.header',
+  },
   title: {
     id: 'bounty.HomePage.check_your_email.title',
   },

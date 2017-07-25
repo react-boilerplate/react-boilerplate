@@ -1,4 +1,5 @@
 {
+  "bounty.header": "check your stakes",
   "bounty.initial_message": "Type in either your email or your ETH address to see if you are on the list and how many stakes you have",
   "bounty.server.ok": "You posess {stakes} stakes",
   "bounty.server.not-on-list": "you are not on the list yet",

@@ -6,7 +6,7 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
-// import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -23,7 +23,9 @@ import {
   // Section,
   // CenteredSection,
   TwoThirdSection,
+  Header,
   OneThirtSection,
+  ResultMessage,
   EmailLabel,
   Input,
   CheckButton,
@@ -75,6 +77,9 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
         </CenteredSection> */}
         {/* <Section> */}
         <TwoThirdSection>
+          <Header>
+            <FormattedMessage {...messages['bounty.header']} />
+          </Header>
           <Form id="email-form" onSubmit={this.props.onSubmitForm}>
             <EmailLabel htmlFor="email">
               {/* <FormattedMessage {...messages.trymeMessage} />
@@ -100,8 +105,9 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           </Form>
         </TwoThirdSection>
         <OneThirtSection>
-          {/* <FormattedMessage {...messages.initial_message} /> */}
-          <Message messageId={messages.initial_message.id} />
+          <ResultMessage>
+            <Message messageId={messages.initial_message.id} />
+          </ResultMessage>
         </OneThirtSection>
         {/* </Section> */}
       </Article>
