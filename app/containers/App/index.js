@@ -7,13 +7,15 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
+import { Switch, Route } from 'react-router-dom';
 
+import HomePage from 'containers/HomePage/Loadable';
+import FeaturePage from 'containers/FeaturePage/Loadable';
+import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import withProgressBar from 'components/ProgressBar';
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -24,7 +26,7 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-export function App(props) {
+export default function App() {
   return (
     <AppWrapper>
       <Helmet
@@ -34,14 +36,12 @@ export function App(props) {
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
       <Header />
-      {React.Children.toArray(props.children)}
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/features" component={FeaturePage} />
+        <Route path="" component={NotFoundPage} />
+      </Switch>
       <Footer />
     </AppWrapper>
   );
 }
-
-App.propTypes = {
-  children: PropTypes.node,
-};
-
-export default withProgressBar(App);
