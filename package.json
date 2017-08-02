@@ -291,7 +291,6 @@
     "react-test-renderer": "15.5.4",
     "rimraf": "2.6.1",
     "shelljs": "0.7.7",
-    "sinon": "2.3.2",
     "style-loader": "0.18.1",
     "url-loader": "0.5.8",
     "webpack": "2.6.1",
