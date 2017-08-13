@@ -2598,13 +2598,12 @@ eslint-config-airbnb@15.0.1:
   dependencies:
     eslint-config-airbnb-base "^11.2.0"
 
-eslint-import-resolver-node@^0.2.0:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/eslint-import-resolver-node/-/eslint-import-resolver-node-0.2.3.tgz#5add8106e8c928db2cba232bcd9efa846e3da16c"
+eslint-import-resolver-node@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-node/-/eslint-import-resolver-node-0.3.1.tgz#4422574cde66a9a7b099938ee4d508a199e0e3cc"
   dependencies:
-    debug "^2.2.0"
-    object-assign "^4.0.1"
-    resolve "^1.1.6"
+    debug "^2.6.8"
+    resolve "^1.2.0"
 
 eslint-import-resolver-webpack@0.8.3:
   version "0.8.3"
@@ -2622,23 +2621,23 @@ eslint-import-resolver-webpack@0.8.3:
     resolve "^1.2.0"
     semver "^5.3.0"
 
-eslint-module-utils@^2.0.0:
+eslint-module-utils@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/eslint-module-utils/-/eslint-module-utils-2.1.1.tgz#abaec824177613b8a95b299639e1b6facf473449"
   dependencies:
     debug "^2.6.8"
     pkg-dir "^1.0.0"
 
-eslint-plugin-import@2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.3.0.tgz#37c801e0ada0e296cbdf20c3f393acb5b52af36b"
+eslint-plugin-import@2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.7.0.tgz#21de33380b9efb55f5ef6d2e210ec0e07e7fa69f"
   dependencies:
     builtin-modules "^1.1.1"
     contains-path "^0.1.0"
-    debug "^2.2.0"
+    debug "^2.6.8"
     doctrine "1.5.0"
-    eslint-import-resolver-node "^0.2.0"
-    eslint-module-utils "^2.0.0"
+    eslint-import-resolver-node "^0.3.1"
+    eslint-module-utils "^2.1.1"
     has "^1.0.1"
     lodash.cond "^4.3.0"
     minimatch "^3.0.3"
@@ -3651,9 +3650,9 @@ html-minifier@^3.0.1, html-minifier@^3.2.3:
     relateurl "0.2.x"
     uglify-js "3.0.x"
 
-html-webpack-plugin@2.28.0:
-  version "2.28.0"
-  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-2.28.0.tgz#2e7863b57e5fd48fe263303e2ffc934c3064d009"
+html-webpack-plugin@2.29.0:
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-2.29.0.tgz#e987f421853d3b6938c8c4c8171842e5fd17af23"
   dependencies:
     bluebird "^3.4.7"
     html-minifier "^3.2.3"
