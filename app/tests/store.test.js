@@ -34,9 +34,10 @@ describe('configureStore', () => {
 describe('configureStore params', () => {
   it('should call window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__', () => {
     /* eslint-disable no-underscore-dangle */
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ = jest.fn();
+    const compose = jest.fn();
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ = () => compose;
     configureStore(undefined, browserHistory);
-    expect(window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__).toHaveBeenCalled();
+    expect(compose).toHaveBeenCalled();
     /* eslint-enable */
   });
 });

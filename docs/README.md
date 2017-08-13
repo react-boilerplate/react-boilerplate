@@ -8,6 +8,7 @@
   - [Tool Configuration](general/files.md)
   - [Server Configurations](general/server-configs.md)
   - [Deployment](general/deployment.md) *(currently Heroku and AWS S3 specific)*
+  - [Debugging](general/debugging.md)  
   - [FAQ](general/faq.md)
   - [Gotchas](general/gotchas.md)
   - [Remove](general/remove.md)
@@ -50,7 +51,7 @@
     - Add a Github username to see Redux and Redux Sagas in action: effortless
       async state updates and side effects are now yours :)
     - Edit the file at `./app/components/Header/index.js` so that the text of
-      the `<Button>` component reads "Features!!!"... Hot Module Reloading gives
+      the `<Button>` component reads "Features!!!"... [Hot Module Reloading](https://webpack.js.org/guides/hot-module-replacement/) gives
       you a feedback loop with your UI so smooth it's almost conversational!
     - Click your (newly emphatic) Features button to see React Router in action...
       Now you can share a direct link to that content privately over your LAN or

@@ -56,9 +56,7 @@
       [
         "env",
         {
-          "es2015": {
-            "modules": false
-          }
+          "modules": false
         }
       ],
       "react",
@@ -261,7 +259,6 @@
     "babel-plugin-transform-react-remove-prop-types": "0.4.5",
     "babel-preset-env": "1.5.1",
     "babel-preset-react": "6.24.1",
-    "babel-preset-react-hmre": "1.1.1",
     "babel-preset-stage-0": "6.24.1",
     "cheerio": "0.22.0",
     "circular-dependency-plugin": "3.0.0",
