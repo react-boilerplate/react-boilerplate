@@ -42,7 +42,12 @@
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "ssr:generate": "cross-env NODE_ENV=development webpack --progress --config internals/webpack/webpack.server.babel.js",
+    "ssr:generate:watch": "npm run ssr:generate -- --watch",
+    "ssr:start": "cross-env NODE_ENV=development nodemon -q --ext js,json --watch server/middlewares --watch server/devRenderService.js server/devRenderService.js",
+    "ssr:clean": "rimraf server/middlewares/generated.*",
+    "ssr:render-static-pages": "babel-node --presets stage-0 -- ./internals/scripts/render-static-pages.js "
   },
   "lint-staged": {
     "*.js": "lint:eslint"
@@ -234,7 +239,7 @@
     "redux-saga": "0.14.0",
     "reselect": "2.5.4",
     "sanitize.css": "4.1.0",
-    "styled-components": "1.4.5",
+    "styled-components": "^2.1.2",
     "warning": "3.0.0",
     "whatwg-fetch": "2.0.1"
   },
