@@ -41,7 +41,7 @@ export default function HtmlDocument({ lang, head, css, appMarkup, state, assets
           If you are seeing this message, that means <strong>JavaScript has been disabled on your browser</strong>
           , please <strong>enable JS</strong> to make this app work.
         </noscript>
-
+        <div>This is SSR</div>
         <div id="app">
           {/* our app markup */}
           <div dangerouslySetInnerHTML={{ __html: appMarkup }} />

@@ -31,14 +31,17 @@ export default function configureStore(initialState = {}, history) {
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
       window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
   /* eslint-enable */
-  const preloadedState = window.__PRELOADED_STATE__
+
+
+  if(typeof(window) === 'object'){
+    initialState = window.__PRELOADED_STATE__
   
   // Allow the passed state to be garbage-collected
-  delete window.__PRELOADED_STATE__
-  
+    delete window.__PRELOADED_STATE__
+  }  
   const store = createStore(
     createReducer(),
-    fromJS(preloadedState),
+    fromJS(initialState),
     composeEnhancers(...enhancers)
   );
 

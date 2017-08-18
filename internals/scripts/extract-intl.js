@@ -80,14 +80,14 @@ for (const locale of locales) {
 }
 
 /* push `react-intl` plugin to the existing plugins that are already configured in `package.json`
-   Example: 
-   ``` 
+   Example:
+   ```
   "babel": {
     "plugins": [
       ["transform-object-rest-spread", { "useBuiltIns": true }]
     ],
     "presets": [
-      "latest",
+      "env",
       "react"
     ]
   }
@@ -111,7 +111,7 @@ const extractFromFile = async (fileName) => {
       }
     }
   } catch (error) {
-    process.stderr.write(`Error transforming file: ${fileName}\n${error}`);
+    process.stderr.write(`\nError transforming file: ${fileName}\n${error}`);
   }
 };
 

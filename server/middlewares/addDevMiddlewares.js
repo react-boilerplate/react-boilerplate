@@ -19,6 +19,7 @@ function createWebpackMiddleware(compiler, publicPath) {
 }
 
 function dllPluginsMiddleware(req, res) {
+  
   const filename = req.path.replace(/^\//, '');
   res.sendFile(path.join(process.cwd(), dllPlugin.path, filename));
 }
@@ -46,7 +47,7 @@ function createServerRenderProxyMiddleware(serviceUrl) {
 
 module.exports = function addDevMiddlewares(app, webpackConfig) {
   const compiler = webpack(webpackConfig);
-
+  
   app.use(createWebpackMiddleware(compiler, webpackConfig.output.publicPath));
   app.use(webpackHotMiddleware(compiler));
 

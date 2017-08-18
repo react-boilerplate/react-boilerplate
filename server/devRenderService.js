@@ -9,6 +9,7 @@ const appPort = require('./port');
 const port = appPort + 1;
 const chalk = require('chalk');
 const enableDestroy = require('server-destroy');
+const addDevMiddlewares = require('./middlewares/addDevMiddlewares');
 
 exports.port = port;
 
@@ -41,6 +42,9 @@ if (require.main === module) {
   const handleSSR = require('./middlewares/handleSSR');
 
   const app = express();
+  // const webpackConfig = require('../internals/webpack/webpack.dev.babel');
+  // const addDevMiddlewares = require('./middlewares/addDevMiddlewares');
+  // addDevMiddlewares(app, webpackConfig);
   app.use(handleSSR);
 
   const server = http.createServer(app).listen(port, (err) => {

@@ -4,6 +4,29 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const AssetsPlugin = require('assets-webpack-plugin');
+const assetsPluginInstance = new AssetsPlugin({
+  path: path.join(process.cwd(), 'server', 'middlewares'),
+  filename: 'generated.assets.json',
+});
+
+const extractVendorCSSPlugin = new ExtractTextPlugin('vendor.[contenthash].css');
+const imageWebpackQuery = require('./imageWebpackQuery');
+
+const isBuildingDll = Boolean(process.env.BUILDING_DLL);
+console.log(">>>BUILDING DLL "+isBuildingDll)
+
+const vendorCSSLoaders = extractVendorCSSPlugin.extract({
+  fallback: 'style-loader',
+  use: 'css-loader',
+});
+
+// Remove this line once the following warning goes away (it was meant for webpack loader authors not users):
+// 'DeprecationWarning: loaderUtils.parseQuery() received a non-string value which can be problematic,
+// see https://github.com/webpack/loader-utils/issues/56 parseQuery() will be replaced with getOptions()
+// in the next major version of loader-utils.'
+process.noDeprecation = true;
 
 module.exports = (options) => ({
   entry: options.entry,
@@ -75,7 +98,9 @@ module.exports = (options) => ({
       },
     }),
     new webpack.NamedModulesPlugin(),
-  ]),
+    extractVendorCSSPlugin
+  ]).concat(
+    isBuildingDll ? [] : [assetsPluginInstance]),
   resolve: {
     modules: ['app', 'node_modules'],
     extensions: [

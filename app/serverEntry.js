@@ -13,15 +13,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
-import { StaticRouter } from 'react-router-dom'
-import { createStore } from 'redux'
+import { match } from 'react-router';
+import { StaticRouter } from 'react-router-dom';
+import { createStore } from 'redux';
+import { fromJS } from 'immutable';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
 import Helmet from 'react-helmet';
-import 'sanitize.css/sanitize.css';
 import { END } from 'redux-saga';
-import { renderToString } from 'react-dom/server';
-import createReducer from './reducers';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
+import {createServerReducer} from './reducers';
+import monitorSagas from 'utils/monitorSagas';
+import configureStore from './store';
+import HtmlDocument from 'components/HtmlDocument';
+
+import { ServerStyleSheet } from 'styled-components';
 
 // Import root app
 import App from 'containers/App';
@@ -57,7 +63,7 @@ openSansObserver.load().then(() => {
 // this uses the singleton browserHistory provided by react-router
 // Optionally, this could be changed to leverage a created history
 // e.g. `const browserHistory = useRouterHistory(createBrowserHistory)();`
-const initialState = {};
+const initialState = {}
 
 function is404(routes) {
     return routes.some((r) => r.name === 'notfound');
@@ -65,12 +71,13 @@ function is404(routes) {
 
 async function renderAppToStringAtLocation(url, { webpackDllNames = [], assets, lang }, callback) {
 
-  const store = createStore(createReducer, initialState);
-  const state = store.getState().toJS()
+  const store = configureStore({})
+  const state = store.getState().toJS();
   store.dispatch(END);
+  const sagasDone = monitorSagas(store);
   await sagasDone();
   const context = {}
-  const app =  renderToString(
+  let app =  
     <Provider store={store}>
       <LanguageProvider messages={translationMessages}>
         <StaticRouter location={url} context={context}>
@@ -78,43 +85,39 @@ async function renderAppToStringAtLocation(url, { webpackDllNames = [], assets, 
         </StaticRouter>
       </LanguageProvider>
     </Provider>
-  );
+  
 
   const styleSheet = new ServerStyleSheet();
 
-  app = styleSheet ? styleSheet.collectStyles(app) : app
+  app = renderToString(styleSheet ? styleSheet.collectStyles(app) : app);
 
-  const html = renderToStaticMarkup(
+  let html = renderToStaticMarkup(
     <HtmlDocument
       appMarkup={app}
       lang={state.language.locale}
       state={state}
-      head={Helmet.rewind()}
+      head={Helmet.rewind()}    
       assets={assets}
-      css={styleSheet.getStyleElement}
+      css={styleSheet.getStyleElement()}
       webpackDllNames={webpackDllNames}
     />
   );
-  return `<!DOCTYPE html>\n${doc}`;
+  html = `<!DOCTYPE html>\n${html}`;
 
   const routes = ['/', '/features', '']
 
-  match({ routes, location: url }, (error, redirectLocation, renderProps) => {
-    if (error) {
-      callback({ error });
-    } else if (redirectLocation) {
-      callback({ redirectLocation: redirectLocation.pathname + redirectLocation.search });
-    } else if (renderProps) {
-      renderHtmlDocument({ store, renderProps, sagasDone, assets, webpackDllNames })
-        .then((html) => {
-          const notFound = is404(renderProps.routes);
-          callback({ html, notFound });
-        })
-        .catch((e) => callback({ error: e }));
-    } else {
-      callback({ error: new Error('Unknown error') });
-    }
-  });
+//   match({ routes, location: url }, (error, redirectLocation, renderProps) => {
+//     if (error) {
+//       callback({ error });
+//     } else if (redirectLocation) {
+//       callback({ redirectLocation: redirectLocation.pathname + redirectLocation.search });
+//     } else if (renderProps) {
+        //  const notFound = is404(renderProps.routes);
+        callback({ html, notFound: () => false });
+//     } else {
+//       callback({ error: new Error('Unknown error') });
+//     }
+//   });
 };
 
 export {

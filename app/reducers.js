@@ -28,3 +28,11 @@ export default function createReducer(asyncReducers) {
     ...asyncReducers,
   });
 }
+
+export function createServerReducer() {
+  return combineReducers({
+    route: routerReducer,
+    global: globalReducer,
+    language: languageProviderReducer
+  });
+}
