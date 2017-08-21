@@ -49,6 +49,7 @@ import './global-styles';
 const initialState = {};
 const history = createHistory();
 const store = configureStore(initialState, history);
+const MOUNT_NODE = document.getElementById('app');
 
 const render = (messages) => {
   ReactDOM.render(
@@ -59,15 +60,16 @@ const render = (messages) => {
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,
-    document.getElementById('app')
+    MOUNT_NODE
   );
 };
 
-// Hot reloadable translation json files
 if (module.hot) {
+  // Hot reloadable React components and translation json files
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
-  module.hot.accept('./i18n', () => {
+  module.hot.accept(['./i18n', 'containers/App'], () => {
+    ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render(translationMessages);
   });
 }
