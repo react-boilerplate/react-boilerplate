@@ -28,8 +28,13 @@ export default function configureStore(initialState = {}, history) {
   const composeEnhancers =
     process.env.NODE_ENV !== 'production' &&
     typeof window === 'object' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        // TODO Try to remove when `react-router-redux` is out of beta, LOCATION_CHANGE should not be fired more than once after hot reloading
+        // Prevent recomputing reducers for `replaceReducer`
+        shouldHotReload: false,
+      })
+      : compose;
   /* eslint-enable */
 
   const store = createStore(
@@ -47,12 +52,7 @@ export default function configureStore(initialState = {}, history) {
   /* istanbul ignore next */
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      import('./reducers').then((reducerModule) => {
-        const createReducers = reducerModule.default;
-        const nextReducers = createReducers(store.injectedReducers);
-
-        store.replaceReducer(nextReducers);
-      });
+      store.replaceReducer(createReducer(store.injectedReducers));
     });
   }
 

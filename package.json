@@ -56,9 +56,7 @@
       [
         "env",
         {
-          "es2015": {
-            "modules": false
-          }
+          "modules": false
         }
       ],
       "react",
@@ -241,7 +239,7 @@
     "redux-immutable": "4.0.0",
     "redux-saga": "0.15.3",
     "reselect": "3.0.1",
-    "sanitize.css": "5.0.0",
+    "sanitize.css": "4.1.0",
     "styled-components": "2.0.0",
     "warning": "3.0.0",
     "whatwg-fetch": "2.0.3"
@@ -261,7 +259,6 @@
     "babel-plugin-transform-react-remove-prop-types": "0.4.5",
     "babel-preset-env": "1.5.1",
     "babel-preset-react": "6.24.1",
-    "babel-preset-react-hmre": "1.1.1",
     "babel-preset-stage-0": "6.24.1",
     "cheerio": "0.22.0",
     "circular-dependency-plugin": "3.0.0",
@@ -294,7 +291,6 @@
     "react-test-renderer": "15.5.4",
     "rimraf": "2.6.1",
     "shelljs": "0.7.7",
-    "sinon": "2.3.2",
     "style-loader": "0.18.1",
     "url-loader": "0.5.8",
     "webpack": "2.6.1",
