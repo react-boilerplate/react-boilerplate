@@ -1,3 +1,4 @@
+/* eslint-disable strict,no-param-reassign */
 /**
  * NotFoundPage
  *
@@ -10,9 +11,9 @@ import { FormattedMessage } from 'react-intl';
 import H1 from 'components/H1';
 import messages from './messages';
 
-export default function NotFound({staticContext}) {
-  if(staticContext){
-    staticContext.status = '404'
+export default function NotFound({ staticContext }) {
+  if (staticContext) {
+    staticContext.status = '404';
   }
   return (
     <article>
@@ -22,3 +23,7 @@ export default function NotFound({staticContext}) {
     </article>
   );
 }
+
+NotFound.propTypes = {
+  staticContext: React.PropTypes.object,
+};

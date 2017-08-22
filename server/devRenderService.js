@@ -9,7 +9,6 @@ const appPort = require('./port');
 const port = appPort + 1;
 const chalk = require('chalk');
 const enableDestroy = require('server-destroy');
-const addDevMiddlewares = require('./middlewares/addDevMiddlewares');
 
 exports.port = port;
 
@@ -38,13 +37,9 @@ function ensureAllGeneratedFilesExist() {
 
 if (require.main === module) {
   ensureAllGeneratedFilesExist();
-
   const handleSSR = require('./middlewares/handleSSR');
-
   const app = express();
-
   app.use(handleSSR);
-
   const server = http.createServer(app).listen(port, (err) => {
     if (err) {
       console.error(err);
