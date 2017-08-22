@@ -65,12 +65,9 @@ openSansObserver.load().then(() => {
 // e.g. `const browserHistory = useRouterHistory(createBrowserHistory)();`
 const initialState = {}
 
-function is404(routes) {
-    return routes.some((r) => r.name === 'notfound');
-  }
 
 async function renderAppToStringAtLocation(url, { webpackDllNames = [], assets, lang }, callback) {
-
+  try{
   const store = configureStore({})
   const state = store.getState().toJS();
   store.dispatch(END);
@@ -104,20 +101,12 @@ async function renderAppToStringAtLocation(url, { webpackDllNames = [], assets, 
   );
   html = `<!DOCTYPE html>\n${html}`;
 
-  const routes = ['/', '/features', '']
-
-//   match({ routes, location: url }, (error, redirectLocation, renderProps) => {
-//     if (error) {
-//       callback({ error });
-//     } else if (redirectLocation) {
-//       callback({ redirectLocation: redirectLocation.pathname + redirectLocation.search });
-//     } else if (renderProps) {
-        //  const notFound = is404(renderProps.routes);
-        callback({ html, notFound: () => false });
-//     } else {
-//       callback({ error: new Error('Unknown error') });
-//     }
-//   });
+  const notFound = context.status === '404';
+  const redirectLocation = context.redirectLocation;
+  callback({ html, notFound, redirectLocation});
+  }catch (e){
+    callback({html:'', error: {message:"Server Error occured"}})
+  }
 };
 
 export {

@@ -51,7 +51,7 @@ export function App(props) {
           exact path="/features" load={createFeaturePageLoader(props.store)}
         />
         <AsyncRoute
-          path="" load={createNotFoundPageLoader(props.store)}
+          path="*" load={createNotFoundPageLoader(props.store)}
         />
       </Switch>
     </AppWrapper>
