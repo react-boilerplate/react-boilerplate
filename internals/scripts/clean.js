@@ -15,39 +15,33 @@ process.stdout.write('Cleanup started...');
 
 // Reuse existing LanguageProvider and i18n tests
 shell.mv('app/containers/LanguageProvider/tests', 'internals/templates/containers/LanguageProvider');
-shell.cp('app/tests/i18n.test.js', 'internals/templates/tests/');
+shell.cp('app/tests/i18n.test.js', 'internals/templates/tests/i18n.test.js');
 
-// Handle Translations
-shell.rm('-rf', 'app/translations');
-shell.mv('internals/templates/translations', 'app');
+// Cleanup components/
+shell.rm('-rf', 'app/components/*');
 
 // Handle containers/
 shell.rm('-rf', 'app/containers');
 shell.mv('internals/templates/containers', 'app');
 
-// Handle components/
-shell.rm('-rf', 'app/components');
-shell.mv('internals/templates/components', 'app');
-
 // Handle tests/
 shell.mv('internals/templates/tests', 'app');
 
+// Handle translations/
+shell.rm('-rf', 'app/translations')
+shell.mv('internals/templates/translations', 'app');
+
 // Handle utils/
 shell.rm('-rf', 'app/utils');
-shell.mv('internals/templates/utils', 'app');
-
-shell.rm('-rf', 'app/setup');
-shell.mv('internals/templates/setup', 'app');
+shell.mv('internals/templates/utils', 'app')
 
 // Replace the files in the root app/ folder
-shell.cp('internals/templates/app.js', 'app/');
-shell.cp('internals/templates/global-styles.js', 'app/');
-shell.cp('internals/templates/i18n.js', 'app/');
-shell.cp('internals/templates/reducers.js', 'app/');
-shell.cp('internals/templates/renderInBrowser.js', 'app/');
-shell.cp('internals/templates/routes.js', 'app/');
-shell.cp('internals/templates/serverEntry.js', 'app/');
-shell.cp('internals/templates/store.js', 'app/');
+shell.cp('internals/templates/app.js', 'app/app.js');
+shell.cp('internals/templates/global-styles.js', 'app/global-styles.js');
+shell.cp('internals/templates/i18n.js', 'app/i18n.js');
+shell.cp('internals/templates/index.html', 'app/index.html');
+shell.cp('internals/templates/reducers.js', 'app/reducers.js');
+shell.cp('internals/templates/store.js', 'app/store.js');
 
 // Remove the templates folder
 shell.rm('-rf', 'internals/templates');

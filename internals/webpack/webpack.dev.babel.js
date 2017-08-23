@@ -36,15 +36,6 @@ module.exports = require('./webpack.base.babel')({
   // Add development plugins
   plugins: dependencyHandlers().concat(plugins), // eslint-disable-line no-use-before-define
 
-  // Tell babel that we want to hot-reload
-  babelQuery: {
-    // require.resolve solves the issue of relative presets when dealing with
-    // locally linked packages. This is an issue with babel and webpack.
-    // See https://github.com/babel/babel-loader/issues/149 and
-    // https://github.com/webpack/webpack/issues/1866
-    presets: ['babel-preset-react-hmre'].map(require.resolve),
-  },
-
   // Emit a source map for easier debugging
   // See https://webpack.js.org/configuration/devtool/#devtool
   devtool: 'eval-source-map',

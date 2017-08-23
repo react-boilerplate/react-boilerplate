@@ -46,7 +46,7 @@
 <br />
 
 <div align="center">
-  <sub>Created by <a href="https://twitter.com/mxstbr">Max Stoiber</a> and maintained with ❤️ by an amazing <a href="https://github.com/orgs/react-boilerplate/teams/core">team of developers</a>.</sub>
+  <sub>Created by <a href="https://twitter.com/mxstbr">Max Stoiber</a> and maintained with ❤️ by an amazing <a href="https://github.com/orgs/react-boilerplate/people">team of developers</a>.</sub>
 </div>
 
 ## Features
@@ -98,8 +98,7 @@ There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on ho
 ## Quick start
 
 1. Clone this repo using `git clone --depth=1 https://github.com/react-boilerplate/react-boilerplate.git`
-2. Move to the appropriate directory: `cd react-boilerplate`.<br />
-3. Run `npm run setup` in order to install dependencies and clean the git repo.<br />
+1. Run `npm run setup` to install dependencies and clean the git repo.<br />
    *We auto-detect `yarn` for installing packages by default, if you wish to force `npm` usage do: `USE_YARN=false npm run setup`*<br />
    *At this point you can run `npm start` to see the example app at `http://localhost:3000`.*
 4. Run `npm run clean` to delete the example app.
@@ -117,6 +116,7 @@ Now you're ready to rumble!
 - [Styling](docs/css): How to work with the CSS tooling
 - [Your app](docs/js): Supercharging your app with Routing, Redux, simple
   asynchronicity helpers, etc.
+- [**Troubleshooting**](docs/general/gotchas.md): Solutions to common problems faced by developers.
 
 ## Supporters
 
