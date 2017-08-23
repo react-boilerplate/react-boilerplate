@@ -9,7 +9,7 @@ export default (store) => {
   return (cb) => {
     const importModules = Promise.all([
       import('containers/HomePage/reducer'),
-      import('containers/HomePage/sagas'),
+      import('containers/HomePage/saga'),
       import('containers/HomePage'),
     ]);
 

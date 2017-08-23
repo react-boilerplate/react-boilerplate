@@ -20,6 +20,7 @@ module.exports = {
     publicPath: '/',
     libraryTarget: 'commonjs2',
   },
+  devtool: 'cheap-module-source-map',
   module: {
     loaders: [{
       test: /\.jsx?$/, // Transform all .js files required somewhere with Babel

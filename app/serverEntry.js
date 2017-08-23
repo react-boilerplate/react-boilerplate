@@ -82,7 +82,7 @@ async function renderAppToStringAtLocation(url, { webpackDllNames = [], assets, 
     const redirectLocation = context.redirectLocation;
     callback({ html, notFound, redirectLocation });
   } catch (e) {
-    callback({ html: '', error: { message: 'Server Error occured' } });
+    callback({ html: '', error: { message: `Server Error occured ${e}` } });
   }
 }
 

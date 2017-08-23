@@ -52,8 +52,10 @@ export default function configureStore(initialState = {}, history) {
 
   // Extensions
   store.runSaga = sagaMiddleware.run;
-  store.injectedReducers = {}; // Reducer registry
-  store.injectedSagas = {}; // Saga registry
+  store.asyncReducers = {}; // Async reducer registry
+  store.injectedReducers = {};
+  store.injectedSagas = {};
+
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
