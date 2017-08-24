@@ -173,7 +173,7 @@ export function getPost(slug) {
 export function postLoaded(post) {
   return {
     type: LOAD_POST_SUCCESS,
-    podcast,
+    post,
   };
 }
 ```
@@ -182,9 +182,9 @@ export function postLoaded(post) {
 
 ```JS
 const { slug } = yield take(LOAD_POST);
-yield call(getXhrPodcast, slug);
+yield call(getXhrPost, slug);
 
-export function* getXhrPodcast(slug) {
+export function* getXhrPost(slug) {
   const requestURL = `http://your.api.com/api/posts/${slug}`;
   const post = yield call(request, requestURL);
   if (!post.err) {
@@ -197,7 +197,7 @@ export function* getXhrPodcast(slug) {
 
 Wait (`take`) for the LOAD_POST constant, which contains the slug payload from the `getPost()` function in actions.js. 
 
-When the action is fired then dispatch the `getXhrPodcast()` function to get the response from your api. On success dispatch the `postLoaded()` action (`yield put`) which sends back the response and can be added into the reducer state.
+When the action is fired then dispatch the `getXhrPost()` function to get the response from your api. On success dispatch the `postLoaded()` action (`yield put`) which sends back the response and can be added into the reducer state.
 
 
 You can read more on [`react-router`'s documentation](https://github.com/reactjs/react-router/blob/master/docs/API.md#props-3).
