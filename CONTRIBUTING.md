@@ -119,7 +119,7 @@ included in the project:
     with a clear title and description.
 
 **IMPORTANT**: By submitting a patch, you agree to allow the project
-owners to license your work under the terms of the [MIT License](https://github.com/react-boilerplate/react-boilerplate/blob/master/LICENSE.md).
+owners to license your work under the terms of the [MIT License](https://github.com/react-boilerplate/react-boilerplate/blob/dev/LICENSE.md).
 
 # Collaborating guidelines
 You can find the list of all maintainers in [MAINTAINERS.md](./MAINTAINERS.md).
