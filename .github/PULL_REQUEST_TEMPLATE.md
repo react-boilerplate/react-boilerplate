@@ -10,8 +10,8 @@ on something that might not end up being merged into the project.
 Before opening a pull request, please ensure:
 
 - [ ] You have followed our [**contributing guidelines**](https://github.com/react-boilerplate/react-boilerplate/blob/dev/CONTRIBUTING.md)
-- [ ] double-check your branch is based on `dev` and targets `dev` 
-- [ ] Pull request has tests (we are going for 100% coverage!)
+- [ ] double-check your branch is based on `dev` and targets `dev`
+- [ ] Pull request has tests (we currently at 100% coverage!)
 - [ ] Code is well-commented, linted and follows project conventions
 - [ ] Documentation is updated (if necessary)
 - [ ] Internal code generators and templates are updated (if necessary)
