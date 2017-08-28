@@ -5,7 +5,7 @@ way to go for most redux based applications.
 
 If you really want to get rid of it, you will have to delete its traces from several places.
 
-**app/store.js**
+**app/configureStore.js**
 
 1. Remove statement `import createSagaMiddleware from 'redux-saga'`.
 2. Remove statement `const sagaMiddleware = createSagaMiddleware()`.

@@ -7,7 +7,7 @@ import { put } from 'redux-saga/effects';
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import configureStore from '../../store';
+import configureStore from '../../configureStore';
 import injectSaga from '../injectSaga';
 import * as sagaInjectors from '../sagaInjectors';
 
