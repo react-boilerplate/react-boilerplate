@@ -97,7 +97,6 @@ module.exports = (options) => ({
       },
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.optimize.ModuleConcatenationPlugin(),
   ]),
   resolve: {
     modules: ['app', 'node_modules'],
