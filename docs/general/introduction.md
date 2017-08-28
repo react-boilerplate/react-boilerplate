@@ -113,7 +113,7 @@ Redux is going to play a huge role in your application. If you're new to Redux, 
 - [ ] Understand the three principles of Redux
 - [ ] Implement Redux in a small React app of yours
 
-The Redux `store` is the heart of your application. Check out [`store.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/store.js) to see how we have configured the store.
+The Redux `store` is the heart of your application. Check out [`configureStore.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/configureStore.js) to see how we have configured the store.
 
 The store is created with the `createStore()` factory, which accepts three parameters.
 
