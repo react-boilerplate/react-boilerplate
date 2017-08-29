@@ -41,9 +41,7 @@ import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/extensions
 /* eslint-enable import/no-webpack-loader-syntax */
 
-import { getAsyncInjectors } from 'utils/asyncInjectors';
-
-import configureStore from './store';
+import configureStore from './configureStore';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
@@ -73,7 +71,7 @@ const render = (messages) => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App store={store}/>
+          <App store={store} />
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,
