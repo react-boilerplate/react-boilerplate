@@ -88,12 +88,11 @@ Identify problems that occur and try to resolve them by rolling back the respect
 - Chrome 56.0.2924.87 (64-bit)
 
 ## :spiral_notepad:  Notes
-1. `react-router` was not updated. Thanks to @anuraaga for all his work. Ref- #1746 
+1. `react-router` was not updated. Thanks to @anuraaga for all his work. Ref- #1746
 2. `history` was not updated because of `react-router v3`'s dependency on it. Should go away when #1746 is merged.
-3. `cheerio` was not updated because it was breaking the HTML template. Pending investigation.
-4. `react-test-renderer` was added as a dev-dependency because enzyme was showing warnings-
+3. `react-test-renderer` was added as a dev-dependency because enzyme was showing warnings-
 > A few deprecation warnings were added in React 15.5. This supports the new APIs that React recommends. Ref. [#876](https://github.com/airbnb/enzyme/pull/876)
-5. If you see a package-name being repeated, note that the version number of the last occurrence will get precedence. 
+4. If you see a package-name being repeated, note that the version number of the last occurrence will get precedence.
 
 ## :package: Version Diff  
 **[0] PATCH UPDATES**
@@ -174,7 +173,6 @@ Identify problems that occur and try to resolve them by rolling back the respect
  reselect                                    2.5.4  →       3.0.1 
  sanitize.css                                4.1.0  →       5.0.0 
  babel-loader                                6.4.1  →       7.0.0 
- cheerio                                    0.22.0  →  1.0.0-rc.1 
  circular-dependency-plugin                  2.0.0  →       3.0.0 
  eslint-config-airbnb                       14.1.0  →      15.0.1 
  eslint-plugin-jsx-a11y                      3.0.2  →       5.0.3 
@@ -186,7 +184,6 @@ Identify problems that occur and try to resolve them by rolling back the respect
 ```
  history                                     3.3.0  →       4.6.1 <--- rolled back
  react-router                                3.0.5  →       4.1.1 <--- rolled back
- cheerio                                    0.22.0  →  1.0.0-rc.1 <--- rolled back
  image-webpack-loader                        2.0.0  →       3.0.0 <--- rolled back
 ```
 **[5] NEW DEPENDENCIES**
