@@ -17,16 +17,13 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
-export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-
-  render() {
-    return (
-      <div>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </div>
-    );
-  }
+export default function App() {
+  return (
+    <div>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route component={NotFoundPage} />
+      </Switch>
+    </div>
+  );
 }
