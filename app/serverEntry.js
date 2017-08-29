@@ -18,7 +18,7 @@ import { END } from 'redux-saga';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import monitorSagas from 'utils/monitorSagas';
 import HtmlDocument from 'components/HtmlDocument';
-import configureStore from 'store';
+import configureStore from 'configureStore';
 import { ServerStyleSheet } from 'styled-components';
 
 // Import root app

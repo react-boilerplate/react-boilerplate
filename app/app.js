@@ -43,7 +43,7 @@ import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line impor
 
 import { getAsyncInjectors } from 'utils/asyncInjectors';
 
-import configureStore from './store';
+import configureStore from './configureStore';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
