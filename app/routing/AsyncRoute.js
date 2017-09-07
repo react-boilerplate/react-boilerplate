@@ -56,10 +56,16 @@ Bundle.propTypes = {
 // sub routes are added to any route it'll work
 const AsyncRoute = ({ path, load }) => (
   <Route
-    path={path} render={(props) => (
+    path={path}
+    render={(props) => (
       <Bundle load={load} {...props} />
   )}
   />
 );
+
+AsyncRoute.propTypes = {
+  path: React.propTypes.string,
+  load: React.propTypes.func,
+};
 
 export default AsyncRoute;

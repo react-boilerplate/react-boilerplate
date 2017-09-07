@@ -32,6 +32,6 @@ export function createServerReducer() {
   return combineReducers({
     route: routerReducer,
     global: globalReducer,
-    language: languageProviderReducer
+    language: languageProviderReducer,
   });
 }

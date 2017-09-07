@@ -25,7 +25,7 @@
     "build:clean": "rimraf ./build",
     "build:dll": "node ./internals/scripts/dependencies.js",
     "start": "cross-env NODE_ENV=development npm-run-all --parallel ssr:generate:watch ssr:start start:dev",
-    "start:debug": "cross-env NODE_ENV=development npm-run-all --parallel ssr:generate:watch ssr:start:debug start:dev",    
+    "start:debug": "cross-env NODE_ENV=development npm-run-all --parallel ssr:generate:watch ssr:start:debug start:dev",
     "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "start:production": "npm run test && npm run build && npm run start:prod",
     "start:dev": "cross-env NODE_ENV=development node server",
@@ -58,7 +58,7 @@
   "pre-commit": "lint:staged",
   "babel": {
     "plugins": [
-      "styled-components"
+      "dynamic-import-node"
     ],
     "presets": [
       [
@@ -69,9 +69,6 @@
       ],
       "react",
       "stage-0"
-    ],
-    "plugins": [
-      "dynamic-import-node"
     ],
     "env": {
       "production": {
@@ -240,6 +237,7 @@
     "react-dom": "15.4.1",
     "react-helmet": "3.2.2",
     "react-intl": "2.1.5",
+    "react-loadable": "^4.0.5",
     "react-redux": "4.4.6",
     "react-router-config": "^1.0.0-beta.3",
     "react-router-dom": "4.1.1",

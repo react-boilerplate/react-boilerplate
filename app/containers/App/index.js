@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import Helmet  from 'react-helmet';
+import Helmet from 'react-helmet';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
 import AsyncRoute from 'routing/AsyncRoute';
 
@@ -43,13 +43,18 @@ export default function App(props) {
 
       <Switch>
         <AsyncRoute
-          exact path="/" load={createHomePageLoader(props.store)}
+          exact
+          path="/"
+          load={createHomePageLoader(props.store)}
         />
         <AsyncRoute
-          exact path="/features" load={createFeaturePageLoader(props.store)}
+          exact
+          path="/features"
+          load={createFeaturePageLoader(props.store)}
         />
         <AsyncRoute
-          path="*" load={createNotFoundPageLoader(props.store)}
+          path="*"
+          load={createNotFoundPageLoader(props.store)}
         />
       </Switch>
     </AppWrapper>

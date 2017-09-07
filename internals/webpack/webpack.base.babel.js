@@ -15,7 +15,6 @@ const extractVendorCSSPlugin = new ExtractTextPlugin('vendor.[contenthash].css')
 const imageWebpackQuery = require('./imageWebpackQuery');
 
 const isBuildingDll = Boolean(process.env.BUILDING_DLL);
-console.log(">>>BUILDING DLL "+isBuildingDll)
 
 const vendorCSSLoaders = extractVendorCSSPlugin.extract({
   fallback: 'style-loader',
@@ -74,15 +73,7 @@ module.exports = (options) => ({
           'file-loader',
           {
             loader: 'image-webpack-loader',
-            options: {
-              progressive: true,
-              optimizationLevel: 7,
-              interlaced: false,
-              pngquant: {
-                quality: '65-90',
-                speed: 4,
-              },
-            },
+            options: imageWebpackQuery,
           },
         ],
       },
@@ -120,7 +111,7 @@ module.exports = (options) => ({
       },
     }),
     new webpack.NamedModulesPlugin(),
-    extractVendorCSSPlugin
+    extractVendorCSSPlugin,
   ]).concat(
     isBuildingDll ? [] : [assetsPluginInstance]),
   resolve: {

@@ -6,12 +6,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Helmet  from 'react-helmet';
+import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { makeSelectRepos, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
@@ -27,7 +26,7 @@ import { loadRepos } from '../App/actions';
 import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
-import saga, { githubData } from './saga';
+import { githubData } from './saga';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
@@ -124,7 +123,7 @@ const mapStateToProps = createStructuredSelector({
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 const withReducer = injectReducer({ key: 'home', reducer });
-const withSaga = injectSaga({ key: 'home', 'saga': githubData });
+const withSaga = injectSaga({ key: 'home', saga: githubData });
 
 export default compose(
   withReducer,
