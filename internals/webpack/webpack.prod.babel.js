@@ -16,6 +16,7 @@ const clientConfig = require('./webpack.base.babel')({
   },
 
   plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       children: true,
