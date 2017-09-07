@@ -21,7 +21,7 @@
     "preinstall": "npm run npmcheckversion",
     "postinstall": "npm run build:dll",
     "prebuild": "npm run build:clean",
-    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules",
+    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
     "build:clean": "rimraf ./build",
     "build:dll": "node ./internals/scripts/dependencies.js",
     "start": "cross-env NODE_ENV=development npm-run-all --parallel ssr:generate:watch ssr:start start:dev",
@@ -252,6 +252,7 @@
     "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
+    "add-asset-html-webpack-plugin": "^2.1.1",
     "assets-webpack-plugin": "^3.5.1",
     "babel-cli": "6.18.0",
     "babel-core": "6.21.0",
@@ -277,8 +278,8 @@
     "eslint": "3.19.0",
     "eslint-config-airbnb": "15.0.1",
     "eslint-config-airbnb-base": "11.2.0",
-    "eslint-import-resolver-webpack": "0.8.1",
-    "eslint-plugin-import": "2.3.0",
+    "eslint-import-resolver-webpack": "0.8.3",
+    "eslint-plugin-import": "2.7.0",
     "eslint-plugin-jsx-a11y": "5.0.3",
     "eslint-plugin-react": "7.0.1",
     "eslint-plugin-redux-saga": "0.3.0",

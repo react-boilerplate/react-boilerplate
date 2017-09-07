@@ -4,11 +4,13 @@
 
 const path = require('path');
 const fs = require('fs');
+const glob = require('glob');
 const webpack = require('webpack');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const logger = require('../../server/logger');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
 const dllPlugin = pkg.dllPlugin;
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
 const plugins = [
   new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
@@ -18,6 +20,17 @@ const plugins = [
     failOnError: false, // show a warning when there is a circular dependency
   }),
 ];
+
+if (dllPlugin) {
+  glob.sync(`${dllPlugin.path}/*.dll.js`).forEach((dllPath) => {
+    plugins.push(
+      new AddAssetHtmlPlugin({
+        filepath: dllPath,
+        includeSourcemap: false,
+      })
+    );
+  });
+}
 
 module.exports = require('./webpack.base.babel')({
   // Add hot reloading in development
