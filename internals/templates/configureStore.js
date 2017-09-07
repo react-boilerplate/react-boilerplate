@@ -37,13 +37,6 @@ export default function configureStore(initialState = {}, history) {
       : compose;
   /* eslint-enable */
 
-
-  if (typeof (window) === 'object') {
-    initialState = window.__PRELOADED_STATE__
-  
-  // Allow the passed state to be garbage-collected
-    delete window.__PRELOADED_STATE__;
-  }
   const store = createStore(
     createReducer(),
     fromJS(initialState),
@@ -52,10 +45,9 @@ export default function configureStore(initialState = {}, history) {
 
   // Extensions
   store.runSaga = sagaMiddleware.run;
-  store.asyncReducers = {}; // Async reducer registry
-  store.injectedReducers = {};
-  store.injectedSagas = {};
-
+  store.asyncReducers = {}; // Async Reducers
+  store.injectedReducers = {}; // Reducer registry
+  store.injectedSagas = {}; // Saga registry
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
