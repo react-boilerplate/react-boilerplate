@@ -64,8 +64,8 @@ const AsyncRoute = ({ path, load }) => (
 );
 
 AsyncRoute.propTypes = {
-  path: React.propTypes.string,
-  load: React.propTypes.func,
+  path: React.PropTypes.string,
+  load: React.PropTypes.func,
 };
 
 export default AsyncRoute;
