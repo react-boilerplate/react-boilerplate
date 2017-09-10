@@ -4,6 +4,23 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const AssetsPlugin = require('assets-webpack-plugin');
+const assetsPluginInstance = new AssetsPlugin({
+  path: path.join(process.cwd(), 'server', 'middlewares'),
+  filename: 'generated.assets.json',
+});
+
+const extractVendorCSSPlugin = new ExtractTextPlugin('vendor.[contenthash].css');
+const imageWebpackQuery = require('./imageWebpackQuery');
+
+const isBuildingDll = Boolean(process.env.BUILDING_DLL);
+
+// Remove this line once the following warning goes away (it was meant for webpack loader authors not users):
+// 'DeprecationWarning: loaderUtils.parseQuery() received a non-string value which can be problematic,
+// see https://github.com/webpack/loader-utils/issues/56 parseQuery() will be replaced with getOptions()
+// in the next major version of loader-utils.'
+process.noDeprecation = true;
 
 // Remove this line once the following warning goes away (it was meant for webpack loader authors not users):
 // 'DeprecationWarning: loaderUtils.parseQuery() received a non-string value which can be problematic,
@@ -51,15 +68,7 @@ module.exports = (options) => ({
           'file-loader',
           {
             loader: 'image-webpack-loader',
-            options: {
-              progressive: true,
-              optimizationLevel: 7,
-              interlaced: false,
-              pngquant: {
-                quality: '65-90',
-                speed: 4,
-              },
-            },
+            options: imageWebpackQuery,
           },
         ],
       },
@@ -97,7 +106,9 @@ module.exports = (options) => ({
       },
     }),
     new webpack.NamedModulesPlugin(),
-  ]),
+    extractVendorCSSPlugin,
+  ]).concat(
+    isBuildingDll ? [] : [assetsPluginInstance]),
   resolve: {
     modules: ['app', 'node_modules'],
     extensions: [

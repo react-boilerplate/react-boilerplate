@@ -111,7 +111,7 @@ const extractFromFile = async (fileName) => {
       }
     }
   } catch (error) {
-    process.stderr.write(`Error transforming file: ${fileName}\n${error}`);
+    process.stderr.write(`\nError transforming file: ${fileName}\n${error}`);
   }
 };
 
