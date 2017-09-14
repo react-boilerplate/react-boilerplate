@@ -152,7 +152,7 @@ getComponent(nextState, cb) {
 },
 ```
 
-###Container:
+### Container:
 
 ```JSX
 <Link to={`/posts/${post.slug}`} key={post._id}>
@@ -178,7 +178,7 @@ export function postLoaded(post) {
 }
 ```
 
-###Saga:
+### Saga:
 
 ```JS
 const { slug } = yield take(LOAD_POST);
