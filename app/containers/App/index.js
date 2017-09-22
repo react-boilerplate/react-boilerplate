@@ -10,12 +10,17 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+
+import injectReducer from 'utils/injectReducer';
+import reducer from './reducer';
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -26,7 +31,7 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-export default function App() {
+function App() {
   return (
     <AppWrapper>
       <Helmet
@@ -45,3 +50,12 @@ export default function App() {
     </AppWrapper>
   );
 }
+
+const withConnect = connect();
+const withReducer = injectReducer({ key: 'global', reducer });
+
+export default compose(
+  withReducer,
+  withConnect,
+)(App);
+

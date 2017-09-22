@@ -8,13 +8,15 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { IntlProvider } from 'react-intl';
-
+import injectReducer from 'utils/injectReducer';
 import { makeSelectLocale } from './selectors';
+import reducer from './reducer';
 
-export class LanguageProvider extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+class LanguageProvider extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <IntlProvider locale={this.props.locale} key={this.props.locale} messages={this.props.messages[this.props.locale]}>
@@ -35,4 +37,11 @@ const mapStateToProps = createSelector(
   (locale) => ({ locale })
 );
 
-export default connect(mapStateToProps)(LanguageProvider);
+const withConnect = connect(mapStateToProps);
+const withReducer = injectReducer({ key: 'language', reducer });
+
+export default compose(
+  withReducer,
+  withConnect,
+)(LanguageProvider);
+
