@@ -12,7 +12,7 @@ efficient tooling and cleanest project structure.
 - [**CLI Commands**](commands.md)
 - [Tool Configuration](files.md)
 - [Server Configurations](server-configs.md)
-- [Deployment](deployment.md) *(currently Heroku specific)*
+- [Deployment](deployment.md)
 - [FAQ](faq.md)
 - [Gotchas](gotchas.md)
 
