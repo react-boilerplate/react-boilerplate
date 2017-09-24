@@ -1,5 +1,73 @@
 # Changelog
 
+## 3.5 September 2017
+
+## News
+
+So, a few things have changed in the JS ecosystem since the original release of React Boilerplate, and there was a discussion in #1776 around the it's future. TLDR; we had two incompatible PRs — one for server-side rendering, and another for react-router v4. The community decided that we would keep our dependencies up to date (upgrade react-router) and establish a clear mission for React Boilerplate:
+
+**React Boilerplate is a rock-solid foundation for crafting large, high-performance enterprise-grade frontend web applications that have advanced/custom requirements.**
+- Static output designed for CDN and edge caches
+- Extreme Developer Ergonomics
+  - Parallelized Tests
+  - DLL manifest in development for blazing rebuilds
+  - Scaffolding tools
+- Pre-baked i18n support
+- Low level tooling that gives developer complete control
+
+We may include SSR in a future version, but for now this is our focus... create-react-app and next.js are doing an awesome job and strongly recommend these projects for most use cases.
+
+### Breaking
+
+- **Upgrade React Router to v4.x.x** (@anuraaga, @Dattaya, et al)
+  - Use React-Loadable for data lifecycle management
+  - Refactor `asyncInjectors`: improve code splitting/saga management
+  - For a complete overview of changes, please see #1746
+
+### Main
+
+- **Upgrade React to v15.6** (@g0ddish)
+- **Upgrade Webpack and related dependencies to v3.x.x** (@KarandikarMihir)
+- **Upgrade `styled-components` to v2.x.x** (@justingreenberg)
+- Replace `babel-preset-hmre` with vanilla Webpack HMR (@Dattaya)
+- Serve Dlls via `add-asset-html-webpack-plugin` (@skidding)
+- Migrate from `React.PropTypes` to `prop-types` (@dennybiasioll
+
+### Other Updates
+
+- Add Stateless Functions to Container generator (@outdooricon)
+- Change development sourcemap style (@samit4me)
+- Create new documentation for dependency updates (@gihrig)
+- Downgrade `sanitize.css` (@Dattaya)
+- Enable rule `react/no-array-index-key` (@carloscuatin)
+- Fix `Intl` polyfill in language generator (@tmf)
+- Handle 204 and 205 HTTP response (@williamdclt)
+- Icon updates and improvements (@samit4me)
+- Import only necessary components for RRv4 (@sorin-davidoi)
+- Improve `<List>` component tests (@chaintng)
+- Improve component tests in demo (@dennybiasiolli)
+- Improve setup to recognize repo before clearing git (@Aftabnack)
+- Make build output less verbose (@KarandikarMihir)
+- Move `onSubmitForm` test into `mapDispatchToProps` test (@tomasfrancisco)
+- NPM script and dependency updates, many fixes (@gihrig)
+- Remove state update in componentWillUpdate (@mawi12345)
+- Remove unused Sinon dependency (@avdeev)
+- Remove route names from `app/routes` (@beardedtim)
+- Rename `store.js` to `configureStore.js` to prevent conflict (@howardya)
+- Separate `dev` and `prod` middleware (@tomazy)
+- Sort ESLint config in `package.json` (@bt)
+- Support OpenType fonts with `.otf` file extension (@kachkaev)
+- Turn `App` into a functional component (@Dattaya)
+- Update FAQ for styles getting overridden (@samit4me)
+- Update the 'tagged template literals' link (@joncass)
+- Use camelcase for reducer and saga key to match selector (@anuraaga)
+- Use correct selector names in tests (@Dattaya)
+- Use local instance of `shelljs` (@KarandikarMihir)
+- Use optimized version of the RBP banner (@tomazy)
+- Use relative path for `manifest.json` (@mrharel)
+
+Many fixes to documentation thanks to @Aftabnack, @auchenberg, @danielrob, @gregoralbrecht, @JonathanMerklin, @marciopuga, @NicholasAnthony, @Skaronator, and @vedatmahir
+
 ## 3.4 January 2017
 
 ### Main
