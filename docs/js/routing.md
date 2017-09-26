@@ -25,14 +25,19 @@ To go to a new page use the `push` function by `react-router-redux`:
 ```JS
 import { push } from 'react-router-redux';
 
-dispatch(push('/some/page'));
+const Component = ({ push }) => (
+  <button onClick={() => push('/some/page')}>Home</button>
+);
+
+// Using `connect`:
+connect(null, { push })(Component);
 ```
 
 ## Child Routes
 For example, if you have a route called `about` at `/about` and want to make a child route called `team` at `/about/our-team`, follow the example
 in `App.js` to create a `Switch` within the parent component. Also remove the `exact` property from the `about` parent route.
 
-```JS
+```js
 // AboutPage/index.js
 import { Switch, Route } from 'react-router-dom';
 
@@ -43,6 +48,7 @@ class AboutPage extends React.PureComponent {
         <Route exact path="/about/our-team" />
       </Switch>
     );
+
   }
 }
 ```
