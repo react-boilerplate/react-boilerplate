@@ -6,7 +6,7 @@ import {
   makeSelectLoading,
   makeSelectError,
   makeSelectRepos,
-  makeSelectLocationState,
+  makeSelectLocation,
 } from '../selectors';
 
 describe('selectGlobal', () => {
@@ -73,15 +73,15 @@ describe('makeSelectRepos', () => {
   });
 });
 
-describe('makeSelectLocationState', () => {
-  const locationStateSelector = makeSelectLocationState();
-  it('should select the route as a plain JS object', () => {
+describe('makeSelectLocation', () => {
+  const locationStateSelector = makeSelectLocation();
+  it('should select the location', () => {
     const route = fromJS({
-      locationBeforeTransitions: null,
+      location: { pathname: '/foo' },
     });
     const mockedState = fromJS({
       route,
     });
-    expect(locationStateSelector(mockedState)).toEqual(route.toJS());
+    expect(locationStateSelector(mockedState)).toEqual(route.get('location').toJS());
   });
 });

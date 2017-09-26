@@ -88,7 +88,7 @@ for (const locale of locales) {
       ["transform-object-rest-spread", { "useBuiltIns": true }]
     ],
     "presets": [
-      "latest",
+      "env",
       "react"
     ]
   }

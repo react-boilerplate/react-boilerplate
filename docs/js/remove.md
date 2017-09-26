@@ -5,24 +5,23 @@ way to go for most redux based applications.
 
 If you really want to get rid of it, you will have to delete its traces from several places.
 
-**app/store.js**
+**app/configureStore.js**
 
 1. Remove statement `import createSagaMiddleware from 'redux-saga'`.
 2. Remove statement `const sagaMiddleware = createSagaMiddleware()`.
 3. Remove `sagaMiddleware` from `middlewares` array.
 4. Remove statement `store.runSaga = sagaMiddleware.run`
+5. Remove `store.injectedSagas = {}; // Saga registry`
 
-**app/utils/asyncInjectors.js**
+**app/utils**
 
-1. Remove `runSaga: isFunction` from `shape`.
-2. Remove function `injectAsyncSagas`.
-3. Do not export `injectSagas: injectAsyncSagas(store, true)`.
+1. Remove two files: `injectSaga.js` and `sagaInjectors.js`.
 
-**app/routes.js**
+**app/containers/\*/index.js**
 
-1. Do not pull out `injectSagas` from `getAsyncInjectors()`.
-2. Remove `sagas` from `importModules.then()`.
-3. Remove `injectSagas(sagas.default)` from every route that uses Saga.
+Clean up containers that inject a dynamic saga
+
+1. Remove saga injections like: `const withSaga = injectSaga({ key: 'home', saga });`.
 
 **Finally, remove it from the `package.json`. Then you should be good to go with whatever
 side-effect management library you want to use!**
