@@ -41,8 +41,7 @@ shell.cp('internals/templates/global-styles.js', 'app/global-styles.js');
 shell.cp('internals/templates/i18n.js', 'app/i18n.js');
 shell.cp('internals/templates/index.html', 'app/index.html');
 shell.cp('internals/templates/reducers.js', 'app/reducers.js');
-shell.cp('internals/templates/routes.js', 'app/routes.js');
-shell.cp('internals/templates/store.js', 'app/store.js');
+shell.cp('internals/templates/configureStore.js', 'app/configureStore.js');
 
 // Remove the templates folder
 shell.rm('-rf', 'internals/templates');

@@ -2,8 +2,8 @@
  * Test store addons
  */
 
-import { browserHistory } from 'react-router';
-import configureStore from '../store';
+import { browserHistory } from 'react-router-dom';
+import configureStore from '../configureStore';
 
 describe('configureStore', () => {
   let store;
@@ -12,9 +12,15 @@ describe('configureStore', () => {
     store = configureStore({}, browserHistory);
   });
 
-  describe('asyncReducers', () => {
-    it('should contain an object for async reducers', () => {
-      expect(typeof store.asyncReducers).toBe('object');
+  describe('injectedReducers', () => {
+    it('should contain an object for reducers', () => {
+      expect(typeof store.injectedReducers).toBe('object');
+    });
+  });
+
+  describe('injectedSagas', () => {
+    it('should contain an object for sagas', () => {
+      expect(typeof store.injectedSagas).toBe('object');
     });
   });
 
@@ -28,9 +34,10 @@ describe('configureStore', () => {
 describe('configureStore params', () => {
   it('should call window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__', () => {
     /* eslint-disable no-underscore-dangle */
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ = jest.fn();
+    const compose = jest.fn();
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ = () => compose;
     configureStore(undefined, browserHistory);
-    expect(window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__).toHaveBeenCalled();
+    expect(compose).toHaveBeenCalled();
     /* eslint-enable */
   });
 });
