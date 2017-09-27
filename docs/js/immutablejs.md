@@ -67,7 +67,7 @@ For instance you'll write `map.get('property')` instead of `object.property`, an
 This can make your code a little harder to follow and requires you to be extra cautious when passing arguments or props to functions or components that try to access values with regular dot notation.  
 ImmutableJS's [`Record`](https://facebook.github.io/immutable-js/docs/#/Record) structure offers a solution to this issue.
 
-A `Record` is similar to a `Map` but has a fixed shape, meaning it's property keys are predefined and you can't later add a new property after the record is created. Attempting to set new properties will cause an error.  
+A `Record` is similar to a `Map` but has a fixed shape, meaning its property keys are predefined and you can't later add a new property after the record is created. Attempting to set new properties will cause an error.  
 One benefit of `Record` is that you can now, along with other immutable read methods (.get, .set, .merge and so on), use the dot notation to access properties.
 
 The creation of a record is less simple than simply calling `.toJS()`.  
