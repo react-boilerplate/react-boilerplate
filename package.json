@@ -93,7 +93,8 @@
     "plugins": [
       "redux-saga",
       "react",
-      "jsx-a11y"
+      "jsx-a11y",
+      "prettier"
     ],
     "parserOptions": {
       "ecmaVersion": 6,
@@ -156,7 +157,8 @@
       "react/self-closing-comp": 0,
       "redux-saga/no-yield-in-race": 2,
       "redux-saga/yield-effects": 2,
-      "require-yield": 0
+      "require-yield": 0,
+      "prettier/prettier": "warn"
     },
     "settings": {
       "import/resolver": {
@@ -271,6 +273,7 @@
     "eslint-import-resolver-webpack": "0.8.3",
     "eslint-plugin-import": "2.7.0",
     "eslint-plugin-jsx-a11y": "5.0.3",
+    "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "7.0.1",
     "eslint-plugin-redux-saga": "0.3.0",
     "eventsource-polyfill": "0.9.6",
@@ -288,6 +291,7 @@
     "null-loader": "0.1.1",
     "offline-plugin": "4.8.1",
     "plop": "1.8.0",
+    "prettier": "1.7.4",
     "react-test-renderer": "15.6.1",
     "rimraf": "2.6.1",
     "shelljs": "0.7.7",
