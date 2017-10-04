@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Item from '../Item';
 
 describe('<Item />', () => {
-  it('should render an <div> tag', () => {
+  it('should render a <div> tag', () => {
     const renderedComponent = shallow(<Item />);
     expect(renderedComponent.type()).toEqual('div');
   });
