@@ -18,7 +18,7 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
 
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler, {
-    heartbeat: 1000,
+    heartbeat: 2000,
   }));
 
   // Since webpackDevMiddleware uses memory-fs internally to store build
