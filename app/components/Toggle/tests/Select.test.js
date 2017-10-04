@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Select from '../Select';
 
 describe('<Select />', () => {
-  it('should render an <select> tag', () => {
+  it('should render a <select> tag', () => {
     const renderedComponent = shallow(<Select />);
     expect(renderedComponent.type()).toEqual('select');
   });
