@@ -3,8 +3,6 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
-const dllPlugin = require('./dllPlugin');
-
 function createWebpackMiddleware(compiler, publicPath) {
   return webpackDevMiddleware(compiler, {
     noInfo: true,
@@ -14,21 +12,12 @@ function createWebpackMiddleware(compiler, publicPath) {
   });
 }
 
-function dllPluginsMiddleware(req, res) {
-  const filename = req.path.replace(/^\//, '');
-  res.sendFile(path.join(process.cwd(), dllPlugin.path, filename));
-}
-
 module.exports = function addDevMiddlewares(app, webpackConfig) {
   const compiler = webpack(webpackConfig);
   const middleware = createWebpackMiddleware(compiler, webpackConfig.output.publicPath);
 
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
-
-  if (dllPlugin) {
-    app.get(/\.dll\.js$/, dllPluginsMiddleware);
-  }
 
   // Since webpackDevMiddleware uses memory-fs internally to store build
   // artifacts, we use it instead

@@ -7,7 +7,7 @@ import LocaleToggle, { mapDispatchToProps } from '../index';
 import { changeLocale } from '../../LanguageProvider/actions';
 import LanguageProvider from '../../LanguageProvider';
 
-import configureStore from '../../../store';
+import configureStore from '../../../configureStore';
 import { translationMessages } from '../../../i18n';
 
 describe('<LocaleToggle />', () => {
