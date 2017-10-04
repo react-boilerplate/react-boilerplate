@@ -15,7 +15,7 @@ describe('<Img />', () => {
     expect(renderedComponent.is('img')).toBe(true);
   });
 
-  it('should have an src attribute', () => {
+  it('should have a src attribute', () => {
     const renderedComponent = renderComponent();
     expect(renderedComponent.prop('src')).toEqual(src);
   });
