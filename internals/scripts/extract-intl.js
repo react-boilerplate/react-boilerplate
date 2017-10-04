@@ -42,7 +42,8 @@ const task = (message) => {
 
 // Wrap async functions below into a promise
 const glob = (pattern) => new Promise((resolve, reject) => {
-  nodeGlob(pattern, (error, value) => (error ? reject(error) : resolve(value)));
+  // Specify "nodir" in options to match files only.
+  nodeGlob(pattern, { nodir: true }, (error, value) => (error ? reject(error) : resolve(value)));
 });
 
 const readFile = (fileName) => new Promise((resolve, reject) => {
