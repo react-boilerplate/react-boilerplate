@@ -23,9 +23,20 @@ If you want your route component (or any component for that matter) to be loaded
 To go to a new page use the `push` function by `react-router-redux`:
 
 ```JS
+// TeamLinkButton.js
+import { connect } from 'redux';
 import { push } from 'react-router-redux';
 
-dispatch(push('/some/page'));
+export default connect(null, { push })(({ push }) => (
+  <button onClick={() => push('/about/our-team')}>Our Team</button>
+));
+
+// or
+
+export default connect()(({ push, dispatch }) => (
+  <button onClick={() => dispatch(push('/about/our-team'))}>Our Team</button>
+));
+
 ```
 
 ## Child Routes
