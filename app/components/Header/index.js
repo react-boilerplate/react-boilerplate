@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import ThemePicker from 'containers/ThemePicker';
 
 import A from './A';
 import Img from './Img';
@@ -15,6 +16,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
         <A href="https://twitter.com/mxstbr">
           <Img src={Banner} alt="react-boilerplate - Logo" />
         </A>
+        <ThemePicker></ThemePicker>
         <NavBar>
           <HeaderLink to="/">
             <FormattedMessage {...messages.home} />

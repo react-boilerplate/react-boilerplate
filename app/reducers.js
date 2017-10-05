@@ -8,6 +8,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 
 import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
+import themePickerReducer from 'containers/ThemePicker/reducer';
 
 /*
  * routeReducer
@@ -45,6 +46,7 @@ export default function createReducer(injectedReducers) {
     route: routeReducer,
     global: globalReducer,
     language: languageProviderReducer,
+    theme: themePickerReducer,
     ...injectedReducers,
   });
 }
