@@ -222,6 +222,7 @@
       ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/image.js"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/internals/testing/test-bundler.js",
+    "setupFiles": ["<rootDir>/internals/testing/enzyme-setup.js"],
     "testRegex": "tests/.*\\.test\\.js$"
   },
   "dependencies": {
@@ -277,7 +278,8 @@
     "circular-dependency-plugin": "3.0.0",
     "coveralls": "2.13.1",
     "css-loader": "0.28.4",
-    "enzyme": "2.8.2",
+    "enzyme": "3.1.0",
+    "enzyme-adapter-react-15": "1.0.1",
     "eslint": "3.19.0",
     "eslint-config-airbnb": "15.0.1",
     "eslint-config-airbnb-base": "11.2.0",
