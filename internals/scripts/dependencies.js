@@ -10,11 +10,11 @@ const fs = require('fs');
 const exists = fs.existsSync;
 const writeFile = fs.writeFileSync;
 
-const defaults = require('lodash/defaultsDeep');
-const pkg = require(path.join(process.cwd(), 'package.json'));
 const config = require('../config');
+const defaults = require('lodash/defaultsDeep');
+const pkg = require(path.join(config.APP_ROOT, 'package.json'));
 const dllConfig = defaults(pkg.dllPlugin, config.dllPlugin.defaults);
-const outputPath = path.join(process.cwd(), dllConfig.path);
+const outputPath = path.join(config.APP_ROOT, dllConfig.path);
 const dllManifestPath = path.join(outputPath, 'package.json');
 
 /**
