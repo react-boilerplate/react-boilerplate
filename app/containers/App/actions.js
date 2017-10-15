@@ -16,10 +16,23 @@
  */
 
 import {
+  APP_ERROR,
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
 } from './constants';
+
+/**
+ * Creates error action as caught by react-error-boundary
+ *
+ * @return {object} An action object with a type of APP_ERROR
+ */
+export function handleError({ error, componentStack }) {
+  return {
+    type: APP_ERROR,
+    payload: { error, componentStack },
+  };
+}
 
 /**
  * Load the repositories, this action starts the request saga

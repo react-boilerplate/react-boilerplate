@@ -233,6 +233,7 @@
     "prop-types": "15.5.10",
     "react": "16.0.0",
     "react-dom": "16.0.0",
+    "react-error-boundary": "1.0.0",
     "react-helmet": "5.1.3",
     "react-intl": "2.4.0",
     "react-loadable": "4.0.3",

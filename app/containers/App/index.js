@@ -6,17 +6,25 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import ErrorBoundary from 'react-error-boundary';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import ErrorBoundary from 'components/ErrorBoundary';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import ErrorFallback from 'components/ErrorFallback';
+import { DAEMON } from 'utils/constants';
+import injectSaga from 'utils/injectSaga';
+
+import { handleError } from './actions';
+import saga from './saga';
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -27,24 +35,40 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-export default function App() {
-  return (
-    <AppWrapper>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
-      </Helmet>
-      <ErrorBoundary>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/features" component={FeaturePage} />
-          <Route path="" component={NotFoundPage} />
-        </Switch>
-        <Footer />
-      </ErrorBoundary>
-    </AppWrapper>
-  );
+export class App extends Component { // eslint-disable-line react/prefer-stateless-function
+  render() {
+    return (
+      <AppWrapper>
+        <Helmet
+          titleTemplate="%s - React.js Boilerplate"
+          defaultTitle="React.js Boilerplate"
+        >
+          <meta name="description" content="A React.js Boilerplate application" />
+        </Helmet>
+        <ErrorBoundary
+          onError={handleError}
+          FallbackComponent=<ErrorFallback />
+        >
+          <Header />
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/features" component={FeaturePage} />
+            <Route path="" component={NotFoundPage} />
+          </Switch>
+          <Footer />
+        </ErrorBoundary>
+      </AppWrapper>
+    );
+  }
 }
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    handleError: () => dispatch(handleError()),
+  };
+}
+
+export default compose(
+  injectSaga({ key: 'appError', saga, mode: DAEMON }), // spawn watcher
+  connect(null, mapDispatchToProps) // connect to store, bind action creator
+)(App);

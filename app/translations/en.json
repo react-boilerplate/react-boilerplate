@@ -3,7 +3,7 @@
   "boilerplate.components.Footer.license.message": "This project is licensed under the MIT license.",
   "boilerplate.components.Header.features": "Features",
   "boilerplate.components.Header.home": "Home",
-  "boilerplate.components.ErrorBoundary.error": "Something bad happened",
+  "boilerplate.components.ErrorFallback.error": "Something bad happened.",
   "boilerplate.containers.FeaturePage.css.header": "Features",
   "boilerplate.containers.FeaturePage.css.message": "Next generation CSS",
   "boilerplate.containers.FeaturePage.feedback.header": "Instant feedback",
