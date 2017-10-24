@@ -67,6 +67,14 @@
       "stage-0"
     ],
     "env": {
+      "development": {
+        "only": [
+          "app"
+        ],
+        "plugins": [
+          "transform-react-jsx-source"
+        ]
+      },
       "production": {
         "only": [
           "app"
