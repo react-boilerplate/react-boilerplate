@@ -5,7 +5,7 @@
  */
 import { defineMessages } from 'react-intl';
 
-const scope = 'boilerplate.components.ErrorBoundary';
+const scope = 'boilerplate.components.ErrorFallback';
 
 export default defineMessages({
   error: {

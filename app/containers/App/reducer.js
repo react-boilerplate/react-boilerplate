@@ -13,6 +13,7 @@
 import { fromJS } from 'immutable';
 
 import {
+  APP_ERROR,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
@@ -30,6 +31,8 @@ const initialState = fromJS({
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
+    case APP_ERROR:
+      return state.set('error', true);
     case LOAD_REPOS:
       return state
         .set('loading', true)
@@ -41,9 +44,7 @@ function appReducer(state = initialState, action) {
         .set('loading', false)
         .set('currentUser', action.username);
     case LOAD_REPOS_ERROR:
-      return state
-        .set('error', action.error)
-        .set('loading', false);
+      return state.set('error', action.error).set('loading', false);
     default:
       return state;
   }

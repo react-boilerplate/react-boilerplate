@@ -17,7 +17,7 @@ const ToggleOption = ({ value, message, intl }) => (
 ToggleOption.propTypes = {
   value: PropTypes.string.isRequired,
   message: PropTypes.object,
-  intl: intlShape.isRequired,
+  intl: intlShape,
 };
 
 export default injectIntl(ToggleOption);
