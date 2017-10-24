@@ -10,8 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const logger = require('../../server/logger');
-const pkg = require(path.resolve(process.cwd(), 'package.json'));
-const dllPlugin = pkg.dllPlugin;
+const { dllPlugin } = require(path.resolve(process.cwd(), 'package.json'));
 
 const plugins = [
   new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
@@ -56,7 +55,8 @@ module.exports = require('./webpack.base.babel')({
 
   // Emit a source map for easier debugging
   // See https://webpack.js.org/configuration/devtool/#devtool
-  devtool: 'eval-source-map',
+  // See https://reactjs.org/docs/cross-origin-errors.html
+  devtool: 'cheap-module-source-map',
 
   performance: {
     hints: false,
@@ -74,7 +74,9 @@ module.exports = require('./webpack.base.babel')({
  */
 function dependencyHandlers() {
   // Don't do anything during the DLL Build step
-  if (process.env.BUILDING_DLL) { return []; }
+  if (process.env.BUILDING_DLL) {
+    return [];
+  }
 
   // If the package.json does not have a dllPlugin property, use the CommonsChunkPlugin
   if (!dllPlugin) {
@@ -88,7 +90,10 @@ function dependencyHandlers() {
     ];
   }
 
-  const dllPath = path.resolve(process.cwd(), dllPlugin.path || 'node_modules/react-boilerplate-dlls');
+  const dllPath = path.resolve(
+    process.cwd(),
+    dllPlugin.path || 'node_modules/react-boilerplate-dlls'
+  );
 
   /**
    * If DLLs aren't explicitly defined, we assume all production dependencies listed in package.json
@@ -98,7 +103,9 @@ function dependencyHandlers() {
     const manifestPath = path.resolve(dllPath, 'reactBoilerplateDeps.json');
 
     if (!fs.existsSync(manifestPath)) {
-      logger.error('The DLL manifest is missing. Please run `npm run build:dll`');
+      logger.error(
+        'The DLL manifest is missing. Please run `npm run build:dll`'
+      );
       process.exit(0);
     }
 
@@ -111,12 +118,18 @@ function dependencyHandlers() {
   }
 
   // If DLLs are explicitly defined, we automatically create a DLLReferencePlugin for each of them.
-  const dllManifests = Object.keys(dllPlugin.dlls).map((name) => path.join(dllPath, `/${name}.json`));
+  const dllManifests = Object.keys(dllPlugin.dlls).map((name) =>
+    path.join(dllPath, `/${name}.json`)
+  );
 
   return dllManifests.map((manifestPath) => {
     if (!fs.existsSync(path)) {
       if (!fs.existsSync(manifestPath)) {
-        logger.error(`The following Webpack DLL manifest is missing: ${path.basename(manifestPath)}`);
+        logger.error(
+          `The following Webpack DLL manifest is missing: ${path.basename(
+            manifestPath
+          )}`
+        );
         logger.error(`Expected to find it in ${dllPath}`);
         logger.error('Please run: npm run build:dll');
 

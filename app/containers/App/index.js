@@ -6,7 +6,8 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -35,40 +36,44 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-export class App extends Component { // eslint-disable-line react/prefer-stateless-function
-  render() {
-    return (
-      <AppWrapper>
-        <Helmet
-          titleTemplate="%s - React.js Boilerplate"
-          defaultTitle="React.js Boilerplate"
-        >
-          <meta name="description" content="A React.js Boilerplate application" />
-        </Helmet>
-        <ErrorBoundary
-          onError={handleError}
-          FallbackComponent=<ErrorFallback />
-        >
-          <Header />
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/features" component={FeaturePage} />
-            <Route path="" component={NotFoundPage} />
-          </Switch>
-          <Footer />
-        </ErrorBoundary>
-      </AppWrapper>
-    );
-  }
-}
+export const App = ({ handleError: errorHandler }) => (
+  <AppWrapper>
+    <Helmet
+      titleTemplate="%s - React.js Boilerplate"
+      defaultTitle="React.js Boilerplate"
+    >
+      <meta
+        name="description"
+        content="A React.js Boilerplate application"
+      />
+    </Helmet>
+    <ErrorBoundary
+      onError={errorHandler}
+      FallbackComponent={<ErrorFallback />}
+    >
+      <Header />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/features" component={FeaturePage} />
+        <Route path="" component={NotFoundPage} />
+      </Switch>
+      <Footer />
+    </ErrorBoundary>
+  </AppWrapper>
+);
 
-export function mapDispatchToProps(dispatch) {
-  return {
-    handleError: () => dispatch(handleError()),
-  };
-}
+App.propTypes = {
+  handleError: PropTypes.func,
+};
 
-export default compose(
-  injectSaga({ key: 'appError', saga, mode: DAEMON }), // spawn watcher
-  connect(null, mapDispatchToProps) // connect to store, bind action creator
-)(App);
+export default App;
+// export function mapDispatchToProps(dispatch) {
+//   return {
+//     handleError: (err) => dispatch(handleError(err)),
+//   };
+// }
+//
+// export default compose(
+//   injectSaga({ key: 'appError', saga, mode: DAEMON }), // spawn watcher
+//   connect(null, mapDispatchToProps) // connect to store, bind action creator
+// )(App);

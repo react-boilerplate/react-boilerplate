@@ -23,6 +23,13 @@ function Footer() {
           }}
         />
       </section>
+      <button
+        onClick={() => {
+          throw new Error('uh oh!');
+        }}
+      >
+        test error
+      </button>
     </Wrapper>
   );
 }

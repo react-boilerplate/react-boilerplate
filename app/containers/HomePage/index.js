@@ -28,6 +28,9 @@ import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import ErrorBoundary from 'react-error-boundary';
+import { handleError } from '../App/actions';
+import ErrorFallback from 'components/ErrorFallback';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
@@ -111,6 +114,7 @@ export function mapDispatchToProps(dispatch) {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadRepos());
     },
+    onError: (err) => dispatch(handleError(err)),
   };
 }
 
