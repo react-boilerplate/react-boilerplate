@@ -15,15 +15,18 @@ import ErrorBoundary from 'react-error-boundary';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
+// Async bundles (code split-points)
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+
+// Dumb components
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import ErrorFallback from 'components/ErrorFallback';
+
 import { DAEMON } from 'utils/constants';
 import injectSaga from 'utils/injectSaga';
-
 import { handleError } from './actions';
 import saga from './saga';
 
@@ -42,15 +45,9 @@ export const App = ({ handleError: errorHandler }) => (
       titleTemplate="%s - React.js Boilerplate"
       defaultTitle="React.js Boilerplate"
     >
-      <meta
-        name="description"
-        content="A React.js Boilerplate application"
-      />
+      <meta name="description" content="A React.js Boilerplate application" />
     </Helmet>
-    <ErrorBoundary
-      onError={errorHandler}
-      FallbackComponent={<ErrorFallback />}
-    >
+    <ErrorBoundary onError={errorHandler} FallbackComponent={<ErrorFallback />}>
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
@@ -66,14 +63,13 @@ App.propTypes = {
   handleError: PropTypes.func,
 };
 
-export default App;
-// export function mapDispatchToProps(dispatch) {
-//   return {
-//     handleError: (err) => dispatch(handleError(err)),
-//   };
-// }
-//
-// export default compose(
-//   injectSaga({ key: 'appError', saga, mode: DAEMON }), // spawn watcher
-//   connect(null, mapDispatchToProps) // connect to store, bind action creator
-// )(App);
+export function mapDispatchToProps(dispatch) {
+  return {
+    handleError: (err) => dispatch(handleError(err)),
+  };
+}
+
+export default compose(
+  injectSaga({ key: 'appError', saga, mode: DAEMON }), // spawn watcher
+  connect(null, mapDispatchToProps) // connect to store, bind action creator
+)(App);
