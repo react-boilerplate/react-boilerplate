@@ -46,7 +46,7 @@ The fix is to kill the process and rerun `npm start`.
     > ```Shell
     > janedoe    29811  49.1  2.1  3394936 356956 s004  S+    4:45pm   2:40.07 node server
     > ```
-    > Note: If nothing is listed, you can try `lsof -i tcp:3000` 
+    > Note: If nothing is listed, you can try `lsof -i tcp:3000`
 
 1. Then run
     ```Shell
@@ -157,7 +157,7 @@ pipelines:
 ## I'm using Node v0.12 and the server doesn't work?
 
 We settled on supporting the last three major Node.js versions for the boilerplate – at the moment
-of this writing those are v5, v6 and v7. We **highly recommend upgrading to a newer Node.js version**!
+of this writing those are v6, v7 and v8. We **highly recommend upgrading to a newer Node.js version**!
 
 If you _have_ to use Node.js 0.12, you can hack around the server not running by using `babel-cli` to
 run the server: `npm install babel-cli`, and then replace all instances of `node server` in the `"scripts"`
@@ -172,7 +172,7 @@ every version you use will be amazing! There is a long term goal to make this mu
 ## How to turn off Webpack performance warnings after production build?
 
 Webpack recommends having those performance hints turned off in development but to keep them on in production. If you still want to disable them, add the next lines to the config in `webpack.prod.babel.js`:
-  
+
 ```js
   performance: {
     hints: false
@@ -218,7 +218,7 @@ via the [`class` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Gl
 So, will `<ContrivedExample>` have a green background or a red background?
 
 Applying the rules of [specificity](https://developer.mozilla.org/en/docs/Web/CSS/Specificity), you
-may think red as `styles.css` was imported last. Unfortunately, at the time of writing 
+may think red as `styles.css` was imported last. Unfortunately, at the time of writing
 an open issue ["CSS resolving order"](https://github.com/webpack/webpack/issues/215)
 means you cannot control the order in which the stylesheets are injected. So, with this contrived
 example, the background could be either green or red.
