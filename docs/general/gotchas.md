@@ -8,6 +8,7 @@ These are some things to be aware of when using this boilerplate.
 4. [Running tests in watch mode](#running-tests-in-watch-mode)
 5. [When in doubt, re-install!](#when-in-doubt-re-install)
 6. [Cleaning up Jest cache](#cleaning-up-jest-cache)
+7. [Using short_name in manifest.json](#using-short-name-in-manifest)
 
 ## Special images in HTML files
 
@@ -97,3 +98,10 @@ Build project
 ## Cleaning up Jest cache
 
 By default, Jest caches transformed modules, which may lead to faulty coverage reports. To prevent this, you'll have to clear the cache by running `npm run test -- --no-cache` as pointed out in [Jest docs](https://facebook.github.io/jest/docs/cli.html#cache)
+
+## Using short_name in Manifest.json
+
+When there's insufficient space to display an app's full name it is truncated.
+This happens with app launcher and new tab in Chrome for Android.
+The `short_name` field allows a *12 character or less abbreviation*.
+It also addresses any problems in testing the PWA in Lighthouse.
