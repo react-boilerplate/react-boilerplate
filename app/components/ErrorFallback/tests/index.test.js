@@ -6,7 +6,7 @@ import messages from '../messages';
 import ErrorFallback from '../index';
 
 describe('<ErrorFallback />', () => {
-  it('should render its heading', () => {
+  it('should render its error message', () => {
     const renderedComponent = shallow(
       <ErrorFallback />
     );
