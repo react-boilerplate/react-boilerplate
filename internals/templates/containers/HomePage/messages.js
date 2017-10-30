@@ -5,11 +5,6 @@
  */
 import { defineMessages } from 'react-intl';
 
-const scope = 'app.containers.HomePage';
-
 export default defineMessages({
-  header: {
-    id: `${scope}.header`,
-    defaultMessage: 'This is HomePage component!',
-  },
+  header: 'This is HomePage component!',
 });

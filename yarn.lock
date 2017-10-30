@@ -587,6 +587,12 @@ babel-plugin-jest-hoist@^20.0.3:
   version "20.0.3"
   resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-20.0.3.tgz#afedc853bd3f8dc3548ea671fbe69d03cc2c1767"
 
+babel-plugin-react-intl-auto@^0.12.1:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-react-intl-auto/-/babel-plugin-react-intl-auto-0.12.1.tgz#4007e367db9f77b768b66dadbf1fd646e482af39"
+  dependencies:
+    babel-types "^6.26.0"
+
 babel-plugin-react-intl@2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-react-intl/-/babel-plugin-react-intl-2.3.1.tgz#3d43912e824da005e08e8e8239d5ba784374bb00"
