@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
+import toJS from 'utils/toJS';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { makeSelectRepos, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
@@ -130,4 +131,4 @@ export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(HomePage);
+)(toJS(HomePage));
