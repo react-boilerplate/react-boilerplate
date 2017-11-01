@@ -18,6 +18,7 @@ import { createStructuredSelector } from 'reselect';
 {{/if}}
 import { compose } from 'redux';
 
+import toJS from 'utils/toJS';
 {{#if wantSaga}}
 import injectSaga from 'utils/injectSaga';
 {{/if}}
@@ -86,4 +87,4 @@ export default compose(
   withSaga,
 {{/if}}
   withConnect,
-)({{ properCase name }});
+)(toJS({{ properCase name }}));
