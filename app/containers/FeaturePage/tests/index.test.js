@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import H1 from 'components/H1';
 import messages from '../messages';
-import FeaturePage from '../index';
+import { FeaturePage } from '../index';
 
 describe('<FeaturePage />', () => {
   it('should render its heading', () => {

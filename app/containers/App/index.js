@@ -11,23 +11,25 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import ErrorBoundary from 'react-error-boundary';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+import { withErrorBoundary } from 'react-error-boundary';
 
+import ErrorFallback from 'containers/ErrorFallback';
 // Async bundles (code split-points)
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
+import ErrorPage from 'containers/ErrorPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 // Dumb components
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import ErrorFallback from 'components/ErrorFallback';
 
 import { DAEMON } from 'utils/constants';
 import injectSaga from 'utils/injectSaga';
-import { handleError } from './actions';
+import { makeSelectLocation } from './selectors';
 import saga from './saga';
 
 const AppWrapper = styled.div`
@@ -39,37 +41,37 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const App = ({ handleError: errorHandler }) => (
-  <AppWrapper>
-    <Helmet
-      titleTemplate="%s - React.js Boilerplate"
-      defaultTitle="React.js Boilerplate"
-    >
-      <meta name="description" content="A React.js Boilerplate application" />
-    </Helmet>
-    <ErrorBoundary onError={errorHandler} FallbackComponent={<ErrorFallback />}>
+export function App({ location }) {
+  return (
+    <AppWrapper>
+      <Helmet
+        titleTemplate="%s - React.js Boilerplate"
+        defaultTitle="React.js Boilerplate"
+      >
+        <meta name="description" content="A React.js Boilerplate application" />
+      </Helmet>
       <Header />
-      <Switch>
+      <Switch location={location}>
         <Route exact path="/" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
+        <Route path="/error" component={ErrorPage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <Footer />
-    </ErrorBoundary>
-  </AppWrapper>
-);
+    </AppWrapper>
+  );
+}
 
 App.propTypes = {
-  handleError: PropTypes.func,
+  location: PropTypes.object,
 };
 
-export function mapDispatchToProps(dispatch) {
-  return {
-    handleError: (err) => dispatch(handleError(err)),
-  };
-}
+const mapStateToProps = createStructuredSelector({
+  location: makeSelectLocation(),
+});
 
 export default compose(
   injectSaga({ key: 'appError', saga, mode: DAEMON }), // spawn watcher
-  connect(null, mapDispatchToProps) // connect to store, bind action creator
+  connect(mapStateToProps), // connect to store, bind action creator
+  (wrappedComponent) => withErrorBoundary(wrappedComponent, ErrorFallback), // use ErrorBoundary
 )(App);

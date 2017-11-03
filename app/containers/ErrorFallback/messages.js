@@ -8,8 +8,8 @@ import { defineMessages } from 'react-intl';
 const scope = 'boilerplate.components.ErrorFallback';
 
 export default defineMessages({
-  error: {
-    id: `${scope}.error`,
+  info: {
+    id: `${scope}.info`,
     defaultMessage: `
       Something bad happened.
     `,

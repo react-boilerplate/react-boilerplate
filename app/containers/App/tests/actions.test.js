@@ -1,16 +1,31 @@
 import {
+  APP_ERROR,
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
 } from '../constants';
 
 import {
+  handleError,
   loadRepos,
   reposLoaded,
   repoLoadingError,
 } from '../actions';
 
 describe('App Actions', () => {
+  describe('handleError', () => {
+    it('should return the correct type and the passed repos', () => {
+      const error = new Error('Something wrong');
+      const componentStack = 'ComponentStack description string';
+      const expectedResult = {
+        type: APP_ERROR,
+        payload: { error, componentStack },
+      };
+
+      expect(handleError({ error, componentStack })).toEqual(expectedResult);
+    });
+  });
+
   describe('loadRepos', () => {
     it('should return the correct type', () => {
       const expectedResult = {
