@@ -17,7 +17,7 @@ export default defineMessages({
     defaultMessage: 'Features',
   },
   error: {
-    id: `${scope}.error`,
-    defaultMessage: 'Error',
+    id: `${scope}.errortest`,
+    defaultMessage: 'Error Test',
   },
 });
