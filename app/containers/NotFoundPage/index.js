@@ -6,9 +6,8 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { withErrorBoundary } from 'react-error-boundary';
+import { withErrorBoundary, ErrorBoundaryFallbackComponent as ErrorFallback } from 'react-error-boundary';
 
-import ErrorFallback from 'containers/ErrorFallback';
 import H1 from 'components/H1';
 import messages from './messages';
 
