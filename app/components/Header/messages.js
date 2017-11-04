@@ -18,6 +18,6 @@ export default defineMessages({
   },
   error: {
     id: `${scope}.errortest`,
-    defaultMessage: 'Error Test',
+    defaultMessage: 'ErrorBoundary Test',
   },
 });

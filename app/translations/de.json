@@ -2,7 +2,7 @@
   "boilerplate.components.ErrorFallback.info": "",
   "boilerplate.components.Footer.author.message": "Mit Liebe gemacht von {author}.",
   "boilerplate.components.Footer.license.message": "Dieses Projekt wird unter der MIT-Lizenz veröffentlicht.",
-  "boilerplate.components.Header.errortest": "Fehlertest",
+  "boilerplate.components.Header.errortest": "ErrorBoundarytest",
   "boilerplate.components.Header.features": "Eigenschaften",
   "boilerplate.components.Header.home": "",
   "boilerplate.containers.FeaturePage.css.header": "",

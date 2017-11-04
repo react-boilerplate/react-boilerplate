@@ -14,9 +14,8 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
-import { withErrorBoundary } from 'react-error-boundary';
+import { withErrorBoundary, ErrorBoundaryFallbackComponent as ErrorFallback } from 'react-error-boundary';
 
-import ErrorFallback from 'containers/ErrorFallback';
 // Async bundles (code split-points)
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
