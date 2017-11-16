@@ -1,3 +1,23 @@
+### How to add sub-domain and deploy to github pages
+
+1. Change the public path in the following places:
+    
+    1. server/index.js 
+    2. webpack.prod.babel.js
+    3. webpack.base.babel.js
+
+2. add ``start_url`` in **app/manifest.json**: ` "start_url": "/zwap-pay-for-you/",`
+3. In **app/app.js**, change `const history = createHistory();` to 
+```javascript
+const history = createHistory({
+  basename: '/zwap-pay-for-you/', // e.g. domain.com/path-goes-here
+});
+```
+4. In **app/index.html**, append base name to all href urls
+
+<br /> 
+
+
 <img src="https://raw.githubusercontent.com/react-boilerplate/react-boilerplate-brand/master/assets/banner-metal-optimized.jpg" alt="react boilerplate banner" align="center" />
 
 <br />
