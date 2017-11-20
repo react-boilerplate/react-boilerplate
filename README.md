@@ -146,6 +146,22 @@ This project would not be possible without the support by these amazing folks. [
 <a href="https://opencollective.com/react-boilerplate/backer/7/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/7/avatar.svg"></a>
 <a href="https://opencollective.com/react-boilerplate/backer/8/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/8/avatar.svg"></a>
 <a href="https://opencollective.com/react-boilerplate/backer/9/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/9/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/10/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/10/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/11/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/11/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/12/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/12/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/13/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/13/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/14/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/14/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/15/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/15/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/16/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/16/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/17/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/17/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/18/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/18/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/19/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/19/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/20/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/20/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/21/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/21/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/22/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/22/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/23/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/23/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/24/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/24/avatar.svg"></a>
+<a href="https://opencollective.com/react-boilerplate/backer/25/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/25/avatar.svg"></a>
 
 
 ## License
