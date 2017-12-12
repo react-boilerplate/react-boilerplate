@@ -29,6 +29,7 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
+// limitation: key must be unique per store or the last assigned reducer will overwrite previous reducer
 const withReducer = injectReducer({ key: 'yourcomponent', reducer });
 
 export default compose(
