@@ -154,6 +154,14 @@ describe('injectors', () => {
       expect(() => injectSaga('test', { saga: testSaga, mode: ONCE_TILL_UNMOUNT })).not.toThrow();
     });
 
+    it('should validate duplicate saga\'s keys', () => {
+      store.runSaga = jest.fn(() => ({
+        isRunning: jest.fn(() => true),
+      }));
+      expect(() => injectSaga('test', { saga: testSaga, mode: RESTART_ON_REMOUNT })).not.toThrow();
+      expect(() => injectSaga('test', { saga: testSaga, mode: RESTART_ON_REMOUNT })).toThrow();
+    });
+
     it('should pass args to saga.run', () => {
       const args = {};
       store.runSaga = jest.fn();
@@ -185,7 +193,8 @@ describe('injectors', () => {
 
     it('should restart a saga if different implementation for hot reloading', () => {
       const cancel = jest.fn();
-      store.injectedSagas.test = { saga: testSaga, task: { cancel } };
+      const isRunning = jest.fn();
+      store.injectedSagas.test = { saga: testSaga, task: { cancel, isRunning } };
       store.runSaga = jest.fn();
 
       function* testSaga1() {

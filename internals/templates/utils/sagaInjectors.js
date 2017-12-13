@@ -29,6 +29,15 @@ const checkDescriptor = (descriptor) => {
   );
 };
 
+const checkRunningSaga = (store, key) => {
+  const descriptor = store.injectedSagas[key];
+  const isRunning = descriptor && descriptor.task && descriptor.task.isRunning();
+  invariant(
+    !isRunning,
+    '(app/utils...) injectSaga: Expected a unique saga key, the saga task of the given key is already running'
+  );
+};
+
 export function injectSagaFactory(store, isValid) {
   return function injectSaga(key, descriptor = {}, args) {
     if (!isValid) checkStore(store);
@@ -51,6 +60,8 @@ export function injectSagaFactory(store, isValid) {
     }
 
     if (!hasSaga || (hasSaga && mode !== DAEMON && mode !== ONCE_TILL_UNMOUNT)) {
+      // Verify if the saga of the give key is already running before creating a new one
+      checkRunningSaga(store, key);
       store.injectedSagas[key] = { ...newDescriptor, task: store.runSaga(saga, args) }; // eslint-disable-line no-param-reassign
     }
   };
