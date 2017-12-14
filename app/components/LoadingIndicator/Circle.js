@@ -27,7 +27,7 @@ const Circle = (props) => {
       transform: rotate(${props.rotate}deg);
     `}
 
-    &:before {
+    &::before {
       content: '';
       display: block;
       margin: 0 auto;
