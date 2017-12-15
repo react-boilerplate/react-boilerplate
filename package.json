@@ -255,6 +255,7 @@
     "sanitize.css": "4.1.0",
     "styled-components": "2.0.0",
     "warning": "3.0.0",
+    "webpack-bundle-analyzer": "^2.9.1",
     "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {

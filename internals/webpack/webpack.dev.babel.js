@@ -9,6 +9,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const logger = require('../../server/logger');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
 const dllPlugin = pkg.dllPlugin;
@@ -35,6 +36,18 @@ if (dllPlugin) {
       })
     );
   });
+}
+
+if (process.env.ANALYZE) {
+  plugins.push(
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'server',
+      analyzerHost: '127.0.0.1',
+      analyzerPort: 3001,
+      openAnalyzer: true,
+      logLevel: 'silent',
+    })
+  );
 }
 
 module.exports = require('./webpack.base.babel')({
