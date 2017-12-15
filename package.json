@@ -42,12 +42,13 @@
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "precommit": "npm run lint:staged",
+    "prepush": "npm run test"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
   },
-  "pre-commit": "lint:staged",
   "babel": {
     "plugins": [
       "styled-components"
@@ -93,7 +94,8 @@
     "plugins": [
       "redux-saga",
       "react",
-      "jsx-a11y"
+      "jsx-a11y",
+      "prettier"
     ],
     "parserOptions": {
       "ecmaVersion": 6,
@@ -156,7 +158,8 @@
       "react/self-closing-comp": 0,
       "redux-saga/no-yield-in-race": 2,
       "redux-saga/yield-effects": 2,
-      "require-yield": 0
+      "require-yield": 0,
+      "prettier/prettier": "warn"
     },
     "settings": {
       "import/resolver": {
@@ -271,6 +274,7 @@
     "eslint-import-resolver-webpack": "0.8.3",
     "eslint-plugin-import": "2.7.0",
     "eslint-plugin-jsx-a11y": "5.0.3",
+    "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "7.0.1",
     "eslint-plugin-redux-saga": "0.3.0",
     "eventsource-polyfill": "0.9.6",
@@ -278,6 +282,7 @@
     "file-loader": "0.11.1",
     "html-loader": "0.4.5",
     "html-webpack-plugin": "2.29.0",
+    "husky": "^0.14.3",
     "image-webpack-loader": "2.0.0",
     "imports-loader": "0.7.1",
     "jest-cli": "20.0.4",
@@ -287,7 +292,7 @@
     "null-loader": "0.1.1",
     "offline-plugin": "4.8.1",
     "plop": "1.8.0",
-    "pre-commit": "1.2.2",
+    "prettier": "1.7.4",
     "react-test-renderer": "15.6.1",
     "rimraf": "2.6.1",
     "shelljs": "0.7.7",
