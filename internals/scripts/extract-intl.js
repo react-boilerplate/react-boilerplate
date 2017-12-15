@@ -131,8 +131,9 @@ const extractFromFile = async (fileName) => {
   for (const locale of locales) {
     const translationFileName = `app/translations/${locale}.json`;
 
+    let localeTaskDone;
     try {
-      const localeTaskDone = task(
+      localeTaskDone = task(
         `Writing translation messages for ${locale} to: ${translationFileName}`
       );
 
