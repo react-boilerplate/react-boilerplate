@@ -15,6 +15,8 @@
   "scripts": {
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
+    "analyze:watch": "cross-env NODE_ENV=development ANALYZE=true node server",
+    "analyze:watchProd": "cross-env NODE_ENV=production ANALYZE=true node server",
     "analyze": "node ./internals/scripts/analyze.js",
     "extract-intl": "babel-node --presets env,stage-0 -- ./internals/scripts/extract-intl.js",
     "npmcheckversion": "node ./internals/scripts/npmcheckversion.js",
