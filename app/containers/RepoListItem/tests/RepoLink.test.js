@@ -6,7 +6,7 @@ import RepoLink from '../RepoLink';
 describe('<RepoLink />', () => {
   it('should render an <a> tag', () => {
     const renderedComponent = render(<RepoLink />);
-    expect(renderedComponent.find('a').length).toEqual(1);
+    expect(renderedComponent.is('a')).toEqual(true);
   });
 
   it('should have a className attribute', () => {
@@ -21,7 +21,7 @@ describe('<RepoLink />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<RepoLink attribute={'test'} />);
+    const renderedComponent = shallow(<RepoLink attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

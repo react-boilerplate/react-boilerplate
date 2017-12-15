@@ -16,4 +16,8 @@ export default defineMessages({
     id: `${scope}.features`,
     defaultMessage: 'Features',
   },
+  error: {
+    id: `${scope}.errortest`,
+    defaultMessage: 'ErrorBoundary Test',
+  },
 });

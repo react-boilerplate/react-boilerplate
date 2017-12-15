@@ -21,7 +21,7 @@ describe('<A />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<A attribute={'test'} />);
+    const renderedComponent = shallow(<A attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

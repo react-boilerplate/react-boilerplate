@@ -21,7 +21,7 @@ describe('<Select />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Select attribute={'test'} />);
+    const renderedComponent = shallow(<Select attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

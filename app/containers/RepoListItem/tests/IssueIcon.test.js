@@ -6,7 +6,7 @@ import IssueIcon from '../IssueIcon';
 describe('<IssueIcon />', () => {
   it('should render an <svg> tag', () => {
     const renderedComponent = render(<IssueIcon />);
-    expect(renderedComponent.find('svg').length).toEqual(1);
+    expect(renderedComponent.is('svg')).toEqual(true);
   });
 
   it('should have a className attribute', () => {
@@ -21,7 +21,7 @@ describe('<IssueIcon />', () => {
   });
 
   it('should adopt any attribute', () => {
-    const renderedComponent = shallow(<IssueIcon attribute={'test'} />);
+    const renderedComponent = shallow(<IssueIcon attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeDefined();
   });
 });

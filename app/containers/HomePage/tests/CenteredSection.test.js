@@ -21,7 +21,7 @@ describe('<CenteredSection />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<CenteredSection attribute={'test'} />);
+    const renderedComponent = shallow(<CenteredSection attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

@@ -7,15 +7,29 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+import { withErrorBoundary, ErrorBoundaryFallbackComponent as ErrorFallback } from 'react-error-boundary';
 
+// Async bundles (code split-points)
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
+import ErrorPage from 'containers/ErrorPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+
+// Dumb components
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+
+import { DAEMON } from 'utils/constants';
+import injectSaga from 'utils/injectSaga';
+import { makeSelectLocation } from './selectors';
+import saga from './saga';
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -26,7 +40,7 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-export default function App() {
+export function App({ location }) {
   return (
     <AppWrapper>
       <Helmet
@@ -36,12 +50,27 @@ export default function App() {
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
       <Header />
-      <Switch>
+      <Switch location={location}>
         <Route exact path="/" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
+        <Route path="/error" component={ErrorPage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <Footer />
     </AppWrapper>
   );
 }
+
+App.propTypes = {
+  location: PropTypes.object,
+};
+
+const mapStateToProps = createStructuredSelector({
+  location: makeSelectLocation(),
+});
+
+export default compose(
+  injectSaga({ key: 'appError', saga, mode: DAEMON }), // spawn watcher
+  connect(mapStateToProps), // connect to store, bind action creator
+  (wrappedComponent) => withErrorBoundary(wrappedComponent, ErrorFallback), // use ErrorBoundary
+)(App);

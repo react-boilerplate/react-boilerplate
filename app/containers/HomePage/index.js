@@ -11,10 +11,12 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import { withErrorBoundary, ErrorBoundaryFallbackComponent as ErrorFallback } from 'react-error-boundary';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { makeSelectRepos, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
+import { loadRepos } from 'containers/App/actions';
 import H2 from 'components/H2';
 import ReposList from 'components/ReposList';
 import AtPrefix from './AtPrefix';
@@ -23,7 +25,6 @@ import Form from './Form';
 import Input from './Input';
 import Section from './Section';
 import messages from './messages';
-import { loadRepos } from '../App/actions';
 import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
@@ -46,7 +47,6 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
       error,
       repos,
     };
-
     return (
       <article>
         <Helmet>
@@ -129,5 +129,6 @@ const withSaga = injectSaga({ key: 'home', saga });
 export default compose(
   withReducer,
   withSaga,
-  withConnect,
+  withConnect, // connect to store, bind action creator
+  (wrappedComponent) => withErrorBoundary(wrappedComponent, ErrorFallback), // use ErrorBoundary
 )(HomePage);
