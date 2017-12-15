@@ -119,16 +119,15 @@ to look like:
 {
   test: /\.css$/,
   exclude: /node_modules/,
-- use: ['style-loader', 'css-loader'],
-+ use: [
-+   'style-loader',
-+   {
-+     loader: 'css-loader',
-+     options: {
-+       modules: true,
-+     },
-+   },
-+ ],
+  use: [
+    'style-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        modules: true,
+      },
+    },
+  ],
 }
 ```
 
@@ -177,11 +176,18 @@ to look like:
 
 ```diff
 {
-- test: /\.css$/,
-+ test: /\.scss$/,
+  test: /\.scss$/,
   exclude: /node_modules/,
-- use: ['style-loader', 'css-loader'],
-+ use: ['style-loader', 'css-loader', 'sass-loader'],
+  use: [
+    'style-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        importLoaders: 1,
+      },
+    },
+    'sass-loader',
+  ],
 }
 ```
 
@@ -224,20 +230,18 @@ to look like:
 
 ```diff
 {
-- test: /\.css$/,
-+ test: /\.less$/,
+  test: /\.less$/,
   exclude: /node_modules/,
-- use: ['style-loader', 'css-loader'],
-+ use: [
-+ 'style-loader',
-+ {
-+   loader: 'css-loader',
-+   options: {
-+     importLoaders: 1,
-+   },
-+ },
-+ 'less-loader',
-+],
+  use: [
+    'style-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        importLoaders: 1,
+      },
+    },
+    'less-loader',
+  ],
 }
 ```
 
