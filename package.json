@@ -222,7 +222,10 @@
       ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/image.js"
     },
     "setupTestFrameworkScriptFile": "<rootDir>/internals/testing/test-bundler.js",
-    "setupFiles": ["<rootDir>/internals/testing/enzyme-setup.js"],
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/internals/testing/enzyme-setup.js"
+    ],
     "testRegex": "tests/.*\\.test\\.js$"
   },
   "dependencies": {
@@ -305,6 +308,7 @@
     "pre-commit": "1.2.2",
     "react-test-renderer": "16.2.0",
     "rimraf": "2.6.1",
+    "raf": "3.4.0",
     "shelljs": "0.7.7",
     "style-loader": "0.18.1",
     "stylelint": "8.3.1",
