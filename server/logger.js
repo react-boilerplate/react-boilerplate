@@ -2,6 +2,7 @@
 
 const chalk = require('chalk');
 const ip = require('ip');
+const analyzerStarted = process.env.ANALYZE;
 
 const divider = chalk.gray('\n-----------------------------------');
 
@@ -24,13 +25,22 @@ const logger = {
       console.log(`Tunnel initialised ${chalk.green('✓')}`);
     }
 
+    if (analyzerStarted) {
+      console.log(`Bundle analyzer initialized ${chalk.green('✓')}`);
+    }
+
     console.log(`
-${chalk.bold('Access URLs:')}${divider}
-Localhost: ${chalk.magenta(`http://${host}:${port}`)}
-      LAN: ${chalk.magenta(`http://${ip.address()}:${port}`) +
-(tunnelStarted ? `\n    Proxy: ${chalk.magenta(tunnelStarted)}` : '')}${divider}
-${chalk.blue(`Press ${chalk.italic('CTRL-C')} to stop`)}
-    `);
+    ${chalk.bold('Access URLs:')}${divider}
+    Localhost: ${chalk.magenta(`http://${host}:${port}`) +
+          (analyzerStarted
+            ? `\n Analyzer: ${chalk.magenta(`http://${host}:3001`)}`
+            : '')}
+          LAN: ${chalk.magenta(`http://${ip.address()}:${port}`) +
+            (tunnelStarted
+              ? `\n    Proxy: ${chalk.magenta(tunnelStarted)}`
+              : '')}${divider}
+    ${chalk.blue(`Press ${chalk.italic('CTRL-C')} to stop`)}
+        `);
   },
 };
 
