@@ -200,7 +200,7 @@ Sagas are nothing but ES6 [generator functions](https://developer.mozilla.org/en
 Check out [`HomePage/saga.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/HomePage/saga.js). It can be confusing for untrained eyes. The API of `redux-saga` is self-descriptive once you've seen it, so let's go over what happens in there:
 
 - You can `fork` a saga to send it to the background. That way, your code will not get blocked even when the saga is continuously running.
-- `takeLatest` is used for listening for a particular action. In this case, it will wait for a `LOAD_REPOS` action. Whenever you disptach this action, the saga will understand that you want to fetch repos from github's public API by calling `getRepos()`.
+- `takeLatest` is used for listening for a particular action. In this case, it will wait for a `LOAD_REPOS` action. Whenever you dispatch this action, the saga will understand that you want to fetch repos from github's public API by calling `getRepos()`.
 - If the API successfully returns some data, a `reposLoaded()` action will be dispatched which carries the data. When redux store receives this action, [a reducer](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/reducer.js) will set incoming data in the new state tree.
 
 _An update has occurred!_ `mapStateToProps()` will be triggered. `<HomePage />` will receive the new data and rerender.
