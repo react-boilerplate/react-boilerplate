@@ -36,6 +36,7 @@ export default connect(null, { push })(({ push }) => (
 export default connect()(({ push, dispatch }) => (
   <button onClick={() => dispatch(push('/about/our-team'))}>Our Team</button>
 ));
+
 ```
 
 ## Child Routes
