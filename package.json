@@ -7,8 +7,8 @@
     "url": "git://github.com/react-boilerplate/react-boilerplate.git"
   },
   "engines": {
-    "npm": ">=3",
-    "node": ">=5"
+    "npm": ">=5",
+    "node": ">=6"
   },
   "author": "Max Stoiber",
   "license": "MIT",
@@ -69,7 +69,8 @@
     "env": {
       "development": {
         "only": [
-          "app"
+          "app",
+          "internals/scripts"
         ],
         "plugins": [
           "transform-react-jsx-source"
