@@ -48,7 +48,7 @@ Note down the rolled back dependencies and state the reason in your `Update Log`
 
 ## Full Regression Testing
 
-Most of the errors/warnings would go away once you roll back the problemetic dependencies. But we need to make sure that the internal commands, tools, scaffolding etc. are functional too.
+Most of the errors/warnings would go away once you roll back the problematic dependencies. But we need to make sure that the internal commands, tools, scaffolding etc. are functional too.
 
 **Example App:**
 
