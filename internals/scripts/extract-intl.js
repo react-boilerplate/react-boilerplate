@@ -15,7 +15,7 @@ const presets = pkg.babel.presets;
 const plugins = pkg.babel.plugins || [];
 
 const i18n = require('../../app/i18n');
-import { DEFAULT_LOCALE } from '../../app/containers/App/constants';
+const { DEFAULT_LOCALE } = require('../../app/containers/App/constants');
 
 require('shelljs/global');
 
@@ -42,7 +42,8 @@ const task = (message) => {
 
 // Wrap async functions below into a promise
 const glob = (pattern) => new Promise((resolve, reject) => {
-  nodeGlob(pattern, (error, value) => (error ? reject(error) : resolve(value)));
+  // Specify "nodir" in options to match files only.
+  nodeGlob(pattern, { nodir: true }, (error, value) => (error ? reject(error) : resolve(value)));
 });
 
 const readFile = (fileName) => new Promise((resolve, reject) => {
@@ -130,8 +131,9 @@ const extractFromFile = async (fileName) => {
   for (const locale of locales) {
     const translationFileName = `app/translations/${locale}.json`;
 
+    let localeTaskDone;
     try {
-      const localeTaskDone = task(
+      localeTaskDone = task(
         `Writing translation messages for ${locale} to: ${translationFileName}`
       );
 

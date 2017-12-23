@@ -20,7 +20,7 @@ module.exports = (options) => ({
   module: {
     rules: [
       {
-        test: /\.js$/, // Transform all .js files required somewhere with Babel
+        test: /\.jsx?$/, // Transform all .js/.jsx files required somewhere with Babel
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -48,13 +48,24 @@ module.exports = (options) => ({
       {
         test: /\.(jpg|png|gif)$/,
         use: [
-          'file-loader',
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
           {
             loader: 'image-webpack-loader',
-            options: {
-              progressive: true,
-              optimizationLevel: 7,
-              interlaced: false,
+            query: {
+              mozjpeg: {
+                progressive: true,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              optipng: {
+                optimizationLevel: 7,
+              },
               pngquant: {
                 quality: '65-90',
                 speed: 4,

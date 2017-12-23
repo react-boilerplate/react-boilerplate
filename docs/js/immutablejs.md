@@ -30,6 +30,7 @@ When a reducer is subscribed to an action and needs to return the new state they
 If the changing state data is nested, we can utilize the 'deep' versions of these setters: [`.setIn`](https://facebook.github.io/immutable-js/docs/#/Map/setIn) and [`.updateIn`](https://facebook.github.io/immutable-js/docs/#/Map/updateIn), [`.mergeIn`](https://facebook.github.io/immutable-js/docs/#/Map/mergeIn).
 
 ```JS
+import { fromJS } from 'immutable';
 import { SOME_ACTION, SOME_OTHER_ACTION } from './actions';
 
 // […]
@@ -37,9 +38,9 @@ import { SOME_ACTION, SOME_OTHER_ACTION } from './actions';
 function myReducer(state = initialState, action) {
   switch (action.type) {
     case SOME_ACTION:
-      return state.set('myData', action.payload);
+      return state.set('myData', fromJS(action.payload));
     case SOME_OTHER_ACTION:
-      return state.setIn(['myData', 'message'], action.payload);
+      return state.setIn(['myData', 'message'], fromJS(action.payload));
     default:
       return state;
   }
@@ -67,7 +68,7 @@ For instance you'll write `map.get('property')` instead of `object.property`, an
 This can make your code a little harder to follow and requires you to be extra cautious when passing arguments or props to functions or components that try to access values with regular dot notation.  
 ImmutableJS's [`Record`](https://facebook.github.io/immutable-js/docs/#/Record) structure offers a solution to this issue.
 
-A `Record` is similar to a `Map` but has a fixed shape, meaning it's property keys are predefined and you can't later add a new property after the record is created. Attempting to set new properties will cause an error.  
+A `Record` is similar to a `Map` but has a fixed shape, meaning its property keys are predefined and you can't later add a new property after the record is created. Attempting to set new properties will cause an error.  
 One benefit of `Record` is that you can now, along with other immutable read methods (.get, .set, .merge and so on), use the dot notation to access properties.
 
 The creation of a record is less simple than simply calling `.toJS()`.  

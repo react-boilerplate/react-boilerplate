@@ -6,7 +6,7 @@ Once you have done that, this document is intended to give you a taste of how `r
 
 This is a production-ready boilerplate, and as such optimized for browsers, not for beginners. It includes tools to help you manage performance, asynchrony, styling, everything you need to build a _real_ application. Before you get your hands dirty with the source code, we'd like you to go through a checklist, that will help you determine whether or not you're eligible to use this boilerplate. It's not because we're _holier-than-thou_, but we genuinely want to save you the frustration.
 
-> Opening an issue is the fastest way to draw the attention of the team, but please make it a point to read the [docs](https://github.com/react-boilerplate/react-boilerplate/tree/master/docs) and [contribution instructions](https://github.com/react-boilerplate/react-boilerplate/blob/master/.github/CONTRIBUTING.md) before you do. The issues section is specifically used for pointing out defects and suggesting enhancements, if you have a question about one of the tools please refer to StackOverflow instead.
+> Opening an issue is the fastest way to draw the attention of the team, but please make it a point to read the [docs](https://github.com/react-boilerplate/react-boilerplate/tree/master/docs) and [contribution instructions](https://github.com/react-boilerplate/react-boilerplate/blob/master/CONTRIBUTING.md) before you do. The issues section is specifically used for pointing out defects and suggesting enhancements, if you have a question about one of the tools please refer to StackOverflow instead.
 
 ## Tech Stack
 
@@ -33,8 +33,8 @@ Here's a curated list of packages that you should have knowledge of, before star
 
 Note that while `react-boilerplate` includes a lot of features, many of them are optional and you can find instructions in the docs on how to remove...
 
-- [...`redux-saga` or `reselect`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/js/remove.md).
-- ...[offline-first, add to homescreen, performant web font loading and image optimisation](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/remove.md)
+- [`redux-saga` or `reselect`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/js/remove.md).
+- [offline-first, add to homescreen, performant web font loading and image optimisation](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/remove.md)
 - [`sanitize.css`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/css/remove.md)
 - [i18n (i.e. `react-intl`)](https://github.com/react-boilerplate/react-boilerplate/blob/0f88f55ed905f8432c3dd7b452d713df5fb76d8e/docs/js/i18n.md#removing-i18n-and-react-intl)
 
@@ -200,7 +200,7 @@ Sagas are nothing but ES6 [generator functions](https://developer.mozilla.org/en
 Check out [`HomePage/saga.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/HomePage/saga.js). It can be confusing for untrained eyes. The API of `redux-saga` is self-descriptive once you've seen it, so let's go over what happens in there:
 
 - You can `fork` a saga to send it to the background. That way, your code will not get blocked even when the saga is continuously running.
-- `takeLatest` is used for listening for a particular action. In this case, it will wait for a `LOAD_REPOS` action. Whenever you disptach this action, the saga will understand that you want to fetch repos from github's public API by calling `getRepos()`.
+- `takeLatest` is used for listening for a particular action. In this case, it will wait for a `LOAD_REPOS` action. Whenever you dispatch this action, the saga will understand that you want to fetch repos from github's public API by calling `getRepos()`.
 - If the API successfully returns some data, a `reposLoaded()` action will be dispatched which carries the data. When redux store receives this action, [a reducer](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/reducer.js) will set incoming data in the new state tree.
 
 _An update has occurred!_ `mapStateToProps()` will be triggered. `<HomePage />` will receive the new data and rerender.

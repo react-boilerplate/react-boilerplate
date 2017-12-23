@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 import Circle from '../Circle';
 
 describe('<Circle />', () => {
-  it('should render an <div> tag', () => {
+  it('should render a <div> tag', () => {
     const renderedComponent = mount(<Circle />);
     expect(renderedComponent.find('div').length).toEqual(1);
   });
