@@ -9,8 +9,9 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
+const config = require('../config');
 const logger = require('../../server/logger');
-const pkg = require(path.resolve(process.cwd(), 'package.json'));
+const pkg = require(path.resolve(config.APP_ROOT, 'package.json'));
 const dllPlugin = pkg.dllPlugin;
 
 const plugins = [
@@ -42,7 +43,7 @@ module.exports = require('./webpack.base.babel')({
   entry: [
     'eventsource-polyfill', // Necessary for hot reloading with IE
     'webpack-hot-middleware/client?reload=true',
-    path.join(process.cwd(), 'app/app.js'), // Start with js/app.js
+    path.join(config.APP_ROOT, 'app/app.js'), // Start with js/app.js
   ],
 
   // Don't use hashes in dev mode for better performance
@@ -88,7 +89,7 @@ function dependencyHandlers() {
     ];
   }
 
-  const dllPath = path.resolve(process.cwd(), dllPlugin.path || 'node_modules/react-boilerplate-dlls');
+  const dllPath = path.resolve(config.APP_ROOT, dllPlugin.path || 'node_modules/react-boilerplate-dlls');
 
   /**
    * If DLLs aren't explicitly defined, we assume all production dependencies listed in package.json
@@ -104,7 +105,7 @@ function dependencyHandlers() {
 
     return [
       new webpack.DllReferencePlugin({
-        context: process.cwd(),
+        context: config.APP_ROOT,
         manifest: require(manifestPath), // eslint-disable-line global-require
       }),
     ];
@@ -125,7 +126,7 @@ function dependencyHandlers() {
     }
 
     return new webpack.DllReferencePlugin({
-      context: process.cwd(),
+      context: config.APP_ROOT,
       manifest: require(manifestPath), // eslint-disable-line global-require
     });
   });

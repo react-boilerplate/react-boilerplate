@@ -4,6 +4,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const config = require('../config');
 
 // Remove this line once the following warning goes away (it was meant for webpack loader authors not users):
 // 'DeprecationWarning: loaderUtils.parseQuery() received a non-string value which can be problematic,
@@ -14,7 +15,7 @@ process.noDeprecation = true;
 module.exports = (options) => ({
   entry: options.entry,
   output: Object.assign({ // Compile into js/build.js
-    path: path.resolve(process.cwd(), 'build'),
+    path: path.resolve(config.APP_ROOT, 'build'),
     publicPath: '/',
   }, options.output), // Merge with env dependent settings
   module: {

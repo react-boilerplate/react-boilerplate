@@ -1,0 +1,14 @@
+{
+  "libs": [
+    "browser",
+    "ecmascript",
+    "react"
+  ],
+  "plugins": {
+    "doc_comment": {},
+    "node": {},
+    "webpack": {
+      "configPath": "./internals/webpack/webpack.dev.babel.js"
+    }
+  }
+}
