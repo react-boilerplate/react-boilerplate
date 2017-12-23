@@ -7,8 +7,9 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
@@ -17,6 +18,12 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
+import { createStructuredSelector } from 'reselect';
+import makeSelectThemePicker from 'containers/ThemePicker/selectors';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withRouter } from 'react-router';
+
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
   margin: 0 auto;
@@ -24,24 +31,47 @@ const AppWrapper = styled.div`
   min-height: 100%;
   padding: 0 16px;
   flex-direction: column;
+  color: ${(props) => props.theme.main};
 `;
 
-export default function App() {
-  return (
-    <AppWrapper>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
-      </Helmet>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/features" component={FeaturePage} />
-        <Route path="" component={NotFoundPage} />
-      </Switch>
-      <Footer />
-    </AppWrapper>
-  );
+export class App extends React.PureComponent {
+  render() {
+    return (
+      <ThemeProvider theme={this.props.themepicker}>
+        <AppWrapper>
+          <Helmet
+            titleTemplate="%s - React.js Boilerplate"
+            defaultTitle="React.js Boilerplate"
+          >
+            <meta name="description" content="A React.js Boilerplate application" />
+          </Helmet>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/features" component={FeaturePage} />
+            <Route path="" component={NotFoundPage} />
+          </Switch>
+          <Footer />
+        </AppWrapper>
+      </ThemeProvider>
+    );
+  }
 }
+
+App.propTypes = {
+  themepicker: PropTypes.object,
+};
+
+const mapStateToProps = createStructuredSelector({
+  themepicker: makeSelectThemePicker(),
+});
+
+export function mapDispatchToProps() {
+  return {};
+}
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+export default withRouter(compose(
+  withConnect,
+)(App));
