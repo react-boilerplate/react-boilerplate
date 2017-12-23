@@ -30,6 +30,7 @@ When a reducer is subscribed to an action and needs to return the new state they
 If the changing state data is nested, we can utilize the 'deep' versions of these setters: [`.setIn`](https://facebook.github.io/immutable-js/docs/#/Map/setIn) and [`.updateIn`](https://facebook.github.io/immutable-js/docs/#/Map/updateIn), [`.mergeIn`](https://facebook.github.io/immutable-js/docs/#/Map/mergeIn).
 
 ```JS
+import { fromJS } from 'immutable';
 import { SOME_ACTION, SOME_OTHER_ACTION } from './actions';
 
 // […]
@@ -37,9 +38,9 @@ import { SOME_ACTION, SOME_OTHER_ACTION } from './actions';
 function myReducer(state = initialState, action) {
   switch (action.type) {
     case SOME_ACTION:
-      return state.set('myData', action.payload);
+      return state.set('myData', fromJS(action.payload));
     case SOME_OTHER_ACTION:
-      return state.setIn(['myData', 'message'], action.payload);
+      return state.setIn(['myData', 'message'], fromJS(action.payload));
     default:
       return state;
   }
