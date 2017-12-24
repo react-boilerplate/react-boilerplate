@@ -7,7 +7,7 @@ node_js:
 
 script:
   - node ./internals/scripts/generate-templates-for-linting
-  - npm prettier:js
+  - npm run prettier:js
   - npm run test
   - npm run build
 
