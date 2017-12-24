@@ -38,13 +38,22 @@
     "lint": "npm run lint:js && npm run lint:css",
     "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern internals/scripts",
     "lint:js": "npm run lint:eslint -- . ",
-    "lint:css": "stylelint \"./app/**/*.js\"",
+    "lint:css": "stylelint './app/**/*.js'",
     "lint:staged": "lint-staged",
     "pretest": "npm run test:clean && npm run lint",
+    "prettier": "prettier --write '**/*.js'",
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "bracketSpacing": true,
+    "semi": true,
+    "singleQuote": true,
+    "jsxBracketSameLine": false,
+    "arrowParens": "always"
   },
   "lint-staged": {
     "*.js": [
@@ -106,7 +115,8 @@
     "plugins": [
       "redux-saga",
       "react",
-      "jsx-a11y"
+      "jsx-a11y",
+      "prettier"
     ],
     "parserOptions": {
       "ecmaVersion": 6,
@@ -169,7 +179,8 @@
       "react/self-closing-comp": 0,
       "redux-saga/no-yield-in-race": 2,
       "redux-saga/yield-effects": 2,
-      "require-yield": 0
+      "require-yield": 0,
+      "prettier/prettier": "error"
     },
     "settings": {
       "import/resolver": {
@@ -299,6 +310,7 @@
     "eslint-import-resolver-webpack": "0.8.3",
     "eslint-plugin-import": "2.7.0",
     "eslint-plugin-jsx-a11y": "5.0.3",
+    "eslint-plugin-prettier": "2.4.0",
     "eslint-plugin-react": "7.0.1",
     "eslint-plugin-redux-saga": "0.3.0",
     "eventsource-polyfill": "0.9.6",
@@ -316,6 +328,7 @@
     "null-loader": "0.1.1",
     "offline-plugin": "4.8.1",
     "plop": "1.8.0",
+    "prettier": "1.9.2",
     "raf": "3.4.0",
     "react-test-renderer": "16.2.0",
     "rimraf": "2.6.1",
