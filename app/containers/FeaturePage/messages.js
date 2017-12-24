@@ -88,10 +88,12 @@ export default defineMessages({
   },
   intlHeader: {
     id: `${scope}.internationalization.header`,
-    defaultMessage: 'Complete i18n Standard Internationalization & Pluralization',
+    defaultMessage:
+      'Complete i18n Standard Internationalization & Pluralization',
   },
   intlMessage: {
     id: `${scope}.internationalization.message`,
-    defaultMessage: 'Scalable apps need to support multiple languages, easily add and support multiple languages with `react-intl`.',
+    defaultMessage:
+      'Scalable apps need to support multiple languages, easily add and support multiple languages with `react-intl`.',
   },
 });
