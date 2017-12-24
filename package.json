@@ -41,7 +41,7 @@
     "lint:css": "stylelint './app/**/*.js'",
     "lint:staged": "lint-staged",
     "pretest": "npm run test:clean && npm run lint",
-    "prettier:js": "prettier --write '**/*.js'",
+    "prettier:js": "prettier --write './{app, internals}/**/*.js'",
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
