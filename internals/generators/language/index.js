@@ -89,6 +89,10 @@ module.exports = {
       return 'modify translation messages';
     });
 
+    actions.push({
+      type: 'prettierjs',
+      paths: ['../../app/i18n.js', '../../app/app.js'],
+    });
     return actions;
   },
 };

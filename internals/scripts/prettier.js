@@ -3,9 +3,6 @@ const git = require('./helpers/git');
 const prettierexcutor = require('./helpers/prettierexcutor');
 const appConfig = require('../config');
 
-process.stdin.resume();
-process.stdin.setEncoding('utf8');
-
 const mode = process.argv[2] || 'check-changed';
 const shouldWrite =
   mode === 'write' || mode === 'write-changed' || mode === 'write-staged';

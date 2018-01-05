@@ -18,7 +18,6 @@ import RepoLink from './RepoLink';
 import Wrapper from './Wrapper';
 
 export class RepoListItem extends React.PureComponent {
-  // eslint-disable-line react/prefer-stateless-function
   render() {
     const item = this.props.item;
     let nameprefix = '';

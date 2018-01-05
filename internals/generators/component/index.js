@@ -99,6 +99,10 @@ module.exports = {
       });
     }
 
+    actions.push({
+      type: 'prettierjs',
+      paths: ['../../app/containers/{{properCase name}}/**/*.js'],
+    });
     return actions;
   },
 };

@@ -2,9 +2,6 @@ const glob = require('glob');
 const prettier = require('prettier');
 const fs = require('fs');
 
-process.stdin.resume();
-process.stdin.setEncoding('utf8');
-
 const prettierExec = (prettierConfig, shouldWrite) => {
   const patterns = prettierConfig.patterns;
   const options = prettierConfig.options;

@@ -183,7 +183,10 @@ module.exports = {
         abortOnFail: true,
       });
     }
-
+    actions.push({
+      type: 'prettierjs',
+      paths: ['../../app/containers/{{properCase name}}/**/*.js'],
+    });
     return actions;
   },
 };
