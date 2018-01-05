@@ -43,12 +43,16 @@ describe('injectReducer decorator', () => {
 
   it('should set a correct display name', () => {
     expect(ComponentWithReducer.displayName).toBe('withReducer(Component)');
-    expect(injectReducer({ key: 'test', reducer })(() => null).displayName).toBe('withReducer(Component)');
+    expect(
+      injectReducer({ key: 'test', reducer })(() => null).displayName
+    ).toBe('withReducer(Component)');
   });
 
   it('should propagate props', () => {
     const props = { testProp: 'test' };
-    const renderedComponent = shallow(<ComponentWithReducer {...props} />, { context: { store } });
+    const renderedComponent = shallow(<ComponentWithReducer {...props} />, {
+      context: { store },
+    });
 
     expect(renderedComponent.prop('testProp')).toBe('test');
   });

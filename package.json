@@ -188,7 +188,11 @@
     "extends": [
       "stylelint-config-standard",
       "stylelint-config-styled-components"
-    ]
+    ],
+    "rules": {
+      "rule-empty-line-before": null,
+      "declaration-block-semicolon-newline-after": null
+    }
   },
   "dllPlugin": {
     "path": "node_modules/react-boilerplate-dlls",

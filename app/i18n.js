@@ -16,19 +16,18 @@ import deTranslationMessages from './translations/de.json';
 addLocaleData(enLocaleData);
 addLocaleData(deLocaleData);
 
-export const appLocales = [
-  'en',
-  'de',
-];
+export const appLocales = ['en', 'de'];
 
 export const formatTranslationMessages = (locale, messages) => {
-  const defaultFormattedMessages = locale !== DEFAULT_LOCALE
-    ? formatTranslationMessages(DEFAULT_LOCALE, enTranslationMessages)
-    : {};
+  const defaultFormattedMessages =
+    locale !== DEFAULT_LOCALE
+      ? formatTranslationMessages(DEFAULT_LOCALE, enTranslationMessages)
+      : {};
   return Object.keys(messages).reduce((formattedMessages, key) => {
-    const formattedMessage = !messages[key] && locale !== DEFAULT_LOCALE
-      ? defaultFormattedMessages[key]
-      : messages[key];
+    const formattedMessage =
+      !messages[key] && locale !== DEFAULT_LOCALE
+        ? defaultFormattedMessages[key]
+        : messages[key];
     return Object.assign(formattedMessages, { [key]: formattedMessage });
   }, {});
 };
