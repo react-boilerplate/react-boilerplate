@@ -56,7 +56,7 @@ const ReactBoilerplate = {
   prettier: {
     jsConfig: {
       patterns: ['**/*.js'],
-      ignore: ['node_modules/**', 'build/**'],
+      ignores: ['node_modules/**', 'build/**', 'coverage/**'],
       options: {
         trailingComma: 'es5',
         bracketSpacing: true,

@@ -1,7 +1,8 @@
 const execFileSync = require('child_process').execFileSync;
+const chalk = require('chalk');
 
 const exec = (command, args) => {
-  process.stdout.write(`> ${[command].concat(args).join(' ')}\n`);
+  process.stdout.write(chalk.grey(`> ${[command].concat(args).join(' ')}\n`));
   const options = {
     cwd: process.cwd(),
     env: process.env,
@@ -45,6 +46,6 @@ const updateStagedFiles = (stagedFileArr) => {
   });
 };
 
-exports.updateStagedFiles = updateStagedFiles;
-exports.stagedFiles = stagedFiles;
-exports.changedFiles = changedFiles;
+module.exports.updateStagedFiles = updateStagedFiles;
+module.exports.stagedFiles = stagedFiles;
+module.exports.changedFiles = changedFiles;

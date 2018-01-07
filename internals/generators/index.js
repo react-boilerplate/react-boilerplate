@@ -21,14 +21,14 @@ module.exports = (plop) => {
         path.join(__dirname, pl.renderString(newFilePath, answers))
       );
     });
-    const ignore = [];
+    const ignores = appConfig.prettier.jsConfig.ignores;
     const options = appConfig.prettier.jsConfig.options;
     prettierResult.push(
       prettierexcutor(
         {
           options,
           patterns,
-          ignore,
+          ignores,
         },
         true
       )
