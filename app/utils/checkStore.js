@@ -14,7 +14,7 @@ export default function checkStore(store) {
     replaceReducer: isFunction,
     runSaga: isFunction,
     injectedReducers: isObject,
-    injectedSagas: isObject,
+    injectedSagas: isObject
   };
   invariant(
     conformsTo(store, shape),

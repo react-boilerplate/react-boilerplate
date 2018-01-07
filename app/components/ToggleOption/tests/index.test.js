@@ -10,15 +10,19 @@ describe('<ToggleOption />', () => {
     const message = defineMessages({
       enMessage: {
         id: 'boilerplate.containers.LocaleToggle.en',
-        defaultMessage: defaultEnMessage,
-      },
+        defaultMessage: defaultEnMessage
+      }
     });
     const renderedComponent = shallow(
       <IntlProvider locale="en">
         <ToggleOption value="en" message={message.enMessage} />
       </IntlProvider>
     );
-    expect(renderedComponent.contains(<ToggleOption value="en" message={message.enMessage} />)).toBe(true);
+    expect(
+      renderedComponent.contains(
+        <ToggleOption value="en" message={message.enMessage} />
+      )
+    ).toBe(true);
   });
 
   it('should display `value`(two letter language code) when `message` is absent', () => {

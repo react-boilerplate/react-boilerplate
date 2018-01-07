@@ -10,6 +10,6 @@ const scope = 'boilerplate.containers.NotFoundPage';
 export default defineMessages({
   header: {
     id: `${scope}.header`,
-    defaultMessage: 'Page not found.',
-  },
+    defaultMessage: 'Page not found.'
+  }
 });
