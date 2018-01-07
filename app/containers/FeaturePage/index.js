@@ -13,8 +13,7 @@ import List from './List';
 import ListItem from './ListItem';
 import ListItemTitle from './ListItemTitle';
 
-export default class FeaturePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
-
+export default class FeaturePage extends React.Component {
   // Since state and props are static,
   // there's no need to re-render this component
   shouldComponentUpdate() {
@@ -26,7 +25,10 @@ export default class FeaturePage extends React.Component { // eslint-disable-lin
       <div>
         <Helmet>
           <title>Feature Page</title>
-          <meta name="description" content="Feature page of React.js Boilerplate application" />
+          <meta
+            name="description"
+            content="Feature page of React.js Boilerplate application"
+          />
         </Helmet>
         <H1>
           <FormattedMessage {...messages.header} />

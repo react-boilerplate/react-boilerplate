@@ -15,19 +15,24 @@ function languageIsSupported(language) {
 
 module.exports = {
   description: 'Add a language',
-  prompts: [{
-    type: 'input',
-    name: 'language',
-    message: 'What is the language you want to add i18n support for (e.g. "fr", "de")?',
-    default: 'fr',
-    validate: (value) => {
-      if ((/.+/).test(value) && value.length === 2) {
-        return languageIsSupported(value) ? `The language "${value}" is already supported.` : true;
-      }
+  prompts: [
+    {
+      type: 'input',
+      name: 'language',
+      message:
+        'What is the language you want to add i18n support for (e.g. "fr", "de")?',
+      default: 'fr',
+      validate: (value) => {
+        if (/.+/.test(value) && value.length === 2) {
+          return languageIsSupported(value)
+            ? `The language "${value}" is already supported.`
+            : true;
+        }
 
-      return '2 character language specifier is required';
+        return '2 character language specifier is required';
+      },
     },
-  }],
+  ],
 
   actions: () => {
     const actions = [];
@@ -73,19 +78,21 @@ module.exports = {
       pattern: /(import\('intl\/locale-data\/jsonp\/[a-z]+\.js'\),\n)(?!.*import\('intl\/locale-data\/jsonp\/[a-z]+\.js'\),)/g,
       templateFile: './language/polyfill-intl-locale.hbs',
     });
-    actions.push(
-      () => {
-        const cmd = 'npm run extract-intl';
-        exec(cmd, (err, result, stderr) => {
-          if (err || stderr) {
-            throw err || stderr;
-          }
-          process.stdout.write(result);
-        });
-        return 'modify translation messages';
-      }
-    );
+    actions.push(() => {
+      const cmd = 'npm run extract-intl';
+      exec(cmd, (err, result, stderr) => {
+        if (err || stderr) {
+          throw err || stderr;
+        }
+        process.stdout.write(result);
+      });
+      return 'modify translation messages';
+    });
 
+    actions.push({
+      type: 'prettierjs',
+      paths: ['../../app/i18n.js', '../../app/app.js'],
+    });
     return actions;
   },
 };
