@@ -69,12 +69,11 @@ describe('request', () => {
     });
 
     it('should catch errors', (done) => {
-      request('/thisdoesntexist')
-        .catch((err) => {
-          expect(err.response.status).toBe(404);
-          expect(err.response.statusText).toBe('Not Found');
-          done();
-        });
+      request('/thisdoesntexist').catch((err) => {
+        expect(err.response.status).toBe(404);
+        expect(err.response.statusText).toBe('Not Found');
+        done();
+      });
     });
   });
 });

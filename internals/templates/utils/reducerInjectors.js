@@ -16,9 +16,14 @@ export function injectReducerFactory(store, isValid) {
     );
 
     // Check `store.injectedReducers[key] === reducer` for hot reloading when a key is the same but a reducer is different
-    if (Reflect.has(store.injectedReducers, key) && store.injectedReducers[key] === reducer) return;
-
-    store.injectedReducers[key] = reducer; // eslint-disable-line no-param-reassign
+    if (
+      Reflect.has(store.injectedReducers, key) &&
+      store.injectedReducers[key] === reducer
+    ) {
+      return;
+    }
+    // eslint-disable-next-line no-param-reassign
+    store.injectedReducers[key] = reducer;
     store.replaceReducer(createReducer(store.injectedReducers));
   };
 }
