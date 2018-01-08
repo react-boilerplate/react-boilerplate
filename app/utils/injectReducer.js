@@ -17,13 +17,17 @@ export default ({ key, reducer, isNamespaced = false }) => (WrappedComponent) =>
     static contextTypes = {
       store: PropTypes.object.isRequired,
     };
+    static propTypes = {
+      reducerKey: PropTypes.string,
+    }
+  
     static displayName = `withReducer(${(WrappedComponent.displayName || WrappedComponent.name || 'Component')})`;
 
     componentWillMount() {
       const { injectReducer } = this.injectors;
 
-      injectReducer( 
-        isNamespaced ? (this.props.reducerKey || key) : key, 
+      injectReducer(
+        isNamespaced ? (this.props.reducerKey || key) : key,
         isNamespaced ? reducer(this.props.reducerKey || key) : reducer
       );
     }
