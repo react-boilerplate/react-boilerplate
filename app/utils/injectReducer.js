@@ -11,7 +11,7 @@ import getInjectors from './reducerInjectors';
  * @param {function} reducer A reducer that will be injected
  *
  */
-export default ({ key, reducer }) => (WrappedComponent) => {
+export default ({ key, reducer, isNamespaced = false }) => (WrappedComponent) => {
   class ReducerInjector extends React.Component {
     static WrappedComponent = WrappedComponent;
     static contextTypes = {
@@ -22,7 +22,10 @@ export default ({ key, reducer }) => (WrappedComponent) => {
     componentWillMount() {
       const { injectReducer } = this.injectors;
 
-      injectReducer(key, reducer);
+      injectReducer( 
+        isNamespaced ? (this.props.reducerKey || key) : key, 
+        isNamespaced ? reducer(this.props.reducerKey || key) : reducer
+      );
     }
 
     injectors = getInjectors(this.context.store);
