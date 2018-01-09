@@ -14,7 +14,7 @@
 
 This boilerplate uses [`styled-components`](https://github.com/styled-components/styled-components) :nail_care:
 for styling react components. `styled-components` allows you to write actual CSS inside your JavaScript,
-enabling you to use the [full power of CSS](https://github.com/styled-components/styled-components/blob/master/docs/css-we-support.md) :muscle:
+enabling you to use the [full power of CSS](https://www.styled-components.com/docs/api#supported-css) :muscle:
 without mapping between styles and components.
 There are many ways to style react applications, but many find `styled-components`
 to be a more natural approach to styling components.
