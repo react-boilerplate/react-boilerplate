@@ -36,7 +36,6 @@ test_script:
   # Output debugging info
   - node --version
   - node ./internals/scripts/generate-templates-for-linting
-  - yarn run prettier:js
   # run tests and run build
   - yarn run test
   - yarn run build

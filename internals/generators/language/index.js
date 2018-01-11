@@ -88,6 +88,10 @@ module.exports = {
       });
       return 'modify translation messages';
     });
+    actions.push({
+      type: 'prettier',
+      path: ['../../app/app.js', '../../app/i18n.js']
+    });
 
     return actions;
   }

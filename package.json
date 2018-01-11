@@ -49,8 +49,10 @@
   },
   "lint-staged": {
     "*.js": [
+      "prettier --write",
       "lint:eslint",
-      "stylelint"
+      "stylelint",
+      "git add"
     ]
   },
   "babel": {

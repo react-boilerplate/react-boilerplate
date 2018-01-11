@@ -184,6 +184,11 @@ module.exports = {
       });
     }
 
+    actions.push({
+      type: 'prettier',
+      path: '../../app/containers/{{properCase name}}/**/*.js'
+    });
+
     return actions;
   }
 };

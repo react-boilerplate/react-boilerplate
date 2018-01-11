@@ -6,11 +6,13 @@
 
 const fs = require('fs');
 const path = require('path');
+const plopPrettier = require('./plopprettier');
 const componentGenerator = require('./component/index.js');
 const containerGenerator = require('./container/index.js');
 const languageGenerator = require('./language/index.js');
 
 module.exports = plop => {
+  plop.setActionType('prettier', plopPrettier);
   plop.setGenerator('component', componentGenerator);
   plop.setGenerator('container', containerGenerator);
   plop.setGenerator('language', languageGenerator);
