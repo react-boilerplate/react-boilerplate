@@ -14,7 +14,7 @@
 
 This boilerplate uses [`styled-components`](https://github.com/styled-components/styled-components) :nail_care:
 for styling react components. `styled-components` allows you to write actual CSS inside your JavaScript,
-enabling you to use the [full power of CSS](https://github.com/styled-components/styled-components/blob/master/docs/css-we-support.md) :muscle:
+enabling you to use the [full power of CSS](https://www.styled-components.com/docs/api#supported-css) :muscle:
 without mapping between styles and components.
 There are many ways to style react applications, but many find `styled-components`
 to be a more natural approach to styling components.
@@ -119,16 +119,15 @@ to look like:
 {
   test: /\.css$/,
   exclude: /node_modules/,
-- use: ['style-loader', 'css-loader'],
-+ use: [
-+   'style-loader',
-+   {
-+     loader: 'css-loader',
-+     options: {
-+       modules: true,
-+     },
-+   },
-+ ],
+  use: [
+    'style-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        modules: true,
+      },
+    },
+  ],
 }
 ```
 
@@ -167,7 +166,7 @@ it's one or the other unless you include or exclude specific directories.**
 
 ### Setup
 
-Install `sass-loader` and the `node-sass` dependancy.
+Install `sass-loader` and the `node-sass` dependency.
 ```
 npm i -D sass-loader node-sass
 ```
@@ -177,11 +176,18 @@ to look like:
 
 ```diff
 {
-- test: /\.css$/,
-+ test: /\.scss$/,
+  test: /\.scss$/,
   exclude: /node_modules/,
-- use: ['style-loader', 'css-loader'],
-+ use: ['style-loader', 'css-loader', 'sass-loader'],
+  use: [
+    'style-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        importLoaders: 1,
+      },
+    },
+    'sass-loader',
+  ],
 }
 ```
 
@@ -214,7 +220,7 @@ class Button extends React.Component {
 
 ### Setup
 
-Install `less-loader` and the `less` dependancy.
+Install `less-loader` and the `less` dependency.
 ```
 npm i -D less-loader less
 ```
@@ -224,20 +230,18 @@ to look like:
 
 ```diff
 {
-- test: /\.css$/,
-+ test: /\.less$/,
+  test: /\.less$/,
   exclude: /node_modules/,
-- use: ['style-loader', 'css-loader'],
-+ use: [
-+ 'style-loader',
-+ {
-+   loader: 'css-loader',
-+   options: {
-+     importLoaders: 1,
-+   },
-+ },
-+ 'less-loader',
-+],
+  use: [
+    'style-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        importLoaders: 1,
+      },
+    },
+    'less-loader',
+  ],
 }
 ```
 

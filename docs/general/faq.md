@@ -14,9 +14,6 @@
 - [Non-route containers](#non-route-containers)
   - [Where do I put the reducer?](#where-do-i-put-the-reducer)
   - [How do I run the saga?](#how-do-i-run-the-saga)
-- [Using this boilerplate with WebStorm](#using-this-boilerplate-with-webstorm)
-  - [Troubleshooting](#troubleshooting)
-  - [Enable ESLint](#enable-eslint)
 - [Use CI with bitbucket pipelines](#use-ci-with-bitbucket-pipelines)
 - [I'm using Node v0.12 and the server doesn't work?](#im-using-node-v012-and-the-server-doesnt-work)
 - [How to keep my project up-to-date with `react-boilerplate`?](#how-to-keep-my-project-up-to-date-with-react-boilerplate)
@@ -140,74 +137,6 @@ call that includes all of them by default.
 
 *See [this and the following lesson](https://egghead.io/lessons/javascript-redux-reducer-composition-with-arrays?course=getting-started-with-redux) of the egghead.io Redux course for more information about reducer composition!*
 
-### How do I run the saga?
-
-Since a container will always be within a route, one we can simply add it to the exported array in
-`sagas.js` of the route container somewhere up the tree:
-
-```JS
-// /containers/SomeContainer/sagas.js
-
-import { someOtherSagaFromNestedContainer } from './containers/SomeNestedContainer/sagas';
-
-function* someSaga() { /* … */ }
-
-export default [
-  someSaga,
-  someOtherSagaFromNestedContainer,
-];
-```
-
-Or, if you have multiple sagas in the nested container:
-
-
-```JS
-// /containers/SomeContainer/sagas.js
-
-import nestedContainerSagas from './containers/SomeNestedContainer/sagas';
-
-function* someSaga() { /* … */ }
-
-export default [
-  someSaga,
-  ...nestedContainerSagas,
-];
-```
-
-## Using this boilerplate with WebStorm
-
-WebStorm is a powerful IDE, and why not also use it as debugger tool? Here is the steps
-
-1.  [Install JetBrain Chrome Extension](https://chrome.google.com/webstore/detail/jetbrains-ide-support/hmhgeddbohgjknpmjagkdomcpobmllji)
-2.  [Setting up the PORT](https://www.jetbrains.com/help/webstorm/2016.1/using-jetbrains-chrome-extension.html)
-3.  Change WebPack devtool config to `source-map` [(This line)](https://github.com/react-boilerplate/react-boilerplate/blob/56eb5a0ec4aa691169ef427f3a0122fde5a5aa24/internals/webpack/webpack.dev.babel.js#L65)
-4.  Run web server (`npm run start`)
-5.  Create Run Configuration (Run > Edit Configurations)
-6.  Add new `JavaScript Debug`
-7.  Setting up URL
-8.  Start Debug (Click the green bug button)
-9.  Edit Run Configuration Again
-10.  Mapping Url as below picture
-    * Map your `root` directory with `webpack://.` (please note the last dot)
-    * Map your `build` directory with your root path (e.g. `http://localhost:3000`)
-11.  Hit OK and restart debugging session
-
-![How to debug using WebStorm](webstorm-debug.png)
-
-### Troubleshooting
-
-1. You miss the last `.` (dot) in `webpack://.`
-2. The port debugger is listening tool and the JetBrain extension is mismatch.
-
-### Enable ESLint
-
-ESLint help making all developer follow the same coding format. Please also setting up in your IDE, otherwise, you will fail ESLint test.
-1. Go to WebStorm Preference
-2. Search for `ESLint`
-3. Click `Enable`
-
-![Setting up ESLint](webstorm-eslint.png)
-
 ## Use CI with bitbucket pipelines
 
 Your project is on bitbucket? Take advantage of the pipelines feature (Continuous Integration) by creating a 'bitbucket-pipelines.yml' file at the root of the project and use the following code to automatically test your app at each commit:
@@ -228,7 +157,7 @@ pipelines:
 ## I'm using Node v0.12 and the server doesn't work?
 
 We settled on supporting the last three major Node.js versions for the boilerplate – at the moment
-of this writing those are v5, v6 and v7. We **highly recommend upgrading to a newer Node.js version**!
+of this writing those are v6, v7 and v8. We **highly recommend upgrading to a newer Node.js version**!
 
 If you _have_ to use Node.js 0.12, you can hack around the server not running by using `babel-cli` to
 run the server: `npm install babel-cli`, and then replace all instances of `node server` in the `"scripts"`
@@ -237,7 +166,7 @@ in the `package.json` with `babel server`!
 ## How to keep my project up-to-date with `react-boilerplate`?
 
 While it's possible to keep your project up-to-date or "in sync" with `react-boilerplate`, it's usually
-very difficult and therefore ***at your own risk*** and not recommend. You should not need to do it either, as
+very difficult and is therefore ***at your own risk*** and not recommended. You should not need to do it either, as
 every version you use will be amazing! There is a long term goal to make this much easier but no ETA at the moment.
 
 ## How to turn off Webpack performance warnings after production build?

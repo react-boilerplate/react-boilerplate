@@ -6,7 +6,7 @@ Once you have done that, this document is intended to give you a taste of how `r
 
 This is a production-ready boilerplate, and as such optimized for browsers, not for beginners. It includes tools to help you manage performance, asynchrony, styling, everything you need to build a _real_ application. Before you get your hands dirty with the source code, we'd like you to go through a checklist, that will help you determine whether or not you're eligible to use this boilerplate. It's not because we're _holier-than-thou_, but we genuinely want to save you the frustration.
 
-> Opening an issue is the fastest way to draw the attention of the team, but please make it a point to read the [docs](https://github.com/react-boilerplate/react-boilerplate/tree/master/docs) and [contribution instructions](https://github.com/react-boilerplate/react-boilerplate/blob/master/.github/CONTRIBUTING.md) before you do. The issues section is specifically used for pointing out defects and suggesting enhancements, if you have a question about one of the tools please refer to StackOverflow instead.
+> Opening an issue is the fastest way to draw the attention of the team, but please make it a point to read the [docs](https://github.com/react-boilerplate/react-boilerplate/tree/master/docs) and [contribution instructions](https://github.com/react-boilerplate/react-boilerplate/blob/master/CONTRIBUTING.md) before you do. The issues section is specifically used for pointing out defects and suggesting enhancements, if you have a question about one of the tools please refer to StackOverflow instead.
 
 ## Tech Stack
 
@@ -33,8 +33,8 @@ Here's a curated list of packages that you should have knowledge of, before star
 
 Note that while `react-boilerplate` includes a lot of features, many of them are optional and you can find instructions in the docs on how to remove...
 
-- [...`redux-saga` or `reselect`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/js/remove.md).
-- ...[offline-first, add to homescreen, performant web font loading and image optimisation](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/remove.md)
+- [`redux-saga` or `reselect`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/js/remove.md).
+- [offline-first, add to homescreen, performant web font loading and image optimisation](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/remove.md)
 - [`sanitize.css`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/css/remove.md)
 - [i18n (i.e. `react-intl`)](https://github.com/react-boilerplate/react-boilerplate/blob/0f88f55ed905f8432c3dd7b452d713df5fb76d8e/docs/js/i18n.md#removing-i18n-and-react-intl)
 
@@ -52,7 +52,7 @@ If not, here's the TL;DR:
 
 We use the [container/component architecture](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.4rmjqneiw). `containers/` contains React components which are connected to the redux store. `components/` contains dumb React components which depend on containers for data. **Container components care about how things work, while components care about how things look.**
 
-We've found that for many applications treating single pages (e.g. the Loginpage, the Homepage etc.) as containers and their small parts (e.g. the Login form, the Navigation bar) components works well, but there are no rigid rules. **Bend the architecture to the needs of your app, nothing is set in stone!**
+We've found that for many applications treating single pages (e.g. the Loginpage, the Homepage etc.) as containers and their small parts (e.g. the Login form, the Navigation bar) as components works well, but there are no rigid rules. **Bend the architecture to the needs of your app, nothing is set in stone!**
 
 ### `internals/`
 
@@ -97,26 +97,13 @@ Webpack requires an entry point to your application. Think of it as a door to yo
 - `babel-polyfill` is imported. This enables cool stuff like generator functions, `Promise`s, etc.
 - A redux `store` is instantiated.
 - A `history` object is created, which remembers all the browsing history for your app. This is used by the router to know which page your users visit. (very useful for analytics, by the way)
-- A Router is set up, with all of your routes. See [`routes.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/routes.js)
-- Hot module replacement setup.
+- A Router is connected to Redux.
+- Hot module replacement setup via vanilla [Webpack HMR](https://webpack.js.org/guides/hot-module-replacement/) that makes all the reducers, injected sagas, components, containers, and i18n messages hot reloadable. 
 - i18n internationalization support setup.
 - Offline plugin support to make your app [offline-first](https://developers.google.com/web/fundamentals/getting-started/codelabs/offline/).
 - `ReactDOM.render()` not only renders the [root react component](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/index.js) called `<App />`, of your application, but it renders it with `<Provider />`, `<LanguageProvider />` and `<Router />`.
  * `<Provider />` connects your app with the redux `store`.
- * `<LanguageProvider />` provides language translation support to your app.
- * `<Router />` will have information for your application routes.
-
-### React Router:
-
-`<Router />` sets up your routes. Check out [`routes.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/routes.js) to see how route `path`s are mapped with application containers.
-
-- Path `"/"` corresponds to container `<HomePage />`
-- Path `"/features"` corresponds to container `<FeaturePage />`
-- Path `"*"` i.e. all other paths correspond to the `<NotFoundPage />` (i.e. the 404 page)
-
-These containers, along with their corresponding reducer and sagas, are loaded asynchronously with the help of dynamic `import()`. Whenever webpack encounters `import()` in the code, it creates a separate file for those imports. That means for every route, there will be a separate file. And by corollary, only those javascript files will be downloaded by the browser which are required for the current route.
-
-**When you navigate to `"/"`, only files related to the Homepage will be downloaded and subsequently executed. This makes your application incredibly lightweight and lightning fast.**
+ * `<LanguageProvider />` provides language translation support to your app. 
 
 ### Redux
 
@@ -126,7 +113,7 @@ Redux is going to play a huge role in your application. If you're new to Redux, 
 - [ ] Understand the three principles of Redux
 - [ ] Implement Redux in a small React app of yours
 
-The Redux `store` is the heart of your application. Check out [`store.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/store.js) to see how we have configured the store.
+The Redux `store` is the heart of your application. Check out [`configureStore.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/configureStore.js) to see how we have configured the store.
 
 The store is created with the `createStore()` factory, which accepts three parameters.
 
@@ -196,24 +183,24 @@ Run `npm start` to launch the application. If you start browsing at [https://loc
 
 Together these two methods work like magic. When you type something in the textbox the following things will happen in a sequential manner:
 
-1. `changeUsername()` will send text to the Redux store. The text can be accessed using `evt.target.value`. Here, `evt` is the `onChange` event emmited by pressing a key.
+1. `changeUsername()` will send text to the Redux store. The text can be accessed using `evt.target.value`. Here, `evt` is the `onChange` event emitted by pressing a key.
 2. The Redux store will consult with its corresponding reducer, since a reducer knows what to do with the data.
 3. When a reducer computes a new state tree, the store will update its state with the newly typed data.
-4. An update has occured in the state, therefore `mapStateToProps()` will be triggered and your react component will get the new data.
+4. An update has occurred in the state, therefore `mapStateToProps()` will be triggered and your react component will get the new data.
 5. The updated data will be set as the `value` to your `<Input />`.
 
 _So you see, if you type something in the textbox, it will not be directly reflected in the DOM. It must pass through redux. Redux will update the state and return it to the component. It's the component's responsibility to show the updated data._
 
-#### `HomePage/sagas.js`
+#### `HomePage/saga.js`
 
 You must be wondering where does the list of repositories come from! Sagas are primarily used for making API calls. Sagas intercept actions dispatched to the Redux store. That means a saga will listen to the actions and if it finds an action of interest, it will do something.
 
 Sagas are nothing but ES6 [generator functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*). These functions act as normal functions, the only difference is that they can be "paused" and "resumed" at any point in time. `redux-saga` provides an intuitive, declarative API for managing asynchronous operations.
 
-Check out [`HomePage/sagas.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/HomePage/sagas.js). It can be confusing for untrained eyes. The API of `redux-saga` is self-descriptive once you've seen it, so let's go over what happens in there:
+Check out [`HomePage/saga.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/HomePage/saga.js). It can be confusing for untrained eyes. The API of `redux-saga` is self-descriptive once you've seen it, so let's go over what happens in there:
 
 - You can `fork` a saga to send it to the background. That way, your code will not get blocked even when the saga is continuously running.
-- `takeLatest` is used for listening for a particular action. In this case, it will wait for a `LOAD_REPOS` action. Whenever you disptach this action, the saga will understand that you want to fetch repos from github's public API by calling `getRepos()`.
+- `takeLatest` is used for listening for a particular action. In this case, it will wait for a `LOAD_REPOS` action. Whenever you dispatch this action, the saga will understand that you want to fetch repos from github's public API by calling `getRepos()`.
 - If the API successfully returns some data, a `reposLoaded()` action will be dispatched which carries the data. When redux store receives this action, [a reducer](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/reducer.js) will set incoming data in the new state tree.
 
 _An update has occurred!_ `mapStateToProps()` will be triggered. `<HomePage />` will receive the new data and rerender.

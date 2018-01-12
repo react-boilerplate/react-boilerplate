@@ -1,6 +1,5 @@
 /**
  * Combine all reducers in this file and export the combined reducers.
- * If we were to do this in store.js, reducers wouldn't be hot reloadable.
  */
 
 import { combineReducers } from 'redux-immutable';
@@ -13,11 +12,11 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
  * routeReducer
  *
  * The reducer merges route location changes into our immutable state.
- * The change is necessitated by moving to react-router-redux@4
+ * The change is necessitated by moving to react-router-redux@5
  *
  */
 
-function locationBeforeTransitions(state = null, action) {
+function location(state = null, action) {
   switch (action.type) {
     case LOCATION_CHANGE:
       return action.payload;
@@ -25,16 +24,16 @@ function locationBeforeTransitions(state = null, action) {
       return state;
   }
 }
-const routeReducer = combineReducers({ locationBeforeTransitions });
+const routeReducer = combineReducers({ location });
 
 /**
- * Creates the main reducer with the asynchronously loaded ones
+ * Creates the main reducer with the dynamically injected ones
  */
-export default function createReducer(asyncReducers) {
+export default function createReducer(injectedReducers) {
   return combineReducers({
     route: routeReducer,
     global: globalReducer,
     language: languageProviderReducer,
-    ...asyncReducers,
+    ...injectedReducers,
   });
 }
