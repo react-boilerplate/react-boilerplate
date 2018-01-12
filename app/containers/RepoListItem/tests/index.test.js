@@ -9,11 +9,12 @@ import { IntlProvider } from 'react-intl';
 import ListItem from 'components/ListItem';
 import { RepoListItem } from '../index';
 
-const renderComponent = (props = {}) => render(
-  <IntlProvider locale="en">
-    <RepoListItem {...props} />
-  </IntlProvider>
-);
+const renderComponent = (props = {}) =>
+  render(
+    <IntlProvider locale="en">
+      <RepoListItem {...props} />
+    </IntlProvider>
+  );
 
 describe('<RepoListItem />', () => {
   let item;
@@ -22,26 +23,24 @@ describe('<RepoListItem />', () => {
   beforeEach(() => {
     item = {
       owner: {
-        login: 'mxstbr',
+        login: 'mxstbr'
       },
       html_url: 'https://github.com/react-boilerplate/react-boilerplate',
       name: 'react-boilerplate',
       open_issues_count: 20,
-      full_name: 'react-boilerplate/react-boilerplate',
+      full_name: 'react-boilerplate/react-boilerplate'
     };
   });
 
   it('should render a ListItem', () => {
-    const renderedComponent = shallow(
-      <RepoListItem item={item} />
-    );
+    const renderedComponent = shallow(<RepoListItem item={item} />);
     expect(renderedComponent.find(ListItem).length).toBe(1);
   });
 
   it('should not render the current username', () => {
     const renderedComponent = renderComponent({
       item,
-      currentUser: item.owner.login,
+      currentUser: item.owner.login
     });
     expect(renderedComponent.text()).not.toContain(item.owner.login);
   });
@@ -49,7 +48,7 @@ describe('<RepoListItem />', () => {
   it('should render usernames that are not the current one', () => {
     const renderedComponent = renderComponent({
       item,
-      currentUser: 'nikgraf',
+      currentUser: 'nikgraf'
     });
     expect(renderedComponent.text()).toContain(item.owner.login);
   });

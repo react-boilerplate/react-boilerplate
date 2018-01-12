@@ -5,11 +5,13 @@ import { makeSelectLocation } from 'containers/App/selectors';
 describe('makeSelectLocation', () => {
   it('should select the location', () => {
     const route = fromJS({
-      location: { pathname: '/foo' },
+      location: { pathname: '/foo' }
     });
     const mockedState = fromJS({
-      route,
+      route
     });
-    expect(makeSelectLocation()(mockedState)).toEqual(route.get('location').toJS());
+    expect(makeSelectLocation()(mockedState)).toEqual(
+      route.get('location').toJS()
+    );
   });
 });

@@ -1,10 +1,6 @@
-import {
-  CHANGE_USERNAME,
-} from '../constants';
+import { CHANGE_USERNAME } from '../constants';
 
-import {
-  changeUsername,
-} from '../actions';
+import { changeUsername } from '../actions';
 
 describe('Home Actions', () => {
   describe('changeUsername', () => {
@@ -12,7 +8,7 @@ describe('Home Actions', () => {
       const fixture = 'Max';
       const expectedResult = {
         type: CHANGE_USERNAME,
-        name: fixture,
+        name: fixture
       };
 
       expect(changeUsername(fixture)).toEqual(expectedResult);

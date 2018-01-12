@@ -15,7 +15,7 @@ describe('checkStore', () => {
       replaceReducer: () => {},
       runSaga: () => {},
       injectedReducers: {},
-      injectedSagas: {},
+      injectedSagas: {}
     };
   });
 
