@@ -4,25 +4,27 @@
  *
  */
 
-import { combineReducers } from 'redux-immutable';
+import { fromJS } from 'immutable';
 
 import {
   CHANGE_LOCALE,
 } from './constants';
-
 import {
   DEFAULT_LOCALE,
 } from '../App/constants';
 
-function locale(state = DEFAULT_LOCALE, action) {
+const initialState = fromJS({
+  locale: DEFAULT_LOCALE,
+});
+
+function languageProviderReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_LOCALE:
-      return action.locale;
+      return state
+        .set('locale', action.locale);
     default:
       return state;
   }
 }
 
-export default combineReducers({
-  locale,
-});
+export default languageProviderReducer;

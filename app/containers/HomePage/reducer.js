@@ -9,22 +9,27 @@
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
  */
-import { combineReducers } from 'redux-immutable';
+import { fromJS } from 'immutable';
 
 import {
   CHANGE_USERNAME,
 } from './constants';
 
-function username(state = '', action) {
+// The initial state of the App
+const initialState = fromJS({
+  username: '',
+});
+
+function homeReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_USERNAME:
+
       // Delete prefixed '@' from the github username
-      return action.name.replace(/@/gi, '');
+      return state
+        .set('username', action.name.replace(/@/gi, ''));
     default:
       return state;
   }
 }
 
-export default combineReducers({
-  username,
-});
+export default homeReducer;
