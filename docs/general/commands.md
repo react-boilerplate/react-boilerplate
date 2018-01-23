@@ -1,4 +1,4 @@
-# Command Line Commands
+# Command Line Interface Commands
 
 ## Initialization
 
