@@ -195,7 +195,7 @@ describe('injectors', () => {
       injectSaga('test', { saga: testSaga1 });
 
       expect(cancel).toHaveBeenCalledTimes(1);
-      expect(store.runSaga).toHaveBeenCalledWith(testSaga1, undefined);
+      expect(store.runSaga).toHaveBeenCalledWith(testSaga1);
     });
 
     it('should not cancel saga if different implementation in production', () => {
