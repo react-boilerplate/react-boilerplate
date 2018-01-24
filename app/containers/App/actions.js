@@ -36,15 +36,13 @@ export function loadRepos() {
  * Dispatched when the repositories are loaded by the request saga
  *
  * @param  {array} repos The repository data
- * @param  {string} username The current username
  *
  * @return {object}      An action object with a type of LOAD_REPOS_SUCCESS passing the repos
  */
-export function reposLoaded(repos, username) {
+export function reposLoaded(repos) {
   return {
     type: LOAD_REPOS_SUCCESS,
     repos,
-    username,
   };
 }
 

@@ -24,7 +24,6 @@ import Input from './Input';
 import Section from './Section';
 import messages from './messages';
 import { loadRepos } from '../App/actions';
-import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -34,9 +33,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
    * when initial state username is not null, submit the form to load repos
    */
   componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
-      this.props.onSubmitForm();
-    }
+    this.props.onSubmitForm();
   }
 
   render() {
@@ -58,9 +55,6 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
             <H2>
               <FormattedMessage {...messages.startProjectHeader} />
             </H2>
-            <p>
-              <FormattedMessage {...messages.startProjectMessage} />
-            </p>
           </CenteredSection>
           <Section>
             <H2>
@@ -106,9 +100,7 @@ HomePage.propTypes = {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-    onSubmitForm: (evt) => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+    onSubmitForm: () => {
       dispatch(loadRepos());
     },
   };
