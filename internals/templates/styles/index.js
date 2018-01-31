@@ -9,14 +9,16 @@ export const color = {
   primary_light: '#6cc0e5',
   black: '#101010',
   white: '#fafafa',
+  off_white: '#eee',
   gray_1: '#999',
   gray_2: '#666',
 
 };
 
 export const font = {
-  body: "Georgia, Times, 'Times New Roman', serif",
-  header: "'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+  serif: "Georgia, Times, 'Times New Roman', serif",
+  sans: "'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+  sans_preload: "'Helvetica Neue', Helvetica, Arial, sans-serif",
 };
 
 export const size = {

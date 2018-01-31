@@ -42,7 +42,7 @@ import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line impor
 /* eslint-enable import/no-webpack-loader-syntax */
 
 // Import CSS reset and Global Styles
-import 'app/global';
+import 'styles/global';
 
 import configureStore from './configureStore';
 
