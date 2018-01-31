@@ -35,9 +35,11 @@ shell.mv('internals/templates/translations', 'app');
 shell.rm('-rf', 'app/utils');
 shell.mv('internals/templates/utils', 'app');
 
+// Handle styles/
+shell.cp('internals/templates/styles', 'app/styles');
+
 // Replace the files in the root app/ folder
 shell.cp('internals/templates/app.js', 'app/app.js');
-shell.cp('internals/templates/global-styles.js', 'app/global-styles.js');
 shell.cp('internals/templates/i18n.js', 'app/i18n.js');
 shell.cp('internals/templates/index.html', 'app/index.html');
 shell.cp('internals/templates/reducers.js', 'app/reducers.js');

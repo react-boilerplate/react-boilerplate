@@ -244,13 +244,13 @@ const MyStyledComponent = styled.div`
 
 **2) Import the CSS in the `<head>` of your `index.html` manually**
 
-This is a good choice if you are having issues with third-party styles and `global-styles.js`
+This is a good choice if you are having issues with third-party styles and `styles/global.js`
 ```javascript
 // Import bootstrap style (e.g. move this into the <head> of index.html)
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 // Import CSS reset and Global Styles
-import './global-styles';
+import 'styles/global';
 ```
 
 More information is available in the [official documents](https://github.com/styled-components/styled-components/blob/master/docs/existing-css.md).
