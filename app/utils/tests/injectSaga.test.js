@@ -45,6 +45,16 @@ describe('injectSaga decorator', () => {
     expect(injectors.injectSaga).toHaveBeenCalledWith('test', { saga: testSaga, mode: 'testMode' }, props);
   });
 
+  it('should inject given saga, mode, and user defined args', () => {
+    const props = { testProp: 'test' };
+    const args = { argument: 'test' };
+    ComponentWithSaga = injectSaga({ key: 'test', saga: testSaga, mode: 'testMode', args: [args] })(Component);
+    shallow(<ComponentWithSaga {...props} />, { context: { store } });
+
+    expect(injectors.injectSaga).toHaveBeenCalledTimes(1);
+    expect(injectors.injectSaga).toHaveBeenCalledWith('test', { saga: testSaga, mode: 'testMode' }, args);
+  });
+
   it('should eject on unmount with a correct saga key', () => {
     const props = { test: 'test' };
     const renderedComponent = shallow(<ComponentWithSaga {...props} />, { context: { store } });
