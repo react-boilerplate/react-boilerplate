@@ -10,6 +10,7 @@ ideas on what represents optimal developer experience, best practice, most
 efficient tooling and cleanest project structure.
 
 - [**CLI Commands**](commands.md)
+- [Setting up your editor](editor.md)
 - [Tool Configuration](files.md)
 - [Server Configurations](server-configs.md)
 - [Deployment](deployment.md) *(currently Heroku specific)*
