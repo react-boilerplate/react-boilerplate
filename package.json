@@ -7,12 +7,13 @@
     "url": "git://github.com/react-boilerplate/react-boilerplate.git"
   },
   "engines": {
-    "npm": ">=3",
-    "node": ">=5"
+    "npm": ">=5",
+    "node": ">=6"
   },
   "author": "Max Stoiber",
   "license": "MIT",
   "scripts": {
+    "precommit": "npm run lint:staged",
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
     "analyze": "node ./internals/scripts/analyze.js",
@@ -35,13 +36,14 @@
     "clean:all": "npm run analyze:clean && npm run test:clean && npm run build:clean",
     "generate": "plop --plopfile internals/generators/index.js",
     "lint": "npm run lint:js && npm run lint:css",
-    "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern internals/scripts",
+    "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern internals/scripts --fix",
     "lint:js": "npm run lint:eslint -- . ",
     "lint:css": "stylelint \"./app/**/*.js\"",
     "lint:staged": "lint-staged",
     "pretest": "npm run test:clean && npm run lint",
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
+    "test:dev": "cross-env NODE_ENV=test jest --watch",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
@@ -51,7 +53,6 @@
       "stylelint"
     ]
   },
-  "pre-commit": "lint:staged",
   "babel": {
     "plugins": [
       "styled-components"
@@ -67,14 +68,23 @@
       "stage-0"
     ],
     "env": {
+      "development": {
+        "only": [
+          "app",
+          "internals/scripts"
+        ],
+        "plugins": [
+          "transform-react-jsx-source"
+        ]
+      },
       "production": {
         "only": [
           "app"
         ],
         "plugins": [
           "transform-react-remove-prop-types",
-          "transform-react-constant-elements",
-          "transform-react-inline-elements"
+          "transform-react-inline-elements",
+          "transform-react-constant-elements"
         ]
       },
       "test": {
@@ -275,6 +285,7 @@
     "babel-plugin-transform-react-constant-elements": "6.23.0",
     "babel-plugin-transform-react-inline-elements": "6.22.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.5",
+    "babel-plugin-transform-react-jsx-source": "6.22.0",
     "babel-preset-env": "1.5.1",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
@@ -296,6 +307,7 @@
     "file-loader": "0.11.1",
     "html-loader": "0.4.5",
     "html-webpack-plugin": "2.29.0",
+    "husky": "0.14.3",
     "image-webpack-loader": "2.0.0",
     "imports-loader": "0.7.1",
     "jest-cli": "20.0.4",
@@ -305,10 +317,9 @@
     "null-loader": "0.1.1",
     "offline-plugin": "4.8.1",
     "plop": "1.8.0",
-    "pre-commit": "1.2.2",
+    "raf": "3.4.0",
     "react-test-renderer": "16.2.0",
     "rimraf": "2.6.1",
-    "raf": "3.4.0",
     "shelljs": "0.7.7",
     "style-loader": "0.18.1",
     "stylelint": "8.3.1",

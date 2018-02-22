@@ -6,7 +6,7 @@ Once you have done that, this document is intended to give you a taste of how `r
 
 This is a production-ready boilerplate, and as such optimized for browsers, not for beginners. It includes tools to help you manage performance, asynchrony, styling, everything you need to build a _real_ application. Before you get your hands dirty with the source code, we'd like you to go through a checklist, that will help you determine whether or not you're eligible to use this boilerplate. It's not because we're _holier-than-thou_, but we genuinely want to save you the frustration.
 
-> Opening an issue is the fastest way to draw the attention of the team, but please make it a point to read the [docs](https://github.com/react-boilerplate/react-boilerplate/tree/master/docs) and [contribution instructions](https://github.com/react-boilerplate/react-boilerplate/blob/master/.github/CONTRIBUTING.md) before you do. The issues section is specifically used for pointing out defects and suggesting enhancements, if you have a question about one of the tools please refer to StackOverflow instead.
+> Opening an issue is the fastest way to draw the attention of the team, but please make it a point to read the [docs](https://github.com/react-boilerplate/react-boilerplate/tree/master/docs) and [contribution instructions](https://github.com/react-boilerplate/react-boilerplate/blob/master/CONTRIBUTING.md) before you do. The issues section is specifically used for pointing out defects and suggesting enhancements, if you have a question about one of the tools please refer to StackOverflow instead.
 
 ## Tech Stack
 
@@ -33,8 +33,8 @@ Here's a curated list of packages that you should have knowledge of, before star
 
 Note that while `react-boilerplate` includes a lot of features, many of them are optional and you can find instructions in the docs on how to remove...
 
-- [...`redux-saga` or `reselect`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/js/remove.md).
-- ...[offline-first, add to homescreen, performant web font loading and image optimisation](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/remove.md)
+- [`redux-saga` or `reselect`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/js/remove.md).
+- [offline-first, add to homescreen, performant web font loading and image optimisation](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/remove.md)
 - [`sanitize.css`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/css/remove.md)
 - [i18n (i.e. `react-intl`)](https://github.com/react-boilerplate/react-boilerplate/blob/0f88f55ed905f8432c3dd7b452d713df5fb76d8e/docs/js/i18n.md#removing-i18n-and-react-intl)
 
@@ -183,10 +183,10 @@ Run `npm start` to launch the application. If you start browsing at [https://loc
 
 Together these two methods work like magic. When you type something in the textbox the following things will happen in a sequential manner:
 
-1. `changeUsername()` will send text to the Redux store. The text can be accessed using `evt.target.value`. Here, `evt` is the `onChange` event emmited by pressing a key.
+1. `changeUsername()` will send text to the Redux store. The text can be accessed using `evt.target.value`. Here, `evt` is the `onChange` event emitted by pressing a key.
 2. The Redux store will consult with its corresponding reducer, since a reducer knows what to do with the data.
 3. When a reducer computes a new state tree, the store will update its state with the newly typed data.
-4. An update has occured in the state, therefore `mapStateToProps()` will be triggered and your react component will get the new data.
+4. An update has occurred in the state, therefore `mapStateToProps()` will be triggered and your react component will get the new data.
 5. The updated data will be set as the `value` to your `<Input />`.
 
 _So you see, if you type something in the textbox, it will not be directly reflected in the DOM. It must pass through redux. Redux will update the state and return it to the component. It's the component's responsibility to show the updated data._
