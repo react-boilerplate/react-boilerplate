@@ -48,7 +48,9 @@ describe('injectSaga decorator', () => {
   it('should inject given saga, mode, and user defined args', () => {
     const props = { testProp: 'test' };
     const args = { argument: 'test' };
-    ComponentWithSaga = injectSaga({ key: 'test', saga: testSaga, mode: 'testMode', args: [args] })(Component);
+    ComponentWithSaga = injectSaga({
+      key: 'test', saga: testSaga, mode: 'testMode', args: [args],
+    })(Component);
     shallow(<ComponentWithSaga {...props} />, { context: { store } });
 
     expect(injectors.injectSaga).toHaveBeenCalledTimes(1);

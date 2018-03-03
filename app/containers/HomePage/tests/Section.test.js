@@ -21,7 +21,7 @@ describe('<Section />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Section attribute={'test'} />);
+    const renderedComponent = shallow(<Section attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

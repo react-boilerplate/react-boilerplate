@@ -21,7 +21,7 @@ describe('<Wrapper />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Wrapper attribute={'test'} />);
+    const renderedComponent = shallow(<Wrapper attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

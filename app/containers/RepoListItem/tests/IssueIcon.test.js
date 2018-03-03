@@ -21,7 +21,7 @@ describe('<IssueIcon />', () => {
   });
 
   it('should adopt any attribute', () => {
-    const renderedComponent = shallow(<IssueIcon attribute={'test'} />);
+    const renderedComponent = shallow(<IssueIcon attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeDefined();
   });
 });
