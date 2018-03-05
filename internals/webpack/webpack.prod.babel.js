@@ -1,10 +1,11 @@
 // Important modules this config uses
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
 
 module.exports = require('./webpack.base.babel')({
+  mode: 'production',
+
   // In production, we skip all hot-reloading stuff
   entry: [
     path.join(process.cwd(), 'app/app.js'),
@@ -16,15 +17,13 @@ module.exports = require('./webpack.base.babel')({
     chunkFilename: '[name].[chunkhash].chunk.js',
   },
 
-  plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      children: true,
-      minChunks: 2,
-      async: true,
-    }),
+  optimization: {
+    minimize: true,
+    sideEffects: true,
+    concatenateModules: true,
+  },
 
+  plugins: [
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
       template: 'app/index.html',
@@ -52,6 +51,12 @@ module.exports = require('./webpack.base.babel')({
       // No need to cache .htaccess. See http://mxs.is/googmp,
       // this is applied before any match in `caches` section
       excludes: ['.htaccess'],
+
+      // Don't minify Service Worker code
+      // TODO: Remove this when offline-plugin supports webpack 4
+      ServiceWorker: {
+        minify: false,
+      },
 
       caches: {
         main: [':rest:'],
