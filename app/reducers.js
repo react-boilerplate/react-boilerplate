@@ -16,7 +16,7 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
  *
  */
 
-function location(state = null, action) {
+export function location(state = null, action) {
   switch (action.type) {
     case LOCATION_CHANGE:
       return action.payload;
