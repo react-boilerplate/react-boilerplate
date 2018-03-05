@@ -66,12 +66,16 @@ Identify problems that occur and try to resolve them by rolling back the respect
 
 **Internal Commands:**
 
-- `npm run clean`
+- `npm run clean` (Be careful, this will commit all your changes.)
 - `npm run generate component` TestComp /w defaults
-- `npm run generate container TestPage` /w defaults
-- `npm run generate route` to TestPage - /test
-    
-    Use TestComp on TestPage -> bypass all tests in TestComp and TestPage (set true = true)
+- `npm run generate container` TestPage /w defaults
+- Add a new route in the App container:
+```js
+import TestPage from 'containers/TestPage/Loadable';
+
+<Route path="/test" component={TestPage} />
+```
+- Use TestComp on TestPage -> bypass all tests in TestComp and TestPage (set true = true)
 - `npm start` > `localhost:3000/test`
 - `npm test` (expect test failure due to incomplete test coverage)
 - `npm run build`

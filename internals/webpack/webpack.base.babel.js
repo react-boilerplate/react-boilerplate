@@ -12,11 +12,13 @@ const webpack = require('webpack');
 process.noDeprecation = true;
 
 module.exports = (options) => ({
+  mode: options.mode,
   entry: options.entry,
   output: Object.assign({ // Compile into js/build.js
     path: path.resolve(process.cwd(), 'build'),
     publicPath: '/',
   }, options.output), // Merge with env dependent settings
+  optimization: options.optimization,
   module: {
     rules: [
       {
@@ -56,7 +58,7 @@ module.exports = (options) => ({
           },
           {
             loader: 'image-webpack-loader',
-            query: {
+            options: {
               mozjpeg: {
                 progressive: true,
               },
@@ -77,10 +79,6 @@ module.exports = (options) => ({
       {
         test: /\.html$/,
         use: 'html-loader',
-      },
-      {
-        test: /\.json$/,
-        use: 'json-loader',
       },
       {
         test: /\.(mp4|webm)$/,
@@ -107,7 +105,6 @@ module.exports = (options) => ({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
-    new webpack.NamedModulesPlugin(),
   ]),
   resolve: {
     modules: ['app', 'node_modules'],
