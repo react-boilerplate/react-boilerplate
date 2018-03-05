@@ -1,9 +1,7 @@
 import { fromJS } from 'immutable';
 
 import languageProviderReducer from '../reducer';
-import {
-  CHANGE_LOCALE,
-} from '../constants';
+import { CHANGE_LOCALE } from '../constants';
 
 describe('languageProviderReducer', () => {
   it('returns the initial state', () => {

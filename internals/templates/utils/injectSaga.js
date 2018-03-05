@@ -21,7 +21,9 @@ import getInjectors from './sagaInjectors';
  *   - action
  * If defined, the saga will receive those args instead of the component props
  */
-export default ({ key, saga, mode, args }) => (WrappedComponent) => {
+export default ({
+  key, saga, mode, args,
+}) => (WrappedComponent) => {
   class InjectSaga extends React.Component {
     static WrappedComponent = WrappedComponent;
     static contextTypes = {

@@ -8,19 +8,17 @@ import Footer from '../index';
 
 describe('<Footer />', () => {
   it('should render the copyright notice', () => {
-    const renderedComponent = shallow(
-      <Footer />
-    );
-    expect(renderedComponent.contains(
+    const renderedComponent = shallow(<Footer />);
+    expect(renderedComponent.contains((
       <section>
         <FormattedMessage {...messages.licenseMessage} />
       </section>
-    )).toBe(true);
+    ))).toBe(true);
   });
 
   it('should render the credits', () => {
     const renderedComponent = shallow(<Footer />);
-    expect(renderedComponent.contains(
+    expect(renderedComponent.contains((
       <section>
         <FormattedMessage
           {...messages.authorMessage}
@@ -29,6 +27,6 @@ describe('<Footer />', () => {
           }}
         />
       </section>
-    )).toBe(true);
+    ))).toBe(true);
   });
 });

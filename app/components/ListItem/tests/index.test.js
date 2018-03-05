@@ -11,9 +11,7 @@ describe('<ListItem />', () => {
 
   it('should render the content passed to it', () => {
     const content = (<div>Hello world!</div>);
-    const renderedComponent = mount(
-      <ListItem item={content} />
-    );
+    const renderedComponent = mount(<ListItem item={content} />);
     expect(renderedComponent.contains(content)).toBe(true);
   });
 });

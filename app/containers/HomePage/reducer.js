@@ -11,9 +11,7 @@
  */
 import { combineReducers } from 'redux-immutable';
 
-import {
-  CHANGE_USERNAME,
-} from './constants';
+import { CHANGE_USERNAME } from './constants';
 
 function username(state = '', action) {
   switch (action.type) {

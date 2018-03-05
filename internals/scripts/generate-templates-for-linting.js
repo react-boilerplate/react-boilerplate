@@ -30,7 +30,7 @@ const reportErrorsFor = (title) => (err) => {
 // Generated tests are designed to fail, which would in turn fail CI builds
 const removeTestsDirFrom = (relativePath) => () => rimraf.sync(path.join(__dirname, '/../../app/', relativePath, '/tests'));
 
-const plop = nodePlop('./index');
+const plop = nodePlop('./index.js');
 
 const componentGen = plop.getGenerator('component');
 componentGen.runActions({ name: 'RbGeneratedComponentEsclass', type: 'React.Component', wantMessages: true, wantLoadable: true, })
