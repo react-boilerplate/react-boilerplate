@@ -17,15 +17,7 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
  *
  */
 
-// Initial routing state
-const routeInitialState = fromJS({
-  location: null,
-});
-
-/**
- * Merge route into the global application state
- */
-function routeReducer(state = routeInitialState, action) {
+export function location(state = null, action) {
   switch (action.type) {
     /* istanbul ignore next */
     case LOCATION_CHANGE:
