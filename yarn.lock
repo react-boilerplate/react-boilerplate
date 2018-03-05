@@ -3384,18 +3384,6 @@ execa@^0.7.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
-execa@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/execa/-/execa-0.8.0.tgz#d8d76bbc1b55217ed190fd6dd49d3c774ecfc8da"
-  dependencies:
-    cross-spawn "^5.0.1"
-    get-stream "^3.0.0"
-    is-stream "^1.1.0"
-    npm-run-path "^2.0.0"
-    p-finally "^1.0.0"
-    signal-exit "^3.0.0"
-    strip-eof "^1.0.0"
-
 execall@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/execall/-/execall-1.0.0.tgz#73d0904e395b3cab0658b08d09ec25307f29bb73"
@@ -4647,13 +4635,13 @@ ignore@^3.2.0, ignore@^3.3.3, ignore@^3.3.5:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
 
-image-webpack-loader@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/image-webpack-loader/-/image-webpack-loader-4.1.0.tgz#57c32975925ede8a0854127f004f674977adea6e"
+image-webpack-loader@3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/image-webpack-loader/-/image-webpack-loader-3.6.0.tgz#3dcf652238ba39440cadd325aa602e7e0f2afe54"
   dependencies:
     imagemin "^5.2.2"
     imagemin-gifsicle "^5.1.0"
-    imagemin-mozjpeg "^7.0.0"
+    imagemin-mozjpeg "^6.0.0"
     imagemin-optipng "^5.2.1"
     imagemin-pngquant "^5.0.0"
     imagemin-svgo "^5.2.1"
@@ -4669,13 +4657,13 @@ imagemin-gifsicle@^5.1.0:
     gifsicle "^3.0.0"
     is-gif "^1.0.0"
 
-imagemin-mozjpeg@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/imagemin-mozjpeg/-/imagemin-mozjpeg-7.0.0.tgz#d926477fc6ef5f3a768a4222f7b2d808d3eba568"
+imagemin-mozjpeg@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/imagemin-mozjpeg/-/imagemin-mozjpeg-6.0.0.tgz#71a32a457aa1b26117a68eeef2d9b190c2e5091e"
   dependencies:
-    execa "^0.8.0"
+    exec-buffer "^3.0.0"
     is-jpg "^1.0.0"
-    mozjpeg "^5.0.0"
+    mozjpeg "^4.0.0"
 
 imagemin-optipng@^5.2.1:
   version "5.2.1"
@@ -6562,11 +6550,11 @@ move-concurrently@^1.0.1:
     rimraf "^2.5.4"
     run-queue "^1.0.3"
 
-mozjpeg@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/mozjpeg/-/mozjpeg-5.0.0.tgz#b8671c4924568a363de003ff2fd397ab83f752c5"
+mozjpeg@^4.0.0:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/mozjpeg/-/mozjpeg-4.1.1.tgz#859030b24f689a53db9b40f0160d89195b88fd50"
   dependencies:
-    bin-build "^2.2.0"
+    bin-build "^2.0.0"
     bin-wrapper "^3.0.0"
     logalot "^2.0.0"
 
