@@ -330,7 +330,7 @@
     "url-loader": "1.0.1",
     "webpack": "4.1.0",
     "webpack-cli": "2.0.10",
-    "webpack-dev-middleware": "3.0.0",
+    "webpack-dev-middleware": "3.0.1",
     "webpack-hot-middleware": "2.21.2"
   }
 }
