@@ -58,7 +58,7 @@ module.exports = (options) => ({
           },
           {
             loader: 'image-webpack-loader',
-            options: {
+            query: {
               mozjpeg: {
                 progressive: true,
               },
