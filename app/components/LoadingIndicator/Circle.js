@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
+/* stylelint-disable comment-empty-line-before */
+
 const circleFadeDelay = keyframes`
   0%,
   39%,
