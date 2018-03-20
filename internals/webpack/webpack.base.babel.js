@@ -58,9 +58,9 @@ module.exports = (options) => ({
           },
           {
             loader: 'image-webpack-loader',
-            query: {
+            options: {
               mozjpeg: {
-                progressive: true,
+                enabled: false,
               },
               gifsicle: {
                 interlaced: false,
