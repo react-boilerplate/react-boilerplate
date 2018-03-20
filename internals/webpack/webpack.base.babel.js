@@ -61,6 +61,10 @@ module.exports = (options) => ({
             options: {
               mozjpeg: {
                 enabled: false,
+                // NOTE: mozjpeg is disabled as it causes errors in some Linux environments
+                // Try enabling it in your environment by switching the config to:
+                // enabled: true,
+                // progressive: true,
               },
               gifsicle: {
                 interlaced: false,
