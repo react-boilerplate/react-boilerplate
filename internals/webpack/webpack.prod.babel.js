@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const OfflinePlugin = require('offline-plugin');
+const { HashedModuleIdsPlugin } = require('webpack');
 
 module.exports = require('./webpack.base.babel')({
   mode: 'production',
@@ -20,8 +21,11 @@ module.exports = require('./webpack.base.babel')({
 
   optimization: {
     minimize: true,
+    nodeEnv: 'production',
     sideEffects: true,
     concatenateModules: true,
+    splitChunks: { chunks: 'all' },
+    runtimeChunk: true,
   },
 
   plugins: [
@@ -86,6 +90,12 @@ module.exports = require('./webpack.base.babel')({
           sizes: [72, 96, 120, 128, 144, 152, 167, 180, 192, 384, 512],
         },
       ],
+    }),
+
+    new HashedModuleIdsPlugin({
+      hashFunction: 'sha256',
+      hashDigest: 'hex',
+      hashDigestLength: 20,
     }),
   ],
 
