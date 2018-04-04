@@ -2,12 +2,12 @@
 
 These are some things to be aware of when using this boilerplate.
 
-1. [Special images in HTML files](#special-images-in-html-files)
-2. [Load reducers optimistically](#load-reducers-optimistically)
-3. [Exclude modules from Babel processing](#exclude-modules-from-babel-processing)
-4. [Running tests in watch mode](#running-tests-in-watch-mode)
-5. [When in doubt, re-install!](#when-in-doubt-re-install)
-6. [Cleaning up Jest cache](#cleaning-up-jest-cache)
+1.  [Special images in HTML files](#special-images-in-html-files)
+2.  [Load reducers optimistically](#load-reducers-optimistically)
+3.  [Exclude modules from Babel processing](#exclude-modules-from-babel-processing)
+4.  [Running tests in watch mode](#running-tests-in-watch-mode)
+5.  [When in doubt, re-install!](#when-in-doubt-re-install)
+6.  [Cleaning up Jest cache](#cleaning-up-jest-cache)
 
 ## Special images in HTML files
 
@@ -33,7 +33,7 @@ Then webpack will correctly transfer the image to the build folder.
 
 If you have containers that should be available throughout the app, like a `NavigationBar` (they aren't route specific), you need to add their respective reducers to the root reducer with the help of `combineReducers`.
 
-``` js
+```js
 // In app/reducers.js
 
 ...
@@ -55,7 +55,7 @@ export default combineReducers({
 
 You need to exclude packages which are not intended to be processed by babel. For e.g. Server packages such as 'express' or a CSS file. Just add the package name to `exclude` array in `internals/config.js` and you're all set!
 
-``` js
+```js
 // in internals/config.js
 
 exclude: [
@@ -82,18 +82,29 @@ You can also install `watchman` from source. Please visit their [official guide]
 If you're facing any inexplicable problems while installing dependencies, building your project or running tests, try reinstalling dependencies. It works for most cases. Run the following commands in the exact order given:
 
 Remove node_modules
+
 - `rm -rf node_modules`
 
 Using yarn (recommended)
+
 - `yarn install`
 
 Using npm
+
 - `npm cache clean`
 - `npm install`
 
 Build project
+
 - `npm run build`
 
 ## Cleaning up Jest cache
 
 By default, Jest caches transformed modules, which may lead to faulty coverage reports. To prevent this, you'll have to clear the cache by running `npm run test -- --no-cache` as pointed out in [Jest docs](https://facebook.github.io/jest/docs/cli.html#cache)
+
+## Using short_name in Web App manifest
+
+When there's insufficient space to display an app's full name it is truncated.
+This happens with app launcher and new tab in Chrome for Android.
+The `short_name` field allows a _12 character or less abbreviation_.
+It also addresses any problems in testing the PWA in Lighthouse.
