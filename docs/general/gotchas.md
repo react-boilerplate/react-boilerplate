@@ -99,7 +99,7 @@ Build project
 
 By default, Jest caches transformed modules, which may lead to faulty coverage reports. To prevent this, you'll have to clear the cache by running `npm run test -- --no-cache` as pointed out in [Jest docs](https://facebook.github.io/jest/docs/cli.html#cache)
 
-## Using short_name in Manifest.json
+## Using short_name in Web App manifest
 
 When there's insufficient space to display an app's full name it is truncated.
 This happens with app launcher and new tab in Chrome for Android.
