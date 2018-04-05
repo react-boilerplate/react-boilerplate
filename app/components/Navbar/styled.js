@@ -16,6 +16,7 @@ export const Header = styled.h1`
   display: inline-block;
   font-family: 'Permanent Marker', cursive;
   font-size: 2em;
+  cursor: pointer;
 `;
 
 export const ButtonContainer = styled.div`
@@ -34,4 +35,5 @@ export const Button = styled.div`
 export const ButtonText = styled.p`
   margin: 0;
   font-family: 'Montserrat';
+  cursor: pointer;
 `;
