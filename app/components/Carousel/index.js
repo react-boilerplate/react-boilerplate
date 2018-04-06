@@ -35,33 +35,35 @@ export default class Carousel extends Component {
   }
 
   render() {
-    const { src, backgroundSrc, quote1, quoteBy1, quote2, quoteBy2, quote3, quoteBy3 } = books[this.state.currentBookIndex];
     return (
-      <CarouselContainer>
+      <div>
         <ArrowContainer>
           <Arrow onClick={this.performCarouselAction} name="left" src={ArrowLeft} />
           <Arrow onClick={this.performCarouselAction} name="right" src={ArrowRight} />
         </ArrowContainer>
-        <CarouselItem key={src} background={backgroundSrc}>
-          <BookContainer>
-            <Book src={src} />
-          </BookContainer>
-          <QuotesContainer>
-            <QuoteWrapper>
-              <Quote>{quote1}</Quote>
-              <QuoteBy>{quoteBy1}</QuoteBy>
-            </QuoteWrapper>
-            <QuoteWrapper>
-              <Quote>{quote2}</Quote>
-              <QuoteBy>{quoteBy2}</QuoteBy>
-            </QuoteWrapper>
-            <QuoteWrapper>
-              <Quote>{quote3}</Quote>
-              <QuoteBy>{quoteBy3}</QuoteBy>
-            </QuoteWrapper>
-          </QuotesContainer>
-        </CarouselItem>)
-      </CarouselContainer>
+        <CarouselContainer>
+          {books.map(({ src, backgroundSrc, quote1, quoteBy1, quote2, quoteBy2, quote3, quoteBy3 }) => (
+            <CarouselItem key={src} background={backgroundSrc}>
+              <BookContainer>
+                <Book src={src} />
+              </BookContainer>
+              <QuotesContainer>
+                <QuoteWrapper>
+                  <Quote>{quote1}</Quote>
+                  <QuoteBy>{quoteBy1}</QuoteBy>
+                </QuoteWrapper>
+                <QuoteWrapper>
+                  <Quote>{quote2}</Quote>
+                  <QuoteBy>{quoteBy2}</QuoteBy>
+                </QuoteWrapper>
+                <QuoteWrapper>
+                  <Quote>{quote3}</Quote>
+                  <QuoteBy>{quoteBy3}</QuoteBy>
+                </QuoteWrapper>
+              </QuotesContainer>
+            </CarouselItem>))}
+        </CarouselContainer>
+      </div>
     );
   }
 }
