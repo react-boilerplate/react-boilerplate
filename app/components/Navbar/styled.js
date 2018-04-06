@@ -5,7 +5,7 @@ export const Navbar = styled.div`
   top: 0;
   width: 100%;
   height: 80px;
-  background: darkgrey;
+  background: tomato;
   display: flex;
   align-items: center;
   justify-content: center;
