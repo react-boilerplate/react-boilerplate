@@ -16,8 +16,12 @@ import ArrowLeft from '../../images/arrow-left.svg';
 import ArrowRight from '../../images/arrow-right.svg';
 import books from './books';
 
-export default class extends Component {
+export default class Carousel extends Component {
   static propTypes = {};
+
+  static leftCheck = (index) => index <= -1 ? books.length - 1 : index;
+
+  static rightCheck = (index) => index >= books.length ? 0 : index;
 
   state = {
     currentBookIndex: 0,
@@ -27,12 +31,8 @@ export default class extends Component {
     const { name } = target;
     const { currentBookIndex } = this.state;
     const updatedBookIndex = currentBookIndex + (name === 'left' ? -1 : 1);
-    this.setState({ currentBookIndex: this[`${name}Check`](updatedBookIndex) });
+    this.setState({ currentBookIndex: Carousel[`${name}Check`](updatedBookIndex) });
   }
-
-  leftCheck = (index) => index <= -1 ? books.length - 1 : index;
-
-  rightCheck = (index) => index >= books.length ? 0 : index;
 
   render() {
     const { src, backgroundSrc, quote1, quoteBy1, quote2, quoteBy2, quote3, quoteBy3 } = books[this.state.currentBookIndex];
