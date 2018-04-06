@@ -41,7 +41,7 @@ export default class Carousel extends Component {
           <Arrow onClick={this.performCarouselAction} name="left" src={ArrowLeft} />
           <Arrow onClick={this.performCarouselAction} name="right" src={ArrowRight} />
         </ArrowContainer>
-        <CarouselContainer>
+        <CarouselContainer slide={this.state.slide}>
           {books.map(({ src, backgroundSrc, quote1, quoteBy1, quote2, quoteBy2, quote3, quoteBy3 }) => (
             <CarouselItem key={src} background={backgroundSrc}>
               <BookContainer>

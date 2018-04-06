@@ -1,4 +1,5 @@
-import styled/* , { keyframes } */from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { slideInLeft, slideInRight } from 'react-animations';
 
 const FlexCenter = styled.div`
   display: flex;
@@ -6,13 +7,20 @@ const FlexCenter = styled.div`
   justify-content: center;
 `;
 
+const slideLeft = keyframes`${slideInLeft}`;
+
+const slideRight = keyframes`${slideInRight}`;
+
+/* eslint-disable no-nested-ternary */
 export const CarouselContainer = styled.div`
   height: 600px;
   display: flex;
   list-style: none;
   flex-direction: row;
   overflow: hidden;
+  animation: ${({ slide }) => `0.5s ${slide === 'left' ? slideLeft : slide === 'right' ? slideRight : null} 1`};
 `;
+/* eslint-enable no-nested-ternary */
 
 export const ArrowContainer = styled.div`
   display: flex;
@@ -20,7 +28,7 @@ export const ArrowContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   position: absolute;
-  top: 50%;
+  top: 380px;
 `;
 
 export const Arrow = styled.img`
@@ -69,42 +77,3 @@ export const Quote = styled.blockquote`
 export const QuoteBy = styled.cite`
   height: 40px;
 `;
-
-// const slideInFromLeft = keyframes`
-//   from {
-//     transform: translateX(-100%);
-//   }
-
-//   to {
-//     transform: translateX(0%);
-//   }
-// `;
-
-// const slideInFromRight = keyframes`
-
-
-//   0% { transform: translateX(100%) }
-//   50% { transform: translateX(100%) }
-//   75% { transform: translateX(0%) }
-//   100% { transform: translateX(0%) }
-// `;
-
-// const slideOutToLeft = keyframes`
-//   from {
-//     transform: translateX(0%);
-//   }
-
-//   to {
-//     transform: translateX(-100%);
-//   }
-// `;
-
-// const slideOutToRight = keyframes`
-//   from {
-//     transform: translateX(0%);
-//   }
-
-//   to {
-//     transform: translateX(100%);
-//   }
-// `;
