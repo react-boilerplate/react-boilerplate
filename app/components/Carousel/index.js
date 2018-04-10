@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import debounce from 'lodash/debounce';
 
 import {
   CarouselContainer,
@@ -19,30 +20,42 @@ import books from './books';
 export default class Carousel extends Component {
   static propTypes = {};
 
-  static leftCheck = (index) => index <= -1 ? books.length - 1 : index;
-
-  static rightCheck = (index) => index >= books.length ? 0 : index;
+  static keys = {};
 
   state = {
-    currentBookIndex: 0,
+    currentXPos: 0,
+    nextXPos: 0,
+    booksArr: books,
+    currentIndex: 0,
   };
 
-  performCarouselAction = ({ target }) => {
-    const { name } = target;
-    const { currentBookIndex } = this.state;
-    const updatedBookIndex = currentBookIndex + (name === 'left' ? -1 : 1);
-    this.setState({ currentBookIndex: Carousel[`${name}Check`](updatedBookIndex) });
+  componentWillMount() {
+    this.performCarouselAction = debounce(this.performCarouselAction, 200);
+  }
+
+  handleClick = (evt) => {
+    evt.persist();
+    this.performCarouselAction(evt.target.name);
+  }
+
+  performCarouselAction = (leftOrRight) => {
+    const { currentXPos, currentIndex } = this.state;
+    const nextXPos = leftOrRight === 'left' ? currentXPos + 100 : currentXPos - 100;
+    this.setState({ currentXPos, nextXPos, currentIndex: currentIndex + (leftOrRight === 'left' ? -1 : 1) }, () => {
+      setTimeout(() => this.setState({ currentXPos: nextXPos }), 500);
+    });
   }
 
   render() {
+    const { booksArr, currentXPos, nextXPos, currentIndex } = this.state;
     return (
       <div>
         <ArrowContainer>
-          <Arrow onClick={this.performCarouselAction} name="left" src={ArrowLeft} />
-          <Arrow onClick={this.performCarouselAction} name="right" src={ArrowRight} />
+          <Arrow onClick={this.handleClick} name="left" src={ArrowLeft} visibility={currentIndex === 0 ? 'hidden' : 'visible'} />
+          <Arrow onClick={this.handleClick} name="right" src={ArrowRight} visibility={currentIndex === booksArr.length - 1 ? 'hidden' : 'visible'} />
         </ArrowContainer>
-        <CarouselContainer slide={this.state.slide}>
-          {books.map(({ src, backgroundSrc, quote1, quoteBy1, quote2, quoteBy2, quote3, quoteBy3 }) => (
+        <CarouselContainer currentXPos={currentXPos} nextXPos={nextXPos}>
+          {booksArr.map(({ src, backgroundSrc, quote1, quoteBy1, quote2, quoteBy2, quote3, quoteBy3 }) => (
             <CarouselItem key={src} background={backgroundSrc}>
               <BookContainer>
                 <Book src={src} />

@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import { slideInLeft, slideInRight } from 'react-animations';
 
 const FlexCenter = styled.div`
   display: flex;
@@ -7,20 +6,19 @@ const FlexCenter = styled.div`
   justify-content: center;
 `;
 
-const slideLeft = keyframes`${slideInLeft}`;
+const slideAction = (currentXPos, nextXPos) => keyframes`
+  from { transform: translateX(${currentXPos}%); }
+  to { transform: translateX(${nextXPos}%); }
+`;
 
-const slideRight = keyframes`${slideInRight}`;
-
-/* eslint-disable no-nested-ternary */
 export const CarouselContainer = styled.div`
   height: 600px;
   display: flex;
   list-style: none;
   flex-direction: row;
-  overflow: hidden;
-  animation: ${({ slide }) => `0.5s ${slide === 'left' ? slideLeft : slide === 'right' ? slideRight : null} 1`};
+  animation: ${({ currentXPos, nextXPos }) => `0.5s ${slideAction(currentXPos, nextXPos)} 1 normal`};
+  animation-fill-mode: forwards;
 `;
-/* eslint-enable no-nested-ternary */
 
 export const ArrowContainer = styled.div`
   display: flex;
@@ -29,11 +27,13 @@ export const ArrowContainer = styled.div`
   width: 100%;
   position: absolute;
   top: 380px;
+  z-index: 1;
 `;
 
 export const Arrow = styled.img`
   height: 70px;
   cursor: pointer;
+  visibility: ${({ visibility }) => visibility};
 `;
 
 export const CarouselItem = FlexCenter.extend`
