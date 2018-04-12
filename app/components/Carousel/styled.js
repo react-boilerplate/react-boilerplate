@@ -1,8 +1,8 @@
 import styled, { keyframes } from 'styled-components';
 
 const slideAction = (currentXPos, nextXPos) => keyframes`
-  from { transform: translateX(${currentXPos}%); }
-  to { transform: translateX(${nextXPos}%); }
+  from { left: ${currentXPos}%; }
+  to { left: ${nextXPos}%; }
 `;
 
 export const CarouselContainer = styled.div`
@@ -12,6 +12,7 @@ export const CarouselContainer = styled.div`
   flex-direction: row;
   animation: ${({ currentXPos, nextXPos, slideTime }) => `${slideTime}s ${slideAction(currentXPos, nextXPos)} 1 normal`};
   animation-fill-mode: forwards;
+  position: relative;
 
   @media (max-width: 700px) {
     height: ${({ carouselHeight }) => typeof carouselHeight === 'number' ? `${carouselHeight * (2 / 3)}px` : carouselHeight};

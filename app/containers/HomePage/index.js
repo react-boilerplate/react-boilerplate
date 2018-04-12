@@ -13,6 +13,7 @@ import React from 'react';
 // import { FormattedMessage } from 'react-intl';
 
 // import messages from './messages';
+import { Container } from './styled';
 import Carousel from '../../components/Carousel';
 import books from '../../utils/books';
 import CarouselItem from '../../components/CarouselItem';
@@ -20,7 +21,9 @@ import CarouselItem from '../../components/CarouselItem';
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <Carousel carouselArr={books} CarouselItem={CarouselItem} carouselHeight={600} slideTime={0.5} arrowOffset={380} />
+      <Container>
+        <Carousel carouselArr={books} CarouselItem={CarouselItem} carouselHeight={600} slideTime={0.5} arrowOffset={380} />
+      </Container>
     );
   }
 }
