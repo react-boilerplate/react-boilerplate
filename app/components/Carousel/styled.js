@@ -44,4 +44,5 @@ export const Dot = styled.div`
   border-radius: 50%;
   background: ${({ selected }) => selected ? 'black' : 'grey'};
   margin: 0px 5px;
+  cursor: pointer;
 `;
