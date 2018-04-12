@@ -105,7 +105,14 @@ export default class Carousel extends Component {
           {carouselArr.map((item) => <CarouselItem {...item} key={item._id} />)}
         </CarouselContainer>
         <DotsContainer numDots={this.props.carouselArr.length}>
-          {this.props.carouselArr.map((item, index) => <Dot id={index} key={Carousel.generateUniqueId()} selected={index === currentSelectedIndex} onClick={this.handleDotClick} />)}
+          {this.props.carouselArr.map((item, index) => (
+            <Dot
+              id={index}
+              key={Carousel.generateUniqueId()}
+              selected={index === currentSelectedIndex}
+              onClick={this.handleDotClick}
+            />)
+          )}
         </DotsContainer>
       </div>
     );
