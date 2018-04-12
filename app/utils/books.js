@@ -1,7 +1,7 @@
-import China1945 from '../../images/china-1945.jpg';
-import China1945Bg from '../../images/china1945_wide.jpg';
-import UltimateJourney from '../../images/ultimate-journey.jpg';
-import UltimateJourneyBg from '../../images/ultimate-journey_wide.jpg';
+import China1945 from '../images/china-1945.jpg';
+import China1945Bg from '../images/china1945_wide.jpg';
+import UltimateJourney from '../images/ultimate-journey.jpg';
+import UltimateJourneyBg from '../images/ultimate-journey_wide.jpg';
 
 export default [
   {

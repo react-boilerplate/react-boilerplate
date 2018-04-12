@@ -14,11 +14,13 @@ import React from 'react';
 
 // import messages from './messages';
 import Carousel from '../../components/Carousel';
+import books from '../../utils/books';
+import CarouselItem from '../../components/CarouselItem';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <Carousel />
+      <Carousel carouselArr={books} CarouselItem={CarouselItem} carouselHeight={600} slideTime={0.5} arrowOffset={380} />
     );
   }
 }
