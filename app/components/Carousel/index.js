@@ -24,8 +24,8 @@ export default class Carousel extends Component {
   static keys = {};
 
   static generateUniqueId = () => {
-    let number = Math.floor(10000 * Math.random());
-    while (Carousel.keys[number]) number = Math.floor(10000 * Math.random());
+    let number = Math.floor(10000000 * Math.random());
+    while (Carousel.keys[number]) number = Math.floor(10000000 * Math.random());
     return number;
   }
 
