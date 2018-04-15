@@ -51,6 +51,10 @@ export default class Carousel extends Component {
     this.interval = this.setCarouselInterval();
   }
 
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   setCarouselInterval = () => setInterval(() => this.performCarouselAction('right'), 5000);
 
   setCarouselState = (currentXPos, nextXPos, currentIndex) => this.setState({ currentXPos, nextXPos, currentIndex }, () => {
