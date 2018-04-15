@@ -16,8 +16,7 @@ import React from 'react';
 import {
   AboutContainer,
   AboutText,
-  TopWrapper,
-  TopTextContainer,
+  HeadshotContainer,
   Headshot,
 } from './styled';
 import Richard from '../../images/richard.jpg';
@@ -26,17 +25,15 @@ export default class About extends React.PureComponent { // eslint-disable-line 
   render() {
     return (
       <AboutContainer>
-        <TopWrapper>
+        <HeadshotContainer>
           <Headshot src={Richard} />
-          <TopTextContainer>
-            <AboutText>
-              I’m a book writer and free-lance journalist now living in Brooklyn, New York, after a career spanning more than three decades as a foreign correspondent, culture reporter, and book critic, first for Time Magazine and then for the New York Times.
-            </AboutText>
-            <AboutText>
-              I was born in New York, NY, but grew up on a poultry farm in East Haddam, Connecticut, a small town on the Connecticut River.  I went to the University of Connecticut as an undergrad and then spent five years at Harvard working toward a Ph.D. in History and East Asian Languages.  I assumed I’d become a college professor someplace, but I always kept journalism as a more exciting alternative in the back of my mind, and when I went to Taiwan in 1971 to study Chinese, I got my first very part-time job, as the stringer there for the Washington Post.
-            </AboutText>
-          </TopTextContainer>
-        </TopWrapper>
+        </HeadshotContainer>
+        <AboutText>
+          I’m a book writer and free-lance journalist now living in Brooklyn, New York, after a career spanning more than three decades as a foreign correspondent, culture reporter, and book critic, first for Time Magazine and then for the New York Times.
+        </AboutText>
+        <AboutText>
+          I was born in New York, NY, but grew up on a poultry farm in East Haddam, Connecticut, a small town on the Connecticut River.  I went to the University of Connecticut as an undergrad and then spent five years at Harvard working toward a Ph.D. in History and East Asian Languages.  I assumed I’d become a college professor someplace, but I always kept journalism as a more exciting alternative in the back of my mind, and when I went to Taiwan in 1971 to study Chinese, I got my first very part-time job, as the stringer there for the Washington Post.
+        </AboutText>
         <AboutText>
           That led to my first real job, as a staff writer for Time Magazine, where I was a rewrite man specializing in Asia.  I spent the mid-1980s as a China-watcher in Hong Kong for Time, and then in 1980, after China and the United States established diplomatic relations, I became the first ever Time correspondent in Beijing.  My first book, From the Center of the Earth: the Search for the Truth About China, resulted from my three years in a China just embarking on the reforms that have now made it a world power.
         </AboutText>

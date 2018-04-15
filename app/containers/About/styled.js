@@ -1,28 +1,25 @@
 import styled from 'styled-components';
 
 export const AboutContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-content: stretch;
-  padding: 0 5%;
+  padding: 0 80px;
   margin-top: 5px;
 `;
 
 export const AboutText = styled.p`
   margin: 5px 0;
   font-family: 'Montserrat';
+  line-height: 25px;
 `;
 
-export const TopWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-export const TopTextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+export const HeadshotContainer = styled.div`
+  float: left;
+  height: 320px;
+  width: 350px;
+  padding: 0 10px 10px 0;
+  margin-top: 10px;
 `;
 
 export const Headshot = styled.img`
-
+  width: 100%;
+  height: 100%;
 `;
