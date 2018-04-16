@@ -1,8 +1,20 @@
 import styled, { keyframes } from 'styled-components';
 
-const slideAction = (currentXPos, nextXPos) => keyframes`
-  from { transform: translateX(${currentXPos}%); }
-  to { transform: translateX(${nextXPos}%); }
+const getNextPosition = (currentIndex, prevIndex, nextIndex) => {
+  if (currentIndex !== prevIndex) return '0%';
+  else if (currentIndex !== nextIndex) return '-200%';
+  return '-100%';
+};
+
+const slideAction = (currentIndex, prevIndex, nextIndex) => keyframes`
+  from { transform: translateX(-100%); }
+  to { transform: translateX(${getNextPosition(currentIndex, prevIndex, nextIndex)}); }
+`;
+
+export const CarouselItemContainer = styled.div`
+  position: relative;
+  left: ${({ left }) => left};
+  flex: 1 0 100%;
 `;
 
 export const CarouselContainer = styled.div`
@@ -10,8 +22,13 @@ export const CarouselContainer = styled.div`
   display: flex;
   list-style: none;
   flex-direction: row;
-  animation: ${({ currentXPos, nextXPos, slideTime }) => `${slideTime}s ${slideAction(currentXPos, nextXPos)} 1 normal`};
+  animation: ${({ currentIndex, prevIndex, nextIndex, slideTime }) => `${slideTime}s ${slideAction(currentIndex, prevIndex, nextIndex)} 1 normal`};
   animation-fill-mode: forwards;
+  transform: translateX(-100%);
+
+  @media (max-width: 700px) {
+    height: ${({ carouselHeight }) => typeof carouselHeight === 'number' ? `${carouselHeight * (2 / 3)}px` : carouselHeight};
+  }
 `;
 
 export const ArrowContainer = styled.div`
@@ -22,12 +39,15 @@ export const ArrowContainer = styled.div`
   position: absolute;
   top: ${({ arrowOffset }) => arrowOffset}px;
   z-index: 1;
+
+  @media (max-width: 700px) {
+    top: ${({ arrowOffset }) => arrowOffset * (2 / 3)}px;
+  }
 `;
 
 export const Arrow = styled.img`
   height: 70px;
   cursor: pointer;
-  visibility: ${({ visibility }) => visibility};
 `;
 
 export const DotsContainer = styled.div`
@@ -42,7 +62,8 @@ export const Dot = styled.div`
   height: 10px;
   width: 10px;
   border-radius: 50%;
-  background: ${({ selected }) => selected ? 'black' : 'grey'};
-  margin: 0px 5px;
+  background: black;
+  opacity: ${({ selected }) => selected ? 0.9 : 0.3};
+  margin: 0px 8px;
   cursor: pointer;
 `;

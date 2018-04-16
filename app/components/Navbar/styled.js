@@ -9,6 +9,10 @@ export const Navbar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 export const Header = styled.h1`
@@ -24,6 +28,10 @@ export const ButtonContainer = styled.div`
   text-align: center;
   display: inline-block;
   vertical-align: middle;
+
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 export const Button = styled.div`
