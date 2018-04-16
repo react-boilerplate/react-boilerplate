@@ -25,6 +25,10 @@ export const CarouselContainer = styled.div`
   animation: ${({ currentIndex, prevIndex, nextIndex, slideTime }) => `${slideTime}s ${slideAction(currentIndex, prevIndex, nextIndex)} 1 normal`};
   animation-fill-mode: forwards;
   transform: translateX(-100%);
+
+  @media (max-width: 700px) {
+    height: ${({ carouselHeight }) => typeof carouselHeight === 'number' ? `${carouselHeight * (2 / 3)}px` : carouselHeight};
+  }
 `;
 
 export const ArrowContainer = styled.div`
@@ -35,6 +39,10 @@ export const ArrowContainer = styled.div`
   position: absolute;
   top: ${({ arrowOffset }) => arrowOffset}px;
   z-index: 1;
+
+  @media (max-width: 700px) {
+    top: ${({ arrowOffset }) => arrowOffset * (2 / 3)}px;
+  }
 `;
 
 export const Arrow = styled.img`
@@ -54,7 +62,8 @@ export const Dot = styled.div`
   height: 10px;
   width: 10px;
   border-radius: 50%;
-  background: ${({ selected }) => selected ? 'black' : 'grey'};
-  margin: 0px 5px;
+  background: black;
+  opacity: ${({ selected }) => selected ? 0.9 : 0.3};
+  margin: 0px 8px;
   cursor: pointer;
 `;
