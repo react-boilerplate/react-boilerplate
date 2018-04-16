@@ -10,4 +10,4 @@ npm-debug.log
 .idea
 
 # Secrets
-
+secrets.js
