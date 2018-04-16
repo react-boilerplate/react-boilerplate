@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link as UnstyledLink } from 'react-router-dom';
 
 export const Navbar = styled.div`
   position: relative;
@@ -44,4 +45,8 @@ export const ButtonText = styled.p`
   margin: 0;
   font-family: 'Montserrat';
   cursor: pointer;
+`;
+
+export const Link = styled(UnstyledLink)`
+  color: black;
 `;
