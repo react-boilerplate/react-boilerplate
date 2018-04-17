@@ -9,16 +9,34 @@
  * the linting exception.
  */
 
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 // import { FormattedMessage } from 'react-intl';
 
 // import messages from './messages';
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
+import reducer from './reducer';
+import saga from './sagas';
+import { selectBooks } from './selectors';
+import { getBooks } from './actions';
 import { Container } from './styled';
 import Carousel from '../../components/Carousel';
 import books from '../../utils/books';
 import CarouselItem from '../../components/CarouselItem';
 
-export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+class HomePage extends Component {
+  static propTypes = {
+    // books: PropTypes.array.isRequired,
+    dispatchGetBooks: PropTypes.func.isRequired,
+  }
+
+  componentDidMount() {
+    this.props.dispatchGetBooks();
+  }
+
   render() {
     return (
       <Container>
@@ -27,3 +45,21 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     );
   }
 }
+
+const mapStateToProps = createStructuredSelector({
+  books: selectBooks(),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatchGetBooks: () => dispatch(getBooks()),
+});
+
+const withReducer = injectReducer({ key: 'home', reducer });
+const withSaga = injectSaga({ key: 'home', saga });
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect,
+)(HomePage);
