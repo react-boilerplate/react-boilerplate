@@ -3128,10 +3128,6 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-fontfaceobserver@2.0.9:
-  version "2.0.9"
-  resolved "https://registry.yarnpkg.com/fontfaceobserver/-/fontfaceobserver-2.0.9.tgz#fb61e1053bd28d38cd4750a05b30f5130b32e97a"
-
 for-each@~0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/for-each/-/for-each-0.3.2.tgz#2c40450b9348e97f281322593ba96704b9abd4d4"
