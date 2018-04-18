@@ -234,8 +234,7 @@
     "redux-immutable": "4.0.0",
     "redux-saga": "0.15.3",
     "reselect": "3.0.1",
-    "warning": "3.0.0",
-    "whatwg-fetch": "2.0.3"
+    "warning": "3.0.0"
   },
   "devDependencies": {
     "add-asset-html-webpack-plugin": "2.0.1",
