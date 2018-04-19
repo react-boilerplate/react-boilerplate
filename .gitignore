@@ -3,6 +3,7 @@ coverage
 build
 node_modules
 stats.json
+yarn-error.log
 
 # Cruft
 .DS_Store
