@@ -39,7 +39,7 @@ export default class Carousel extends Component {
     clearInterval(this.interval);
   }
 
-  setCarouselInterval = () => setInterval(() => this.performCarouselAction('right'), 5000);
+  setCarouselInterval = () => null // setInterval(() => this.performCarouselAction('right'), 5000);
 
   setCarouselState = (currentIndex, nextIndex, prevIndex, leftOrRight) => this.setState({ currentIndex, nextIndex, prevIndex }, () => {
     setTimeout(() => this.resetIndexes(leftOrRight === 'left' ? prevIndex : nextIndex), this.props.slideTime * 1000);
@@ -89,9 +89,9 @@ export default class Carousel extends Component {
 
   render() {
     const { currentIndex, prevIndex, nextIndex } = this.state;
-    const { carouselHeight, slideTime, arrowOffset } = this.props;
+    const { carouselArr, carouselHeight, slideTime, arrowOffset } = this.props;
     return (
-      <div>
+      !!carouselArr.length && <div>
         <ArrowContainer arrowOffset={arrowOffset}>
           <Arrow onClick={this.handleArrowClick} name="left" src={ArrowLeft} />
           <Arrow onClick={this.handleArrowClick} name="right" src={ArrowRight} />
@@ -108,10 +108,10 @@ export default class Carousel extends Component {
           {this.getCarouselItem(nextIndex)}
         </CarouselContainer>
         <DotsContainer numDots={this.props.carouselArr.length}>
-          {this.props.carouselArr.map(({ src }, index) => (
+          {this.props.carouselArr.map(({ imgSrc }, index) => (
             <Dot
               id={index}
-              key={src}
+              key={imgSrc}
               selected={index === currentIndex}
               onClick={this.handleDotClick}
             />)
