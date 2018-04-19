@@ -2,6 +2,7 @@ import {
   GET_BOOKS,
   SET_BOOKS,
   SET_PRAISE,
+  SET_DESCRIPTION,
 } from './constants';
 
 export const getBooks = () => ({
@@ -17,4 +18,10 @@ export const setPraise = (isbn, praise) => ({
   type: SET_PRAISE,
   isbn,
   praise,
+});
+
+export const setDescription = (isbn, description) => ({
+  type: SET_DESCRIPTION,
+  isbn,
+  description,
 });

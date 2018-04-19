@@ -24,12 +24,11 @@ import { selectBooks } from './selectors';
 import { getBooks } from './actions';
 import { Container } from './styled';
 import Carousel from '../../components/Carousel';
-import books from '../../utils/books';
 import CarouselItem from '../../components/CarouselItem';
 
 class HomePage extends Component {
   static propTypes = {
-    // books: PropTypes.array.isRequired,
+    books: PropTypes.array.isRequired,
     dispatchGetBooks: PropTypes.func.isRequired,
   }
 
@@ -40,7 +39,7 @@ class HomePage extends Component {
   render() {
     return (
       <Container>
-        <Carousel carouselArr={books} CarouselItem={CarouselItem} carouselHeight={600} slideTime={0.5} arrowOffset={380} />
+        <Carousel carouselArr={this.props.books} CarouselItem={CarouselItem} carouselHeight={600} slideTime={0.5} arrowOffset={380} />
       </Container>
     );
   }

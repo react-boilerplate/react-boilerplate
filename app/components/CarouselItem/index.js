@@ -12,14 +12,9 @@ import {
 
 class CarouselItem extends Component {
   static propTypes = {
-    src: PropTypes.string.isRequired,
-    backgroundSrc: PropTypes.string.isRequired,
-    quote1: PropTypes.string.isRequired,
-    quoteBy1: PropTypes.string.isRequired,
-    quote2: PropTypes.string.isRequired,
-    quoteBy2: PropTypes.string.isRequired,
-    quote3: PropTypes.string.isRequired,
-    quoteBy3: PropTypes.string.isRequired,
+    imgSrc: PropTypes.string.isRequired,
+    praise: PropTypes.array.isRequired,
+    description: PropTypes.string.isRequired,
   };
 
   state = { windowWidth: window.innerWidth }
@@ -31,29 +26,37 @@ class CarouselItem extends Component {
   componentWillUnmount() {
     window.removeEventListener('resize');
   }
-
+  /* eslint-disable no-extra-boolean-cast */
   render() {
-    const { src, backgroundSrc, quote1, quoteBy1, quote2, quoteBy2, quote3, quoteBy3 } = this.props;
+    const { imgSrc, praise, description } = this.props;
     const { windowWidth } = this.state;
+    let substringCutoff = description.length;
+    if (windowWidth <= 1100) substringCutoff = description.length / 2;
+    if (windowWidth <= 900) substringCutoff = description.length / 3;
+    if (windowWidth <= 600) substringCutoff = description.length / 4;
+    if (windowWidth <= 400) substringCutoff = description.length / 8;
     return (
-      <CarouselItemContainer background={backgroundSrc}>
+      <CarouselItemContainer>
         <BookContainer>
-          <Book src={src} />
+          <Book src={imgSrc} />
         </BookContainer>
-        <QuotesContainer>
+        {!!praise.length ? <QuotesContainer>
           <QuoteWrapper>
-            <Quote>{quote1}</Quote>
-            <QuoteBy>{quoteBy1}</QuoteBy>
+            <Quote>{praise[0].quote}</Quote>
+            <QuoteBy>{praise[0].quoteBy}</QuoteBy>
           </QuoteWrapper>
           {windowWidth > 970 && <QuoteWrapper>
-            <Quote>{quote2}</Quote>
-            <QuoteBy>{quoteBy2}</QuoteBy>
+            <Quote>{praise[1].quote}</Quote>
+            <QuoteBy>{praise[1].quoteBy}</QuoteBy>
           </QuoteWrapper>}
           {windowWidth > 600 && <QuoteWrapper>
-            <Quote>{quote3}</Quote>
-            <QuoteBy>{quoteBy3}</QuoteBy>
+            <Quote>{praise[2].quote}</Quote>
+            <QuoteBy>{praise[2].quoteBy}</QuoteBy>
           </QuoteWrapper>}
-        </QuotesContainer>
+        </QuotesContainer> :
+        <QuotesContainer>
+          <Quote>{`${description.substring(0, substringCutoff)}...`}</Quote>
+        </QuotesContainer>}
       </CarouselItemContainer>
     );
   }
