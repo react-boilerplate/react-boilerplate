@@ -30,11 +30,12 @@ class CarouselItem extends Component {
   render() {
     const { imgSrc, praise, description } = this.props;
     const { windowWidth } = this.state;
-    let substringCutoff = description.length;
-    if (windowWidth <= 1100) substringCutoff = description.length / 2;
-    if (windowWidth <= 900) substringCutoff = description.length / 3;
-    if (windowWidth <= 600) substringCutoff = description.length / 4;
-    if (windowWidth <= 400) substringCutoff = description.length / 8;
+    const { length } = description;
+    let substringCutoff = length > 300 ? length - 100 : length;
+    if (windowWidth <= 1100) substringCutoff = length / 2;
+    if (windowWidth <= 900) substringCutoff = length / 3;
+    if (windowWidth <= 600) substringCutoff = 250;
+    if (windowWidth <= 400) substringCutoff = 100;
     return (
       <CarouselItemContainer>
         <BookContainer>
