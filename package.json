@@ -1,16 +1,16 @@
 {
-  "name": "react-boilerplate",
+  "name": "vbase-react",
   "version": "3.5.0",
   "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
   "repository": {
     "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
+    "url": "git://github.com/openapidotvn/vbase-react.git"
   },
   "engines": {
     "npm": ">=3",
     "node": ">=5"
   },
-  "author": "Max Stoiber",
+  "author": "Original: Max Stoiber; Edit: Hung Pham Do",
   "license": "MIT",
   "scripts": {
     "analyze:clean": "rimraf stats.json",
@@ -49,7 +49,7 @@
   },
   "pre-commit": "lint:staged",
   "dllPlugin": {
-    "path": "node_modules/react-boilerplate-dlls",
+    "path": "node_modules/vbase-react-dlls",
     "exclude": [
       "chalk",
       "compression",

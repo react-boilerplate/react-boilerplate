@@ -33,9 +33,9 @@ cleanRepo(() => {
 function cleanRepo(callback) {
   fs.readFile('.git/config', 'utf8', (err, data) => {
     if(!err) {
-      let isClonedRepo = typeof data === 'string' 
+      let isClonedRepo = typeof data === 'string'
         && (data.match(/url\s*=/g) || []).length === 1
-        && /react-boilerplate\/react-boilerplate\.git/.test(data);
+        && /vbase-react\/vbase-react\.git/.test(data);
       if(isClonedRepo) {
         process.stdout.write('\nDo you want to clear old repository? [Y/n] ');
         process.stdin.resume();
@@ -46,7 +46,7 @@ function cleanRepo(callback) {
             shell.rm('-rf', '.git/');
             addCheckMark(callback);
           } else {
-            dontClearRepo('', callback); 
+            dontClearRepo('', callback);
           }
         });
       } else {

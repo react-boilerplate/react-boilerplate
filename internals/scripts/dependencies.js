@@ -18,7 +18,7 @@ const outputPath = path.join(process.cwd(), dllConfig.path);
 const dllManifestPath = path.join(outputPath, 'package.json');
 
 /**
- * I use node_modules/react-boilerplate-dlls by default just because
+ * I use node_modules/vbase-react-dlls by default just because
  * it isn't going to be version controlled and babel wont try to parse it.
  */
 mkdir('-p', outputPath);
@@ -32,7 +32,7 @@ if (!exists(dllManifestPath)) {
   writeFile(
     dllManifestPath,
     JSON.stringify(defaults({
-      name: 'react-boilerplate-dlls',
+      name: 'vbase-react-dlls',
       private: true,
       author: pkg.author,
       repository: pkg.repository,
