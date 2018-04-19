@@ -20,12 +20,15 @@ class CarouselItem extends Component {
   state = { windowWidth: window.innerWidth }
 
   componentDidMount() {
-    window.addEventListener('resize', () => this.setState({ windowWidth: window.innerWidth }));
+    window.addEventListener('resize', this.setWindowWidth);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize');
+    window.removeEventListener('resize', this.setWindowWidth);
   }
+
+  setWindowWidth = () => this.setState({ windowWidth: window.innerWidth });
+
   /* eslint-disable no-extra-boolean-cast */
   render() {
     const { imgSrc, praise, description } = this.props;
