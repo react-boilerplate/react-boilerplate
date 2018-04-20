@@ -29,6 +29,26 @@ You can super charge your React debugging workflow with VS Code and Chrome debug
     ]
 }
 ```
+Additionally, if you want to run your tests directly via. VSCode, add the following to your `launch.json` config:
+
+```
+{
+  "type": "node",
+  "request": "launch",
+  "name": "Run Tests",
+  "program": "${workspaceRoot}/node_modules/jest-cli/bin/jest.js",
+  "args": [
+    "--runInBand"
+  ],
+  "runtimeArgs": [
+    "--nolazy"
+  ],
+  "stopOnEntry": false,
+  "cwd": "${workspaceRoot}",
+  "sourceMaps": true,
+  "console": "internalConsole"
+}
+```
 
 You can read more in [Live edit and debug your React apps directly from VS Code — without leaving the editor 🔥 🎉🎈](https://medium.com/front-end-hacking/live-edit-and-debug-your-react-apps-directly-from-vs-code-without-leaving-the-editor-3da489ed905f)
 
