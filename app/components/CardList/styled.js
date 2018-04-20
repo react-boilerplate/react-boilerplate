@@ -12,13 +12,14 @@ export const CardWrapper = styled.div`
   height: 418px;
   border: 1px solid darkgrey;
   box-shadow: 2px 2px 20px 1px grey;
-  display: flex;
-  flex-direction: column-reverse;
   background: url(${({ src }) => src});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   cursor: pointer;
+  display: flex;
+  flex-direction: column-reverse;
+  flex: 1 0 25%;
 `;
 
 export const TextWrapper = styled.div`

@@ -21,7 +21,7 @@ export default class CardList extends Component {
     return (
       <CardsContainer>
         {this.props.cardsArr.map((card) => (
-          <CardWrapper key={card.src} src={card.src}>
+          <CardWrapper key={card.imgSrc} src={card.imgSrc}>
             <TextWrapper>
               <CardHeader>{CardList.truncateHeader(card.title)}</CardHeader>
               <CardText>{card.description}</CardText>
