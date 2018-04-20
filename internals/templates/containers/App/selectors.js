@@ -7,6 +7,4 @@ const makeSelectLocation = () => createSelector(
   (routeState) => routeState.get('location').toJS()
 );
 
-export {
-  makeSelectLocation,
-};
+export { makeSelectLocation };

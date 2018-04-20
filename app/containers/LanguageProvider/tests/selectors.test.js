@@ -1,8 +1,6 @@
 import { fromJS } from 'immutable';
 
-import {
-  selectLanguage,
-} from '../selectors';
+import { selectLanguage } from '../selectors';
 
 describe('selectLanguage', () => {
   it('should select the global state', () => {
