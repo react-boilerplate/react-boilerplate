@@ -1,7 +1,8 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { Navbar, Header, ButtonContainer, Button, ButtonText, Link } from './styled';
+import { Navbar, Header, ButtonContainer, Button, ButtonText } from './styled';
+import { Link } from '../common';
 import messages from './messages';
 
 export default () => (

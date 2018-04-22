@@ -18,6 +18,7 @@ import { compose } from 'redux';
 
 import HomePage from 'containers/HomePage/Loadable';
 import BookListPage from 'containers/BookListPage/Loadable';
+import BookPage from 'containers/BookPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import About from 'containers/About';
 import injectReducer from 'utils/injectReducer';
@@ -45,6 +46,7 @@ class App extends Component {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/about" component={About} />
           <Route exact path="/books" component={BookListPage} />
+          <Route exact path="/books/:isbn" component={BookPage} />
           <Route component={NotFoundPage} />
         </Switch>
         <br />
