@@ -15,6 +15,8 @@ export default class CardList extends Component {
 
   static truncateHeader = (header) => header.length > 65 ? `${header.substring(0, 65)}...` : header;
 
+  static truncateDescription = (description) => `${description.substring(0, 130).replace(/"/g, '')}...`;
+
   state = {};
 
   render() {
@@ -24,7 +26,7 @@ export default class CardList extends Component {
           <CardWrapper key={card.imgSrc} src={card.imgSrc}>
             <TextWrapper>
               <CardHeader>{CardList.truncateHeader(card.title)}</CardHeader>
-              <CardText>{card.description}</CardText>
+              <CardText>{CardList.truncateDescription(card.description)}</CardText>
             </TextWrapper>
           </CardWrapper>
         ))}
