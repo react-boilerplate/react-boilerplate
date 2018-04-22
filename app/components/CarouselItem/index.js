@@ -53,7 +53,7 @@ class CarouselItem extends Component {
             <Quote>{praise[1].quote}</Quote>
             <QuoteBy>{praise[1].quoteBy}</QuoteBy>
           </QuoteWrapper>}
-          {windowWidth > 600 && <QuoteWrapper>
+          {windowWidth > 690 && <QuoteWrapper>
             <Quote>{praise[2].quote}</Quote>
             <QuoteBy>{praise[2].quoteBy}</QuoteBy>
           </QuoteWrapper>}
