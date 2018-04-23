@@ -10,10 +10,14 @@
  */
 
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 
 import { Container } from './styled';
 import Carousel from '../../components/Carousel';
 import CarouselItem from '../../components/CarouselItem';
+import { selectBooks } from '../../containers/App/selectors';
 
 const HomePage = ({ books }) => (
   <Container>
@@ -24,3 +28,11 @@ const HomePage = ({ books }) => (
 HomePage.propTypes = {
   books: PropTypes.array.isRequired,
 };
+
+const mapStateToProps = createStructuredSelector({
+  books: selectBooks(),
+});
+
+const withConnect = connect(mapStateToProps);
+
+export default compose(withConnect)(HomePage);

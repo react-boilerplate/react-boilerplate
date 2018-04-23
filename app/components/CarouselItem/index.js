@@ -39,6 +39,7 @@ class CarouselItem extends Component {
     if (windowWidth <= 900) substringCutoff = length / 3;
     if (windowWidth <= 600) substringCutoff = 250;
     if (windowWidth <= 400) substringCutoff = 100;
+
     return (
       <CarouselItemContainer>
         <BookContainer>

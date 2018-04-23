@@ -12,7 +12,7 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -49,17 +49,6 @@ class App extends Component {
           <Route exact path="/books/:isbn" component={BookPage} />
           <Route component={NotFoundPage} />
         </Switch>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
         <Footer />
       </div>
     );
@@ -74,8 +63,8 @@ const withReducer = injectReducer({ key: 'home', reducer });
 const withSaga = injectSaga({ key: 'home', saga });
 const withConnect = connect(null, mapDispatchToProps);
 
-export default compose(
+export default withRouter(compose(
   withReducer,
   withSaga,
   withConnect,
-)(App);
+)(App));
