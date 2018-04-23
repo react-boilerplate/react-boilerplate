@@ -12,13 +12,13 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import HomePage from 'containers/HomePage/Loadable';
-import BookListPage from 'containers/BookListPage/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import HomePage from 'containers/HomePage';
+import BookListPage from 'containers/BookListPage';
+import NotFoundPage from 'containers/NotFoundPage';
 import About from 'containers/About';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
@@ -47,17 +47,6 @@ class App extends Component {
           <Route exact path="/books" component={BookListPage} />
           <Route component={NotFoundPage} />
         </Switch>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
         <Footer />
       </div>
     );
@@ -72,8 +61,8 @@ const withReducer = injectReducer({ key: 'home', reducer });
 const withSaga = injectSaga({ key: 'home', saga });
 const withConnect = connect(null, mapDispatchToProps);
 
-export default compose(
+export default withRouter(compose(
   withReducer,
   withSaga,
   withConnect,
-)(App);
+)(App));
