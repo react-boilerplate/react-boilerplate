@@ -9,13 +9,12 @@ export const getRandomIndex = (length) => Math.floor((length - 3) * Math.random(
 export const parsePraises = (unparsed) => {
   if (!unparsed) return [];
   const split = unparsed.split('&ldquo;').slice(1);
-  const startIndex = getRandomIndex(split.length);
   return split.map((unparsedItem) => {
     const [quoteWithBr, quoteByWithBr] = unparsedItem.split('&rdquo;');
     const quote = quoteWithBr ? removeSymbols(quoteWithBr) : '';
     const quoteBy = quoteByWithBr ? removeSymbols(quoteByWithBr) : '';
     return { quote, quoteBy };
-  }).slice(startIndex, startIndex + 3);
+  });
 };
 
 /* eslint-disable no-underscore-dangle */
