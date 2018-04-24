@@ -49,6 +49,14 @@ class App extends Component {
           <Route exact path="/books/:isbn" component={BookPage} />
           <Route component={NotFoundPage} />
         </Switch>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <Footer />
       </div>
     );
