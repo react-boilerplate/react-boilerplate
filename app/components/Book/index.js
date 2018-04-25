@@ -8,6 +8,8 @@ import {
   HeaderTextWrapper,
   HeaderText,
   HeaderSubText,
+  HeaderInfoText,
+  HeaderButtonWrapper,
   DescriptionContainer,
   Description,
   PraiseContainer,
@@ -17,6 +19,7 @@ import {
   QuoteBy,
   Hyperlink,
 } from './styled';
+import VisitButton from '../common/VisitButton';
 
 class Book extends Component {
   static propTypes = {
@@ -40,6 +43,11 @@ class Book extends Component {
           <HeaderTextWrapper>
             <HeaderText>{selectedBook.title}</HeaderText>
             <HeaderSubText>{selectedBook.subtitle}</HeaderSubText>
+            <HeaderInfoText>{selectedBook.publisher.description}
+            </HeaderInfoText>
+            <HeaderButtonWrapper>
+              <VisitButton href={`https://www.penguinrandomhouse.com${selectedBook.seoFriendlyUrl}`} />
+            </HeaderButtonWrapper>
           </HeaderTextWrapper>
         </HeaderWrapper>
         <DescriptionContainer>

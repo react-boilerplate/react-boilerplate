@@ -14,12 +14,25 @@ export const HeaderWrapper = styled.div`
 
   @media (max-width: 835px) {
     flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 450px;
+    padding: 20px 20% 0;
+  }
+
+  @media (max-width: 500px) {
+    padding: 20px 15% 0;
+    height: 500px;
   }
 `;
 
 export const BookWrapper = styled.div`
   width: 40%;
   max-height: 100%;
+
+  @media (max-width: 835px) {
+    width: unset;
+  }
 `;
 
 export const BookImage = styled.img`
@@ -34,6 +47,11 @@ export const HeaderTextWrapper = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
+  height: auto;
+
+  @media (max-width: 835px) {
+    width: unset;
+  }
 `;
 
 export const HeaderText = styled.h3`
@@ -45,6 +63,14 @@ export const HeaderText = styled.h3`
 export const HeaderSubText = HeaderText.extend`
   font-size: 1em;
   font-style: italic;
+`;
+
+export const HeaderInfoText = HeaderText.extend`
+  font-size: 0.8em;
+`;
+
+export const HeaderButtonWrapper = styled.div`
+  margin-top: 20px;
 `;
 
 export const DescriptionContainer = styled.div`
