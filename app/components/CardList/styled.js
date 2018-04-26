@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 export const CardsContainer = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
   padding: 10px 5%;
-  justify-content: center;
 `;
 
 export const CardWrapper = styled.div`
