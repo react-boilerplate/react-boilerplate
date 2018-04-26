@@ -27,7 +27,7 @@ export const CarouselContainer = styled.div`
   transform: translateX(-100%);
 
   @media (max-width: 700px) {
-    height: ${({ carouselHeight }) => typeof carouselHeight === 'number' ? `${carouselHeight * (2 / 3)}px` : carouselHeight};
+    height: ${({ carouselHeight }) => typeof carouselHeight === 'number' ? `${carouselHeight * (3 / 4)}px` : carouselHeight};
   }
 `;
 
@@ -41,7 +41,7 @@ export const ArrowContainer = styled.div`
   z-index: 1;
 
   @media (max-width: 700px) {
-    top: ${({ arrowOffset }) => arrowOffset * (2 / 3)}px;
+    top: ${({ arrowOffset }) => arrowOffset * (3 / 4)}px;
   }
 `;
 

@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardText,
 } from './styled';
+import { Link } from '../common';
 
 export default class CardList extends Component {
   static propTypes = {
@@ -23,12 +24,14 @@ export default class CardList extends Component {
     return (
       <CardsContainer>
         {this.props.cardsArr.map((card) => (
-          <CardWrapper key={card.imgSrc} src={card.imgSrc}>
-            <TextWrapper>
-              <CardHeader>{CardList.truncateHeader(card.title)}</CardHeader>
-              <CardText>{CardList.truncateDescription(card.description)}</CardText>
-            </TextWrapper>
-          </CardWrapper>
+          <Link to={`/books/${card.isbn}`} key={card.isbn}>
+            <CardWrapper src={card.imgSrc}>
+              <TextWrapper>
+                <CardHeader>{CardList.truncateHeader(card.title)}</CardHeader>
+                <CardText>{CardList.truncateDescription(card.description)}</CardText>
+              </TextWrapper>
+            </CardWrapper>
+          </Link>
         ))}
       </CardsContainer>
     );

@@ -1,10 +1,10 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import request, { fetchAll } from 'utils/request';
-import { extractPraises, parsePraises, combineBookData, removeSymbols } from 'utils/helpers';
+import { extractPraises, parsePraises, combineBookData, removeSymbols, flattenAuthor } from 'utils/helpers';
 import { apiKey, authorId } from '../../../secrets';
-import { GET_BOOKS } from './constants';
-import { setBooks, setPraise, setDescription } from './actions';
+import { GET_BOOKS, GET_AUTHOR } from './constants';
+import { setBooks, setPraise, setDescription, setAuthor } from './actions';
 import { selectPraise, selectDescription } from './selectors';
 
 export function* getBooks() {
@@ -27,9 +27,19 @@ export function* getBooks() {
   }
 }
 
-// Root saga
+export function* getAuthor() {
+  const authorURL = `https://api.penguinrandomhouse.com/resources/v2/title/domains/PRH.US/authors/views/list-display?authorId=${authorId}&api_key=${apiKey}`;
+  try {
+    const authorData = yield call(request, authorURL);
+    yield put(setAuthor(flattenAuthor(authorData.data.authors[0])));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export default function* rootSaga() {
   yield [
     takeLatest(GET_BOOKS, getBooks),
+    takeLatest(GET_AUTHOR, getAuthor),
   ];
 }

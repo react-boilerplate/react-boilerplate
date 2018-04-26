@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import {
   CarouselItemContainer,
@@ -15,6 +16,8 @@ class CarouselItem extends Component {
     imgSrc: PropTypes.string.isRequired,
     praise: PropTypes.array.isRequired,
     description: PropTypes.string.isRequired,
+    isbn: PropTypes.number.isRequired,
+    history: PropTypes.object.isRequired,
   };
 
   state = { windowWidth: window.innerWidth }
@@ -29,9 +32,11 @@ class CarouselItem extends Component {
 
   setWindowWidth = () => this.setState({ windowWidth: window.innerWidth });
 
+  handleBookClick = (isbn) => this.props.history.push(`/books/${isbn}`);
+
   /* eslint-disable no-extra-boolean-cast */
   render() {
-    const { imgSrc, praise, description } = this.props;
+    const { isbn, imgSrc, praise, description } = this.props;
     const { windowWidth } = this.state;
     const { length } = description;
     let substringCutoff = length > 300 ? length - 100 : length;
@@ -41,7 +46,7 @@ class CarouselItem extends Component {
     if (windowWidth <= 400) substringCutoff = 100;
     return (
       <CarouselItemContainer>
-        <BookContainer>
+        <BookContainer onClick={() => this.handleBookClick(isbn)}>
           <Book src={imgSrc} />
         </BookContainer>
         {!!praise.length ? <QuotesContainer>
@@ -53,17 +58,14 @@ class CarouselItem extends Component {
             <Quote>{praise[1].quote}</Quote>
             <QuoteBy>{praise[1].quoteBy}</QuoteBy>
           </QuoteWrapper>}
-          {windowWidth > 690 && <QuoteWrapper>
-            <Quote>{praise[2].quote}</Quote>
-            <QuoteBy>{praise[2].quoteBy}</QuoteBy>
-          </QuoteWrapper>}
         </QuotesContainer> :
         <QuotesContainer>
           <Quote>{`${description.substring(0, substringCutoff)}...`}</Quote>
         </QuotesContainer>}
       </CarouselItemContainer>
+
     );
   }
 }
 
-export default CarouselItem;
+export default withRouter(CarouselItem);

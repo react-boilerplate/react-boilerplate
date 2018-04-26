@@ -9,6 +9,7 @@ export const FooterContainer = styled.div`
   flex-direction: column;
   height: 50px;
   align-content: space-between;
+  margin-top: 50px;
 `;
 
 export const FooterText = styled.h6`
