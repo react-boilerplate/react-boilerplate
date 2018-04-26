@@ -21,6 +21,7 @@ export const CarouselItemContainer = FlexCenter.extend`
 export const BookContainer = FlexCenter.extend`
   width: 30%;
   height: 90%;
+  cursor: pointer;
 
   @media (max-width: 700px) {
     width: 50%;

@@ -16,3 +16,5 @@ export const SET_BOOKS = 'SET_BOOKS';
 export const SET_PRAISE = 'SET_PRAISE';
 export const SET_DESCRIPTION = 'SET_DESCRIPTION';
 
+export const GET_AUTHOR = 'GET_AUTHOR';
+export const SET_AUTHOR = 'SET_AUTHOR';

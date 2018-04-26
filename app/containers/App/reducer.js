@@ -5,6 +5,8 @@ import {
   SET_BOOKS,
   SET_PRAISE,
   SET_DESCRIPTION,
+  GET_AUTHOR,
+  SET_AUTHOR,
 } from './constants';
 
 // The initial state of the App
@@ -12,6 +14,7 @@ const initialState = fromJS({
   books: [],
   praise: {},
   description: {},
+  author: {},
 });
 
 function reducer(state = initialState, action) {
@@ -24,6 +27,10 @@ function reducer(state = initialState, action) {
       return state.setIn(['praise', action.isbn], action.praise);
     case SET_DESCRIPTION:
       return state.setIn(['description', action.isbn], action.description);
+    case GET_AUTHOR:
+      return state;
+    case SET_AUTHOR:
+      return state.set('author', fromJS(action.author));
     default:
       return state;
   }

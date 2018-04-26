@@ -10,9 +10,13 @@ export const HeaderWrapper = styled.div`
   display: flex;
   height: 317px;
   width: 100%;
-  padding: 20px 20%;
+  padding: 20px 25%;
 
-  @media (max-width: 835px) {
+  @media (max-width: 1100px) {
+    padding: 20px 20%;
+  }
+
+  @media (max-width: 850px) {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;

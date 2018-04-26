@@ -25,17 +25,19 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import reducer from './reducer';
 import saga from './sagas';
-import { getBooks } from './actions';
+import { getBooks, getAuthor } from './actions';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 class App extends Component {
   static propTypes = {
     dispatchGetBooks: PropTypes.func.isRequired,
+    dispatchGetAuthor: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
     this.props.dispatchGetBooks();
+    this.props.dispatchGetAuthor();
   }
 
   render() {
@@ -49,14 +51,6 @@ class App extends Component {
           <Route exact path="/books/:isbn" component={BookPage} />
           <Route component={NotFoundPage} />
         </Switch>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
         <Footer />
       </div>
     );
@@ -65,6 +59,7 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchGetBooks: () => dispatch(getBooks()),
+  dispatchGetAuthor: () => dispatch(getAuthor()),
 });
 
 const withReducer = injectReducer({ key: 'home', reducer });

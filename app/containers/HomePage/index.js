@@ -14,14 +14,18 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { Container } from './styled';
+import { Container, ContentWrapper } from './styled';
 import Carousel from '../../components/Carousel';
 import CarouselItem from '../../components/CarouselItem';
+import About from '../../components/About';
 import { selectBooks } from '../../containers/App/selectors';
 
 const HomePage = ({ books }) => (
   <Container>
-    <Carousel carouselArr={books} CarouselItem={CarouselItem} carouselHeight={600} slideTime={0.5} arrowOffset={380} />
+    <Carousel carouselArr={books} CarouselItem={CarouselItem} carouselHeight={500} slideTime={0.5} arrowOffset={330} />
+    <ContentWrapper>
+      <About />
+    </ContentWrapper>
   </Container>
 );
 

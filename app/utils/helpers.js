@@ -26,4 +26,9 @@ export const combineBookData = (books, praise, description) => {
     return newBook;
   }).filter((book) => !book.repeat);
 };
+
+export const flattenAuthor = ({ spotlight, _links }) => ({
+  about: removeSymbols(spotlight).replace(/&nbsp;/g, ' '),
+  imgSrc: _links[0].href,
+});
 /* eslint-enable no-underscore-dangle */

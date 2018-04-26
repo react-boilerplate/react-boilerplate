@@ -61,7 +61,7 @@ class Book extends Component {
               <QuoteBy>{praiseItem.quoteBy}</QuoteBy>
             </QuoteContainer>
           ))}
-          <Hyperlink onClick={this.togglePraise}>{this.state.praiseOpen ? 'See less' : 'See more'}</Hyperlink>
+          {selectedBook.praise.length > 6 && <Hyperlink onClick={this.togglePraise}>{this.state.praiseOpen ? 'See less' : 'See more'}</Hyperlink>}
         </PraiseContainer>}
       </BookContainer>
     );
