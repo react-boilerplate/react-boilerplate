@@ -12,11 +12,13 @@ const webpack = require('webpack');
 process.noDeprecation = true;
 
 module.exports = (options) => ({
+  mode: options.mode,
   entry: options.entry,
   output: Object.assign({ // Compile into js/build.js
     path: path.resolve(process.cwd(), 'build'),
     publicPath: '/',
   }, options.output), // Merge with env dependent settings
+  optimization: options.optimization,
   module: {
     rules: [
       {
@@ -42,8 +44,21 @@ module.exports = (options) => ({
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
+        test: /\.(eot|otf|ttf|woff|woff2)$/,
         use: 'file-loader',
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              // Inline files smaller than 10 kB
+              limit: 10 * 1024,
+              noquotes: true,
+            },
+          },
+        ],
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -51,14 +66,19 @@ module.exports = (options) => ({
           {
             loader: 'url-loader',
             options: {
-              limit: 10000,
+              // Inline files smaller than 10 kB
+              limit: 10 * 1024,
             },
           },
           {
             loader: 'image-webpack-loader',
-            query: {
+            options: {
               mozjpeg: {
-                progressive: true,
+                enabled: false,
+                // NOTE: mozjpeg is disabled as it causes errors in some Linux environments
+                // Try enabling it in your environment by switching the config to:
+                // enabled: true,
+                // progressive: true,
               },
               gifsicle: {
                 interlaced: false,
@@ -77,10 +97,6 @@ module.exports = (options) => ({
       {
         test: /\.html$/,
         use: 'html-loader',
-      },
-      {
-        test: /\.json$/,
-        use: 'json-loader',
       },
       {
         test: /\.(mp4|webm)$/,
@@ -107,7 +123,6 @@ module.exports = (options) => ({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
-    new webpack.NamedModulesPlugin(),
   ]),
   resolve: {
     modules: ['app', 'node_modules'],
