@@ -8,7 +8,7 @@ import { AboutContainer, ImageWrapper, Image, TextContainer, Text } from './styl
 import { selectAuthor } from '../../containers/App/selectors';
 import createMessages from './messages';
 
-const About = ({ author }) => (
+const Author = ({ author }) => (
   <AboutContainer>
     <ImageWrapper>
       <Image src={author.imgSrc} />
@@ -21,7 +21,7 @@ const About = ({ author }) => (
   </AboutContainer>
 );
 
-About.propTypes = {
+Author.propTypes = {
   author: PropTypes.object.isRequired,
 };
 
@@ -33,4 +33,4 @@ const withConnect = connect(mapStateToProps);
 
 export default compose(
   withConnect,
-)(About);
+)(Author);

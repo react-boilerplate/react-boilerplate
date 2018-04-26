@@ -17,14 +17,14 @@ import { createStructuredSelector } from 'reselect';
 import { Container, ContentWrapper } from './styled';
 import Carousel from '../../components/Carousel';
 import CarouselItem from '../../components/CarouselItem';
-import About from '../../components/About';
+import Author from '../../components/Author';
 import { selectBooks } from '../../containers/App/selectors';
 
 const HomePage = ({ books }) => (
   <Container>
     <Carousel carouselArr={books} CarouselItem={CarouselItem} carouselHeight={500} slideTime={0.5} arrowOffset={330} />
     <ContentWrapper>
-      <About />
+      <Author />
     </ContentWrapper>
   </Container>
 );
