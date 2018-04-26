@@ -2,9 +2,11 @@ import React, { PropTypes } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { FormattedMessage } from 'react-intl';
 
 import { AboutContainer, ImageWrapper, Image, TextContainer, Text } from './styled';
 import { selectAuthor } from '../../containers/App/selectors';
+import createMessages from './messages';
 
 const About = ({ author }) => (
   <AboutContainer>
@@ -12,7 +14,9 @@ const About = ({ author }) => (
       <Image src={author.imgSrc} />
     </ImageWrapper>
     <TextContainer>
-      <Text>{author.about}</Text>
+      <Text>
+        <FormattedMessage {...createMessages(author.about).author} />
+      </Text>
     </TextContainer>
   </AboutContainer>
 );
