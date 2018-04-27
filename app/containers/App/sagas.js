@@ -37,6 +37,14 @@ export function* getAuthor() {
   }
 }
 
+export function* getArticles() {
+  try {
+    // yield put(setArticles(articles));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export default function* rootSaga() {
   yield [
     takeLatest(GET_BOOKS, getBooks),
