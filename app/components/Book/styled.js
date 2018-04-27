@@ -12,11 +12,15 @@ export const HeaderWrapper = styled.div`
   width: 100%;
   padding: 20px 25%;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1350px) {
+    padding: 20px 30%;
+  }
+
+  @media (max-width: 1170px) {
     padding: 20px 20%;
   }
 
-  @media (max-width: 850px) {
+  @media (max-width: 880px) {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;

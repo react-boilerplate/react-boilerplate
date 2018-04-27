@@ -30,6 +30,8 @@ export const BookContainer = FlexCenter.extend`
 
 export const Book = styled.img`
   width: 100%;
+  max-height: 450px;
+  max-width: 327px;
 `;
 
 export const QuotesContainer = FlexCenter.extend`
