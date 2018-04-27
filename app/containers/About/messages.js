@@ -19,6 +19,6 @@ export default defineMessages({
   },
   p5: {
     id: 'app.components.About.p5',
-    defaultMessage: 'I left the Times in 2006 when my tour in Berlin came to an end, and I’ve been working on books ever since, most recently one for young readers, A Girl Named Faithful Plum, which was published by Knopf Books for Young  Readers in September 2011.  I’ve been writing the occasional essay or review for the New York Review of Books, which happens to be my favorite publication on the planet, and I’m at work on a new book for grown-ups, provisionally entitled China, 1945: America, Mao’s Revolution, and the Turning Point in Asia.',
+    defaultMessage: 'I left the Times in 2006 when my tour in Berlin came to an end, and I’ve been working on books ever since, including one for young readers, A Girl Named Faithful Plum, and one for grown-ups, entitled China, 1945: Mao’s Revolution, and Americas fateful choice.',
   },
 });

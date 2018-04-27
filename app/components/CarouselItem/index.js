@@ -40,7 +40,7 @@ class CarouselItem extends Component {
     const { windowWidth } = this.state;
     const { length } = description;
     let substringCutoff = length > 300 ? length - 100 : length;
-    if (windowWidth <= 1100) substringCutoff = length / 2;
+    if (windowWidth <= 1200) substringCutoff = length / 2;
     if (windowWidth <= 900) substringCutoff = length / 3;
     if (windowWidth <= 600) substringCutoff = 250;
     if (windowWidth <= 400) substringCutoff = 100;
