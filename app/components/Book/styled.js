@@ -16,11 +16,15 @@ export const HeaderWrapper = styled.div`
     padding: 20px 30%;
   }
 
+  @media (max-width: 1280px) {
+    padding: 20px 25%;
+  }
+
   @media (max-width: 1170px) {
     padding: 20px 20%;
   }
 
-  @media (max-width: 880px) {
+  @media (max-width: 930px) {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
