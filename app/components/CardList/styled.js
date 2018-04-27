@@ -6,6 +6,11 @@ export const CardsContainer = styled.div`
   padding: 10px 5%;
 `;
 
+export const CardFlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const CardWrapper = styled.div`
   width: 275px;
   height: 418px;

@@ -6,8 +6,10 @@ import {
   TextWrapper,
   CardHeader,
   CardText,
+  CardFlexContainer,
 } from './styled';
 import { Link } from '../common';
+import DeleteButton from '../common/DeleteButton';
 
 export default class CardList extends Component {
   static propTypes = {
@@ -18,20 +20,27 @@ export default class CardList extends Component {
 
   static truncateDescription = (description) => `${description.substring(0, 130).replace(/"/g, '')}...`;
 
-  state = {};
+  state = { showDelete: '' };
+
+  handleMouseOver = (isbn) => this.setState({ showDelete: isbn });
+
+  handleMouseLeave = () => this.setState({ showDelete: '' })
 
   render() {
     return (
       <CardsContainer>
         {this.props.cardsArr.map((card) => (
-          <Link to={`/books/${card.isbn}`} key={card.isbn}>
-            <CardWrapper src={card.imgSrc}>
-              <TextWrapper>
-                <CardHeader>{CardList.truncateHeader(card.title)}</CardHeader>
-                <CardText>{CardList.truncateDescription(card.description)}</CardText>
-              </TextWrapper>
-            </CardWrapper>
-          </Link>
+          <CardFlexContainer onMouseEnter={() => this.handleMouseOver(card.isbn)} onMouseLeave={this.handleMouseLeave}>
+            <Link to={`/books/${card.isbn}`} key={card.isbn}>
+              <CardWrapper src={card.imgSrc}>
+                {<DeleteButton onDelete={() => console.log('Delete!')} />}
+                <TextWrapper>
+                  <CardHeader>{CardList.truncateHeader(card.title)}</CardHeader>
+                  <CardText>{CardList.truncateDescription(card.description)}</CardText>
+                </TextWrapper>
+              </CardWrapper>
+            </Link>
+          </CardFlexContainer>
         ))}
       </CardsContainer>
     );
