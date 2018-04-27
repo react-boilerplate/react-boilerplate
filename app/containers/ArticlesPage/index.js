@@ -3,24 +3,25 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { selectBooks } from '../App/selectors';
+import { selectArticles } from '../App/selectors';
+import Articles from '../../components/List';
 
-const BookPage = () => (
+const ArticlesPage = ({ articles }) => (
   <div>
+    <Articles listArr={articles} />
   </div>
 );
 
-BookPage.propTypes = {
-  books: PropTypes.array.isRequired,
-  match: PropTypes.object.isRequired,
+ArticlesPage.propTypes = {
+  articles: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  books: selectBooks(),
+  articles: selectArticles(),
 });
 
 const withConnect = connect(mapStateToProps);
 
 export default compose(
   withConnect,
-)(BookPage);
+)(ArticlesPage);

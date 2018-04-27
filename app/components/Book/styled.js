@@ -113,12 +113,3 @@ export const Quote = styled.blockquote`
 export const QuoteBy = styled.cite`
   align-self: center;
 `;
-
-export const Hyperlink = styled.h6`
-  margin: 0;
-  text-decoration: underline;
-  cursor: pointer;
-  align-self: center;
-  font-family: 'Montserrat';
-  font-size: 1em;
-`;

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 
-import { ButtonContainer, ButtonText, Anchor } from './styled';
+import { ButtonContainer, ButtonText } from './styled';
+import { Anchor } from '../';
 
 const VisitButton = ({ href }) => (
   <Anchor href={href} target="_blank">
