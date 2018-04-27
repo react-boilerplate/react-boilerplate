@@ -5,6 +5,8 @@ import {
   SET_DESCRIPTION,
   GET_AUTHOR,
   SET_AUTHOR,
+  GET_ARTICLES,
+  SET_ARTICLES,
 } from './constants';
 
 export const getBooks = () => ({
@@ -36,4 +38,13 @@ export const getAuthor = () => ({
 export const setAuthor = (author) => ({
   type: SET_AUTHOR,
   author,
+});
+
+export const getArticles = () => ({
+  type: GET_ARTICLES,
+});
+
+export const setArticles = (articles) => ({
+  type: SET_ARTICLES,
+  articles,
 });

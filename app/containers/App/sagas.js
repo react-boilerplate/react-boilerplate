@@ -3,9 +3,10 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import request, { fetchAll } from 'utils/request';
 import { extractPraises, parsePraises, combineBookData, removeSymbols, flattenAuthor } from 'utils/helpers';
 import { apiKey, authorId } from '../../../secrets';
-import { GET_BOOKS, GET_AUTHOR } from './constants';
-import { setBooks, setPraise, setDescription, setAuthor } from './actions';
+import { GET_BOOKS, GET_AUTHOR, GET_ARTICLES } from './constants';
+import { setBooks, setPraise, setDescription, setAuthor, setArticles } from './actions';
 import { selectPraise, selectDescription } from './selectors';
+import articles from '../ArticlesPage/articles';
 
 export function* getBooks() {
   const titlesURL = `https://api.penguinrandomhouse.com/resources/v2/title/domains/PRH.US/authors/${authorId}/titles?rows=0&api_key=${apiKey}`;
@@ -37,9 +38,18 @@ export function* getAuthor() {
   }
 }
 
+export function* getArticles() {
+  try {
+    yield put(setArticles(articles));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export default function* rootSaga() {
   yield [
     takeLatest(GET_BOOKS, getBooks),
     takeLatest(GET_AUTHOR, getAuthor),
+    takeLatest(GET_ARTICLES, getArticles),
   ];
 }

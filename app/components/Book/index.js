@@ -17,9 +17,9 @@ import {
   QuoteContainer,
   Quote,
   QuoteBy,
-  Hyperlink,
 } from './styled';
 import VisitButton from '../common/VisitButton';
+import { Hyperlink } from '../common';
 
 class Book extends Component {
   static propTypes = {
