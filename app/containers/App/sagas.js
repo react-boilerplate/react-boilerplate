@@ -2,11 +2,12 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import request, { fetchAll } from 'utils/request';
 import { extractPraises, parsePraises, combineBookData, removeSymbols, flattenAuthor } from 'utils/helpers';
-import { apiKey, authorId } from '../../../secrets';
 import { GET_BOOKS, GET_AUTHOR, GET_ARTICLES } from './constants';
 import { setBooks, setPraise, setDescription, setAuthor, setArticles } from './actions';
 import { selectPraise, selectDescription } from './selectors';
 import articles from '../ArticlesPage/articles';
+
+import { apiKey, authorId/* , nyTimesApiKey */ } from '../../../secrets';
 
 export function* getBooks() {
   const titlesURL = `https://api.penguinrandomhouse.com/resources/v2/title/domains/PRH.US/authors/${authorId}/titles?rows=0&api_key=${apiKey}`;
@@ -39,7 +40,11 @@ export function* getAuthor() {
 }
 
 export function* getArticles() {
+  // const articlesURL = `https://cors-anywhere.herokuapp.com/https://developer.nytimes.com/proxy/https/api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${nyTimesApiKey}&fq=author%3A(%22Richard+Bernstein%22)&sort=newest`;
+  // get all that data and store in the database when ready beacause they only allow 1000 requests per day
   try {
+    // const articlesData = yield call(request, articlesURL);
+    // console.log(articlesData)
     yield put(setArticles(articles));
   } catch (err) {
     console.error(err);
