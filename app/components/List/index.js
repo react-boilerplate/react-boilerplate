@@ -9,14 +9,23 @@ class List extends Component {
     listArr: PropTypes.array.isRequired,
   }
 
-  state = {};
+  state = { showDelete: '' };
+
+  handleMouseOver = (title) => this.setState({ showDelete: title });
+
+  handleMouseLeave = () => this.setState({ showDelete: '' });
+
+  handleDelete = (evt) => {
+    evt.preventDefault();
+    console.log('Delete!');
+  }
 
   render() {
     return (
       !!this.props.listArr.length && <ListContainer>
         {this.props.listArr.map((item) => (
-          <ListItem key={item.title}>
-            {<DeleteButton onDelete={() => console.log('Delete!')} />}
+          <ListItem onMouseEnter={() => this.handleMouseOver(item.title)} onMouseLeave={this.handleMouseLeave} key={item.title}>
+            {this.state.showDelete === item.title && <DeleteButton onDelete={() => console.log('Delete!')} />}
             <Anchor href={item.href} target="_blank">
               <ListItemHeader>{item.title}</ListItemHeader>
             </Anchor>
