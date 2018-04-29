@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import { ListContainer, ListItem, ListItemHeader, ListItemSubHeader, ListItemContent, SubHeaderContainer } from './styled';
 import { Anchor } from '../common';
+import DeleteButton from '../common/DeleteButton';
 
 class List extends Component {
   static propTypes = {
@@ -15,6 +16,7 @@ class List extends Component {
       !!this.props.listArr.length && <ListContainer>
         {this.props.listArr.map((item) => (
           <ListItem key={item.title}>
+            {<DeleteButton onDelete={() => console.log('Delete!')} />}
             <Anchor href={item.href} target="_blank">
               <ListItemHeader>{item.title}</ListItemHeader>
             </Anchor>

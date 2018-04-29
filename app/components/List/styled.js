@@ -16,6 +16,7 @@ export const ListItem = styled.div`
   flex-direction: column;
   height: auto;
   padding: 15px 10px;
+  position: relative;
 `;
 
 export const ListItemHeader = styled.h2`

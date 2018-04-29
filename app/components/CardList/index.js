@@ -24,16 +24,21 @@ export default class CardList extends Component {
 
   handleMouseOver = (isbn) => this.setState({ showDelete: isbn });
 
-  handleMouseLeave = () => this.setState({ showDelete: '' })
+  handleMouseLeave = () => this.setState({ showDelete: '' });
+
+  handleDelete = (evt) => {
+    evt.preventDefault();
+    console.log('Delete!');
+  }
 
   render() {
     return (
       <CardsContainer>
         {this.props.cardsArr.map((card) => (
-          <CardFlexContainer onMouseEnter={() => this.handleMouseOver(card.isbn)} onMouseLeave={this.handleMouseLeave}>
+          <CardFlexContainer key={card.isbn} onMouseEnter={() => this.handleMouseOver(card.isbn)} onMouseLeave={this.handleMouseLeave}>
             <Link to={`/books/${card.isbn}`} key={card.isbn}>
               <CardWrapper src={card.imgSrc}>
-                {<DeleteButton onDelete={() => console.log('Delete!')} />}
+                {<DeleteButton onDelete={this.handleDelete} />}
                 <TextWrapper>
                   <CardHeader>{CardList.truncateHeader(card.title)}</CardHeader>
                   <CardText>{CardList.truncateDescription(card.description)}</CardText>

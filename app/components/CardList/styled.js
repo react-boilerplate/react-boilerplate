@@ -25,6 +25,7 @@ export const CardWrapper = styled.div`
   flex-direction: column-reverse;
   align-self: flex-start;
   margin: 5px;
+  position: relative;
 `;
 
 export const TextWrapper = styled.div`

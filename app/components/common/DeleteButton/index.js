@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
 
-import { ButtonContainer, ButtonText } from './styled';
+import { ButtonContainer, ButtonImg } from './styled';
+import X from '../../../images/ic_highlight_off_white_24px.svg';
 
 const DeleteButton = ({ onDelete }) => (
   <ButtonContainer onClick={onDelete}>
-    <ButtonText>X</ButtonText>
+    <ButtonImg src={X} />
   </ButtonContainer>
 );
 
