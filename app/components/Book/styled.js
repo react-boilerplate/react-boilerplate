@@ -12,11 +12,19 @@ export const HeaderWrapper = styled.div`
   width: 100%;
   padding: 20px 25%;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1350px) {
+    padding: 20px 30%;
+  }
+
+  @media (max-width: 1280px) {
+    padding: 20px 25%;
+  }
+
+  @media (max-width: 1170px) {
     padding: 20px 20%;
   }
 
-  @media (max-width: 850px) {
+  @media (max-width: 930px) {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
@@ -108,13 +116,4 @@ export const Quote = styled.blockquote`
 
 export const QuoteBy = styled.cite`
   align-self: center;
-`;
-
-export const Hyperlink = styled.h6`
-  margin: 0;
-  text-decoration: underline;
-  cursor: pointer;
-  align-self: center;
-  font-family: 'Montserrat';
-  font-size: 1em;
 `;

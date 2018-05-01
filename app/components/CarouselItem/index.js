@@ -63,7 +63,6 @@ class CarouselItem extends Component {
           <Quote>{`${description.substring(0, substringCutoff)}...`}</Quote>
         </QuotesContainer>}
       </CarouselItemContainer>
-
     );
   }
 }

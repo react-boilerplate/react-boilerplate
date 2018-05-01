@@ -18,3 +18,6 @@ export const SET_DESCRIPTION = 'SET_DESCRIPTION';
 
 export const GET_AUTHOR = 'GET_AUTHOR';
 export const SET_AUTHOR = 'SET_AUTHOR';
+
+export const GET_ARTICLES = 'GET_ARTICLES';
+export const SET_ARTICLES = 'SET_ARTICLES';

@@ -19,13 +19,14 @@ import { compose } from 'redux';
 import HomePage from 'containers/HomePage/Loadable';
 import BookListPage from 'containers/BookListPage/Loadable';
 import BookPage from 'containers/BookPage/Loadable';
+import ArticlesPage from 'containers/ArticlesPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import About from 'containers/About';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import reducer from './reducer';
 import saga from './sagas';
-import { getBooks, getAuthor } from './actions';
+import { getBooks, getAuthor, getArticles } from './actions';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
@@ -33,11 +34,13 @@ class App extends Component {
   static propTypes = {
     dispatchGetBooks: PropTypes.func.isRequired,
     dispatchGetAuthor: PropTypes.func.isRequired,
+    dispatchGetArticles: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
     this.props.dispatchGetBooks();
     this.props.dispatchGetAuthor();
+    this.props.dispatchGetArticles();
   }
 
   render() {
@@ -49,6 +52,7 @@ class App extends Component {
           <Route exact path="/about" component={About} />
           <Route exact path="/books" component={BookListPage} />
           <Route exact path="/books/:isbn" component={BookPage} />
+          <Route exact path="/articles" component={ArticlesPage} />
           <Route component={NotFoundPage} />
         </Switch>
         <Footer />
@@ -60,6 +64,7 @@ class App extends Component {
 const mapDispatchToProps = (dispatch) => ({
   dispatchGetBooks: () => dispatch(getBooks()),
   dispatchGetAuthor: () => dispatch(getAuthor()),
+  dispatchGetArticles: () => dispatch(getArticles()),
 });
 
 const withReducer = injectReducer({ key: 'home', reducer });

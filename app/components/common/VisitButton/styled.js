@@ -15,7 +15,3 @@ export const ButtonText = styled.p`
   margin: 0;
   color: black;
 `;
-
-export const Anchor = styled.a`
-  text-decoration: none;
-`;

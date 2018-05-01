@@ -21,7 +21,7 @@ export default () => (
           <ButtonText><FormattedMessage {...messages.books} /></ButtonText>
         </Button>
       </Link>
-      <Link to="/">
+      <Link to="/articles">
         <Button>
           <ButtonText><FormattedMessage {...messages.articles} /></ButtonText>
         </Button>
