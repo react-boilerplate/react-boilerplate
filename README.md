@@ -1,3 +1,5 @@
+**NOTE: We're working hard to get a new release out that includes React v16, Enzyme v3, Webpack v4, Redux v4, and more. Please bare with us while we wait for some external dependency issues to clear and can get these updates fully vetted and released. Please feel free to use the dev branch if you'd like to use upgraded features, but know that it still hasn't been released.**
+
 <img src="https://raw.githubusercontent.com/react-boilerplate/react-boilerplate-brand/master/assets/banner-metal-optimized.jpg" alt="react boilerplate banner" align="center" />
 
 <br />
@@ -82,14 +84,14 @@
 
 But wait... there's more!
 
-  - *The best test setup:* Automatically guarantee code quality and non-breaking
-    changes. (Seen a react app with 99% test coverage before?)
-  - *Native web app:* Your app's new home? The home screen of your users' phones.
-  - *The fastest fonts:* Say goodbye to vacant text.
-  - *Stay fast*: Profile your app's performance from the comfort of your command
-    line!
-  - *Catch problems:* AppVeyor and TravisCI setups included by default, so your
-    tests get run automatically on Windows and Unix.
+* _The best test setup:_ Automatically guarantee code quality and non-breaking
+  changes. (Seen a react app with 99% test coverage before?)
+* _Native web app:_ Your app's new home? The home screen of your users' phones.
+* _The fastest fonts:_ Say goodbye to vacant text.
+* _Stay fast_: Profile your app's performance from the comfort of your command
+  line!
+* _Catch problems:_ AppVeyor and TravisCI setups included by default, so your
+  tests get run automatically on Windows and Unix.
 
 There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on how to structure your React.js apps with scalability in mind. It provides rationale for the majority of boilerplate's design decisions.
 
@@ -97,12 +99,12 @@ There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on ho
 
 ## Quick start
 
-1. Clone this repo using `git clone --depth=1 https://github.com/react-boilerplate/react-boilerplate.git`
-2. Move to the appropriate directory: `cd react-boilerplate`.<br />
-3. Run `npm run setup` in order to install dependencies and clean the git repo.<br />
-   *We auto-detect `yarn` for installing packages by default, if you wish to force `npm` usage do: `USE_YARN=false npm run setup`*<br />
-   *At this point you can run `npm start` to see the example app at `http://localhost:3000`.*
-4. Run `npm run clean` to delete the example app.
+1.  Clone this repo using `git clone --depth=1 https://github.com/react-boilerplate/react-boilerplate.git`
+2.  Move to the appropriate directory: `cd react-boilerplate`.<br />
+3.  Run `npm run setup` in order to install dependencies and clean the git repo.<br />
+    _We auto-detect `yarn` for installing packages by default, if you wish to force `npm` usage do: `USE_YARN=false npm run setup`_<br />
+    _At this point you can run `npm start` to see the example app at `http://localhost:3000`._
+4.  Run `npm run clean` to delete the example app.
 
 Now you're ready to rumble!
 
@@ -110,14 +112,14 @@ Now you're ready to rumble!
 
 ## Documentation
 
-- [**The Hitchhikers Guide to `react-boilerplate`**](docs/general/introduction.md): An introduction for newcomers to this boilerplate.
-- [Overview](docs/general): A short overview of the included tools
-- [**Commands**](docs/general/commands.md): Getting the most out of this boilerplate
-- [Testing](docs/testing): How to work with the built-in test harness
-- [Styling](docs/css): How to work with the CSS tooling
-- [Your app](docs/js): Supercharging your app with Routing, Redux, simple
+* [**The Hitchhikers Guide to `react-boilerplate`**](docs/general/introduction.md): An introduction for newcomers to this boilerplate.
+* [Overview](docs/general): A short overview of the included tools
+* [**Commands**](docs/general/commands.md): Getting the most out of this boilerplate
+* [Testing](docs/testing): How to work with the built-in test harness
+* [Styling](docs/css): How to work with the CSS tooling
+* [Your app](docs/js): Supercharging your app with Routing, Redux, simple
   asynchronicity helpers, etc.
-- [**Troubleshooting**](docs/general/gotchas.md): Solutions to common problems faced by developers.
+* [**Troubleshooting**](docs/general/gotchas.md): Solutions to common problems faced by developers.
 
 ## Supporters
 
@@ -134,7 +136,7 @@ This project would not be possible without the support by these amazing folks. [
 <a href="https://opencollective.com/react-boilerplate/bronze-sponsor/8/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/react-boilerplate/bronze-sponsor/9/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/bronze-sponsor/9/avatar.svg"></a>
 
-----
+---
 
 <a href="https://opencollective.com/react-boilerplate/backer/0/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/0/avatar.svg"></a>
 <a href="https://opencollective.com/react-boilerplate/backer/1/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/1/avatar.svg"></a>
@@ -146,7 +148,6 @@ This project would not be possible without the support by these amazing folks. [
 <a href="https://opencollective.com/react-boilerplate/backer/7/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/7/avatar.svg"></a>
 <a href="https://opencollective.com/react-boilerplate/backer/8/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/8/avatar.svg"></a>
 <a href="https://opencollective.com/react-boilerplate/backer/9/website" target="_blank"><img src="https://opencollective.com/react-boilerplate/backer/9/avatar.svg"></a>
-
 
 ## License
 
