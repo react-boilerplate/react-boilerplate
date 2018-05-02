@@ -125,7 +125,10 @@ module.exports = (options) => ({
     }),
   ]),
   resolve: {
-    modules: ['app', 'node_modules'],
+    modules: [
+      'node_modules',
+      'app',
+    ],
     extensions: [
       '.js',
       '.jsx',
