@@ -37,7 +37,7 @@ const removeSymbols = (string) => string.replace(/(<br>)|(<\/?i>)|(&mdash;)|(<\/
 
 async function seedArticles(articlesUrl) {
   try {
-    console.log(bgBlue('Beginning articles seeding...'));
+    console.log(bgYellow(black('Beginning articles seeding...')));
     console.log(bgBlue('Searching for existing articles...'));
     const foundArticles = await Article.find({});
     if (foundArticles.length) {
@@ -68,7 +68,7 @@ async function seedArticles(articlesUrl) {
 
 async function seedBooks(titlesUrl) {
   try {
-    console.log(bgBlue('Beginning books seeding...'));
+    console.log(bgYellow(black('Beginning books seeding...')));
     console.log(bgBlue('Searching for existing books...'));
     const foundBooks = await Book.find({});
     if (foundBooks.length) {
