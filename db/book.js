@@ -7,7 +7,7 @@ const bookSchema = new mongoose.Schema({
   isbn: Number,
   description: String,
   publisher: String,
-  publisherUrl: String,
+  url: String,
   praise: [
     { quote: String, quoteBy: String },
   ],

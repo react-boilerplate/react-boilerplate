@@ -5,6 +5,7 @@ const articleSchema = new mongoose.Schema({
   publication: String,
   date: String,
   excerpt: String,
+  url: String,
 });
 
 const Article = mongoose.model('Article', articleSchema);
