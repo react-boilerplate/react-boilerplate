@@ -18,11 +18,14 @@ export default class CardList extends Component {
 
   static truncateDescription = (description) => `${description.substring(0, 130).replace(/"/g, '')}...`;
 
-  state = {};
+  setWidth = () => {
+    const container = document.getElementById('cards-container');
+    this.setState({ width: container.offsetWidth });
+  }
 
   render() {
     return (
-      <CardsContainer>
+      <CardsContainer id="cards-container">
         {this.props.cardsArr.map((card) => (
           <Link to={`/books/${card.isbn}`} key={card.isbn}>
             <CardWrapper src={card.imgSrc}>
