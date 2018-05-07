@@ -23,6 +23,8 @@ export function* getBooks() {
     const descriptionInState = yield select(selectDescription());
     const booksAndPraise = combineBookData(titlesResult.data.titles, praiseInState, descriptionInState);
     yield put(setBooks(booksAndPraise));
+    const books = yield call(request, '/api/books');
+    console.log(books);
   } catch (err) {
     console.error(err);
   }
