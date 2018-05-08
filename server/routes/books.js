@@ -1,9 +1,8 @@
 const router = require('express').Router();
 
 const { Book } = require('../../db');
+const createAllRoutes = require('./route-creators');
 
-router.get('/', async (req, res) => {
-  res.json(await Book.find({}));
-});
+createAllRoutes(router, Book);
 
 module.exports = router;

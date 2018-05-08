@@ -43,6 +43,8 @@ export function* getAuthor() {
 export function* getArticles() {
   try {
     yield put(setArticles(articles));
+    const dbArticles = yield call(request, '/api/articles/5af0f4194eaa210647a658fc');
+    console.log(dbArticles);
   } catch (err) {
     console.error(err);
   }
