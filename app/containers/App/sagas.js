@@ -23,6 +23,8 @@ export function* getBooks() {
     const descriptionInState = yield select(selectDescription());
     const booksAndPraise = combineBookData(titlesResult.data.titles, praiseInState, descriptionInState);
     yield put(setBooks(booksAndPraise));
+    const books = yield call(request, '/api/books');
+    console.log(books);
   } catch (err) {
     console.error(err);
   }
@@ -41,6 +43,8 @@ export function* getAuthor() {
 export function* getArticles() {
   try {
     yield put(setArticles(articles));
+    const dbArticles = yield call(request, '/api/articles/5af0f4194eaa210647a658fc');
+    console.log(dbArticles);
   } catch (err) {
     console.error(err);
   }

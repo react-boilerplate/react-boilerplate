@@ -2,9 +2,7 @@ const request = require('request');
 const _ = require('lodash');
 const { bgBlue, bgGreen, bgRed, bgYellow, green, yellow, black } = require('chalk');
 
-require('./index');
-const { Book } = require('./book');
-const { Article } = require('./article');
+const { Book, Article } = require('./index');
 require('../env-secrets');
 
 /* eslint-disable */
