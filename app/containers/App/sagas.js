@@ -1,4 +1,5 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
+import moment from 'moment';
 
 import request, { fetchAll } from 'utils/request';
 import { extractPraises, parsePraises, combineBookData, removeSymbols, flattenAuthor } from 'utils/helpers';
@@ -6,7 +7,7 @@ import { apiKey, authorId } from '../../../secrets';
 import { GET_BOOKS, GET_AUTHOR, GET_ARTICLES } from './constants';
 import { setBooks, setPraise, setDescription, setAuthor, setArticles } from './actions';
 import { selectPraise, selectDescription } from './selectors';
-import articles from '../ArticlesPage/articles';
+// import articles from '../ArticlesPage/articles';
 
 export function* getBooks() {
   const titlesURL = `https://api.penguinrandomhouse.com/resources/v2/title/domains/PRH.US/authors/${authorId}/titles?rows=0&api_key=${apiKey}`;
@@ -42,9 +43,10 @@ export function* getAuthor() {
 
 export function* getArticles() {
   try {
-    yield put(setArticles(articles));
-    const dbArticles = yield call(request, '/api/articles/5af0f4194eaa210647a658fc');
-    console.log(dbArticles);
+    const articles = yield call(request, '/api/articles');
+    const enhancedArticles = articles
+      .map((article) => ({ ...article, date: moment(article.date).format('L') }));
+    yield put(setArticles(enhancedArticles));
   } catch (err) {
     console.error(err);
   }
