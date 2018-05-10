@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const { Article } = require('../../db');
-const createAllRoutes = require('./route-creators');
+const { createAllRoutes } = require('./route-creators');
 
 createAllRoutes(router, Article);
 

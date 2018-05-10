@@ -40,4 +40,7 @@ const createAllRoutes = (router, Model) => {
   createDeleteRoute(router, Model);
 };
 
-module.exports = createAllRoutes;
+module.exports = {
+  createGetAllRoute,
+  createAllRoutes,
+};

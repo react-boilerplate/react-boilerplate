@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 
 const bookRoutes = require('../routes/books');
 const articleRoutes = require('../routes/articles');
+const authorRoutes = require('../routes/authors');
 
 /**
  * Front-end middleware
@@ -15,6 +16,7 @@ module.exports = (app, options) => {
 
   app.use('/api/books', bookRoutes);
   app.use('/api/articles', articleRoutes);
+  app.use('/api/authors', authorRoutes);
 
   if (isProd) {
     const addProdMiddlewares = require('./addProdMiddlewares');
