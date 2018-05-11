@@ -9,7 +9,15 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
-export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
-export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
 export const DEFAULT_LOCALE = 'en';
+
+export const GET_BOOKS = 'GET_BOOKS';
+export const SET_BOOKS = 'SET_BOOKS';
+export const SET_PRAISE = 'SET_PRAISE';
+export const SET_DESCRIPTION = 'SET_DESCRIPTION';
+
+export const GET_AUTHOR = 'GET_AUTHOR';
+export const SET_AUTHOR = 'SET_AUTHOR';
+
+export const GET_ARTICLES = 'GET_ARTICLES';
+export const SET_ARTICLES = 'SET_ARTICLES';

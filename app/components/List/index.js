@@ -1,35 +1,33 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, PropTypes } from 'react';
 
-import Ul from './Ul';
-import Wrapper from './Wrapper';
+import { ListContainer, ListItem, ListItemHeader, ListItemSubHeader, ListItemContent, SubHeaderContainer } from './styled';
+import { Anchor } from '../common';
 
-function List(props) {
-  const ComponentToRender = props.component;
-  let content = (<div></div>);
-
-  // If we have items, render them
-  if (props.items) {
-    content = props.items.map((item) => (
-      <ComponentToRender key={`item-${item.id}`} item={item} />
-    ));
-  } else {
-    // Otherwise render a single component
-    content = (<ComponentToRender />);
+class List extends Component {
+  static propTypes = {
+    listArr: PropTypes.array.isRequired,
   }
 
-  return (
-    <Wrapper>
-      <Ul>
-        {content}
-      </Ul>
-    </Wrapper>
-  );
-}
+  state = {};
 
-List.propTypes = {
-  component: PropTypes.func.isRequired,
-  items: PropTypes.array,
-};
+  render() {
+    return (
+      !!this.props.listArr.length && <ListContainer>
+        {this.props.listArr.map((item) => (
+          <ListItem key={item.title}>
+            <Anchor href={item.href} target="_blank">
+              <ListItemHeader>{item.title}</ListItemHeader>
+            </Anchor>
+            <SubHeaderContainer>
+              <ListItemSubHeader>{item.publication}</ListItemSubHeader>
+              <ListItemSubHeader>{item.date}</ListItemSubHeader>
+            </SubHeaderContainer>
+            <ListItemContent>{item.excerpt}</ListItemContent>
+          </ListItem>
+        ))}
+      </ListContainer>
+    );
+  }
+}
 
 export default List;
