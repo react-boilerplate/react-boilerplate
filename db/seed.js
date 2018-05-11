@@ -2,7 +2,7 @@ const request = require('request');
 const _ = require('lodash');
 const { bgBlue, bgGreen, bgRed, bgYellow, green, yellow, black } = require('chalk');
 
-const { Book, Article } = require('./index');
+const { Book, Article, Author } = require('./index');
 require('../env-secrets');
 
 /* eslint-disable */
@@ -32,6 +32,11 @@ const extractPraises = (praisesObj) => praisesObj[_.keys(praisesObj)[0]];
 const getViewUrl = (isbn) => `https://api.penguinrandomhouse.com/resources/v2/title/domains/PRH.US/titles/${isbn}/views/product-display?suppressLinks=true&api_key=${process.env.PRH_API_KEY}`;
 
 const removeSymbols = (string) => string.replace(/(<br>)|(<\/?i>)|(&mdash;)|(<\/?b>)|(&#160;)|(&rsquo;)|(&hellip)|(&quot;)|(&#[0-9]+);|"/g, '');
+
+const flattenAuthor = ({ spotlight, _links }) => ({
+  about: removeSymbols(spotlight).replace(/&nbsp;/g, ' '),
+  imgSrc: _links[0].href,
+});
 
 async function seedArticles(articlesUrl) {
   try {
@@ -115,6 +120,27 @@ async function seedBooks(titlesUrl) {
   }
 }
 
+async function seedAuthor(authorUrl) {
+  try {
+    console.log(bgYellow(black('Beginning author seeding...')));
+    console.log(bgBlue('Searching for existing author...'));
+    const foundAuthor = await Author.find({});
+    if (foundAuthor.length) {
+      console.log(bgRed(`Found ${foundAuthor.length} author(s).  Deleting...`));
+      await Author.collection.drop();
+    } else {
+      console.log(bgGreen(black('Found no author - proceeding to seed...')));
+    }
+    const authorData = await promisifiedRequest(authorUrl);
+    const author = flattenAuthor(JSON.parse(authorData).data.authors[0]);
+    const seededAuthor = await Author.create(author);
+    console.log(bgGreen(black('Seeded author successfully!')));
+  } catch (err) {
+    console.error(bgRed('Error seeding author =>'));
+    throw err;
+  }
+}
+
 async function seed() {
   try {
     console.log(bgYellow(black('Running database seed process...')));
@@ -123,6 +149,7 @@ async function seed() {
     console.log(yellow('************************************************************************'));
     await seedArticles(`https://developer.nytimes.com/proxy/https/api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${process.env.NY_TIMES_API_KEY}&fq=author%3A(%22Richard+Bernstein%22)&sort=newest`);
     console.log(yellow('************************************************************************'));
+    await seedAuthor(`https://api.penguinrandomhouse.com/resources/v2/title/domains/PRH.US/authors/views/list-display?authorId=${process.env.AUTHOR_ID}&api_key=${process.env.PRH_API_KEY}`)
   } catch (err) {
     console.error(err)
   } finally {
