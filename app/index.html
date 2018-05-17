@@ -10,5 +10,18 @@
   </head>
   <body>
     <div id="app"></div>
+    <script type="application/javascript">
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw')
+          .then(function (reg) {
+            // registration worked
+            console.log('Registration succeeded. Scope is ' + reg.scope);
+          }).catch(function (error) {
+            // registration failed
+            console.log('Registration failed with ' + error);
+          });
+      }
+    </script>
+    <!-- A lot of magic happens in this file. HtmlWebpackPlugin automatically includes all assets (e.g. bundle.js, main.css) with the correct HTML tags, which is why they are missing in this HTML file. Don't add any assets here! (Check out webpackconfig.js if you want to know more) -->
   </body>
 </html>

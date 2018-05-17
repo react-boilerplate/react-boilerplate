@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const CardsContainer = styled.div`
+  justify-content: center;
   display: inline-flex;
   flex-wrap: wrap;
-  padding: 10px 5%;
+  padding: 20px 5%;
 `;
 
 export const CardFlexContainer = styled.div`
@@ -23,7 +24,6 @@ export const CardWrapper = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: column-reverse;
-  align-self: flex-start;
   margin: 5px;
   position: relative;
 `;
