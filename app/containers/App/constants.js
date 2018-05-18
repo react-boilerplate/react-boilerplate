@@ -13,6 +13,8 @@ export const DEFAULT_LOCALE = 'en';
 
 export const GET_BOOKS = 'GET_BOOKS';
 export const SET_BOOKS = 'SET_BOOKS';
+export const DELETE_BOOK = 'DELETE_BOOK';
+
 export const SET_PRAISE = 'SET_PRAISE';
 export const SET_DESCRIPTION = 'SET_DESCRIPTION';
 
@@ -21,3 +23,4 @@ export const SET_AUTHOR = 'SET_AUTHOR';
 
 export const GET_ARTICLES = 'GET_ARTICLES';
 export const SET_ARTICLES = 'SET_ARTICLES';
+export const DELETE_ARTICLE = 'DELETE_ARTICLE';

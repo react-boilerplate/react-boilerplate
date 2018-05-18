@@ -7,6 +7,7 @@ import DeleteButton from '../common/DeleteButton';
 class List extends Component {
   static propTypes = {
     listArr: PropTypes.array.isRequired,
+    handleDelete: PropTypes.func.isRequired,
   }
 
   state = { showDelete: '' };
@@ -15,9 +16,9 @@ class List extends Component {
 
   handleMouseLeave = () => this.setState({ showDelete: '' });
 
-  handleDelete = (evt) => {
+  handleDelete = (evt, id) => {
     evt.preventDefault();
-    console.log('Delete!');
+    this.props.handleDelete(id);
   }
 
   render() {
@@ -25,7 +26,7 @@ class List extends Component {
       !!this.props.listArr.length && <ListContainer>
         {this.props.listArr.map((item) => (
           <ListItem onMouseEnter={() => this.handleMouseOver(item.title)} onMouseLeave={this.handleMouseLeave} key={item.title}>
-            {this.state.showDelete === item.title && <DeleteButton onDelete={() => console.log('Delete!')} />}
+            {this.state.showDelete === item.title && <DeleteButton onDelete={(evt) => this.handleDelete(evt, item._id)} />}
             <Anchor href={item.href} target="_blank">
               <ListItemHeader>{item.title}</ListItemHeader>
             </Anchor>

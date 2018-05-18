@@ -18,7 +18,7 @@ const createPostRoute = (router, Model) => router.post('/', async (req, res) => 
 
 const createPutRoute = (router, Model) => router.put('/:id', async (req, res) => {
   const updatedArticle = await Model.update({
-    _id: req.param.id,
+    _id: req.params.id,
   }, req.body);
   if (!updatedArticle) res.sendStatus(400);
   else res.status(201).json(updatedArticle);
@@ -26,9 +26,9 @@ const createPutRoute = (router, Model) => router.put('/:id', async (req, res) =>
 
 const createDeleteRoute = (router, Model) => router.delete('/:id', async (req, res) => {
   const deleted = await Model.deleteOne({
-    _id: req.param.id,
+    _id: req.params.id,
   });
-  if (!deleted) res.sendStatus(400);
+  if (!deleted.ok) res.sendStatus(400);
   else res.sendStatus(204);
 });
 
