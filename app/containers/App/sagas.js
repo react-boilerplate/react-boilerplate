@@ -2,13 +2,22 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import moment from 'moment';
 
 import request from 'utils/request';
-import { GET_BOOKS, DELETE_BOOK, GET_AUTHOR, GET_ARTICLES, DELETE_ARTICLE } from './constants';
-import { setBooks, setAuthor, setArticles } from './actions';
+import { GET_BOOKS, GET_ONE_BOOK, DELETE_BOOK, GET_AUTHOR, GET_ARTICLES, DELETE_ARTICLE } from './constants';
+import { setBooks, setAuthor, setArticles, setOneBook } from './actions';
 
 export function* getBooks() {
   try {
     const books = yield call(request, '/api/books');
     yield put(setBooks(books));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export function* getOneBook({ bookId }) {
+  try {
+    const book = yield call(request, `/api/books/${bookId}`);
+    yield put(setOneBook(book[0]));
   } catch (err) {
     console.error(err);
   }
@@ -55,6 +64,7 @@ export function* deleteArticle({ articleId }) {
 export default function* rootSaga() {
   yield [
     takeLatest(GET_BOOKS, getBooks),
+    takeLatest(GET_ONE_BOOK, getOneBook),
     takeLatest(DELETE_BOOK, deleteBook),
     takeLatest(GET_AUTHOR, getAuthor),
     takeLatest(GET_ARTICLES, getArticles),

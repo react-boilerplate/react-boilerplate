@@ -3,6 +3,8 @@ import { fromJS } from 'immutable';
 import {
   GET_BOOKS,
   SET_BOOKS,
+  GET_ONE_BOOK,
+  SET_ONE_BOOK,
   DELETE_BOOK,
   SET_PRAISE,
   SET_DESCRIPTION,
@@ -16,6 +18,9 @@ import {
 // The initial state of the App
 const initialState = fromJS({
   books: [],
+  selectedBook: {
+    praise: [],
+  },
   praise: {},
   description: {},
   author: {},
@@ -28,12 +33,16 @@ function reducer(state = initialState, action) {
       return state;
     case SET_BOOKS:
       return state.set('books', fromJS(action.books));
+    case GET_ONE_BOOK:
+      return state;
+    case SET_ONE_BOOK:
+      return state.set('selectedBook', fromJS(action.book));
     case DELETE_BOOK:
       return state;
     case SET_PRAISE:
-      return state.setIn(['praise', action.isbn], action.praise);
+      return state.setIn(['praise', action.id], action.praise);
     case SET_DESCRIPTION:
-      return state.setIn(['description', action.isbn], action.description);
+      return state.setIn(['description', action.id], action.description);
     case GET_AUTHOR:
       return state;
     case SET_AUTHOR:

@@ -21,7 +21,7 @@ export const parsePraises = (unparsed) => {
 export const combineBookData = (books, praise, description) => {
   const hashMap = {};
   return books.map((book) => {
-    const newBook = { ...book, praise: praise[book.isbn], description: description[book.isbn], imgSrc: book._links[1].href, repeat: hashMap[book.title] };
+    const newBook = { ...book, praise: praise[book._id], description: description[book._id], imgSrc: book._links[1].href, repeat: hashMap[book.title] };
     hashMap[book.title] = true;
     return newBook;
   }).filter((book) => !book.repeat);

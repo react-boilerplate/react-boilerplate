@@ -8,7 +8,7 @@ import { selectBooks } from '../App/selectors';
 
 const BookPage = ({ books, match }) => (
   !!books.length && <div>
-    <Book selectedBook={books.filter((book) => book.isbn === +match.params.isbn)[0]} />
+    <Book selectedBook={books.filter((book) => book._id === match.params.id)[0]} />
   </div>
 );
 

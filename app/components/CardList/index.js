@@ -23,7 +23,7 @@ export default class CardList extends Component {
 
   state = { showDelete: '' };
 
-  handleMouseOver = (isbn) => this.setState({ showDelete: isbn });
+  handleMouseOver = (id) => this.setState({ showDelete: id });
 
   handleMouseLeave = () => this.setState({ showDelete: '' });
 
@@ -36,10 +36,10 @@ export default class CardList extends Component {
     return (
       <CardsContainer id="cards-container">
         {this.props.cardsArr.map((card) => (
-          <CardFlexContainer key={card.isbn} onMouseEnter={() => this.handleMouseOver(card.isbn)} onMouseLeave={this.handleMouseLeave}>
-            <Link to={`/books/${card.isbn}`} key={card._id}>
+          <CardFlexContainer key={card._id} onMouseEnter={() => this.handleMouseOver(card._id)} onMouseLeave={this.handleMouseLeave}>
+            <Link to={`/books/${card._id}`} key={card._id}>
               <CardWrapper src={card.imgSrc}>
-                {this.state.showDelete === card.isbn && <DeleteButton onDelete={(evt) => this.handleDelete(evt, card._id)} />}
+                {this.state.showDelete === card._id && <DeleteButton onDelete={(evt) => this.handleDelete(evt, card._id)} />}
                 <TextWrapper>
                   <CardHeader>{CardList.truncateHeader(card.title)}</CardHeader>
                   <CardText>{CardList.truncateDescription(card.description)}</CardText>

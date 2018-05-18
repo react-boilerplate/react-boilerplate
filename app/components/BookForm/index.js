@@ -3,11 +3,14 @@ import { reduxForm, reducer } from 'redux-form/immutable';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import keys from 'lodash/keys';
 
 import injectReducer from 'utils/injectReducer';
 import { FieldContainer, Label, Field, FieldTextArea, ButtonContainer } from './styled';
 import Button from '../common/Button';
 import { selectFormDataField } from '../../containers/FormPage/selectors';
+import { selectSelectedBook } from '../../containers/App/selectors';
+import { getOneBook } from '../../containers/App/actions';
 
 /*
   title: { type: String, required: true },
@@ -25,12 +28,27 @@ import { selectFormDataField } from '../../containers/FormPage/selectors';
 class BookForm extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
+    fetchBook: PropTypes.func.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    change: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired,
-    book: PropTypes.object.isRequired,
+    selectedBook: PropTypes.object.isRequired,
+    id: PropTypes.string.isRequired,
   }
 
   componentDidMount() {
-    // fetch book
+    this.props.fetchBook(this.props.id);
+  }
+
+  componentWillReceiveProps({ selectedBook, dispatch, change }) {
+    const selectedBookProps = keys(selectedBook);
+    for (let i = 0; i < selectedBookProps.length; i += 1) {
+      dispatch(change(selectedBookProps[i], selectedBook[selectedBookProps[i]]));
+    }
+    selectedBook.praise.forEach((singlePraise, index) => {
+      dispatch(change(`quote${index}`, singlePraise.quote));
+      dispatch(change(`quoteBy${index}`, singlePraise.quoteBy));
+    });
   }
 
   addPraise = () => {
@@ -38,12 +56,12 @@ class BookForm extends Component {
   }
 
   render() {
-    const { handleSubmit, submitting, book } = this.props;
+    const { handleSubmit, submitting, selectedBook } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <FieldContainer>
           <Label htmlFor="title">Title</Label>
-          <Field name="title" component="input" type="text" />
+          <Field name="title" component="input" type="text" value={selectedBook.title} />
         </FieldContainer>
         <FieldContainer>
           <Label htmlFor="subtitle">Subtitle</Label>
@@ -65,8 +83,8 @@ class BookForm extends Component {
           <Label htmlFor="url">Publisher URL</Label>
           <Field name="url" component="input" type="text" />
         </FieldContainer>
-        {book.praise.map((singlePraise, index) => (
-          <div>
+        {!!selectedBook.praise.length && selectedBook.praise.map((singlePraise, index) => (
+          <div key={singlePraise._id}>
             <FieldContainer>
               <Label htmlFor={`quote${index}`}>{`Quote ${index + 1}`}</Label>
               <FieldTextArea name={`quote${index}`} component="textarea" type="text" />
@@ -86,17 +104,22 @@ class BookForm extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  title: selectFormDataField('books', 'title'),
-  subtitle: selectFormDataField('books', 'subtitle'),
-  imgSrc: selectFormDataField('books', 'imgSrc'),
-  description: selectFormDataField('books', 'description'),
-  publisher: selectFormDataField('books', 'publisher'),
-  url: selectFormDataField('books', 'url'),
+  title: selectFormDataField('book', 'title'),
+  subtitle: selectFormDataField('book', 'subtitle'),
+  imgSrc: selectFormDataField('book', 'imgSrc'),
+  description: selectFormDataField('book', 'description'),
+  publisher: selectFormDataField('book', 'publisher'),
+  url: selectFormDataField('book', 'url'),
+  selectedBook: selectSelectedBook(),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchBook: (bookId) => dispatch(getOneBook(bookId)),
 });
 
 const withReducer = injectReducer({ key: 'form', reducer });
 
-const withConnect = connect(mapStateToProps);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 const withForm = reduxForm({ form: 'book' });
 

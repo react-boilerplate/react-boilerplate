@@ -1,6 +1,8 @@
 import {
   GET_BOOKS,
   SET_BOOKS,
+  GET_ONE_BOOK,
+  SET_ONE_BOOK,
   DELETE_BOOK,
   SET_PRAISE,
   SET_DESCRIPTION,
@@ -20,20 +22,30 @@ export const setBooks = (books) => ({
   books,
 });
 
+export const getOneBook = (bookId) => ({
+  type: GET_ONE_BOOK,
+  bookId,
+});
+
+export const setOneBook = (book) => ({
+  type: SET_ONE_BOOK,
+  book,
+});
+
 export const deleteBook = (bookId) => ({
   type: DELETE_BOOK,
   bookId,
 });
 
-export const setPraise = (isbn, praise) => ({
+export const setPraise = (id, praise) => ({
   type: SET_PRAISE,
-  isbn,
+  id,
   praise,
 });
 
-export const setDescription = (isbn, description) => ({
+export const setDescription = (id, description) => ({
   type: SET_DESCRIPTION,
-  isbn,
+  id,
   description,
 });
 
