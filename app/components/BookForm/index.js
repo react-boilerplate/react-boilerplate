@@ -10,7 +10,7 @@ import { FieldContainer, Label, Field, FieldTextArea, ButtonContainer } from './
 import Button from '../common/Button';
 import { selectFormDataField } from '../../containers/FormPage/selectors';
 import { selectSelectedBook } from '../../containers/App/selectors';
-import { getOneBook } from '../../containers/App/actions';
+import { getOneBook, createOrUpdateBook, addPraise } from '../../containers/App/actions';
 
 /*
   title: { type: String, required: true },
@@ -28,7 +28,8 @@ import { getOneBook } from '../../containers/App/actions';
 class BookForm extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
-    fetchBook: PropTypes.func.isRequired,
+    dispatchFetchBook: PropTypes.func.isRequired,
+    dispatchAddPraise: PropTypes.func.isRequired,
     dispatch: PropTypes.func.isRequired,
     change: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired,
@@ -37,26 +38,30 @@ class BookForm extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchBook(this.props.id);
+    this.firstLoad = true;
+    this.props.dispatchFetchBook(this.props.id);
   }
 
   componentWillReceiveProps({ selectedBook, dispatch, change }) {
-    const selectedBookProps = keys(selectedBook);
-    for (let i = 0; i < selectedBookProps.length; i += 1) {
-      dispatch(change(selectedBookProps[i], selectedBook[selectedBookProps[i]]));
+    if (this.firstLoad) {
+      const selectedBookProps = keys(selectedBook);
+      for (let i = 0; i < selectedBookProps.length; i += 1) {
+        dispatch(change(selectedBookProps[i], selectedBook[selectedBookProps[i]]));
+      }
+      selectedBook.praise.forEach((singlePraise, index) => {
+        dispatch(change(`quote${index}`, singlePraise.quote));
+        dispatch(change(`quoteBy${index}`, singlePraise.quoteBy));
+      });
+      this.firstLoad = false;
     }
-    selectedBook.praise.forEach((singlePraise, index) => {
-      dispatch(change(`quote${index}`, singlePraise.quote));
-      dispatch(change(`quoteBy${index}`, singlePraise.quoteBy));
-    });
   }
 
   addPraise = () => {
-
+    this.props.dispatchAddPraise();
   }
 
   render() {
-    const { handleSubmit, submitting, selectedBook } = this.props;
+    const { submitting, selectedBook, handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <FieldContainer>
@@ -96,6 +101,9 @@ class BookForm extends Component {
           </div>
         ))}
         <ButtonContainer>
+          <Button type="button" onClick={this.addPraise}>Add Praise</Button>
+        </ButtonContainer>
+        <ButtonContainer>
           <Button type="submit" disabled={submitting}>Submit</Button>
         </ButtonContainer>
       </form>
@@ -114,7 +122,9 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchBook: (bookId) => dispatch(getOneBook(bookId)),
+  dispatchFetchBook: (bookId) => dispatch(getOneBook(bookId)),
+  onSubmit: (bookValues) => dispatch(createOrUpdateBook(bookValues)),
+  dispatchAddPraise: () => dispatch(addPraise()),
 });
 
 const withReducer = injectReducer({ key: 'form', reducer });

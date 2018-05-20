@@ -27,4 +27,5 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 25px;
+  margin-bottom: 25px;
 `;

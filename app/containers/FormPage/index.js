@@ -1,25 +1,16 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
 import BookForm from '../../components/BookForm';
 import { FormWrapper } from './styled';
 
-class FormPage extends Component {
-  static propTypes = {
-    match: PropTypes.object.isRequired,
-  }
+const FormPage = (props) => (
+  <FormWrapper>
+    <BookForm id={props.match.params.id} />
+  </FormWrapper>
+);
 
-  handleSubmit = (evt) => {
-    evt.preventDefault();
-    console.log(evt.target.title.value);
-  }
-
-  render() {
-    return (
-      <FormWrapper>
-        <BookForm handleSubmit={this.handleSubmit} id={this.props.match.params.id} />
-      </FormWrapper>
-    );
-  }
-}
+FormPage.propTypes = {
+  match: PropTypes.object.isRequired,
+};
 
 export default FormPage;
