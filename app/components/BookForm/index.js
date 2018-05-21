@@ -8,7 +8,6 @@ import keys from 'lodash/keys';
 import injectReducer from 'utils/injectReducer';
 import { FieldContainer, Label, Field, FieldTextArea, ButtonContainer } from './styled';
 import Button from '../common/Button';
-import { selectFormDataField } from '../../containers/FormPage/selectors';
 import { selectSelectedBook } from '../../containers/App/selectors';
 import { getOneBook, createOrUpdateBook, addPraise } from '../../containers/App/actions';
 
@@ -112,12 +111,6 @@ class BookForm extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  title: selectFormDataField('book', 'title'),
-  subtitle: selectFormDataField('book', 'subtitle'),
-  imgSrc: selectFormDataField('book', 'imgSrc'),
-  description: selectFormDataField('book', 'description'),
-  publisher: selectFormDataField('book', 'publisher'),
-  url: selectFormDataField('book', 'url'),
   selectedBook: selectSelectedBook(),
 });
 
