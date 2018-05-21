@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 import { ListContainer, ListItem, ListItemHeader, ListItemSubHeader, ListItemContent, SubHeaderContainer } from './styled';
-import { Anchor } from '../common';
+import { Anchor, Link } from '../common';
 import DeleteButton from '../common/DeleteButton';
 import EditButton from '../common/EditButton';
 
@@ -39,6 +39,11 @@ class List extends Component {
             <ListItemContent>{item.excerpt}</ListItemContent>
           </ListItem>
         ))}
+        <ListItem>
+          <Link to="/articles">
+            <ListItemHeader>Add Article</ListItemHeader>
+          </Link>
+        </ListItem>
       </ListContainer>
     );
   }
