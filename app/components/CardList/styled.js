@@ -20,7 +20,7 @@ export const CardWrapper = styled.div`
   background: url(${({ src }) => src});
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: ${({ backgroundSize }) => backgroundSize || 'cover'};
   cursor: pointer;
   display: flex;
   flex-direction: column-reverse;

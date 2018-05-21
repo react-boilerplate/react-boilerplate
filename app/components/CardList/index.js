@@ -11,6 +11,7 @@ import {
 import { Link } from '../common';
 import DeleteButton from '../common/DeleteButton';
 import EditButton from '../common/EditButton';
+import Add from '../../images/add-item.svg';
 
 export default class CardList extends Component {
   static propTypes = {
@@ -52,6 +53,9 @@ export default class CardList extends Component {
             </Link>
           </CardFlexContainer>
         ))}
+        <Link to="/books/new">
+          <CardWrapper src={Add} backgroundSize="auto" />
+        </Link>
       </CardsContainer>
     );
   }
