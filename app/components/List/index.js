@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { ListContainer, ListItem, ListItemHeader, ListItemSubHeader, ListItemContent, SubHeaderContainer } from './styled';
 import { Anchor } from '../common';
 import DeleteButton from '../common/DeleteButton';
+import EditButton from '../common/EditButton';
 
 class List extends Component {
   static propTypes = {
@@ -10,11 +11,11 @@ class List extends Component {
     handleDelete: PropTypes.func.isRequired,
   }
 
-  state = { showDelete: '' };
+  state = { showButtons: '' };
 
-  handleMouseOver = (title) => this.setState({ showDelete: title });
+  handleMouseOver = (title) => this.setState({ showButtons: title });
 
-  handleMouseLeave = () => this.setState({ showDelete: '' });
+  handleMouseLeave = () => this.setState({ showButtons: '' });
 
   handleDelete = (evt, id) => {
     evt.preventDefault();
@@ -26,7 +27,8 @@ class List extends Component {
       !!this.props.listArr.length && <ListContainer>
         {this.props.listArr.map((item) => (
           <ListItem onMouseEnter={() => this.handleMouseOver(item.title)} onMouseLeave={this.handleMouseLeave} key={item.title}>
-            {this.state.showDelete === item.title && <DeleteButton onDelete={(evt) => this.handleDelete(evt, item._id)} />}
+            {this.state.showButtons === item.title && <DeleteButton onClick={(evt) => this.handleDelete(evt, item._id)} />}
+            {this.state.showButtons === item.title && <EditButton onClick={(evt) => this.handleDelete(evt, item._id)} />}
             <Anchor href={item.href} target="_blank">
               <ListItemHeader>{item.title}</ListItemHeader>
             </Anchor>

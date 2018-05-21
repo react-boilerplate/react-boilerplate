@@ -10,6 +10,7 @@ import {
 } from './styled';
 import { Link } from '../common';
 import DeleteButton from '../common/DeleteButton';
+import EditButton from '../common/EditButton';
 
 export default class CardList extends Component {
   static propTypes = {
@@ -21,11 +22,11 @@ export default class CardList extends Component {
 
   static truncateDescription = (description) => `${description.substring(0, 130).replace(/"/g, '')}...`;
 
-  state = { showDelete: '' };
+  state = { showButtons: '' };
 
-  handleMouseOver = (id) => this.setState({ showDelete: id });
+  handleMouseOver = (id) => this.setState({ showButtons: id });
 
-  handleMouseLeave = () => this.setState({ showDelete: '' });
+  handleMouseLeave = () => this.setState({ showButtons: '' });
 
   handleDelete = (evt, id) => {
     evt.preventDefault();
@@ -39,7 +40,10 @@ export default class CardList extends Component {
           <CardFlexContainer key={card._id} onMouseEnter={() => this.handleMouseOver(card._id)} onMouseLeave={this.handleMouseLeave}>
             <Link to={`/books/${card._id}`} key={card._id}>
               <CardWrapper src={card.imgSrc}>
-                {this.state.showDelete === card._id && <DeleteButton onDelete={(evt) => this.handleDelete(evt, card._id)} />}
+                {this.state.showButtons === card._id && <DeleteButton onClick={(evt) => this.handleDelete(evt, card._id)} />}
+                {this.state.showButtons === card._id && <Link to={`/books/${card._id}/edit`}>
+                  <EditButton />
+                </Link>}
                 <TextWrapper>
                   <CardHeader>{CardList.truncateHeader(card.title)}</CardHeader>
                   <CardText>{CardList.truncateDescription(card.description)}</CardText>
