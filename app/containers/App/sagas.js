@@ -65,12 +65,8 @@ export function* createOrUpdateBook({ bookValues }) {
 
 export function* deleteBook({ bookId }) {
   try {
-    const deleted = yield call(request, `/api/books/${bookId}`, { method: 'delete' });
-    if (!deleted.ok) {
-      throw new Error('Delete book failed: Something went wrong in the database');
-    } else {
-      yield call(getBooks);
-    }
+    yield call(request, `/api/books/${bookId}`, { method: 'delete' });
+    yield call(getBooks);
   } catch (err) {
     console.error(err);
   }

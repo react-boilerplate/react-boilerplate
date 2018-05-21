@@ -9,10 +9,10 @@ const createGetOneRoute = (router, Model) => router.get('/:id', async (req, res)
 });
 
 const createPostRoute = (router, Model) => router.post('/', async (req, res) => {
-  const article = await Model.find({
+  const item = await Model.find({
     title: req.body.title,
   });
-  if (article) res.status(400).json({ ok: 0 });
+  if (item.length) res.status(400).json({ ok: 0 });
   else res.status(201).json(await Model.create(req.body));
 });
 
@@ -29,7 +29,7 @@ const createDeleteRoute = (router, Model) => router.delete('/:id', async (req, r
     _id: req.params.id,
   });
   if (!deleted.ok) res.sendStatus(400);
-  else res.status(204).json(deleted);
+  else res.sendStatus(204);
 });
 
 const createAllRoutes = (router, Model) => {

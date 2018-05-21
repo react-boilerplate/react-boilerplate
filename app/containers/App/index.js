@@ -52,6 +52,7 @@ class App extends Component {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/about" component={AboutPage} />
           <Route exact path="/books" component={BookListPage} />
+          <Route exact path="/books/new" component={FormPage} />
           <Route exact path="/books/:id" component={BookPage} />
           <Route exact path="/books/:id/edit" component={FormPage} />
           <Route exact path="/articles" component={ArticlesPage} />

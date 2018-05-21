@@ -7,9 +7,7 @@ import {
   SET_ONE_BOOK,
   DELETE_BOOK,
   CREATE_OR_UPDATE_BOOK,
-  SET_PRAISE,
   ADD_PRAISE,
-  SET_DESCRIPTION,
   GET_AUTHOR,
   SET_AUTHOR,
   GET_ARTICLES,
@@ -21,10 +19,18 @@ import {
 const initialState = fromJS({
   books: [],
   selectedBook: {
-    praise: [],
+    title: '',
+    subtitle: '',
+    imgSrc: '',
+    isbn: 0,
+    description: '',
+    publisher: '',
+    url: '',
+    praise: [
+      { _id: `${Date.now()}-q1`, quote: '', quoteBy: '' },
+      { _id: `${Date.now()}-q2`, quote: '', quoteBy: '' },
+    ],
   },
-  praise: {},
-  description: {},
   author: {},
   articles: [],
 });
@@ -43,16 +49,12 @@ function reducer(state = initialState, action) {
       return state;
     case CREATE_OR_UPDATE_BOOK:
       return state;
-    case SET_PRAISE:
-      return state.setIn(['praise', action.id], action.praise);
     case ADD_PRAISE:
       return state.setIn(['selectedBook', 'praise'], state.getIn(['selectedBook', 'praise']).push(fromJS({
         _id: `${Date.now()}`,
         quote: '',
         quoteBy: '',
       })));
-    case SET_DESCRIPTION:
-      return state.setIn(['description', action.id], action.description);
     case GET_AUTHOR:
       return state;
     case SET_AUTHOR:

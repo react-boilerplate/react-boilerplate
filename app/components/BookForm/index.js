@@ -11,19 +11,6 @@ import Button from '../common/Button';
 import { selectSelectedBook } from '../../containers/App/selectors';
 import { getOneBook, createOrUpdateBook, addPraise } from '../../containers/App/actions';
 
-/*
-  title: { type: String, required: true },
-  subtitle: String,
-  imgSrc: { type: String, required: true },
-  isbn: Number,
-  description: String,
-  publisher: String,
-  url: String,
-  praise: [
-    { quote: String, quoteBy: String },
-  ],
-*/
-
 class BookForm extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
@@ -33,12 +20,12 @@ class BookForm extends Component {
     change: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired,
     selectedBook: PropTypes.object.isRequired,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
   }
 
   componentDidMount() {
     this.firstLoad = true;
-    this.props.dispatchFetchBook(this.props.id);
+    if (this.props.id) this.props.dispatchFetchBook(this.props.id);
   }
 
   componentWillReceiveProps({ selectedBook, dispatch, change }) {

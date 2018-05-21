@@ -5,9 +5,7 @@ import {
   SET_ONE_BOOK,
   DELETE_BOOK,
   CREATE_OR_UPDATE_BOOK,
-  SET_PRAISE,
   ADD_PRAISE,
-  SET_DESCRIPTION,
   GET_AUTHOR,
   SET_AUTHOR,
   GET_ARTICLES,
@@ -44,20 +42,8 @@ export const createOrUpdateBook = (bookValues) => ({
   bookValues,
 });
 
-export const setPraise = (id, praise) => ({
-  type: SET_PRAISE,
-  id,
-  praise,
-});
-
 export const addPraise = () => ({
   type: ADD_PRAISE,
-});
-
-export const setDescription = (id, description) => ({
-  type: SET_DESCRIPTION,
-  id,
-  description,
 });
 
 export const getAuthor = () => ({
