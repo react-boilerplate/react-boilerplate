@@ -122,12 +122,8 @@ export function* createOrUpdateArticle({ articleValues }) {
 
 export function* deleteArticle({ articleId }) {
   try {
-    const deleted = yield call(request, `/api/articles/${articleId}`, { method: 'delete' });
-    if (!deleted.ok) {
-      throw new Error('Delete article failed: Something went wrong in the database');
-    } else {
-      yield call(getArticles);
-    }
+    yield call(request, `/api/articles/${articleId}`, { method: 'delete' });
+    yield call(getArticles);
   } catch (err) {
     console.error(err);
   }
