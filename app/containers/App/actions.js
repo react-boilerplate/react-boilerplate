@@ -9,7 +9,10 @@ import {
   GET_AUTHOR,
   SET_AUTHOR,
   GET_ARTICLES,
+  GET_ONE_ARTICLE,
+  SET_ONE_ARTICLE,
   SET_ARTICLES,
+  CREATE_OR_UPDATE_ARTICLE,
   DELETE_ARTICLE,
 } from './constants';
 
@@ -59,9 +62,24 @@ export const getArticles = () => ({
   type: GET_ARTICLES,
 });
 
+export const getOneArticle = (articleId) => ({
+  type: GET_ONE_ARTICLE,
+  articleId,
+});
+
+export const setOneArticle = (article) => ({
+  type: SET_ONE_ARTICLE,
+  article,
+});
+
 export const setArticles = (articles) => ({
   type: SET_ARTICLES,
   articles,
+});
+
+export const createOrUpdateArticle = (articleValues) => ({
+  type: CREATE_OR_UPDATE_ARTICLE,
+  articleValues,
 });
 
 export const deleteArticle = (articleId) => ({

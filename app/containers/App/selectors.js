@@ -39,6 +39,11 @@ const selectArticles = () => createSelector(
   (homeState) => homeState.get('articles').toJS()
 );
 
+const selectSelectedArticle = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('selectedArticle').toJS()
+);
+
 export {
   makeSelectLocation,
   selectHome,
@@ -48,4 +53,5 @@ export {
   selectSelectedBook,
   selectAuthor,
   selectArticles,
+  selectSelectedArticle,
 };

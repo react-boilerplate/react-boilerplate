@@ -3,8 +3,8 @@ import moment from 'moment';
 import keys from 'lodash/keys';
 
 import request from 'utils/request';
-import { GET_BOOKS, GET_ONE_BOOK, CREATE_OR_UPDATE_BOOK, DELETE_BOOK, GET_AUTHOR, GET_ARTICLES, DELETE_ARTICLE } from './constants';
-import { setBooks, setAuthor, setArticles, setOneBook } from './actions';
+import { GET_BOOKS, GET_ONE_BOOK, CREATE_OR_UPDATE_BOOK, DELETE_BOOK, GET_AUTHOR, GET_ARTICLES, GET_ONE_ARTICLE, CREATE_OR_UPDATE_ARTICLE, DELETE_ARTICLE } from './constants';
+import { setBooks, setAuthor, setArticles, setOneBook, setOneArticle } from './actions';
 
 export function* getBooks() {
   try {
@@ -92,6 +92,34 @@ export function* getArticles() {
   }
 }
 
+export function* getOneArticle({ articleId }) {
+  try {
+    const article = yield call(request, `/api/articles/${articleId}`);
+    article[0].date = moment(article[0].date).format('L');
+    yield put(setOneArticle(article[0]));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export function* createOrUpdateArticle({ articleValues }) {
+  const data = articleValues.toJS();
+  const body = JSON.stringify(data);
+  const reqUrl = `/api/articles/${data._id || ''}`;
+  const createdOrUpdated = yield call(request, reqUrl, {
+    method: data._id ? 'put' : 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body,
+  });
+  if (!createdOrUpdated._id) {
+    throw new Error('Update article failed: Something went wrong in the database');
+  } else {
+    yield call(getOneArticle, { articleId: data._id });
+  }
+}
+
 export function* deleteArticle({ articleId }) {
   try {
     const deleted = yield call(request, `/api/articles/${articleId}`, { method: 'delete' });
@@ -113,6 +141,8 @@ export default function* rootSaga() {
     takeLatest(DELETE_BOOK, deleteBook),
     takeLatest(GET_AUTHOR, getAuthor),
     takeLatest(GET_ARTICLES, getArticles),
+    takeLatest(GET_ONE_ARTICLE, getOneArticle),
+    takeLatest(CREATE_OR_UPDATE_ARTICLE, createOrUpdateArticle),
     takeLatest(DELETE_ARTICLE, deleteArticle),
   ];
 }

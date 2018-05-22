@@ -11,14 +11,26 @@ import {
   GET_AUTHOR,
   SET_AUTHOR,
   GET_ARTICLES,
+  GET_ONE_ARTICLE,
+  SET_ONE_ARTICLE,
   SET_ARTICLES,
+  CREATE_OR_UPDATE_ARTICLE,
   DELETE_ARTICLE,
 } from './constants';
 
 // The initial state of the App
+/*
+  title: String,
+  publication: String,
+  date: String,
+  excerpt: String,
+  url: String,
+*/
+
 const initialState = fromJS({
   books: [],
   selectedBook: {
+    _id: '',
     title: '',
     subtitle: '',
     imgSrc: '',
@@ -30,6 +42,14 @@ const initialState = fromJS({
       { _id: `${Date.now()}-q1`, quote: '', quoteBy: '' },
       { _id: `${Date.now()}-q2`, quote: '', quoteBy: '' },
     ],
+  },
+  selectedArticle: {
+    _id: '',
+    title: '',
+    publication: '',
+    date: '',
+    excerpt: '',
+    url: '',
   },
   author: {},
   articles: [],
@@ -61,8 +81,14 @@ function reducer(state = initialState, action) {
       return state.set('author', fromJS(action.author));
     case GET_ARTICLES:
       return state;
+    case GET_ONE_ARTICLE:
+      return state;
+    case SET_ONE_ARTICLE:
+      return state.set('selectedArticle', fromJS(action.article));
     case SET_ARTICLES:
       return state.set('articles', fromJS(action.articles));
+    case CREATE_OR_UPDATE_ARTICLE:
+      return state;
     case DELETE_ARTICLE:
       return state;
     default:

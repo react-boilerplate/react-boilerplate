@@ -53,9 +53,11 @@ class App extends Component {
           <Route exact path="/about" component={AboutPage} />
           <Route exact path="/books" component={BookListPage} />
           <Route exact path="/books/new" component={FormPage} />
+          <Route exact path="/articles/new" component={FormPage} />
           <Route exact path="/books/:id" component={BookPage} />
           <Route exact path="/books/:id/edit" component={FormPage} />
           <Route exact path="/articles" component={ArticlesPage} />
+          <Route exact path="/articles/:id/edit" component={FormPage} />
           <Route component={NotFoundPage} />
         </Switch>
         <Footer />

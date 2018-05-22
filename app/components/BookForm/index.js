@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import keys from 'lodash/keys';
 
 import injectReducer from 'utils/injectReducer';
-import { FieldContainer, Label, Field, FieldTextArea, ButtonContainer } from './styled';
+import { FieldContainer, Label, Field, FieldTextArea, ButtonContainer } from '../common';
 import Button from '../common/Button';
 import { selectSelectedBook } from '../../containers/App/selectors';
 import { getOneBook, createOrUpdateBook, addPraise } from '../../containers/App/actions';

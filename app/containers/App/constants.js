@@ -15,8 +15,8 @@ export const GET_BOOKS = 'GET_BOOKS';
 export const SET_BOOKS = 'SET_BOOKS';
 export const GET_ONE_BOOK = 'GET_ONE_BOOK';
 export const SET_ONE_BOOK = 'SET_ONE_BOOK';
-export const DELETE_BOOK = 'DELETE_BOOK';
 export const CREATE_OR_UPDATE_BOOK = 'CREATE_OR_UPDATE_BOOK';
+export const DELETE_BOOK = 'DELETE_BOOK';
 
 export const ADD_PRAISE = 'ADD_PRAISE';
 
@@ -24,5 +24,8 @@ export const GET_AUTHOR = 'GET_AUTHOR';
 export const SET_AUTHOR = 'SET_AUTHOR';
 
 export const GET_ARTICLES = 'GET_ARTICLES';
+export const GET_ONE_ARTICLE = 'GET_ONE_ARTICLE';
+export const SET_ONE_ARTICLE = 'SET_ONE_ARTICLE';
 export const SET_ARTICLES = 'SET_ARTICLES';
+export const CREATE_OR_UPDATE_ARTICLE = 'CREATE_OR_UPDATE_ARTICLE';
 export const DELETE_ARTICLE = 'DELETE_ARTICLE';
