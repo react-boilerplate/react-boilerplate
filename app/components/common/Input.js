@@ -1,16 +1,17 @@
 import React, { PropTypes } from 'react';
 
+import { Field } from './index';
+
 const Input = ({
   label,
   type,
-  name,
   input,
   meta: { touched, error, warning },
 }) => (
   <div>
     <label htmlFor={name}>{label}</label>
     <div>
-      <input name={name} placeholder={label} type={type} />
+      <Field {...input} placeholder={label} type={type} />
       {touched &&
         ((error && <span>{error}</span>) ||
           (warning && <span>{warning}</span>))}
@@ -19,10 +20,9 @@ const Input = ({
 );
 
 Input.propTypes = {
-  input: PropTypes.input.isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
 };
 

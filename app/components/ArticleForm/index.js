@@ -10,6 +10,7 @@ import { FieldContainer, Label, Field, FieldTextArea, ButtonContainer } from '..
 import Button from '../common/Button';
 import { selectSelectedArticle } from '../../containers/App/selectors';
 import { getOneArticle, createOrUpdateArticle } from '../../containers/App/actions';
+// import Input from '../common/Input';
 
 class ArticleForm extends Component {
   static propTypes = {
