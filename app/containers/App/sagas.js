@@ -53,10 +53,11 @@ export function* createOrUpdateBook({ bookValues }) {
       },
       body,
     });
-    if (!createdOrUpdated.ok) {
+    if (!createdOrUpdated.ok && !createdOrUpdated._id) {
       throw new Error('Update book failed: Something went wrong in the database');
     } else {
       yield call(getOneBook, { bookId: data._id });
+      yield call(getBooks);
     }
   } catch (err) {
     console.error(err);
@@ -113,9 +114,10 @@ export function* createOrUpdateArticle({ articleValues }) {
     },
     body,
   });
-  if (!createdOrUpdated.ok) {
+  if (!createdOrUpdated.ok && !createdOrUpdated._id) {
     throw new Error('Update article failed: Something went wrong in the database');
   } else {
+    yield call(getArticles);
     yield call(getOneArticle, { articleId: data._id });
   }
 }
