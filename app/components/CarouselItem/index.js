@@ -16,7 +16,7 @@ class CarouselItem extends Component {
     imgSrc: PropTypes.string.isRequired,
     praise: PropTypes.array.isRequired,
     description: PropTypes.string.isRequired,
-    isbn: PropTypes.number.isRequired,
+    _id: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
   };
 
@@ -32,11 +32,11 @@ class CarouselItem extends Component {
 
   setWindowWidth = () => this.setState({ windowWidth: window.innerWidth });
 
-  handleBookClick = (isbn) => this.props.history.push(`/books/${isbn}`);
+  handleBookClick = (id) => this.props.history.push(`/books/${id}`);
 
   /* eslint-disable no-extra-boolean-cast */
   render() {
-    const { isbn, imgSrc, praise, description } = this.props;
+    const { _id, imgSrc, praise, description } = this.props;
     const { windowWidth } = this.state;
     const { length } = description;
     let substringCutoff = length > 300 ? length - 100 : length;
@@ -46,7 +46,7 @@ class CarouselItem extends Component {
     if (windowWidth <= 400) substringCutoff = 100;
     return (
       <CarouselItemContainer>
-        <BookContainer onClick={() => this.handleBookClick(isbn)}>
+        <BookContainer onClick={() => this.handleBookClick(_id)}>
           <Book src={imgSrc} />
         </BookContainer>
         {!!praise.length ? <QuotesContainer>

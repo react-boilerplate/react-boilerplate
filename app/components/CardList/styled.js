@@ -7,6 +7,11 @@ export const CardsContainer = styled.div`
   padding: 20px 5%;
 `;
 
+export const CardFlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const CardWrapper = styled.div`
   width: 275px;
   height: 418px;
@@ -15,11 +20,12 @@ export const CardWrapper = styled.div`
   background: url(${({ src }) => src});
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: ${({ backgroundSize }) => backgroundSize || 'cover'};
   cursor: pointer;
   display: flex;
   flex-direction: column-reverse;
   margin: 5px;
+  position: relative;
 `;
 
 export const TextWrapper = styled.div`

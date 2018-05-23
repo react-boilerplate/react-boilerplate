@@ -19,9 +19,10 @@ import { compose } from 'redux';
 import HomePage from 'containers/HomePage/Loadable';
 import BookListPage from 'containers/BookListPage/Loadable';
 import BookPage from 'containers/BookPage/Loadable';
+import FormPage from 'containers/FormPage/Loadable';
 import ArticlesPage from 'containers/ArticlesPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import About from 'containers/About';
+import AboutPage from 'containers/AboutPage/Loadable';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import reducer from './reducer';
@@ -49,10 +50,14 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/about" component={About} />
+          <Route exact path="/about" component={AboutPage} />
           <Route exact path="/books" component={BookListPage} />
-          <Route exact path="/books/:isbn" component={BookPage} />
+          <Route exact path="/books/new" component={FormPage} />
+          <Route exact path="/articles/new" component={FormPage} />
+          <Route exact path="/books/:id" component={BookPage} />
+          <Route exact path="/books/:id/edit" component={FormPage} />
           <Route exact path="/articles" component={ArticlesPage} />
+          <Route exact path="/articles/:id/edit" component={FormPage} />
           <Route component={NotFoundPage} />
         </Switch>
         <Footer />
