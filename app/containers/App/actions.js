@@ -16,6 +16,9 @@ import {
   DELETE_ARTICLE,
   CLEAR_ONE_BOOK,
   CLEAR_ONE_ARTICLE,
+  LOGIN,
+  LOGOUT,
+  SET_USER,
 } from './constants';
 
 export const getBooks = () => ({
@@ -95,4 +98,19 @@ export const createOrUpdateArticle = (articleValues) => ({
 export const deleteArticle = (articleId) => ({
   type: DELETE_ARTICLE,
   articleId,
+});
+
+export const login = (username, password) => ({
+  type: LOGIN,
+  username,
+  password,
+});
+
+export const logout = () => ({
+  type: LOGOUT,
+});
+
+export const setUser = (bool) => ({
+  type: SET_USER,
+  bool,
 });

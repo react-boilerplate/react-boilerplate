@@ -23,6 +23,7 @@ import FormPage from 'containers/FormPage/Loadable';
 import ArticlesPage from 'containers/ArticlesPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import AboutPage from 'containers/AboutPage/Loadable';
+import LoginPage from 'containers/LoginPage/Loadable';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import reducer from './reducer';
@@ -58,6 +59,7 @@ class App extends Component {
           <Route exact path="/books/:id/edit" component={FormPage} />
           <Route exact path="/articles" component={ArticlesPage} />
           <Route exact path="/articles/:id/edit" component={FormPage} />
+          <Route exact path="/login" component={LoginPage} />
           <Route component={NotFoundPage} />
         </Switch>
         <Footer />
@@ -76,8 +78,9 @@ const withReducer = injectReducer({ key: 'home', reducer });
 const withSaga = injectSaga({ key: 'home', saga });
 const withConnect = connect(null, mapDispatchToProps);
 
-export default withRouter(compose(
+export default compose(
+  withRouter,
   withReducer,
   withSaga,
   withConnect,
-)(App));
+)(App);

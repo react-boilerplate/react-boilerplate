@@ -3,8 +3,8 @@ import moment from 'moment';
 import keys from 'lodash/keys';
 
 import request from 'utils/request';
-import { GET_BOOKS, GET_ONE_BOOK, CREATE_OR_UPDATE_BOOK, DELETE_BOOK, GET_AUTHOR, GET_ARTICLES, GET_ONE_ARTICLE, CREATE_OR_UPDATE_ARTICLE, DELETE_ARTICLE } from './constants';
-import { setBooks, setAuthor, setArticles, setOneBook, setOneArticle } from './actions';
+import { GET_BOOKS, GET_ONE_BOOK, CREATE_OR_UPDATE_BOOK, DELETE_BOOK, GET_AUTHOR, GET_ARTICLES, GET_ONE_ARTICLE, CREATE_OR_UPDATE_ARTICLE, DELETE_ARTICLE, LOGIN } from './constants';
+import { setBooks, setAuthor, setArticles, setOneBook, setOneArticle, setUser } from './actions';
 
 export function* getBooks() {
   try {
@@ -131,6 +131,25 @@ export function* deleteArticle({ articleId }) {
   }
 }
 
+export function* login({ username, password }) {
+  try {
+    console.log(username, password);
+    yield call(request, '/api/login', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    });
+    yield put(setUser(true));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export default function* rootSaga() {
   yield [
     takeLatest(GET_BOOKS, getBooks),
@@ -142,5 +161,6 @@ export default function* rootSaga() {
     takeLatest(GET_ONE_ARTICLE, getOneArticle),
     takeLatest(CREATE_OR_UPDATE_ARTICLE, createOrUpdateArticle),
     takeLatest(DELETE_ARTICLE, deleteArticle),
+    takeLatest(LOGIN, login),
   ];
 }

@@ -18,6 +18,9 @@ import {
   DELETE_ARTICLE,
   CLEAR_ONE_BOOK,
   CLEAR_ONE_ARTICLE,
+  LOGIN,
+  LOGOUT,
+  SET_USER,
 } from './constants';
 
 // The initial state of the App
@@ -55,6 +58,7 @@ const initialState = fromJS({
   },
   author: {},
   articles: [],
+  user: false,
 });
 
 function reducer(state = initialState, action) {
@@ -97,6 +101,12 @@ function reducer(state = initialState, action) {
       return state;
     case DELETE_ARTICLE:
       return state;
+    case LOGIN:
+      return state;
+    case LOGOUT:
+      return state;
+    case SET_USER:
+      return state.set('user', action.bool);
     default:
       return state;
   }
