@@ -113,7 +113,7 @@ export function* createOrUpdateArticle({ articleValues }) {
     },
     body,
   });
-  if (!createdOrUpdated._id) {
+  if (!createdOrUpdated.ok) {
     throw new Error('Update article failed: Something went wrong in the database');
   } else {
     yield call(getOneArticle, { articleId: data._id });

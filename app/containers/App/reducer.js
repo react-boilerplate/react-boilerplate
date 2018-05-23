@@ -16,6 +16,8 @@ import {
   SET_ARTICLES,
   CREATE_OR_UPDATE_ARTICLE,
   DELETE_ARTICLE,
+  CLEAR_ONE_BOOK,
+  CLEAR_ONE_ARTICLE,
 } from './constants';
 
 // The initial state of the App
@@ -65,6 +67,8 @@ function reducer(state = initialState, action) {
       return state;
     case SET_ONE_BOOK:
       return state.set('selectedBook', fromJS(action.book));
+    case CLEAR_ONE_BOOK:
+      return state.set('selectedBook', initialState.get('selectedBook'));
     case DELETE_BOOK:
       return state;
     case CREATE_OR_UPDATE_BOOK:
@@ -85,6 +89,8 @@ function reducer(state = initialState, action) {
       return state;
     case SET_ONE_ARTICLE:
       return state.set('selectedArticle', fromJS(action.article));
+    case CLEAR_ONE_ARTICLE:
+      return state.set('selectedArticle', initialState.get('selectedArticle'));
     case SET_ARTICLES:
       return state.set('articles', fromJS(action.articles));
     case CREATE_OR_UPDATE_ARTICLE:

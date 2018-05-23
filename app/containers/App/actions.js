@@ -14,6 +14,8 @@ import {
   SET_ARTICLES,
   CREATE_OR_UPDATE_ARTICLE,
   DELETE_ARTICLE,
+  CLEAR_ONE_BOOK,
+  CLEAR_ONE_ARTICLE,
 } from './constants';
 
 export const getBooks = () => ({
@@ -33,6 +35,10 @@ export const getOneBook = (bookId) => ({
 export const setOneBook = (book) => ({
   type: SET_ONE_BOOK,
   book,
+});
+
+export const clearOneBook = () => ({
+  type: CLEAR_ONE_BOOK,
 });
 
 export const deleteBook = (bookId) => ({
@@ -70,6 +76,10 @@ export const getOneArticle = (articleId) => ({
 export const setOneArticle = (article) => ({
   type: SET_ONE_ARTICLE,
   article,
+});
+
+export const clearOneArticle = () => ({
+  type: CLEAR_ONE_ARTICLE,
 });
 
 export const setArticles = (articles) => ({
