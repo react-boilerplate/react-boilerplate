@@ -37,10 +37,15 @@ module.exports = (app, options) => {
     const match = await bcrypt.compare(password, user.password);
     if (match) {
       req.session.user = user;
-      res.sendStatus(201);
+      res.status(201).json({ ok: 1 });
     } else {
-      res.sendStatus(401);
+      res.status(401).json({ ok: 0 });
     }
+  });
+
+  app.get('/api/whoami', (req, res) => {
+    if (req.session.user) res.json({ ok: 1 });
+    else res.json({ ok: 0 });
   });
 
   app.get('/api/logout', (req, res) => {

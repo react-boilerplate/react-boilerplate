@@ -3,7 +3,7 @@ import moment from 'moment';
 import keys from 'lodash/keys';
 
 import request from 'utils/request';
-import { GET_BOOKS, GET_ONE_BOOK, CREATE_OR_UPDATE_BOOK, DELETE_BOOK, GET_AUTHOR, GET_ARTICLES, GET_ONE_ARTICLE, CREATE_OR_UPDATE_ARTICLE, DELETE_ARTICLE, LOGIN } from './constants';
+import { GET_BOOKS, GET_ONE_BOOK, CREATE_OR_UPDATE_BOOK, DELETE_BOOK, GET_AUTHOR, GET_ARTICLES, GET_ONE_ARTICLE, CREATE_OR_UPDATE_ARTICLE, DELETE_ARTICLE, LOGIN, WHO_AM_I } from './constants';
 import { setBooks, setAuthor, setArticles, setOneBook, setOneArticle, setUser } from './actions';
 
 export function* getBooks() {
@@ -133,8 +133,7 @@ export function* deleteArticle({ articleId }) {
 
 export function* login({ username, password }) {
   try {
-    console.log(username, password);
-    yield call(request, '/api/login', {
+    const loginResult = yield call(request, '/api/login', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -144,7 +143,17 @@ export function* login({ username, password }) {
         password,
       }),
     });
-    yield put(setUser(true));
+    if (loginResult.ok) yield put(setUser(true));
+    else throw new Error('Login failed');
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export function* whoAmI() {
+  try {
+    const whoAmIResult = yield call(request, '/api/whoami');
+    if (whoAmIResult.ok) yield put(setUser(true));
   } catch (err) {
     console.error(err);
   }
@@ -162,5 +171,6 @@ export default function* rootSaga() {
     takeLatest(CREATE_OR_UPDATE_ARTICLE, createOrUpdateArticle),
     takeLatest(DELETE_ARTICLE, deleteArticle),
     takeLatest(LOGIN, login),
+    takeLatest(WHO_AM_I, whoAmI),
   ];
 }

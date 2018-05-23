@@ -17,6 +17,7 @@ import {
   CLEAR_ONE_BOOK,
   CLEAR_ONE_ARTICLE,
   LOGIN,
+  WHO_AM_I,
   LOGOUT,
   SET_USER,
 } from './constants';
@@ -104,6 +105,10 @@ export const login = (username, password) => ({
   type: LOGIN,
   username,
   password,
+});
+
+export const whoAmI = () => ({
+  type: WHO_AM_I,
 });
 
 export const logout = () => ({

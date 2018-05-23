@@ -33,5 +33,6 @@ export const CREATE_OR_UPDATE_ARTICLE = 'CREATE_OR_UPDATE_ARTICLE';
 export const DELETE_ARTICLE = 'DELETE_ARTICLE';
 
 export const LOGIN = 'LOGIN';
+export const WHO_AM_I = 'WHO_AM_I';
 export const LOGOUT = 'LOGOUT';
 export const SET_USER = 'SET_USER';

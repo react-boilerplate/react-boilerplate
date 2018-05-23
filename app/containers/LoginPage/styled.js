@@ -15,4 +15,5 @@ export const Input = styled.input`
   padding-left: 5px;
   height: 30px;
   width: 50%;
+  max-width: 400px;
 `;

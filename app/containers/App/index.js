@@ -28,18 +28,20 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import reducer from './reducer';
 import saga from './sagas';
-import { getBooks, getAuthor, getArticles } from './actions';
+import { getBooks, getAuthor, getArticles, whoAmI } from './actions';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 class App extends Component {
   static propTypes = {
+    dispatchWhoAmI: PropTypes.func.isRequired,
     dispatchGetBooks: PropTypes.func.isRequired,
     dispatchGetAuthor: PropTypes.func.isRequired,
     dispatchGetArticles: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
+    this.props.dispatchWhoAmI();
     this.props.dispatchGetBooks();
     this.props.dispatchGetAuthor();
     this.props.dispatchGetArticles();
@@ -72,6 +74,7 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchGetBooks: () => dispatch(getBooks()),
   dispatchGetAuthor: () => dispatch(getAuthor()),
   dispatchGetArticles: () => dispatch(getArticles()),
+  dispatchWhoAmI: () => dispatch(whoAmI()),
 });
 
 const withReducer = injectReducer({ key: 'home', reducer });

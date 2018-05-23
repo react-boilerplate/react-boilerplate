@@ -19,6 +19,7 @@ import {
   CLEAR_ONE_BOOK,
   CLEAR_ONE_ARTICLE,
   LOGIN,
+  WHO_AM_I,
   LOGOUT,
   SET_USER,
 } from './constants';
@@ -102,6 +103,8 @@ function reducer(state = initialState, action) {
     case DELETE_ARTICLE:
       return state;
     case LOGIN:
+      return state;
+    case WHO_AM_I:
       return state;
     case LOGOUT:
       return state;
