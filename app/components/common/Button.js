@@ -5,7 +5,7 @@ export default styled.button`
   border: 1px solid black;
   border-radius: 5px;
   font-size: 16px;
-  height: 100%;
+  height: ${({ height }) => height || '100%'};
   background-color: slategray;
   color: white;
   cursor: pointer;

@@ -9,14 +9,13 @@ import injectReducer from 'utils/injectReducer';
 import { FieldContainer, Label, Field, FieldTextArea, ButtonContainer } from '../common';
 import Button from '../common/Button';
 import { selectSelectedBook } from '../../containers/App/selectors';
-import { getOneBook, createOrUpdateBook, addPraise, clearOneBook } from '../../containers/App/actions';
+import { getOneBook, createOrUpdateBook, addPraise } from '../../containers/App/actions';
 
 class BookForm extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     dispatchFetchBook: PropTypes.func.isRequired,
     dispatchAddPraise: PropTypes.func.isRequired,
-    dispatchClearBook: PropTypes.func.isRequired,
     dispatch: PropTypes.func.isRequired,
     change: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired,
@@ -41,10 +40,6 @@ class BookForm extends Component {
       });
       this.firstLoad = false;
     }
-  }
-
-  componentWillUnmount() {
-    this.props.dispatchClearBook();
   }
 
   addPraise = () => {
@@ -110,7 +105,6 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchFetchBook: (bookId) => dispatch(getOneBook(bookId)),
   onSubmit: (bookValues) => dispatch(createOrUpdateBook(bookValues)),
   dispatchAddPraise: () => dispatch(addPraise()),
-  dispatchClearBook: () => dispatch(clearOneBook()),
 });
 
 const withReducer = injectReducer({ key: 'form', reducer });

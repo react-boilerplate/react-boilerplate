@@ -3,12 +3,12 @@ import moment from 'moment';
 import keys from 'lodash/keys';
 
 import request from 'utils/request';
-import { GET_BOOKS, GET_ONE_BOOK, CREATE_OR_UPDATE_BOOK, DELETE_BOOK, GET_AUTHOR, GET_ARTICLES, GET_ONE_ARTICLE, CREATE_OR_UPDATE_ARTICLE, DELETE_ARTICLE } from './constants';
-import { setBooks, setAuthor, setArticles, setOneBook, setOneArticle } from './actions';
+import { GET_BOOKS, GET_ONE_BOOK, CREATE_OR_UPDATE_BOOK, DELETE_BOOK, GET_AUTHOR, GET_ARTICLES, GET_ONE_ARTICLE, CREATE_OR_UPDATE_ARTICLE, DELETE_ARTICLE, LOGIN, WHO_AM_I } from './constants';
+import { setBooks, setAuthor, setArticles, setOneBook, setOneArticle, setUser, setPostPutSuccess } from './actions';
 
 export function* getBooks() {
   try {
-    const books = yield call(request, '/api/books');
+    const books = yield call(request, '/api/books', { credentials: 'same-origin' });
     yield put(setBooks(books));
   } catch (err) {
     console.error(err);
@@ -17,7 +17,7 @@ export function* getBooks() {
 
 export function* getOneBook({ bookId }) {
   try {
-    const book = yield call(request, `/api/books/${bookId}`);
+    const book = yield call(request, `/api/books/${bookId}`, { credentials: 'same-origin' });
     yield put(setOneBook(book[0]));
   } catch (err) {
     console.error(err);
@@ -52,10 +52,12 @@ export function* createOrUpdateBook({ bookValues }) {
         'Content-Type': 'application/json',
       },
       body,
+      credentials: 'same-origin',
     });
     if (!createdOrUpdated.ok && !createdOrUpdated._id) {
       throw new Error('Update book failed: Something went wrong in the database');
     } else {
+      yield put(setPostPutSuccess(true));
       yield call(getOneBook, { bookId: data._id });
       yield call(getBooks);
     }
@@ -66,7 +68,7 @@ export function* createOrUpdateBook({ bookValues }) {
 
 export function* deleteBook({ bookId }) {
   try {
-    yield call(request, `/api/books/${bookId}`, { method: 'delete' });
+    yield call(request, `/api/books/${bookId}`, { method: 'delete', credentials: 'same-origin' });
     yield call(getBooks);
   } catch (err) {
     console.error(err);
@@ -75,7 +77,7 @@ export function* deleteBook({ bookId }) {
 
 export function* getAuthor() {
   try {
-    const authorData = yield call(request, '/api/authors');
+    const authorData = yield call(request, '/api/authors', { credentials: 'same-origin' });
     yield put(setAuthor(authorData[0]));
   } catch (err) {
     console.error(err);
@@ -84,7 +86,7 @@ export function* getAuthor() {
 
 export function* getArticles() {
   try {
-    const articles = yield call(request, '/api/articles');
+    const articles = yield call(request, '/api/articles', { credentials: 'same-origin' });
     const enhancedArticles = articles
       .map((article) => ({ ...article, date: moment(article.date).format('L') }));
     yield put(setArticles(enhancedArticles));
@@ -95,7 +97,7 @@ export function* getArticles() {
 
 export function* getOneArticle({ articleId }) {
   try {
-    const article = yield call(request, `/api/articles/${articleId}`);
+    const article = yield call(request, `/api/articles/${articleId}`, { credentials: 'same-origin' });
     article[0].date = moment(article[0].date).format('L');
     yield put(setOneArticle(article[0]));
   } catch (err) {
@@ -113,10 +115,12 @@ export function* createOrUpdateArticle({ articleValues }) {
       'Content-Type': 'application/json',
     },
     body,
+    credentials: 'same-origin',
   });
   if (!createdOrUpdated.ok && !createdOrUpdated._id) {
     throw new Error('Update article failed: Something went wrong in the database');
   } else {
+    yield put(setPostPutSuccess(true));
     yield call(getArticles);
     yield call(getOneArticle, { articleId: data._id });
   }
@@ -124,8 +128,37 @@ export function* createOrUpdateArticle({ articleValues }) {
 
 export function* deleteArticle({ articleId }) {
   try {
-    yield call(request, `/api/articles/${articleId}`, { method: 'delete' });
+    yield call(request, `/api/articles/${articleId}`, { method: 'delete', credentials: 'same-origin' });
     yield call(getArticles);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export function* login({ username, password }) {
+  try {
+    const loginResult = yield call(request, '/api/login', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+      credentials: 'same-origin',
+    });
+    if (loginResult.ok) yield put(setUser(true));
+    else throw new Error('Login failed');
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export function* whoAmI() {
+  try {
+    const whoAmIResult = yield call(request, '/api/whoami', { credentials: 'same-origin' });
+    if (whoAmIResult.ok) yield put(setUser(true));
   } catch (err) {
     console.error(err);
   }
@@ -142,5 +175,7 @@ export default function* rootSaga() {
     takeLatest(GET_ONE_ARTICLE, getOneArticle),
     takeLatest(CREATE_OR_UPDATE_ARTICLE, createOrUpdateArticle),
     takeLatest(DELETE_ARTICLE, deleteArticle),
+    takeLatest(LOGIN, login),
+    takeLatest(WHO_AM_I, whoAmI),
   ];
 }

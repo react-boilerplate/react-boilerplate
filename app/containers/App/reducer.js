@@ -18,6 +18,11 @@ import {
   DELETE_ARTICLE,
   CLEAR_ONE_BOOK,
   CLEAR_ONE_ARTICLE,
+  LOGIN,
+  WHO_AM_I,
+  LOGOUT,
+  SET_USER,
+  SET_POST_PUT_SUCCESS,
 } from './constants';
 
 // The initial state of the App
@@ -55,6 +60,8 @@ const initialState = fromJS({
   },
   author: {},
   articles: [],
+  user: false,
+  postPutSuccess: false,
 });
 
 function reducer(state = initialState, action) {
@@ -97,6 +104,16 @@ function reducer(state = initialState, action) {
       return state;
     case DELETE_ARTICLE:
       return state;
+    case LOGIN:
+      return state;
+    case WHO_AM_I:
+      return state;
+    case LOGOUT:
+      return state;
+    case SET_USER:
+      return state.set('user', action.bool);
+    case SET_POST_PUT_SUCCESS:
+      return state.set('postPutSuccess', action.bool);
     default:
       return state;
   }

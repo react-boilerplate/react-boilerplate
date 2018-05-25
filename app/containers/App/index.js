@@ -23,22 +23,25 @@ import FormPage from 'containers/FormPage/Loadable';
 import ArticlesPage from 'containers/ArticlesPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import AboutPage from 'containers/AboutPage/Loadable';
+import LoginPage from 'containers/LoginPage/Loadable';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import reducer from './reducer';
 import saga from './sagas';
-import { getBooks, getAuthor, getArticles } from './actions';
+import { getBooks, getAuthor, getArticles, whoAmI } from './actions';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 class App extends Component {
   static propTypes = {
+    dispatchWhoAmI: PropTypes.func.isRequired,
     dispatchGetBooks: PropTypes.func.isRequired,
     dispatchGetAuthor: PropTypes.func.isRequired,
     dispatchGetArticles: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
+    this.props.dispatchWhoAmI();
     this.props.dispatchGetBooks();
     this.props.dispatchGetAuthor();
     this.props.dispatchGetArticles();
@@ -58,6 +61,7 @@ class App extends Component {
           <Route exact path="/books/:id/edit" component={FormPage} />
           <Route exact path="/articles" component={ArticlesPage} />
           <Route exact path="/articles/:id/edit" component={FormPage} />
+          <Route exact path="/login" component={LoginPage} />
           <Route component={NotFoundPage} />
         </Switch>
         <Footer />
@@ -70,14 +74,16 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchGetBooks: () => dispatch(getBooks()),
   dispatchGetAuthor: () => dispatch(getAuthor()),
   dispatchGetArticles: () => dispatch(getArticles()),
+  dispatchWhoAmI: () => dispatch(whoAmI()),
 });
 
 const withReducer = injectReducer({ key: 'home', reducer });
 const withSaga = injectSaga({ key: 'home', saga });
 const withConnect = connect(null, mapDispatchToProps);
 
-export default withRouter(compose(
+export default compose(
+  withRouter,
   withReducer,
   withSaga,
   withConnect,
-)(App));
+)(App);

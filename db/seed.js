@@ -1,9 +1,12 @@
 const request = require('request');
 const _ = require('lodash');
 const { bgBlue, bgGreen, bgRed, bgYellow, green, yellow, black } = require('chalk');
+const bcrypt = require('bcrypt');
 
-const { Book, Article, Author } = require('./index');
+const { Book, Article, Author, User } = require('./index');
 require('../env-secrets');
+
+const saltRounds = 10;
 
 /* eslint-disable */
 
@@ -141,6 +144,29 @@ async function seedAuthor(authorUrl) {
   }
 }
 
+async function seedUser() {
+  try {
+    console.log(bgYellow(black('Beginning user seeding...')));
+    console.log(bgBlue('Searching for existing user...'));
+    const foundUser = await User.find({});
+    if (foundUser.length) {
+      console.log(bgRed(`Found ${foundUser.length} user(s).  Deleting...`));
+      await User.collection.drop();
+    } else {
+      console.log(bgGreen(black('Found no user - proceeding to seed...')));
+    }
+    const password = await bcrypt.hash(process.env.PASSWORD, saltRounds);
+    const seededUser = await User.create({
+      username: 'richard-bernstein',
+      password,
+    });
+    console.log(bgGreen(black('Seeded user successfully!')));
+  } catch (err) {
+    console.error(bgRed('Error seeding user =>'));
+    throw err;
+  }
+}
+
 async function seed() {
   try {
     console.log(bgYellow(black('Running database seed process...')));
@@ -149,7 +175,9 @@ async function seed() {
     console.log(yellow('************************************************************************'));
     await seedArticles(`https://developer.nytimes.com/proxy/https/api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${process.env.NY_TIMES_API_KEY}&fq=author%3A(%22Richard+Bernstein%22)&sort=newest`);
     console.log(yellow('************************************************************************'));
-    await seedAuthor(`https://api.penguinrandomhouse.com/resources/v2/title/domains/PRH.US/authors/views/list-display?authorId=${process.env.AUTHOR_ID}&api_key=${process.env.PRH_API_KEY}`)
+    await seedAuthor(`https://api.penguinrandomhouse.com/resources/v2/title/domains/PRH.US/authors/views/list-display?authorId=${process.env.AUTHOR_ID}&api_key=${process.env.PRH_API_KEY}`);
+    console.log(yellow('************************************************************************'));
+    await seedUser();
   } catch (err) {
     console.error(err)
   } finally {

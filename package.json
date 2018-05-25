@@ -42,10 +42,14 @@
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "seed": "node db/seed"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
+  },
+  "nodemonConfig": {
+    "ignore": ["app/*"]
   },
   "pre-commit": "lint:staged",
   "babel": {
@@ -177,7 +181,8 @@
       "ip",
       "minimist",
       "sanitize.css",
-      "mongoose"
+      "mongoose",
+      "bcrypt"
     ],
     "include": [
       "core-js",
@@ -216,11 +221,13 @@
   "dependencies": {
     "axios": "^0.18.0",
     "babel-polyfill": "6.23.0",
+    "bcrypt": "^2.0.1",
     "body-parser": "^1.18.2",
     "chalk": "^1.1.3",
     "compression": "1.6.2",
     "cross-env": "5.0.0",
     "express": "4.15.3",
+    "express-session": "^1.15.6",
     "fontfaceobserver": "2.0.9",
     "history": "4.6.3",
     "hoist-non-react-statics": "2.1.1",
