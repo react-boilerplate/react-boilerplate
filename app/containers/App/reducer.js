@@ -22,6 +22,7 @@ import {
   WHO_AM_I,
   LOGOUT,
   SET_USER,
+  SET_POST_PUT_SUCCESS,
 } from './constants';
 
 // The initial state of the App
@@ -60,6 +61,7 @@ const initialState = fromJS({
   author: {},
   articles: [],
   user: false,
+  postPutSuccess: false,
 });
 
 function reducer(state = initialState, action) {
@@ -110,6 +112,8 @@ function reducer(state = initialState, action) {
       return state;
     case SET_USER:
       return state.set('user', action.bool);
+    case SET_POST_PUT_SUCCESS:
+      return state.set('postPutSuccess', action.bool);
     default:
       return state;
   }

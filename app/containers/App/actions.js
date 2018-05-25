@@ -20,6 +20,7 @@ import {
   WHO_AM_I,
   LOGOUT,
   SET_USER,
+  SET_POST_PUT_SUCCESS,
 } from './constants';
 
 export const getBooks = () => ({
@@ -117,5 +118,10 @@ export const logout = () => ({
 
 export const setUser = (bool) => ({
   type: SET_USER,
+  bool,
+});
+
+export const setPostPutSuccess = (bool) => ({
+  type: SET_POST_PUT_SUCCESS,
   bool,
 });

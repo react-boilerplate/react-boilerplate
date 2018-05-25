@@ -20,9 +20,7 @@ module.exports = (app, options) => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(session({
     secret: process.env.SESSION_ID,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true },
+    expires: false,
   }));
 
   app.get('/sw', (req, res) => {
@@ -37,6 +35,7 @@ module.exports = (app, options) => {
     const match = await bcrypt.compare(password, user.password);
     if (match) {
       req.session.user = user;
+      req.session.save();
       res.status(201).json({ ok: 1 });
     } else {
       res.status(401).json({ ok: 0 });

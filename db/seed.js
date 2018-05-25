@@ -150,7 +150,7 @@ async function seedUser() {
     console.log(bgBlue('Searching for existing user...'));
     const foundUser = await User.find({});
     if (foundUser.length) {
-      console.log(bgRed(`Found ${foundUser.length} author(s).  Deleting...`));
+      console.log(bgRed(`Found ${foundUser.length} user(s).  Deleting...`));
       await User.collection.drop();
     } else {
       console.log(bgGreen(black('Found no user - proceeding to seed...')));

@@ -44,6 +44,16 @@ const selectSelectedArticle = () => createSelector(
   (homeState) => homeState.get('selectedArticle').toJS()
 );
 
+const selectUser = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('user')
+);
+
+const selectPostPutSuccess = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('postPutSuccess')
+);
+
 export {
   makeSelectLocation,
   selectHome,
@@ -54,4 +64,6 @@ export {
   selectAuthor,
   selectArticles,
   selectSelectedArticle,
+  selectUser,
+  selectPostPutSuccess,
 };

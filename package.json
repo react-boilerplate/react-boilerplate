@@ -42,10 +42,14 @@
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "seed": "node db/seed"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
+  },
+  "nodemonConfig": {
+    "ignore": ["app/*"]
   },
   "pre-commit": "lint:staged",
   "babel": {
