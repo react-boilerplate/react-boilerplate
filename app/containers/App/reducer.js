@@ -41,7 +41,7 @@ const initialState = fromJS({
     _id: '',
     title: '',
     subtitle: '',
-    imgSrc: '',
+    img: [],
     isbn: 0,
     description: '',
     publisher: '',

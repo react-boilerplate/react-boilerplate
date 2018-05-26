@@ -12,3 +12,4 @@ npm-debug.log
 # Secrets
 secrets.js
 env-secrets.js
+aws-config.json

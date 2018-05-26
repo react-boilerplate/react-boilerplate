@@ -184,7 +184,8 @@
       "minimist",
       "sanitize.css",
       "mongoose",
-      "bcrypt"
+      "bcrypt",
+      "multer"
     ],
     "include": [
       "core-js",
@@ -221,6 +222,7 @@
     "testRegex": "tests/.*\\.test\\.js$"
   },
   "dependencies": {
+    "aws-sdk": "^2.247.1",
     "axios": "^0.18.0",
     "babel-polyfill": "6.23.0",
     "bcrypt": "^2.0.1",
@@ -241,6 +243,7 @@
     "minimist": "1.2.0",
     "moment": "^2.22.1",
     "mongoose": "^5.0.17",
+    "multer": "^1.3.0",
     "prop-types": "15.5.10",
     "react": "15.6.1",
     "react-dom": "15.6.1",
