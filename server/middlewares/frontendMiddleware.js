@@ -20,6 +20,8 @@ module.exports = (app, options) => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(session({
     secret: process.env.SESSION_ID,
+    resave: false,
+    saveUninitialized: true,
     expires: false,
   }));
 
