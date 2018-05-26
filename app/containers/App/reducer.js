@@ -23,6 +23,7 @@ import {
   LOGOUT,
   SET_USER,
   SET_POST_PUT_SUCCESS,
+  SET_POST_PUT_ERROR,
 } from './constants';
 
 // The initial state of the App
@@ -62,6 +63,7 @@ const initialState = fromJS({
   articles: [],
   user: false,
   postPutSuccess: false,
+  postPutError: '',
 });
 
 function reducer(state = initialState, action) {
@@ -114,6 +116,8 @@ function reducer(state = initialState, action) {
       return state.set('user', action.bool);
     case SET_POST_PUT_SUCCESS:
       return state.set('postPutSuccess', action.bool);
+    case SET_POST_PUT_ERROR:
+      return state.set('postPutError', action.message);
     default:
       return state;
   }

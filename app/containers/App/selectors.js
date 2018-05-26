@@ -54,6 +54,11 @@ const selectPostPutSuccess = () => createSelector(
   (homeState) => homeState.get('postPutSuccess')
 );
 
+const selectPostPutError = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('postPutError')
+);
+
 export {
   makeSelectLocation,
   selectHome,
@@ -66,4 +71,5 @@ export {
   selectSelectedArticle,
   selectUser,
   selectPostPutSuccess,
+  selectPostPutError,
 };

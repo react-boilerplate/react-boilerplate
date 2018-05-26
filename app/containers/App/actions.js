@@ -21,6 +21,7 @@ import {
   LOGOUT,
   SET_USER,
   SET_POST_PUT_SUCCESS,
+  SET_POST_PUT_ERROR,
 } from './constants';
 
 export const getBooks = () => ({
@@ -124,4 +125,9 @@ export const setUser = (bool) => ({
 export const setPostPutSuccess = (bool) => ({
   type: SET_POST_PUT_SUCCESS,
   bool,
+});
+
+export const setPostPutError = (message) => ({
+  type: SET_POST_PUT_ERROR,
+  message,
 });

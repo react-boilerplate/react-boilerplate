@@ -49,7 +49,9 @@
     "*.js": "lint:eslint"
   },
   "nodemonConfig": {
-    "ignore": ["app/*"]
+    "ignore": [
+      "app/*"
+    ]
   },
   "pre-commit": "lint:staged",
   "babel": {
@@ -245,6 +247,7 @@
     "react-helmet": "5.1.3",
     "react-intl": "2.3.0",
     "react-loadable": "4.0.3",
+    "react-modal": "^3.4.4",
     "react-redux": "5.0.5",
     "react-router-dom": "4.1.1",
     "react-router-redux": "5.0.0-alpha.6",
