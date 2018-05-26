@@ -3,7 +3,7 @@ import moment from 'moment';
 import keys from 'lodash/keys';
 
 import request from 'utils/request';
-import { GET_BOOKS, GET_ONE_BOOK, CREATE_OR_UPDATE_BOOK, DELETE_BOOK, GET_AUTHOR, GET_ARTICLES, GET_ONE_ARTICLE, CREATE_OR_UPDATE_ARTICLE, DELETE_ARTICLE, LOGIN, WHO_AM_I } from './constants';
+import { GET_BOOKS, GET_ONE_BOOK, CREATE_OR_UPDATE_BOOK, DELETE_BOOK, GET_AUTHOR, GET_ARTICLES, GET_ONE_ARTICLE, CREATE_OR_UPDATE_ARTICLE, DELETE_ARTICLE, LOGIN, LOGOUT, WHO_AM_I } from './constants';
 import { setBooks, setAuthor, setArticles, setOneBook, setOneArticle, setUser, setPostPutSuccess } from './actions';
 
 export function* getBooks() {
@@ -155,6 +155,18 @@ export function* login({ username, password }) {
   }
 }
 
+export function* logout() {
+  try {
+    const logoutResult = yield call(request, '/api/logout', {
+      credentials: 'same-origin',
+    });
+    if (logoutResult.ok) yield put(setUser(false));
+    else throw new Error('Logout failed');
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export function* whoAmI() {
   try {
     const whoAmIResult = yield call(request, '/api/whoami', { credentials: 'same-origin' });
@@ -176,6 +188,7 @@ export default function* rootSaga() {
     takeLatest(CREATE_OR_UPDATE_ARTICLE, createOrUpdateArticle),
     takeLatest(DELETE_ARTICLE, deleteArticle),
     takeLatest(LOGIN, login),
+    takeLatest(LOGOUT, logout),
     takeLatest(WHO_AM_I, whoAmI),
   ];
 }

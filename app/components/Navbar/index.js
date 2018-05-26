@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { Navbar, Header, ButtonContainer, Button, ButtonText } from './styled';
+import { Navbar as Container, Header, ButtonContainer, Button, ButtonText } from './styled';
 import { Link } from '../common';
 import messages from './messages';
 
-export default () => (
-  <Navbar>
+const Navbar = ({ user, onLogout }) => (
+  <Container>
     <Link to="/">
       <Header>RICHARD BERNSTEIN</Header>
     </Link>
@@ -26,6 +26,16 @@ export default () => (
           <ButtonText><FormattedMessage {...messages.articles} /></ButtonText>
         </Button>
       </Link>
+      {!!user && <Button onClick={onLogout}>
+        <ButtonText><FormattedMessage {...messages.logout} /></ButtonText>
+      </Button>}
     </ButtonContainer>
-  </Navbar>
+  </Container>
 );
+
+Navbar.propTypes = {
+  user: PropTypes.bool.isRequired,
+  onLogout: PropTypes.func.isRequired,
+};
+
+export default Navbar;

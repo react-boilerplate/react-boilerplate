@@ -24,19 +24,17 @@ export const Header = styled.h1`
 `;
 
 export const ButtonContainer = styled.div`
-  width: 40%;
+  width: 50%;
   text-align: center;
-  display: inline-block;
   vertical-align: middle;
-
+  display: flex;
+  justify-content: space-evenly;
   @media (max-width: 700px) {
     width: 100%;
   }
 `;
 
 export const Button = styled.div`
-  width: 30%;
-  display: inline-block;
   height: 20px;
 `;
 
