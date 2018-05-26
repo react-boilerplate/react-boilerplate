@@ -16,6 +16,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import Modal from 'react-modal';
 
 import HomePage from 'containers/HomePage/Loadable';
 import BookListPage from 'containers/BookListPage/Loadable';
@@ -30,9 +31,31 @@ import injectSaga from 'utils/injectSaga';
 import reducer from './reducer';
 import saga from './sagas';
 import { getBooks, getAuthor, getArticles, whoAmI, logout } from './actions';
-import { selectUser } from './selectors';
+import { selectUser, selectPostPutError } from './selectors';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import { AppContainer, ModalText } from './styled';
+
+const modalStyles = {
+  overlay: {
+    position: 'absolute',
+    border: '1px solid rgb(204, 204, 204)',
+    background: 'rgb(255, 255, 255)',
+    overflow: 'auto',
+    borderRadius: '4px',
+    outline: 'none',
+    padding: '20px',
+    height: '200px',
+    width: '50%',
+    top: 'calc(50% - 100px)',
+    left: 'calc(50% - 250px)',
+  },
+  content: {
+    border: 'none',
+  },
+};
+
+Modal.setAppElement('#app');
 
 class App extends Component {
   static propTypes = {
@@ -42,6 +65,7 @@ class App extends Component {
     dispatchGetAuthor: PropTypes.func.isRequired,
     dispatchGetArticles: PropTypes.func.isRequired,
     user: PropTypes.bool.isRequired,
+    postPutError: PropTypes.string.isRequired,
   };
 
   componentDidMount() {
@@ -53,7 +77,17 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <AppContainer modalOpen={!!this.props.postPutError}>
+        <Modal
+          isOpen={!!this.props.postPutError}
+          contentLabel="Error"
+          style={modalStyles}
+        >
+          <div>
+            <ModalText>{this.props.postPutError}</ModalText>
+            <ModalText>Please refresh the page and try again</ModalText>
+          </div>
+        </Modal>
         <Navbar user={this.props.user} onLogout={this.props.dispatchLogout} />
         <Switch>
           <Route exact path="/" component={HomePage} />
@@ -69,13 +103,14 @@ class App extends Component {
           <Route component={NotFoundPage} />
         </Switch>
         <Footer />
-      </div>
+      </AppContainer>
     );
   }
 }
 
 const mapStateToProps = createStructuredSelector({
   user: selectUser(),
+  postPutError: selectPostPutError(),
 });
 
 const mapDispatchToProps = (dispatch) => ({

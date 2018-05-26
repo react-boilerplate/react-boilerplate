@@ -4,7 +4,7 @@ import keys from 'lodash/keys';
 
 import request from 'utils/request';
 import { GET_BOOKS, GET_ONE_BOOK, CREATE_OR_UPDATE_BOOK, DELETE_BOOK, GET_AUTHOR, GET_ARTICLES, GET_ONE_ARTICLE, CREATE_OR_UPDATE_ARTICLE, DELETE_ARTICLE, LOGIN, LOGOUT, WHO_AM_I } from './constants';
-import { setBooks, setAuthor, setArticles, setOneBook, setOneArticle, setUser, setPostPutSuccess } from './actions';
+import { setBooks, setAuthor, setArticles, setOneBook, setOneArticle, setUser, setPostPutSuccess, setPostPutError } from './actions';
 
 export function* getBooks() {
   try {
@@ -62,6 +62,7 @@ export function* createOrUpdateBook({ bookValues }) {
       yield call(getBooks);
     }
   } catch (err) {
+    yield put(setPostPutError(err.message));
     console.error(err);
   }
 }
@@ -109,20 +110,25 @@ export function* createOrUpdateArticle({ articleValues }) {
   const data = articleValues.toJS();
   const body = JSON.stringify(data);
   const reqUrl = `/api/articles/${data._id || ''}`;
-  const createdOrUpdated = yield call(request, reqUrl, {
-    method: data._id ? 'put' : 'post',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body,
-    credentials: 'same-origin',
-  });
-  if (!createdOrUpdated.ok && !createdOrUpdated._id) {
-    throw new Error('Update article failed: Something went wrong in the database');
-  } else {
-    yield put(setPostPutSuccess(true));
-    yield call(getArticles);
-    yield call(getOneArticle, { articleId: data._id });
+  try {
+    const createdOrUpdated = yield call(request, reqUrl, {
+      method: data._id ? 'put' : 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body,
+      credentials: 'same-origin',
+    });
+    if (!createdOrUpdated.ok && !createdOrUpdated._id) {
+      throw new Error('Update article failed: Something went wrong in the database');
+    } else {
+      yield put(setPostPutSuccess(true));
+      yield call(getArticles);
+      yield call(getOneArticle, { articleId: data._id });
+    }
+  } catch (err) {
+    yield put(setPostPutError(err.message));
+    console.error(err);
   }
 }
 
@@ -151,6 +157,7 @@ export function* login({ username, password }) {
     if (loginResult.ok) yield put(setUser(true));
     else throw new Error('Login failed');
   } catch (err) {
+    yield put(setPostPutError(err.message));
     console.error(err);
   }
 }
@@ -163,6 +170,7 @@ export function* logout() {
     if (logoutResult.ok) yield put(setUser(false));
     else throw new Error('Logout failed');
   } catch (err) {
+    yield put(setPostPutError(err.message));
     console.error(err);
   }
 }
