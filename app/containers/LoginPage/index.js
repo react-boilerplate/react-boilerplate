@@ -20,8 +20,8 @@ class Login extends Component {
     return (
       <LoginForm onSubmit={this.onSubmit}>
         {this.props.user && <Redirect to="/" />}
-        <Input name="username" placeholder="Enter Username" type="text" value="richard-bernstein" />
-        <Input name="password" placeholder="Enter Password" type="password" value={localStorage.password} />
+        <Input name="username" placeholder="Enter Username" type="text" />
+        <Input name="password" placeholder="Enter Password" type="password" />
         <Button type="submit" height="30px">Submit</Button>
       </LoginForm>
     );

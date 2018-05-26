@@ -22,4 +22,8 @@ export default defineMessages({
     id: 'app.components.App.articles',
     defaultMessage: 'ARTICLES',
   },
+  logout: {
+    id: 'app.components.App.logout',
+    defaultMessage: 'LOGOUT',
+  },
 });

@@ -20,7 +20,7 @@ self.addEventListener('fetch', (event) => {
         const responseClone = response.clone();
         caches.open(cacheName)
           .then((cache) => {
-            if (request.method !== 'PUT') cache.put(event.request, responseClone);
+            if (event.request && event.request.method !== 'PUT') cache.put(event.request, responseClone);
           })
           .catch(console.error);
         return response;

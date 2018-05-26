@@ -15,6 +15,7 @@ import React, { Component, PropTypes } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 
 import HomePage from 'containers/HomePage/Loadable';
 import BookListPage from 'containers/BookListPage/Loadable';
@@ -28,16 +29,19 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import reducer from './reducer';
 import saga from './sagas';
-import { getBooks, getAuthor, getArticles, whoAmI } from './actions';
+import { getBooks, getAuthor, getArticles, whoAmI, logout } from './actions';
+import { selectUser } from './selectors';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 class App extends Component {
   static propTypes = {
     dispatchWhoAmI: PropTypes.func.isRequired,
+    dispatchLogout: PropTypes.func.isRequired,
     dispatchGetBooks: PropTypes.func.isRequired,
     dispatchGetAuthor: PropTypes.func.isRequired,
     dispatchGetArticles: PropTypes.func.isRequired,
+    user: PropTypes.bool.isRequired,
   };
 
   componentDidMount() {
@@ -50,7 +54,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar user={this.props.user} onLogout={this.props.dispatchLogout} />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/about" component={AboutPage} />
@@ -70,16 +74,21 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = createStructuredSelector({
+  user: selectUser(),
+});
+
 const mapDispatchToProps = (dispatch) => ({
   dispatchGetBooks: () => dispatch(getBooks()),
   dispatchGetAuthor: () => dispatch(getAuthor()),
   dispatchGetArticles: () => dispatch(getArticles()),
   dispatchWhoAmI: () => dispatch(whoAmI()),
+  dispatchLogout: () => dispatch(logout()),
 });
 
 const withReducer = injectReducer({ key: 'home', reducer });
 const withSaga = injectSaga({ key: 'home', saga });
-const withConnect = connect(null, mapDispatchToProps);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(
   withRouter,

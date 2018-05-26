@@ -9,13 +9,12 @@ import injectReducer from 'utils/injectReducer';
 import { FieldContainer, Label, Field, FieldTextArea, ButtonContainer } from '../common';
 import Button from '../common/Button';
 import { selectSelectedArticle } from '../../containers/App/selectors';
-import { getOneArticle, createOrUpdateArticle, clearOneArticle } from '../../containers/App/actions';
+import { getOneArticle, createOrUpdateArticle } from '../../containers/App/actions';
 
 class ArticleForm extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     dispatchFetchArticle: PropTypes.func.isRequired,
-    dispatchClearArticle: PropTypes.func.isRequired,
     dispatch: PropTypes.func.isRequired,
     change: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired,
@@ -36,10 +35,6 @@ class ArticleForm extends Component {
       }
       this.firstLoad = false;
     }
-  }
-
-  componentWillUnmount() {
-    this.props.dispatchClearArticle();
   }
 
   render() {
@@ -81,7 +76,6 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   dispatchFetchArticle: (articleId) => dispatch(getOneArticle(articleId)),
   onSubmit: (articleValues) => dispatch(createOrUpdateArticle(articleValues)),
-  dispatchClearArticle: () => dispatch(clearOneArticle()),
 });
 
 const withReducer = injectReducer({ key: 'form', reducer });

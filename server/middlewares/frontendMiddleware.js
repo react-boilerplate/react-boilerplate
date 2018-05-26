@@ -49,7 +49,8 @@ module.exports = (app, options) => {
 
   app.get('/api/logout', (req, res) => {
     req.session.destroy();
-    res.sendStatus(204);
+    if (!req.session) res.json({ ok: 1 });
+    else res.status(400).json({ ok: 0 });
   });
 
   app.use((req, res, next) => {
