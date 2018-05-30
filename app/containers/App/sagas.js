@@ -30,15 +30,12 @@ export function* createOrUpdateBook({ bookValues }) {
     const formData = new FormData();
     formData.append('file', data.img[0]);
     formData.append('name', data.img[0].name);
-    // const result = yield call(request, '/api/books/image', {
-    //   credentials: 'same-origin',
-    //   method: 'post',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(formData),
-    // });
-    // console.log(result)
+    const result = yield call(request, '/api/books/image', {
+      credentials: 'same-origin',
+      method: 'post',
+      body: formData,
+    });
+    console.log(result);
     // const praise = keys(data)
     //   .filter((bookProp) => bookProp.match(/quoteBy/))
     //   .map((quote, index) => ({

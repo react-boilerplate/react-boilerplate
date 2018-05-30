@@ -9,7 +9,6 @@ import injectReducer from 'utils/injectReducer';
 import { FieldContainer, Label, Field, FieldTextArea, ButtonContainer } from '../common';
 import Button from '../common/Button';
 import { selectSelectedBook } from '../../containers/App/selectors';
-import { selectFormDataField } from '../../containers/FormPage/selectors';
 import { getOneBook, createOrUpdateBook, addPraise } from '../../containers/App/actions';
 
 class BookForm extends Component {
@@ -22,7 +21,6 @@ class BookForm extends Component {
     submitting: PropTypes.bool.isRequired,
     selectedBook: PropTypes.object.isRequired,
     id: PropTypes.string,
-    img: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   }
 
   componentDidMount() {
@@ -49,7 +47,7 @@ class BookForm extends Component {
   }
 
   render() {
-    const { submitting, selectedBook, handleSubmit, img } = this.props;
+    const { submitting, selectedBook, handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <FieldContainer>
@@ -62,7 +60,7 @@ class BookForm extends Component {
         </FieldContainer>
         <FieldContainer>
           <Label htmlFor="img">Image</Label>
-          <FormField name="img" component="input" type="file" value={img && img.length ? img[0].name : ''} />
+          <FormField name="img" component="input" type="file" />
         </FieldContainer>
         <FieldContainer>
           <Label htmlFor="description">Description</Label>
@@ -101,7 +99,6 @@ class BookForm extends Component {
 
 const mapStateToProps = createStructuredSelector({
   selectedBook: selectSelectedBook(),
-  img: selectFormDataField('book', 'img'),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
+const fileUpload = require('express-fileupload');
 
 const bookRoutes = require('../routes/books');
 const articleRoutes = require('../routes/articles');
@@ -16,8 +17,15 @@ if (process.env.NODE_ENV === 'development') require('../../env-secrets');
  */
 module.exports = (app, options) => {
   const isProd = process.env.NODE_ENV === 'production';
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(fileUpload());
+  app.use(bodyParser.json({
+    limit: '50mb',
+  }));
+  app.use(bodyParser.urlencoded({
+    limit: '50mb',
+    extended: true,
+    parameterLimit: 50000,
+  }));
   app.use(session({
     secret: process.env.SESSION_ID,
     resave: false,
