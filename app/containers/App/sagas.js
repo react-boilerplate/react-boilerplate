@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import moment from 'moment';
-// import keys from 'lodash/keys';
+import keys from 'lodash/keys';
 
 import request from 'utils/request';
 import { GET_BOOKS, GET_ONE_BOOK, CREATE_OR_UPDATE_BOOK, DELETE_BOOK, GET_AUTHOR, GET_ARTICLES, GET_ONE_ARTICLE, CREATE_OR_UPDATE_ARTICLE, DELETE_ARTICLE, LOGIN, LOGOUT, WHO_AM_I } from './constants';
@@ -30,46 +30,46 @@ export function* createOrUpdateBook({ bookValues }) {
     const formData = new FormData();
     formData.append('file', data.img[0]);
     formData.append('name', data.img[0].name);
-    const result = yield call(request, '/api/books/image', {
+    const imgUploadResult = yield call(request, '/api/books/image', {
       credentials: 'same-origin',
       method: 'post',
       body: formData,
     });
-    console.log(result);
-    // const praise = keys(data)
-    //   .filter((bookProp) => bookProp.match(/quoteBy/))
-    //   .map((quote, index) => ({
-    //     quote: data[`quote${index}`],
-    //     quoteBy: data[`quoteBy${index}`],
-    //   }))
-    //   .filter(({ quote, quoteBy }) => quote && quoteBy);
-    // const { title, subtitle, imgSrc, isbn, description, publisher, url } = data;
-    // const body = JSON.stringify({
-    //   title,
-    //   subtitle,
-    //   imgSrc,
-    //   isbn,
-    //   description,
-    //   publisher,
-    //   url,
-    //   praise,
-    // });
-    // const reqUrl = `/api/books/${data._id || ''}`;
-    // const createdOrUpdated = yield call(request, reqUrl, {
-    //   method: data._id ? 'put' : 'post',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body,
-    //   credentials: 'same-origin',
-    // });
-    // if (!createdOrUpdated.ok && !createdOrUpdated._id) {
-    //   throw new Error('Update book failed: Something went wrong in the database');
-    // } else {
-    //   yield put(setPostPutSuccess(true));
-    //   yield call(getOneBook, { bookId: data._id });
-    //   yield call(getBooks);
-    // }
+    if (!imgUploadResult.ok) throw new Error('Image upload failed');
+    const praise = keys(data)
+      .filter((bookProp) => bookProp.match(/quoteBy/))
+      .map((quote, index) => ({
+        quote: data[`quote${index}`],
+        quoteBy: data[`quoteBy${index}`],
+      }))
+      .filter(({ quote, quoteBy }) => quote && quoteBy);
+    const { title, subtitle, isbn, description, publisher, url } = data;
+    const body = JSON.stringify({
+      title,
+      subtitle,
+      imgSrc: imgUploadResult.url,
+      isbn,
+      description,
+      publisher,
+      url,
+      praise,
+    });
+    const reqUrl = `/api/books/${data._id || ''}`;
+    const createdOrUpdated = yield call(request, reqUrl, {
+      method: data._id ? 'put' : 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body,
+      credentials: 'same-origin',
+    });
+    if (!createdOrUpdated.ok && !createdOrUpdated._id) {
+      throw new Error('Update book failed: Something went wrong in the database');
+    } else {
+      yield put(setPostPutSuccess(true));
+      yield call(getOneBook, { bookId: data._id });
+      yield call(getBooks);
+    }
   } catch (err) {
     yield put(setPostPutError(err.message));
     console.error(err);

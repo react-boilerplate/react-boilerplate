@@ -5,7 +5,7 @@ const { Book } = require('../../db');
 const { createAllRoutes } = require('./route-creators');
 
 const asyncPutObject = (data) => new Promise((resolve, reject) => {
-  s3Bucket.putObject(data, (err, result) => {
+  aws.putObject(data, (err, result) => {
     if (err) {
       console.log('Error uploading data: ', data);
       reject(err);
@@ -15,10 +15,8 @@ const asyncPutObject = (data) => new Promise((resolve, reject) => {
   });
 });
 
-const s3Bucket = new AWS.S3({
-  params: {
-    Bucket: 'richard-bernstein-books',
-  },
+const aws = new AWS.S3({
+  signatureVersion: 'v4',
 });
 
 
@@ -30,12 +28,18 @@ router.post('/image', async (req, res) => {
   }
   const { file } = req.files;
   const awsData = {
-    Bucket: s3Bucket,
-    Body: file,
+    Body: file.data,
+    Key: file.name,
+    Bucket: process.env.BUCKET,
+    ACL: 'public-read',
   };
-  const fileUploadResult = await asyncPutObject(awsData);
-  console.log(fileUploadResult);
-  res.json({ ok: 1 });
+  try {
+    await asyncPutObject(awsData);
+    res.json({ ok: 1, url: `https://s3.us-east-2.amazonaws.com/richard-bernstein-books/${file.name}` });
+  } catch (err) {
+    res.json({ ok: 0 });
+    console.log('Images post error: ', err);
+  }
 });
 
 module.exports = router;
