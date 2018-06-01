@@ -1,43 +1,75 @@
-/**
- * The global state selectors
- */
-
 import { createSelector } from 'reselect';
 
-const selectGlobal = (state) => state.get('global');
-
 const selectRoute = (state) => state.get('route');
-
-const makeSelectCurrentUser = () => createSelector(
-  selectGlobal,
-  (globalState) => globalState.get('currentUser')
-);
-
-const makeSelectLoading = () => createSelector(
-  selectGlobal,
-  (globalState) => globalState.get('loading')
-);
-
-const makeSelectError = () => createSelector(
-  selectGlobal,
-  (globalState) => globalState.get('error')
-);
-
-const makeSelectRepos = () => createSelector(
-  selectGlobal,
-  (globalState) => globalState.getIn(['userData', 'repositories'])
-);
 
 const makeSelectLocation = () => createSelector(
   selectRoute,
   (routeState) => routeState.get('location').toJS()
 );
 
+const selectHome = (state) => state.get('home');
+
+const selectBooks = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('books').toJS()
+);
+
+const selectPraise = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('praise').toJS()
+);
+
+const selectDescription = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('description').toJS()
+);
+
+const selectSelectedBook = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('selectedBook').toJS()
+);
+
+const selectAuthor = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('author').toJS()
+);
+
+const selectArticles = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('articles').toJS()
+);
+
+const selectSelectedArticle = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('selectedArticle').toJS()
+);
+
+const selectUser = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('user')
+);
+
+const selectPostPutSuccess = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('postPutSuccess')
+);
+
+const selectPostPutError = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('postPutError')
+);
+
 export {
-  selectGlobal,
-  makeSelectCurrentUser,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectRepos,
   makeSelectLocation,
+  selectHome,
+  selectBooks,
+  selectPraise,
+  selectDescription,
+  selectSelectedBook,
+  selectAuthor,
+  selectArticles,
+  selectSelectedArticle,
+  selectUser,
+  selectPostPutSuccess,
+  selectPostPutError,
 };

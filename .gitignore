@@ -8,3 +8,8 @@ stats.json
 .DS_Store
 npm-debug.log
 .idea
+
+# Secrets
+secrets.js
+env-secrets.js
+aws-config.json
