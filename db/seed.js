@@ -72,6 +72,16 @@ async function seedArticles(articlesUrl) {
   }
 }
 
+const titleMap = {
+  'China 1945': 'china-1945.jpeg',
+  'The East, the West, and Sex': 'the-east-the-west-and-sex.jpeg',
+  'A Girl Named Faithful Plum': 'a-girl-called-faithful-plumb.jpeg',
+  'Fragile Glory': 'fragile-glory.jpeg',
+  'Dictatorship of Virtue': 'dictatorship-of-virtue.jpeg',
+  'The Coming Conflict with China': 'the-coming-conflict-with-china.jpeg',
+  'Ultimate Journey': 'ultimate-journey.jpeg',
+};
+
 async function seedBooks(titlesUrl) {
   try {
     console.log(bgYellow(black('Beginning books seeding...')));
@@ -102,7 +112,7 @@ async function seedBooks(titlesUrl) {
         subtitle,
         url: `https://www.penguinrandomhouse.com${seoFriendlyUrl}`,
         publisher: publisher.description,
-        imgSrc: _links[1].href,
+        imgSrc: `https://s3.us-east-2.amazonaws.com/richard-bernstein-books/${titleMap[title]}`,
         praise: praisesArray[index],
         description: descriptionsArray[index],
         repeat: booksHash[title],

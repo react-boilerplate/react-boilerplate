@@ -42,5 +42,9 @@ const createAllRoutes = (router, Model) => {
 
 module.exports = {
   createGetAllRoute,
+  createGetOneRoute,
+  createPostRoute,
+  createPutRoute,
+  createDeleteRoute,
   createAllRoutes,
 };

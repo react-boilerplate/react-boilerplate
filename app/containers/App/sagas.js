@@ -30,9 +30,10 @@ export function* createOrUpdateBook({ bookValues }) {
     const formData = new FormData();
     formData.append('file', data.img[0]);
     formData.append('name', data.img[0].name);
+    if (data._id) formData.append('_id', data._id);
     const imgUploadResult = yield call(request, '/api/books/image', {
       credentials: 'same-origin',
-      method: 'post',
+      method: data._id ? 'put' : 'post',
       body: formData,
     });
     if (!imgUploadResult.ok) throw new Error('Image upload failed');
