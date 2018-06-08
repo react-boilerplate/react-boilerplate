@@ -263,14 +263,9 @@
     "babel-preset-stage-0": "6.24.1",
     "circular-dependency-plugin": "3.0.0",
     "coveralls": "2.13.1",
-<<<<<<< HEAD
-    "css-loader": "0.28.4",
-    "enzyme": "2.8.2",
-=======
     "css-loader": "0.28.10",
     "enzyme": "3.2.0",
     "enzyme-adapter-react-16": "1.1.0",
->>>>>>> 1561d81... Upgrade Webpack and related dependencies to v4.1.0 (#2148)
     "eslint": "3.19.0",
     "eslint-config-airbnb": "15.0.1",
     "eslint-config-airbnb-base": "11.2.0",
@@ -280,14 +275,6 @@
     "eslint-plugin-react": "7.0.1",
     "eslint-plugin-redux-saga": "0.3.0",
     "eventsource-polyfill": "0.9.6",
-<<<<<<< HEAD
-    "exports-loader": "0.6.4",
-    "file-loader": "0.11.1",
-    "html-loader": "0.4.5",
-    "html-webpack-plugin": "2.29.0",
-    "image-webpack-loader": "2.0.0",
-    "imports-loader": "0.7.1",
-=======
     "exports-loader": "0.7.0",
     "file-loader": "1.1.11",
     "html-loader": "0.5.5",
@@ -295,7 +282,6 @@
     "husky": "0.14.3",
     "image-webpack-loader": "3.6.0",
     "imports-loader": "0.8.0",
->>>>>>> 1561d81... Upgrade Webpack and related dependencies to v4.1.0 (#2148)
     "jest-cli": "20.0.4",
     "lint-staged": "3.5.1",
     "ngrok": "2.2.9",
@@ -307,13 +293,6 @@
     "react-test-renderer": "15.6.1",
     "rimraf": "2.6.1",
     "shelljs": "0.7.7",
-<<<<<<< HEAD
-    "style-loader": "0.18.1",
-    "url-loader": "0.5.8",
-    "webpack": "3.5.5",
-    "webpack-dev-middleware": "1.11.0",
-    "webpack-hot-middleware": "2.18.0"
-=======
     "style-loader": "0.20.2",
     "stylelint": "8.3.1",
     "stylelint-config-standard": "18.0.0",
@@ -324,6 +303,5 @@
     "webpack-cli": "2.0.10",
     "webpack-dev-middleware": "3.0.0",
     "webpack-hot-middleware": "2.21.2"
->>>>>>> 1561d81... Upgrade Webpack and related dependencies to v4.1.0 (#2148)
   }
 }
