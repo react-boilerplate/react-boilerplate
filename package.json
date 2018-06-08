@@ -213,7 +213,10 @@
       "raf/polyfill",
       "<rootDir>/internals/testing/enzyme-setup.js"
     ],
-    "testRegex": "tests/.*\\.test\\.js$"
+    "testRegex": "tests/.*\\.test\\.js$",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "dependencies": {
     "babel-polyfill": "6.26.0",
@@ -271,6 +274,7 @@
     "css-loader": "0.28.11",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
+    "enzyme-to-json": "^3.3.4",
     "eslint": "3.19.0",
     "eslint-config-airbnb": "15.0.1",
     "eslint-config-airbnb-base": "11.2.0",
@@ -288,6 +292,7 @@
     "image-webpack-loader": "4.2.0",
     "imports-loader": "0.8.0",
     "jest-cli": "20.0.4",
+    "jest-styled-components": "^5.0.1",
     "lint-staged": "3.5.1",
     "ngrok": "2.2.9",
     "node-plop": "0.7.0",
