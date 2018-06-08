@@ -1,12 +1,14 @@
 import React from 'react';
-import { shallow, render } from 'enzyme';
+import { shallow } from 'enzyme';
+import renderer from 'react-test-renderer';
+import 'jest-styled-components';
 
 import RepoLink from '../RepoLink';
 
 describe('<RepoLink />', () => {
-  it('should render an <a> tag', () => {
-    const renderedComponent = render(<RepoLink />);
-    expect(renderedComponent.find('a').length).toEqual(1);
+  it('should match the snapshot', () => {
+    const renderedComponent = renderer.create(<RepoLink />).toJSON();
+    expect(renderedComponent).toMatchSnapshot();
   });
 
   it('should have a className attribute', () => {

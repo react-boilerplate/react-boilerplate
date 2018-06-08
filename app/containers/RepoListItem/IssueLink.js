@@ -1,4 +1,4 @@
-import NormalA from 'components/A'
+import NormalA from 'components/A';
 
 const IssueLink = NormalA.extend`
   height: 100%;
@@ -6,6 +6,6 @@ const IssueLink = NormalA.extend`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
-export default IssueLink
+export default IssueLink;
