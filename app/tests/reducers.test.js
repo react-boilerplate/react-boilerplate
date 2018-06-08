@@ -3,12 +3,12 @@
  */
 
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { location } from '../reducers';
+import { routeReducer } from '../reducers';
 
 describe('route reducer', () => {
   it('should return the initial state', () => {
     const initialState = { foo: 'bar' };
-    expect(location(initialState, {})).toEqual(initialState);
+    expect(routeReducer(initialState, {})).toEqual(initialState);
   });
 
   it('should handle the location_change action correctly', () => {
@@ -16,6 +16,6 @@ describe('route reducer', () => {
     const payload = { baz: 'qux' };
     const action = { type: LOCATION_CHANGE, payload };
 
-    expect(location(state, action)).toEqual(payload);
+    expect(routeReducer(state, action)).toEqual(payload);
   });
 });
