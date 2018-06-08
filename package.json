@@ -239,7 +239,7 @@
     "react-redux": "5.0.7",
     "react-router-dom": "4.2.2",
     "react-router-redux": "5.0.0-alpha.9",
-    "redux": "3.7.2",
+    "redux": "4.0.0",
     "redux-immutable": "4.0.0",
     "redux-saga": "0.16.0",
     "reselect": "3.0.1",
