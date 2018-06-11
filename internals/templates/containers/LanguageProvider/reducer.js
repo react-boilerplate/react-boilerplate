@@ -13,7 +13,7 @@ import {
   DEFAULT_LOCALE,
 } from '../App/constants'; // eslint-disable-line
 
-const initialState = fromJS({
+export const initialState = fromJS({
   locale: DEFAULT_LOCALE,
 });
 
