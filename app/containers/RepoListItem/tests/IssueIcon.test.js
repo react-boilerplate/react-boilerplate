@@ -1,12 +1,14 @@
 import React from 'react';
-import { shallow, render } from 'enzyme';
+import { shallow } from 'enzyme';
+import renderer from 'react-test-renderer';
+import 'jest-styled-components';
 
 import IssueIcon from '../IssueIcon';
 
 describe('<IssueIcon />', () => {
-  it('should render an <svg> tag', () => {
-    const renderedComponent = render(<IssueIcon />);
-    expect(renderedComponent.find('svg').length).toEqual(1);
+  it('should match the snapshot', () => {
+    const renderedComponent = renderer.create(<IssueIcon />).toJSON();
+    expect(renderedComponent).toMatchSnapshot();
   });
 
   it('should have a className attribute', () => {
