@@ -1,16 +1,12 @@
-FROM node:6-slim
+FROM node:10-slim
 
 ENV KARMA_BROWSER PhantomJS
-RUN apt-get update && apt-get install libpng12-0
+RUN apt-get update && apt-get install libpng12-0 bzip2
 
-WORKDIR /reactapp
+WORKDIR /code
 
 ADD package.json package.json
-RUN npm install
-ADD . .
-
-VOLUME /reactapp
-
-EXPOSE 3000
+ADD internals internals
+RUN yarn install
 
 CMD ["npm", "run", "start:production"]
