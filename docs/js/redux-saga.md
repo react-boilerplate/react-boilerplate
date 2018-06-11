@@ -23,54 +23,54 @@ _Note: It is well worth reading the [source](https://stackoverflow.com/questions
 of this quote in its entirety!_
 
 To learn more about this amazing way to handle concurrent flows, start with the
-[official documentation](https://github.com/yelouafi/redux-saga) and explore
+[official documentation](https://redux-saga.github.io/redux-saga) and explore
 some examples! (read [this comparison](https://stackoverflow.com/questions/34930735/pros-cons-of-using-redux-saga-with-es6-generators-vs-redux-thunk-with-es7-async/34933395) if you're used to `redux-thunk`)
 
 ## Usage
 
 Sagas are associated with a container, just like actions, constants, selectors
-and reducers. If your container already has a `sagas.js` file, simply add your
-saga to that. If your container does not yet have a `sagas.js` file, add one with
+and reducers. If your container already has a `saga.js` file, simply add your
+saga to that. If your container does not yet have a `saga.js` file, add one with
 this boilerplate structure:
 
 ```JS
-import { take, call, put, select } from 'redux-saga/effects';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
 
-// Your sagas for this container
-export default [
-  sagaName,
-];
-
-// Individual exports for testing
-export function* sagaName() {
-
+// Root saga
+export default function* rootSaga() {
+  // if necessary, start multiple sagas at once with `all` 
+  yield [
+    takeLatest(LOAD_REPOS, getRepos),
+    takeLatest(LOAD_USERS, getUsers),
+  ];
 }
 ```
 
-Then, in your `routes.js`, add injection for the newly added saga:
+Then, in your `index.js`, use a decorator to inject the root saga:
 
 ```JS
-getComponent(nextState, cb) {
-  const importModules = Promise.all([
-    System.import('containers/YourComponent/reducer'),
-    System.import('containers/YourComponent/sagas'),
-    System.import('containers/YourComponent'),
-  ]);
+import injectSaga from 'utils/injectSaga';
+import { RESTART_ON_REMOUNT } from 'utils/constants';
+import saga from './saga';
 
-  const renderRoute = loadModule(cb);
+// ...
 
-  importModules.then(([reducer, sagas, component]) => {
-    injectReducer('home', reducer.default);
-    injectSagas(sagas.default); // Inject the saga
+// `mode` is an optional argument, default value is `RESTART_ON_REMOUNT`
+const withSaga = injectSaga({ key: 'yourcomponent', saga, mode: RESTART_ON_REMOUNT });
 
-    renderRoute(component);
-  });
-
-  importModules.catch(errorLoading);
-},
+export default compose(
+  withSaga,
+)(YourComponent);
 ```
 
-Now add as many sagas to your `sagas.js` file as you want!
+A `mode` argument can be one of three constants (import them from `utils/constants`):
+
+- `RESTART_ON_REMOUNT` (default value)—starts a saga when a component is being mounted 
+and cancels with `task.cancel()` on component un-mount for improved performance;
+- `DAEMON`—starts a saga on component mount and never cancels it or starts again;
+- `ONCE_TILL_UNMOUNT`—behaves like `RESTART_ON_REMOUNT` but never runs the saga again.
+
+Now add as many sagas to your `saga.js` file as you want!
 
 ---
 

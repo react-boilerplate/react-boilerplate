@@ -1,23 +1,34 @@
-## Removing CSS modules
-
-To remove this feature from your setup, stop importing `.css` files in your
-components and delete the `modules` option from the `css-loader` declaration in
-[`webpack.prod.babel.js`](/internals/webpack/webpack.prod.babel.js) and
-[`webpack.base.babel.js`](/internals/webpack/webpack.base.babel.js)!
-
-## Removing PostCSS
-
-To remove PostCSS, delete the `postcssPlugins` option and remove all occurences
-of the `postcss-loader` from
-
-- [`webpack.dev.babel.js`](/internals/webpack/webpack.dev.babel.js)
-- [`webpack.prod.babel.js`](/internals/webpack/webpack.prod.babel.js)
-- [`webpack.base.babel.js`](/internals/webpack/webpack.base.babel.js)
-
-When that is done - and you've verified that everything is still working - remove
-all related dependencies from [`package.json`](/package.json)!
-
 ## Removing `sanitize.css`
 
-Delete [lines 44 and 45 in `app.js`](../../app/app.js#L44-L45) and remove it
-from the `dependencies` in [`package.json`](../../package.json)!
+To remove `sanitize.css` you will need to remove it from both:
+- [`app.js`](../../app/app.js)
+```diff
+import FontFaceObserver from 'fontfaceobserver';
+import { useScroll } from 'react-router-scroll';
+-import 'sanitize.css/sanitize.css';
+
+// Import root app
+import App from 'containers/App';
+```
+
+- [`package.json`](../../package.json)!
+```diff
+"dllPlugin": {
+  "path": "node_modules/react-boilerplate-dlls",
+  "exclude": [
+    ...
+    "ip",
+    "minimist",
+-   "sanitize.css"
+  ],
+},
+...
+"dependencies": {
+  ...
+  "redux-saga": "0.14.3",
+  "reselect": "2.5.4",
+- "sanitize.css": "4.1.0",
+  "styled-components": "1.4.3",
+  ...
+},
+```

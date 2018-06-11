@@ -5,12 +5,12 @@
 */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
-// import { FormattedMessage } from 'react-intl';
-import styles from './styles.css';
+import Select from './Select';
 import ToggleOption from '../ToggleOption';
 
-function Toggle(props) {  // eslint-disable-line react/prefer-stateless-function
+function Toggle(props) {
   let content = (<option>--</option>);
 
   // If we have items, render them
@@ -21,16 +21,17 @@ function Toggle(props) {  // eslint-disable-line react/prefer-stateless-function
   }
 
   return (
-    <select onChange={props.onToggle} className={styles.toggle}>
+    <Select value={props.value} onChange={props.onToggle}>
       {content}
-    </select>
+    </Select>
   );
 }
 
 Toggle.propTypes = {
-  onToggle: React.PropTypes.func,
-  values: React.PropTypes.array,
-  messages: React.PropTypes.object,
+  onToggle: PropTypes.func,
+  values: PropTypes.array,
+  value: PropTypes.string,
+  messages: PropTypes.object,
 };
 
 export default Toggle;

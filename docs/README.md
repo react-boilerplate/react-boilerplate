@@ -4,20 +4,27 @@
 
 - [General](general)
   - [**CLI Commands**](general/commands.md)
+  - [Introduction ](general/introduction.md)
   - [Tool Configuration](general/files.md)
   - [Server Configurations](general/server-configs.md)
-  - [Deployment](general/deployment.md) *(currently Heroku specific)*
+  - [Deployment](general/deployment.md) *(currently Heroku and AWS S3 specific)*
+  - [Debugging](general/debugging.md)  
   - [FAQ](general/faq.md)
   - [Gotchas](general/gotchas.md)
   - [Remove](general/remove.md)
+  - [Extracting components](general/components.md)
 - [Testing](testing)
   - [Unit Testing](testing/unit-testing.md)
   - [Component Testing](testing/component-testing.md)
   - [Remote Testing](testing/remote-testing.md)
-- [CSS](css)
-  - [PostCSS](css/postcss.md)
-  - [CSS Modules](css/css-modules.md)
-  - [sanitize.css](css/sanitize.md)
+- [Styling (CSS)](css/README.md)
+  - [Next Generation CSS](css/README.md#next-generation-css)
+  - [CSS Support](css/README.md#css-we-support)
+  - [styled-components](css/README.md#styled-components)
+  - [Stylesheet](css/README.md#stylesheet)
+  - [CSS Modules](css/README.md#css-modules)
+  - [Sass](css/README.md#sass)
+  - [LESS](css/README.md#less)
 - [JS](js)
   - [Redux](js/redux.md)
   - [ImmutableJS](js/immutablejs.md)
@@ -25,6 +32,8 @@
   - [redux-saga](js/redux-saga.md)
   - [i18n](js/i18n.md)
   - [routing](js/routing.md)
+- [Maintenance](maintenance)
+  - [Dependency Update](maintenance/dependency.md)
 
 ## Overview
 
@@ -41,8 +50,9 @@
 
     - Add a Github username to see Redux and Redux Sagas in action: effortless
       async state updates and side effects are now yours :)
-    - Edit the file at `./app/containers/HomePage/index.js` so that the text of
-      the `<Button>` component reads "Features!!!"... Hot Module Reloading gives
+    - Edit the file at `./app/components/Header/index.js` so that the text of
+      the `<HeaderLink>` component to `/features` reads "Features!!!" (just remove the entire FormattedMessage element)
+      ... [Hot Module Reloading](https://webpack.js.org/guides/hot-module-replacement/) gives
       you a feedback loop with your UI so smooth it's almost conversational!
     - Click your (newly emphatic) Features button to see React Router in action...
       Now you can share a direct link to that content privately over your LAN or
@@ -76,21 +86,17 @@ JavaScript, HTML and tests.
 The rest of the folders and files only exist to make your life easier, and
 should not need to be touched.
 
-*(If they do have to be changed, please [submit an issue](https://github.com/mxstbr/react-boilerplate/issues)!)*
+*(If they do have to be changed, please [submit an issue](https://github.com/react-boilerplate/react-boilerplate/issues)!)*
 
 ### CSS
 
-Each component `import`s its styling dependencies from a co-located `styles.css`
-module.
+Utilising [tagged template literals](https://www.styled-components.com/docs/advanced#tagged-template-literals)
+(a recent addition to JavaScript) and the [power of CSS](https://github.com/styled-components/styled-components/blob/master/docs/css-we-support.md),
+`styled-components` allows you to write actual CSS code to style your components.
+It also removes the mapping between components and styles – using components as a
+low-level styling construct could not be easier!
 
-A production build transpiles these modules into page-specific CSS files (based
-on which components are actually used), while any shared styles are automatically
-extracted into a "common" stylesheet.
-
-This means the leanest, fastest payload for your users.
-
-See the [CSS documentation](./css/README.md) for more information about PostCSS
-and CSS modules.
+See the [CSS documentation](./css/README.md) for more information.
 
 ### JS
 
@@ -110,12 +116,6 @@ write head tags can be found [here](https://github.com/nfl/react-helmet#examples
 
 For a thorough explanation of the testing procedure, see the
 [testing documentation](./testing/README.md)!
-
-#### Performance testing
-
-With the production server running (i.e. while `npm run start:production` is running in
-another tab), enter `npm run pagespeed` to run Google PageSpeed Insights and
-get a performance check right in your terminal!
 
 #### Browser testing
 

@@ -2,13 +2,18 @@
  * Test the repo list item
  */
 
-import expect from 'expect';
-import { shallow, mount } from 'enzyme';
 import React from 'react';
-
+import { shallow, render } from 'enzyme';
 import { IntlProvider } from 'react-intl';
-import { RepoListItem } from '../index';
+
 import ListItem from 'components/ListItem';
+import { RepoListItem } from '../index';
+
+const renderComponent = (props = {}) => render(
+  <IntlProvider locale="en">
+    <RepoListItem {...props} />
+  </IntlProvider>
+);
 
 describe('<RepoListItem />', () => {
   let item;
@@ -19,10 +24,10 @@ describe('<RepoListItem />', () => {
       owner: {
         login: 'mxstbr',
       },
-      html_url: 'https://github.com/mxstbr/react-boilerplate',
+      html_url: 'https://github.com/react-boilerplate/react-boilerplate',
       name: 'react-boilerplate',
       open_issues_count: 20,
-      full_name: 'mxstbr/react-boilerplate',
+      full_name: 'react-boilerplate/react-boilerplate',
     };
   });
 
@@ -30,51 +35,37 @@ describe('<RepoListItem />', () => {
     const renderedComponent = shallow(
       <RepoListItem item={item} />
     );
-    expect(renderedComponent.find(ListItem).length).toEqual(1);
+    expect(renderedComponent.find(ListItem).length).toBe(1);
   });
 
   it('should not render the current username', () => {
-    const renderedComponent = mount(
-      <IntlProvider locale="en">
-        <RepoListItem item={item} currentUser={item.owner.login} />
-      </IntlProvider>
-    );
-    expect(renderedComponent.text().indexOf(item.owner.login)).toBeLessThan(0);
+    const renderedComponent = renderComponent({
+      item,
+      currentUser: item.owner.login,
+    });
+    expect(renderedComponent.text()).not.toContain(item.owner.login);
   });
 
   it('should render usernames that are not the current one', () => {
-    const renderedComponent = mount(
-      <IntlProvider locale="en">
-        <RepoListItem item={item} currentUser="nikgraf" />
-      </IntlProvider>
-    );
-    expect(renderedComponent.text().indexOf(item.owner.login)).toBeGreaterThan(-1);
+    const renderedComponent = renderComponent({
+      item,
+      currentUser: 'nikgraf',
+    });
+    expect(renderedComponent.text()).toContain(item.owner.login);
   });
 
   it('should render the repo name', () => {
-    const renderedComponent = mount(
-      <IntlProvider locale="en">
-        <RepoListItem item={item} />
-      </IntlProvider>
-    );
-    expect(renderedComponent.text().indexOf(item.name)).toBeGreaterThan(-1);
+    const renderedComponent = renderComponent({ item });
+    expect(renderedComponent.text()).toContain(item.name);
   });
 
   it('should render the issue count', () => {
-    const renderedComponent = mount(
-      <IntlProvider locale="en">
-        <RepoListItem item={item} />
-      </IntlProvider>
-    );
-    expect(renderedComponent.text().indexOf(item.open_issues_count)).toBeGreaterThan(1);
+    const renderedComponent = renderComponent({ item });
+    expect(renderedComponent.text()).toContain(item.open_issues_count);
   });
 
   it('should render the IssueIcon', () => {
-    const renderedComponent = mount(
-      <IntlProvider locale="en">
-        <RepoListItem item={item} />
-      </IntlProvider>
-    );
-    expect(renderedComponent.find('svg').length).toEqual(1);
+    const renderedComponent = renderComponent({ item });
+    expect(renderedComponent.find('svg').length).toBe(1);
   });
 });

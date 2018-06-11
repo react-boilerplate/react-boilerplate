@@ -2,11 +2,10 @@
  * Testing our link component
  */
 
-import A from '../index';
-
-import expect from 'expect';
-import { shallow } from 'enzyme';
 import React from 'react';
+import { shallow } from 'enzyme';
+
+import A from '../index';
 
 const href = 'http://mxstbr.com/';
 const children = (<h1>Test</h1>);
@@ -32,7 +31,7 @@ describe('<A />', () => {
     expect(renderedComponent.contains(children)).toEqual(true);
   });
 
-  it('should adopt a className attribute', () => {
+  it('should have a className attribute', () => {
     const className = 'test';
     const renderedComponent = renderComponent({ className });
     expect(renderedComponent.find('a').hasClass(className)).toEqual(true);

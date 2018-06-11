@@ -1,11 +1,13 @@
 // Important modules this config uses
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 const OfflinePlugin = require('offline-plugin');
+const { HashedModuleIdsPlugin } = require('webpack');
 
 module.exports = require('./webpack.base.babel')({
+  mode: 'production',
+
   // In production, we skip all hot-reloading stuff
   entry: [
     path.join(process.cwd(), 'app/app.js'),
@@ -17,35 +19,16 @@ module.exports = require('./webpack.base.babel')({
     chunkFilename: '[name].[chunkhash].chunk.js',
   },
 
-  // We use ExtractTextPlugin so we get a separate CSS file instead
-  // of the CSS being in the JS and injected as a style tag
-  cssLoaders: ExtractTextPlugin.extract({
-    fallbackLoader: 'style-loader',
-    loader: 'css-loader?modules&-autoprefixer&importLoaders=1!postcss-loader',
-  }),
+  optimization: {
+    minimize: true,
+    nodeEnv: 'production',
+    sideEffects: true,
+    concatenateModules: true,
+    splitChunks: { chunks: 'all' },
+    runtimeChunk: true,
+  },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      children: true,
-      minChunks: 2,
-      async: true,
-    }),
-
-    // OccurrenceOrderPlugin is needed for long-term caching to work properly.
-    // See http://mxs.is/googmv
-    new webpack.optimize.OccurrenceOrderPlugin(true),
-
-    // Merge all duplicate modules
-    new webpack.optimize.DedupePlugin(),
-
-    // Minify and optimize the JavaScript
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false, // ...but do not show warnings in the console (there is a lot of them)
-      },
-    }),
-
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
       template: 'app/index.html',
@@ -64,9 +47,6 @@ module.exports = require('./webpack.base.babel')({
       inject: true,
     }),
 
-    // Extract the CSS into a separate file
-    new ExtractTextPlugin('[name].[contenthash].css'),
-
     // Put it in the end to capture all the HtmlWebpackPlugin's
     // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
     new OfflinePlugin({
@@ -76,6 +56,12 @@ module.exports = require('./webpack.base.babel')({
       // No need to cache .htaccess. See http://mxs.is/googmp,
       // this is applied before any match in `caches` section
       excludes: ['.htaccess'],
+
+      // Don't minify Service Worker code
+      // TODO: Remove this when offline-plugin supports webpack 4
+      ServiceWorker: {
+        minify: false,
+      },
 
       caches: {
         main: [':rest:'],
@@ -91,5 +77,29 @@ module.exports = require('./webpack.base.babel')({
 
       AppCache: false,
     }),
+
+    new WebpackPwaManifest({
+      name: 'React Boilerplate',
+      short_name: 'React BP',
+      description: 'My React Boilerplate-based project!',
+      background_color: '#fafafa',
+      theme_color: '#b1624d',
+      icons: [
+        {
+          src: path.resolve('app/images/icon-512x512.png'),
+          sizes: [72, 96, 120, 128, 144, 152, 167, 180, 192, 384, 512],
+        },
+      ],
+    }),
+
+    new HashedModuleIdsPlugin({
+      hashFunction: 'sha256',
+      hashDigest: 'hex',
+      hashDigestLength: 20,
+    }),
   ],
+
+  performance: {
+    assetFilter: (assetFilename) => !(/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename)),
+  },
 });

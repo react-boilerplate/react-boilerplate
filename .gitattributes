@@ -49,6 +49,7 @@
 
 # server config
 .htaccess text
+.nginx.conf text
 
 # git config
 .gitattributes text

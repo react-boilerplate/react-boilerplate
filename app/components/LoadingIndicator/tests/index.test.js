@@ -1,14 +1,14 @@
+import React from 'react';
+import { render } from 'enzyme';
+
 import LoadingIndicator from '../index';
 
-import expect from 'expect';
-import { shallow } from 'enzyme';
-import React from 'react';
-
 describe('<LoadingIndicator />', () => {
-  it('should render 14 divs', () => {
-    const renderedComponent = shallow(
+  it('should render 12 child divs', () => {
+    const renderedComponent = render(
       <LoadingIndicator />
     );
-    expect(renderedComponent.find('div').length).toEqual(14);
+    // find all child divs
+    expect(renderedComponent.find('div').length).toBe(12);
   });
 });

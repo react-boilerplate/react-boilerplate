@@ -11,7 +11,11 @@ const animateProgress = require('./helpers/progress');
 const addCheckmark = require('./helpers/checkmark');
 
 const pkg = require('../../package.json');
+const presets = pkg.babel.presets;
+const plugins = pkg.babel.plugins || [];
+
 const i18n = require('../../app/i18n');
+const { DEFAULT_LOCALE } = require('../../app/containers/App/constants');
 
 require('shelljs/global');
 
@@ -38,7 +42,8 @@ const task = (message) => {
 
 // Wrap async functions below into a promise
 const glob = (pattern) => new Promise((resolve, reject) => {
-  nodeGlob(pattern, (error, value) => (error ? reject(error) : resolve(value)));
+  // Specify "nodir" in options to match files only.
+  nodeGlob(pattern, { nodir: true }, (error, value) => (error ? reject(error) : resolve(value)));
 });
 
 const readFile = (fileName) => new Promise((resolve, reject) => {
@@ -61,8 +66,9 @@ for (const locale of locales) {
   try {
     // Parse the old translation message JSON files
     const messages = JSON.parse(fs.readFileSync(translationFileName));
-    for (const message of messages) {
-      oldLocaleMappings[locale][message.id] = message;
+    const messageKeys = Object.keys(messages);
+    for (const messageKey of messageKeys) {
+      oldLocaleMappings[locale][messageKey] = messages[messageKey];
     }
   } catch (error) {
     if (error.code !== 'ENOENT') {
@@ -74,28 +80,35 @@ for (const locale of locales) {
   }
 }
 
+/* push `react-intl` plugin to the existing plugins that are already configured in `package.json`
+   Example:
+   ```
+  "babel": {
+    "plugins": [
+      ["transform-object-rest-spread", { "useBuiltIns": true }]
+    ],
+    "presets": [
+      "env",
+      "react"
+    ]
+  }
+  ```
+*/
+plugins.push(['react-intl'])
+
 const extractFromFile = async (fileName) => {
   try {
     const code = await readFile(fileName);
     // Use babel plugin to extract instances where react-intl is used
-    const { metadata: result } = await transform(code, {
-      presets: pkg.babel.presets,
-      plugins: [
-        ['react-intl'],
-      ],
-    });
+    const { metadata: result } = await transform(code, { presets, plugins }); // object-shorthand
     for (const message of result['react-intl'].messages) {
       for (const locale of locales) {
         const oldLocaleMapping = oldLocaleMappings[locale][message.id];
         // Merge old translations into the babel extracted instances where react-intl is used
-        localeMappings[locale][message.id] = {
-          id: message.id,
-          description: message.description,
-          defaultMessage: message.defaultMessage,
-          message: (oldLocaleMapping && oldLocaleMapping.message)
-            ? oldLocaleMapping.message
-            : '',
-        };
+        const newMsg = ( locale === DEFAULT_LOCALE) ? message.defaultMessage : '';
+        localeMappings[locale][message.id] = (oldLocaleMapping)
+          ? oldLocaleMapping
+          : newMsg;
       }
     }
   } catch (error) {
@@ -118,21 +131,17 @@ const extractFromFile = async (fileName) => {
   for (const locale of locales) {
     const translationFileName = `app/translations/${locale}.json`;
 
+    let localeTaskDone;
     try {
-      const localeTaskDone = task(
+      localeTaskDone = task(
         `Writing translation messages for ${locale} to: ${translationFileName}`
       );
 
       // Sort the translation JSON file so that git diffing is easier
       // Otherwise the translation messages will jump around every time we extract
-      let messages = Object.values(localeMappings[locale]).sort((a, b) => {
-        a = a.id.toUpperCase();
-        b = b.id.toUpperCase();
-        return do {
-          if (a < b) -1;
-          else if (a > b) 1;
-          else 0;
-        };
+      let messages = {};
+      Object.keys(localeMappings[locale]).sort().forEach(function(key) {
+        messages[key] = localeMappings[locale][key];
       });
 
       // Write to file the JSON representation of the translation messages
