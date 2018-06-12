@@ -8,7 +8,7 @@
   },
   "engines": {
     "npm": ">=3",
-    "node": ">=5"
+    "node": ">=6"
   },
   "author": "Max Stoiber",
   "license": "MIT",
@@ -296,7 +296,7 @@
     "jest-styled-components": "5.0.1",
     "lint-staged": "3.5.1",
     "ngrok": "2.2.9",
-    "node-plop": "0.15.0",
+    "node-plop": "0.7.0",
     "null-loader": "0.1.1",
     "offline-plugin": "4.9.0",
     "plop": "1.8.0",
