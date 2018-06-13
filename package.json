@@ -45,7 +45,10 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "lint-staged": {
-    "*.js": "lint:eslint"
+    "*.js": [
+      "lint:eslint",
+      "git add --force"
+    ]
   },
   "pre-commit": "lint:staged",
   "babel": {
