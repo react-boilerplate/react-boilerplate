@@ -23,7 +23,7 @@ describe('<RepoLink />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<RepoLink attribute={'test'} />);
+    const renderedComponent = shallow(<RepoLink attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

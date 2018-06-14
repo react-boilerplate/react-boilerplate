@@ -11,7 +11,7 @@ const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const logger = require('../../server/logger');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
-const dllPlugin = pkg.dllPlugin;
+const { dllPlugin } = pkg;
 
 const plugins = [
   new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
@@ -27,12 +27,10 @@ const plugins = [
 
 if (dllPlugin) {
   glob.sync(`${dllPlugin.path}/*.dll.js`).forEach((dllPath) => {
-    plugins.push(
-      new AddAssetHtmlPlugin({
-        filepath: dllPath,
-        includeSourcemap: false,
-      })
-    );
+    plugins.push(new AddAssetHtmlPlugin({
+      filepath: dllPath,
+      includeSourcemap: false,
+    }));
   });
 }
 
@@ -88,7 +86,10 @@ function dependencyHandlers() {
     return [];
   }
 
-  const dllPath = path.resolve(process.cwd(), dllPlugin.path || 'node_modules/react-boilerplate-dlls');
+  const dllPath = path.resolve(
+    process.cwd(),
+    dllPlugin.path || 'node_modules/react-boilerplate-dlls'
+  );
 
   /**
    * If DLLs aren't explicitly defined, we assume all production dependencies listed in package.json
@@ -111,7 +112,8 @@ function dependencyHandlers() {
   }
 
   // If DLLs are explicitly defined, we automatically create a DLLReferencePlugin for each of them.
-  const dllManifests = Object.keys(dllPlugin.dlls).map((name) => path.join(dllPath, `/${name}.json`));
+  const dllManifests = Object.keys(dllPlugin.dlls).map((name) =>
+    path.join(dllPath, `/${name}.json`));
 
   return dllManifests.map((manifestPath) => {
     if (!fs.existsSync(path)) {
