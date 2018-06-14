@@ -302,7 +302,7 @@
     "ngrok": "2.2.9",
     "node-plop": "0.7.0",
     "null-loader": "0.1.1",
-    "offline-plugin": "4.9.0",
+    "offline-plugin": "5.0.5",
     "plop": "1.8.0",
     "pre-commit": "1.2.2",
     "react-test-renderer": "16.4.0",
