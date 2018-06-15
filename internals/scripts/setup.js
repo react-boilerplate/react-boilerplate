@@ -33,7 +33,7 @@ cleanRepo(() => {
 function cleanRepo(callback) {
   fs.readFile('.git/config', 'utf8', (err, data) => {
     if(!err) {
-      let isClonedRepo = typeof data === 'string' 
+      let isClonedRepo = typeof data === 'string'
         && (data.match(/url\s*=/g) || []).length === 1
         && /react-boilerplate\/react-boilerplate\.git/.test(data);
       if(isClonedRepo) {
@@ -46,7 +46,7 @@ function cleanRepo(callback) {
             shell.rm('-rf', '.git/');
             addCheckMark(callback);
           } else {
-            dontClearRepo('', callback); 
+            dontClearRepo('', callback);
           }
         });
       } else {
@@ -119,9 +119,17 @@ function installDepsCallback(error) {
       process.stdout.write('Initialising new repository');
       initGit(function () {
         clearInterval(interval);
+        endProcess();
       });
     }
-    process.stdout.write('\nDone!');
-    process.exit(0);
+
+    endProcess();
   });
+}
+/**
+ * Function which ends setup process
+ */
+function endProcess() {
+  process.stdout.write('\nDone!');
+  process.exit(0);
 }
