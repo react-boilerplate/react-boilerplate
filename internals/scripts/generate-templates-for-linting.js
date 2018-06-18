@@ -8,6 +8,7 @@ const nodePlop = require('node-plop');
 const path = require('path');
 const chalk = require('chalk');
 const rimraf = require('rimraf');
+const { exec } = require('child_process');
 
 const xmark = require('./helpers/xmark');
 
@@ -36,6 +37,19 @@ const reportErrorsFor = title => err => {
 const removeTestsDirFrom = relativePath => () =>
   rimraf.sync(path.join(__dirname, '/../../app/', relativePath, '/tests'));
 
+// Generated JS is not necessarily formatted per Prettier requirements.
+// (Because unpredictable component name length clashes with prettier's fixed printWidth)
+// Thus, we prettify each component after generation.
+const prettifyGeneratedCode = relativePath => () => {
+  exec(
+    `npm run prettify -- "${path.join(
+      __dirname,
+      '/../../app/',
+      relativePath
+    )}/**.js"`
+  );
+};
+
 const plop = nodePlop('./index');
 
 const componentGen = plop.getGenerator('component');
@@ -48,6 +62,7 @@ componentGen
   })
   .then(checkForErrors)
   .then(removeTestsDirFrom('components/RbGeneratedComponentEsclass'))
+  .then(prettifyGeneratedCode('components/RbGeneratedComponentEsclass'))
   .catch(reportErrorsFor('component/React.Component'));
 
 componentGen
@@ -59,6 +74,7 @@ componentGen
   })
   .then(checkForErrors)
   .then(removeTestsDirFrom('components/RbGeneratedComponentEsclasspure'))
+  .then(prettifyGeneratedCode('components/RbGeneratedComponentEsclasspure'))
   .catch(reportErrorsFor('component/React.PureComponent'));
 
 componentGen
@@ -70,6 +86,7 @@ componentGen
   })
   .then(checkForErrors)
   .then(removeTestsDirFrom('components/RbGeneratedComponentStatelessfunction'))
+  .then(prettifyGeneratedCode('components/RbGeneratedComponentStatelessfunction'))
   .catch(reportErrorsFor('component/Stateless Function'));
 
 const containerGen = plop.getGenerator('container');
@@ -85,6 +102,7 @@ containerGen
   })
   .then(checkForErrors)
   .then(removeTestsDirFrom('containers/RbGeneratedContainerPureComponent'))
+  .then(prettifyGeneratedCode('containers/RbGeneratedContainerPureComponent'))
   .catch(reportErrorsFor('container/React.PureComponent'));
 
 containerGen
@@ -99,6 +117,7 @@ containerGen
   })
   .then(checkForErrors)
   .then(removeTestsDirFrom('containers/RbGeneratedContainerComponent'))
+  .then(prettifyGeneratedCode('containers/RbGeneratedContainerComponent'))
   .catch(reportErrorsFor('container/React.Component'));
 
 containerGen
@@ -113,6 +132,7 @@ containerGen
   })
   .then(checkForErrors)
   .then(removeTestsDirFrom('containers/RbGeneratedContainerStateless'))
+  .then(prettifyGeneratedCode('containers/RbGeneratedContainerStateless'))
   .catch(reportErrorsFor('container/Stateless'));
 
 const languageGen = plop.getGenerator('language');
