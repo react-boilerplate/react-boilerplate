@@ -70,6 +70,7 @@ const writeFile = (fileName, data) =>
 // Store existing translations into memory
 const oldLocaleMappings = [];
 const localeMappings = [];
+
 // Loop to run once per locale
 for (const locale of locales) {
   oldLocaleMappings[locale] = {};
@@ -109,12 +110,13 @@ for (const locale of locales) {
 */
 plugins.push(['react-intl']);
 
-const extractFromFile = async fileName => {
-  try {
-    const code = await readFile(fileName);
+const extractFromFile = fileName => {
+  return readFile(fileName).then(code => {
     // Use babel plugin to extract instances where react-intl is used
-    const { metadata: result } = await transform(code, { presets, plugins }); // object-shorthand
+    const { metadata: result } = transform(code, { presets, plugins })
+
     for (const message of result['react-intl'].messages) {
+      console.log(message)
       for (const locale of locales) {
         const oldLocaleMapping = oldLocaleMappings[locale][message.id];
         // Merge old translations into the babel extracted instances where react-intl is used
@@ -124,28 +126,34 @@ const extractFromFile = async fileName => {
           : newMsg;
       }
     }
-  } catch (error) {
+  })
+  .catch(error => {
     process.stderr.write(`Error transforming file: ${fileName}\n${error}`);
-  }
+  })
 };
 
-(async function main() {
-  const memoryTaskDone = task('Storing language files in memory');
-  const files = await glob(FILES_TO_PARSE);
+
+const memoryTask = glob(FILES_TO_PARSE)
+const memoryTaskDone = task('Storing language files in memory');
+
+memoryTask.then(files => {
   memoryTaskDone();
 
+  const extractTask = Promise.all(files.map(fileName => extractFromFile(fileName)))
   const extractTaskDone = task('Run extraction on all files');
   // Run extraction on all files that match the glob on line 16
-  await Promise.all(files.map(fileName => extractFromFile(fileName)));
-  extractTaskDone();
+  extractTask.then((result) => {
+    console.log(result)
+    extractTaskDone();
 
-  // Make the directory if it doesn't exist, especially for first run
-  mkdir('-p', 'app/translations');
-  for (const locale of locales) {
-    const translationFileName = `app/translations/${locale}.json`;
+    // Make the directory if it doesn't exist, especially for first run
+    mkdir('-p', 'app/translations');
 
     let localeTaskDone;
-    try {
+    let translationFileName;
+
+    for (const locale of locales) {
+      translationFileName = `app/translations/${locale}.json`;
       localeTaskDone = task(
         `Writing translation messages for ${locale} to: ${translationFileName}`
       );
@@ -162,16 +170,19 @@ const extractFromFile = async fileName => {
       // Write to file the JSON representation of the translation messages
       const prettified = `${JSON.stringify(messages, null, 2)}\n`;
 
-      await writeFile(translationFileName, prettified);
+      console.log(translationFileName, prettified);
 
-      localeTaskDone();
-    } catch (error) {
-      localeTaskDone(
-        `There was an error saving this translation file: ${translationFileName}
-        \n${error}`
-      );
+      try {
+        fs.writeFileSync(translationFileName, prettified)
+        localeTaskDone();
+      } catch (error) {
+        localeTaskDone(
+          `There was an error saving this translation file: ${translationFileName}
+          \n${error}`
+        );
+      }
     }
-  }
 
-  process.exit();
-})();
+    process.exit();
+  });
+})
