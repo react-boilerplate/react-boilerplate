@@ -18,21 +18,27 @@ describe('<LocaleToggle />', () => {
   });
 
   it('should render the default language messages', () => {
-    const renderedComponent = shallow(<Provider store={store}>
-      <LanguageProvider messages={translationMessages}>
-        <LocaleToggle />
-      </LanguageProvider>
-    </Provider>);
+    const renderedComponent = shallow(
+      <Provider store={store}>
+        <LanguageProvider messages={translationMessages}>
+          <LocaleToggle />
+        </LanguageProvider>
+      </Provider>,
+    );
     expect(renderedComponent.contains(<LocaleToggle />)).toBe(true);
   });
 
   it('should present the default `en` english language option', () => {
-    const renderedComponent = mount(<Provider store={store}>
-      <LanguageProvider messages={translationMessages}>
-        <LocaleToggle />
-      </LanguageProvider>
-    </Provider>);
-    expect(renderedComponent.contains(<option value="en">en</option>)).toBe(true);
+    const renderedComponent = mount(
+      <Provider store={store}>
+        <LanguageProvider messages={translationMessages}>
+          <LocaleToggle />
+        </LanguageProvider>
+      </Provider>,
+    );
+    expect(renderedComponent.contains(<option value="en">en</option>)).toBe(
+      true,
+    );
   });
 
   describe('mapDispatchToProps', () => {

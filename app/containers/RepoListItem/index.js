@@ -51,6 +51,8 @@ RepoListItem.propTypes = {
   currentUser: PropTypes.string,
 };
 
-export default connect(createStructuredSelector({
-  currentUser: makeSelectCurrentUser(),
-}))(RepoListItem);
+export default connect(
+  createStructuredSelector({
+    currentUser: makeSelectCurrentUser(),
+  }),
+)(RepoListItem);

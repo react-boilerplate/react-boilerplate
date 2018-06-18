@@ -29,7 +29,7 @@ const host = customHost || null; // Let http.Server use its default IPv6/4 host
 const prettyHost = customHost || 'localhost';
 
 // Start your app.
-app.listen(port, host, (err) => {
+app.listen(port, host, err => {
   if (err) {
     return logger.error(err.message);
   }
@@ -44,7 +44,7 @@ app.listen(port, host, (err) => {
         }
 
         logger.appStarted(port, prettyHost, url);
-      }
+      },
     );
   } else {
     logger.appStarted(port, prettyHost);

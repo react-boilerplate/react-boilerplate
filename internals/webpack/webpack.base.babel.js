@@ -11,7 +11,7 @@ const webpack = require('webpack');
 // in the next major version of loader-utils.'
 process.noDeprecation = true;
 
-module.exports = (options) => ({
+module.exports = options => ({
   mode: options.mode,
   entry: options.entry,
   output: Object.assign(
@@ -20,7 +20,7 @@ module.exports = (options) => ({
       path: path.resolve(process.cwd(), 'build'),
       publicPath: '/',
     },
-    options.output
+    options.output,
   ), // Merge with env dependent settings
   optimization: options.optimization,
   module: {
