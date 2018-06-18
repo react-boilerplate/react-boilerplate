@@ -86,7 +86,9 @@ componentGen
   })
   .then(checkForErrors)
   .then(removeTestsDirFrom('components/RbGeneratedComponentStatelessfunction'))
-  .then(prettifyGeneratedCode('components/RbGeneratedComponentStatelessfunction'))
+  .then(
+    prettifyGeneratedCode('components/RbGeneratedComponentStatelessfunction')
+  )
   .catch(reportErrorsFor('component/Stateless Function'));
 
 const containerGen = plop.getGenerator('container');
