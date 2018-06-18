@@ -33,7 +33,8 @@ import saga from './saga';
 import messages from './messages';
 {{/if}}
 
-export class {{ properCase name }} extends {{{ type }}} { // eslint-disable-line react/prefer-stateless-function
+/* eslint-disable react/prefer-stateless-function */
+export class {{ properCase name }} extends {{{ type }}} {
   render() {
     return (
       <div>

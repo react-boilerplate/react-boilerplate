@@ -43,11 +43,16 @@
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "prettify": "prettier --write"
   },
   "lint-staged": {
     "*.js": [
       "lint:eslint:fix",
+      "git add --force"
+    ],
+    "*.json": [
+      "prettier --write",
       "git add --force"
     ]
   },
@@ -82,92 +87,6 @@
           "transform-es2015-modules-commonjs",
           "dynamic-import-node"
         ]
-      }
-    }
-  },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "extends": "airbnb",
-    "env": {
-      "browser": true,
-      "node": true,
-      "jest": true,
-      "es6": true
-    },
-    "plugins": [
-      "redux-saga",
-      "react",
-      "jsx-a11y"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
-    },
-    "rules": {
-      "arrow-parens": [
-        "error",
-        "always"
-      ],
-      "arrow-body-style": [
-        2,
-        "as-needed"
-      ],
-      "class-methods-use-this": 0,
-      "comma-dangle": [
-        2,
-        "always-multiline"
-      ],
-      "import/imports-first": 0,
-      "import/newline-after-import": 0,
-      "import/no-dynamic-require": 0,
-      "import/no-extraneous-dependencies": 0,
-      "import/no-named-as-default": 0,
-      "import/no-unresolved": 2,
-      "import/no-webpack-loader-syntax": 0,
-      "import/prefer-default-export": 0,
-      "indent": [
-        2,
-        2,
-        {
-          "SwitchCase": 1
-        }
-      ],
-      "jsx-a11y/aria-props": 2,
-      "jsx-a11y/heading-has-content": 0,
-      "jsx-a11y/href-no-hash": 2,
-      "jsx-a11y/label-has-for": 2,
-      "jsx-a11y/mouse-events-have-key-events": 2,
-      "jsx-a11y/role-has-required-aria-props": 2,
-      "jsx-a11y/role-supports-aria-props": 2,
-      "max-len": 0,
-      "newline-per-chained-call": 0,
-      "no-confusing-arrow": 0,
-      "no-console": 1,
-      "no-use-before-define": 0,
-      "prefer-template": 2,
-      "react/forbid-prop-types": 0,
-      "react/jsx-first-prop-new-line": [
-        2,
-        "multiline"
-      ],
-      "react/jsx-filename-extension": 0,
-      "react/jsx-no-target-blank": 0,
-      "react/require-default-props": 0,
-      "react/require-extension": 0,
-      "react/self-closing-comp": 0,
-      "react/sort-comp": 0,
-      "redux-saga/no-yield-in-race": 2,
-      "redux-saga/yield-effects": 2,
-      "require-yield": 0
-    },
-    "settings": {
-      "import/resolver": {
-        "webpack": {
-          "config": "./internals/webpack/webpack.prod.babel.js"
-        }
       }
     }
   },
@@ -227,7 +146,7 @@
     "babel-polyfill": "6.26.0",
     "chalk": "2.4.1",
     "compression": "1.7.2",
-    "cross-env": "5.1.6",
+    "cross-env": "5.2.0",
     "express": "4.16.3",
     "fontfaceobserver": "2.0.13",
     "history": "4.7.2",
@@ -280,14 +199,16 @@
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
     "enzyme-to-json": "3.3.4",
-    "eslint": "3.19.0",
-    "eslint-config-airbnb": "15.0.1",
-    "eslint-config-airbnb-base": "11.2.0",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-config-prettier": "2.9.0",
     "eslint-import-resolver-webpack": "0.10.0",
     "eslint-plugin-import": "2.12.0",
-    "eslint-plugin-jsx-a11y": "5.0.3",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-prettier": "2.6.0",
     "eslint-plugin-react": "7.9.1",
-    "eslint-plugin-redux-saga": "0.4.0",
+    "eslint-plugin-redux-saga": "0.9.0",
     "eventsource-polyfill": "0.9.6",
     "exports-loader": "0.7.0",
     "file-loader": "1.1.11",
@@ -305,6 +226,7 @@
     "offline-plugin": "5.0.5",
     "plop": "1.8.0",
     "pre-commit": "1.2.2",
+    "prettier": "1.13.5",
     "react-test-renderer": "16.4.1",
     "rimraf": "2.6.2",
     "shelljs": "0.8.2",

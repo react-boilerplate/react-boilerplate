@@ -37,6 +37,7 @@ export default compose(
   withConnect,
 )(YourComponent);
 ```
+
 You don't need to do it by hand, a `container` generator will generate everything
 that's necessary.
 

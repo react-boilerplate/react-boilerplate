@@ -7,8 +7,8 @@
   - [Introduction ](general/introduction.md)
   - [Tool Configuration](general/files.md)
   - [Server Configurations](general/server-configs.md)
-  - [Deployment](general/deployment.md) *(currently Heroku and AWS S3 specific)*
-  - [Debugging](general/debugging.md)  
+  - [Deployment](general/deployment.md) _(currently Heroku and AWS S3 specific)_
+  - [Debugging](general/debugging.md)
   - [FAQ](general/faq.md)
   - [Gotchas](general/gotchas.md)
   - [Remove](general/remove.md)
@@ -39,14 +39,14 @@
 
 ### Quickstart
 
-1. First, let's kick the tyres by launching the sample _Repospective_ app
-   bundled with this project to demo some of its best features:
+1.  First, let's kick the tyres by launching the sample _Repospective_ app
+    bundled with this project to demo some of its best features:
 
     ```Shell
     npm run setup && npm start
     ```
 
-1. Open [localhost:3000](http://localhost:3000) to see it in action.
+1.  Open [localhost:3000](http://localhost:3000) to see it in action.
 
     - Add a Github username to see Redux and Redux Sagas in action: effortless
       async state updates and side effects are now yours :)
@@ -58,7 +58,7 @@
       globally addressable to any device, anywhere. Not bad for a locally-running
       Single Page App.
 
-1. Time to build your own app: run
+1.  Time to build your own app: run
 
     ```shell
     npm run clean
@@ -72,10 +72,10 @@ Run `npm start` to see your app at `localhost:3000`
 
 ### Building & Deploying
 
-1. Run `npm run build`, which will compile all the necessary files to the
-`build` folder.
+1.  Run `npm run build`, which will compile all the necessary files to the
+    `build` folder.
 
-2. Upload the contents of the `build` folder to your web server's root folder.
+2.  Upload the contents of the `build` folder to your web server's root folder.
 
 ### Structure
 
@@ -85,7 +85,7 @@ JavaScript, HTML and tests.
 The rest of the folders and files only exist to make your life easier, and
 should not need to be touched.
 
-*(If they do have to be changed, please [submit an issue](https://github.com/react-boilerplate/react-boilerplate/issues)!)*
+_(If they do have to be changed, please [submit an issue](https://github.com/react-boilerplate/react-boilerplate/issues)!)_
 
 ### CSS
 

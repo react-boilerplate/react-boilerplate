@@ -6,12 +6,8 @@
 
 import { fromJS } from 'immutable';
 
-import {
-  CHANGE_LOCALE,
-} from './constants';
-import {
-  DEFAULT_LOCALE,
-} from '../App/constants'; // eslint-disable-line
+import { CHANGE_LOCALE } from './constants';
+import { DEFAULT_LOCALE } from '../App/constants'; // eslint-disable-line
 
 export const initialState = fromJS({
   locale: DEFAULT_LOCALE,
@@ -20,8 +16,7 @@ export const initialState = fromJS({
 function languageProviderReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_LOCALE:
-      return state
-        .set('locale', action.locale);
+      return state.set('locale', action.locale);
     default:
       return state;
   }
