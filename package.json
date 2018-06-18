@@ -222,7 +222,7 @@
     "jest-styled-components": "5.0.1",
     "lint-staged": "7.2.0",
     "ngrok": "2.3.0",
-    "node-plop": "0.15.0",
+    "node-plop": "0.9.0",
     "null-loader": "0.1.1",
     "offline-plugin": "5.0.5",
     "plop": "1.9.1",
