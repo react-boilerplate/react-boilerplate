@@ -26,10 +26,10 @@ Npm has a great feature that allows this kind of parallel development of
 packages - `npm link` (read more [here](https://docs.npmjs.com/cli/link)). After
 setting up your new package, you can link it into your main package like this:
 
- 1. `cd` into your new package directory
- 2. Run `npm link`
- 3. `cd` into your main project directory
- 4. Run `npm link <new-package>`
+1.  `cd` into your new package directory
+2.  Run `npm link`
+3.  `cd` into your main project directory
+4.  Run `npm link <new-package>`
 
 ### Configuration
 

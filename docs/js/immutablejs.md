@@ -24,8 +24,6 @@ const initialState = fromJS({
 });
 ```
 
-
-
 When a reducer is subscribed to an action and needs to return the new state they can do so by using setter methods such as [`.set`](https://facebook.github.io/immutable-js/docs/#/Map/set) and [`.update`](https://facebook.github.io/immutable-js/docs/#/Map/update) and [`.merge`](https://facebook.github.io/immutable-js/docs/#/Map/merge).  
 If the changing state data is nested, we can utilize the 'deep' versions of these setters: [`.setIn`](https://facebook.github.io/immutable-js/docs/#/Map/setIn) and [`.updateIn`](https://facebook.github.io/immutable-js/docs/#/Map/updateIn), [`.mergeIn`](https://facebook.github.io/immutable-js/docs/#/Map/mergeIn).
 
@@ -89,10 +87,11 @@ Now, if you want to access `myData`, you can just write `state.myData` in your r
 
 ### Gotchas of Using Records
 
-Although dot notation can now be used to read properties the same does not apply to setting properties. Any attempts to set a property on a `Record` using dot notation will result in errors. 
+Although dot notation can now be used to read properties the same does not apply to setting properties. Any attempts to set a property on a `Record` using dot notation will result in errors.
 Instead setter methods ( `.set`, `.update`, `.merge`) should be used.
 
 Certain properties can not be set on a record as they would conflict with the API. Consider the below example:
+
 ```JS
 const ProductRecord = Record({
     type: 'tshirt',
