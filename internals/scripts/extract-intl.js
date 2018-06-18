@@ -16,7 +16,7 @@ const plugins = pkg.babel.plugins || [];
 
 const i18n = require('../../app/i18n');
 
-const DEFAULT_LOCALE = require('../../app/containers/App/constants').DEFAULT_LOCALE;
+const DEFAULT_LOCALE = i18n.DEFAULT_LOCALE;
 
 require('shelljs/global');
 
