@@ -1,4 +1,4 @@
-const resolve = require('path').resolve;
+const { resolve } = require('path');
 const pullAll = require('lodash/pullAll');
 const uniq = require('lodash/uniq');
 
@@ -42,8 +42,10 @@ const ReactBoilerplate = {
 
     entry(pkg) {
       const dependencyNames = Object.keys(pkg.dependencies);
-      const exclude = pkg.dllPlugin.exclude || ReactBoilerplate.dllPlugin.defaults.exclude;
-      const include = pkg.dllPlugin.include || ReactBoilerplate.dllPlugin.defaults.include;
+      const exclude =
+        pkg.dllPlugin.exclude || ReactBoilerplate.dllPlugin.defaults.exclude;
+      const include =
+        pkg.dllPlugin.include || ReactBoilerplate.dllPlugin.defaults.include;
       const includeDependencies = uniq(dependencyNames.concat(include));
 
       return {

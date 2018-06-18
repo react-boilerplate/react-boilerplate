@@ -21,7 +21,7 @@ describe('<ListItemTitle />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<ListItemTitle attribute={'test'} />);
+    const renderedComponent = shallow(<ListItemTitle attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

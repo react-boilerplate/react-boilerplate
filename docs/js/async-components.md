@@ -1,9 +1,9 @@
 # Loading components with react-loadable
 
-[`react-loadable`](https://github.com/thejameskyle/react-loadable) is integrated into 
-`react-boilerplate` because of its rich functionality and good design (it does not 
+[`react-loadable`](https://github.com/thejameskyle/react-loadable) is integrated into
+`react-boilerplate` because of its rich functionality and good design (it does not
 conflate routes with asynchronous components).
- 
+
 To load component asynchronously, create a `Loadable` file by hand or via component/container generators with
 'Do you want an async loader?' option activated. This is how it can look like:
 

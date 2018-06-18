@@ -34,6 +34,7 @@ We also support the use of CSS [stylesheets](#stylesheet).
 
 There are many ways to style web applications, unfortunately, we cannot support them all.
 However, you can integrate the following by using the guides below:
+
 - [CSS Modules](#css-modules)
 - [Sass](#sass)
 - [LESS](#less)
@@ -67,16 +68,17 @@ class Button extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Title>Hello {this.props.name}, this is your first styled component!</Title>
+        <Title>
+          Hello {this.props.name}, this is your first styled component!
+        </Title>
         ...
       </Wrapper>
     );
   }
 }
-
 ```
 
-*(The CSS rules are automatically vendor prefixed, so you don't have to think about it!)*
+_(The CSS rules are automatically vendor prefixed, so you don't have to think about it!)_
 
 > For more information about `styled-components` see https://github.com/styled-components/styled-components
 
@@ -87,6 +89,7 @@ Using the [`css-loader`](https://webpack.js.org/loaders/css-loader/) you can imp
 into a JavaScript:
 
 **`Button.css`**
+
 ```css
 .danger {
   background-color: red;
@@ -94,6 +97,7 @@ into a JavaScript:
 ```
 
 **`Button.js`**
+
 ```js
 import React from 'react';
 import './Button.css'; // Tell Webpack that Button.js uses these styles
@@ -112,7 +116,7 @@ class Button extends React.Component {
 
 ### Setup
 
-Modify [`webpack.base.babel.js`][WebpackConfig]
+Modify [`webpack.base.babel.js`][webpackconfig]
 to look like:
 
 ```diff
@@ -139,6 +143,7 @@ and this often catches people out.
 The key difference in CSS Modules is that you import styles to a variable.
 
 **`Button.css`**
+
 ```css
 .danger {
   background-color: red;
@@ -146,6 +151,7 @@ The key difference in CSS Modules is that you import styles to a variable.
 ```
 
 **`Button.js`**
+
 ```js
 import React from 'react';
 import styles from './Button.css'; // different import compared to stylesheets
@@ -168,11 +174,12 @@ it's one or the other unless you include or exclude specific directories.**
 ### Setup
 
 Install `sass-loader` and the `node-sass` dependancy.
+
 ```
 npm i -D sass-loader node-sass
 ```
 
-Modify [`webpack.base.babel.js`][WebpackConfig]
+Modify [`webpack.base.babel.js`][webpackconfig]
 to look like:
 
 ```diff
@@ -188,6 +195,7 @@ to look like:
 ### Usage
 
 **`Button.scss`**
+
 ```scss
 $error-color: red;
 
@@ -197,6 +205,7 @@ $error-color: red;
 ```
 
 **`Button.js`**
+
 ```js
 import React from 'react';
 import './Button.scss';
@@ -215,11 +224,12 @@ class Button extends React.Component {
 ### Setup
 
 Install `less-loader` and the `less` dependancy.
+
 ```
 npm i -D less-loader less
 ```
 
-Modify [`webpack.base.babel.js`][WebpackConfig]
+Modify [`webpack.base.babel.js`][webpackconfig]
 to look like:
 
 ```diff
@@ -244,6 +254,7 @@ to look like:
 ### Usage
 
 **`Button.less`**
+
 ```less
 @error-color: red;
 
@@ -253,6 +264,7 @@ to look like:
 ```
 
 **`Button.js`**
+
 ```js
 import React from 'react';
 import './Button.less';
@@ -266,4 +278,4 @@ class Button extends React.Component {
 
 > For more information about LESS and the `less-loader` see https://github.com/webpack-contrib/less-loader.
 
-[WebpackConfig]: ../../internals/webpack/webpack.base.babel.js "Webpack config"
+[webpackconfig]: ../../internals/webpack/webpack.base.babel.js 'Webpack config'

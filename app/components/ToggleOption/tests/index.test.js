@@ -18,7 +18,11 @@ describe('<ToggleOption />', () => {
         <ToggleOption value="en" message={message.enMessage} />
       </IntlProvider>
     );
-    expect(renderedComponent.contains(<ToggleOption value="en" message={message.enMessage} />)).toBe(true);
+    expect(
+      renderedComponent.contains(
+        <ToggleOption value="en" message={message.enMessage} />
+      )
+    ).toBe(true);
   });
 
   it('should display `value`(two letter language code) when `message` is absent', () => {
