@@ -50,7 +50,7 @@ const prettifyGeneratedCode = relativePath => () => {
   );
 };
 
-const plop = nodePlop('./index');
+const plop = nodePlop('./index.js');
 
 const componentGen = plop.getGenerator('component');
 componentGen

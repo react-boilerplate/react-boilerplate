@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-- [Where are Babel and ESLint configured?](#where-are-babel-and-eslint-configured)
+- [Where are Babel, Prettier and ESLint configured?](#where-are-babel-prettier-and-eslint-configured)
 - [Where are the files coming from when I run `npm start`?](#where-are-the-files-coming-from-when-i-run-npm-start)
 - [How do I fix `Error: listen EADDRINUSE 127.0.0.1:3000`?](#how-do-i-fix-error-listen-eaddrinuse-1270013000)
   - [OS X / Linux](#os-x-linux)
