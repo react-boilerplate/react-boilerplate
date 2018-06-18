@@ -15,7 +15,7 @@ Run `npm run generate` to choose from the available generators, and automaticall
 add new parts of your application!
 
 > Note: If you want to skip the generator selection process,
-  `npm run generate <generator>` also works. (e.g. `npm run generate container`)
+> `npm run generate <generator>` also works. (e.g. `npm run generate container`)
 
 ### Learn more
 

@@ -1,5 +1,5 @@
 /**
- * Test  sagas
+ * Test sagas
  */
 
 /* eslint-disable redux-saga/yield-effects */

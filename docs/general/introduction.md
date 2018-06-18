@@ -98,12 +98,13 @@ Webpack requires an entry point to your application. Think of it as a door to yo
 - A redux `store` is instantiated.
 - A `history` object is created, which remembers all the browsing history for your app. This is used by the router to know which page your users visit. (very useful for analytics, by the way)
 - A Router is connected to Redux.
-- Hot module replacement setup via vanilla [Webpack HMR](https://webpack.js.org/guides/hot-module-replacement/) that makes all the reducers, injected sagas, components, containers, and i18n messages hot reloadable. 
+- Hot module replacement setup via vanilla [Webpack HMR](https://webpack.js.org/guides/hot-module-replacement/) that makes all the reducers, injected sagas, components, containers, and i18n messages hot reloadable.
 - i18n internationalization support setup.
 - Offline plugin support to make your app [offline-first](https://developers.google.com/web/fundamentals/getting-started/codelabs/offline/).
 - `ReactDOM.render()` not only renders the [root react component](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/index.js) called `<App />`, of your application, but it renders it with `<Provider />`, `<LanguageProvider />` and `<Router />`.
- * `<Provider />` connects your app with the redux `store`.
- * `<LanguageProvider />` provides language translation support to your app. 
+
+* `<Provider />` connects your app with the redux `store`.
+* `<LanguageProvider />` provides language translation support to your app.
 
 ### Redux
 
@@ -117,31 +118,26 @@ The Redux `store` is the heart of your application. Check out [`configureStore.j
 
 The store is created with the `createStore()` factory, which accepts three parameters.
 
-1. **Root reducer:** A master reducer combining all your reducers.
-2. **Initial state:** The initial state of your app as determined by your reducers.
-3. **Middleware/enhancers:** Middlewares are third party libraries which intercept each redux action dispatched to the redux store and then... do stuff. For example, if you install the [`redux-logger`](https://github.com/evgenyrodionov/redux-logger) middleware, it will listen to all the actions being dispatched to the store and print previous and next state in the browser console. It's helpful to track what happens in your app.
+1.  **Root reducer:** A master reducer combining all your reducers.
+2.  **Initial state:** The initial state of your app as determined by your reducers.
+3.  **Middleware/enhancers:** Middlewares are third party libraries which intercept each redux action dispatched to the redux store and then... do stuff. For example, if you install the [`redux-logger`](https://github.com/evgenyrodionov/redux-logger) middleware, it will listen to all the actions being dispatched to the store and print previous and next state in the browser console. It's helpful to track what happens in your app.
 
 In our application we are using two such middleware.
 
-1. **Router middleware:** Keeps your routes in sync with the redux `store`.
-2. **Redux saga:** Is used for managing _side-effects_ such as dispatching actions asynchronously or accessing browser data.
+1.  **Router middleware:** Keeps your routes in sync with the redux `store`.
+2.  **Redux saga:** Is used for managing _side-effects_ such as dispatching actions asynchronously or accessing browser data.
 
 ### Reselect
 
 Reselect is a library used for slicing your redux state and providing only the relevant sub-tree to a react component. It has three key features:
 
-1. Computational power
-2. Memoization
-3. Composability
+1.  Computational power
+2.  Memoization
+3.  Composability
 
 Imagine an application that shows a list of users. Its redux state tree stores an array of usernames with signatures:
 
-`{
-  id: number,
-  username: string,
-  gender: string,
-  age: number
-}`.
+`{ id: number, username: string, gender: string, age: number }`.
 
 Let's see how the three features of reselect help.
 
@@ -155,9 +151,9 @@ If your application is going to interact with some back-end application for data
 
 Imagine that your application is fetching data in json format from a back-end. For every API call, ideally you should define at least three kinds of [action creators](http://redux.js.org/docs/basics/Actions.html):
 
-1. `API_REQUEST`: Upon dispatching this, your application should show a spinner to let the user know that something's happening.
-2. `API_SUCCESS`: Upon dispatching this, your application should show the data to the user.
-3. `API_FAILURE`: Upon dispatching this, your application should show an error message to the user.
+1.  `API_REQUEST`: Upon dispatching this, your application should show a spinner to let the user know that something's happening.
+2.  `API_SUCCESS`: Upon dispatching this, your application should show the data to the user.
+3.  `API_FAILURE`: Upon dispatching this, your application should show an error message to the user.
 
 And this is only for **_one_** API call. In a real-world scenario, one page of your application could be making tens of API calls. How do we manage all of them effectively? This essentially boils down to controlling the flow of your application. What if there was a background process that handles multiple actions simultaneously, communicates with redux store and react containers at the same time? This is where redux-saga comes into the picture.
 
@@ -183,11 +179,11 @@ Run `npm start` to launch the application. If you start browsing at [https://loc
 
 Together these two methods work like magic. When you type something in the textbox the following things will happen in a sequential manner:
 
-1. `changeUsername()` will send text to the Redux store. The text can be accessed using `evt.target.value`. Here, `evt` is the `onChange` event emmited by pressing a key.
-2. The Redux store will consult with its corresponding reducer, since a reducer knows what to do with the data.
-3. When a reducer computes a new state tree, the store will update its state with the newly typed data.
-4. An update has occured in the state, therefore `mapStateToProps()` will be triggered and your react component will get the new data.
-5. The updated data will be set as the `value` to your `<Input />`.
+1.  `changeUsername()` will send text to the Redux store. The text can be accessed using `evt.target.value`. Here, `evt` is the `onChange` event emmited by pressing a key.
+2.  The Redux store will consult with its corresponding reducer, since a reducer knows what to do with the data.
+3.  When a reducer computes a new state tree, the store will update its state with the newly typed data.
+4.  An update has occured in the state, therefore `mapStateToProps()` will be triggered and your react component will get the new data.
+5.  The updated data will be set as the `value` to your `<Input />`.
 
 _So you see, if you type something in the textbox, it will not be directly reflected in the DOM. It must pass through redux. Redux will update the state and return it to the component. It's the component's responsibility to show the updated data._
 
