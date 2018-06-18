@@ -26,8 +26,8 @@ const reportErrorsFor = title => err => {
   xmark(() =>
     console.error(
       chalk.red(` ERROR generating '${title}': `),
-      prettyStringify(err),
-    ),
+      prettyStringify(err)
+    )
   );
   process.exit(1);
 };

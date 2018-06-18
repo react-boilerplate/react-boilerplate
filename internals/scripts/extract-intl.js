@@ -45,7 +45,7 @@ const glob = pattern =>
   new Promise((resolve, reject) => {
     nodeGlob(
       pattern,
-      (error, value) => (error ? reject(error) : resolve(value)),
+      (error, value) => (error ? reject(error) : resolve(value))
     );
   });
 
@@ -53,7 +53,7 @@ const readFile = fileName =>
   new Promise((resolve, reject) => {
     fs.readFile(
       fileName,
-      (error, value) => (error ? reject(error) : resolve(value)),
+      (error, value) => (error ? reject(error) : resolve(value))
     );
   });
 
@@ -62,7 +62,7 @@ const writeFile = (fileName, data) =>
     fs.writeFile(
       fileName,
       data,
-      (error, value) => (error ? reject(error) : resolve(value)),
+      (error, value) => (error ? reject(error) : resolve(value))
     );
   });
 
@@ -86,7 +86,7 @@ for (const locale of locales) {
     if (error.code !== 'ENOENT') {
       process.stderr.write(
         `There was an error loading this translation file: ${translationFileName}
-        \n${error}`,
+        \n${error}`
       );
     }
   }
@@ -146,7 +146,7 @@ const extractFromFile = async fileName => {
     let localeTaskDone;
     try {
       localeTaskDone = task(
-        `Writing translation messages for ${locale} to: ${translationFileName}`,
+        `Writing translation messages for ${locale} to: ${translationFileName}`
       );
 
       // Sort the translation JSON file so that git diffing is easier
@@ -167,7 +167,7 @@ const extractFromFile = async fileName => {
     } catch (error) {
       localeTaskDone(
         `There was an error saving this translation file: ${translationFileName}
-        \n${error}`,
+        \n${error}`
       );
     }
   }
