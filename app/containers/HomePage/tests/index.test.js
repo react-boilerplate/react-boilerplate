@@ -14,12 +14,10 @@ import { loadRepos } from '../../App/actions';
 describe('<HomePage />', () => {
   it('should render the repos list', () => {
     const renderedComponent = shallow(
-      <HomePage loading error={false} repos={[]} />,
+      <HomePage loading error={false} repos={[]} />
     );
     expect(
-      renderedComponent.contains(
-        <ReposList loading error={false} repos={[]} />,
-      ),
+      renderedComponent.contains(<ReposList loading error={false} repos={[]} />)
     ).toEqual(true);
   });
 
@@ -32,7 +30,7 @@ describe('<HomePage />', () => {
           onChangeUsername={() => {}}
           onSubmitForm={submitSpy}
         />
-      </IntlProvider>,
+      </IntlProvider>
     );
     expect(submitSpy).toHaveBeenCalled();
   });
@@ -42,7 +40,7 @@ describe('<HomePage />', () => {
     mount(
       <IntlProvider locale="en">
         <HomePage onChangeUsername={() => {}} onSubmitForm={submitSpy} />
-      </IntlProvider>,
+      </IntlProvider>
     );
     expect(submitSpy).not.toHaveBeenCalled();
   });
@@ -56,7 +54,7 @@ describe('<HomePage />', () => {
           onChangeUsername={() => {}}
           onSubmitForm={submitSpy}
         />
-      </IntlProvider>,
+      </IntlProvider>
     );
     expect(submitSpy).not.toHaveBeenCalled();
   });

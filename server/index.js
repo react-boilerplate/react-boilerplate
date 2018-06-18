@@ -44,7 +44,7 @@ app.listen(port, host, err => {
         }
 
         logger.appStarted(port, prettyHost, url);
-      },
+      }
     );
   } else {
     logger.appStarted(port, prettyHost);
