@@ -116,7 +116,6 @@ const extractFromFile = fileName => {
     const { metadata: result } = transform(code, { presets, plugins })
 
     for (const message of result['react-intl'].messages) {
-      console.log(message)
       for (const locale of locales) {
         const oldLocaleMapping = oldLocaleMappings[locale][message.id];
         // Merge old translations into the babel extracted instances where react-intl is used
@@ -143,7 +142,6 @@ memoryTask.then(files => {
   const extractTaskDone = task('Run extraction on all files');
   // Run extraction on all files that match the glob on line 16
   extractTask.then((result) => {
-    console.log(result)
     extractTaskDone();
 
     // Make the directory if it doesn't exist, especially for first run
@@ -169,8 +167,6 @@ memoryTask.then(files => {
 
       // Write to file the JSON representation of the translation messages
       const prettified = `${JSON.stringify(messages, null, 2)}\n`;
-
-      console.log(translationFileName, prettified);
 
       try {
         fs.writeFileSync(translationFileName, prettified)

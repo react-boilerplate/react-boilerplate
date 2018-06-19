@@ -1,6 +1,6 @@
-import { DEFAULT_LOCALE, formatTranslationMessages } from '../i18n';
+import { formatTranslationMessages } from '../i18n';
 
-jest.mock(`../translations/${DEFAULT_LOCALE}.json`, () => ({
+jest.mock('../translations/en.json', () => ({
   message1: 'default message',
   message2: 'default message 2',
 }));
@@ -12,7 +12,7 @@ const esTranslationMessages = {
 
 describe('formatTranslationMessages', () => {
   it('should build only defaults when DEFAULT_LOCALE', () => {
-    const result = formatTranslationMessages(DEFAULT_LOCALE, { a: 'a' });
+    const result = formatTranslationMessages('en', { a: 'a' });
 
     expect(result).toEqual({ a: 'a' });
   });
