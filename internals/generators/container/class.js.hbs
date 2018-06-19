@@ -69,7 +69,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 {{#if wantActionsAndReducer}}
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
 
 const withReducer = injectReducer({ key: '{{ camelCase name }}', reducer });
 {{else}}
@@ -86,5 +89,5 @@ export default compose(
 {{#if wantSaga}}
   withSaga,
 {{/if}}
-  withConnect,
+  withConnect
 )({{ properCase name }});
