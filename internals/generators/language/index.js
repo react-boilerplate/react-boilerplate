@@ -39,7 +39,7 @@ module.exports = {
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
-      pattern: /('react-intl\/locale-data\/[a-z]+';\n)(?!.*'react-intl\/locale-data\/[a-z]+';)/g,
+      pattern: /(const ..LocaleData = require\('react-intl\/locale-data\/..'\);\n)+/g,
       templateFile: './language/intl-locale-data.hbs',
     });
     actions.push({
@@ -51,7 +51,7 @@ module.exports = {
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
-      pattern: /(from\s'.\/translations\/[a-z]+.json';\n)(?!.*from\s'.\/translations\/[a-z]+.json';)/g,
+      pattern: /(const ..TranslationMessages = require\('\.\/translations\/..\.json'\);\n)(?!const ..TranslationMessages = require\('\.\/translations\/..\.json'\);\n)/g,
       templateFile: './language/translation-messages.hbs',
     });
     actions.push({
