@@ -36,3 +36,5 @@ To make this happen, install both the ESLint and Prettier extensions for VSCode 
   "eslint.run": "onSave"
 }
 ```
+
+Here's also a detailed video on the topic: [How to Setup VS Code + Prettier + ESLint](https://www.youtube.com/watch?v=YIvjKId9m2c)
