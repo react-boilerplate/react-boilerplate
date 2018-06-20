@@ -1,5 +1,3 @@
-**NOTE: We're working hard to get a new release out that includes React v16, Enzyme v3, Webpack v4, Redux v4, and more. Please bear with us while we wait for some external dependency issues to clear and can get these updates fully vetted and released. Please feel free to use the dev branch if you'd like to use upgraded features, but know that it still hasn't been released.**
-
 <img src="https://raw.githubusercontent.com/react-boilerplate/react-boilerplate-brand/master/assets/banner-metal-optimized.jpg" alt="react boilerplate banner" align="center" />
 
 <br />
@@ -64,7 +62,7 @@
   <dd>Unidirectional data flow allows for change logging and time travel debugging.</dd>
 
   <dt>Next generation JavaScript</dt>
-  <dd>Use template strings, object destructuring, arrow functions, JSX syntax and more, today.</dd>
+  <dd>Use template strings, object destructuring, arrow functions, JSX syntax and more.</dd>
 
   <dt>Next generation CSS</dt>
   <dd>Write composable CSS that's co-located with your components for complete modularity. Unique generated class names keep the specificity low while eliminating style clashes. Ship only the styles that are on the page for the best performance.</dd>
@@ -78,19 +76,22 @@
   <dt>Offline-first</dt>
   <dd>The next frontier in performant web apps: availability without a network connection from the instant your users load the app.</dd>
 
+  <dt>Static code analysis</dt>
+  <dd>Focus on writing new features without worrying about formatting or code quality. With the right editor setup, your code will automatically be formatted and linted as you work.</dd>
+
   <dt>SEO</dt>
   <dd>We support SEO (document head tags management) for search engines that support indexing of JavaScript content. (eg. Google)</dd>
 </dl>
 
 But wait... there's more!
 
-* _The best test setup:_ Automatically guarantee code quality and non-breaking
-  changes. (Seen a react app with 99% test coverage before?)
-* _Native web app:_ Your app's new home? The home screen of your users' phones.
-* _The fastest fonts:_ Say goodbye to vacant text.
-* _Stay fast_: Profile your app's performance from the comfort of your command
+- _The best test setup:_ Automatically guarantee code quality and non-breaking
+  changes. (Seen a react app with 100% test coverage before?)
+- _Native web app:_ Your app's new home? The home screen of your users' phones.
+- _The fastest fonts:_ Say goodbye to vacant text.
+- _Stay fast_: Profile your app's performance from the comfort of your command
   line!
-* _Catch problems:_ AppVeyor and TravisCI setups included by default, so your
+- _Catch problems:_ AppVeyor and TravisCI setups included by default, so your
   tests get run automatically on Windows and Unix.
 
 There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on how to structure your React.js apps with scalability in mind. It provides rationale for the majority of boilerplate's design decisions.
@@ -99,12 +100,13 @@ There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on ho
 
 ## Quick start
 
-1.  Clone this repo using `git clone --depth=1 https://github.com/react-boilerplate/react-boilerplate.git`
-2.  Move to the appropriate directory: `cd react-boilerplate`.<br />
-3.  Run `npm run setup` in order to install dependencies and clean the git repo.<br />
+1.  Make sure that you have Node v8 or above installed.
+2.  Clone this repo using `git clone --depth=1 https://github.com/react-boilerplate/react-boilerplate.git`
+3.  Move to the appropriate directory: `cd react-boilerplate`.<br />
+4.  Run `npm run setup` in order to install dependencies and clean the git repo.<br />
     _We auto-detect `yarn` for installing packages by default, if you wish to force `npm` usage do: `USE_YARN=false npm run setup`_<br />
     _At this point you can run `npm start` to see the example app at `http://localhost:3000`._
-4.  Run `npm run clean` to delete the example app.
+5.  Run `npm run clean` to delete the example app.
 
 Now you're ready to rumble!
 
@@ -112,14 +114,14 @@ Now you're ready to rumble!
 
 ## Documentation
 
-* [**The Hitchhikers Guide to `react-boilerplate`**](docs/general/introduction.md): An introduction for newcomers to this boilerplate.
-* [Overview](docs/general): A short overview of the included tools
-* [**Commands**](docs/general/commands.md): Getting the most out of this boilerplate
-* [Testing](docs/testing): How to work with the built-in test harness
-* [Styling](docs/css): How to work with the CSS tooling
-* [Your app](docs/js): Supercharging your app with Routing, Redux, simple
+- [**The Hitchhikers Guide to `react-boilerplate`**](docs/general/introduction.md): An introduction for newcomers to this boilerplate.
+- [Overview](docs/general): A short overview of the included tools
+- [**Commands**](docs/general/commands.md): Getting the most out of this boilerplate
+- [Testing](docs/testing): How to work with the built-in test harness
+- [Styling](docs/css): How to work with the CSS tooling
+- [Your app](docs/js): Supercharging your app with Routing, Redux, simple
   asynchronicity helpers, etc.
-* [**Troubleshooting**](docs/general/gotchas.md): Solutions to common problems faced by developers.
+- [**Troubleshooting**](docs/general/gotchas.md): Solutions to common problems faced by developers.
 
 ## Supporters
 
@@ -151,5 +153,5 @@ This project would not be possible without the support by these amazing folks. [
 
 ## License
 
-This project is licensed under the MIT license, Copyright (c) 2017 Maximilian
+This project is licensed under the MIT license, Copyright (c) 2018 Maximilian
 Stoiber. For more information see `LICENSE.md`.

@@ -33,7 +33,8 @@ import saga from './saga';
 import messages from './messages';
 {{/if}}
 
-export class {{ properCase name }} extends {{{ type }}} { // eslint-disable-line react/prefer-stateless-function
+/* eslint-disable react/prefer-stateless-function */
+export class {{ properCase name }} extends {{{ type }}} {
   render() {
     return (
       <div>
@@ -68,7 +69,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 {{#if wantActionsAndReducer}}
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps
+);
 
 const withReducer = injectReducer({ key: '{{ camelCase name }}', reducer });
 {{else}}
@@ -85,5 +89,5 @@ export default compose(
 {{#if wantSaga}}
   withSaga,
 {{/if}}
-  withConnect,
+  withConnect
 )({{ properCase name }});

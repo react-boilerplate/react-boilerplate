@@ -1,13 +1,12 @@
 language: node_js
 
 node_js:
-  - 7
-  - 6
-  - 5
+  - 9
+  - 8
 
 script:
   - node ./internals/scripts/generate-templates-for-linting
-  - npm run test
+  - npm test -- --maxWorkers=4
   - npm run build
 
 before_install:

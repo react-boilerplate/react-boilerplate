@@ -1,12 +1,51 @@
 # Changelog
 
-## 3.5 September 2017
+## 3.6 June 2018
 
 ## News
+
+Major version updates are finally here! It's been awhile, but we're a small team that's been pushing this for awhile. Thanks to several users' PRs, we were able to cherry-pick a lot from the dev branch to push this release out. We decided because of the amount of dependencies that needed to be updated- we would overshoot some of the changes made on the dev branch and just grab the most pressing ones.
+
+Next steps for us will be revisiting the dev branch, revisiting outstanding PRs and RFCs (like Immutable), and also plugging away at a create-react-app spinoff for react-boilerplate.
+
+### Main
+
+- **Upgrade Webpack to v4** (@julienben @stern-shawn)
+  - Syntax / function changes (mode, optimization, etc.)
+  - Remove webpack loader syntax from main app
+  - Better SVG handling
+- **Upgrade Redux to v4** (@gretzky)
+- **Upgrade React to v16** (@blling @gretzky)
+- **Upgrade Enzyme to v3** (@blling @gretzky)
+  - Add in new Adapter, as required
+  - Minor Jest config tweaks to include new Enzyme setup config
+- **Upgrade styled-components to v3** (@julienben)
+  - Reconfigure Jest snapshot testing for styled-components (@gretzky)
+- **Added support for node v9, v8** (@julienben)
+  - Removed support for node v6
+- **Add Prettier** (@julienben)
+- **Upgrade ESLint to v4** (@julienben)
+- **Add stylelint and stylelint config** (@julienben)
+
+### Other Updates
+
+- Add `--fix` flag to eslint command (@shobhitchittora)
+- Correct babel plugin order (@petrhanak)
+- Add missing `import PropTypes` to component generators (@GoldAnna)
+- Remove unnecessary `onRejected()` from FontFaceObserver (@akarve)
+- Include "Setting Up Your Editor" in documentation (@mjbvz)
+- Add login / authentication flow example into documentation (@tinavanschelt)
+- More detailed redux-saga usage documentation (@acharlop)
+- Fix ejection error of done sagas (@outdooricon)
+
+## 3.5 September 2017
+
+### News
 
 So, a few things have changed in the JS ecosystem since the original release of React Boilerplate, and there was a discussion in #1776 around the it's future. TLDR; we had two incompatible PRs — one for server-side rendering, and another for react-router v4. The community decided that we would keep our dependencies up to date (upgrade react-router) and establish a clear mission for React Boilerplate:
 
 **React Boilerplate is a rock-solid foundation for crafting large, high-performance enterprise-grade frontend web applications that have advanced/custom requirements.**
+
 - Static output designed for CDN and edge caches
 - Extreme Developer Ergonomics
   - Parallelized Tests
@@ -122,7 +161,6 @@ If you want to help us make react-boilerplate great, please use the `dev` branch
 
 This release was made possible by [Fullstack React](https://www.fullstackreact.com/) and [Serverless](http://serverless.com)! _Want to support us too? [Click here!](http://opencollective.com/react-boilerplate)_
 
-
 ## RBP v3.0: The "JS Fatigue Antivenin" Edition
 
 React Boilerplate (RBP) v3.0.0 is out, and it's a _complete_ rewrite! :tada:
@@ -150,12 +188,14 @@ website!
   tests are now co-located with the code that they validate.
 
 - **New industry-standard JS utilities** We're now making the most of...
-    - ImmutableJS
-    - reselect
-    - react-router-redux
-    - redux-saga
+
+  - ImmutableJS
+  - reselect
+  - react-router-redux
+  - redux-saga
 
 - **Huge CSS Improvements**
+
   - _[CSS Modules](docs/css/css-modules.md)_: Finally, truly modular, reusable
     styles!
   - _Page-specific CSS_: smart Webpack configuration means that only the CSS
@@ -165,6 +205,7 @@ website!
     that you and your team stay on point.
 
 - **Performance**
+
   - _Code splitting_: splitting/chunking by route means the leanest, meanest
     payload (because the fastest code is the code you don't load!)
 

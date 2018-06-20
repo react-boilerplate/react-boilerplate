@@ -1,12 +1,14 @@
 import React from 'react';
-import { shallow, render } from 'enzyme';
+import { shallow } from 'enzyme';
+import renderer from 'react-test-renderer';
+import 'jest-styled-components';
 
 import IssueLink from '../IssueLink';
 
 describe('<IssueLink />', () => {
-  it('should render an <a> tag', () => {
-    const renderedComponent = render(<IssueLink />);
-    expect(renderedComponent.find('a').length).toEqual(1);
+  it('should match the snapshot', () => {
+    const renderedComponent = renderer.create(<IssueLink />).toJSON();
+    expect(renderedComponent).toMatchSnapshot();
   });
 
   it('should have a className attribute', () => {
@@ -21,7 +23,7 @@ describe('<IssueLink />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<IssueLink attribute={'test'} />);
+    const renderedComponent = shallow(<IssueLink attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

@@ -21,14 +21,18 @@ import makeSelect{{properCase name}} from './selectors';
 import messages from './messages';
 {{/if}}
 
-export class {{ properCase name }} extends React.{{{ component }}} { // eslint-disable-line react/prefer-stateless-function
+/* eslint-disable react/prefer-stateless-function */
+export class {{ properCase name }} extends React.{{{ component }}} {
   render() {
     return (
       <div>
       {{#if wantHeaders}}
         <Helmet>
           <title>{{properCase name}}</title>
-          <meta name="description" content="Description of {{properCase name}}" />
+          <meta
+            name="description"
+            content="Description of {{properCase name}}"
+          />
         </Helmet>
       {{/if}}
       {{#if wantMessages}}

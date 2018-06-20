@@ -14,7 +14,10 @@ if (!shell.test('-e', 'internals/templates')) {
 process.stdout.write('Cleanup started...');
 
 // Reuse existing LanguageProvider and i18n tests
-shell.mv('app/containers/LanguageProvider/tests', 'internals/templates/containers/LanguageProvider');
+shell.mv(
+  'app/containers/LanguageProvider/tests',
+  'internals/templates/containers/LanguageProvider',
+);
 shell.cp('app/tests/i18n.test.js', 'internals/templates/tests/i18n.test.js');
 
 // Cleanup components/
@@ -28,12 +31,12 @@ shell.mv('internals/templates/containers', 'app');
 shell.mv('internals/templates/tests', 'app');
 
 // Handle translations/
-shell.rm('-rf', 'app/translations')
+shell.rm('-rf', 'app/translations');
 shell.mv('internals/templates/translations', 'app');
 
 // Handle utils/
 shell.rm('-rf', 'app/utils');
-shell.mv('internals/templates/utils', 'app')
+shell.mv('internals/templates/utils', 'app');
 
 // Replace the files in the root app/ folder
 shell.cp('internals/templates/app.js', 'app/app.js');
@@ -49,7 +52,10 @@ shell.rm('-rf', 'internals/templates');
 addCheckMark();
 
 // Commit the changes
-if (shell.exec('git add . --all && git commit -qm "Remove default example"').code !== 0) {
+if (
+  shell.exec('git add . --all && git commit -qm "Remove default example"')
+    .code !== 0
+) {
   shell.echo('\nError: Git commit failed');
   shell.exit(1);
 }
