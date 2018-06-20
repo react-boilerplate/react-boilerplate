@@ -13,6 +13,6 @@ module.exports = function addProdMiddlewares(app, options) {
   app.use(publicPath, express.static(outputPath));
 
   app.get('*', (req, res) =>
-    res.sendFile(path.resolve(outputPath, 'index.html'))
+    res.sendFile(path.resolve(outputPath, 'index.html')),
   );
 };

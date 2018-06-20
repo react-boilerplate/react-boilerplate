@@ -49,7 +49,7 @@ describe('injectSaga decorator', () => {
     expect(injectors.injectSaga).toHaveBeenCalledWith(
       'test',
       { saga: testSaga, mode: 'testMode' },
-      props
+      props,
     );
   });
 
@@ -67,7 +67,7 @@ describe('injectSaga decorator', () => {
   it('should set a correct display name', () => {
     expect(ComponentWithSaga.displayName).toBe('withSaga(Component)');
     expect(
-      injectSaga({ key: 'test', saga: testSaga })(() => null).displayName
+      injectSaga({ key: 'test', saga: testSaga })(() => null).displayName,
     ).toBe('withSaga(Component)');
   });
 

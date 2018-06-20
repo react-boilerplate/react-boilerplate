@@ -20,7 +20,7 @@ module.exports = options => ({
       path: path.resolve(process.cwd(), 'build'),
       publicPath: '/',
     },
-    options.output
+    options.output,
   ), // Merge with env dependent settings
   optimization: options.optimization,
   module: {

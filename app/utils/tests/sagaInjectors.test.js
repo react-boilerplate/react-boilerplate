@@ -32,7 +32,7 @@ describe('injectors', () => {
         expect.objectContaining({
           injectSaga: expect.any(Function),
           ejectSaga: expect.any(Function),
-        })
+        }),
       );
     });
 
@@ -146,17 +146,17 @@ describe('injectors', () => {
       expect(() => injectSaga('test')).toThrow();
       expect(() => injectSaga('test', { saga: 1 })).toThrow();
       expect(() =>
-        injectSaga('test', { saga: testSaga, mode: 'testMode' })
+        injectSaga('test', { saga: testSaga, mode: 'testMode' }),
       ).toThrow();
       expect(() => injectSaga('test', { saga: testSaga, mode: 1 })).toThrow();
       expect(() =>
-        injectSaga('test', { saga: testSaga, mode: RESTART_ON_REMOUNT })
+        injectSaga('test', { saga: testSaga, mode: RESTART_ON_REMOUNT }),
       ).not.toThrow();
       expect(() =>
-        injectSaga('test', { saga: testSaga, mode: DAEMON })
+        injectSaga('test', { saga: testSaga, mode: DAEMON }),
       ).not.toThrow();
       expect(() =>
-        injectSaga('test', { saga: testSaga, mode: ONCE_TILL_UNMOUNT })
+        injectSaga('test', { saga: testSaga, mode: ONCE_TILL_UNMOUNT }),
       ).not.toThrow();
     });
 

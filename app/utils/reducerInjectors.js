@@ -12,7 +12,7 @@ export function injectReducerFactory(store, isValid) {
 
     invariant(
       isString(key) && !isEmpty(key) && isFunction(reducer),
-      '(app/utils...) injectReducer: Expected `reducer` to be a reducer function'
+      '(app/utils...) injectReducer: Expected `reducer` to be a reducer function',
     );
 
     // Check `store.injectedReducers[key] === reducer` for hot reloading when a key is the same but a reducer is different

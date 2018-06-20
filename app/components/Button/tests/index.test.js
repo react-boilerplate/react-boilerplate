@@ -14,7 +14,7 @@ const renderComponent = (props = {}) =>
   mount(
     <Button href={href} {...props}>
       {children}
-    </Button>
+    </Button>,
   );
 
 describe('<Button />', () => {
