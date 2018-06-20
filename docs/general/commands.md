@@ -122,7 +122,7 @@ npm run start:tunnel
 ```
 
 Starts the development server and tunnels it with `ngrok`, making the website
-available on the entire world. Useful for testing on different devices in different locations!
+available worldwide. Useful for testing on different devices in different locations!
 
 ### Dependency size test
 
@@ -141,4 +141,10 @@ about the bundle size.
 npm run lint
 ```
 
-Lints your JavaScript.
+Lints your JavaScript and your CSS.
+
+```Shell
+npm run lint:eslint:fix -- .
+```
+
+Lints your code and tries to fix any errors it finds.

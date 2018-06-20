@@ -8,6 +8,7 @@ These are some things to be aware of when using this boilerplate.
 4.  [Running tests in watch mode](#running-tests-in-watch-mode)
 5.  [When in doubt, re-install!](#when-in-doubt-re-install)
 6.  [Cleaning up Jest cache](#cleaning-up-jest-cache)
+7.  [Using short_name in Web App manifest](#using-short_name-in-web-app-manifest)
 
 ## Special images in HTML files
 
