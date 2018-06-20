@@ -40,13 +40,13 @@ if (!exists(dllManifestPath)) {
         version: pkg.version,
       }),
       null,
-      2
+      2,
     ),
-    'utf8'
+    'utf8',
   );
 }
 
 // the BUILDING_DLL env var is set to avoid confusing the development environment
 exec(
-  'cross-env BUILDING_DLL=true webpack --display-chunks --color --config internals/webpack/webpack.dll.babel.js --hide-modules'
+  'cross-env BUILDING_DLL=true webpack --display-chunks --color --config internals/webpack/webpack.dll.babel.js --hide-modules',
 );

@@ -31,7 +31,7 @@ if (dllPlugin) {
       new AddAssetHtmlPlugin({
         filepath: dllPath,
         includeSourcemap: false,
-      })
+      }),
     );
   });
 }
@@ -90,7 +90,7 @@ function dependencyHandlers() {
 
   const dllPath = path.resolve(
     process.cwd(),
-    dllPlugin.path || 'node_modules/react-boilerplate-dlls'
+    dllPlugin.path || 'node_modules/react-boilerplate-dlls',
   );
 
   /**
@@ -102,7 +102,7 @@ function dependencyHandlers() {
 
     if (!fs.existsSync(manifestPath)) {
       logger.error(
-        'The DLL manifest is missing. Please run `npm run build:dll`'
+        'The DLL manifest is missing. Please run `npm run build:dll`',
       );
       process.exit(0);
     }
@@ -117,7 +117,7 @@ function dependencyHandlers() {
 
   // If DLLs are explicitly defined, we automatically create a DLLReferencePlugin for each of them.
   const dllManifests = Object.keys(dllPlugin.dlls).map(name =>
-    path.join(dllPath, `/${name}.json`)
+    path.join(dllPath, `/${name}.json`),
   );
 
   return dllManifests.map(manifestPath => {
@@ -125,8 +125,8 @@ function dependencyHandlers() {
       if (!fs.existsSync(manifestPath)) {
         logger.error(
           `The following Webpack DLL manifest is missing: ${path.basename(
-            manifestPath
-          )}`
+            manifestPath,
+          )}`,
         );
         logger.error(`Expected to find it in ${dllPath}`);
         logger.error('Please run: npm run build:dll');

@@ -19,7 +19,7 @@ let clearRepo = true;
 
 cleanRepo(() => {
   process.stdout.write(
-    '\nInstalling dependencies... (This might take a while)'
+    '\nInstalling dependencies... (This might take a while)',
   );
   setTimeout(function() {
     readline.cursorTo(process.stdout, 0);
@@ -76,7 +76,7 @@ function dontClearRepo(nl, callback) {
 function initGit(callback) {
   exec(
     'git init && git add . && git commit -m "Initial commit"',
-    addCheckMark.bind(null, callback)
+    addCheckMark.bind(null, callback),
   );
 }
 
@@ -96,7 +96,7 @@ function installDeps() {
     if (nodeVersion < 5 || err) {
       installDepsCallback(
         err ||
-          'Unsupported node.js version, make sure you have the latest version installed.'
+          'Unsupported node.js version, make sure you have the latest version installed.',
       );
     } else {
       exec('yarn --version', function(err, stdout, stderr) {

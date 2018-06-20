@@ -16,7 +16,7 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   const compiler = webpack(webpackConfig);
   const middleware = createWebpackMiddleware(
     compiler,
-    webpackConfig.output.publicPath
+    webpackConfig.output.publicPath,
   );
 
   app.use(middleware);

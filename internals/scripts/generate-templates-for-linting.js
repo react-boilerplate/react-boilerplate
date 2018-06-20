@@ -27,8 +27,8 @@ const reportErrorsFor = title => err => {
   xmark(() =>
     console.error(
       chalk.red(` ERROR generating '${title}': `),
-      prettyStringify(err)
-    )
+      prettyStringify(err),
+    ),
   );
   process.exit(1);
 };
@@ -45,8 +45,8 @@ const prettifyGeneratedCode = relativePath => () => {
     `npm run prettify -- "${path.join(
       __dirname,
       '/../../app/',
-      relativePath
-    )}/**.js"`
+      relativePath,
+    )}/**.js"`,
   );
 };
 
@@ -87,7 +87,7 @@ componentGen
   .then(checkForErrors)
   .then(removeTestsDirFrom('components/RbGeneratedComponentStatelessfunction'))
   .then(
-    prettifyGeneratedCode('components/RbGeneratedComponentStatelessfunction')
+    prettifyGeneratedCode('components/RbGeneratedComponentStatelessfunction'),
   )
   .catch(reportErrorsFor('component/Stateless Function'));
 

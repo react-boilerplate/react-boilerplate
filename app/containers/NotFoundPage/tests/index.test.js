@@ -19,8 +19,8 @@ describe('<NotFound />', () => {
             id="boilerplate.containers.NotFoundPage.header"
             defaultMessage="Page not found."
           />
-        </H1>
-      )
+        </H1>,
+      ),
     ).toEqual(true);
   });
 });

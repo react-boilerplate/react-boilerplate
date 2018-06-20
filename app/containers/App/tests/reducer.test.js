@@ -43,7 +43,7 @@ describe('appReducer', () => {
       .set('currentUser', username);
 
     expect(appReducer(state, reposLoaded(fixture, username))).toEqual(
-      expectedResult
+      expectedResult,
     );
   });
 
@@ -54,7 +54,7 @@ describe('appReducer', () => {
     const expectedResult = state.set('error', fixture).set('loading', false);
 
     expect(appReducer(state, repoLoadingError(fixture))).toEqual(
-      expectedResult
+      expectedResult,
     );
   });
 });

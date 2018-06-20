@@ -54,5 +54,5 @@ RepoListItem.propTypes = {
 export default connect(
   createStructuredSelector({
     currentUser: makeSelectCurrentUser(),
-  })
+  }),
 )(RepoListItem);

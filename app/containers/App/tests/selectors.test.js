@@ -83,7 +83,7 @@ describe('makeSelectLocation', () => {
       route,
     });
     expect(locationStateSelector(mockedState)).toEqual(
-      route.get('location').toJS()
+      route.get('location').toJS(),
     );
   });
 });

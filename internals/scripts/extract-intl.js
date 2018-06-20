@@ -46,7 +46,7 @@ const glob = pattern =>
   new Promise((resolve, reject) => {
     nodeGlob(
       pattern,
-      (error, value) => (error ? reject(error) : resolve(value))
+      (error, value) => (error ? reject(error) : resolve(value)),
     );
   });
 
@@ -54,7 +54,7 @@ const readFile = fileName =>
   new Promise((resolve, reject) => {
     fs.readFile(
       fileName,
-      (error, value) => (error ? reject(error) : resolve(value))
+      (error, value) => (error ? reject(error) : resolve(value)),
     );
   });
 
@@ -63,7 +63,7 @@ const writeFile = (fileName, data) =>
     fs.writeFile(
       fileName,
       data,
-      (error, value) => (error ? reject(error) : resolve(value))
+      (error, value) => (error ? reject(error) : resolve(value)),
     );
   });
 
@@ -88,7 +88,7 @@ for (const locale of locales) {
     if (error.code !== 'ENOENT') {
       process.stderr.write(
         `There was an error loading this translation file: ${translationFileName}
-        \n${error}`
+        \n${error}`,
       );
     }
   }
@@ -111,37 +111,40 @@ for (const locale of locales) {
 plugins.push(['react-intl']);
 
 const extractFromFile = fileName => {
-  return readFile(fileName).then(code => {
-    // Use babel plugin to extract instances where react-intl is used
-    const { metadata: result } = transform(code, { presets, plugins })
+  return readFile(fileName)
+    .then(code => {
+      // Use babel plugin to extract instances where react-intl is used
+      const { metadata: result } = transform(code, { presets, plugins });
 
-    for (const message of result['react-intl'].messages) {
-      for (const locale of locales) {
-        const oldLocaleMapping = oldLocaleMappings[locale][message.id];
-        // Merge old translations into the babel extracted instances where react-intl is used
-        const newMsg = locale === DEFAULT_LOCALE ? message.defaultMessage : '';
-        localeMappings[locale][message.id] = oldLocaleMapping
-          ? oldLocaleMapping
-          : newMsg;
+      for (const message of result['react-intl'].messages) {
+        for (const locale of locales) {
+          const oldLocaleMapping = oldLocaleMappings[locale][message.id];
+          // Merge old translations into the babel extracted instances where react-intl is used
+          const newMsg =
+            locale === DEFAULT_LOCALE ? message.defaultMessage : '';
+          localeMappings[locale][message.id] = oldLocaleMapping
+            ? oldLocaleMapping
+            : newMsg;
+        }
       }
-    }
-  })
-  .catch(error => {
-    process.stderr.write(`Error transforming file: ${fileName}\n${error}`);
-  })
+    })
+    .catch(error => {
+      process.stderr.write(`Error transforming file: ${fileName}\n${error}`);
+    });
 };
 
-
-const memoryTask = glob(FILES_TO_PARSE)
+const memoryTask = glob(FILES_TO_PARSE);
 const memoryTaskDone = task('Storing language files in memory');
 
 memoryTask.then(files => {
   memoryTaskDone();
 
-  const extractTask = Promise.all(files.map(fileName => extractFromFile(fileName)))
+  const extractTask = Promise.all(
+    files.map(fileName => extractFromFile(fileName)),
+  );
   const extractTaskDone = task('Run extraction on all files');
   // Run extraction on all files that match the glob on line 16
-  extractTask.then((result) => {
+  extractTask.then(result => {
     extractTaskDone();
 
     // Make the directory if it doesn't exist, especially for first run
@@ -153,7 +156,7 @@ memoryTask.then(files => {
     for (const locale of locales) {
       translationFileName = `app/translations/${locale}.json`;
       localeTaskDone = task(
-        `Writing translation messages for ${locale} to: ${translationFileName}`
+        `Writing translation messages for ${locale} to: ${translationFileName}`,
       );
 
       // Sort the translation JSON file so that git diffing is easier
@@ -169,16 +172,16 @@ memoryTask.then(files => {
       const prettified = `${JSON.stringify(messages, null, 2)}\n`;
 
       try {
-        fs.writeFileSync(translationFileName, prettified)
+        fs.writeFileSync(translationFileName, prettified);
         localeTaskDone();
       } catch (error) {
         localeTaskDone(
           `There was an error saving this translation file: ${translationFileName}
-          \n${error}`
+          \n${error}`,
         );
       }
     }
 
     process.exit();
   });
-})
+});
