@@ -184,6 +184,11 @@ module.exports = {
       });
     }
 
+    actions.push({
+      type: 'prettify',
+      path: '/containers/',
+    });
+
     return actions;
   },
 };
