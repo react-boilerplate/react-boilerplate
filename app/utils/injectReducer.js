@@ -4,8 +4,6 @@ import hoistNonReactStatics from 'hoist-non-react-statics';
 
 import getInjectors from './reducerInjectors';
 
-/* eslint-disable no-undef */
-
 /**
  * Dynamically injects a reducer
  *

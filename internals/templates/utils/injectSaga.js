@@ -4,8 +4,6 @@ import hoistNonReactStatics from 'hoist-non-react-statics';
 
 import getInjectors from './sagaInjectors';
 
-/* eslint-disable no-undef */
-
 /**
  * Dynamically injects a saga, passes component's props as saga arguments
  *
