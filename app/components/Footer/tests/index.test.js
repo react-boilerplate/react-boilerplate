@@ -13,8 +13,8 @@ describe('<Footer />', () => {
       renderedComponent.contains(
         <section>
           <FormattedMessage {...messages.licenseMessage} />
-        </section>
-      )
+        </section>,
+      ),
     ).toBe(true);
   });
 
@@ -29,8 +29,8 @@ describe('<Footer />', () => {
               author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,
             }}
           />
-        </section>
-      )
+        </section>,
+      ),
     ).toBe(true);
   });
 });

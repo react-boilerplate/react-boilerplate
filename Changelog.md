@@ -4,9 +4,9 @@
 
 ## News
 
-Major version updates are finally here! It's been awhile, but we're a small team that's been pushing in this for awhile. Thanks to several users PRs, we were able to cherry-pick a lot from the dev branch to push this release out. We decided because of the amount of dependencies that needed to be updated- we would overshoot some of the changes made on the dev branch and just grab the most pressing ones.
+Major version updates are finally here! It's been awhile, but we're a small team that's been pushing this for awhile. Thanks to several users' PRs, we were able to cherry-pick a lot from the dev branch to push this release out. We decided because of the amount of dependencies that needed to be updated- we would overshoot some of the changes made on the dev branch and just grab the most pressing ones.
 
-Next steps for us will be revisiting the dev branch, revisiting outstanding PRs and RFCs (like immutable), and also plugging away at a create-react-app spinoff for react-boilerplate.
+Next steps for us will be revisiting the dev branch, revisiting outstanding PRs and RFCs (like Immutable), and also plugging away at a create-react-app spinoff for react-boilerplate.
 
 ### Main
 
@@ -22,6 +22,7 @@ Next steps for us will be revisiting the dev branch, revisiting outstanding PRs 
 - **Upgrade styled-components to v3** (@julienben)
   - Reconfigure Jest snapshot testing for styled-components (@gretzky)
 - **Added support for node v9, v8** (@julienben)
+  - Removed support for node v6
 - **Add Prettier** (@julienben)
 - **Upgrade ESLint to v4** (@julienben)
 - **Add stylelint and stylelint config** (@julienben)

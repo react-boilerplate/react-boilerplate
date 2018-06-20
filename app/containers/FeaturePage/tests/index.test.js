@@ -13,8 +13,8 @@ describe('<FeaturePage />', () => {
       renderedComponent.contains(
         <H1>
           <FormattedMessage {...messages.header} />
-        </H1>
-      )
+        </H1>,
+      ),
     ).toBe(true);
   });
 

@@ -8,7 +8,7 @@ describe('languageProviderReducer', () => {
     expect(languageProviderReducer(undefined, {})).toEqual(
       fromJS({
         locale: 'en',
-      })
+      }),
     );
   });
 
@@ -17,7 +17,7 @@ describe('languageProviderReducer', () => {
       languageProviderReducer(undefined, {
         type: CHANGE_LOCALE,
         locale: 'de',
-      }).toJS()
+      }).toJS(),
     ).toEqual({
       locale: 'de',
     });

@@ -13,7 +13,7 @@ const renderComponent = (props = {}) =>
   render(
     <IntlProvider locale="en">
       <RepoListItem {...props} />
-    </IntlProvider>
+    </IntlProvider>,
   );
 
 describe('<RepoListItem />', () => {

@@ -13,7 +13,7 @@ const renderComponent = (props = {}) =>
   shallow(
     <A href={href} {...props}>
       {children}
-    </A>
+    </A>,
   );
 
 describe('<A />', () => {

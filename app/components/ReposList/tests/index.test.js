@@ -11,7 +11,7 @@ describe('<ReposList />', () => {
   it('should render the loading indicator when its loading', () => {
     const renderedComponent = shallow(<ReposList loading />);
     expect(
-      renderedComponent.contains(<List component={LoadingIndicator} />)
+      renderedComponent.contains(<List component={LoadingIndicator} />),
     ).toEqual(true);
   });
 
@@ -19,7 +19,7 @@ describe('<ReposList />', () => {
     const renderedComponent = mount(
       <IntlProvider locale="en">
         <ReposList loading={false} error={{ message: 'Loading failed!' }} />
-      </IntlProvider>
+      </IntlProvider>,
     );
     expect(renderedComponent.text()).toMatch(/Something went wrong/);
   });
@@ -37,19 +37,19 @@ describe('<ReposList />', () => {
       },
     ];
     const renderedComponent = shallow(
-      <ReposList repos={repos} error={false} />
+      <ReposList repos={repos} error={false} />,
     );
 
     expect(
       renderedComponent.contains(
-        <List items={repos} component={RepoListItem} />
-      )
+        <List items={repos} component={RepoListItem} />,
+      ),
     ).toEqual(true);
   });
 
   it('should not render anything if nothing interesting is provided', () => {
     const renderedComponent = shallow(
-      <ReposList repos={false} error={false} loading={false} />
+      <ReposList repos={false} error={false} loading={false} />,
     );
 
     expect(renderedComponent.html()).toEqual(null);
