@@ -12,4 +12,5 @@ services:
     volumes:
       - ./app:/code/app
       - ./package.json:/code/package.json
+      - ./yarn.lock:/code/yarn.lock
       - ./server:/code/server
