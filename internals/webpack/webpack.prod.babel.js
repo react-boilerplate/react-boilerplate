@@ -84,10 +84,16 @@ module.exports = require('./webpack.base.babel')({
       description: 'My React Boilerplate-based project!',
       background_color: '#fafafa',
       theme_color: '#b1624d',
+      ios: true,
       icons: [
         {
           src: path.resolve('app/images/icon-512x512.png'),
           sizes: [72, 96, 120, 128, 144, 152, 167, 180, 192, 384, 512],
+        },
+        {
+          src: path.resolve('app/images/icon-512x512.png'),
+          sizes: [120, 152, 167, 180],
+          ios: true,
         },
       ],
     }),
