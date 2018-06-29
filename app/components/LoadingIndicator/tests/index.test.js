@@ -1,14 +1,12 @@
 import React from 'react';
-import { render } from 'enzyme';
+import renderer from 'react-test-renderer';
+import 'jest-styled-components';
 
 import LoadingIndicator from '../index';
 
 describe('<LoadingIndicator />', () => {
-  it('should render 12 child divs', () => {
-    const renderedComponent = render(
-      <LoadingIndicator />
-    );
-    // find all child divs
-    expect(renderedComponent.find('div').length).toBe(12);
+  it('should match the snapshot', () => {
+    const renderedComponent = renderer.create(<LoadingIndicator />).toJSON();
+    expect(renderedComponent).toMatchSnapshot();
   });
 });

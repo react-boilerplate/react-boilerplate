@@ -23,7 +23,7 @@ describe('<LocaleToggle />', () => {
         <LanguageProvider messages={translationMessages}>
           <LocaleToggle />
         </LanguageProvider>
-      </Provider>
+      </Provider>,
     );
     expect(renderedComponent.contains(<LocaleToggle />)).toBe(true);
   });
@@ -34,9 +34,11 @@ describe('<LocaleToggle />', () => {
         <LanguageProvider messages={translationMessages}>
           <LocaleToggle />
         </LanguageProvider>
-      </Provider>
+      </Provider>,
     );
-    expect(renderedComponent.contains(<option value="en">en</option>)).toBe(true);
+    expect(renderedComponent.contains(<option value="en">en</option>)).toBe(
+      true,
+    );
   });
 
   describe('mapDispatchToProps', () => {

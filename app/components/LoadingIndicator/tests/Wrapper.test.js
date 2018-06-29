@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Wrapper from '../Wrapper';
 
 describe('<Wrapper />', () => {
-  it('should render a <div> tag', () => {
+  it('should render an <div> tag', () => {
     const renderedComponent = shallow(<Wrapper />);
     expect(renderedComponent.type()).toEqual('div');
   });
@@ -21,7 +21,7 @@ describe('<Wrapper />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Wrapper attribute={'test'} />);
+    const renderedComponent = shallow(<Wrapper attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

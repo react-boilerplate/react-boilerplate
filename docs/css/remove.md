@@ -1,7 +1,9 @@
 ## Removing `sanitize.css`
 
 To remove `sanitize.css` you will need to remove it from both:
+
 - [`app.js`](../../app/app.js)
+
 ```diff
 import FontFaceObserver from 'fontfaceobserver';
 import { useScroll } from 'react-router-scroll';
@@ -12,6 +14,7 @@ import App from 'containers/App';
 ```
 
 - [`package.json`](../../package.json)!
+
 ```diff
 "dllPlugin": {
   "path": "node_modules/react-boilerplate-dlls",

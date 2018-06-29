@@ -14,7 +14,7 @@
 
 This boilerplate uses [`styled-components`](https://github.com/styled-components/styled-components) :nail_care:
 for styling react components. `styled-components` allows you to write actual CSS inside your JavaScript,
-enabling you to use the [full power of CSS](https://www.styled-components.com/docs/api#supported-css) :muscle:
+enabling you to use the [full power of CSS](https://github.com/styled-components/styled-components/blob/master/docs/css-we-support.md) :muscle:
 without mapping between styles and components.
 There are many ways to style react applications, but many find `styled-components`
 to be a more natural approach to styling components.
@@ -22,7 +22,13 @@ Watch this video for a comparison and to see how it enforces best practices!
 
 [![Styled-components: Enforcing best practices](http://img.youtube.com/vi/jaqDA7Btm3c/0.jpg)](https://youtu.be/jaqDA7Btm3c)
 
-To supplement `styled-components`, this boilerplate also uses
+### Linting
+
+To complement `styled-components`, this boilerplate also has a CSS linting setup. It uses `stylelint` which will help you stay consistent with modern CSS standards. Read about it [here](linting.md).
+
+### sanitize.css
+
+In addition, this boilerplate also uses
 [`sanitize.css`](https://github.com/jonathantneal/sanitize.css)
 to make browsers render all elements more consistently and in line with modern standards,
 it's a modern alternative to CSS resets. More info available on the [`sanitize.css` page](sanitize.md).
@@ -34,6 +40,7 @@ We also support the use of CSS [stylesheets](#stylesheet).
 
 There are many ways to style web applications, unfortunately, we cannot support them all.
 However, you can integrate the following by using the guides below:
+
 - [CSS Modules](#css-modules)
 - [Sass](#sass)
 - [LESS](#less)
@@ -44,8 +51,8 @@ Below creates two styled react components (`<Title>`, `<Wrapper>`) and renders t
 as children of the `<Header>` component:
 
 ```jsx
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 // Create a <Title> react component that renders an <h1> which is
 // centered, palevioletred and sized at 1.5em
@@ -67,16 +74,17 @@ class Button extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Title>Hello {this.props.name}, this is your first styled component!</Title>
+        <Title>
+          Hello {this.props.name}, this is your first styled component!
+        </Title>
         ...
       </Wrapper>
     );
   }
 }
-
 ```
 
-*(The CSS rules are automatically vendor prefixed, so you don't have to think about it!)*
+_(The CSS rules are automatically vendor prefixed, so you don't have to think about it!)_
 
 > For more information about `styled-components` see https://github.com/styled-components/styled-components
 
@@ -87,6 +95,7 @@ Using the [`css-loader`](https://webpack.js.org/loaders/css-loader/) you can imp
 into a JavaScript:
 
 **`Button.css`**
+
 ```css
 .danger {
   background-color: red;
@@ -94,9 +103,10 @@ into a JavaScript:
 ```
 
 **`Button.js`**
+
 ```js
-import React from 'react';
-import './Button.css'; // Tell Webpack that Button.js uses these styles
+import React from "react";
+import "./Button.css"; // Tell Webpack that Button.js uses these styles
 
 class Button extends React.Component {
   render() {
@@ -112,22 +122,23 @@ class Button extends React.Component {
 
 ### Setup
 
-Modify [`webpack.base.babel.js`][WebpackConfig]
+Modify [`webpack.base.babel.js`][webpackconfig]
 to look like:
 
 ```diff
 {
   test: /\.css$/,
   exclude: /node_modules/,
-  use: [
-    'style-loader',
-    {
-      loader: 'css-loader',
-      options: {
-        modules: true,
-      },
-    },
-  ],
+- use: ['style-loader', 'css-loader'],
++ use: [
++   'style-loader',
++   {
++     loader: 'css-loader',
++     options: {
++       modules: true,
++     },
++   },
++ ],
 }
 ```
 
@@ -138,6 +149,7 @@ and this often catches people out.
 The key difference in CSS Modules is that you import styles to a variable.
 
 **`Button.css`**
+
 ```css
 .danger {
   background-color: red;
@@ -145,9 +157,10 @@ The key difference in CSS Modules is that you import styles to a variable.
 ```
 
 **`Button.js`**
+
 ```js
-import React from 'react';
-import styles from './Button.css'; // different import compared to stylesheets
+import React from "react";
+import styles from "./Button.css"; // different import compared to stylesheets
 
 class Button extends React.Component {
   render() {
@@ -166,34 +179,29 @@ it's one or the other unless you include or exclude specific directories.**
 
 ### Setup
 
-Install `sass-loader` and the `node-sass` dependency.
+Install `sass-loader` and the `node-sass` dependancy.
+
 ```
 npm i -D sass-loader node-sass
 ```
 
-Modify [`webpack.base.babel.js`][WebpackConfig]
+Modify [`webpack.base.babel.js`][webpackconfig]
 to look like:
 
 ```diff
 {
-  test: /\.scss$/,
+- test: /\.css$/,
++ test: /\.scss$/,
   exclude: /node_modules/,
-  use: [
-    'style-loader',
-    {
-      loader: 'css-loader',
-      options: {
-        importLoaders: 1,
-      },
-    },
-    'sass-loader',
-  ],
+- use: ['style-loader', 'css-loader'],
++ use: ['style-loader', 'css-loader', 'sass-loader'],
 }
 ```
 
 ### Usage
 
 **`Button.scss`**
+
 ```scss
 $error-color: red;
 
@@ -203,9 +211,10 @@ $error-color: red;
 ```
 
 **`Button.js`**
+
 ```js
-import React from 'react';
-import './Button.scss';
+import React from "react";
+import "./Button.scss";
 
 class Button extends React.Component {
   render() {
@@ -220,34 +229,38 @@ class Button extends React.Component {
 
 ### Setup
 
-Install `less-loader` and the `less` dependency.
+Install `less-loader` and the `less` dependancy.
+
 ```
 npm i -D less-loader less
 ```
 
-Modify [`webpack.base.babel.js`][WebpackConfig]
+Modify [`webpack.base.babel.js`][webpackconfig]
 to look like:
 
 ```diff
 {
-  test: /\.less$/,
+- test: /\.css$/,
++ test: /\.less$/,
   exclude: /node_modules/,
-  use: [
-    'style-loader',
-    {
-      loader: 'css-loader',
-      options: {
-        importLoaders: 1,
-      },
-    },
-    'less-loader',
-  ],
+- use: ['style-loader', 'css-loader'],
++ use: [
++ 'style-loader',
++ {
++   loader: 'css-loader',
++   options: {
++     importLoaders: 1,
++   },
++ },
++ 'less-loader',
++],
 }
 ```
 
 ### Usage
 
 **`Button.less`**
+
 ```less
 @error-color: red;
 
@@ -257,9 +270,10 @@ to look like:
 ```
 
 **`Button.js`**
+
 ```js
-import React from 'react';
-import './Button.less';
+import React from "react";
+import "./Button.less";
 
 class Button extends React.Component {
   render() {
@@ -270,4 +284,4 @@ class Button extends React.Component {
 
 > For more information about LESS and the `less-loader` see https://github.com/webpack-contrib/less-loader.
 
-[WebpackConfig]: ../../internals/webpack/webpack.base.babel.js "Webpack config"
+[webpackconfig]: ../../internals/webpack/webpack.base.babel.js "Webpack config"

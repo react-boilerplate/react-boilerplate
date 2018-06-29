@@ -5,9 +5,8 @@ import Img from '../index';
 
 const src = 'test.png';
 const alt = 'test';
-const renderComponent = (props = {}) => shallow(
-  <Img src={src} alt={alt} {...props} />
-);
+const renderComponent = (props = {}) =>
+  shallow(<Img src={src} alt={alt} {...props} />);
 
 describe('<Img />', () => {
   it('should render an <img> tag', () => {
@@ -15,7 +14,7 @@ describe('<Img />', () => {
     expect(renderedComponent.is('img')).toBe(true);
   });
 
-  it('should have a src attribute', () => {
+  it('should have an src attribute', () => {
     const renderedComponent = renderComponent();
     expect(renderedComponent.prop('src')).toEqual(src);
   });

@@ -29,7 +29,6 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-// limitation: key must be unique per store or the last assigned reducer will overwrite previous reducer
 const withReducer = injectReducer({ key: 'yourcomponent', reducer });
 
 export default compose(
@@ -38,6 +37,7 @@ export default compose(
   withConnect,
 )(YourComponent);
 ```
+
 You don't need to do it by hand, a `container` generator will generate everything
 that's necessary.
 

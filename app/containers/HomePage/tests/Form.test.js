@@ -21,7 +21,7 @@ describe('<Form />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Form attribute={'test'} />);
+    const renderedComponent = shallow(<Form attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

@@ -14,9 +14,13 @@ import { loadRepos } from '../../App/actions';
 describe('<HomePage />', () => {
   it('should render the repos list', () => {
     const renderedComponent = shallow(
-      <HomePage loading error={false} repos={[]} />
+      <HomePage loading error={false} repos={[]} />,
     );
-    expect(renderedComponent.contains(<ReposList loading error={false} repos={[]} />)).toEqual(true);
+    expect(
+      renderedComponent.contains(
+        <ReposList loading error={false} repos={[]} />,
+      ),
+    ).toEqual(true);
   });
 
   it('should render fetch the repos on mount if a username exists', () => {
@@ -28,7 +32,7 @@ describe('<HomePage />', () => {
           onChangeUsername={() => {}}
           onSubmitForm={submitSpy}
         />
-      </IntlProvider>
+      </IntlProvider>,
     );
     expect(submitSpy).toHaveBeenCalled();
   });
@@ -37,11 +41,8 @@ describe('<HomePage />', () => {
     const submitSpy = jest.fn();
     mount(
       <IntlProvider locale="en">
-        <HomePage
-          onChangeUsername={() => {}}
-          onSubmitForm={submitSpy}
-        />
-      </IntlProvider>
+        <HomePage onChangeUsername={() => {}} onSubmitForm={submitSpy} />
+      </IntlProvider>,
     );
     expect(submitSpy).not.toHaveBeenCalled();
   });
@@ -55,7 +56,7 @@ describe('<HomePage />', () => {
           onChangeUsername={() => {}}
           onSubmitForm={submitSpy}
         />
-      </IntlProvider>
+      </IntlProvider>,
     );
     expect(submitSpy).not.toHaveBeenCalled();
   });
