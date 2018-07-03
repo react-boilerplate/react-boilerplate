@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Select from '../Select';
 
 describe('<Select />', () => {
-  it('should render a <select> tag', () => {
+  it('should render an <select> tag', () => {
     const renderedComponent = shallow(<Select />);
     expect(renderedComponent.type()).toEqual('select');
   });
@@ -21,7 +21,7 @@ describe('<Select />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Select attribute={'test'} />);
+    const renderedComponent = shallow(<Select attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

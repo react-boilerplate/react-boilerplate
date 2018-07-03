@@ -21,7 +21,7 @@ describe('<Input />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Input attribute={'test'} />);
+    const renderedComponent = shallow(<Input attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

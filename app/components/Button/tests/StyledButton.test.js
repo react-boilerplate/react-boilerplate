@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import StyledButton from '../StyledButton';
 
 describe('<StyledButton />', () => {
-  it('should render a <button> tag', () => {
+  it('should render an <button> tag', () => {
     const renderedComponent = shallow(<StyledButton />);
     expect(renderedComponent.type()).toEqual('button');
   });
@@ -21,7 +21,7 @@ describe('<StyledButton />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<StyledButton attribute={'test'} />);
+    const renderedComponent = shallow(<StyledButton attribute="test" />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

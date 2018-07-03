@@ -3,13 +3,12 @@
  *
  * This contains all the text for the {{ properCase name }} component.
  */
-import { defineMessages } from 'react-intl';
 
-const scope = 'app.components.{{ properCase name }}';
+import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   header: {
-    id: `${scope}.header`,
+    id: 'app.components.{{ properCase name }}.header',
     defaultMessage: 'This is the {{ properCase name}} component !',
   },
 });

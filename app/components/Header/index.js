@@ -8,7 +8,8 @@ import HeaderLink from './HeaderLink';
 import Banner from './banner.jpg';
 import messages from './messages';
 
-class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
+/* eslint-disable react/prefer-stateless-function */
+class Header extends React.Component {
   render() {
     return (
       <div>

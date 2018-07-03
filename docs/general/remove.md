@@ -24,6 +24,7 @@ remove it from the [`package.json`](../../package.json).
 
 To remove image optimization, delete the `image-webpack-loader` from the
 [`package.json`](../../package.json), and remove the `image-loader` from [`webpack.base.babel.js`](../../internals/webpack/webpack.base.babel.js):
+
 ```
 …
 {
