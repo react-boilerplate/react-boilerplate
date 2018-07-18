@@ -41,7 +41,7 @@ npm run generate
 ```
 
 Allows you to auto-generate boilerplate code for common parts of your
-application, specifically `component`s, `container`s, and `route`s. You can
+application, specifically `component`s, and `container`s. You can
 also run `npm run generate <part>` to skip the first selection. (e.g. `npm run
 generate container`)
 
@@ -131,7 +131,7 @@ npm run analyze
 ```
 
 This command will generate a `stats.json` file from your production build, which
-you can upload to the [webpack analyzer](https://webpack.github.io/analyse/). This
+you can upload to the [webpack analyzer](https://webpack.github.io/analyse/) or [Webpack Visualizer](https://chrisbateman.github.io/webpack-visualizer/). This
 analyzer will visualize your dependencies and chunks with detailed statistics
 about the bundle size.
 
@@ -143,3 +143,28 @@ npm run lint
 
 Lints your JavaScript.
 
+## Using Docker in development
+
+*To use Docker for development, make sure you're within the root directory of the project.*
+
+To build the development container, run:
+
+```docker-compose build localdev
+docker-compose up localdev
+```
+In order to update dependencies, run:
+
+```docker-compose stop localdev
+docker-compose exec localdev yarn add {NEW_PACKAGE_NAME}
+```
+
+> Note: Because this command attaches to a running container, it must be run while
+an instance of the development container is up.
+
+In order to receive new dependencies from other contributors, you must
+clear your mounted Docker volumes, by running:
+
+```docker-compose down -v localdev
+docker-compose build localdev
+docker-compose up localdev
+```
