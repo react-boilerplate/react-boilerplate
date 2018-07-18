@@ -182,7 +182,7 @@ This is what our `NavBar` actions look like:
 ```javascript
 // actions.js
 
-import { TOGGLE_NAV } from './constants.js';
+import { TOGGLE_NAV } from './constants';
 
 export function toggleNav() {
   return { type: TOGGLE_NAV };
@@ -194,17 +194,17 @@ with this reducer:
 ```javascript
 // reducer.js
 
-import { TOGGLE_NAV } from './constants.js';
+import { TOGGLE_NAV } from './constants';
 
 const initialState = {
-  open: false
+  open: false,
 };
 
 function NavBarReducer(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_NAV:
       return Object.assign({}, state, {
-        open: !state.open
+        open: !state.open,
       });
     default:
       return state;
@@ -218,13 +218,13 @@ Lets test the reducer first!
 
 ### Reducers
 
-First, we have to import the reducer and the constant.
+First, we have to import the reducer and the action.
 
 ```javascript
 // reducer.test.js
 
 import NavBarReducer from '../reducer';
-import { TOGGLE_NAV } from '../constants';
+import { toggleNav } from '../actions';
 ```
 
 Then we `describe` the reducer, and add two tests: we check that it returns the
@@ -251,7 +251,7 @@ return the initial state of the `NavBar`, which is
 
 ```javascript
 {
-  open: false
+  open: false,
 }
 ```
 
@@ -261,7 +261,7 @@ Lets put that into practice:
 describe('NavBarReducer', () => {
   it('returns the initial state', () => {
     expect(NavBarReducer(undefined, {})).toEqual({
-      open: false
+      open: false,
     });
   });
 
@@ -297,6 +297,25 @@ describe('NavBarReducer', () => {
 Jest is now the one responsible for tracking the definition of the initial state. When somebody changes it in the future, Jest will warn that the snapshot doesn't match and then allow them to update the snapshot with a single command. No more manual updates!
 
 For more details on Jest snapshots, please view [Kent Dodd's feature video](https://egghead.io/lessons/javascript-use-jest-s-snapshot-testing-feature).
+
+This is how our finished reducer test might look like:
+
+```javascript
+// NavBar.reducer.test.js
+
+import NavBarReducer from '../NavBar.reducer';
+import { toggleNav } from '../NavBar.actions';
+
+describe('NavBarReducer', () => {
+  it('returns the initial state', () => {
+    expect(NavBarReducer(undefined, {})).toMatchSnapshot();
+  });
+
+  it('handles the toggleNav action', () => {
+    expect(NavBarReducer({}, toggleNav())).toMatchSnapshot();
+  });
+});
+```
 
 Lets see how we can test actions next.
 

@@ -16,10 +16,14 @@
   - [Unit Testing](testing/unit-testing.md)
   - [Component Testing](testing/component-testing.md)
   - [Remote Testing](testing/remote-testing.md)
-- [CSS](css)
-  - [`styled-components`](css/styled-components.md)
-  - [sanitize.css](css/sanitize.md)
-  - [Using Sass](css/sass.md)
+- [Styling (CSS)](css/README.md)
+  - [Next Generation CSS](css/README.md#next-generation-css)
+  - [CSS Support](css/README.md#css-we-support)
+  - [styled-components](css/README.md#styled-components)
+  - [Stylesheet](css/README.md#stylesheet)
+  - [CSS Modules](css/README.md#css-modules)
+  - [Sass](css/README.md#sass)
+  - [LESS](css/README.md#less)
 - [JS](js)
   - [Redux](js/redux.md)
   - [ImmutableJS](js/immutablejs.md)
@@ -78,7 +82,7 @@ JavaScript, HTML and tests.
 The rest of the folders and files only exist to make your life easier, and
 should not need to be touched.
 
-*(If they do have to be changed, please [submit an issue](https://github.com/mxstbr/react-boilerplate/issues)!)*
+*(If they do have to be changed, please [submit an issue](https://github.com/react-boilerplate/react-boilerplate/issues)!)*
 
 ### CSS
 

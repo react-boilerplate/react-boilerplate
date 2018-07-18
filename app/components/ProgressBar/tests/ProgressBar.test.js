@@ -7,6 +7,7 @@ import Wrapper from '../Wrapper';
 import Percent from '../Percent';
 
 let clock = null;
+const sandbox = sinon.sandbox.create();
 
 describe('<ProgressBar />', () => {
   beforeEach(() => {
@@ -14,7 +15,7 @@ describe('<ProgressBar />', () => {
   });
 
   afterEach(() => {
-    clock = sinon.restore();
+    clock = sandbox.restore();
   });
 
   it('should initially render hidden progress bar', () => {
@@ -135,7 +136,7 @@ describe('<ProgressBar />', () => {
     });
 
     afterEach(() => {
-      clock = sinon.restore();
+      clock = sandbox.restore();
     });
 
     it('should start incrementing progress if 0 <= percent < 100', () => {
