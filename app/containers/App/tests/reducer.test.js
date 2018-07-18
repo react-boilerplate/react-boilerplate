@@ -40,7 +40,7 @@ describe('appReducer', () => {
     }];
     const username = 'test';
     const expectedResult = state
-      .setIn(['userData', 'repositories'], fixture)
+      .setIn(['userData', 'repositories'], fromJS(fixture))
       .set('loading', false)
       .set('currentUser', username);
 
@@ -52,7 +52,7 @@ describe('appReducer', () => {
       msg: 'Not found',
     };
     const expectedResult = state
-      .set('error', fixture)
+      .set('error', fromJS(fixture))
       .set('loading', false);
 
     expect(appReducer(state, repoLoadingError(fixture))).toEqual(expectedResult);

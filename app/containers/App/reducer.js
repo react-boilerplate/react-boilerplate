@@ -37,12 +37,12 @@ function appReducer(state = initialState, action) {
         .setIn(['userData', 'repositories'], false);
     case LOAD_REPOS_SUCCESS:
       return state
-        .setIn(['userData', 'repositories'], action.repos)
+        .setIn(['userData', 'repositories'], fromJS(action.repos))
         .set('loading', false)
         .set('currentUser', action.username);
     case LOAD_REPOS_ERROR:
       return state
-        .set('error', action.error)
+        .set('error', fromJS(action.error))
         .set('loading', false);
     default:
       return state;

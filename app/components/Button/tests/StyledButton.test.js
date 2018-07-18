@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import StyledButton from '../StyledButton';
 
 describe('<StyledButton />', () => {
-  it('should render an <button> tag', () => {
+  it('should render a <button> tag', () => {
     const renderedComponent = shallow(<StyledButton />);
     expect(renderedComponent.type()).toEqual('button');
   });
