@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Wrapper from '../Wrapper';
 
 describe('<Wrapper />', () => {
-  it('should render an <footer> tag', () => {
+  it('should render a <footer> tag', () => {
     const renderedComponent = shallow(<Wrapper />);
     expect(renderedComponent.type()).toEqual('footer');
   });
