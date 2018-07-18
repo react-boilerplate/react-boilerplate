@@ -82,7 +82,7 @@ You can launch the example app by running `npm start`. To fully understand its i
 
 ### How does the application boot up?
 
-Like any other webpage your app starts with the [`app/index.html`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/index.html) file. React will render your application into `div#app` .
+Like any other webpage your app starts with the [`public/index.html`](https://github.com/react-boilerplate/react-boilerplate/blob/master/public/index.html) file. React will render your application into `div#app` .
 
 But how do we include all of your react components into a single HTML file? That's where webpack comes into the picture. webpack will literally pack your application into small javascript files. These files will be injected into the `index.html` as `<script>` tags.
 
