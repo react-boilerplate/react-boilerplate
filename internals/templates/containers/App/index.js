@@ -1,6 +1,6 @@
 /**
  *
- * App.react.js
+ * App.js
  *
  * This component is the skeleton around the actual pages, and should only
  * contain code that should be seen on all pages. (e.g. navigation bar)
@@ -12,18 +12,18 @@
  */
 
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+import HomePage from 'containers/HomePage/Loadable';
+import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
-  static propTypes = {
-    children: React.PropTypes.node,
-  };
-
-  render() {
-    return (
-      <div>
-        {React.Children.toArray(this.props.children)}
-      </div>
-    );
-  }
+export default function App() {
+  return (
+    <div>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route component={NotFoundPage} />
+      </Switch>
+    </div>
+  );
 }

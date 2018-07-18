@@ -4,8 +4,9 @@
    and package them in the translation json files in the translations file.
  */
 const fs = require('fs');
+const path = require('path');
 const nodeGlob = require('glob');
-const transform = require('babel-core').transform;
+const transformFile = require('babel-core').transformFile;
 
 const animateProgress = require('./helpers/progress');
 const addCheckmark = require('./helpers/checkmark');
@@ -42,15 +43,16 @@ const task = (message) => {
 
 // Wrap async functions below into a promise
 const glob = (pattern) => new Promise((resolve, reject) => {
-  nodeGlob(pattern, (error, value) => (error ? reject(error) : resolve(value)));
-});
-
-const readFile = (fileName) => new Promise((resolve, reject) => {
-  fs.readFile(fileName, (error, value) => (error ? reject(error) : resolve(value)));
+  // Specify "nodir" in options to match files only.
+  nodeGlob(pattern, { nodir: true }, (error, value) => (error ? reject(error) : resolve(value)));
 });
 
 const writeFile = (fileName, data) => new Promise((resolve, reject) => {
   fs.writeFile(fileName, data, (error, value) => (error ? reject(error) : resolve(value)));
+});
+
+const transform = (fileName, opts) => new Promise((resolve, reject) => {
+  transformFile(fileName, opts, (error, value) => (error ? reject(error) : resolve(value)));
 });
 
 // Store existing translations into memory
@@ -80,14 +82,14 @@ for (const locale of locales) {
 }
 
 /* push `react-intl` plugin to the existing plugins that are already configured in `package.json`
-   Example: 
-   ``` 
+   Example:
+   ```
   "babel": {
     "plugins": [
       ["transform-object-rest-spread", { "useBuiltIns": true }]
     ],
     "presets": [
-      "latest",
+      "env",
       "react"
     ]
   }
@@ -97,9 +99,11 @@ plugins.push(['react-intl'])
 
 const extractFromFile = async (fileName) => {
   try {
-    const code = await readFile(fileName);
     // Use babel plugin to extract instances where react-intl is used
-    const { metadata: result } = await transform(code, { presets, plugins }); // object-shorthand
+    const { metadata: result } = await transform(
+      path.resolve(process.cwd(), fileName),
+      { presets, plugins } // object-shorthand
+    );
     for (const message of result['react-intl'].messages) {
       for (const locale of locales) {
         const oldLocaleMapping = oldLocaleMappings[locale][message.id];
