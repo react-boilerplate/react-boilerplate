@@ -34,7 +34,7 @@ describe('<RepoListItem />', () => {
 
   it('should render a ListItem', () => {
     const renderedComponent = shallow(<RepoListItem item={item} />);
-    expect(renderedComponent.find(ListItem).length).toBe(1);
+    expect(renderedComponent.find(ListItem)).toHaveLength(1);
   });
 
   it('should not render the current username', () => {
@@ -65,6 +65,6 @@ describe('<RepoListItem />', () => {
 
   it('should render the IssueIcon', () => {
     const renderedComponent = renderComponent({ item });
-    expect(renderedComponent.find('svg').length).toBe(1);
+    expect(renderedComponent.find('svg')).toHaveLength(1);
   });
 });
