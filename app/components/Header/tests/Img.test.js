@@ -6,7 +6,7 @@ import Img from '../Img';
 describe('<Img />', () => {
   it('should render an <img> tag', () => {
     const renderedComponent = render(<Img src={'http://example.com/test.jpg'} alt={'test'} />);
-    expect(renderedComponent.find('img').length).toEqual(1);
+    expect(renderedComponent.is('img')).toEqual(true);
   });
 
   it('should have a className attribute', () => {

@@ -6,7 +6,7 @@ import IssueIcon from '../IssueIcon';
 describe('<IssueIcon />', () => {
   it('should render an <svg> tag', () => {
     const renderedComponent = render(<IssueIcon />);
-    expect(renderedComponent.find('svg').length).toEqual(1);
+    expect(renderedComponent.is('svg')).toEqual(true);
   });
 
   it('should have a className attribute', () => {
