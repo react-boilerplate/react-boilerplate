@@ -7,7 +7,7 @@ import {
 } from '../constants';
 
 describe('LanguageProvider actions', () => {
-  describe('Change Local Action', () => {
+  describe('Change Locale Action', () => {
     it('has a type of CHANGE_LOCALE', () => {
       const expected = {
         type: CHANGE_LOCALE,

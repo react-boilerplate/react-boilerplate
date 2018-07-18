@@ -6,7 +6,7 @@ import IssueLink from '../IssueLink';
 describe('<IssueLink />', () => {
   it('should render an <a> tag', () => {
     const renderedComponent = render(<IssueLink />);
-    expect(renderedComponent.find('a').length).toEqual(1);
+    expect(renderedComponent.is('a')).toEqual(true);
   });
 
   it('should have a className attribute', () => {
