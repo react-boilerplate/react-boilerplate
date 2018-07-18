@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import IssueIcon from '../index';
 
 describe('<IssueIcon />', () => {
-  it('should render a SVG', () => {
+  it('should render an SVG', () => {
     const renderedComponent = shallow(
       <IssueIcon />
     );

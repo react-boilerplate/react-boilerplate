@@ -42,7 +42,8 @@ const task = (message) => {
 
 // Wrap async functions below into a promise
 const glob = (pattern) => new Promise((resolve, reject) => {
-  nodeGlob(pattern, (error, value) => (error ? reject(error) : resolve(value)));
+  // Specify "nodir" in options to match files only.
+  nodeGlob(pattern, { nodir: true }, (error, value) => (error ? reject(error) : resolve(value)));
 });
 
 const readFile = (fileName) => new Promise((resolve, reject) => {
@@ -80,14 +81,14 @@ for (const locale of locales) {
 }
 
 /* push `react-intl` plugin to the existing plugins that are already configured in `package.json`
-   Example: 
-   ``` 
+   Example:
+   ```
   "babel": {
     "plugins": [
       ["transform-object-rest-spread", { "useBuiltIns": true }]
     ],
     "presets": [
-      "latest",
+      "env",
       "react"
     ]
   }
@@ -130,8 +131,9 @@ const extractFromFile = async (fileName) => {
   for (const locale of locales) {
     const translationFileName = `app/translations/${locale}.json`;
 
+    let localeTaskDone;
     try {
-      const localeTaskDone = task(
+      localeTaskDone = task(
         `Writing translation messages for ${locale} to: ${translationFileName}`
       );
 

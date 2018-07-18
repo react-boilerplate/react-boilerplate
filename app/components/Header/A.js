@@ -1,8 +1,6 @@
-import styled from 'styled-components';
-
 import NormalA from 'components/A';
 
-const A = styled(NormalA)`
+const A = NormalA.extend`
   padding: 2em 0;
 `;
 

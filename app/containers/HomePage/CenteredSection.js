@@ -1,8 +1,6 @@
-import styled from 'styled-components';
-
 import Section from './Section';
 
-const CenteredSection = styled(Section)`
+const CenteredSection = Section.extend`
   text-align: center;
 `;
 

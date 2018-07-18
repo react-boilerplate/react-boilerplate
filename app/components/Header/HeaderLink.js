@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default styled(Link)`
@@ -17,7 +17,7 @@ export default styled(Link)`
   font-size: 16px;
   border: 2px solid #41ADDD;
   color: #41ADDD;
-  
+
   &:active {
     background: #41ADDD;
     color: #FFF;
