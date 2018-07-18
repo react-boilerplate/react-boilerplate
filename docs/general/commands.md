@@ -41,7 +41,7 @@ npm run generate
 ```
 
 Allows you to auto-generate boilerplate code for common parts of your
-application, specifically `component`s, `container`s, and `route`s. You can
+application, specifically `component`s, and `container`s. You can
 also run `npm run generate <part>` to skip the first selection. (e.g. `npm run
 generate container`)
 
@@ -131,7 +131,7 @@ npm run analyze
 ```
 
 This command will generate a `stats.json` file from your production build, which
-you can upload to the [webpack analyzer](https://webpack.github.io/analyse/). This
+you can upload to the [webpack analyzer](https://webpack.github.io/analyse/) or [Webpack Visualizer](https://chrisbateman.github.io/webpack-visualizer/). This
 analyzer will visualize your dependencies and chunks with detailed statistics
 about the bundle size.
 

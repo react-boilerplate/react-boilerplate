@@ -11,9 +11,9 @@ environment:
 
   matrix:
     # Node versions to run
+    - nodejs_version: 8
     - nodejs_version: 7
     - nodejs_version: 6
-    - nodejs_version: 5
 
 # Fix line endings in Windows. (runs before repo cloning)
 init:
@@ -22,7 +22,7 @@ init:
 # Install scripts--runs after repo cloning
 install:
   # Install chrome
-  - choco install -y googlechrome
+  - choco install -y googlechrome --ignore-checksums
   # Install the latest stable version of Node
   - ps: Install-Product node $env:nodejs_version
   - set PATH=%APPDATA%\yarn;%PATH%
