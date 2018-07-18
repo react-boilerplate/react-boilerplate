@@ -5,6 +5,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
+const AssetsPlugin = require('assets-webpack-plugin');
 
 // Remove this line once the following warning goes away (it was meant for webpack loader authors not users):
 // 'DeprecationWarning: loaderUtils.parseQuery() received a non-string value which can be problematic,
@@ -129,6 +130,10 @@ module.exports = options => ({
       },
     }),
     new WebpackBar(),
+    new AssetsPlugin({
+      path: path.resolve(process.cwd(), 'build'),
+      filename: 'assets.json',
+    }),
   ]),
   resolve: {
     modules: ['node_modules', 'app'],

@@ -124,17 +124,6 @@ npm run start:tunnel
 Starts the development server and tunnels it with `ngrok`, making the website
 available worldwide. Useful for testing on different devices in different locations!
 
-### Dependency size test
-
-```Shell
-npm run analyze
-```
-
-This command will generate a `stats.json` file from your production build, which
-you can upload to the [webpack analyzer](https://webpack.github.io/analyse/) or [Webpack Visualizer](https://chrisbateman.github.io/webpack-visualizer/). This
-analyzer will visualize your dependencies and chunks with detailed statistics
-about the bundle size.
-
 ## Linting
 
 ```Shell

@@ -5,6 +5,7 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { HashedModuleIdsPlugin } = require('webpack');
+const Visualizer = require('webpack-visualizer-plugin');
 
 module.exports = require('./webpack.base.babel')({
   mode: 'production',
@@ -115,6 +116,8 @@ module.exports = require('./webpack.base.babel')({
       hashDigest: 'hex',
       hashDigestLength: 20,
     }),
+
+    new Visualizer(),
   ],
 
   performance: {
