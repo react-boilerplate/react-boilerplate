@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+  localdev:
+    build:
+      context: .
+      dockerfile: ./internals/docker/Dockerfile
+    command: npm run start
+    environment:
+      - NODE_ENV=localdev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app:/code/app
+      - ./package.json:/code/package.json
+      - ./yarn.lock:/code/yarn.lock
+      - ./server:/code/server
+      - ./.gitignore:/code/.gitignore
+      - ./.eslintrc.js:/code/.eslintrc.js
+      - ./.prettierrc:/code/.prettierrc
+      - ./.prettierignore:/code/.prettierignore
+      - ./.stylelintrc:/code/.stylelintrc

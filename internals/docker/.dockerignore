@@ -1,0 +1,7 @@
+Dockerfile
+docker-compose.yml
+node_modules
+build
+coverage
+stats.json
+npm-debug.log
