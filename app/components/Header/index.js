@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import { routerData } from 'config/router';
 import A from './A';
 import Img from './Img';
 import NavBar from './NavBar';
@@ -17,12 +18,13 @@ class Header extends React.Component {
           <Img src={Banner} alt="react-boilerplate - Logo" />
         </A>
         <NavBar>
-          <HeaderLink to="/">
-            <FormattedMessage {...messages.home} />
-          </HeaderLink>
-          <HeaderLink to="/features">
-            <FormattedMessage {...messages.features} />
-          </HeaderLink>
+          {routerData
+            .filter(router => router.showInNav)
+            .map(({ path, messageKey }) => (
+              <HeaderLink to={path} key={path}>
+                <FormattedMessage {...messages[messageKey]} />
+              </HeaderLink>
+            ))}
         </NavBar>
       </div>
     );
