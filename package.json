@@ -135,13 +135,10 @@
     },
     "setupTestFrameworkScriptFile": "<rootDir>/internals/testing/test-bundler.js",
     "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/internals/testing/enzyme-setup.js"
+      "raf/polyfill"
     ],
     "testRegex": "tests/.*\\.test\\.js$",
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ]
+    "snapshotSerializers": []
   },
   "dependencies": {
     "babel-polyfill": "6.26.0",
@@ -197,9 +194,6 @@
     "circular-dependency-plugin": "5.0.2",
     "coveralls": "3.0.1",
     "css-loader": "0.28.11",
-    "enzyme": "3.3.0",
-    "enzyme-adapter-react-16": "1.1.1",
-    "enzyme-to-json": "3.3.4",
     "eslint": "4.19.1",
     "eslint-config-airbnb": "16.1.0",
     "eslint-config-airbnb-base": "12.1.0",
@@ -219,6 +213,7 @@
     "image-webpack-loader": "4.3.1",
     "imports-loader": "0.8.0",
     "jest-cli": "23.1.0",
+    "jest-dom": "1.7.0",
     "jest-styled-components": "5.0.1",
     "lint-staged": "7.2.0",
     "ngrok": "3.0.1",
@@ -228,7 +223,9 @@
     "plop": "2.0.0",
     "pre-commit": "1.2.2",
     "prettier": "1.13.5",
+    "raf": "3.4.0",
     "react-test-renderer": "16.4.1",
+    "react-testing-library": "4.1.2",
     "rimraf": "2.6.2",
     "shelljs": "0.8.2",
     "style-loader": "0.21.0",

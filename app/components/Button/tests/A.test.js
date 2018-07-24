@@ -1,27 +1,27 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from 'react-testing-library';
 
 import A from '../A';
 
 describe('<A />', () => {
   it('should render an <a> tag', () => {
-    const renderedComponent = shallow(<A />);
-    expect(renderedComponent.type()).toEqual('a');
+    const { container } = render(<A />);
+    expect(container.querySelector('a')).not.toBeNull();
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = shallow(<A />);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const { container } = render(<A />);
+    expect(container.querySelector('a').hasAttribute('class')).toBe(true);
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<A id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { container } = render(<A id={id} />);
+    expect(container.querySelector('a').id).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<A attribute="test" />);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const { container } = render(<A attribute="test" />);
+    expect(container.querySelector('a[attribute="test"]')).toBeNull();
   });
 });

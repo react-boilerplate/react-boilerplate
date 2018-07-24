@@ -1,27 +1,31 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { cleanup, render } from 'react-testing-library';
 
 import Wrapper from '../Wrapper';
 
 describe('<Wrapper />', () => {
+  afterEach(cleanup);
+
   it('should render an <footer> tag', () => {
-    const renderedComponent = shallow(<Wrapper />);
-    expect(renderedComponent.type()).toEqual('footer');
+    const { container } = render(<Wrapper />);
+    expect(container.querySelector('footer')).not.toBeNull();
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = shallow(<Wrapper />);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const { container } = render(<Wrapper />);
+    expect(container.querySelector('footer').hasAttribute('class')).toBe(true);
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<Wrapper id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { container } = render(<Wrapper id={id} />);
+    expect(container.querySelector('footer').id).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Wrapper attribute="test" />);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const { container } = render(<Wrapper attribute="test" />);
+    expect(
+      container.querySelector('footer').getAttribute('attribute'),
+    ).toBeNull();
   });
 });

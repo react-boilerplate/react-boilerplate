@@ -1,27 +1,33 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { cleanup, render } from 'react-testing-library';
 
 import Ul from '../Ul';
 
 describe('<Ul />', () => {
+  afterEach(cleanup);
+
   it('should render an <ul> tag', () => {
-    const renderedComponent = shallow(<Ul />);
-    expect(renderedComponent.type()).toEqual('ul');
+    const { container } = render(<Ul />);
+    const element = container.firstElementChild;
+    expect(element.tagName).toEqual('UL');
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = shallow(<Ul />);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const { container } = render(<Ul />);
+    const element = container.firstElementChild;
+    expect(element.hasAttribute('class')).toBe(true);
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<Ul id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { container } = render(<Ul id={id} />);
+    const element = container.firstElementChild;
+    expect(element.id).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Ul attribute="test" />);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const { container } = render(<Ul attribute="test" />);
+    const element = container.firstElementChild;
+    expect(element.hasAttribute('attribute')).toBe(false);
   });
 });

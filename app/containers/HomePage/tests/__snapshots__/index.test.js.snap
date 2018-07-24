@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomePage /> should render and match the snapshot 1`] = `
+<article>
+  <div>
+    <section
+      class="Section-kjlTVo fyoxrz"
+    >
+      <h2
+        class="H2-eUbBFj foTfOk"
+      >
+        <span>
+          Start your next react project in seconds
+        </span>
+      </h2>
+      <p>
+        <span>
+          A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices
+        </span>
+      </p>
+    </section>
+    <section
+      class="Section-kjlTVo iwZUVc"
+    >
+      <h2
+        class="H2-eUbBFj foTfOk"
+      >
+        <span>
+          Try me!
+        </span>
+      </h2>
+      <form
+        class="Form-dhHGoS dsIrGS"
+      >
+        <label
+          for="username"
+        >
+          <span>
+            Show Github repositories by
+          </span>
+          <span
+            class="AtPrefix-dDnKjs bSAVub"
+          >
+            <span>
+              @
+            </span>
+          </span>
+          <input
+            class="Input-hxTtdt dCkjYH"
+            id="username"
+            placeholder="mxstbr"
+            type="text"
+            value=""
+          />
+        </label>
+      </form>
+      <div
+        class="Wrapper-ThVjl egVNqX"
+      >
+        <ul
+          class="Ul-bfMUEV bbRdqs"
+        />
+      </div>
+    </section>
+  </div>
+</article>
+`;
