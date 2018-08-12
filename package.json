@@ -145,7 +145,7 @@
   },
   "dependencies": {
     "babel-polyfill": "6.26.0",
-    "chalk": "2.4.1",
+    "chalk": "^2.4.1",
     "compression": "1.7.2",
     "cross-env": "5.2.0",
     "express": "4.16.3",
@@ -230,7 +230,7 @@
     "prettier": "1.13.5",
     "react-test-renderer": "16.4.1",
     "rimraf": "2.6.2",
-    "shelljs": "0.8.2",
+    "shelljs": "^0.8.2",
     "style-loader": "0.21.0",
     "stylelint": "9.3.0",
     "stylelint-config-recommended": "2.1.0",
