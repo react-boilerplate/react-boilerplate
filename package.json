@@ -238,6 +238,7 @@
     "babel-plugin-styled-components": "1.5.1",
     "babel-plugin-transform-react-remove-prop-types": "0.4.15",
     "circular-dependency-plugin": "5.0.2",
+    "compare-versions": "3.3.1",
     "coveralls": "3.0.2",
     "css-loader": "1.0.0",
     "enzyme": "3.5.0",
