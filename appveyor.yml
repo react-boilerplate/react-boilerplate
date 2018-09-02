@@ -24,6 +24,7 @@ install:
   - choco install -y googlechrome --ignore-checksums
   # Install the latest stable version of Node
   - ps: Install-Product node $env:nodejs_version
+  - npm install npm -g
   - npm ci
 
 # Disable automatic builds
