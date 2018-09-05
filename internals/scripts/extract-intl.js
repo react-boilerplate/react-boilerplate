@@ -100,7 +100,7 @@ const extractFromFile = fileName =>
       try {
         const output = transformSync(code, { presets, plugins });
         // TODO: Ensure that this is the correct path to find the react-intl messages
-        messages = get(output, 'metadata.result.react-intl.messages', []);
+        messages = get(output, 'metadata.react-intl.messages', []);
       } catch (e) {
         console.log(e); // eslint-disable-line
       }
