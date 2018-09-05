@@ -5,17 +5,15 @@
 - [Where are Babel, Prettier and ESLint configured?](#where-are-babel-prettier-and-eslint-configured)
 - [Where are the files coming from when I run `npm start`?](#where-are-the-files-coming-from-when-i-run-npm-start)
 - [How do I fix `Error: listen EADDRINUSE 127.0.0.1:3000`?](#how-do-i-fix-error-listen-eaddrinuse-1270013000)
-  - [OS X / Linux](#os-x-linux)
+  - [OS X / Linux:](#os-x--linux)
   - [Windows](#windows)
 - [Issue with local caching when running in production mode (F5 / ctrl+F5 / cmd+r weird behavior)](#issue-with-local-caching-when-running-in-production-mode-f5--ctrlf5--cmdr-weird-behavior)
-  - [Quick fix on your local browser:](#quick-fix-on-your-local-browser)
-  - [Full in-depth explanation](#full-in-depth-explanation)
+    - [Quick fix on your local browser:](#quick-fix-on-your-local-browser)
+    - [Full in-depth explanation](#full-in-depth-explanation)
 - [Local webfonts not working for development](#local-webfonts-not-working-for-development)
 - [Non-route containers](#non-route-containers)
   - [Where do I put the reducer?](#where-do-i-put-the-reducer)
-  - [How do I run the saga?](#how-do-i-run-the-saga)
 - [Use CI with bitbucket pipelines](#use-ci-with-bitbucket-pipelines)
-- [I'm using Node v0.12 and the server doesn't work?](#im-using-node-v012-and-the-server-doesnt-work)
 - [How to keep my project up-to-date with `react-boilerplate`?](#how-to-keep-my-project-up-to-date-with-react-boilerplate)
 - [How to turn off Webpack performance warnings after production build?](#how-to-turn-off-webpack-performance-warnings-after-production-build)
 - [Styles getting overridden?](#styles-getting-overridden)
@@ -162,15 +160,6 @@ pipelines:
           - npm install
           - npm test
 ```
-
-## I'm using Node v0.12 and the server doesn't work?
-
-We settled on supporting the last three major Node.js versions for the boilerplate – at the moment
-of this writing those are v5, v6 and v7. We **highly recommend upgrading to a newer Node.js version**!
-
-If you _have_ to use Node.js 0.12, you can hack around the server not running by using `babel-cli` to
-run the server: `npm install babel-cli`, and then replace all instances of `node server` in the `"scripts"`
-in the `package.json` with `babel server`!
 
 ## How to keep my project up-to-date with `react-boilerplate`?
 

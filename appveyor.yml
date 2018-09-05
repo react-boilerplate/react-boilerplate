@@ -24,8 +24,8 @@ install:
   - choco install -y googlechrome --ignore-checksums
   # Install the latest stable version of Node
   - ps: Install-Product node $env:nodejs_version
-  - set PATH=%APPDATA%\yarn;%PATH%
-  - yarn
+  - npm install npm -g
+  - npm ci
 
 # Disable automatic builds
 build: off
@@ -36,15 +36,14 @@ test_script:
   - node --version
   - node ./internals/scripts/generate-templates-for-linting
   # run tests and run build
-  - yarn run test
-  - yarn run build
+  - npm run test
+  - npm run build
 
 # Cache node_modules for faster builds
 cache:
-  - "%LOCALAPPDATA%\\Yarn"
   - node_modules -> package.json
 
 # remove, as appveyor doesn't support secure variables on pr builds
 # so `COVERALLS_REPO_TOKEN` cannot be set, without hard-coding in this file
 #on_success:
-#- yarn run coveralls
+#- npm run coveralls
