@@ -20,12 +20,12 @@ const renderComponent = (props = {}) =>
 describe('<Button />', () => {
   it('should render an <a> tag if no route is specified', () => {
     const renderedComponent = renderComponent({ href });
-    expect(renderedComponent.find('a').length).toEqual(1);
+    expect(renderedComponent.find('a')).toHaveLength(1);
   });
 
   it('should render a <button> tag to change route if the handleRoute prop is specified', () => {
     const renderedComponent = renderComponent({ handleRoute });
-    expect(renderedComponent.find('button').length).toEqual(1);
+    expect(renderedComponent.find('button')).toHaveLength(1);
   });
 
   it('should have children', () => {
