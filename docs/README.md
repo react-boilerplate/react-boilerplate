@@ -34,6 +34,16 @@
   - [routing](js/routing.md)
 - [Maintenance](maintenance)
   - [Dependency Update](maintenance/dependency.md)
+- [Convert React Boilerplate To Electron App](electron-version)
+  - [Prerequisites](electron-version/prerequisites.md)
+  - [Remove Server Folder](electron-version/remove-server.md)
+  - [Setup Webpack Dev Server](electron-version/setup-webpack-dev-server.md)
+  - [Start Electron App In Dev Mode](electron-version/start-electron-app-in-dev.md)
+  - [Add HTML Webpack Hard Disc Plugin](electron-version/add-html-harddisc-plugin.md)
+  - [Start Electron App In Prod Mode](electron-version/start-electron-app-in-prod.md)
+  - [Integrate Two Package.Json Structure](electron-version/two-package-json.md)
+  - [Packaging With Electron Builder](electron-version/packaging-electron-app.md)
+  - [Consolidate All Commands (Very Important)](electron-version/consolidate-all-commands.md)
 
 ## Overview
 
