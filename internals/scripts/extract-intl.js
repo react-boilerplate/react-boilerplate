@@ -8,7 +8,7 @@ require('shelljs/global');
 
 const fs = require('fs');
 const nodeGlob = require('glob');
-const { transformSync } = require('@babel/core');
+const { transform } = require('@babel/core');
 const get = require('lodash/get');
 
 const animateProgress = require('./helpers/progress');
@@ -20,9 +20,7 @@ const pkg = require('../../package.json');
 const { presets } = pkg.babel;
 let plugins = pkg.babel.plugins || [];
 
-// TODO: The react-intl plugin must be restored here.
-// Without it, this script is pointless.
-// plugins.push('react-intl');
+plugins.push('react-intl');
 
 // NOTE: styled-components plugin is filtered out as it creates errors when used with transform
 plugins = plugins.filter(p => p !== 'styled-components');
@@ -92,34 +90,29 @@ for (const locale of appLocales) {
   }
 }
 
-const extractFromFile = fileName =>
-  readFile(fileName)
-    .then(code => {
-      // Use babel plugin to extract instances where react-intl is used
-      let messages = [];
-      try {
-        const output = transformSync(code, { presets, plugins });
-        // TODO: Ensure that this is the correct path to find the react-intl messages
-        messages = get(output, 'metadata.react-intl.messages', []);
-      } catch (e) {
-        console.log(e); // eslint-disable-line
-      }
+const extractFromFile = async (filename) => {
+  try {
+    const code = await readFile(filename);
 
-      for (const message of messages) {
-        for (const locale of appLocales) {
-          const oldLocaleMapping = oldLocaleMappings[locale][message.id];
-          // Merge old translations into the babel extracted instances where react-intl is used
-          const newMsg =
-            locale === DEFAULT_LOCALE ? message.defaultMessage : '';
-          localeMappings[locale][message.id] = oldLocaleMapping || newMsg;
-        }
+    const output = await transform(code, { filename, presets, plugins });
+    const messages = get(output, 'metadata.react-intl.messages', []);
+
+    for (const message of messages) {
+      for (const locale of appLocales) {
+        const oldLocaleMapping = oldLocaleMappings[locale][message.id];
+        // Merge old translations into the babel extracted instances where react-intl is used
+        const newMsg =
+          locale === DEFAULT_LOCALE ? message.defaultMessage : '';
+        localeMappings[locale][message.id] = oldLocaleMapping || newMsg;
       }
-    })
-    .catch(error => {
-      process.stderr.write(
-        `\nError transforming file: ${fileName}\n${error}\n`,
-      );
-    });
+    }
+  }
+  catch (error) {
+    process.stderr.write(
+      `\nError transforming file: ${filename}\n${error}\n`
+    );
+  }
+}
 
 const memoryTask = glob(FILES_TO_PARSE);
 const memoryTaskDone = task('Storing language files in memory');
