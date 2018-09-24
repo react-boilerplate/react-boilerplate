@@ -234,7 +234,7 @@
     "babel-eslint": "9.0.0",
     "babel-loader": "8.0.2",
     "babel-plugin-dynamic-import-node": "2.1.0",
-    "babel-plugin-react-intl": "2.4.0",
+    "babel-plugin-react-intl": "3.0.0",
     "babel-plugin-react-transform": "3.0.0",
     "babel-plugin-styled-components": "1.6.2",
     "babel-plugin-transform-react-remove-prop-types": "0.4.15",
