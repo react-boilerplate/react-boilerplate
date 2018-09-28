@@ -34,6 +34,7 @@
   - [routing](js/routing.md)
 - [Maintenance](maintenance)
   - [Dependency Update](maintenance/dependency.md)
+  - [SSR Example](https://github.com/gretzky/react-boilerplate-ssr)
 
 ## Overview
 
