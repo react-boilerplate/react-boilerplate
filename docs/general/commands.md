@@ -148,3 +148,29 @@ npm run lint:eslint:fix -- .
 ```
 
 Lints your code and tries to fix any errors it finds.
+
+## Using Docker in development
+
+*To use Docker for development, make sure you're within the root directory of the project.*
+
+To build the development container, run:
+
+```docker-compose build localdev
+docker-compose up localdev
+```
+In order to update dependencies, run:
+
+```docker-compose stop localdev
+docker-compose exec localdev yarn add <package>
+```
+
+> Note: Because this command attaches to a running container, it must be run while
+an instance of the development container is up.
+
+In order to receive new dependencies from other contributors, you must
+clear your mounted Docker volumes, by running:
+
+```docker-compose down -v localdev
+docker-compose build localdev
+docker-compose up localdev
+```
