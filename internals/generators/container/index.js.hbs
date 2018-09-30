@@ -49,7 +49,7 @@ export class {{ properCase name }} extends React.{{{ component }}} {
 
 {{#if wantActionsAndReducer}}
 const mapStateToProps = createStructuredSelector({
-  {{name}}: makeSelect{{properCase name}}(),
+  {{camelCase name}}: makeSelect{{properCase name}}(),
 });
 {{/if}}
 
