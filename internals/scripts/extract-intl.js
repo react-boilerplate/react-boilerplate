@@ -114,7 +114,7 @@ const extractFromFile = fileName => {
   return readFile(fileName)
     .then(code => {
       // Use babel plugin to extract instances where react-intl is used
-      const { metadata: result } = transform(code, { presets, plugins });
+      const { metadata: result } = transform(code, { filename: fileName, presets, plugins });
 
       for (const message of result['react-intl'].messages) {
         for (const locale of locales) {
