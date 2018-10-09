@@ -16,9 +16,9 @@ const addCheckmark = require('./helpers/checkmark');
 
 const { appLocales, DEFAULT_LOCALE } = require('../../app/i18n');
 
-const pkg = require('../../package.json');
-const { presets } = pkg.babel;
-let plugins = pkg.babel.plugins || [];
+const babel = require('../../babel.config.js');
+const { presets } = babel;
+let plugins = babel.plugins || [];
 
 plugins.push('react-intl');
 
