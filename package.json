@@ -58,64 +58,6 @@
     ]
   },
   "pre-commit": "lint:staged",
-  "babel": {
-    "plugins": [
-      "styled-components",
-      "@babel/plugin-syntax-dynamic-import",
-      "@babel/plugin-syntax-import-meta",
-      "@babel/plugin-proposal-class-properties",
-      "@babel/plugin-proposal-json-strings",
-      [
-        "@babel/plugin-proposal-decorators",
-        {
-          "legacy": true
-        }
-      ],
-      "@babel/plugin-proposal-function-sent",
-      "@babel/plugin-proposal-export-namespace-from",
-      "@babel/plugin-proposal-numeric-separator",
-      "@babel/plugin-proposal-throw-expressions",
-      "@babel/plugin-proposal-export-default-from",
-      "@babel/plugin-proposal-logical-assignment-operators",
-      "@babel/plugin-proposal-optional-chaining",
-      [
-        "@babel/plugin-proposal-pipeline-operator",
-        {
-          "proposal": "minimal"
-        }
-      ],
-      "@babel/plugin-proposal-nullish-coalescing-operator",
-      "@babel/plugin-proposal-do-expressions",
-      "@babel/plugin-proposal-function-bind"
-    ],
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "modules": false
-        }
-      ],
-      "@babel/preset-react"
-    ],
-    "env": {
-      "production": {
-        "only": [
-          "app"
-        ],
-        "plugins": [
-          "transform-react-remove-prop-types",
-          "@babel/plugin-transform-react-inline-elements",
-          "@babel/plugin-transform-react-constant-elements"
-        ]
-      },
-      "test": {
-        "plugins": [
-          "@babel/plugin-transform-modules-commonjs",
-          "dynamic-import-node"
-        ]
-      }
-    }
-  },
   "dllPlugin": {
     "path": "node_modules/react-boilerplate-dlls",
     "exclude": [
@@ -131,41 +73,6 @@
       "core-js",
       "lodash",
       "eventsource-polyfill"
-    ]
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "app/**/*.{js,jsx}",
-      "!app/**/*.test.{js,jsx}",
-      "!app/*/RbGenerated*/*.{js,jsx}",
-      "!app/app.js",
-      "!app/global-styles.js",
-      "!app/*/*/Loadable.{js,jsx}"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 98,
-        "branches": 91,
-        "functions": 98,
-        "lines": 98
-      }
-    },
-    "moduleDirectories": [
-      "node_modules",
-      "app"
-    ],
-    "moduleNameMapper": {
-      ".*\\.(css|less|styl|scss|sass)$": "<rootDir>/internals/mocks/cssModule.js",
-      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/image.js"
-    },
-    "setupTestFrameworkScriptFile": "<rootDir>/internals/testing/test-bundler.js",
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/internals/testing/enzyme-setup.js"
-    ],
-    "testRegex": "tests/.*\\.test\\.js$",
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
     ]
   },
   "resolutions": {
@@ -184,36 +91,36 @@
     "intl": "1.2.5",
     "invariant": "2.2.4",
     "ip": "1.1.5",
-    "lodash": "4.17.10",
+    "lodash": "4.17.11",
     "minimist": "1.2.0",
     "prop-types": "15.6.2",
-    "react": "16.4.2",
-    "react-dom": "16.4.2",
+    "react": "16.5.2",
+    "react-dom": "16.5.2",
     "react-helmet": "5.2.0",
-    "react-intl": "2.4.0",
+    "react-intl": "2.7.1",
     "react-loadable": "5.3.1",
     "react-redux": "5.0.7",
     "react-router-dom": "4.3.1",
     "react-router-redux": "5.0.0-alpha.9",
     "redux": "4.0.0",
     "redux-immutable": "4.0.0",
-    "redux-saga": "0.16.0",
-    "reselect": "3.0.1",
+    "redux-saga": "0.16.2",
+    "reselect": "4.0.0",
     "sanitize.css": "4.1.0",
-    "styled-components": "3.4.5",
+    "styled-components": "3.4.9",
     "warning": "4.0.2",
-    "whatwg-fetch": "2.0.4"
+    "whatwg-fetch": "3.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.0.0",
-    "@babel/core": "7.0.0",
-    "@babel/plugin-proposal-class-properties": "7.0.0",
-    "@babel/plugin-proposal-decorators": "7.0.0",
+    "@babel/cli": "7.1.2",
+    "@babel/core": "7.1.2",
+    "@babel/plugin-proposal-class-properties": "7.1.0",
+    "@babel/plugin-proposal-decorators": "7.1.2",
     "@babel/plugin-proposal-do-expressions": "7.0.0",
     "@babel/plugin-proposal-export-default-from": "7.0.0",
     "@babel/plugin-proposal-export-namespace-from": "7.0.0",
     "@babel/plugin-proposal-function-bind": "7.0.0",
-    "@babel/plugin-proposal-function-sent": "7.0.0",
+    "@babel/plugin-proposal-function-sent": "7.1.0",
     "@babel/plugin-proposal-json-strings": "7.0.0",
     "@babel/plugin-proposal-logical-assignment-operators": "7.0.0",
     "@babel/plugin-proposal-nullish-coalescing-operator": "7.0.0",
@@ -223,36 +130,36 @@
     "@babel/plugin-proposal-throw-expressions": "7.0.0",
     "@babel/plugin-syntax-dynamic-import": "7.0.0",
     "@babel/plugin-syntax-import-meta": "7.0.0",
-    "@babel/plugin-transform-modules-commonjs": "7.0.0",
+    "@babel/plugin-transform-modules-commonjs": "7.1.0",
     "@babel/plugin-transform-react-constant-elements": "7.0.0",
     "@babel/plugin-transform-react-inline-elements": "7.0.0",
-    "@babel/preset-env": "7.0.0",
+    "@babel/preset-env": "7.1.0",
     "@babel/preset-react": "7.0.0",
     "@babel/register": "7.0.0",
-    "add-asset-html-webpack-plugin": "2.1.3",
+    "add-asset-html-webpack-plugin": "3.0.1",
     "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "9.0.0",
-    "babel-loader": "8.0.2",
-    "babel-plugin-dynamic-import-node": "2.1.0",
-    "babel-plugin-react-intl": "3.0.0",
+    "babel-eslint": "10.0.1",
+    "babel-loader": "8.0.4",
+    "babel-plugin-dynamic-import-node": "2.2.0",
+    "babel-plugin-react-intl": "3.0.1",
     "babel-plugin-react-transform": "3.0.0",
-    "babel-plugin-styled-components": "1.6.2",
-    "babel-plugin-transform-react-remove-prop-types": "0.4.15",
+    "babel-plugin-styled-components": "1.8.0",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.18",
     "circular-dependency-plugin": "5.0.2",
     "compare-versions": "3.4.0",
     "coveralls": "3.0.2",
     "css-loader": "1.0.0",
-    "enzyme": "3.6.0",
-    "enzyme-adapter-react-16": "1.4.0",
+    "enzyme": "3.7.0",
+    "enzyme-adapter-react-16": "1.6.0",
     "enzyme-to-json": "3.3.4",
-    "eslint": "5.5.0",
+    "eslint": "5.6.1",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-airbnb-base": "13.1.0",
-    "eslint-config-prettier": "3.0.1",
+    "eslint-config-prettier": "3.1.0",
     "eslint-import-resolver-webpack": "0.10.1",
     "eslint-plugin-import": "2.14.0",
-    "eslint-plugin-jsx-a11y": "6.1.1",
-    "eslint-plugin-prettier": "2.6.2",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-prettier": "3.0.0",
     "eslint-plugin-react": "7.11.1",
     "eslint-plugin-redux-saga": "0.9.0",
     "eventsource-polyfill": "0.9.6",
@@ -260,33 +167,32 @@
     "file-loader": "2.0.0",
     "html-loader": "0.5.5",
     "html-webpack-plugin": "3.2.0",
-    "husky": "0.14.3",
     "image-webpack-loader": "4.3.1",
     "imports-loader": "0.8.0",
-    "jest-cli": "23.5.0",
-    "jest-styled-components": "6.1.1",
-    "lint-staged": "7.2.2",
-    "ngrok": "3.0.1",
+    "jest-cli": "23.6.0",
+    "jest-styled-components": "6.2.1",
+    "lint-staged": "7.3.0",
+    "ngrok": "3.1.0",
     "node-plop": "0.16.0",
     "null-loader": "0.1.1",
     "offline-plugin": "5.0.5",
     "plop": "2.1.0",
     "pre-commit": "1.2.2",
-    "prettier": "1.14.2",
-    "react-test-renderer": "16.4.2",
+    "prettier": "1.14.3",
+    "react-test-renderer": "16.5.2",
     "rimraf": "2.6.2",
     "shelljs": "0.8.2",
-    "style-loader": "0.23.0",
-    "stylelint": "9.5.0",
+    "style-loader": "0.23.1",
+    "stylelint": "9.6.0",
     "stylelint-config-recommended": "2.1.0",
     "stylelint-config-styled-components": "0.1.1",
-    "stylelint-processor-styled-components": "1.3.2",
+    "stylelint-processor-styled-components": "1.5.0",
     "svg-url-loader": "2.3.2",
     "url-loader": "1.1.1",
-    "webpack": "4.17.2",
-    "webpack-cli": "3.1.0",
-    "webpack-dev-middleware": "3.2.0",
-    "webpack-hot-middleware": "2.23.1",
+    "webpack": "4.20.2",
+    "webpack-cli": "3.1.2",
+    "webpack-dev-middleware": "3.4.0",
+    "webpack-hot-middleware": "2.24.3 ",
     "webpack-pwa-manifest": "3.7.1"
   }
 }

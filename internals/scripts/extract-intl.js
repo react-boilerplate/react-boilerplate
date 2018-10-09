@@ -16,9 +16,9 @@ const addCheckmark = require('./helpers/checkmark');
 
 const { appLocales, DEFAULT_LOCALE } = require('../../app/i18n');
 
-const pkg = require('../../package.json');
-const { presets } = pkg.babel;
-let plugins = pkg.babel.plugins || [];
+const babel = require('../../babel.config.js');
+const { presets } = babel;
+let plugins = babel.plugins || [];
 
 plugins.push('react-intl');
 
@@ -90,7 +90,7 @@ for (const locale of appLocales) {
   }
 }
 
-const extractFromFile = async (filename) => {
+const extractFromFile = async filename => {
   try {
     const code = await readFile(filename);
 
@@ -101,18 +101,14 @@ const extractFromFile = async (filename) => {
       for (const locale of appLocales) {
         const oldLocaleMapping = oldLocaleMappings[locale][message.id];
         // Merge old translations into the babel extracted instances where react-intl is used
-        const newMsg =
-          locale === DEFAULT_LOCALE ? message.defaultMessage : '';
+        const newMsg = locale === DEFAULT_LOCALE ? message.defaultMessage : '';
         localeMappings[locale][message.id] = oldLocaleMapping || newMsg;
       }
     }
+  } catch (error) {
+    process.stderr.write(`\nError transforming file: ${filename}\n${error}\n`);
   }
-  catch (error) {
-    process.stderr.write(
-      `\nError transforming file: ${filename}\n${error}\n`
-    );
-  }
-}
+};
 
 const memoryTask = glob(FILES_TO_PARSE);
 const memoryTaskDone = task('Storing language files in memory');
