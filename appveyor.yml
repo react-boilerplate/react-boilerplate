@@ -24,10 +24,7 @@ install:
   - choco install -y googlechrome --ignore-checksums
   # Install the latest stable version of Node
   - ps: Install-Product node $env:nodejs_version
-  - npm install
-
-# TODO: Switch to using npm ci instead of install
-# once Node LTS ships with npm 5.7 (with ci)
+  - npm ci
 
 # Disable automatic builds
 build: off
