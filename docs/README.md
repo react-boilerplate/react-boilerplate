@@ -32,6 +32,7 @@
   - [redux-saga](js/redux-saga.md)
   - [i18n](js/i18n.md)
   - [routing](js/routing.md)
+- [TS](ts)
 - [Maintenance](maintenance)
   - [Dependency Update](maintenance/dependency.md)
 - [Convert React Boilerplate To Electron App](electron)
@@ -106,6 +107,12 @@ building for production so you don't have to worry about that.
 
 See the [JS documentation](./js/README.md) for more information about the
 JavaScript side of things.
+
+### TS
+
+Since we don't support TypeScript out of the box, for those in need, we can direct you to an unofficial TypeScript re-implementation maintained by a supporter.
+
+See the [TS repo](https://github.com/Can-Sahin/react-boilerplate-typescript) and the related [docs](https://github.com/Can-Sahin/react-boilerplate-typescript/blob/master/docs/general/typescript.md) for details. 
 
 ### SEO
 
