@@ -34,7 +34,7 @@ import { createSelector } from 'reselect';
 import mySelector from 'mySelector';
 
 const myComplexSelector = createSelector(mySelector, myState =>
-  myState.get('someNestedState')
+  myState.get('someNestedState'),
 );
 
 export { myComplexSelector };
@@ -45,7 +45,7 @@ These selectors can then either be used directly in our containers as
 
 ```javascript
 export default connect(
-  createSelector(myComplexSelector, myNestedState => ({ data: myNestedState }))
+  createSelector(myComplexSelector, myNestedState => ({ data: myNestedState })),
 )(SomeComponent);
 ```
 
