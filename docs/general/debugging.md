@@ -1,15 +1,16 @@
 # Debugging
 
-## Table of Contents
-
-- [Debugging with VC Code](#debugging-with-vscode)
-- [Debugging with WebStorm](#debugging-with-webStorm)
+- [Debugging with Visual Studio Code](#debugging-with-visual-studio-code)
+- [Debugging with WebStorm](#debugging-with-webstorm)
   - [Troubleshooting](#troubleshooting)
   - [Enable ESLint](#enable-eslint)
 
 ## Debugging with Visual Studio Code
 
-You can super charge your React debugging workflow with VS Code and Chrome debugging by using this `launch.json` config:
+You can super charge your React debugging workflow via VS Code and Chrome. Here are the steps:
+
+1. Install the [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) extension in VS Code.
+2. Add the `Launch Chrome` option to your `launch.json` config:
 
 ```json
 {
@@ -30,13 +31,18 @@ You can super charge your React debugging workflow with VS Code and Chrome debug
 }
 ```
 
-You can read more in [Live edit and debug your React apps directly from VS Code — without leaving the editor 🔥 🎉🎈](https://medium.com/front-end-hacking/live-edit-and-debug-your-react-apps-directly-from-vs-code-without-leaving-the-editor-3da489ed905f)
+3. Start your dev server with `npm run start`.
+4. Launch the VS Code Debugger with the `Launch Chrome` configuration.
 
-**Note**: There's currently a [known problem](https://github.com/react-boilerplate/react-boilerplate/pull/1698) with source maps and VS Code. You can change your webpack config to use `inline-source-map` and the issue should be resolved.
+You can then set breakpoints directly from inside VS Code, use stepping with the Chrome or VS Code buttons and more.
+
+Read all about it in the [Debugger for Chrome page](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome).
+
+**Note**: There's currently a [known problem](https://github.com/react-boilerplate/react-boilerplate/pull/1698) with source maps and VS Code. You can change your Webpack dev config to use `inline-source-map` instead of `eval-source-map` and the issue should be resolved.
 
 ## Debugging with WebStorm
 
-WebStorm is a powerful IDE, and why not also use it as debugger tool? Here is the steps
+WebStorm is a powerful IDE, and why not also use it as debugger tool? Here are the steps:
 
 1.  [Install JetBrain Chrome Extension](https://chrome.google.com/webstore/detail/jetbrains-ide-support/hmhgeddbohgjknpmjagkdomcpobmllji)
 2.  [Setting up the PORT](https://www.jetbrains.com/help/webstorm/2016.1/using-jetbrains-chrome-extension.html)
@@ -61,16 +67,11 @@ WebStorm is a powerful IDE, and why not also use it as debugger tool? Here is th
 
 ### Enable ESLint
 
-ESLint help making all developer follow the same coding format. Please also setting up in your IDE, otherwise, you will fail ESLint test.
+ESLint helps developers on a team follow the same coding format. It's highly recommended to set it up in your IDE to avoid failing the linting step in tests.
 
-1.  Go to WebStorm Preference
+1.  Go to WebStorm Preferences
 2.  Search for `ESLint`
 3.  Click `Enable`
 
 ![Setting up ESLint](webstorm-eslint.png)
 
-## Have another question?
-
-Submit an [issue](https://github.com/react-boilerplate/react-boilerplate/issues),
-hop onto the [Gitter channel](https://gitter.im/mxstbr/react-boilerplate)
-or contact Max direct on [twitter](https://twitter.com/mxstbr)!
