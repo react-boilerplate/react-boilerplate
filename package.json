@@ -260,7 +260,6 @@
     "file-loader": "2.0.0",
     "html-loader": "0.5.5",
     "html-webpack-plugin": "3.2.0",
-    "husky": "0.14.3",
     "image-webpack-loader": "4.3.1",
     "imports-loader": "0.8.0",
     "jest-cli": "23.6.0",
