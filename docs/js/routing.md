@@ -1,11 +1,11 @@
-# Routing via `react-router` and `react-router-redux`
+# Routing via `react-router` and `connected-react-router`
 
 `react-router` is the de-facto standard routing solution for react applications.
 The thing is that with redux and a single state tree, the URL is part of that
-state. `react-router-redux` takes care of synchronizing the location of our
+state. `connected-react-router` takes care of synchronizing the location of our
 application with the application state.
 
-(See the [`react-router-redux` documentation](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-redux)
+(See the [`connected-react-router` FAQ](https://github.com/supasate/connected-react-router/blob/master/FAQ.md)
 for more information)
 
 ## Usage
@@ -20,12 +20,23 @@ Top level routes are located in `App.js`.
 
 If you want your route component (or any component for that matter) to be loaded asynchronously, use container or component generator with 'Do you want an async loader?' option activated.
 
-To go to a new page use the `push` function by `react-router-redux`:
+To go to a new page use the `push` function by `connected-react-router`:
 
 ```JS
-import { push } from 'react-router-redux';
+import { push } from 'connected-react-router/immutable';
 
-dispatch(push('/some/page'));
+dispatch(push('/path/to/somewhere'));
+```
+
+You can do the same thing in a saga:
+
+```JS
+import { push } from 'connected-react-router/immutable'
+import { put } from 'redux-saga/effects'
+
+export function* mySaga() {
+  yield put(push('/home'))
+}
 ```
 
 ## Child Routes
