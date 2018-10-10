@@ -16,7 +16,6 @@ This fork gives you two options:
 
 This repo receives many requests for server-side rendering and there have been plenty of long discussions on the topic. None have led to an implementation that we're happy to merge into the main repo. That being said, @gretzky has a fork which you can use as a solid starting point for your SSR needs: [react-boilerplate-ssr](https://github.com/gretzky/react-boilerplate-ssr)
 
-
 ## TypeScript
 
 Since we don't support TypeScript out of the box, for those in need, we can direct you to a TypeScript implementation of this repo.
