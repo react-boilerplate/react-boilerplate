@@ -5,6 +5,7 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const OfflinePlugin = require('offline-plugin');
 const { HashedModuleIdsPlugin } = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = require('./webpack.base.babel')({
   mode: 'production',
@@ -23,19 +24,12 @@ module.exports = require('./webpack.base.babel')({
     minimizer: [
       new UglifyJsPlugin({
         uglifyOptions: {
-          parse: {
-            ecma: 8,
-          },
-          compress: {
-            ecma: 5,
-            warnings: false,
-            comparisons: false,
-          },
-          mangle: {
-            safari10: true,
-          },
+          warnings: false,
+          comparisons: false,
+          compress: {},
+          parse: {},
+          mangle: true,
           output: {
-            ecma: 5,
             comments: false,
             ascii_only: true,
           },
@@ -113,6 +107,13 @@ module.exports = require('./webpack.base.babel')({
 
       // Removes warning for about `additional` section usage
       safeToUseOptionalCaches: true,
+    }),
+
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8,
     }),
 
     new WebpackPwaManifest({
