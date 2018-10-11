@@ -12,7 +12,7 @@ module.exports = require('./webpack.base.babel')({
 
   // Add hot reloading in development
   entry: [
-    'eventsource-polyfill', // Necessary for hot reloading with IE
+    require.resolve('react-app-polyfill/ie11'),
     'webpack-hot-middleware/client?reload=true',
     path.join(process.cwd(), 'app/app.js'), // Start with js/app.js
   ],
