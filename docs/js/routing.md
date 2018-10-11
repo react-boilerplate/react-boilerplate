@@ -18,7 +18,7 @@ To add a new route, simply import the `Route` component and use it standalone or
 
 Top level routes are located in `App.js`.
 
-If you want your route component (or any component for that matter) to be loaded asynchronously, use container or component generator with 'Do you want an async loader?' option activated.
+If you want your route component (or any component for that matter) to be loaded asynchronously, use container or component generator with 'Do you want to load resources asynchronously?' option activated.
 
 To go to a new page use the `push` function by `connected-react-router`:
 
