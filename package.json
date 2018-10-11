@@ -114,6 +114,7 @@
     "babel-plugin-transform-react-remove-prop-types": "0.4.18",
     "circular-dependency-plugin": "5.0.2",
     "compare-versions": "3.4.0",
+    "compression-webpack-plugin": "^2.0.0",
     "coveralls": "3.0.2",
     "css-loader": "1.0.0",
     "enzyme": "3.7.0",
