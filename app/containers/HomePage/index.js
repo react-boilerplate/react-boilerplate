@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-
+import { Radio, Select } from 'semantic-ui-react';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import {
@@ -46,6 +46,10 @@ export class HomePage extends React.PureComponent {
 
   render() {
     const { loading, error, repos } = this.props;
+    const countryOptions = [
+      { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' },
+      { key: 'in', value: 'in', flag: 'in', text: 'India' },
+    ];
     const reposListProps = {
       loading,
       error,
@@ -91,6 +95,10 @@ export class HomePage extends React.PureComponent {
             </Form>
             <ReposList {...reposListProps} />
           </Section>
+        </div>
+        <div>
+          <Radio toggle label="Make my profile visible" />
+          <Select placeholder="Select your country" options={countryOptions} />
         </div>
       </article>
     );
