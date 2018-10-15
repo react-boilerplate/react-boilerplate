@@ -44,7 +44,7 @@ export default class SiteHeader extends React.Component {
 
   render() {
     return (
-      <Menu fixed='top' stackable>
+      <Menu fixed="top" stackable>
         <Menu.Item>
           <img alt="icon" src="../../images/icon-512x512.png" />
         </Menu.Item>
