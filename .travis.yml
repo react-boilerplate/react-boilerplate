@@ -1,8 +1,8 @@
 language: node_js
 
 node_js:
-  - "node"
-  - "lts/*"
+  - 'node'
+  - 'lts/*'
 
 script:
   - node ./internals/scripts/generate-templates-for-linting

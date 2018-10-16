@@ -53,8 +53,7 @@ npm start
 ```
 
 Starts the development server and makes your application accessible at
-`localhost:3000`. Tunnels that server with `ngrok`, which means the website
-accessible anywhere! Changes in the application code will be hot-reloaded.
+`localhost:3000`. Changes in the application code will be hot-reloaded.
 
 ### Production
 

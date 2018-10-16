@@ -12,9 +12,10 @@ import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
+import Immutable from 'immutable';
+import { ConnectedRouter } from 'connected-react-router/immutable';
 import FontFaceObserver from 'fontfaceobserver';
-import createHistory from 'history/createBrowserHistory';
+import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
@@ -45,8 +46,7 @@ openSansObserver.load().then(() => {
 });
 
 // Create redux store with history
-const initialState = {};
-const history = createHistory();
+const initialState = Immutable.Map();
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 

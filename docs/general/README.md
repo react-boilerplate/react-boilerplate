@@ -65,11 +65,11 @@ visible page for the best performance.
 ## Industry-standard routing
 
 It's natural to want to add pages (e.g. `/about`) to your application, and
-routing makes this possible. Thanks to [react-router] with [react-router-redux],
+routing makes this possible. Thanks to [react-router] with [connected-react-router],
 that's as easy as pie and the url is auto-synced to your application state!
 
 [react-router]: https://github.com/reactjs/react-router
-[react-router-redux]: https://github.com/reactjs/react-router-redux
+[connected-react-router]: https://github.com/supasate/connected-react-router
 
 ## Static code analysis
 
