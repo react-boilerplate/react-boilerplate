@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import styled, { css, keyframes } from 'styled-components';
 
 const circleFadeDelay = keyframes`
-0%,
-39%,
-100% {
-  opacity: 0;
-}
+  0%,
+  39%,
+  100% {
+    opacity: 0;
+  }
 
-40% {
-  opacity: 1;
-}
+  40% {
+    opacity: 1;
+  }
 `;
 
 const circleFadeDelayRule = css`
