@@ -1,5 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { enzymeFind } from 'styled-components/test-utils';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
@@ -12,18 +13,21 @@ describe('<RepoLink />', () => {
   });
 
   it('should have a className attribute', () => {
-    const renderedComponent = shallow(<RepoLink />);
+    const wrapper = mount(<RepoLink />);
+    const renderedComponent = enzymeFind(wrapper, RepoLink);
     expect(renderedComponent.prop('className')).toBeDefined();
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<RepoLink id={id} />);
+    const wrapper = mount(<RepoLink id={id} />);
+    const renderedComponent = enzymeFind(wrapper, RepoLink);
     expect(renderedComponent.prop('id')).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<RepoLink attribute="test" />);
+    const wrapper = mount(<RepoLink attribute="test" />);
+    const renderedComponent = enzymeFind(wrapper, RepoLink);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });
