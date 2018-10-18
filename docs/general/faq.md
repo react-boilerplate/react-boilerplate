@@ -19,7 +19,7 @@
 
 ## Where are Babel, Prettier and ESLint configured?
 
-Babel is configured inside package.json. ESLint and Prettier have their own config files in the root of the project.
+ESLint, Babel and Prettier all have their own config files in the root of the project. Same for Jest and stylelint.
 
 ## Where are the files coming from when I run `npm start`?
 
@@ -48,7 +48,7 @@ The fix is to kill the process and rerun `npm start`.
     >
     > Note: If nothing is listed, you can try `lsof -i tcp:3000`
 
-1.  Then run
+2.  Then run
     ```Shell
     kill -9 YOUR_PID
     ```
