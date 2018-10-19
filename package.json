@@ -88,8 +88,7 @@
     "reselect": "4.0.0",
     "sanitize.css": "4.1.0",
     "styled-components": "3.4.9",
-    "warning": "4.0.2",
-    "whatwg-fetch": "3.0.0"
+    "warning": "4.0.2"
   },
   "devDependencies": {
     "@babel/cli": "7.1.2",
@@ -131,7 +130,6 @@
     "eslint-plugin-react": "7.11.1",
     "eslint-plugin-redux-saga": "0.9.0",
     "eventsource-polyfill": "0.9.6",
-    "exports-loader": "0.7.0",
     "file-loader": "2.0.0",
     "html-loader": "0.5.5",
     "html-webpack-plugin": "3.2.0",
