@@ -16,16 +16,6 @@ import App from 'containers/App';
 - [`package.json`](../../package.json)!
 
 ```diff
-"dllPlugin": {
-  "path": "node_modules/react-boilerplate-dlls",
-  "exclude": [
-    ...
-    "ip",
-    "minimist",
--   "sanitize.css"
-  ],
-},
-...
 "dependencies": {
   ...
   "redux-saga": "0.14.3",
