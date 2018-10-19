@@ -87,14 +87,8 @@
     "redux-saga": "0.16.2",
     "reselect": "4.0.0",
     "sanitize.css": "4.1.0",
-<<<<<<< HEAD
     "styled-components": "3.4.9",
     "warning": "4.0.2"
-=======
-    "styled-components": "4.0.2",
-    "warning": "4.0.2",
-    "whatwg-fetch": "3.0.0"
->>>>>>> 039d788a31aefb5c42bc99b8ae38cd93ad10dbfe
   },
   "devDependencies": {
     "@babel/cli": "7.1.2",
