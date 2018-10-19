@@ -44,29 +44,6 @@ Linking the packages won't save the package as a dependency in your main project
 }
 ```
 
-#### Excluding from Dll
-
-This boilerplate uses the webpack DllPlugin which optimizes build times during
-development. This assumes that your dependencies rarely change and precompiles
-them into one big bundle. But since you will be changing your new package quite
-often, this is probably not what you want.
-
-You can specify that you don't want this package to be included in the dll by
-adding the following to your `package.json`.
-
-```json
-"dllPlugin": {
-  "exclude": [
-    "<new-package>",
-  ]
-}
-```
-
-That's it, you should be all set to work on both your packages. Webpack will
-monitor both your new package and your main project for changes and rebuild
-whenever you change something. This makes development a lot simpler when trying
-to keep things separate while still working on them at the same time.
-
 ## Gotchas
 
 As well as this approach works for development, there are some things you need
