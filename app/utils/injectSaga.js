@@ -28,23 +28,34 @@ export default ({ key, saga, mode, args }) => (WrappedComponent) => {
       store: PropTypes.object.isRequired,
     };
     static displayName = `withSaga(${(WrappedComponent.displayName || WrappedComponent.name || 'Component')})`;
+    state = {
+      isReady: false,
+    }
 
-    componentWillMount() {
+    componentDidMount() {
       const { injectSaga } = this.injectors;
       const injectedArgs = args || [this.props];
-
-      injectSaga(key, { saga, mode }, ...injectedArgs);
+      this.isComponentMounted = true;
+      injectSaga(key, { saga, mode }, ...injectedArgs).then(() => {
+        if (this.isComponentMounted) {
+          this.setState({ isReady: true });
+        }
+      });
     }
 
     componentWillUnmount() {
       const { ejectSaga } = this.injectors;
-
+      this.isComponentMounted = false;
       ejectSaga(key);
     }
 
     injectors = getInjectors(this.context.store);
+    isComponentMounted = false;
 
     render() {
+      if (!this.state.isReady) {
+        return null;
+      }
       return <WrappedComponent {...this.props} />;
     }
   }

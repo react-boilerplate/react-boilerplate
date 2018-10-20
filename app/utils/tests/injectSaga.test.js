@@ -4,7 +4,7 @@
 
 import { memoryHistory } from 'react-router-dom';
 import { put } from 'redux-saga/effects';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import React from 'react';
 
 import configureStore from '../../configureStore';
@@ -30,7 +30,7 @@ describe('injectSaga decorator', () => {
   beforeEach(() => {
     store = configureStore({}, memoryHistory);
     injectors = {
-      injectSaga: jest.fn(),
+      injectSaga: jest.fn(() => new Promise((resolve) => resolve())),
       ejectSaga: jest.fn(),
     };
     ComponentWithSaga = injectSaga({ key: 'test', saga: testSaga, mode: 'testMode' })(Component);
@@ -43,6 +43,7 @@ describe('injectSaga decorator', () => {
 
     expect(injectors.injectSaga).toHaveBeenCalledTimes(1);
     expect(injectors.injectSaga).toHaveBeenCalledWith('test', { saga: testSaga, mode: 'testMode' }, props);
+    expect(injectors.injectSaga()).resolves.toEqual(undefined);
   });
 
   it('should inject given saga, mode, and user defined args', () => {
@@ -71,8 +72,9 @@ describe('injectSaga decorator', () => {
 
   it('should propagate props', () => {
     const props = { testProp: 'test' };
-    const renderedComponent = shallow(<ComponentWithSaga {...props} />, { context: { store } });
+    const renderedComponent = mount(<ComponentWithSaga {...props} />, { context: { store } });
 
+    renderedComponent.mount();
     expect(renderedComponent.prop('testProp')).toBe('test');
   });
 });
