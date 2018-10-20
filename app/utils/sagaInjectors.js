@@ -31,30 +31,33 @@ const checkDescriptor = (descriptor) => {
 
 export function injectSagaFactory(store, isValid) {
   return function injectSaga(key, descriptor = {}, ...args) {
-    if (!isValid) checkStore(store);
+    return new Promise((resolve, reject) => {
+      try {
+        if (!isValid) checkStore(store);
+        const newDescriptor = { ...descriptor, mode: descriptor.mode || RESTART_ON_REMOUNT };
+        const { saga, mode } = newDescriptor;
 
-    return new Promise((resolve) => {
-      const newDescriptor = { ...descriptor, mode: descriptor.mode || RESTART_ON_REMOUNT };
-      const { saga, mode } = newDescriptor;
+        checkKey(key);
+        checkDescriptor(newDescriptor);
 
-      checkKey(key);
-      checkDescriptor(newDescriptor);
+        let hasSaga = Reflect.has(store.injectedSagas, key);
 
-      let hasSaga = Reflect.has(store.injectedSagas, key);
-
-      if (process.env.NODE_ENV !== 'production') {
-        const oldDescriptor = store.injectedSagas[key];
-        // enable hot reloading of daemon and once-till-unmount sagas
-        if (hasSaga && oldDescriptor.saga !== saga) {
-          oldDescriptor.task.cancel();
-          hasSaga = false;
+        if (process.env.NODE_ENV !== 'production') {
+          const oldDescriptor = store.injectedSagas[key];
+          // enable hot reloading of daemon and once-till-unmount sagas
+          if (hasSaga && oldDescriptor.saga !== saga) {
+            oldDescriptor.task.cancel();
+            hasSaga = false;
+          }
         }
-      }
 
-      if (!hasSaga || (hasSaga && mode !== DAEMON && mode !== ONCE_TILL_UNMOUNT)) {
-        store.injectedSagas[key] = { ...newDescriptor, task: store.runSaga(saga, ...args) }; // eslint-disable-line no-param-reassign
+        if (!hasSaga || (hasSaga && mode !== DAEMON && mode !== ONCE_TILL_UNMOUNT)) {
+          store.injectedSagas[key] = { ...newDescriptor, task: store.runSaga(saga, ...args) }; // eslint-disable-line no-param-reassign
+        }
+        resolve();
+      } catch (error) {
+        reject(error);
       }
-      resolve();
     });
   };
 }
