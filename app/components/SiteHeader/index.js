@@ -5,7 +5,10 @@
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Dropdown, Icon, Menu } from 'semantic-ui-react';
+import Img from 'components/Img';
+import LocaleToggle from 'containers/LocaleToggle';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class SiteHeader extends React.Component {
@@ -13,7 +16,7 @@ export default class SiteHeader extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { activeItem: 'features' };
+    this.state = { activeItem: '' };
     this.handleItemClick = this.handleItemClick.bind(this);
   }
 
@@ -45,34 +48,37 @@ export default class SiteHeader extends React.Component {
   render() {
     return (
       <Menu fixed="top" stackable>
-        <Menu.Item>
-          <img alt="icon" src="../../images/icon-512x512.png" />
-        </Menu.Item>
-        <Dropdown text="Shopping" className="link item">
+        <Link to="/">
+          <Menu.Item>
+            <Img
+              src="/favicon.ico"
+              style={{ marginRight: '1em' }}
+              alt="manin"
+            />
+            Manin
+          </Menu.Item>
+        </Link>
+
+        <Dropdown text="Manufacturer" className="link item">
           <Dropdown.Menu>
-            <Dropdown.Header>Categories</Dropdown.Header>
-            <Dropdown.Item>
-              <Dropdown text="Clothing">
-                <Dropdown.Menu>
-                  <Dropdown.Header>Mens</Dropdown.Header>
-                  <Dropdown.Item>Shirts</Dropdown.Item>
-                  <Dropdown.Item>Pants</Dropdown.Item>
-                  <Dropdown.Item>Jeans</Dropdown.Item>
-                  <Dropdown.Item>Shoes</Dropdown.Item>
-                  <Dropdown.Divider />
-                  <Dropdown.Header>Womens</Dropdown.Header>
-                  <Dropdown.Item>Dresses</Dropdown.Item>
-                  <Dropdown.Item>Shoes</Dropdown.Item>
-                  <Dropdown.Item>Bags</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Dropdown.Item>
-            <Dropdown.Item>Home Goods</Dropdown.Item>
-            <Dropdown.Item>Bedroom</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Header>Order</Dropdown.Header>
-            <Dropdown.Item>Status</Dropdown.Item>
-            <Dropdown.Item>Cancellations</Dropdown.Item>
+            <Link to="/manufacturer/create">
+              <Dropdown.Item
+                name="mfCreate"
+                active={this.state.activeItem === 'mfCreate'}
+                onClick={this.handleItemClick}
+              >
+                Create
+              </Dropdown.Item>
+            </Link>
+            <Link to="/manufacturer/view">
+              <Dropdown.Item
+                name="mfView"
+                active={this.state.activeItem === 'mfView'}
+                onClick={this.handleItemClick}
+              >
+                View All
+              </Dropdown.Item>
+            </Link>
           </Dropdown.Menu>
         </Dropdown>
 
@@ -101,7 +107,12 @@ export default class SiteHeader extends React.Component {
         </Menu.Item>
 
         <Menu.Menu position="right">
-          <Dropdown trigger={this.trigger} options={this.options} />
+          <Menu.Item>
+            <LocaleToggle />
+          </Menu.Item>
+          <Menu.Item>
+            <Dropdown trigger={this.trigger} options={this.options} />
+          </Menu.Item>
         </Menu.Menu>
       </Menu>
     );

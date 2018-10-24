@@ -1,29 +1,30 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
-import A from 'components/A';
-import LocaleToggle from 'containers/LocaleToggle';
-import Wrapper from './Wrapper';
-import messages from './messages';
+import { List, Segment } from 'semantic-ui-react';
 
 function Footer() {
   return (
-    <Wrapper>
-      <section>
-        <FormattedMessage {...messages.licenseMessage} />
-      </section>
-      <section>
-        <LocaleToggle />
-      </section>
-      <section>
-        <FormattedMessage
-          {...messages.authorMessage}
-          values={{
-            author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,
-          }}
-        />
-      </section>
-    </Wrapper>
+    <Segment
+      textAlign="center"
+      style={{ margin: '1em 0em 0em', padding: '1em 0em' }}
+      vertical
+      color="grey"
+    >
+      <List horizontal divided link size="mini">
+        <List.Item as="a" href="#">
+          Site Map
+        </List.Item>
+        <List.Item as="a" href="#">
+          Contact Us
+        </List.Item>
+        <List.Item as="a" href="#">
+          Terms and Conditions
+        </List.Item>
+        <List.Item as="a" href="#">
+          Privacy Policy
+        </List.Item>
+      </List>
+    </Segment>
   );
 }
 

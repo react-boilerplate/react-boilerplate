@@ -11,40 +11,37 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
 
-import HomePage from 'containers/HomePage/Loadable';
-import FeaturePage from 'containers/FeaturePage/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import SiteHeader from 'components/SiteHeader';
 import Footer from 'components/Footer';
 
+import HomePage from 'containers/HomePage/Loadable';
+import FeaturePage from 'containers/FeaturePage/Loadable';
+import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import { ManufacturerContainer } from 'containers/ManufacturerContainer';
+
 const AppWrapper = styled.div`
-  max-width: calc(100% - 1%);
+  max-width: calc(100% - 3%);
   min-height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 `;
 
-const st = {
-  flex: 1,
-};
 export default function App() {
   return (
     <AppWrapper>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
+      <Helmet titleTemplate="%s - Manin" defaultTitle="Manin">
+        <meta
+          name="description"
+          content="Manin: Inventory and Accounting application"
+        />
       </Helmet>
       <SiteHeader />
-      <FeaturePage />
-      <FeaturePage />
-      <FeaturePage />
-      <div style={st}>
+      <div style={{ flex: 1, marginTop: '5em' }}>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/features" component={FeaturePage} />
+          <Route path="/manufacturer" component={ManufacturerContainer} />
           <Route path="" component={NotFoundPage} />
         </Switch>
       </div>

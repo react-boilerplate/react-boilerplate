@@ -45,6 +45,10 @@ module.exports = {
     'jsx-a11y/mouse-events-have-key-events': 2,
     'jsx-a11y/role-has-required-aria-props': 2,
     'jsx-a11y/role-supports-aria-props': 2,
+    'jsx-a11y/anchor-is-valid': [ 'error', {
+      'components': [ 'Link' ],
+      'specialLink': [ 'to' ]
+      }],
     'max-len': 0,
     'newline-per-chained-call': 0,
     'no-confusing-arrow': 0,
