@@ -2,12 +2,10 @@
  * Asynchronously loads the component for FeaturePage
  */
 
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
+import loadable from 'utils/loadable';
 import LoadingIndicator from 'components/LoadingIndicator';
-const Component = lazy(() => import('./index'));
 
-export default () => (
-  <Suspense fallback={<LoadingIndicator />}>
-    <Component />
-  </Suspense>
-);
+export default loadable(() => import('./index'), {
+  fallback: <LoadingIndicator />,
+});
