@@ -58,7 +58,7 @@ export class {{ properCase name }} extends {{{ type }}} {
 
 {{#if wantActionsAndReducer}}
 const mapStateToProps = createStructuredSelector({
-  {{ lowerCase name }}: makeSelect{{properCase name}}(),
+  {{ camelCase name }}: makeSelect{{properCase name}}(),
 });
 {{/if}}
 

@@ -1,18 +1,17 @@
 # http://www.appveyor.com/docs/appveyor-yml
 
 # Set build version format here instead of in the admin panel
-version: "{build}"
+version: '{build}'
 
 # Do not build on gh tags
 skip_tags: true
 
 # Test against these versions of Node.js
 environment:
-
   matrix:
     # Node versions to run
-    - nodejs_version: 9
-    - nodejs_version: 8
+    - nodejs_version: 'Current'
+    - nodejs_version: 'LTS'
 
 # Fix line endings in Windows. (runs before repo cloning)
 init:
@@ -24,8 +23,7 @@ install:
   - choco install -y googlechrome --ignore-checksums
   # Install the latest stable version of Node
   - ps: Install-Product node $env:nodejs_version
-  - set PATH=%APPDATA%\yarn;%PATH%
-  - yarn
+  - npm ci
 
 # Disable automatic builds
 build: off
@@ -36,15 +34,14 @@ test_script:
   - node --version
   - node ./internals/scripts/generate-templates-for-linting
   # run tests and run build
-  - yarn run test
-  - yarn run build
+  - npm run test
+  - npm run build
 
 # Cache node_modules for faster builds
 cache:
-  - "%LOCALAPPDATA%\\Yarn"
   - node_modules -> package.json
 
 # remove, as appveyor doesn't support secure variables on pr builds
 # so `COVERALLS_REPO_TOKEN` cannot be set, without hard-coding in this file
 #on_success:
-#- yarn run coveralls
+#- npm run coveralls
