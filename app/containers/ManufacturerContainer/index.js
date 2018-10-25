@@ -10,8 +10,10 @@ import { Route } from 'react-router';
 import { Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import CreateManufacturerForm from './container/create';
+
 /* eslint-disable react/prefer-stateless-function */
-export class ManufacturerContainer extends React.PureComponent {
+export class ManufacturerContainer extends React.Component {
   render() {
     const { match } = this.props;
 
@@ -34,7 +36,7 @@ export class ManufacturerContainer extends React.PureComponent {
             />
             <Route
               path={`${match.url}/create`}
-              render={() => <span>Creating Now</span>}
+              render={() => <CreateManufacturerForm />}
             />
           </Switch>
         </div>

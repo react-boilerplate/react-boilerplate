@@ -168,6 +168,7 @@
     "react-router-dom": "4.3.1",
     "react-router-redux": "5.0.0-alpha.9",
     "redux": "4.0.0",
+    "redux-form": "^7.4.2",
     "redux-immutable": "4.0.0",
     "redux-saga": "0.16.0",
     "reselect": "3.0.1",

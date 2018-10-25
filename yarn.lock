@@ -3916,6 +3916,11 @@ es5-ext@^0.10.35, es5-ext@^0.10.9, es5-ext@~0.10.14:
     es6-symbol "~3.1.1"
     next-tick "1"
 
+es6-error@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/es6-error/-/es6-error-4.1.1.tgz#9e3af407459deed47e9a91f9b885a84eb05c561d"
+  integrity sha512-Um/+FxMr9CISWh0bi5Zv0iOD+4cFh5qLeks1qhAopKVAJw3drgKbKySikp7wGhDL0HPeaja0P5ULZrxLkniUVg==
+
 es6-iterator@~2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/es6-iterator/-/es6-iterator-2.0.3.tgz#a7de889141a05a94b0854403b2d0a0fbfa98f3b7"
@@ -5447,7 +5452,7 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@2.5.5, hoist-non-react-statics@^2.5.0:
+hoist-non-react-statics@2.5.5, hoist-non-react-statics@^2.5.0, hoist-non-react-statics@^2.5.4:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
   integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
@@ -7295,6 +7300,11 @@ locate-path@^2.0.0:
   dependencies:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
+
+lodash-es@^4.17.10:
+  version "4.17.11"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.11.tgz#145ab4a7ac5c5e52a3531fb4f310255a152b4be0"
+  integrity sha512-DHb1ub+rMjjrxqlB3H56/6MXtm1lSksDp2rA2cNWjG8mlDUYFhUj3Di2Zn5IwSU87xLv8tNIQ7sSwE/YOX/D/Q==
 
 lodash-es@^4.17.5:
   version "4.17.10"
@@ -9658,6 +9668,11 @@ react-is@^16.3.1, react-is@^16.4.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.1.tgz#d624c4650d2c65dbd52c72622bbf389435d9776e"
   integrity sha512-xpb0PpALlFWNw/q13A+1aHeyJyLYCg0/cCHPUA43zYluZuIPHaHL3k8OBsTgQtxqW0FhyDEMvi8fZ/+7+r4OSQ==
 
+react-lifecycles-compat@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+  integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
 react-loadable@5.4.0:
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/react-loadable/-/react-loadable-5.4.0.tgz#3b6b7d51121a7868fd155be848a36e02084742c9"
@@ -9911,6 +9926,20 @@ reduce-function-call@^1.0.1:
   integrity sha1-WiAL+S4ON3UXUv5FsKszD9S2vpk=
   dependencies:
     balanced-match "^0.4.2"
+
+redux-form@^7.4.2:
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/redux-form/-/redux-form-7.4.2.tgz#d6061088fb682eb9fc5fb9749bd8b102f03154b0"
+  integrity sha512-QxC36s4Lelx5Cr8dbpxqvl23dwYOydeAX8c6YPmgkz/Dhj053C16S2qoyZN6LO6HJ2oUF00rKsAyE94GwOUhFA==
+  dependencies:
+    es6-error "^4.1.1"
+    hoist-non-react-statics "^2.5.4"
+    invariant "^2.2.4"
+    is-promise "^2.1.0"
+    lodash "^4.17.10"
+    lodash-es "^4.17.10"
+    prop-types "^15.6.1"
+    react-lifecycles-compat "^3.0.4"
 
 redux-immutable@4.0.0:
   version "4.0.0"
