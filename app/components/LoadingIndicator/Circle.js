@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 const circleFadeDelay = keyframes`
   0%,
@@ -12,6 +12,10 @@ const circleFadeDelay = keyframes`
   40% {
     opacity: 1;
   }
+`;
+
+const circleFadeDelayRule = css`
+  ${circleFadeDelay} 1.2s infinite ease-in-out both;
 `;
 
 const Circle = props => {
@@ -34,7 +38,7 @@ const Circle = props => {
       height: 15%;
       background-color: #999;
       border-radius: 100%;
-      animation: ${circleFadeDelay} 1.2s infinite ease-in-out both;
+      animation: ${circleFadeDelayRule};
       ${props.delay &&
         `
         -webkit-animation-delay: ${props.delay}s;

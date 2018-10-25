@@ -1,27 +1,32 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { enzymeFind } from 'styled-components/test-utils';
 
 import Wrapper from '../Wrapper';
 
 describe('<Wrapper />', () => {
   it('should render an <li> tag', () => {
-    const renderedComponent = shallow(<Wrapper />);
+    const wrapper = mount(<Wrapper />);
+    const renderedComponent = enzymeFind(wrapper, Wrapper);
     expect(renderedComponent.type()).toEqual('li');
   });
 
   it('should have a className attribute', () => {
-    const renderedComponent = shallow(<Wrapper />);
+    const wrapper = mount(<Wrapper />);
+    const renderedComponent = enzymeFind(wrapper, Wrapper);
     expect(renderedComponent.prop('className')).toBeDefined();
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<Wrapper id={id} />);
+    const wrapper = mount(<Wrapper id={id} />);
+    const renderedComponent = enzymeFind(wrapper, Wrapper);
     expect(renderedComponent.prop('id')).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Wrapper attribute="test" />);
+    const wrapper = mount(<Wrapper attribute="test" />);
+    const renderedComponent = enzymeFind(wrapper, Wrapper);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

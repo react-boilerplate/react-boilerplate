@@ -95,7 +95,7 @@ function deleteFileInCurrentDir(file, callback) {
  */
 function installDeps() {
   exec('node --version', (err, stdout) => {
-    const nodeVersion = stdout.replace(/(\r\n\t|\n|\r\t)/gm, '');
+    const nodeVersion = stdout.trim();
     if (err || compareVersions(nodeVersion, '8.10.0') === -1) {
       installDepsCallback(
         err ||
@@ -103,7 +103,7 @@ function installDeps() {
       );
     } else {
       exec('npm --version', (err2, stdout2) => {
-        const npmVersion = stdout2.replace(/(\r\n\t|\n|\r\t)/gm, '');
+        const npmVersion = stdout2.trim();
         if (err2 || compareVersions(npmVersion, '5.0.0') === -1) {
           installDepsCallback(
             err2 ||
