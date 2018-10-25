@@ -23,9 +23,31 @@ import App from 'containers/App';
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
 
+import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+
 // Load the favicon and the .htaccess file
-import '!file-loader?name=[name].[ext]!./images/favicon.ico';
+import '!file-loader?name=[name].[ext]!./favicon.ico';
+import '!file-loader?name=[name].[ext]!./favicon-16x16.png';
+import '!file-loader?name=[name].[ext]!./favicon-32x32.png';
 import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/extensions
+
+import 'file-loader?name=[name].[ext]!./android-chrome-192x192.png';
+import 'file-loader?name=[name].[ext]!./android-chrome-512x512.png';
+
+import 'file-loader?name=[name].[ext]!./apple-touch-icon.png';
+import 'file-loader?name=[name].[ext]!./apple-touch-icon-60x60.png';
+import 'file-loader?name=[name].[ext]!./apple-touch-icon-76x76.png';
+import 'file-loader?name=[name].[ext]!./apple-touch-icon-120x120.png';
+import 'file-loader?name=[name].[ext]!./apple-touch-icon-152x152.png';
+import 'file-loader?name=[name].[ext]!./apple-touch-icon-180x180.png';
+
+import 'file-loader?name=[name].[ext]!./mstile-70x70.png';
+import 'file-loader?name=[name].[ext]!./mstile-144x144.png';
+import 'file-loader?name=[name].[ext]!./mstile-150x150.png';
+import 'file-loader?name=[name].[ext]!./mstile-310x150.png';
+import 'file-loader?name=[name].[ext]!./mstile-310x310.png';
 
 import configureStore from './configureStore';
 

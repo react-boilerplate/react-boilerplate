@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const H1 = styled.h1`
-  font-size: 2em;
+  font-family: 'Heavitas', san-serif;
+  font-size: 1.8em;
   margin-bottom: 0.25em;
 `;
 

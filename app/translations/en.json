@@ -1,7 +1,8 @@
 {
-  "boilerplate.components.Footer.author.message": "Made with love by {author}.",
-  "boilerplate.components.Footer.license.message":
-    "This project is licensed under the MIT license.",
+  "boilerplate.components.Footer.uon.message":
+    "The University of Newcastle, Australia",
+  "boilerplate.components.Footer.soci.message":
+    "© {year}, The School of Creative Industries",
   "boilerplate.components.Header.features": "Features",
   "boilerplate.components.Header.home": "Home",
   "boilerplate.containers.FeaturePage.css.header": "Features",

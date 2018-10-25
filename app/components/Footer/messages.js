@@ -6,14 +6,12 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  licenseMessage: {
-    id: 'boilerplate.components.Footer.license.message',
-    defaultMessage: 'This project is licensed under the MIT license.',
+  uonMessage: {
+    id: 'boilerplate.components.Footer.uon.message',
+    defaultMessage: 'The University of Newcastle, Australia.',
   },
-  authorMessage: {
-    id: 'boilerplate.components.Footer.author.message',
-    defaultMessage: `
-      Made with love by {author}.
-    `,
+  sociMessage: {
+    id: 'boilerplate.components.Footer.soci.message',
+    defaultMessage: `© {year}, The School of Creative Industries.`,
   },
 });
