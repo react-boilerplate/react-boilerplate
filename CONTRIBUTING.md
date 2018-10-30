@@ -124,7 +124,7 @@ owners to license your work under the terms of the [MIT License](https://github.
 
 # Collaborating guidelines
 
-You can find the list of all maintainers in [MAINTAINERS.md](./MAINTAINERS.md).
+You can find the list of all maintainers in [MAINTAINERS.md](./.github/MAINTAINERS.md).
 
 There are few basic rules to ensure high quality of the boilerplate:
 
