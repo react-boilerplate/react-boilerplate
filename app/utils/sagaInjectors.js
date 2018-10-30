@@ -29,7 +29,7 @@ export function injectSagaFactory(store, isValid) {
 
     const newDescriptor = {
       ...descriptor,
-      mode: descriptor.mode || RESTART_ON_REMOUNT,
+      mode: descriptor.mode || DAEMON,
     };
     const { saga, mode } = newDescriptor;
 
