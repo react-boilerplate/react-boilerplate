@@ -1,22 +1,24 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- */
-
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Route } from 'react-router';
 import { Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
+import { Breadcrumb } from 'semantic-ui-react';
 import CreateManufacturerForm from './container/create';
+import ViewAllManufacturer from './container/view';
+
+const BreadcrumbExampleTinySize = () => (
+  <Breadcrumb size="tiny">
+    <Breadcrumb.Section link>Home</Breadcrumb.Section>
+    <Breadcrumb.Divider icon="right chevron" />
+    <Breadcrumb.Section active>Manufacturer</Breadcrumb.Section>
+  </Breadcrumb>
+);
 
 /* eslint-disable react/prefer-stateless-function */
 export class ManufacturerContainer extends React.Component {
   render() {
     const { match } = this.props;
-
     return (
       <article>
         <Helmet>
@@ -27,12 +29,11 @@ export class ManufacturerContainer extends React.Component {
           />
         </Helmet>
         <div>
-          <h4>Data Topic</h4>
-
+          <BreadcrumbExampleTinySize />
           <Switch>
             <Route
               path={`${match.url}/view`}
-              render={() => <span>Viewing Now</span>}
+              render={() => <ViewAllManufacturer />}
             />
             <Route
               path={`${match.url}/create`}

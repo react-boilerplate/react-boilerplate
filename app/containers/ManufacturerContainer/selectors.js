@@ -3,11 +3,13 @@
  */
 
 import { createSelector } from 'reselect';
-import { initialState } from './reducer';
 
-const selectHome = state => state.get('home', initialState);
+const selectForm = state => state.get('form', {});
 
-const makeSelectUsername = () =>
-  createSelector(selectHome, homeState => homeState.get('username'));
+const makeSelectManufacturerFormData = () =>
+  createSelector(
+    selectForm,
+    formState => formState.createManufacturerForm.values,
+  );
 
-export { selectHome, makeSelectUsername };
+export { selectForm, makeSelectManufacturerFormData };

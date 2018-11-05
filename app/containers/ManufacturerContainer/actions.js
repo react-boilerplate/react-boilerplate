@@ -24,9 +24,8 @@ import { CREATE_MANUFACTURER } from './constants';
  *
  * @return {object}    An action object with a type of CHANGE_USERNAME
  */
-export function changeUsername(manufacturerName) {
+export function createManufacturer() {
   return {
     type: CREATE_MANUFACTURER,
-    manufacturerName,
   };
 }

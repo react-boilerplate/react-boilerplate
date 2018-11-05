@@ -9,7 +9,8 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const CREATE_MANUFACTURER = 'manin/brand/CREATE_MANUFACTURER';
-export const VIEW_ALL_MANUFACTURER = 'manin/brand/VIEW_ALL_MANUFACTURER';
-export const VIEW_MANUFACTURER_DETAIL = 'manin/brand/VIEW_MANUFACTURER_DETAIL';
-export const DELETE_MANUFACTURER = 'manin/brand/DELETE_MANUFACTURER';
+export const CREATE_MANUFACTURER = 'manin/manufacturer/CREATE_MANUFACTURER';
+export const VIEW_ALL_MANUFACTURER = 'manin/manufacturer/VIEW_ALL_MANUFACTURER';
+export const VIEW_MANUFACTURER_DETAIL =
+  'manin/manufacturer/VIEW_MANUFACTURER_DETAIL';
+export const DELETE_MANUFACTURER = 'manin/manufacturer/DELETE_MANUFACTURER';

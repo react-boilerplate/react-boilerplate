@@ -11,21 +11,24 @@
  */
 import { fromJS } from 'immutable';
 
-import { CHANGE_USERNAME } from './constants';
+import { CREATE_MANUFACTURER, VIEW_ALL_MANUFACTURER } from './constants';
 
 // The initial state of the App
 export const initialState = fromJS({
-  username: '',
+  manufacturerName: '',
+  manufacturersList: [],
+  isCreatingManufacturer: false,
 });
 
-function homeReducer(state = initialState, action) {
+function manufacturerReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_USERNAME:
-      // Delete prefixed '@' from the github username
-      return state.set('username', action.name.replace(/@/gi, ''));
+    case CREATE_MANUFACTURER:
+      return state.set('manufacturerName', action.data);
+    case VIEW_ALL_MANUFACTURER:
+      return state.set('manufacturersList', action.data);
     default:
       return state;
   }
 }
 
-export default homeReducer;
+export default manufacturerReducer;
