@@ -1,12 +1,14 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { Route } from 'react-router-dom';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 import App from '../index';
 
+const renderer = new ShallowRenderer();
+
 describe('<App />', () => {
-  it('should render some routes', () => {
-    const renderedComponent = shallow(<App />);
-    expect(renderedComponent.find(Route).length).not.toBe(0);
+  it('should render and match the snapshot', () => {
+    renderer.render(<App />);
+    const renderedOutput = renderer.getRenderOutput();
+    expect(renderedOutput).toMatchSnapshot();
   });
 });
