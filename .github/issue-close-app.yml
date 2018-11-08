@@ -3,5 +3,5 @@ issueConfigs:
   - content:
     - "Issue Type"
     - "Description"
-    - "Steps to Reproduce"
+    - "Steps to reproduce"
     - "Versions"
