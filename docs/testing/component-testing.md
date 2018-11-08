@@ -131,7 +131,7 @@ component with `container.firstChild`. This will be our subject for a snapshot.
 Snapshots are placed in the `__snapshots__` folder within our `tests` folder. Make sure you commit
 these snapshots to your repository.
 
-Great! So, now if anyone makes any change to our <Button /> component the test will fail and we get notified of what
+Great! So, now if anyone makes any change to our `<Button />` component the test will fail and we get notified of what
 changed.
 
 Onwards to our last and most advanced test: checking that our `<Button />` handles clicks correctly.
