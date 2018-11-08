@@ -14,6 +14,9 @@ import { IntlProvider } from 'react-intl';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
 import { {{ properCase name }} } from '../index';
+{{#if wantMessages}}
+import { DEFAULT_LOCALE } from '../../../i18n';
+{{/if}}
 
 describe('<{{ properCase name }} />', () => {
   afterEach(cleanup);
@@ -22,7 +25,7 @@ describe('<{{ properCase name }} />', () => {
     const spy = jest.spyOn(global.console, 'error');
 {{#if wantMessages}}
     render(
-      <IntlProvider locale="en">
+      <IntlProvider locale={DEFAULT_LOCALE}>
         <{{ properCase name }} />
       </IntlProvider>,
     );
@@ -31,7 +34,25 @@ describe('<{{ properCase name }} />', () => {
 {{/if}}
     expect(spy).not.toHaveBeenCalled();
   });
+
   it('Expect to have additional unit tests specified', () => {
     expect(true).toEqual(false);
+  });
+
+  it.skip('Should render and match the snapshot', () => {
+{{#if wantMessages}}
+    const {
+      container: { firstChild },
+    } = render(
+      <IntlProvider locale={DEFAULT_LOCALE}>
+        <{{ properCase name }} />
+      </IntlProvider>,
+    );
+{{else}}
+    const {
+      container: { firstChild },
+    } = render(<{{ properCase name }} />);
+{{/if}}
+    expect(firstChild).toMatchSnapshot();
   });
 });
