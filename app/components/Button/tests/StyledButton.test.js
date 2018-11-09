@@ -1,9 +1,11 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render, cleanup } from 'react-testing-library';
 
 import StyledButton from '../StyledButton';
 
 describe('<StyledButton />', () => {
+  afterEach(cleanup);
+
   it('should render an <button> tag', () => {
     const { container } = render(<StyledButton />);
     expect(container.querySelector('button')).not.toBeNull();

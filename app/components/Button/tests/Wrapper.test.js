@@ -1,9 +1,11 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render, cleanup } from 'react-testing-library';
 
 import Wrapper from '../Wrapper';
 
 describe('<Wrapper />', () => {
+  afterEach(cleanup);
+
   it('should render an <div> tag', () => {
     const { container } = render(<Wrapper />);
     expect(container.querySelector('div')).not.toBeNull();

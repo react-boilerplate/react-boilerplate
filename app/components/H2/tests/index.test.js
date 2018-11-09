@@ -4,7 +4,7 @@ import { cleanup, render } from 'react-testing-library';
 import H2 from '../index';
 
 describe('<H2 />', () => {
-  afterAll(cleanup);
+  afterEach(cleanup);
 
   it('should render a prop', () => {
     const id = 'testId';
