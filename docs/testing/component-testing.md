@@ -192,4 +192,7 @@ describe('<Button />', () => {
 
 And that's how you unit test your components and make sure they work correctly!
 
+Also have a look at our example application. It deliberately shows some variations of implementing tests with
+react-testing-library.
+
 _Continue to learn how to test your components [remotely](remote-testing.md)!_
