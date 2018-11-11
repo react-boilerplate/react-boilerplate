@@ -50,13 +50,13 @@ Then, in your `index.js`, use a decorator to inject the root saga:
 
 ```JS
 import injectSaga from 'utils/injectSaga';
-import { RESTART_ON_REMOUNT } from 'utils/constants';
+import { DAEMON } from 'utils/constants';
 import saga from './saga';
 
 // ...
 
-// `mode` is an optional argument, default value is `RESTART_ON_REMOUNT`
-const withSaga = injectSaga({ key: 'yourcomponent', saga, mode: RESTART_ON_REMOUNT });
+// `mode` is an optional argument, default value is `DAEMON`
+const withSaga = injectSaga({ key: 'yourcomponent', saga, mode: DAEMON });
 
 export default compose(
   withSaga,
