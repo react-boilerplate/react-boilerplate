@@ -88,7 +88,8 @@
     "reselect": "4.0.0",
     "sanitize.css": "4.1.0",
     "styled-components": "4.0.2",
-    "warning": "4.0.2"
+    "warning": "4.0.2",
+    "redux-logger": "^3.0.6"
   },
   "devDependencies": {
     "@babel/cli": "7.1.2",
