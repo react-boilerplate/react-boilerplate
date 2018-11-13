@@ -1,0 +1,7 @@
+comment: "This issue is closed because it does not follow our issue template. Please reopen your issue with the template filled out."
+issueConfigs:
+  - content:
+    - "Issue Type"
+    - "Description"
+    - "Steps to reproduce"
+    - "Versions"
