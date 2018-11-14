@@ -4,7 +4,7 @@
 
 import { memoryHistory } from 'react-router-dom';
 import { put } from 'redux-saga/effects';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import React from 'react';
 
 import configureStore from '../../configureStore';
@@ -30,7 +30,7 @@ describe('injectSaga decorator', () => {
   beforeEach(() => {
     store = configureStore({}, memoryHistory);
     injectors = {
-      injectSaga: jest.fn(),
+      injectSaga: jest.fn(() => new Promise(resolve => resolve())),
       ejectSaga: jest.fn(),
     };
     ComponentWithSaga = injectSaga({
@@ -51,6 +51,7 @@ describe('injectSaga decorator', () => {
       { saga: testSaga, mode: 'testMode' },
       props,
     );
+    expect(injectors.injectSaga()).resolves.toEqual(undefined);
   });
 
   it('should eject on unmount with a correct saga key', () => {
@@ -73,10 +74,11 @@ describe('injectSaga decorator', () => {
 
   it('should propagate props', () => {
     const props = { testProp: 'test' };
-    const renderedComponent = shallow(<ComponentWithSaga {...props} />, {
+    const renderedComponent = mount(<ComponentWithSaga {...props} />, {
       context: { store },
     });
 
+    renderedComponent.mount();
     expect(renderedComponent.prop('testProp')).toBe('test');
   });
 });

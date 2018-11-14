@@ -128,7 +128,7 @@ describe('injectors', () => {
     it('should check a store if the second argument is falsy', () => {
       const inject = injectSagaFactory({});
 
-      expect(() => inject('test', testSaga)).toThrow();
+      expect(inject('test', testSaga)).rejects.toBeDefined();
     });
 
     it('it should not check a store if the second argument is true', () => {
@@ -138,26 +138,28 @@ describe('injectors', () => {
     });
 
     it("should validate saga's key", () => {
-      expect(() => injectSaga('', { saga: testSaga })).toThrow();
-      expect(() => injectSaga(1, { saga: testSaga })).toThrow();
+      expect(injectSaga('', { saga: testSaga })).rejects.toBeDefined();
+      expect(injectSaga(1, { saga: testSaga })).rejects.toBeDefined();
     });
 
     it("should validate saga's descriptor", () => {
-      expect(() => injectSaga('test')).toThrow();
-      expect(() => injectSaga('test', { saga: 1 })).toThrow();
-      expect(() =>
+      expect(injectSaga('test')).rejects.toBeDefined();
+      expect(injectSaga('test', { saga: 1 })).rejects.toBeDefined();
+      expect(
         injectSaga('test', { saga: testSaga, mode: 'testMode' }),
-      ).toThrow();
-      expect(() => injectSaga('test', { saga: testSaga, mode: 1 })).toThrow();
-      expect(() =>
+      ).rejects.toBeDefined();
+      expect(
+        injectSaga('test', { saga: testSaga, mode: 1 }),
+      ).rejects.toBeDefined();
+      expect(
         injectSaga('test', { saga: testSaga, mode: RESTART_ON_REMOUNT }),
-      ).not.toThrow();
-      expect(() =>
+      ).resolves.toEqual(undefined);
+      expect(
         injectSaga('test', { saga: testSaga, mode: DAEMON }),
-      ).not.toThrow();
-      expect(() =>
+      ).resolves.toEqual(undefined);
+      expect(
         injectSaga('test', { saga: testSaga, mode: ONCE_TILL_UNMOUNT }),
-      ).not.toThrow();
+      ).resolves.toEqual(undefined);
     });
 
     it('should pass args to saga.run', () => {

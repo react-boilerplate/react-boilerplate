@@ -27,21 +27,33 @@ export default ({ key, saga, mode }) => WrappedComponent => {
       WrappedComponent.name ||
       'Component'})`;
 
-    componentWillMount() {
-      const { injectSaga } = this.injectors;
+    state = {
+      isReady: false,
+    };
 
-      injectSaga(key, { saga, mode }, this.props);
+    componentDidMount() {
+      const { injectSaga } = this.injectors;
+      this.isComponentMounted = true;
+      injectSaga(key, { saga, mode }, this.props).then(() => {
+        if (this.isComponentMounted) {
+          this.setState({ isReady: true });
+        }
+      });
     }
 
     componentWillUnmount() {
       const { ejectSaga } = this.injectors;
 
+      this.isComponentMounted = false;
       ejectSaga(key);
     }
 
     injectors = getInjectors(this.context.store);
 
+    isComponentMounted = false;
+
     render() {
+      if (!this.state.isReady) return null;
       return <WrappedComponent {...this.props} />;
     }
   }
