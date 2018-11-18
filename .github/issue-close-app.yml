@@ -1,4 +1,4 @@
-comment: "This issue is closed because it does not follow our issue template. Please reopen your issue with the template filled out."
+comment: "This issue was automatically closed because it does not follow our template. Please open a new issue and fill out the template that appears instead of deleting it. It's especially important that you provide detailed steps for how to reproduce your issue."
 issueConfigs:
   - content:
     - "Issue Type"
