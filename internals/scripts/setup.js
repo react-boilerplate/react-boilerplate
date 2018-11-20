@@ -99,13 +99,14 @@ function askUserIfWeShouldRemoveRepo() {
     );
     process.stdin.resume();
     process.stdin.on('data', pData => {
-      const answer = pData
-        .toString()
-        .trim()
-        .toLowerCase();
+      const answer =
+        pData
+          .toString()
+          .trim()
+          .toLowerCase() || 'y';
 
       /* eslint-disable-next-line no-unused-expressions */
-      answer === 'n' ? resolve(false) : resolve(true);
+      answer === 'y' ? resolve(true) : resolve(false);
     });
   });
 }
