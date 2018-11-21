@@ -1,21 +1,22 @@
 # Frequently Asked Questions
 
-- [Where are Babel, Prettier and ESLint configured?](#where-are-babel-prettier-and-eslint-configured)
-- [Where are the files coming from when I run `npm start`?](#where-are-the-files-coming-from-when-i-run-npm-start)
-- [How do I fix `Error: listen EADDRINUSE 127.0.0.1:3000`?](#how-do-i-fix-error-listen-eaddrinuse-1270013000)
-  - [OS X / Linux:](#os-x--linux)
-  - [Windows](#windows)
-- [Issue with local caching when running in production mode (F5 / ctrl+F5 / cmd+r weird behavior)](#issue-with-local-caching-when-running-in-production-mode-f5--ctrlf5--cmdr-weird-behavior)
-    - [Quick fix on your local browser:](#quick-fix-on-your-local-browser)
-    - [Full in-depth explanation](#full-in-depth-explanation)
-- [Local webfonts not working for development](#local-webfonts-not-working-for-development)
-- [Non-route containers](#non-route-containers)
-  - [Where do I put the reducer?](#where-do-i-put-the-reducer)
-- [Use CI with bitbucket pipelines](#use-ci-with-bitbucket-pipelines)
-- [How to keep my project up-to-date with `react-boilerplate`?](#how-to-keep-my-project-up-to-date-with-react-boilerplate)
-- [How to turn off Webpack performance warnings after production build?](#how-to-turn-off-webpack-performance-warnings-after-production-build)
-- [Styles getting overridden?](#styles-getting-overridden)
-- [Have another question?](#have-another-question)
+- [Frequently Asked Questions](#frequently-asked-questions)
+  - [Where are Babel, Prettier and ESLint configured?](#where-are-babel-prettier-and-eslint-configured)
+  - [Where are the files coming from when I run `npm start`?](#where-are-the-files-coming-from-when-i-run-npm-start)
+  - [How do I fix `Error: listen EADDRINUSE 127.0.0.1:3000`?](#how-do-i-fix-error-listen-eaddrinuse-1270013000)
+    - [OS X / Linux:](#os-x--linux)
+    - [Windows](#windows)
+  - [Issue with local caching when running in production mode (F5 / ctrl+F5 / cmd+r weird behavior)](#issue-with-local-caching-when-running-in-production-mode-f5--ctrlf5--cmdr-weird-behavior)
+      - [Quick fix on your local browser:](#quick-fix-on-your-local-browser)
+      - [Full in-depth explanation](#full-in-depth-explanation)
+  - [Local webfonts not working for development](#local-webfonts-not-working-for-development)
+  - [Non-route containers](#non-route-containers)
+    - [Where do I put the reducer?](#where-do-i-put-the-reducer)
+  - [Use CI with bitbucket pipelines](#use-ci-with-bitbucket-pipelines)
+  - [How to keep my project up-to-date with `react-boilerplate`?](#how-to-keep-my-project-up-to-date-with-react-boilerplate)
+  - [How to turn off Webpack performance warnings after production build?](#how-to-turn-off-webpack-performance-warnings-after-production-build)
+  - [Styles getting overridden?](#styles-getting-overridden)
+  - [Have another question?](#have-another-question)
 
 ## Where are Babel, Prettier and ESLint configured?
 
@@ -256,5 +257,5 @@ More information is available in the [official documentation](https://github.com
 ## Have another question?
 
 Submit an [issue](https://github.com/react-boilerplate/react-boilerplate/issues),
-hop onto the [Gitter channel](https://gitter.im/mxstbr/react-boilerplate)
+hop onto the [Spectrum chat](https://spectrum.chat/react-boilerplate)
 or contact Max direct on [twitter](https://twitter.com/mxstbr)!
