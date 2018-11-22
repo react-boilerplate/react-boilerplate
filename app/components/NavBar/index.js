@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from './Button';
-import Navcontainer from './Navcontainer';
+import Button from '../UI/Button';
+import Navcontainer from '../UI/Wrapper';
 import Logo from './Logo';
 
 const Navbar = () => (
