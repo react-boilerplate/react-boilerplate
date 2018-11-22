@@ -10,7 +10,7 @@ const Navbar = () => (
       <Link to="/">Dovenmuehle</Link>
     </Logo>
     <Button menu>
-      <Link to="/add-item">Add Item</Link>
+      <Link to="/">Add Item</Link>
     </Button>
     <Button menu>
       <Link to="/all-items">All Items</Link>
