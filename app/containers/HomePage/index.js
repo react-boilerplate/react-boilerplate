@@ -13,13 +13,12 @@ import React, { Fragment } from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import Button from '../../components/UI/Button';
-import Input from '../../components/Input/StyledInput';
-import Label from '../../components/Label/index';
+import Input from '../../components/Input';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.PureComponent {
   handleClick() {
-    console.log('Testing clicke');
+    console.log('Testing click');
   }
 
   render() {
@@ -31,8 +30,7 @@ export default class HomePage extends React.PureComponent {
         <p>
           <FormattedMessage {...messages.body} />
         </p>
-        <Label color="red">add item:</Label>
-        <Input />
+        <Input inputType="text" label="Add item" labelColor="grey" />
         <Button type="submit" onClick={this.handleClick}>
           Submit
         </Button>
