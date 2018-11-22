@@ -12,7 +12,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Navbar from '../../components/Navbar';
+import Navbar from '../../components/NavBar/Loadable';
 // import AddItem from '../../components/AddItem';
 
 import GlobalStyle from '../../global-styles';
@@ -23,7 +23,6 @@ export default function App() {
       <Navbar />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/add-item" component={HomePage} />
         <Route path="/all-items" component={HomePage} />
         <Route component={NotFoundPage} />
       </Switch>
