@@ -14,6 +14,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import Button from '../../components/UI/Button';
 import Input from '../../components/Input/StyledInput';
+import Label from '../../components/Label/index';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.PureComponent {
@@ -30,7 +31,7 @@ export default class HomePage extends React.PureComponent {
         <p>
           <FormattedMessage {...messages.body} />
         </p>
-        Add item:
+        <Label color="red">add item:</Label>
         <Input />
         <Button type="submit" onClick={this.handleClick}>
           Submit
