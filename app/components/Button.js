@@ -9,5 +9,6 @@ export default styled.button`
   text-decoration: none;
   display: inline-block;
   font-size: 14px;
-  margin-top: 5px;
+  margin: 5px;
+  cursor: pointer;
 `;

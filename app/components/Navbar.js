@@ -1,17 +1,12 @@
 import React from 'react';
 import Button from './Button';
+import Navcontainer from './Navcontainer';
 
 const Navbar = () => (
-  <div>
-    <ul>
-      <li>
-        <Button menu>Add item</Button>
-      </li>
-      <li>
-        <Button menu>Explore</Button>
-      </li>
-    </ul>
-  </div>
+  <Navcontainer>
+    <Button menu>Add item</Button>
+    <Button menu>Explore</Button>
+  </Navcontainer>
 );
 
 export default Navbar;
