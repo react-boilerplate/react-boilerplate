@@ -1,13 +1,14 @@
 import React from 'react';
+import Button from './Button';
 
 const Navbar = () => (
   <div>
     <ul>
       <li>
-        <a href="/">Add Items</a>
+        <Button menu>Add item</Button>
       </li>
       <li>
-        <a href="/">Explore</a>
+        <Button menu>Explore</Button>
       </li>
     </ul>
   </div>
