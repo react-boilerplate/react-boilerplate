@@ -13,6 +13,7 @@ import React, { Fragment } from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import Button from '../../components/UI/Button';
+import Input from '../../components/Input/StyledInput';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.PureComponent {
@@ -29,7 +30,8 @@ export default class HomePage extends React.PureComponent {
         <p>
           <FormattedMessage {...messages.body} />
         </p>
-        Add item: <input type="text" />
+        Add item:
+        <Input />
         <Button type="submit" onClick={this.handleClick}>
           Submit
         </Button>
