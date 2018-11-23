@@ -75,6 +75,8 @@
     "loadable-components": "2.2.3",
     "lodash": "4.17.11",
     "minimist": "1.2.0",
+    "mongodb": "^3.1.10",
+    "mongoose": "^5.3.13",
     "prop-types": "15.6.2",
     "react": "16.6.0",
     "react-dom": "16.6.0",
