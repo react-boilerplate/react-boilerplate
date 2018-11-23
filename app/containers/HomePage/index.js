@@ -13,7 +13,7 @@ import React, { Fragment } from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import Wrapper from '../../components/UI/Wrapper';
-import AddItemForm from '../Form';
+import AddItem from '../AddItem';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.PureComponent {
@@ -28,7 +28,7 @@ export default class HomePage extends React.PureComponent {
             <FormattedMessage {...messages.body} />
           </p>
         </Wrapper>
-        <AddItemForm />
+        <AddItem />
       </Fragment>
     );
   }
