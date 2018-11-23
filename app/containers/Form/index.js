@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // connect it to the store
+import { connect } from 'react-redux';
 
 import Form from '../../components/Form';
 import Wrapper from '../../components/UI/Wrapper';
@@ -47,4 +48,4 @@ class AddItemForm extends Component {
   }
 }
 
-export default AddItemForm;
+export default connect()(AddItemForm);
