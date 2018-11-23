@@ -12,28 +12,23 @@
 import React, { Fragment } from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import Button from '../../components/UI/Button';
-import Input from '../../components/Input';
+import Wrapper from '../../components/UI/Wrapper';
+import AddItemForm from '../Form';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.PureComponent {
-  handleClick() {
-    console.log('Testing click');
-  }
-
   render() {
     return (
       <Fragment>
-        <h1>
-          <FormattedMessage {...messages.header} />
-        </h1>
-        <p>
-          <FormattedMessage {...messages.body} />
-        </p>
-        <Input inputType="text" label="Add item" labelColor="grey" />
-        <Button type="submit" onClick={this.handleClick}>
-          Submit
-        </Button>
+        <Wrapper flexDirection="column">
+          <h1>
+            <FormattedMessage {...messages.header} />
+          </h1>
+          <p>
+            <FormattedMessage {...messages.body} />
+          </p>
+        </Wrapper>
+        <AddItemForm />
       </Fragment>
     );
   }
