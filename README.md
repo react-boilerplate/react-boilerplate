@@ -24,6 +24,10 @@
   <a href="https://coveralls.io/r/react-boilerplate/react-boilerplate">
     <img src="https://coveralls.io/repos/github/react-boilerplate/react-boilerplate/badge.svg" alt="Test Coverage" />
   </a>
+  <a href="https://spectrum.chat/react-boilerplate">
+  <img alt="Chat with us on Spectrum" src="https://withspectrum.github.io/badge/badge.svg" />
+</a>
+
 </div>
 <div align="center">
     <!-- Backers -->
@@ -37,10 +41,6 @@
   <a href="http://thinkmill.com.au/?utm_source=github&utm_medium=badge&utm_campaign=react-boilerplate">
     <img alt="Supported by Thinkmill" src="https://thinkmill.github.io/badge/heart.svg" />
   </a>
-</div>
-
-<div align="center">
-  <a href="https://spectrum.chat/react-boilerplate">Chat with us on Spectrum</a>
 </div>
 
 <br />
