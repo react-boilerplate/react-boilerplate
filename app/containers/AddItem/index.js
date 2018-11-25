@@ -12,7 +12,7 @@ import Wrapper from '../../components/UI/Wrapper';
 import Input from '../../components/Input';
 import Button from '../../components/UI/Button';
 
-import { addItemSelector } from './selectors';
+import { itemSelector, successSelector, errorSelector } from './selectors';
 import { addItem } from './actions';
 import reducer from './reducer';
 import saga from './saga';
@@ -54,22 +54,26 @@ class AddItem extends Component {
             <Button type="submit" onClick={this.onSubmit}>
               Submit
             </Button>
-            <h3>{this.props.item}</h3>
           </Form>
         </Wrapper>
-        {/* <h3>{this.}</h3> */}
+        {this.props.success && <h3>Post successful!</h3>}
+        {this.props.error && <h3>Error when posting...</h3>}
       </div>
     );
   }
 }
 
 AddItem.propTypes = {
-  item: PropTypes.string,
+  // item: PropTypes.string,
   addItem: PropTypes.func,
+  success: PropTypes.bool,
+  error: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
-  item: addItemSelector(),
+  item: itemSelector(),
+  success: successSelector(),
+  error: errorSelector(),
 });
 
 function mapDispatchToProps(dispatch) {

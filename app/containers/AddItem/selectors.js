@@ -6,8 +6,14 @@ const selectAddItemDomain = state => state.get('addItem', initialState);
 const makeSelectAddItem = () =>
   createSelector(selectAddItemDomain, substate => substate.toJS());
 
-const addItemSelector = () =>
+const itemSelector = () =>
   createSelector(selectAddItemDomain, substate => substate.get('item'));
 
+const successSelector = () =>
+  createSelector(selectAddItemDomain, substate => substate.get('success'));
+
+const errorSelector = () =>
+  createSelector(selectAddItemDomain, substate => substate.get('error'));
+
 export default makeSelectAddItem;
-export { selectAddItemDomain, addItemSelector };
+export { selectAddItemDomain, itemSelector, successSelector, errorSelector };
