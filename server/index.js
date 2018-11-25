@@ -6,6 +6,7 @@ const logger = require('./logger');
 const argv = require('./argv');
 const port = require('./port');
 const setup = require('./middlewares/frontendMiddleware');
+const bodyParser = require('body-parser');
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok =
   (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel
@@ -13,10 +14,31 @@ const ngrok =
     : false;
 const { resolve } = require('path');
 const app = express();
+// add controllers
+const ctrl = require('../app/db/controllers');
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
+// Post into the db
+app.post('/api/addItem', (req, res) => {
+  const { item } = req.body;
+  // console.log('this is Item', item);
+  res.status(201).send();
+  ctrl.addItem(item, error => {
+    if (error) {
+      res.status(500).send(error);
+    } else {
+      res.status(201).send();
+    }
+  });
+});
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
   outputPath: resolve(process.cwd(), 'build'),
