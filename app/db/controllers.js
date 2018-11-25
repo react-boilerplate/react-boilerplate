@@ -1,7 +1,8 @@
-const ItemsDB = require('./model');
+const ItemsModel = require('./model');
 
 const addItem = (item, callback) => {
-  ItemsDB.items.push(item);
+  const ItemsDB = new ItemsModel();
+  ItemsDB.item = item;
   ItemsDB.save(callback);
 };
 

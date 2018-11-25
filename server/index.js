@@ -30,12 +30,12 @@ app.use(bodyParser.json());
 app.post('/api/addItem', (req, res) => {
   const { item } = req.body;
   // console.log('this is Item', item);
-  res.status(201).send();
   ctrl.addItem(item, error => {
+    console.log('inside callback');
     if (error) {
       res.status(500).send(error);
     } else {
-      res.status(201).send();
+      res.status(201).send('PASSED!');
     }
   });
 });
