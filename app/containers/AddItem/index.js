@@ -41,21 +41,24 @@ class AddItem extends Component {
 
   render() {
     return (
-      <Wrapper>
-        <Form onSubmit={e => this.onSubmit(e)}>
-          <Input
-            inputType="text"
-            label="Add item"
-            labelColor="grey"
-            onChange={this.onChange}
-            value={this.state.input}
-          />
-          <Button type="submit" onClick={this.onSubmit}>
-            Submit
-          </Button>
-        </Form>
-        <h3>{this.props.item}</h3>
-      </Wrapper>
+      <div>
+        <Wrapper>
+          <Form onSubmit={e => this.onSubmit(e)}>
+            <Input
+              inputType="text"
+              label="Add item"
+              labelColor="grey"
+              onChange={this.onChange}
+              value={this.state.input}
+            />
+            <Button type="submit" onClick={this.onSubmit}>
+              Submit
+            </Button>
+            <h3>{this.props.item}</h3>
+          </Form>
+        </Wrapper>
+        {/* <h3>{this.}</h3> */}
+      </div>
     );
   }
 }
