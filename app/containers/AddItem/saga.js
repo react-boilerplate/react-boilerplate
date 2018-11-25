@@ -1,6 +1,11 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { all, takeLatest } from 'redux-saga/effects';
+import { ADD_ITEM } from './constants';
+import { postApi } from './postApi';
 
-// Individual exports for testing
+function* postItem() {
+  yield takeLatest(ADD_ITEM, postApi);
+}
+
 export default function* addItemSaga() {
-  // See example in containers/HomePage/saga.js
+  yield all([postItem()]);
 }

@@ -29,13 +29,11 @@ app.use(bodyParser.json());
 // Post into the db
 app.post('/api/addItem', (req, res) => {
   const { item } = req.body;
-  // console.log('this is Item', item);
   ctrl.addItem(item, error => {
-    console.log('inside callback');
     if (error) {
       res.status(500).send(error);
     } else {
-      res.status(201).send('PASSED!');
+      res.status(201).send();
     }
   });
 });
