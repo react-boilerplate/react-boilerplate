@@ -24,6 +24,7 @@ module.exports = {
       ],
     },
     test: {
+      presets: ['@babel/preset-env', '@babel/preset-react'],
       plugins: [
         '@babel/plugin-transform-modules-commonjs',
         'dynamic-import-node',
