@@ -8,6 +8,7 @@ export function addItem(item) {
 }
 
 export function addItemSuccess(success) {
+  console.log('action success got trigered!');
   return {
     type: ADD_ITEM_SUCCESS,
     success,
