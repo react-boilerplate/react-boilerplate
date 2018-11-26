@@ -40,9 +40,9 @@ class DisplayItems extends Component {
           </h1>
         </Wrapper>
         <Wrapper flexDirection="column">
-          {!success && <Heading background="#4caf50">Loading 📊...</Heading>}
+          {!success && <Heading background="#4caf50">Loading...</Heading>}
           {error && (
-            <Heading background="#ff0000">Error while loading items 📛</Heading>
+            <Heading background="#ff0000">Error while loading items</Heading>
           )}
           {success && items.map(this.renderItems)}
         </Wrapper>

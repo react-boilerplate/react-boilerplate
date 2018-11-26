@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displayItemsReducer should properly handle inputQuote action 1`] = `
+Immutable.Map {
+  "items": Array [
+    "item 1",
+    "item 2",
+    "item 3",
+  ],
+  "success": true,
+}
+`;
+
+exports[`displayItemsReducer should return initial state when actions to not match 1`] = `
+Immutable.Map {
+  "items": Immutable.List [],
+  "success": false,
+  "error": false,
+}
+`;
