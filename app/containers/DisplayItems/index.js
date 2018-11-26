@@ -15,17 +15,19 @@ import saga from './saga';
 import messages from './messages';
 
 import Wrapper from '../../components/UI/Wrapper';
+import Heading from '../../components/UI/Heading';
 
 class DisplayItems extends Component {
   componentDidMount() {
     this.props.getItems();
   }
 
-  renderItems(data) {
-    return <p>{data.item}</p>;
+  renderItems(data, i) {
+    return <Heading key={i}>{data.item}</Heading>;
   }
 
   render() {
+    const { success, error, items } = this.props;
     return (
       <Fragment>
         <Wrapper>
@@ -38,9 +40,11 @@ class DisplayItems extends Component {
           </h1>
         </Wrapper>
         <Wrapper flexDirection="column">
-          {!this.props.success && <h1>Loading 📊...</h1>}
-          {this.props.success && this.props.items.map(this.renderItems)}
-          {this.props.error && <h1>Error while loading items 📛</h1>}
+          {!success && <Heading background="#4caf50">Loading 📊...</Heading>}
+          {error && (
+            <Heading background="#ff0000">Error while loading items 📛</Heading>
+          )}
+          {success && items.map(this.renderItems)}
         </Wrapper>
       </Fragment>
     );
@@ -49,9 +53,9 @@ class DisplayItems extends Component {
 
 DisplayItems.propTypes = {
   dispatch: PropTypes.func,
-  items: PropTypes.array,
   success: PropTypes.bool,
   error: PropTypes.bool,
+  items: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
 const mapStateToProps = createStructuredSelector({
