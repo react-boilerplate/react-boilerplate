@@ -6,7 +6,6 @@ export default styled.button`
   color: white;
   padding: 10px 15px;
   text-align: center;
-  text-decoration: none;
   font-size: 14px;
   margin: 5px;
   cursor: pointer;
