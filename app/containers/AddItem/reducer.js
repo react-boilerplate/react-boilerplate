@@ -10,7 +10,10 @@ export const initialState = fromJS({
 function addItemReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_ITEM:
-      return state.set('item', action.item);
+      return state
+        .set('item', action.item)
+        .set('success', false)
+        .set('error', false);
     case ADD_ITEM_SUCCESS:
       return state.set('success', true).set('item', '');
     case ADD_ITEM_ERROR:
