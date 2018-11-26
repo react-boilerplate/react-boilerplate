@@ -38,7 +38,7 @@ class DisplayItems extends Component {
 
 DisplayItems.propTypes = {
   dispatch: PropTypes.func,
-  items: PropTypes.object,
+  items: PropTypes.array,
   success: PropTypes.bool,
   error: PropTypes.bool,
 };
