@@ -1,23 +1,25 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-/**
- * Direct selector to the displayItems state domain
- */
-
 const selectDisplayItemsDomain = state =>
   state.get('displayItems', initialState);
-
-/**
- * Other specific selectors
- */
-
-/**
- * Default selector used by DisplayItems
- */
 
 const makeSelectDisplayItems = () =>
   createSelector(selectDisplayItemsDomain, substate => substate.toJS());
 
+const itemsSelector = () =>
+  createSelector(selectDisplayItemsDomain, substate => substate.get('items'));
+
+const successSelector = () =>
+  createSelector(selectDisplayItemsDomain, substate => substate.get('success'));
+
+const errorSelector = () =>
+  createSelector(selectDisplayItemsDomain, substate => substate.get('error'));
+
 export default makeSelectDisplayItems;
-export { selectDisplayItemsDomain };
+export {
+  selectDisplayItemsDomain,
+  itemsSelector,
+  successSelector,
+  errorSelector,
+};

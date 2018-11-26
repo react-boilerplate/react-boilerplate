@@ -14,7 +14,8 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectDisplayItems from './selectors';
+import { itemsSelector, successSelector, errorSelector } from './selectors';
+import { getItems } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -36,16 +37,21 @@ function DisplayItems() {
 }
 
 DisplayItems.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  dispatch: PropTypes.func,
+  items: PropTypes.object,
+  success: PropTypes.bool,
+  error: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
-  displayItems: makeSelectDisplayItems(),
+  items: itemsSelector(),
+  success: successSelector(),
+  error: errorSelector(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    getItems: () => dispatch(getItems()),
   };
 }
 
