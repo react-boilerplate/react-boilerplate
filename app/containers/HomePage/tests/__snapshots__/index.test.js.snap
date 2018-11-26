@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomePage /> should match render of HomePage 1`] = `
+<Fragment>
+  <Wrapper
+    flexDirection="column"
+  >
+    <h1>
+      <FormattedMessage
+        defaultMessage="Dovenmuehle Sample App"
+        id="app.containers.HomePage.header"
+        values={Object {}}
+      />
+    </h1>
+  </Wrapper>
+  <withReducer(withSaga(Connect(AddItem))) />
+</Fragment>
+`;
+
+exports[`<HomePage /> should match render of addItem component 1`] = `null`;
