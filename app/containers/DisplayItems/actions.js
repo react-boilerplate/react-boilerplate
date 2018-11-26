@@ -1,7 +1,7 @@
 import { GET_ITEMS, GET_ITEMS_SUCCESS, GET_ITEMS_ERROR } from './constants';
 
 export function getItems() {
-  console.log('Get item got triggered');
+  console.log('Get items got triggered!');
   return {
     type: GET_ITEMS,
   };

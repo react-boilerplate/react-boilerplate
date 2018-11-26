@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -22,18 +22,24 @@ import messages from './messages';
 
 import Wrapper from '../../components/UI/Wrapper';
 
-function DisplayItems() {
-  return (
-    <Wrapper>
-      <Helmet>
-        <title>Display Items</title>
-        <meta name="Items Display View" content="Items stored in the db" />
-      </Helmet>
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
-    </Wrapper>
-  );
+class DisplayItems extends Component {
+  componentDidMount() {
+    this.props.getItems();
+  }
+
+  render() {
+    return (
+      <Wrapper>
+        <Helmet>
+          <title>Display Items</title>
+          <meta name="Items Display View" content="Items stored in the db" />
+        </Helmet>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
+      </Wrapper>
+    );
+  }
 }
 
 DisplayItems.propTypes = {
