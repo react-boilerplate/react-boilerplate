@@ -1,13 +1,13 @@
-import { defaultAction } from '../actions';
-import { DEFAULT_ACTION } from '../constants';
+import { getItems } from '../actions';
+import { GET_ITEMS } from '../constants';
 
 describe('DisplayItems actions', () => {
-  describe('Default Action', () => {
-    it('has a type of DEFAULT_ACTION', () => {
+  describe('Get Items Action', () => {
+    it('has a type of GET_ITEMS', () => {
       const expected = {
-        type: DEFAULT_ACTION,
+        type: GET_ITEMS,
       };
-      expect(defaultAction()).toEqual(expected);
+      expect(getItems()).toEqual(expected);
     });
   });
 });

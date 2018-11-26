@@ -60,9 +60,9 @@ class AddItem extends Component {
           </Form>
         </Wrapper>
         <Wrapper>
-          {this.props.success && <Heading>Post successful ✅!</Heading>}
+          {this.props.success && <Heading>Post successful!</Heading>}
           {this.props.error && (
-            <Heading background="#ff0000">Error when posting 📛</Heading>
+            <Heading background="#ff0000">Error when posting</Heading>
           )}
         </Wrapper>
       </Fragment>
