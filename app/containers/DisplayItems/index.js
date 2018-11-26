@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -21,17 +21,28 @@ class DisplayItems extends Component {
     this.props.getItems();
   }
 
+  renderItems(data) {
+    return <p>{data.item}</p>;
+  }
+
   render() {
     return (
-      <Wrapper>
-        <Helmet>
-          <title>Display Items</title>
-          <meta name="Items Display View" content="Items stored in the db" />
-        </Helmet>
-        <h1>
-          <FormattedMessage {...messages.header} />
-        </h1>
-      </Wrapper>
+      <Fragment>
+        <Wrapper>
+          <Helmet>
+            <title>Display Items</title>
+            <meta name="Items Display View" content="Items stored in the db" />
+          </Helmet>
+          <h1>
+            <FormattedMessage {...messages.header} />
+          </h1>
+        </Wrapper>
+        <Wrapper flexDirection="column">
+          {!this.props.success && <h1>Loading 📊...</h1>}
+          {this.props.success && this.props.items.map(this.renderItems)}
+          {this.props.error && <h1>Error while loading items 📛</h1>}
+        </Wrapper>
+      </Fragment>
     );
   }
 }
