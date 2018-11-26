@@ -1,0 +1,13 @@
+import { put } from 'redux-saga/effects';
+import { getItemsSuccess, getItemsError } from './actions';
+
+export function* fetchApi() {
+  try {
+    const response = fetch('/api/getItems');
+    const items = response.json();
+    yield put(getItemsSuccess(items));
+  } catch (error) {
+    console.error(error);
+    yield put(getItemsError());
+  }
+}
