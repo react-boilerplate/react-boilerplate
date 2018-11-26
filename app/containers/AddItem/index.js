@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -41,7 +41,7 @@ class AddItem extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <Wrapper>
           <Form onSubmit={e => this.onSubmit(e)}>
             <Input
@@ -56,15 +56,16 @@ class AddItem extends Component {
             </Button>
           </Form>
         </Wrapper>
-        {this.props.success && <h3>Post successful!</h3>}
-        {this.props.error && <h3>Error when posting...</h3>}
-      </div>
+        <Wrapper>
+          {this.props.success && <h3>Post successful ✅!</h3>}
+          {this.props.error && <h3>Error when posting 📛</h3>}
+        </Wrapper>
+      </Fragment>
     );
   }
 }
 
 AddItem.propTypes = {
-  // item: PropTypes.string,
   addItem: PropTypes.func,
   success: PropTypes.bool,
   error: PropTypes.bool,
