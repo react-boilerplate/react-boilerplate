@@ -31,8 +31,10 @@ class AddItem extends Component {
   onSubmit(e) {
     e.preventDefault();
     const item = this.state.input;
-    this.props.addItem(item);
-    this.setState({ input: '' });
+    if (item) {
+      this.props.addItem(item);
+      this.setState({ input: '' });
+    }
   }
 
   onChange(e) {
