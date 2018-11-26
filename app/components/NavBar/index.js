@@ -6,15 +6,15 @@ import Logo from './Logo';
 
 const Navbar = () => (
   <Navcontainer>
-    <Logo>
-      <Link to="/">Dovenmuehle</Link>
-    </Logo>
-    <Button menu>
-      <Link to="/">Add Item</Link>
-    </Button>
-    <Button menu>
-      <Link to="/all-items">All Items</Link>
-    </Button>
+    <Link to="/">
+      <Logo>Dovenmuehle</Logo>
+    </Link>
+    <Link to="/">
+      <Button menu>Add Item</Button>
+    </Link>
+    <Link to="/all-items">
+      <Button menu>Display Items</Button>
+    </Link>
   </Navcontainer>
 );
 

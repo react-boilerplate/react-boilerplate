@@ -11,6 +11,6 @@ export const scope = 'app.containers.DisplayItems';
 export default defineMessages({
   header: {
     id: `${scope}.header`,
-    defaultMessage: 'This is the DisplayItems container!',
+    defaultMessage: 'Display Items',
   },
 });
