@@ -1,18 +1,18 @@
-/*
- *
- * DisplayItems reducer
- *
- */
-
 import { fromJS } from 'immutable';
-import { DEFAULT_ACTION } from './constants';
+import { GET_ITEMS_SUCCESS, GET_ITEMS_ERROR } from './constants';
 
-export const initialState = fromJS({});
+export const initialState = fromJS({
+  items: [],
+  success: false,
+  error: false,
+});
 
 function displayItemsReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case GET_ITEMS_SUCCESS:
+      return state.set('success', true).set('items', action.items);
+    case GET_ITEMS_ERROR:
+      return state.set('error', true);
     default:
       return state;
   }
