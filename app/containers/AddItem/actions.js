@@ -7,17 +7,14 @@ export function addItem(item) {
   };
 }
 
-export function addItemSuccess(success) {
-  console.log('action success got trigered!');
+export function addItemSuccess() {
   return {
     type: ADD_ITEM_SUCCESS,
-    success,
   };
 }
 
-export function addItemError(error) {
+export function addItemError() {
   return {
     type: ADD_ITEM_ERROR,
-    error,
   };
 }

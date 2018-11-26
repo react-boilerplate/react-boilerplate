@@ -15,7 +15,6 @@ function addItemReducer(state = initialState, action) {
         .set('success', false)
         .set('error', false);
     case ADD_ITEM_SUCCESS:
-      console.log('State before success', state);
       return state.set('success', action.success).set('item', '');
     case ADD_ITEM_ERROR:
       return state.set('error', action.error).set('item', '');
