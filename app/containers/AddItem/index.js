@@ -11,6 +11,7 @@ import Form from '../../components/Form';
 import Wrapper from '../../components/UI/Wrapper';
 import Input from '../../components/Input';
 import Button from '../../components/UI/Button';
+import Heading from '../../components/UI/Heading';
 
 import { itemSelector, successSelector, errorSelector } from './selectors';
 import { addItem } from './actions';
@@ -57,8 +58,10 @@ class AddItem extends Component {
           </Form>
         </Wrapper>
         <Wrapper>
-          {this.props.success && <h3>Post successful ✅!</h3>}
-          {this.props.error && <h3>Error when posting 📛</h3>}
+          {this.props.success && <Heading>Post successful ✅!</Heading>}
+          {this.props.error && (
+            <Heading background="#ff0000">Error when posting 📛</Heading>
+          )}
         </Wrapper>
       </Fragment>
     );
