@@ -5,10 +5,10 @@
  */
 
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -19,15 +19,19 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
+import Wrapper from '../../components/UI/Wrapper';
+
 function DisplayItems() {
   return (
-    <div>
+    <Wrapper>
       <Helmet>
-        <title>DisplayItems</title>
-        <meta name="description" content="Description of DisplayItems" />
+        <title>Display Items</title>
+        <meta name="Items Display View" content="Items stored in the db" />
       </Helmet>
-      <FormattedMessage {...messages.header} />
-    </div>
+      <h1>
+        <FormattedMessage {...messages.header} />
+      </h1>
+    </Wrapper>
   );
 }
 

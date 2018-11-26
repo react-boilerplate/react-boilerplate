@@ -24,9 +24,6 @@ export default class HomePage extends React.PureComponent {
           <h1>
             <FormattedMessage {...messages.header} />
           </h1>
-          <p>
-            <FormattedMessage {...messages.body} />
-          </p>
         </Wrapper>
         <AddItem />
       </Fragment>
