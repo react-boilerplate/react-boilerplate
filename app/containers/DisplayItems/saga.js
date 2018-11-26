@@ -1,6 +1,11 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { all, takeLatest } from 'redux-saga/effects';
+import { GET_ITEMS } from './constants';
+import { fetchApi } from './fetchApi';
 
-// Individual exports for testing
+function* getAllItems() {
+  yield takeLatest(GET_ITEMS, fetchApi);
+}
+
 export default function* displayItemsSaga() {
-  // See example in containers/HomePage/saga.js
+  yield all([getAllItems()]);
 }
