@@ -3,8 +3,9 @@ import { getItemsSuccess, getItemsError } from './actions';
 
 export function* fetchApi() {
   try {
-    const response = fetch('/api/getItems');
-    const items = response.json();
+    const response = yield fetch('/api/getItems');
+    const items = yield response.json();
+    console.log(items);
     yield put(getItemsSuccess(items));
   } catch (error) {
     console.error(error);

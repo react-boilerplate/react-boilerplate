@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
-// Post into the db
+// Post into db
 app.post('/api/addItem', (req, res) => {
   const { item } = req.body;
   ctrl.addItem(item, error => {
@@ -37,6 +37,18 @@ app.post('/api/addItem', (req, res) => {
     }
   });
 });
+
+// Get all from db
+app.get('/api/getItems', (req, res) => {
+  ctrl.getAllItems((error, data) => {
+    if (error) {
+      res.status(500).send(error);
+    } else {
+      res.status(200).send(JSON.stringify(data));
+    }
+  });
+});
+
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
   outputPath: resolve(process.cwd(), 'build'),

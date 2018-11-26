@@ -6,6 +6,11 @@ const addItem = (item, callback) => {
   ItemsDB.save(callback);
 };
 
+const getAllItems = callback => {
+  ItemsModel.find({}).exec(callback);
+};
+
 module.exports = {
   addItem,
+  getAllItems,
 };
