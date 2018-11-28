@@ -40,9 +40,45 @@ _Step 7:_ Click on the `Properties` tab, open `Static Website Hosting`, and clic
 
 Suppose you want users to access the app on `https://<host>/web-app`
 
-_Step 1:_ Run `PUBLIC_PATH='/web-app/' BUILD_FOLDER_PATH='build/web-app' npm run build`, to save production build inside `./build/web-app` folder.
+_Step 1:_ Configure webpack to inject necessary environment variables into the app
 
-_Step 2:_ Upload/Place the created `web-app` folder in your server's web-root folder
+* Changes below are made to `internals/webpack/webpack.base.babel.js` file. [Here is Gist too!](https://gist.github.com/nshimiye/71edd148a74ce5d85477375ff34f132a)
+
+```diff
++ const BUILD_FOLDER_PATH = process.env.BUILD_FOLDER_PATH || 'build';
++ const PUBLIC_PATH = process.env.PUBLIC_PATH || '/';
+```
+
+```diff
+- path: path.resolve(process.cwd(), 'build'),
+- publicPath: '/',
++ path: path.resolve(process.cwd(), BUILD_FOLDER_PATH),
++ publicPath: PUBLIC_PATH,
+```
+
+```diff
+- new webpack.DefinePlugin({
+-   'process.env': {
+-      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+-   },
++ new webpack.EnvironmentPlugin({
++    NODE_ENV: 'development',
++    PUBLIC_PATH: '/',
+```
+
+_Step 2:_ add `basename` to the history
+
+* Changes below are made to `app/utils/history.js` file. [Here is Gist too!](https://gist.github.com/nshimiye/8573c4d3189ea9e98e59279e3a3c3338)
+
+```diff
+- const history = createHistory();
++ const basename = process.env.PUBLIC_PATH;
++ const history = createHistory({ basename });
+```
+
+_Step 3:_ Run `PUBLIC_PATH='/web-app/' BUILD_FOLDER_PATH='build/web-app' npm run build`, to save production build inside `./build/web-app` folder.
+
+_Step 4:_ Upload/Place the created `web-app` folder in your server's web-root folder
 
 _Endpoint_ The app should be accessible on `https://<host>/web-app`.
 
