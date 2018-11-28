@@ -42,7 +42,7 @@ Suppose you want users to access the app on `https://<host>/web-app`
 
 _Step 1:_ Configure webpack to inject necessary environment variables into the app
 
-* Changes below are made to `internals/webpack/webpack.base.babel.js` file. [Here is Gist too!](https://gist.github.com/nshimiye/71edd148a74ce5d85477375ff34f132a)
+* Changes below are made to `internals/webpack/webpack.base.babel.js` file. Also [Complete file with changes!](https://gist.github.com/nshimiye/71edd148a74ce5d85477375ff34f132a)
 
 ```diff
 + const BUILD_FOLDER_PATH = process.env.BUILD_FOLDER_PATH || 'build';
@@ -68,7 +68,7 @@ _Step 1:_ Configure webpack to inject necessary environment variables into the a
 
 _Step 2:_ add `basename` to the history
 
-* Changes below are made to `app/utils/history.js` file. [Here is Gist too!](https://gist.github.com/nshimiye/8573c4d3189ea9e98e59279e3a3c3338)
+* Changes below are made to `app/utils/history.js` file. Also [Complete file with changes!](https://gist.github.com/nshimiye/8573c4d3189ea9e98e59279e3a3c3338)
 
 ```diff
 - const history = createHistory();
