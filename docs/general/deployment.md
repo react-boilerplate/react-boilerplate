@@ -35,3 +35,46 @@ _Step 5:_ Click on the `Static Website Hosting` accordion where you should see t
 _Step 6:_ Click on your new S3 bucket on the left to open the bucket. Click `Upload` and select all the files within your `./build` folder. Click `Start Upload`. Once the files are done, select all of the files, right-click on the selected files (or click on the `Actions` button) and select `Make Public`.
 
 _Step 7:_ Click on the `Properties` tab, open `Static Website Hosting`, and click on the _Endpoint_ link. The app should be running on that URL.
+
+## Deploying in a subfolder of an existing server
+
+Suppose you want users to access the app on `https://<host>/web-app`
+
+_Step 1:_ Configure webpack to inject necessary environment variables into the app
+
+* Changes below are made to `internals/webpack/webpack.base.babel.js` file.
+
+```diff
++ const BUILD_FOLDER_PATH = process.env.BUILD_FOLDER_PATH || 'build';
++ const PUBLIC_PATH = process.env.PUBLIC_PATH || '/';
+```
+
+```diff
+- path: path.resolve(process.cwd(), 'build'),
+- publicPath: '/',
++ path: path.resolve(process.cwd(), BUILD_FOLDER_PATH),
++ publicPath: PUBLIC_PATH,
+```
+
+```diff
+# inside EnvironmentPlugin
++    PUBLIC_PATH: '/',
+```
+
+_Step 2:_ add `basename` to the history
+
+* Changes below are made to `app/utils/history.js` file.
+
+```diff
+- const history = createHistory();
++ const basename = process.env.PUBLIC_PATH;
++ const history = createHistory({ basename });
+```
+
+_Step 3:_ Run `PUBLIC_PATH='/web-app/' BUILD_FOLDER_PATH='build/web-app' npm run build`, to save production build inside `./build/web-app` folder.
+
+_Step 4:_ Upload/Place the created `web-app` folder in your server's web-root folder
+
+_Endpoint_ The app should be accessible on `https://<host>/web-app`.
+
+_NOTE_ that this has been tested on both APACHE and NGINX servers.
