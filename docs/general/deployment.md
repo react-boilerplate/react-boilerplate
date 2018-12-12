@@ -2,7 +2,7 @@
 
 ## Heroku
 
-### Easy 5-Step Deployment Process
+### Easy 3-Step Deployment Process
 
 _Step 1:_ Create a _Procfile_ with the following line: `web: npm run start:prod`. We do this because Heroku runs `npm run start` by default, so we need this setting to override the default run command.
 
