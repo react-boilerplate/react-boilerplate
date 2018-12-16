@@ -1,8 +1,11 @@
 job('Docker Repo Update') {
-    scm{
+    scm {
         git('https://github.com/theSupermacy/react-boilerplate') { node -> // is hudson.plugins.git.GitSCM
             node / gitConfigName('DSL User')
             node / gitConfigEmail('rahulanandsinha@gmail.com')
         }
+    }
+    triggers {
+        scm('* * * * * *')
     }
 }
