@@ -13,6 +13,7 @@ job('Docker Repo Update') {
             repositoryName('supermacy/react-boilerplate')
             tag('${GIT_REVISION,length=9}')
             registryCredentials('docker-hub')
+            forcePull(false)
             createFingerprints(false)
             skipDecorate()
         }
