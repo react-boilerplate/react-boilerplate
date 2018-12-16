@@ -10,7 +10,7 @@ job('Docker Repo Update') {
     }
     steps {
         dockerBuildAndPublish {
-            repositoryName('supermacy/react-boilerplat')
+            repositoryName('supermacy/react-boilerplate')
             tag('${GIT_REVISION,length=9}')
             registryCredentials('docker-hub')
             forcePull(false)
