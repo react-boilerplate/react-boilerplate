@@ -16,6 +16,7 @@ job('Docker Repo Update') {
             forcePull(false)
             createFingerprints(false)
             skipDecorate()
+            forceTag(false)
         }
     }
 }
