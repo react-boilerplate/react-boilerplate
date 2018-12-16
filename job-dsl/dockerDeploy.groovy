@@ -6,6 +6,16 @@ job('Docker Repo Update') {
         }
     }
     triggers {
-        scm('* * * * * *')
+        scm('* * * * *')
+    }
+    steps {
+        dockerBuildAndPublish {
+            repositoryName('supermacy/react-boilerplat')
+            tag('${BUILD_TIMESTAMP}-${GIT_REVISION,length=7}')
+            registryCredentials('docker-hub')
+            forcePull(false)
+            createFingerprints(false)
+            skipDecorate()
+        }
     }
 }
