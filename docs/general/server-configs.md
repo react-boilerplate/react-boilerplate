@@ -18,7 +18,7 @@ This boilerplate includes an `app/.htaccess` file that does three things:
 
 `.htaccess` can only provide security by redirecting HTTP to HTTPS
 
-> Note: For a detailled security configuration in apache httpd, a `.conf` file is necessary. You can use [Mozillas TLS Configurator](https://mozilla.github.io/server-side-tls/ssl-config-generator/) to get some examples.
+> Note: For a detailed security configuration in apache httpd, a `.conf` file is necessary. You can use [Mozilla's TLS Configurator](https://mozilla.github.io/server-side-tls/ssl-config-generator/) to get some examples.
 
 ## Nginx
 
@@ -26,7 +26,7 @@ An `app/.nginx.conf` file is included that does the same on an Nginx server.
 
 ### security
 
-Additionally, the `.nginx.conf` provides TLS security configuration settings based on [Mozillas TLS Guidelines](https://wiki.mozilla.org/Security/Server_Side_TLS), including:
+Additionally, the `.nginx.conf` provides TLS security configuration settings based on [Mozilla's TLS Guidelines](https://wiki.mozilla.org/Security/Server_Side_TLS), including:
 
 - HSTS Header
 - TLS 1.2 only
