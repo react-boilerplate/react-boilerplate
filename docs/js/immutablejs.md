@@ -11,7 +11,7 @@ for a good explanation of the more intricate benefits it has.
 
 In our reducers, we make the initial state an immutable data structure with the
 `fromJS` function. We pass it an object or an array, and it takes care of
-converting it to a immutable data structure. (Note: the conversion is performed deeply so
+converting it to an immutable data structure. (Note: the conversion is performed deeply so
 that even arbitrarily nested arrays/objects are immutable structures too!)
 
 ```JS
@@ -55,7 +55,7 @@ const messageSelector = (state) => state.getIn(['myData', 'message']);
 export default myDataSelector;
 ```
 
-To learn more, check out [`reselect.md`](reselect.md)!
+To learn more, check out [`reselect`](reselect.md)!
 
 ## Immutable Records
 
