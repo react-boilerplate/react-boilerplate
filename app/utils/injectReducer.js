@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import hoistNonReactStatics from 'hoist-non-react-statics';
+import { ReactReduxContext } from 'react-redux';
 
 import getInjectors from './reducerInjectors';
 
@@ -15,9 +15,7 @@ export default ({ key, reducer }) => WrappedComponent => {
   class ReducerInjector extends React.Component {
     static WrappedComponent = WrappedComponent;
 
-    static contextTypes = {
-      store: PropTypes.object.isRequired,
-    };
+    static contextType = ReactReduxContext;
 
     static displayName = `withReducer(${WrappedComponent.displayName ||
       WrappedComponent.name ||
