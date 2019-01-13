@@ -25,9 +25,7 @@ export default ({ key, reducer }) => WrappedComponent => {
       super(props, context);
       const { store } = context;
       this.injectors = getInjectors(store);
-      const { injectReducer } = this.injectors;
-
-      injectReducer(key, reducer);
+      this.injectors.injectReducer(key, reducer);
     }
 
     render() {

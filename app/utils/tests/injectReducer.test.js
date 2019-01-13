@@ -20,13 +20,15 @@ describe('injectReducer decorator', () => {
   let store;
   let injectors;
   let ComponentWithReducer;
+  let history;
 
   beforeAll(() => {
     reducerInjectors.default = jest.fn().mockImplementation(() => injectors);
+    history = createMemoryHistory();
   });
 
   beforeEach(() => {
-    store = configureStore({}, createMemoryHistory());
+    store = configureStore({}, history);
     injectors = {
       injectReducer: jest.fn(),
     };
