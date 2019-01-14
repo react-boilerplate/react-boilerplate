@@ -5,16 +5,18 @@
 import { combineReducers } from 'redux-immutable';
 import { connectRouter } from 'connected-react-router/immutable';
 
+import history from 'utils/history';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
  */
 export default function createReducer(injectedReducers = {}) {
-  return history =>
-    combineReducers({
-      router: connectRouter(history),
-      language: languageProviderReducer,
-      ...injectedReducers,
-    });
+  const rootReducer = combineReducers({
+    language: languageProviderReducer,
+    router: connectRouter(history),
+    ...injectedReducers,
+  });
+
+  return rootReducer;
 }

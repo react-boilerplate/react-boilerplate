@@ -1,3 +1,0 @@
-from directory: .
-to directory: ../../internals/templates/tests
-Sat Jan 12 23:12:34 CST 2019

@@ -1,7 +1,8 @@
 /**
  * Test injectors
  */
-import createMemoryHistory from 'history/createMemoryHistory';
+
+import { memoryHistory } from 'react-router-dom';
 import { put } from 'redux-saga/effects';
 import { shallow } from 'enzyme';
 import React from 'react';
@@ -21,15 +22,13 @@ describe('injectSaga decorator', () => {
   let store;
   let injectors;
   let ComponentWithSaga;
-  let history;
 
   beforeAll(() => {
     sagaInjectors.default = jest.fn().mockImplementation(() => injectors);
-    history = createMemoryHistory();
   });
 
   beforeEach(() => {
-    store = configureStore({}, history);
+    store = configureStore({}, memoryHistory);
     injectors = {
       injectSaga: jest.fn(),
       ejectSaga: jest.fn(),

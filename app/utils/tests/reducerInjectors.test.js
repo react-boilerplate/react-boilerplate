@@ -2,7 +2,7 @@
  * Test injectors
  */
 
-import createMemoryHistory from 'history/createMemoryHistory';
+import { memoryHistory } from 'react-router-dom';
 import { fromJS } from 'immutable';
 import { identity } from 'lodash';
 
@@ -23,15 +23,13 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-const history = createMemoryHistory();
-
 describe('reducer injectors', () => {
   let store;
   let injectReducer;
 
   describe('getInjectors', () => {
     beforeEach(() => {
-      store = configureStore({}, history);
+      store = configureStore({}, memoryHistory);
     });
 
     it('should return injectors', () => {
@@ -51,7 +49,7 @@ describe('reducer injectors', () => {
 
   describe('injectReducer helper', () => {
     beforeEach(() => {
-      store = configureStore({}, history);
+      store = configureStore({}, memoryHistory);
       injectReducer = injectReducerFactory(store, true);
     });
 

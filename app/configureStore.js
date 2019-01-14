@@ -29,7 +29,7 @@ export default function configureStore(initialState = {}, history) {
   /* eslint-enable */
 
   const store = createStore(
-    createReducer()(history),
+    createReducer(),
     fromJS(initialState),
     composeEnhancers(...enhancers),
   );
@@ -43,7 +43,7 @@ export default function configureStore(initialState = {}, history) {
   /* istanbul ignore next */
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      store.replaceReducer(createReducer(store.injectedReducers)(history));
+      store.replaceReducer(createReducer(store.injectedReducers));
     });
   }
 
