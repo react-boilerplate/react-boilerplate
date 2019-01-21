@@ -12,7 +12,7 @@ const inputField = props => (
   <Form.Input
     fluid
     label={props.label}
-    placeholder={props.label}
+    placeholder={props.meta.initial || props.label}
     onChange={(param, data) => props.input.onChange(data.value)}
   />
 );
@@ -26,28 +26,28 @@ inputField.propTypes = {
   ]),
 };
 
-const AddressDetails = props => (
+const AddressDetails = () => (
   <div>
     <Form.Group widths="equal">
       <Field
-        name={`${props.addressType}.addressName`}
+        name={`addressName`}
         label="Address Name"
         component={inputField}
       />
       <Field
-        name={`${props.addressType}.addressLine1`}
+        name={`addressLine1`}
         label="Address Line 1"
         component={inputField}
       />
     </Form.Group>
     <Form.Group widths="equal">
       <Field
-        name={`${props.addressType}.addressLine2`}
+        name={`addressLine2`}
         label="Address Line 2"
         component={inputField}
       />
       <Field
-        name={`${props.addressType}.city`}
+        name={`city`}
         label="City"
         component={inputField}
       />
@@ -55,45 +55,41 @@ const AddressDetails = props => (
 
     <Form.Group widths="equal">
       <Field
-        name={`${props.addressType}.state`}
+        name={`state`}
         label="State"
         component={inputField}
       />
       <Field
-        name={`${props.addressType}.country`}
+        name={`country`}
         label="Country"
         component={inputField}
       />
     </Form.Group>
     <Form.Group widths="equal">
       <Field
-        name={`${props.addressType}.pincode`}
+        name={`pincode`}
         label="Pincode"
         component={inputField}
       />
       <Field
-        name={`${props.addressType}.landmark`}
+        name={`landmark`}
         label="Landmark"
         component={inputField}
       />
     </Form.Group>
     <Form.Group widths="equal">
       <Field
-        name={`${props.addressType}.contactPerson`}
+        name={`contactPerson`}
         label="Contact Person"
         component={inputField}
       />
       <Field
-        name={`${props.addressType}.contactPhone`}
+        name={`contactPhone`}
         label="Contact Phone"
         component={inputField}
       />
     </Form.Group>
   </div>
 );
-
-AddressDetails.propTypes = {
-  addressType: PropTypes.string,
-};
 
 export default AddressDetails;

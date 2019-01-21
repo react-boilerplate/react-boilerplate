@@ -1,53 +1,30 @@
-import React from 'react';
-import { Card } from 'semantic-ui-react';
-import Img from 'components/Img';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import React from "react";
+import {Route, Switch} from "react-router-dom";
+import PropTypes from "prop-types";
+import CreateManufacturerForm from "../create";
+import ViewAllManufacturer from "./ViewAll";
 
-const CardView = props => (
-  <Card>
-    <Card.Content>
-      <Img floated="right" size="mini" src={props.imageSrc} />
-      <Card.Header>{props.title}</Card.Header>
-      <Card.Meta>{props.subTitle}</Card.Meta>
-      <Card.Description>{props.description}</Card.Description>
-    </Card.Content>
-  </Card>
-);
-
-CardView.propTypes = {
-  imageSrc: PropTypes.string,
-  title: PropTypes.string,
-  subTitle: PropTypes.string,
-  description: PropTypes.string,
-};
-
-const Wrapper = styled.div`
-  margin-top: 3em;
-  margin-bottom: 3em;
-`;
-
-export default class ViewAllManufacturer extends React.Component {
-  src = '/favicon.ico';
-
+export default class ViewManufacturer extends React.Component {
   render() {
+    const { match } = this.props;
     return (
-      <Wrapper>
-        <Card.Group itemsPerRow={5}>
-          <CardView
-            imageSrc={this.src}
-            title="Safari"
-            subTitle="Safari Industries Limited"
-            description="Safari Industries private limited"
+      <div>
+        <Switch>
+          <Route
+            exact
+            path={`${match.url}/`}
+            render={() => <ViewAllManufacturer />}
           />
-          <CardView
-            imageSrc={this.src}
-            title="VIP"
-            subTitle="VIP Industries Limited"
-            description="VIP Industries private limited"
+          <Route
+            path={`${match.url}/:id`}
+            render={() => <CreateManufacturerForm isEditMode={true} id='473248'/>}
           />
-        </Card.Group>
-      </Wrapper>
+        </Switch>
+      </div>
     );
   }
 }
+
+ViewManufacturer.propTypes = {
+  match: PropTypes.object,
+};

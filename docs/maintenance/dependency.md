@@ -226,7 +226,7 @@ react-test-renderer                                     15.5.4
     @ ./~/react-router-scroll/lib/StateStorage.js 5:23-61
     @ ./~/react-router-scroll/lib/ScrollBehaviorContext.js
     @ ./~/react-router-scroll/lib/useScroll.js
-    @ ./~/react-router-scroll/lib/index.js
+    @ ./~/react-router-scroll/lib/ViewAll.js
     @ ./app/app.js
     @ multi ./app/app.js
 ```
@@ -258,14 +258,14 @@ Addressed here https://github.com/imagemin/imagemin-pngquant/issues/32 **_Needs 
 
   WARNING in ./app/components/Header/banner.jpg
   DEPRECATED. Configure gifsicle's interlaced option in it's own options. (gifsicle.interlaced)
-  @ ./app/components/Header/index.js 47:0-34
-  @ ./app/containers/App/index.js
+  @ ./app/components/Header/ViewAll.js 47:0-34
+  @ ./app/containers/App/ViewAll.js
   @ ./app/app.js
   @ multi eventsource-polyfill webpack-hot-middleware/client?reload=true ./app/app.js
   WARNING in ./app/components/Header/banner.jpg
   DEPRECATED. Configure optipng's optimizationLevel option in it's own options. (optipng.optimizationLevel)
-  @ ./app/components/Header/index.js 47:0-34
-  @ ./app/containers/App/index.js
+  @ ./app/components/Header/ViewAll.js 47:0-34
+  @ ./app/containers/App/ViewAll.js
   @ ./app/app.js
   @ multi eventsource-polyfill webpack-hot-middleware/client?reload=true ./app/app.js
 

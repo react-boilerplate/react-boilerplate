@@ -5,17 +5,17 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { reduxForm } from 'redux-form';
-import { Checkbox, Divider, Form } from 'semantic-ui-react';
+import {reduxForm, initialize, FormSection} from 'redux-form';
+import {Checkbox, Divider, Form} from 'semantic-ui-react';
 import connect from 'react-redux/es/connect/connect';
-import { compose } from 'redux';
+import {compose} from 'redux';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import PropTypes from 'prop-types';
 import BankAccountFormData from './BankAccountFormData';
 import AddressDetails from './AddressDetails';
 import CoreDetails from './CoreDetails';
-import { createManufacturer } from '../../actions';
+import {createManufacturer} from '../../actions';
 import reducer from '../../reducer';
 import saga from '../../saga';
 
@@ -32,6 +32,7 @@ const FormDataWrapper = styled.div`
 /* eslint-disable react/prefer-stateless-function */
 export class CreateManufacturerForm extends React.Component {
   state = { shippingSameAsBilling: false };
+
   toggleShippingAddress = () =>
     this.setState({ shippingSameAsBilling: !this.state.shippingSameAsBilling });
 
@@ -52,14 +53,18 @@ export class CreateManufacturerForm extends React.Component {
             <Divider horizontal>
               <h3> Bank Account Details </h3>
             </Divider>
-            <BankAccountFormData />
+            <FormSection name="bankAccount">
+              <BankAccountFormData />
+            </FormSection>
           </FormDataWrapper>
 
           <FormDataWrapper>
             <Divider horizontal>
               <h3> Billing Address Details </h3>
             </Divider>
-            <AddressDetails addressType="billingAddress" />
+            <FormSection name="billingAddress">
+              <AddressDetails />
+            </FormSection>
           </FormDataWrapper>
 
           <FormDataWrapper>
@@ -76,7 +81,9 @@ export class CreateManufacturerForm extends React.Component {
 
           {!this.state.shippingSameAsBilling && (
             <FormDataWrapper>
-              <AddressDetails addressType="shippingAddress" />
+              <FormSection name="shippingAddress">
+                <AddressDetails />
+              </FormSection>
             </FormDataWrapper>
           )}
 
@@ -89,16 +96,29 @@ export class CreateManufacturerForm extends React.Component {
 
 CreateManufacturerForm.propTypes = {
   onSubmitForm: PropTypes.func,
+  isEditMode: PropTypes.bool
 };
 
-export function mapDispatchToProps(dispatch) {
+
+const mapStateToProps = (state, props) => {
+  let id = props.match && props.match.params;
+  console.log('value is', id, props)
+  let list = state.get('manufacturer').get('manufacturersList', []);
+  let initialValues = list.filter( m => m.id === props.id).reduce((a,i) => i, undefined)
+
   return {
-    onSubmitForm: () => dispatch(createManufacturer()),
+    initialValues: props.isEditMode? initialValues : undefined
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onSubmitForm: () => dispatch(createManufacturer())
   };
 }
 
 const withConnect = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 );
 
@@ -106,13 +126,14 @@ const withReducer = injectReducer({ key: 'manufacturer', reducer });
 const withSaga = injectSaga({ key: 'manufacturer', saga });
 
 const withReduxForm = reduxForm({
-  form: 'createManufacturerForm',
+  form:'createManufacturerForm',
   enableReinitialize: true,
-});
+  updateUnregisteredFields:true
+}, mapStateToProps);
 
 export default compose(
   withReducer,
   withSaga,
-  withReduxForm,
   withConnect,
+  withReduxForm,
 )(CreateManufacturerForm);

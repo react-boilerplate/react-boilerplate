@@ -11,7 +11,7 @@ management - is a complex topic that is too involved to properly discuss here.
 
 You can attach a dynamic reducer to a component whether it's a regular component
 or a component that will be loaded dynamically. Dynamic means that it will be
-injected when the component it attached to is mounted. In your component's `index.js`:
+injected when the component it attached to is mounted. In your component's `ViewAll.js`:
 
 ```JS
 import injectReducer from 'utils/injectReducer';

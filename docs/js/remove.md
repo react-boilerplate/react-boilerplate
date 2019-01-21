@@ -36,7 +36,7 @@ If you really want to get rid of it, you will have to remove its presence from s
 1.  Remove `expect(() => checkStore({ ...store, injectedSagas: null })).toThrow();`
 2.  Remove `expect(() => checkStore({ ...store, runSaga: null })).toThrow();`
 
-**app/containers/\*/index.js**
+**app/containers/\*/ViewAll.js**
 
 Clean up containers that inject a dynamic saga
 

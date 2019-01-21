@@ -15,7 +15,13 @@
  *    }
  */
 
-import { CREATE_MANUFACTURER } from './constants';
+import {
+  CREATE_MANUFACTURER,
+  CREATE_MANUFACTURER_PROCESSING,
+  CREATE_MANUFACTURER_STATUS,
+  VIEW_ALL_MANUFACTURER, VIEW_ALL_MANUFACTURER_PROCESSING,
+  VIEW_ALL_MANUFACTURER_STATUS
+} from './constants';
 
 /**
  * Changes the input field of the form
@@ -27,5 +33,39 @@ import { CREATE_MANUFACTURER } from './constants';
 export function createManufacturer() {
   return {
     type: CREATE_MANUFACTURER,
+  };
+}
+
+export function createManufacturerProcessing(data) {
+  return {
+    type: CREATE_MANUFACTURER_PROCESSING,
+    payload: data
+  };
+}
+
+export function createManufacturerSuccess(data) {
+  return {
+    type: CREATE_MANUFACTURER_STATUS,
+    payload: data
+  };
+}
+
+export function getAllManufacturers() {
+  return {
+    type: VIEW_ALL_MANUFACTURER,
+  };
+}
+
+export function getAllManufacturersProcessing(data) {
+  return {
+    type: VIEW_ALL_MANUFACTURER_PROCESSING,
+    payload: data
+  };
+}
+
+export function getAllManufacturersSuccess(data) {
+  return {
+    type: VIEW_ALL_MANUFACTURER_STATUS,
+    payload: data
   };
 }

@@ -10,7 +10,13 @@
  */
 
 export const CREATE_MANUFACTURER = 'manin/manufacturer/CREATE_MANUFACTURER';
+export const CREATE_MANUFACTURER_PROCESSING = 'manin/manufacturer/CREATE_MANUFACTURER_PROCESSING';
+export const CREATE_MANUFACTURER_STATUS = 'manin/manufacturer/CREATE_MANUFACTURER_STATUS';
+
 export const VIEW_ALL_MANUFACTURER = 'manin/manufacturer/VIEW_ALL_MANUFACTURER';
+export const VIEW_ALL_MANUFACTURER_PROCESSING = 'manin/manufacturer/VIEW_ALL_MANUFACTURER_PROCESSING';
+export const VIEW_ALL_MANUFACTURER_STATUS = 'manin/manufacturer/VIEW_ALL_MANUFACTURER_STATUS';
+
 export const VIEW_MANUFACTURER_DETAIL =
   'manin/manufacturer/VIEW_MANUFACTURER_DETAIL';
 export const DELETE_MANUFACTURER = 'manin/manufacturer/DELETE_MANUFACTURER';

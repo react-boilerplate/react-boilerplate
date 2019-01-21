@@ -1,11 +1,11 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
-import { Route } from 'react-router';
-import { Switch } from 'react-router-dom';
+import {Helmet} from 'react-helmet';
+import {Route} from 'react-router';
+import {Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Breadcrumb } from 'semantic-ui-react';
+import {Breadcrumb} from 'semantic-ui-react';
 import CreateManufacturerForm from './container/create';
-import ViewAllManufacturer from './container/view';
+import ViewManufacturer from './container/view';
 
 const BreadcrumbExampleTinySize = () => (
   <Breadcrumb size="tiny">
@@ -32,12 +32,17 @@ export class ManufacturerContainer extends React.Component {
           <BreadcrumbExampleTinySize />
           <Switch>
             <Route
+              exact
+              path={`${match.url}/`}
+              render={() => <div><span>hello there</span></div>}
+            />
+            <Route
               path={`${match.url}/view`}
-              render={() => <ViewAllManufacturer />}
+              component={ViewManufacturer}
             />
             <Route
               path={`${match.url}/create`}
-              render={() => <CreateManufacturerForm />}
+              render={() => <CreateManufacturerForm isEditMode={false} id='473248'/>}
             />
           </Switch>
         </div>
