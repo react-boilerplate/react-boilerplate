@@ -93,7 +93,7 @@
     "redux-form": "^7.4.2",
     "axios": "^0.18.0",
     "semantic-ui-css": "^2.4.0",
-    "semantic-ui-react": "^0.83.0"
+    "semantic-ui-react": "^0.84.0"
   },
   "devDependencies": {
     "@babel/cli": "7.1.2",
