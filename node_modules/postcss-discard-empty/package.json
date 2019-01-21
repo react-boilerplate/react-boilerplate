@@ -1,0 +1,53 @@
+{
+  "name": "postcss-discard-empty",
+  "version": "2.1.0",
+  "description": "Discard empty rules and values with PostCSS.",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "LICENSE-MIT"
+  ],
+  "scripts": {
+    "pretest": "eslint src",
+    "prepublish": "del-cli dist && babel src --out-dir dist --ignore /__tests__/",
+    "test": "ava src/__tests__"
+  },
+  "keywords": [
+    "compress",
+    "css",
+    "empty",
+    "minify",
+    "optimisation",
+    "postcss",
+    "postcss-plugin"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "postcss": "^5.0.14"
+  },
+  "devDependencies": {
+    "ava": "^0.14.0",
+    "babel-cli": "^6.4.5",
+    "babel-core": "^6.4.5",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-es2015-loose": "^7.0.0",
+    "babel-preset-stage-0": "^6.3.13",
+    "del-cli": "^0.2.0",
+    "eslint": "^2.0.0",
+    "eslint-config-cssnano": "^2.0.0"
+  },
+  "homepage": "https://github.com/ben-eb/postcss-discard-empty",
+  "author": {
+    "name": "Ben Briggs",
+    "email": "beneb.info@gmail.com",
+    "url": "http://beneb.info"
+  },
+  "repository": "ben-eb/postcss-discard-empty",
+  "eslintConfig": {
+    "extends": "cssnano"
+  },
+  "ava": {
+    "require": "babel-core/register"
+  }
+}

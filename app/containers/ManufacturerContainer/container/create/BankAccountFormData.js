@@ -56,11 +56,7 @@ inputField.propTypes = {
 
 const BankAccountFormData = () => (
   <div>
-    <Field
-      name="displayName"
-      label="Display Name"
-      component={inputField}
-    />
+    <Field name="displayName" label="Display Name" component={inputField} />
     <Form.Group widths="equal">
       <Field name="name" label="Name" component={inputField} />
       <Field
@@ -75,17 +71,9 @@ const BankAccountFormData = () => (
         label="Account Number"
         component={inputField}
       />
-      <Field
-        name="ifscCode"
-        label="IFSC Code"
-        component={inputField}
-      />
+      <Field name="ifscCode" label="IFSC Code" component={inputField} />
     </Form.Group>
-    <Field
-      name="accountType"
-      label="Account Type"
-      component={dropdownField}
-    />
+    <Field name="accountType" label="Account Type" component={dropdownField} />
   </div>
 );
 

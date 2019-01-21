@@ -1,0 +1,30 @@
+{
+  "name": "bmp-js",
+  "version": "0.0.3",
+  "description": "A pure javascript BMP encoder and decoder",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shaozilee/bmp-js"
+  },
+  "keywords": [
+    "bmp",
+    "1bit",
+    "4bit",
+    "8bit",
+    "24bit",
+    "encoder",
+    "decoder",
+    "image",
+    "javascript",
+    "js"
+  ],
+  "author": {
+    "name": "shaozilee",
+    "email": "shaozilee@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+  }
+}

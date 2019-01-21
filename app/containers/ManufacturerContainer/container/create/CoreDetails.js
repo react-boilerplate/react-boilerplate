@@ -8,14 +8,17 @@ import { Field } from 'redux-form';
 import { Form } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-const inputField = props => {
-  return  <Form.Input
+const inputField = props => (
+  <Form.Input
     fluid
     label={props.label}
     placeholder={props.meta.initial || props.label}
-    onChange={(event, data) => {console.log('input updated', event, data); return props.input.onChange(data.value)}}
+    onChange={(event, data) => {
+      console.log('input updated', event, data);
+      return props.input.onChange(data.value);
+    }}
   />
-};
+);
 
 inputField.propTypes = {
   label: PropTypes.string,

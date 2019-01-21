@@ -1,0 +1,63 @@
+head	0.3;
+access;
+symbols;
+locks
+	dankogai:0.3; strict;
+comment	@# @;
+
+
+0.3
+date	2017.09.11.08.43.43;	author dankogai;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+0.3
+log
+@*** empty log message ***
+@
+text
+@<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mocha Tests</title>
+    <link href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="mocha"></div>
+
+    <script src="https://cdn.rawgit.com/jquery/jquery/2.1.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/Automattic/expect.js/0.3.1/index.js"></script>
+    <script src="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"></script>
+    <script>
+      mocha.setup('bdd');
+    </script>
+    <script src="../base64.js"></script>
+    <script>
+      var assert = function(expr, msg) {
+        if (!expr) throw new Error(msg || 'failed');
+      };
+      assert.equal = function(a, b, msg) {
+        if (a !== b) throw new Error(msg || ('failed : '+a+','+b));
+      };
+    </script>
+    <script src="./dankogai.js"></script>
+    <script src="./es5.js"></script>
+    <script src="./large.js"></script>
+    <script src="./yoshinoya.js"></script>
+    <script>
+      $(function() {
+        mocha.run();
+      });
+    </script>
+</head>
+<body>
+  $Id: index.html,v 1.1 2017/09/11 08:42:23 dankogai Exp dankogai $
+  <div id="mocha"></div>
+</body>
+</html>
+@

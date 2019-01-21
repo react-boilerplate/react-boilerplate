@@ -1,8 +1,8 @@
-import React from "react";
-import {Route, Switch} from "react-router-dom";
-import PropTypes from "prop-types";
-import CreateManufacturerForm from "../create";
-import ViewAllManufacturer from "./ViewAll";
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import CreateManufacturerForm from '../create';
+import ViewAllManufacturer from './ViewAll';
 
 export default class ViewManufacturer extends React.Component {
   render() {
@@ -17,7 +17,7 @@ export default class ViewManufacturer extends React.Component {
           />
           <Route
             path={`${match.url}/:id`}
-            render={() => <CreateManufacturerForm isEditMode={true} id='473248'/>}
+            render={() => <CreateManufacturerForm isEditMode id="473248" />}
           />
         </Switch>
       </div>

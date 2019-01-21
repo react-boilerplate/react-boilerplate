@@ -1,0 +1,21 @@
+{
+  "name": "@webassemblyjs/helper-code-frame",
+  "version": "1.5.12",
+  "description": "",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xtuc/webassemblyjs.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Sven Sauleau",
+  "license": "MIT",
+  "dependencies": {
+    "@webassemblyjs/wast-printer": "1.5.12"
+  },
+  "devDependencies": {
+    "@webassemblyjs/ast": "1.5.12"
+  }
+}

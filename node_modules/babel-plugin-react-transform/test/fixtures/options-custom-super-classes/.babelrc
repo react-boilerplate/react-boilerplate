@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    ["../../../src", {
+      "superClasses": ["BooComponent", "CustomComponent"],
+      "transforms": [{
+        "transform": "transform-lib"
+      }]
+    }]
+  ]
+}

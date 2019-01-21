@@ -1,0 +1,44 @@
+{
+  "name": "istanbul-lib-coverage",
+  "version": "1.2.0",
+  "description": "Data library for istanbul coverage objects",
+  "author": "Krishnan Anantheswaran <kananthmail-github@yahoo.com>",
+  "main": "index.js",
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "scripts": {
+    "pretest": "jshint index.js lib/ test/",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "jshint": "^2.8.0",
+    "mocha": "^3.2.0"
+  },
+  "karmaDeps": {
+    "browserify-istanbul": "^0.2.1",
+    "karma": "^0.13.10",
+    "karma-browserify": "^4.2.1",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-coverage": "^0.4.2",
+    "karma-mocha": "^0.2.0",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "phantomjs": "^1.9.17"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:istanbuljs/istanbuljs.git"
+  },
+  "keywords": [
+    "istanbul",
+    "coverage",
+    "data"
+  ],
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/istanbuljs/istanbuljs/issues"
+  },
+  "homepage": "https://github.com/istanbuljs/istanbuljs"
+}

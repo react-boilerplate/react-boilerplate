@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- lts/boron
+- node
+after_script: bash <(curl -s https://codecov.io/bash)
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: 4uV5xbW8Ce7DThPvDNrFrDL26Wv8lqvLZxdYZX/+w4n+FhPbFySKaGqjzWVmOm0lKeXfx1iC0LbO55xoWngg3gLVZW9zgi2wX9KpHB5j+Tpq5gFrdvE3zQG/xSSZOMX5RvXDXRnAtNms4wU7QxCKoF/essrPaOKD8SpSH2zP6HEDco3cducqLwBA9X/WVaUtmQCRVKuIQ81Rt86JIE6+lMYHExcRX9ezCR3BDnUT9nNlnV2R4Zigm18ud1+CGamN3xTgA3znbWqtwfmXOwdXtg5lCne4ZWHS5FHu1RjiJiTjU7s7lSwPakm6JGNexajBVgPYTo1dys+M4SZY4pU1wiCyb3Yuhle1HYkuZT2lZC0l8i0RHlneQJKqV6hC/vgu14Q10fuWxzX2x5uuW4IuPSaHq2JshRowB3KiZWlhFTR4jCCmOGUmkAsvyOTDRyn17uIb0wsQqdb7Ekzs89DT4knq3y4BYFUZgXR6TzN8U3koZ1L/V67DuHgOCNNny/9N+nXfw3z8/It0IkJnLnGqN8M/igrd59EGLOPX5argUMm2JXbh3UfQNuI3zlMvoGu2XgeHAC2k1vee9WpEa3c0sjGzsp3zKWnvOl65Jp22Ubc08LEjmkEXtycfQbCW+cIofmn653Vl8ya8Em9dKWKerGWCsFERuZZMuY67/csSZ8Y=
+  file:
+    - "unist-util-find-all-after.js"
+    - "unist-util-find-all-after.min.js"
+  on:
+    tags: true

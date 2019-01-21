@@ -1,0 +1,5 @@
+[libs]
+flow/interfaces
+
+[options]
+module.ignore_non_literal_requires=true

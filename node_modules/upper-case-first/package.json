@@ -1,0 +1,48 @@
+{
+  "name": "upper-case-first",
+  "version": "1.1.2",
+  "description": "Upper case the first character of a string",
+  "main": "upper-case-first.js",
+  "typings": "upper-case-first.d.ts",
+  "files": [
+    "upper-case-first.js",
+    "upper-case-first.d.ts",
+    "LICENSE"
+  ],
+  "scripts": {
+    "lint": "standard",
+    "test-std": "mocha -- -R spec --bail",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec --bail",
+    "test": "npm run lint && npm run test-cov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blakeembrey/upper-case-first.git"
+  },
+  "keywords": [
+    "cases",
+    "first",
+    "upper",
+    "uppercase",
+    "case"
+  ],
+  "author": {
+    "name": "Blake Embrey",
+    "email": "hello@blakeembrey.com",
+    "url": "http://blakeembrey.me"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blakeembrey/upper-case-first/issues"
+  },
+  "homepage": "https://github.com/blakeembrey/upper-case-first",
+  "devDependencies": {
+    "istanbul": "^0.3.0",
+    "mocha": "^2.2.1",
+    "pre-commit": "^1.0.6",
+    "standard": "^3.3.0"
+  },
+  "dependencies": {
+    "upper-case": "^1.1.1"
+  }
+}

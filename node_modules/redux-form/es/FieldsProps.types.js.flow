@@ -1,0 +1,11 @@
+// @flow
+import * as React from 'react'
+
+export type Props = {
+  names: string[],
+  component: Function | React.ComponentType<*>,
+  format?: (value: any, name: string) => ?any,
+  parse?: (value: any, name: string) => ?any,
+  props?: Object,
+  withRef?: boolean
+}

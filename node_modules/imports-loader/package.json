@@ -1,0 +1,30 @@
+{
+  "name": "imports-loader",
+  "version": "0.8.0",
+  "description": "imports loader module for webpack",
+  "author": "Tobias Koppers @sokra",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 4"
+  },
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "mocha",
+    "travis:test": "npm run -s test",
+    "release": "standard-version"
+  },
+  "dependencies": {
+    "loader-utils": "^1.0.2",
+    "source-map": "^0.6.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.1.2",
+    "should": "^11.1.1",
+    "standard-version": "^4.3.0"
+  },
+  "homepage": "https://github.com/webpack-contrib/imports-loader",
+  "repository": "https://github.com/webpack-contrib/imports-loader",
+  "bugs": "https://github.com/webpack-contrib/imports-loader/issues"
+}

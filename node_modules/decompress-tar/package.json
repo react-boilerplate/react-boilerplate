@@ -1,0 +1,38 @@
+{
+	"name": "decompress-tar",
+	"version": "4.1.1",
+	"description": "decompress tar plugin",
+	"license": "MIT",
+	"repository": "kevva/decompress-tar",
+	"author": {
+		"name": "Kevin Mårtensson",
+		"email": "kevinmartensson@gmail.com",
+		"url": "https://github.com/kevva"
+	},
+	"engines": {
+		"node": ">=4"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"decompress",
+		"decompressplugin",
+		"extract",
+		"tar"
+	],
+	"dependencies": {
+		"file-type": "^5.2.0",
+		"is-stream": "^1.1.0",
+		"tar-stream": "^1.5.2"
+	},
+	"devDependencies": {
+		"ava": "*",
+		"is-jpg": "^1.0.0",
+		"pify": "^3.0.0",
+		"xo": "*"
+	}
+}

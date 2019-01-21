@@ -1,0 +1,52 @@
+{
+  "name": "postcss-discard-comments",
+  "version": "2.0.4",
+  "description": "Discard comments in your CSS files with PostCSS.",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "LICENSE-MIT"
+  ],
+  "scripts": {
+    "pretest": "eslint src",
+    "prepublish": "del-cli dist && BABEL_ENV=publish babel src --out-dir dist --ignore /__tests__/",
+    "test": "ava src/__tests__"
+  },
+  "keywords": [
+    "css",
+    "comments",
+    "postcss",
+    "postcss-plugin"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.11.0",
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.1",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-es2015-loose": "^7.0.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "del-cli": "^0.2.0",
+    "eslint": "^1.10.3",
+    "eslint-config-cssnano": "^1.0.0",
+    "postcss-scss": "^0.1.3",
+    "postcss-simple-vars": "^1.2.0"
+  },
+  "homepage": "https://github.com/ben-eb/postcss-discard-comments",
+  "author": {
+    "name": "Ben Briggs",
+    "email": "beneb.info@gmail.com",
+    "url": "http://beneb.info"
+  },
+  "repository": "ben-eb/postcss-discard-comments",
+  "dependencies": {
+    "postcss": "^5.0.14"
+  },
+  "ava": {
+    "require": "babel-core/register"
+  },
+  "eslintConfig": {
+    "extends": "cssnano"
+  }
+}

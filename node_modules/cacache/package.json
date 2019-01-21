@@ -1,0 +1,97 @@
+{
+  "name": "cacache",
+  "version": "10.0.4",
+  "cache-version": {
+    "content": "2",
+    "index": "5"
+  },
+  "description": "Fast, fault-tolerant, cross-platform, disk-based, data-agnostic, content-addressable cache.",
+  "main": "index.js",
+  "files": [
+    "*.js",
+    "lib",
+    "locales"
+  ],
+  "scripts": {
+    "benchmarks": "node test/benchmarks",
+    "prerelease": "npm t",
+    "postrelease": "npm publish && git push --follow-tags",
+    "pretest": "standard",
+    "release": "standard-version -s",
+    "test": "cross-env CACACHE_UPDATE_LOCALE_FILES=true nyc --all -- tap -J test/*.js",
+    "test-docker": "docker run -it --rm --name pacotest -v \"$PWD\":/tmp -w /tmp node:latest npm test",
+    "update-coc": "weallbehave -o . && git add CODE_OF_CONDUCT.md && git commit -m 'docs(coc): updated CODE_OF_CONDUCT.md'",
+    "update-contrib": "weallcontribute -o . && git add CONTRIBUTING.md && git commit -m 'docs(contributing): updated CONTRIBUTING.md'"
+  },
+  "repository": "https://github.com/zkat/cacache",
+  "keywords": [
+    "cache",
+    "caching",
+    "content-addressable",
+    "sri",
+    "sri hash",
+    "subresource integrity",
+    "cache",
+    "storage",
+    "store",
+    "file store",
+    "filesystem",
+    "disk cache",
+    "disk storage"
+  ],
+  "author": {
+    "name": "Kat Marchán",
+    "email": "kzm@sykosomatic.org",
+    "twitter": "maybekatz"
+  },
+  "contributors": [
+    {
+      "name": "Charlotte Spencer",
+      "email": "charlottelaspencer@gmail.com",
+      "twitter": "charlotteis"
+    },
+    {
+      "name": "Rebecca Turner",
+      "email": "me@re-becca.org",
+      "twitter": "ReBeccaOrg"
+    }
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "chownr": "^1.0.1",
+    "glob": "^7.1.2",
+    "graceful-fs": "^4.1.11",
+    "lru-cache": "^4.1.1",
+    "mississippi": "^2.0.0",
+    "mkdirp": "^0.5.1",
+    "move-concurrently": "^1.0.1",
+    "promise-inflight": "^1.0.1",
+    "rimraf": "^2.6.2",
+    "ssri": "^5.2.4",
+    "unique-filename": "^1.1.0",
+    "y18n": "^4.0.0"
+  },
+  "devDependencies": {
+    "benchmark": "^2.1.4",
+    "chalk": "^2.3.1",
+    "cross-env": "^5.1.3",
+    "nyc": "^11.4.1",
+    "require-inject": "^1.4.2",
+    "safe-buffer": "^5.1.1",
+    "standard": "^10.0.3",
+    "standard-version": "^4.3.0",
+    "tacks": "^1.2.2",
+    "tap": "^11.1.0",
+    "weallbehave": "^1.2.0",
+    "weallcontribute": "^1.0.8"
+  },
+  "config": {
+    "nyc": {
+      "exclude": [
+        "node_modules/**",
+        "test/**"
+      ]
+    }
+  }
+}

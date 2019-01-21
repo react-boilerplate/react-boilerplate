@@ -1,0 +1,53 @@
+{
+	"name": "imagemin-pngquant",
+	"version": "5.1.0",
+	"description": "pngquant imagemin plugin",
+	"license": "MIT",
+	"repository": "imagemin/imagemin-pngquant",
+	"author": {
+		"name": "Kevin Mårtensson",
+		"email": "kevinmartensson@gmail.com",
+		"url": "github.com/imagemin"
+	},
+	"maintainers": [
+		{
+			"name": "Sindre Sorhus",
+			"email": "sindresorhus@gmail.com",
+			"url": "sindresorhus.com"
+		},
+		{
+			"name": "Shinnosuke Watanabe",
+			"url": "github.com/shinnn"
+		}
+	],
+	"engines": {
+		"node": ">=4"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"compress",
+		"image",
+		"imageminplugin",
+		"img",
+		"minify",
+		"optimize",
+		"png",
+		"pngquant"
+	],
+	"dependencies": {
+		"execa": "^0.10.0",
+		"is-png": "^1.0.0",
+		"is-stream": "^1.1.0",
+		"pngquant-bin": "^4.0.0"
+	},
+	"devDependencies": {
+		"ava": "*",
+		"get-stream": "^3.0.0",
+		"xo": "*"
+	}
+}

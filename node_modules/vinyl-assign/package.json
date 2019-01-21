@@ -1,0 +1,30 @@
+{
+  "name": "vinyl-assign",
+  "version": "1.2.1",
+  "description": "Apply custom attributes to vinyl files",
+  "license": "MIT",
+  "repository": "kevva/vinyl-assign",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "https://github.com/kevva"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [],
+  "dependencies": {
+    "object-assign": "^4.0.1",
+    "readable-stream": "^2.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.0.4",
+    "vinyl-file": "^1.1.1"
+  }
+}

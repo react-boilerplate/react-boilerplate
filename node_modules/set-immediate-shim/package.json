@@ -1,0 +1,34 @@
+{
+  "name": "set-immediate-shim",
+  "version": "1.0.1",
+  "description": "Simple setImmediate shim",
+  "license": "MIT",
+  "repository": "sindresorhus/set-immediate-shim",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "setImmediate",
+    "immediate",
+    "setTimeout",
+    "timeout",
+    "shim",
+    "polyfill",
+    "ponyfill"
+  ],
+  "devDependencies": {
+    "ava": "0.0.4",
+    "require-uncached": "^1.0.2"
+  }
+}

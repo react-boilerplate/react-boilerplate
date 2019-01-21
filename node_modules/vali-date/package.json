@@ -1,0 +1,34 @@
+{
+  "name": "vali-date",
+  "version": "1.0.0",
+  "description": "Validate a date",
+  "license": "MIT",
+  "repository": "SamVerschueren/vali-date",
+  "author": {
+    "name": "Sam Verschueren",
+    "email": "sam.verschueren@gmail.com",
+    "url": "github.com/SamVerschueren"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "date",
+    "validator",
+    "iso8601",
+    "moment",
+    "format",
+    "parse"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "*",
+    "xo": "*"
+  }
+}

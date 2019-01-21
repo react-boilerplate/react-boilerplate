@@ -1,0 +1,42 @@
+{
+  "name": "v8flags",
+  "description": "Get available v8 flags.",
+  "version": "2.1.1",
+  "homepage": "https://github.com/tkellen/node-v8flags",
+  "author": {
+    "name": "Tyler Kellen",
+    "url": "http://goingslowly.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tkellen/node-v8flags.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tkellen/node-v8flags/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/tkellen/node-v8flags/blob/master/LICENSE"
+    }
+  ],
+  "scripts": {
+    "test": "_mocha -R spec test.js"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "keywords": [
+    "v8 flags",
+    "harmony flags"
+  ],
+  "devDependencies": {
+    "async": "^0.9.0",
+    "chai": "~1.9.1",
+    "mocha": "~1.21.4"
+  },
+  "dependencies": {
+    "user-home": "^1.1.1"
+  }
+}

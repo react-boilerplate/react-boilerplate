@@ -1,0 +1,78 @@
+{
+  "name": "csso",
+  "version": "2.3.2",
+  "description": "CSSO (CSS Optimizer) is a CSS minifier with structural optimisations",
+  "keywords": [
+    "css",
+    "minifier",
+    "minify",
+    "compress",
+    "optimisation"
+  ],
+  "homepage": "https://github.com/css/csso",
+  "author": "Sergey Kryzhanovsky <skryzhanovsky@ya.ru> (https://github.com/afelix)",
+  "maintainers": [
+    {
+      "name": "Roman Dvornov",
+      "email": "rdvornov@gmail.com",
+      "github-username": "lahmatiy"
+    }
+  ],
+  "license": "MIT",
+  "repository": "css/csso",
+  "bugs": {
+    "url": "https://github.com/css/csso/issues"
+  },
+  "bin": {
+    "csso": "./bin/csso"
+  },
+  "main": "./lib/index",
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "mocha": true,
+      "es6": true
+    },
+    "rules": {
+      "no-duplicate-case": 2,
+      "no-undef": 2,
+      "no-unused-vars": [2, {"vars": "all", "args": "after-used"}]
+    }
+  },
+  "scripts": {
+    "test": "mocha --reporter dot",
+    "codestyle": "jscs lib && eslint lib test",
+    "codestyle-and-test": "npm run codestyle && npm test",
+    "hydrogen": "node --trace-hydrogen --trace-phase=Z --trace-deopt --code-comments --hydrogen-track-positions --redirect-code-traces --redirect-code-traces-to=code.asm --trace_hydrogen_file=code.cfg --print-opt-code bin/csso --stat -o /dev/null",
+    "coverage": "istanbul cover _mocha -- -R dot",
+    "coveralls": "istanbul cover _mocha --report lcovonly -- -R dot && cat ./coverage/lcov.info | coveralls",
+    "travis": "npm run codestyle-and-test && npm run coveralls",
+    "browserify": "browserify --standalone csso lib/index.js | uglifyjs --compress --mangle -o dist/csso-browser.js",
+    "gh-pages": "git clone -b gh-pages https://github.com/css/csso.git .gh-pages && npm run browserify && cp dist/csso-browser.js .gh-pages/ && cd .gh-pages && git commit -am \"update\" && git push && cd .. && rm -rf .gh-pages",
+    "prepublish": "npm run browserify"
+  },
+  "dependencies": {
+    "clap": "^1.0.9",
+    "source-map": "^0.5.3"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "coveralls": "^2.11.6",
+    "eslint": "^2.2.0",
+    "istanbul": "^0.4.2",
+    "jscs": "~2.10.0",
+    "mocha": "~2.4.2",
+    "uglify-js": "^2.6.1"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "bin",
+    "dist/csso-browser.js",
+    "lib",
+    "HISTORY.md",
+    "LICENSE",
+    "README.md"
+  ]
+}

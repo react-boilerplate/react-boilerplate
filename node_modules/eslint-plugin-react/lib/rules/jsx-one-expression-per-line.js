@@ -1,0 +1,184 @@
+/**
+ * @fileoverview Limit to one expression per line in JSX
+ * @author Mark Ivan Allen <Vydia.com>
+ */
+
+'use strict';
+
+const docsUrl = require('../util/docsUrl');
+
+// ------------------------------------------------------------------------------
+// Rule Definition
+// ------------------------------------------------------------------------------
+
+module.exports = {
+  meta: {
+    docs: {
+      description: 'Limit to one expression per line in JSX',
+      category: 'Stylistic Issues',
+      recommended: false,
+      url: docsUrl('jsx-one-expression-per-line')
+    },
+    fixable: 'whitespace',
+    schema: []
+  },
+
+  create: function (context) {
+    const sourceCode = context.getSourceCode();
+
+    function nodeKey (node) {
+      return `${node.loc.start.line},${node.loc.start.column}`;
+    }
+
+    function nodeDescriptor (n) {
+      return n.openingElement ? n.openingElement.name.name : sourceCode.getText(n).replace(/\n/g, '');
+    }
+
+    return {
+      JSXElement: function (node) {
+        const children = node.children;
+
+        if (!children || !children.length) {
+          return;
+        }
+
+        const openingElement = node.openingElement;
+        const closingElement = node.closingElement;
+        const openingElementEndLine = openingElement.loc.end.line;
+        const closingElementStartLine = closingElement.loc.start.line;
+
+        const childrenGroupedByLine = {};
+        const fixDetailsByNode = {};
+
+        children.forEach(child => {
+          let countNewLinesBeforeContent = 0;
+          let countNewLinesAfterContent = 0;
+
+          if (child.type === 'Literal' || child.type === 'JSXText') {
+            if (/^\s*$/.test(child.raw)) {
+              return;
+            }
+
+            countNewLinesBeforeContent = (child.raw.match(/^ *\n/g) || []).length;
+            countNewLinesAfterContent = (child.raw.match(/\n *$/g) || []).length;
+          }
+
+          const startLine = child.loc.start.line + countNewLinesBeforeContent;
+          const endLine = child.loc.end.line - countNewLinesAfterContent;
+
+          if (startLine === endLine) {
+            if (!childrenGroupedByLine[startLine]) {
+              childrenGroupedByLine[startLine] = [];
+            }
+            childrenGroupedByLine[startLine].push(child);
+          } else {
+            if (!childrenGroupedByLine[startLine]) {
+              childrenGroupedByLine[startLine] = [];
+            }
+            childrenGroupedByLine[startLine].push(child);
+            if (!childrenGroupedByLine[endLine]) {
+              childrenGroupedByLine[endLine] = [];
+            }
+            childrenGroupedByLine[endLine].push(child);
+          }
+        });
+
+        Object.keys(childrenGroupedByLine).forEach(_line => {
+          const line = parseInt(_line, 10);
+          const firstIndex = 0;
+          const lastIndex = childrenGroupedByLine[line].length - 1;
+
+          childrenGroupedByLine[line].forEach((child, i) => {
+            let prevChild;
+            let nextChild;
+
+            if (i === firstIndex) {
+              if (line === openingElementEndLine) {
+                prevChild = openingElement;
+              }
+            } else {
+              prevChild = childrenGroupedByLine[line][i - 1];
+            }
+
+            if (i === lastIndex) {
+              if (line === closingElementStartLine) {
+                nextChild = closingElement;
+              }
+            } else {
+              // We don't need to append a trailing because the next child will prepend a leading.
+              // nextChild = childrenGroupedByLine[line][i + 1];
+            }
+
+            function spaceBetweenPrev () {
+              return ((prevChild.type === 'Literal' || prevChild.type === 'JSXText') && / $/.test(prevChild.raw)) ||
+                ((child.type === 'Literal' || child.type === 'JSXText') && /^ /.test(child.raw)) ||
+                sourceCode.isSpaceBetweenTokens(prevChild, child);
+            }
+
+            function spaceBetweenNext () {
+              return ((nextChild.type === 'Literal' || nextChild.type === 'JSXText') && /^ /.test(nextChild.raw)) ||
+                ((child.type === 'Literal' || child.type === 'JSXText') && / $/.test(child.raw)) ||
+                sourceCode.isSpaceBetweenTokens(child, nextChild);
+            }
+
+            if (!prevChild && !nextChild) {
+              return;
+            }
+
+            const source = sourceCode.getText(child);
+            const leadingSpace = !!(prevChild && spaceBetweenPrev());
+            const trailingSpace = !!(nextChild && spaceBetweenNext());
+            const leadingNewLine = !!prevChild;
+            const trailingNewLine = !!nextChild;
+
+            const key = nodeKey(child);
+
+            if (!fixDetailsByNode[key]) {
+              fixDetailsByNode[key] = {
+                node: child,
+                source: source,
+                descriptor: nodeDescriptor(child)
+              };
+            }
+
+            if (leadingSpace) {
+              fixDetailsByNode[key].leadingSpace = true;
+            }
+            if (leadingNewLine) {
+              fixDetailsByNode[key].leadingNewLine = true;
+            }
+            if (trailingNewLine) {
+              fixDetailsByNode[key].trailingNewLine = true;
+            }
+            if (trailingSpace) {
+              fixDetailsByNode[key].trailingSpace = true;
+            }
+          });
+        });
+
+        Object.keys(fixDetailsByNode).forEach(key => {
+          const details = fixDetailsByNode[key];
+
+          const nodeToReport = details.node;
+          const descriptor = details.descriptor;
+          const source = details.source.replace(/(^ +| +(?=\n)*$)/g, '');
+
+          const leadingSpaceString = details.leadingSpace ? '\n{\' \'}' : '';
+          const trailingSpaceString = details.trailingSpace ? '{\' \'}\n' : '';
+          const leadingNewLineString = details.leadingNewLine ? '\n' : '';
+          const trailingNewLineString = details.trailingNewLine ? '\n' : '';
+
+          const replaceText = `${leadingSpaceString}${leadingNewLineString}${source}${trailingNewLineString}${trailingSpaceString}`;
+
+          context.report({
+            node: nodeToReport,
+            message: `\`${descriptor}\` must be placed on a new line`,
+            fix: function (fixer) {
+              return fixer.replaceText(nodeToReport, replaceText);
+            }
+          });
+        });
+      }
+    };
+  }
+};

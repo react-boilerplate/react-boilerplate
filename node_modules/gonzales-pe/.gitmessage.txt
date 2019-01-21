@@ -1,0 +1,23 @@
+# Commit message format: [tag] Subject
+# For a list of available tags see below.
+# If this commit is applied it will...:
+
+
+# Why was this change made?:
+
+
+# Any references to tickets, articles, etc?:
+
+
+# Available tags:
+# [api] - for commits that change API
+# [cli] - for commits that change CLI
+# [css] - for commits that change anything in css syntax
+# [docs] - for commits that change documentation
+# [less] - for commits that change anything in less syntax
+# [sass] - for commits that change anything in sass syntax
+# [scss] - for commits that change anything in scss syntax
+# [node] - for commits that change internal logic of nodes
+# [refactor] - for commits that make code better without changing api
+# [tests] - for commits that change test files only
+# [tools] - for commits that change how dev environment works

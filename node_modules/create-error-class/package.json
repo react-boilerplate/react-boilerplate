@@ -1,0 +1,30 @@
+{
+  "name": "create-error-class",
+  "version": "3.0.2",
+  "description": "Create Error classes",
+  "license": "MIT",
+  "repository": "floatdrop/create-error-class",
+  "author": {
+    "name": "Vsevolod Strukchinsky",
+    "email": "floatdrop@gmail.com",
+    "url": "github.com/floatdrop"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    ""
+  ],
+  "dependencies": {
+    "capture-stack-trace": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}

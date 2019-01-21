@@ -1,0 +1,68 @@
+{
+  "name": "cwebp-bin",
+  "version": "4.0.0",
+  "description": "cwebp wrapper that makes it seamlessly available as a local dependency",
+  "license": "MIT",
+  "repository": "imagemin/cwebp-bin",
+  "author": {
+    "name": "1000ch",
+    "email": "shogo.sensui@gmail.com",
+    "url": "github.com/1000ch"
+  },
+  "maintainers": [
+    {
+      "name": "Sindre Sorhus",
+      "email": "sindresorhus@gmail.com",
+      "url": "sindresorhus.com"
+    },
+    {
+      "name": "Kevin Mårtensson",
+      "email": "kevinmartensson@gmail.com",
+      "url": "github.com/kevva"
+    },
+    {
+      "name": "Shinnosuke Watanabe",
+      "url": "github.com/shinnn"
+    }
+  ],
+  "bin": {
+    "cwebp": "cli.js"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "postinstall": "node lib/install.js",
+    "test": "xo && ava"
+  },
+  "files": [
+    "cli.js",
+    "index.js",
+    "lib"
+  ],
+  "keywords": [
+    "imagemin",
+    "compress",
+    "image",
+    "img",
+    "jpeg",
+    "jpg",
+    "minify",
+    "optimize",
+    "png",
+    "webp"
+  ],
+  "dependencies": {
+    "bin-build": "^2.2.0",
+    "bin-wrapper": "^3.0.1",
+    "logalot": "^2.0.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "bin-check": "^4.0.1",
+    "compare-size": "^3.0.0",
+    "execa": "^0.8.0",
+    "tempy": "^0.2.1",
+    "xo": "*"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "name": "loglevelnext",
+  "version": "1.0.5",
+  "description": "A modern logging library for Node.js and modern browsers that provides log level mapping to the console",
+  "license": "MIT",
+  "repository": "shellscape/loglevelnext",
+  "author": "Andrew Powell <andrew@shellscape.org>",
+  "homepage": "https://github.com/shellscape/loglevelnext",
+  "main": "index.js",
+  "engines": {
+    "node": ">= 6"
+  },
+  "scripts": {
+    "build": "npm run build:dev && npm run build:prod",
+    "build:dev": "NODE_ENV=development webpack index.js",
+    "build:prod": "NODE_ENV=production webpack index.js",
+    "ci": "npm run cover -- --report lcovonly && npm run lint && npm run test",
+    "check-node": "check-node-version --node 9",
+    "cover": "istanbul cover node_modules/mocha/bin/_mocha",
+    "lint": "eslint index.js lib test",
+    "test": "npm run test:node && npm run test:browser",
+    "test:browser": "if npm run check-node --silent; then mocha-chrome test/tests/browser/entry.html; else npm run test:browser:skip; fi",
+    "test:browser:skip": "echo \"\\nSkipping Browser Test\\n\\n\\033[32mTests Completed Successfully\\033[0m\"",
+    "test:node": "mocha --full-trace --check-leaks"
+  },
+  "files": [
+    "dist/",
+    "factory/",
+    "lib/",
+    "index.js"
+  ],
+  "keywords": [
+    "browser",
+    "console",
+    "debug",
+    "error",
+    "level",
+    "levels",
+    "log",
+    "logger",
+    "logging",
+    "loglevel",
+    "persist",
+    "persistent",
+    "plugins",
+    "prefix",
+    "trace",
+    "warn"
+  ],
+  "dependencies": {
+    "es6-symbol": "^3.1.1",
+    "object.assign": "^4.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.46",
+    "@babel/core": "^7.0.0-beta.46",
+    "@babel/polyfill": "^7.0.0-beta.46",
+    "@babel/preset-env": "^7.0.0-beta.46",
+    "@babel/register": "^7.0.0-beta.46",
+    "assert": "^1.4.1",
+    "babel-loader": "^8.0.0-beta.2",
+    "better-assert": "github:devinrhode2/better-assert-browser",
+    "chalk": "^2.3.0",
+    "check-node-version": "^3.1.1",
+    "codecov.io": "^0.1.6",
+    "eslint": "^4.13.1",
+    "eslint-config-webpack": "^1.2.5",
+    "eslint-plugin-import": "^2.8.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.1.1",
+    "mocha-chrome": "^1.0.2",
+    "sinon": "^4.1.3",
+    "webpack": "^4.0.0-alpha.1",
+    "webpack-cli": "^2.0.2"
+  }
+}

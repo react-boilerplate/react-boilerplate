@@ -1,0 +1,73 @@
+{
+  "name": "expand-range",
+  "description": "Fast, bash-like range expansion. Expand a range of numbers or letters, uppercase or lowercase. See the benchmarks. Used by micromatch.",
+  "version": "1.8.2",
+  "homepage": "https://github.com/jonschlinkert/expand-range",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/expand-range",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/expand-range/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "fill-range": "^2.1.0"
+  },
+  "devDependencies": {
+    "benchmarked": "^0.2.4",
+    "brace-expansion": "^1.1.4",
+    "glob": "^7.0.3",
+    "gulp-format-md": "^0.1.9",
+    "minimatch": "^3.0.0",
+    "mocha": "^2.4.5"
+  },
+  "keywords": [
+    "alpha",
+    "alphabetical",
+    "bash",
+    "brace",
+    "expand",
+    "expansion",
+    "glob",
+    "match",
+    "matches",
+    "matching",
+    "number",
+    "numerical",
+    "range",
+    "ranges",
+    "sh"
+  ],
+  "verb": {
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "reflinks": [
+      "verb"
+    ],
+    "toc": false,
+    "layout": "default",
+    "lint": {
+      "reflinks": true
+    },
+    "tasks": [
+      "readme"
+    ],
+    "related": {
+      "list": [
+        "micromatch",
+        "fill-range",
+        "braces"
+      ]
+    }
+  }
+}

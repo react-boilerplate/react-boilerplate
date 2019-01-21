@@ -1,0 +1,36 @@
+{
+  "name": "clap",
+  "title": "Command line argument parser",
+  "description": "Command line argument parser",
+  "author": "Roman Dvornov <rdvornov@gmail.com>",
+  "license": "MIT",
+  "version": "1.2.3",
+  "keywords": [
+    "cli",
+    "command",
+    "option",
+    "argument",
+    "completion"
+  ],
+  "homepage": "https://github.com/lahmatiy/clap",
+  "repository": "lahmatiy/clap",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "HISTORY.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  },
+  "scripts": {
+    "test": "mocha test -R spec"
+  }
+}

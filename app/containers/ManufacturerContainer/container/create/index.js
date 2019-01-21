@@ -5,17 +5,17 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import {reduxForm, initialize, FormSection} from 'redux-form';
-import {Checkbox, Divider, Form} from 'semantic-ui-react';
+import { reduxForm, initialize, FormSection } from 'redux-form';
+import { Checkbox, Divider, Form } from 'semantic-ui-react';
 import connect from 'react-redux/es/connect/connect';
-import {compose} from 'redux';
+import { compose } from 'redux';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import PropTypes from 'prop-types';
 import BankAccountFormData from './BankAccountFormData';
 import AddressDetails from './AddressDetails';
 import CoreDetails from './CoreDetails';
-import {createManufacturer} from '../../actions';
+import { createManufacturer } from '../../actions';
 import reducer from '../../reducer';
 import saga from '../../saga';
 
@@ -96,24 +96,25 @@ export class CreateManufacturerForm extends React.Component {
 
 CreateManufacturerForm.propTypes = {
   onSubmitForm: PropTypes.func,
-  isEditMode: PropTypes.bool
+  isEditMode: PropTypes.bool,
 };
 
-
 const mapStateToProps = (state, props) => {
-  let id = props.match && props.match.params;
-  console.log('value is', id, props)
-  let list = state.get('manufacturer').get('manufacturersList', []);
-  let initialValues = list.filter( m => m.id === props.id).reduce((a,i) => i, undefined)
+  const id = props.match && props.match.params;
+  console.log('value is', id, props);
+  const list = state.get('manufacturer').get('manufacturersList', []);
+  const initialValues = list
+    .filter(m => m.id === props.id)
+    .reduce((a, i) => i, undefined);
 
   return {
-    initialValues: props.isEditMode? initialValues : undefined
-  }
-}
+    initialValues: props.isEditMode ? initialValues : undefined,
+  };
+};
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSubmitForm: () => dispatch(createManufacturer())
+    onSubmitForm: () => dispatch(createManufacturer()),
   };
 }
 
@@ -125,11 +126,14 @@ const withConnect = connect(
 const withReducer = injectReducer({ key: 'manufacturer', reducer });
 const withSaga = injectSaga({ key: 'manufacturer', saga });
 
-const withReduxForm = reduxForm({
-  form:'createManufacturerForm',
-  enableReinitialize: true,
-  updateUnregisteredFields:true
-}, mapStateToProps);
+const withReduxForm = reduxForm(
+  {
+    form: 'createManufacturerForm',
+    enableReinitialize: true,
+    updateUnregisteredFields: true,
+  },
+  mapStateToProps,
+);
 
 export default compose(
   withReducer,

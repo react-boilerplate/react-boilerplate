@@ -1,0 +1,25 @@
+{
+  "name": "ordered-read-streams",
+  "version": "0.3.0",
+  "description": "Combines array of streams into one read stream in strict order",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "jshint *.js test/*.js && mocha"
+  },
+  "repository": "armed/ordered-read-streams",
+  "author": "Artem Medeusheyev <artem.medeusheyev@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "is-stream": "^1.0.1",
+    "readable-stream": "^2.0.1"
+  },
+  "devDependencies": {
+    "should": "^7.0.1",
+    "mocha": "^2.2.5",
+    "through2": "^2.0.0",
+    "jshint": "^2.8.0",
+    "pre-commit": "^1.0.10"
+  }
+}

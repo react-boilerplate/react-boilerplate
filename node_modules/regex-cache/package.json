@@ -1,0 +1,64 @@
+{
+  "name": "regex-cache",
+  "description": "Memoize the results of a call to the RegExp constructor, avoiding repetitious runtime compilation of the same string and options, resulting in surprising performance improvements.",
+  "version": "0.4.4",
+  "homepage": "https://github.com/jonschlinkert/regex-cache",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "contributors": [
+    "Jon Schlinkert (http://twitter.com/jonschlinkert)",
+    "Martin Kolárik (https://kolarik.sk)"
+  ],
+  "repository": "jonschlinkert/regex-cache",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/regex-cache/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "benchmarks": "node benchmark"
+  },
+  "dependencies": {
+    "is-equal-shallow": "^0.1.3"
+  },
+  "devDependencies": {
+    "ansi-bold": "^0.1.1",
+    "benchmarked": "^0.1.5",
+    "gulp-format-md": "^0.1.7",
+    "micromatch": "^2.3.7",
+    "should": "^8.3.0"
+  },
+  "keywords": [
+    "cache",
+    "expression",
+    "regex",
+    "regexp",
+    "regular",
+    "regular expression",
+    "store",
+    "to-regex"
+  ],
+  "verb": {
+    "run": true,
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "reflinks": [
+      "verb"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  }
+}

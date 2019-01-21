@@ -1,0 +1,50 @@
+{
+  "name": "postcss-syntax",
+  "version": "0.28.0",
+  "description": "Automatically switch PostCSS syntax by file extensions",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gucong3000/postcss-syntax.git"
+  },
+  "keywords": [
+    "postcss",
+    "syntax",
+    "switch",
+    "extension"
+  ],
+  "author": "gucong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gucong3000/postcss-syntax/issues"
+  },
+  "homepage": "https://github.com/gucong3000/postcss-syntax#readme",
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "all": true,
+    "cache": true,
+    "check-coverage": true
+  },
+  "scripts": {
+    "test": "nyc mocha --require ./test/fixtures/link --no-timeouts"
+  },
+  "peerDependencies": {
+    "postcss": ">=5.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "codecov": "^3.0.2",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
+    "postcss": "^6.0.22",
+    "postcss-html": ">=0.28.0",
+    "postcss-jsx": ">=0.28.0",
+    "postcss-less": "^2.0.0",
+    "postcss-markdown": ">=0.28.0",
+    "postcss-safe-parser": "^3.0.1",
+    "postcss-scss": "^1.0.5",
+    "sugarss": "^1.0.1"
+  }
+}

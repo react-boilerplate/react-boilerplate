@@ -1,0 +1,111 @@
+{
+  "name": "cssnano",
+  "version": "3.10.0",
+  "description": "A modular minifier, built on top of the PostCSS ecosystem.",
+  "main": "dist/index.js",
+  "scripts": {
+    "bundle-size": "webpack --json --config src/__tests__/_webpack.config.js | webpack-bundle-size-analyzer",
+    "docs": "cd docs && npm run build && cd .. && gh-pages -d docs/dist",
+    "pretest": "eslint --ignore-path .gitignore src",
+    "prepublish": "del-cli dist && cross-env BABEL_ENV=publish babel src --out-dir dist --ignore /__tests__/",
+    "report": "nyc report --reporter=html",
+    "test": "nyc ava src/__tests__/*.js",
+    "test-012": "nyc ava src/__tests__/*.js"
+  },
+  "keywords": [
+    "css",
+    "compress",
+    "minify",
+    "optimise",
+    "optimisation",
+    "postcss",
+    "postcss-plugin"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "autoprefixer": "^6.3.1",
+    "decamelize": "^1.1.2",
+    "defined": "^1.0.0",
+    "has": "^1.0.1",
+    "object-assign": "^4.0.1",
+    "postcss": "^5.0.14",
+    "postcss-calc": "^5.2.0",
+    "postcss-colormin": "^2.1.8",
+    "postcss-convert-values": "^2.3.4",
+    "postcss-discard-comments": "^2.0.4",
+    "postcss-discard-duplicates": "^2.0.1",
+    "postcss-discard-empty": "^2.0.1",
+    "postcss-discard-overridden": "^0.1.1",
+    "postcss-discard-unused": "^2.2.1",
+    "postcss-filter-plugins": "^2.0.0",
+    "postcss-merge-idents": "^2.1.5",
+    "postcss-merge-longhand": "^2.0.1",
+    "postcss-merge-rules": "^2.0.3",
+    "postcss-minify-font-values": "^1.0.2",
+    "postcss-minify-gradients": "^1.0.1",
+    "postcss-minify-params": "^1.0.4",
+    "postcss-minify-selectors": "^2.0.4",
+    "postcss-normalize-charset": "^1.1.0",
+    "postcss-normalize-url": "^3.0.7",
+    "postcss-ordered-values": "^2.1.0",
+    "postcss-reduce-idents": "^2.2.2",
+    "postcss-reduce-initial": "^1.0.0",
+    "postcss-reduce-transforms": "^1.0.3",
+    "postcss-svgo": "^2.1.1",
+    "postcss-unique-selectors": "^2.0.2",
+    "postcss-value-parser": "^3.2.3",
+    "postcss-zindex": "^2.0.1"
+  },
+  "devDependencies": {
+    "array-to-sentence": "^1.1.0",
+    "ava": "^0.17.0",
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.1",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-add-module-exports": "^0.2.0",
+    "babel-plugin-precompile-charcodes": "^1.0.0",
+    "babel-preset-es2015-loose": "^7.0.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "coveralls": "^2.11.6",
+    "cross-env": "^2.0.0",
+    "css-frameworks": "git+https://git@github.com/ben-eb/css-frameworks.git",
+    "css-minifier-tests": "git+https://git@github.com/ben-eb/css-minifier-tests.git",
+    "del-cli": "^0.2.0",
+    "eslint": "^3.0.0",
+    "eslint-config-cssnano": "^3.0.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-import": "^2.0.1",
+    "gh-pages": "^0.11.0",
+    "json-loader": "^0.5.4",
+    "ncp": "^2.0.0",
+    "nyc": "^10.0.0",
+    "postcss-font-magician": "^1.5.0",
+    "webpack": "^1.12.13",
+    "webpack-bundle-size-analyzer": "^2.0.2"
+  },
+  "homepage": "https://github.com/ben-eb/cssnano",
+  "author": {
+    "name": "Ben Briggs",
+    "email": "beneb.info@gmail.com",
+    "url": "http://beneb.info"
+  },
+  "repository": "ben-eb/cssnano",
+  "files": [
+    "dist",
+    "LICENSE-MIT",
+    "quickstart.js"
+  ],
+  "nyc": {
+    "exclude": [
+      "node_modules",
+      "**/__tests__"
+    ]
+  },
+  "ava": {
+    "require": "babel-core/register"
+  },
+  "eslintConfig": {
+    "extends": "cssnano"
+  },
+  "tonicExampleFilename": "quickstart.js"
+}

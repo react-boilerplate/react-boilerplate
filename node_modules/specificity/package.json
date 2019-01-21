@@ -1,0 +1,33 @@
+{
+  "name": "specificity",
+  "version": "0.3.2",
+  "description": "Calculate the specificity of a CSS selector",
+  "keywords": [
+    "CSS",
+    "specificity"
+  ],
+  "homepage": "https://github.com/keeganstreet/specificity",
+  "author": {
+    "name": "Keegan Street",
+    "url": "http://keegan.st"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keeganstreet/specificity.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/keeganstreet/specificity/issues"
+  },
+  "main": "specificity",
+  "bin": {
+    "specificity": "./bin/specificity"
+  },
+  "scripts": {
+    "test": "mocha test/test.js"
+  },
+  "devDependencies": {
+    "mocha": "2.5.x"
+  },
+  "types": "specificity.d.ts"
+}

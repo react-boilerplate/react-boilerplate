@@ -1,0 +1,43 @@
+{
+  "name": "postcss-zindex",
+  "version": "2.2.0",
+  "description": "Reduce z-index values with PostCSS.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "jshint index.js lib/*.js --reporter node_modules/jshint-stylish/stylish.js",
+    "test": "tape test.js | tap-spec"
+  },
+  "files": [
+    "LICENSE-MIT",
+    "index.js",
+    "lib"
+  ],
+  "keywords": [
+    "css",
+    "normalize",
+    "optimise",
+    "optimisation",
+    "postcss",
+    "postcss-plugin",
+    "z-index"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "has": "^1.0.1",
+    "postcss": "^5.0.4",
+    "uniqs": "^2.0.0"
+  },
+  "devDependencies": {
+    "jshint": "^2.8.0",
+    "jshint-stylish": "^2.0.1",
+    "tap-spec": "^4.1.0",
+    "tape": "^4.2.0"
+  },
+  "homepage": "https://github.com/ben-eb/postcss-zindex",
+  "author": {
+    "name": "Ben Briggs",
+    "email": "beneb.info@gmail.com",
+    "url": "http://beneb.info"
+  },
+  "repository": "ben-eb/postcss-zindex"
+}

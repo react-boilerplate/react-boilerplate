@@ -1,0 +1,29 @@
+{
+  "name": "whatwg-encoding",
+  "description": "Decode strings according to the WHATWG Encoding Standard",
+  "keywords": [
+    "encoding",
+    "whatwg"
+  ],
+  "version": "1.0.3",
+  "author": "Domenic Denicola <d@domenic.me> (https://domenic.me/)",
+  "license": "MIT",
+  "repository": "jsdom/whatwg-encoding",
+  "main": "lib/whatwg-encoding.js",
+  "files": [
+    "lib/"
+  ],
+  "scripts": {
+    "test": "mocha",
+    "lint": "eslint lib test",
+    "prepare": "node scripts/update.js"
+  },
+  "dependencies": {
+    "iconv-lite": "0.4.19"
+  },
+  "devDependencies": {
+    "eslint": "^3.8.0",
+    "got": "^6.5.0",
+    "mocha": "^3.1.2"
+  }
+}

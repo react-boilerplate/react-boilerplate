@@ -1,0 +1,39 @@
+{
+  "name": "caw",
+  "version": "1.2.0",
+  "description": "Construct HTTP/HTTPS agents for tunneling proxies",
+  "license": "MIT",
+  "repository": "kevva/caw",
+  "author": {
+    "email": "kevinmartensson@gmail.com",
+    "name": "Kevin Mårtensson",
+    "url": "github.com/kevva"
+  },
+  "scripts": {
+    "test": "xo && tap test/test.js -t2"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "http",
+    "https",
+    "proxy",
+    "tunnel"
+  ],
+  "dependencies": {
+    "get-proxy": "^1.0.1",
+    "is-obj": "^1.0.0",
+    "object-assign": "^3.0.0",
+    "tunnel-agent": "^0.4.0"
+  },
+  "devDependencies": {
+    "proxyquire": "^1.6.0",
+    "sinon": "^1.15.4",
+    "tap": "^1.3.1",
+    "xo": "*"
+  }
+}

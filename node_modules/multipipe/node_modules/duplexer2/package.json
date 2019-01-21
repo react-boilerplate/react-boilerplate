@@ -1,0 +1,31 @@
+{
+  "name": "duplexer2",
+  "version": "0.0.2",
+  "description": "Like duplexer (http://npm.im/duplexer) but using streams2",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R tap"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/deoxxa/duplexer2.git"
+  },
+  "keywords": [
+    "duplex",
+    "stream",
+    "join",
+    "combine"
+  ],
+  "author": "Conrad Pankoff <deoxxa@fknsrs.biz> (http://www.fknsrs.biz/)",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/deoxxa/duplexer2/issues"
+  },
+  "devDependencies": {
+    "chai": "~1.7.2",
+    "mocha": "~1.12.1"
+  },
+  "dependencies": {
+    "readable-stream": "~1.1.9"
+  }
+}

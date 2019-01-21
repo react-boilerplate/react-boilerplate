@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "limit": {
+      "type": ["string", "number"]
+    },
+    "mimetype": {
+      "type": "string"
+    },
+    "fallback": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

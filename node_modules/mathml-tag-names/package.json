@@ -1,0 +1,74 @@
+{
+  "name": "mathml-tag-names",
+  "version": "2.1.0",
+  "description": "List of known MathML tag-names",
+  "license": "MIT",
+  "keywords": [
+    "MathML",
+    "math",
+    "tag",
+    "name",
+    "element",
+    "tagname",
+    "w3c"
+  ],
+  "repository": "wooorm/mathml-tag-names",
+  "bugs": "https://github.com/wooorm/mathml-tag-names/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
+  "main": "index.json",
+  "files": [
+    "index.json"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "bail": "^1.0.0",
+    "browserify": "^16.0.0",
+    "concat-stream": "^1.6.0",
+    "esmangle": "^1.0.1",
+    "hast-util-select": "^1.0.1",
+    "hast-util-to-string": "^1.0.0",
+    "prettier": "^1.12.0",
+    "rehype-parse": "^4.0.0",
+    "remark-cli": "^5.0.0",
+    "remark-preset-wooorm": "^4.0.0",
+    "tape": "^4.4.0",
+    "unified": "^6.1.5",
+    "xo": "^0.20.0"
+  },
+  "scripts": {
+    "generate": "node build",
+    "format": "remark . -qfo && prettier --write '**/*.js' && xo --fix",
+    "build-bundle": "browserify index.json --bare -s mathML > mathml-tag-names.js",
+    "build-mangle": "esmangle mathml-tag-names.js > mathml-tag-names.min.js",
+    "build": "npm run build-bundle && npm run build-mangle",
+    "test-api": "node test",
+    "test": "npm run generate && npm run format && npm run build && npm run test-api"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "semi": false,
+    "trailingComma": "none"
+  },
+  "xo": {
+    "prettier": true,
+    "esnext": false,
+    "rules": {
+      "no-var": "off",
+      "prefer-arrow-callback": "off"
+    },
+    "ignore": [
+      "mathml-tag-names.js"
+    ]
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-wooorm"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "es6-templates",
+  "version": "0.2.3",
+  "description": "ES6 template strings compiled to ES5.",
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:esnext/es6-templates.git"
+  },
+  "dependencies": {
+    "recast": "~0.11.12",
+    "through": "~2.3.6"
+  },
+  "devDependencies": {
+    "example-runner": "~0.2.0"
+  },
+  "scripts": {
+    "test": "node test/runner.js"
+  },
+  "author": "Square, Inc.",
+  "license": "Apache 2"
+}

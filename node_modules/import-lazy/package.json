@@ -1,0 +1,38 @@
+{
+	"name": "import-lazy",
+	"version": "3.1.0",
+	"description": "Import a module lazily",
+	"license": "MIT",
+	"repository": "sindresorhus/import-lazy",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=6"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"import",
+		"require",
+		"load",
+		"module",
+		"modules",
+		"lazy",
+		"lazily",
+		"defer",
+		"deferred",
+		"proxy",
+		"proxies"
+	],
+	"devDependencies": {
+		"ava": "*",
+		"xo": "*"
+	}
+}

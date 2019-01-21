@@ -1,0 +1,39 @@
+{
+  "name": "sanitize.css",
+  "version": "4.1.0",
+  "description": "The best-practices alternative to CSS resets.",
+  "main": "index.js",
+  "style": "sanitize.css",
+  "devDependencies": {
+    "postcss": "^5.0.21",
+    "postcss-reporter": "^1.3.3",
+    "stylelint": "^6.5.1",
+    "stylelint-config-10up": "github:jonathantneal/stylelint-config-10up"
+  },
+  "scripts": {
+    "test": "stylelint sanitize.css"
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "repository": "jonathantneal/sanitize.css",
+  "keywords": [
+    "css",
+    "cssnext",
+    "less",
+    "normalize",
+    "postcss",
+    "reset",
+    "sass",
+    "scss",
+    "stylelint",
+    "stylus"
+  ],
+  "author": "Jonathan Neal <jonathantneal@hotmail.com> (http://jonathantneal.com)",
+  "license": "CC0-1.0",
+  "bugs": "https://github.com/jonathantneal/sanitize.css/issues",
+  "homepage": "https://github.com/jonathantneal/sanitize.css#readme",
+  "stylelint": {
+    "extends": "stylelint-config-10up"
+  }
+}

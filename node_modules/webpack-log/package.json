@@ -1,0 +1,48 @@
+{
+  "name": "webpack-log",
+  "version": "1.2.0",
+  "description": "A common logging module for the Webpack ecosystem",
+  "license": "MIT",
+  "repository": "webpack-contrib/webpack-log",
+  "author": "Andrew Powell <andrew@shellscape.org>",
+  "homepage": "http://github.com/webpack-contrib/webpack-log",
+  "maintainers": [
+    {
+      "name": "Andrew Powell",
+      "email": "andrew@shellscape.org",
+      "url": "shellscape.org"
+    }
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=6"
+  },
+  "scripts": {
+    "beautify": "npm run lint -- --fix",
+    "ci": "npm run cover -- --report lcovonly && npm run test",
+    "cover": "istanbul cover node_modules/mocha/bin/_mocha",
+    "lint": "eslint index.js test",
+    "mocha": "mocha --full-trace --check-leaks",
+    "test": "npm run lint && npm run mocha"
+  },
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "chalk": "^2.1.0",
+    "log-symbols": "^2.1.0",
+    "loglevelnext": "^1.0.1",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "codecov.io": "^0.1.6",
+    "eslint": "^4.5.0",
+    "eslint-config-webpack": "^1.2.5",
+    "eslint-plugin-import": "^2.7.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^4.0.0",
+    "sinon": "^4.0.1",
+    "strip-ansi": "^4.0.0"
+  }
+}

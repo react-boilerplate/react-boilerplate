@@ -1,0 +1,39 @@
+{
+  "name": "strip-dirs",
+  "version": "2.1.0",
+  "description": "Remove leading directory components from a path, like tar's --strip-components option",
+  "repository": "shinnn/node-strip-dirs",
+  "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "pretest": "eslint --fix --format=codeframe index.js test.js",
+    "test": "node --throw-deprecation --track-heap-objects test.js | tap-spec",
+    "coverage": "istanbul cover test.js"
+  },
+  "license": "MIT",
+  "keywords": [
+    "filepath",
+    "file-path",
+    "path",
+    "dir",
+    "directory",
+    "strip",
+    "strip-components"
+  ],
+  "dependencies": {
+    "is-natural-number": "^4.0.1"
+  },
+  "devDependencies": {
+    "@shinnn/eslint-config-node": "^3.0.0",
+    "eslint": "^3.10.0",
+    "istanbul": "^0.4.5",
+    "istanbul-coveralls": "^1.0.3",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.2"
+  },
+  "eslintConfig": {
+    "extends": "@shinnn/node"
+  }
+}

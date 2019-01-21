@@ -2,48 +2,48 @@
  * Gets the repositories of the user from Github
  */
 
-import {call, put, select, takeLatest} from 'redux-saga/effects';
-import {makeSelectManufacturerFormData} from './selectors';
-import {CREATE_MANUFACTURER, VIEW_ALL_MANUFACTURER} from './constants';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { makeSelectManufacturerFormData } from './selectors';
+import { CREATE_MANUFACTURER, VIEW_ALL_MANUFACTURER } from './constants';
 import ManufacturerAPI from './apis/manufacturer';
 import {
   createManufacturerProcessing,
   createManufacturerSuccess,
   getAllManufacturersProcessing,
-  getAllManufacturersSuccess
-} from "./actions";
+  getAllManufacturersSuccess,
+} from './actions';
 
 export function* createManufacturer() {
   const mfCreationPayload = yield select(makeSelectManufacturerFormData());
 
   try {
     // Call our request helper (see 'utils/request')
-    yield put(createManufacturerProcessing(true))
+    yield put(createManufacturerProcessing(true));
     yield call(ManufacturerAPI.create, mfCreationPayload);
     console.log('call successful with data: ', mfCreationPayload);
-    yield put(createManufacturerSuccess(true))
-    yield put(createManufacturerProcessing(false))
+    yield put(createManufacturerSuccess(true));
+    yield put(createManufacturerProcessing(false));
   } catch (err) {
     console.error('call failed with data: ', mfCreationPayload);
     console.error(err);
-    yield put(createManufacturerSuccess(false))
-    yield put(createManufacturerProcessing(false))
+    yield put(createManufacturerSuccess(false));
+    yield put(createManufacturerProcessing(false));
   }
 }
 
 export function* viewAllManufacturers() {
   try {
     // Call our request helper (see 'utils/request')
-    yield put(getAllManufacturersProcessing(true))
+    yield put(getAllManufacturersProcessing(true));
     const manufacturersList = yield call(ManufacturerAPI.getAllManufacturers);
     console.log('call successful with data: ', manufacturersList);
-    yield put(getAllManufacturersSuccess(manufacturersList.data))
-    yield put(getAllManufacturersProcessing(false))
+    yield put(getAllManufacturersSuccess(manufacturersList.data));
+    yield put(getAllManufacturersProcessing(false));
   } catch (err) {
     console.error('failed to fetch data.');
     console.error(err);
-    yield put(getAllManufacturersProcessing(false))
-    yield put(getAllManufacturersSuccess([]))
+    yield put(getAllManufacturersProcessing(false));
+    yield put(getAllManufacturersSuccess([]));
   }
 }
 

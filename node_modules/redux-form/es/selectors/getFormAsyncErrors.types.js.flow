@@ -1,0 +1,2 @@
+// @flow
+export type GetFormAsyncErrorsInterface = (state: any) => any

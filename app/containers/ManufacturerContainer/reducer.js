@@ -9,13 +9,13 @@
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
  */
-import {fromJS} from 'immutable';
+import { fromJS } from 'immutable';
 
 import {
   CREATE_MANUFACTURER_PROCESSING,
   CREATE_MANUFACTURER_STATUS,
   VIEW_ALL_MANUFACTURER_PROCESSING,
-  VIEW_ALL_MANUFACTURER_STATUS
+  VIEW_ALL_MANUFACTURER_STATUS,
 } from './constants';
 
 // The initial state of the App

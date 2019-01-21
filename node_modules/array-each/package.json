@@ -1,0 +1,50 @@
+{
+  "name": "array-each",
+  "description": "Loop over each item in an array and call the given function on every element.",
+  "version": "1.0.1",
+  "homepage": "https://github.com/jonschlinkert/array-each",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/array-each",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/array-each/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "gulp-format-md": "^0.1.11",
+    "mocha": "^3.2.0"
+  },
+  "keywords": [
+    "array",
+    "each"
+  ],
+  "verb": {
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "related": {
+      "list": [
+        "collection-map",
+        "arr-filter",
+        "arr-map"
+      ]
+    },
+    "lint": {
+      "reflinks": true
+    }
+  }
+}

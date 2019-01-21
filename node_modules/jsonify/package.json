@@ -1,0 +1,30 @@
+{
+    "name" : "jsonify",
+    "version" : "0.0.0",
+    "description" : "JSON without touching any globals",
+    "main" : "index.js",
+    "directories" : {
+        "lib" : ".",
+        "test" : "test"
+    },
+    "devDependencies" : {
+        "tap" : "0.0.x",
+        "garbage" : "0.0.x"
+    },
+    "scripts" : {
+        "test" : "tap test"
+    },
+    "repository" : {
+        "type" : "git",
+        "url" : "http://github.com/substack/jsonify.git"
+    },
+    "keywords" : [
+        "json",
+        "browser"
+    ],
+    "author" : {
+        "name" : "Douglas Crockford",
+        "url" : "http://crockford.com/"
+    },
+    "license" : "Public Domain"
+}

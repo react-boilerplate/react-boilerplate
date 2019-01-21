@@ -1,0 +1,39 @@
+{
+  "name": "is-natural-number",
+  "version": "4.0.1",
+  "description": "Check if a value is a natural number",
+  "repository": "shinnn/is-natural-number.js",
+  "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
+  "scripts": {
+    "pretest": "eslint --config @shinnn --ignore-path .gitignore .",
+    "test": "node --strong_mode --throw-deprecation --track-heap-objects test.js | tap-dot",
+    "coverage": "node --strong_mode node_modules/.bin/istanbul cover test.js"
+  },
+  "license": "MIT",
+  "jsnext:main": "index.jsnext.js",
+  "files": [
+    "index.js",
+    "index.jsnext.js"
+  ],
+  "keywords": [
+    "number",
+    "natural",
+    "check",
+    "int",
+    "integer",
+    "math",
+    "mathematics",
+    "range",
+    "browser",
+    "client-side"
+  ],
+  "devDependencies": {
+    "@shinnn/eslint-config": "^2.1.0",
+    "eslint": "^2.9.0",
+    "istanbul": "^0.4.3",
+    "require-from-string": "^1.2.0",
+    "rollup": "^0.26.3",
+    "tap-dot": "^1.0.5",
+    "tape": "^4.5.1"
+  }
+}

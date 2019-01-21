@@ -1,0 +1,32 @@
+{
+  "name": "sort-keys-length",
+  "version": "1.0.1",
+  "description": "Sort objecy keys by length",
+  "license": "MIT",
+  "repository": "kevva/sort-keys-length",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "https://github.com/kevva"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "length",
+    "object",
+    "sort"
+  ],
+  "dependencies": {
+    "sort-keys": "^1.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.0.4"
+  }
+}

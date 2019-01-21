@@ -1,0 +1,37 @@
+{
+    "name": "leb",
+    "version": "0.3.0",
+    "keywords":
+        ["leb", "leb128", "uleb128", "int", "uint",
+        "encoding", "decoding", "encode", "decode"],
+    "description":
+        "LEB128 utilities for Node",
+    "homepage": "https://github.com/Obvious/leb",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Obvious/leb.git"
+    },
+    "licenses": [ {
+        "type": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    } ],
+    "author": {
+        "name": "Dan Bornstein",
+        "email": "danfuzz@milk.com",
+        "url": "http://www.milk.com/"
+    },
+    "maintainers": [ {
+        "name": "Dan Bornstein",
+        "email": "danfuzz@obvious.com",
+        "web": "http://www.milk.com/"
+    } ],
+
+    "main": "lib/leb.js",
+    "engine": {
+        "node": ">=0.6.0"
+    },
+
+    "scripts": {
+        "test": "node test/test.js"
+    }
+}

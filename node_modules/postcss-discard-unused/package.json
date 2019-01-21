@@ -1,0 +1,61 @@
+{
+  "name": "postcss-discard-unused",
+  "version": "2.2.3",
+  "description": "Discard unused counter styles, keyframes and fonts.",
+  "main": "dist/index.js",
+  "files": [
+    "bin",
+    "LICENSE-MIT",
+    "dist"
+  ],
+  "scripts": {
+    "contributorAdd": "all-contributors add",
+    "contributorGenerate": "all-contributors generate",
+    "prepublish": "del-cli dist && BABEL_ENV=publish babel src --out-dir dist --ignore /__tests__/",
+    "pretest": "eslint src",
+    "test": "ava src/__tests__",
+    "test-012": "ava src/__tests__"
+  },
+  "keywords": [
+    "css",
+    "minify",
+    "optimise",
+    "postcss",
+    "postcss-plugin",
+    "unused"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "all-contributors-cli": "^3.0.5",
+    "ava": "^0.16.0",
+    "babel-cli": "^6.4.5",
+    "babel-core": "^6.4.5",
+    "babel-plugin-add-module-exports": "^0.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-es2015-loose": "^7.0.0",
+    "babel-preset-stage-0": "^6.3.13",
+    "babel-register": "^6.9.0",
+    "del-cli": "^0.2.0",
+    "eslint": "^3.0.0",
+    "eslint-config-cssnano": "^3.0.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-import": "^2.0.1"
+  },
+  "homepage": "https://github.com/ben-eb/postcss-discard-unused",
+  "author": {
+    "name": "Ben Briggs",
+    "email": "beneb.info@gmail.com",
+    "url": "http://beneb.info"
+  },
+  "repository": "ben-eb/postcss-discard-unused",
+  "dependencies": {
+    "postcss": "^5.0.14",
+    "uniqs": "^2.0.0"
+  },
+  "ava": {
+    "require": "babel-register"
+  },
+  "eslintConfig": {
+    "extends": "cssnano"
+  }
+}

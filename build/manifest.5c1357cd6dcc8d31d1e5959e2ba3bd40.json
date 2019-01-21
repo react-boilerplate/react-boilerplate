@@ -1,0 +1,67 @@
+{
+  "icons": [
+    {
+      "src": "/icon_512x512.dc20f8a86234c4a7a0b08d5cffff9d4d.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_384x384.f2d8221e40ea55159668a02741826386.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_192x192.9aeb7f7081bf5316fa2c57b439bffdbe.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_180x180.33285f999db78beed5640085c051e7b1.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_167x167.9085aba6ea24073fba72a94b7ac731a1.png",
+      "sizes": "167x167",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_152x152.80d43cecdc663299328632b85127117b.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_144x144.f2f644149d1ca21bccb120d44e79c824.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_128x128.e76c240129e3d6ee2eb7df8f1e9c7b0f.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_120x120.2f7752bee9dcd06e998fd44640e47485.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_96x96.e26d703c83c9b5844bb4f58c397f4bf2.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_72x72.0880a778e8031d3cb721b64c1c1059a7.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    }
+  ],
+  "name": "React Boilerplate",
+  "short_name": "React BP",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "My React Boilerplate-based project!",
+  "background_color": "#fafafa",
+  "theme_color": "#b1624d"
+}

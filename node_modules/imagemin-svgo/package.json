@@ -1,0 +1,51 @@
+{
+	"name": "imagemin-svgo",
+	"version": "6.0.0",
+	"description": "SVGO imagemin plugin",
+	"license": "MIT",
+	"repository": "imagemin/imagemin-svgo",
+	"author": {
+		"name": "Kevin Mårtensson",
+		"email": "kevinmartensson@gmail.com",
+		"url": "github.com/kevva"
+	},
+	"maintainers": [
+		{
+			"name": "Sindre Sorhus",
+			"email": "sindresorhus@gmail.com",
+			"url": "sindresorhus.com"
+		},
+		{
+			"name": "Shinnosuke Watanabe",
+			"url": "github.com/shinnn"
+		}
+	],
+	"engines": {
+		"node": ">=4"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"compress",
+		"image",
+		"imageminplugin",
+		"img",
+		"minify",
+		"optimize",
+		"svg",
+		"svgo"
+	],
+	"dependencies": {
+		"buffer-from": "^0.1.1",
+		"is-svg": "^2.0.0",
+		"svgo": "^1.0.0"
+	},
+	"devDependencies": {
+		"ava": "*",
+		"xo": "*"
+	}
+}

@@ -1,0 +1,13 @@
+{
+  "name": "postcss-scss",
+  "version": "1.0.5",
+  "description": "SCSS parser for PostCSS",
+  "keywords": ["css", "postcss", "postcss-syntax", "parser", "scss", "sass"],
+  "author": "Andrey Sitnik <andrey@sitnik.ru>",
+  "license": "MIT",
+  "repository": "postcss/postcss-scss",
+  "dependencies": {
+    "postcss": "^6.0.21"
+  },
+  "main": "lib/scss-syntax"
+}

@@ -1,0 +1,2 @@
+// @flow
+export type IsSubmittingInterface = (state: any) => boolean

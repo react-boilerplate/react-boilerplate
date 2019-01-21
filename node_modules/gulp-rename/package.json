@@ -1,0 +1,41 @@
+{
+  "name": "gulp-rename",
+  "version": "1.3.0",
+  "description": "Rename files",
+  "keywords": [
+    "gulpplugin"
+  ],
+  "homepage": "https://github.com/hparra/gulp-rename",
+  "bugs": "https://github.com/hparra/gulp-rename/issues",
+  "author": {
+    "name": "Hector Guillermo Parra Alvarez",
+    "email": "hector@hectorparra.com",
+    "url": "https://github.com/hparra"
+  },
+  "main": "./index.js",
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hparra/gulp-rename.git"
+  },
+  "scripts": {
+    "pretest": "jscs index.js test/ && jshint index.js test/",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "jscs": "^3.0.0",
+    "jshint": "^2.0.0",
+    "map-stream": "^0.0.7",
+    "mocha": "^5.0.0",
+    "should": "^13.0.0",
+    "vinyl": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "license": "MIT"
+}

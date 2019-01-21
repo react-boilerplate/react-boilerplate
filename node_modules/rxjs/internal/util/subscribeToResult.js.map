@@ -1,0 +1,1 @@
+{"version":3,"file":"subscribeToResult.js","sources":["../../src/internal/util/subscribeToResult.ts"],"names":[],"mappings":";;AAGA,sDAAqD;AAErD,6CAA4C;AAM5C,2BAAqC,eAA0C,EAC1C,MAA0B,EAC1B,UAAc,EACd,UAAmB;IACtD,IAAM,WAAW,GAAG,IAAI,iCAAe,CAAC,eAAe,EAAE,UAAU,EAAE,UAAU,CAAC,CAAC;IAEjF,OAAO,yBAAW,CAAC,MAAM,CAAC,CAAC,WAAW,CAAC,CAAC;AAC1C,CAAC;AAPD,8CAOC"}

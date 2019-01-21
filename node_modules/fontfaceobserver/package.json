@@ -1,0 +1,57 @@
+{
+  "name": "fontfaceobserver",
+  "version": "2.0.13",
+  "description": "Detect if web fonts are available",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bramstein/fontfaceobserver.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bramstein/fontfaceobserver/issues"
+  },
+  "homepage": "https://fontfaceobserver.com/",
+  "main": "fontfaceobserver.standalone.js",
+  "keywords": [
+    "fontloader",
+    "fonts",
+    "font",
+    "font-face",
+    "web font",
+    "font load",
+    "font events"
+  ],
+  "files": [
+    "fontfaceobserver.js",
+    "fontfaceobserver.standalone.js",
+    "src/*.js",
+    "externs.js"
+  ],
+  "author": "Bram Stein <b.l.stein@gmail.com> (http://www.bramstein.com/)",
+  "license": "BSD-3-Clause",
+  "dependencies": {},
+  "devDependencies": {
+    "closure-dom": "=0.2.6",
+    "extend": "^3.0.0",
+    "google-closure-compiler": "=20161024.0.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-exec": "~1.0.0",
+    "mocha": "^2.5.3",
+    "mocha-phantomjs-core": "^2.0.0",
+    "phantomjs-prebuilt": "^2.1.7",
+    "promis": "=1.1.4",
+    "sinon": "^1.17.4",
+    "unexpected": "^10.14.2"
+  },
+  "scripts": {
+    "preversion": "npm test",
+    "version": "grunt dist && git add fontfaceobserver.js && git add fontfaceobserver.standalone.js",
+    "postversion": "git push && git push --tags && rm -rf build && npm publish",
+    "test": "grunt test"
+  }
+}

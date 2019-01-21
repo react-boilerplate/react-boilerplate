@@ -1,0 +1,56 @@
+{
+  "name": "postcss-filter-plugins",
+  "version": "2.0.3",
+  "description": "Exclude/warn on duplicated PostCSS plugins.",
+  "main": "dist/index.js",
+  "scripts": {
+    "contributorAdd": "all-contributors add",
+    "contributorGenerate": "all-contributors generate",
+    "pretest": "eslint src",
+    "prepublish": "del-cli dist && BABEL_ENV=publish babel src --out-dir dist --ignore /__tests__/",
+    "test": "ava src/__tests__/",
+    "test-012": "ava src/__tests__/"
+  },
+  "files": [
+    "LICENSE-MIT",
+    "dist"
+  ],
+  "keywords": [
+    "css",
+    "postcss",
+    "postcss-plugin"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "all-contributors-cli": "^3.0.5",
+    "ava": "^0.16.0",
+    "babel-cli": "^6.4.5",
+    "babel-core": "^6.4.5",
+    "babel-plugin-add-module-exports": "^0.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-es2015-loose": "^7.0.0",
+    "babel-preset-stage-0": "^6.3.13",
+    "babel-register": "^6.9.0",
+    "del-cli": "^0.2.0",
+    "eslint": "^3.0.0",
+    "eslint-config-cssnano": "^3.0.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-import": "^1.10.2"
+  },
+  "homepage": "https://github.com/postcss/postcss-filter-plugins",
+  "author": {
+    "name": "Ben Briggs",
+    "email": "beneb.info@gmail.com",
+    "url": "http://beneb.info"
+  },
+  "repository": "postcss/postcss-filter-plugins",
+  "dependencies": {
+    "postcss": "^5.0.4"
+  },
+  "ava": {
+    "require": "babel-register"
+  },
+  "eslintConfig": {
+    "extends": "cssnano"
+  }
+}

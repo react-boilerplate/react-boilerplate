@@ -1,0 +1,28 @@
+{
+  "name": "@webassemblyjs/helper-wasm-section",
+  "version": "1.5.12",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xtuc/webassemblyjs.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Sven Sauleau",
+  "license": "MIT",
+  "dependencies": {
+    "@webassemblyjs/ast": "1.5.12",
+    "@webassemblyjs/helper-buffer": "1.5.12",
+    "@webassemblyjs/helper-wasm-bytecode": "1.5.12",
+    "@webassemblyjs/wasm-gen": "1.5.12",
+    "debug": "^3.1.0"
+  },
+  "devDependencies": {
+    "@webassemblyjs/wasm-parser": "1.5.12"
+  }
+}

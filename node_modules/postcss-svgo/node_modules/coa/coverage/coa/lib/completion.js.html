@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for coa/lib/completion.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">coa/lib</a> completion.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">11.27% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>8/71</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/32</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">12.5% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>8/64</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+const constants = require('constants');
+const fs = require('fs');
+const path = require('path');
+&nbsp;
+const Q = require('q');
+&nbsp;
+const shell = require('./shell');
+const escape = shell.escape;
+const unescape = shell.unescape;
+&nbsp;
+/**
+ * Most of the code adopted from the npm package shell completion code.
+ * See https://github.com/isaacs/npm/blob/master/lib/completion.js
+ *
+ * @returns {COA.CoaObject}
+ */
+module.exports = function <span class="fstat-no" title="function not covered" >completion(</span>) {
+<span class="cstat-no" title="statement not covered" >    return this</span>
+        .title('Shell completion')
+        .helpful()
+        .arg()
+            .name('raw')
+            .title('Completion words')
+            .arr()
+            .end()
+        .act(<span class="fstat-no" title="function not covered" >(o</span>pts, args) =&gt; {
+<span class="cstat-no" title="statement not covered" >            if(process.platform === 'win32') {</span>
+                const e = <span class="cstat-no" title="statement not covered" >new Error('shell completion not supported on windows');</span>
+<span class="cstat-no" title="statement not covered" >                e.code = 'ENOTSUP';</span>
+<span class="cstat-no" title="statement not covered" >                e.errno = constants.ENOTSUP;</span>
+<span class="cstat-no" title="statement not covered" >                return this.reject(e);</span>
+            }
+&nbsp;
+            // if the COMP_* isn't in the env, then just dump the script
+<span class="cstat-no" title="statement not covered" >            if((process.env.COMP_CWORD == null)</span>
+                || (process.env.COMP_LINE == null)
+                || (process.env.COMP_POINT == null)) {
+<span class="cstat-no" title="statement not covered" >                return dumpScript(this._cmd._name);</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            console.error('COMP_LINE:  %s', process.env.COMP_LINE);</span>
+<span class="cstat-no" title="statement not covered" >            console.error('COMP_CWORD: %s', process.env.COMP_CWORD);</span>
+<span class="cstat-no" title="statement not covered" >            console.error('COMP_POINT: %s', process.env.COMP_POINT);</span>
+<span class="cstat-no" title="statement not covered" >            console.error('args: %j', args.raw);</span>
+&nbsp;
+            // completion opts
+<span class="cstat-no" title="statement not covered" >            opts = getOpts(args.raw);</span>
+&nbsp;
+            // cmd
+            const parsed = <span class="cstat-no" title="statement not covered" >this._cmd._parseCmd(opts.partialWords);</span>
+<span class="cstat-no" title="statement not covered" >            return Q.when(complete(parsed.cmd, parsed.opts), <span class="fstat-no" title="function not covered" >(c</span>ompls) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                console.error('filtered: %j', compls);</span>
+<span class="cstat-no" title="statement not covered" >                return console.log(compls.map(escape).join('\n'));</span>
+            });
+        });
+};
+&nbsp;
+function <span class="fstat-no" title="function not covered" >dumpScript(</span>name) {
+    const defer = <span class="cstat-no" title="statement not covered" >Q.defer();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    fs.readFile(path.resolve(__dirname, 'completion.sh'), 'utf8', <span class="fstat-no" title="function not covered" >fu</span>nction(err, d) {</span>
+<span class="cstat-no" title="statement not covered" >        if(err) <span class="cstat-no" title="statement not covered" >return defer.reject(err);</span></span>
+<span class="cstat-no" title="statement not covered" >        d = d.replace(/{{cmd}}/g, path.basename(name)).replace(/^\#\!.*?\n/, '');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        process.stdout.on('error', onError);</span>
+<span class="cstat-no" title="statement not covered" >        process.stdout.write(d, <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >defer.resolve())</span>;</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return defer.promise;</span>
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >onError(</span>err) {
+        // Darwin is a real dick sometimes.
+        //
+        // This is necessary because the "source" or "." program in
+        // bash on OS X closes its file argument before reading
+        // from it, meaning that you get exactly 1 write, which will
+        // work most of the time, and will always raise an EPIPE.
+        //
+        // Really, one should not be tossing away EPIPE errors, or any
+        // errors, so casually. But, without this, `. &lt;(cmd completion)`
+        // can never ever work on OS X.
+<span class="cstat-no" title="statement not covered" >        if(err.errno !== constants.EPIPE) <span class="cstat-no" title="statement not covered" >return defer.reject(err);</span></span>
+<span class="cstat-no" title="statement not covered" >        process.stdout.removeListener('error', onError);</span>
+<span class="cstat-no" title="statement not covered" >        return defer.resolve();</span>
+    }
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >getOpts(</span>argv) {
+    // get the partial line and partial word, if the point isn't at the end
+    // ie, tabbing at: cmd foo b|ar
+    const line = <span class="cstat-no" title="statement not covered" >process.env.COMP_LINE;</span>
+    const w = <span class="cstat-no" title="statement not covered" >+process.env.COMP_CWORD;</span>
+    const point = <span class="cstat-no" title="statement not covered" >+process.env.COMP_POINT;</span>
+    const words = <span class="cstat-no" title="statement not covered" >argv.map(unescape);</span>
+    const word = <span class="cstat-no" title="statement not covered" >words[w];</span>
+    const partialLine = <span class="cstat-no" title="statement not covered" >line.substr(0, point);</span>
+    const partialWords = <span class="cstat-no" title="statement not covered" >words.slice(0, w);</span>
+&nbsp;
+    // figure out where in that last word the point is
+    let partialWord = <span class="cstat-no" title="statement not covered" >argv[w] || '';</span>
+    let i = <span class="cstat-no" title="statement not covered" >partialWord.length;</span>
+<span class="cstat-no" title="statement not covered" >    while(partialWord.substr(0, i) !== partialLine.substr(-1 * i) &amp;&amp; i &gt; 0) <span class="cstat-no" title="statement not covered" >i--;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    partialWord = unescape(partialWord.substr(0, i));</span>
+<span class="cstat-no" title="statement not covered" >    partialWord &amp;&amp; partialWords.push(partialWord);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return {</span>
+        line,
+        w,
+        point,
+        words,
+        word,
+        partialLine,
+        partialWords,
+        partialWord
+    };
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >complete(</span>cmd, opts) {
+    let optWord, optPrefix,
+        compls = <span class="cstat-no" title="statement not covered" >[];</span>
+&nbsp;
+    // Complete on cmds
+<span class="cstat-no" title="statement not covered" >    if(opts.partialWord.indexOf('-'))</span>
+<span class="cstat-no" title="statement not covered" >        compls = Object.keys(cmd._cmdsByName);</span>
+        // Complete on required opts without '-' in last partial word
+        // (if required not already specified)
+        //
+        // Commented out because of uselessness:
+        // -b, --block suggest results in '-' on cmd line;
+        // next completion suggest all options, because of '-'
+        //.concat Object.keys(cmd._optsByKey).filter (v) -&gt; cmd._optsByKey[v]._req
+    else {
+        // complete on opt values: --opt=| case
+        const m = <span class="cstat-no" title="statement not covered" >opts.partialWord.match(/^(--\w[\w-_]*)=(.*)$/);</span>
+<span class="cstat-no" title="statement not covered" >        if(m) {</span>
+<span class="cstat-no" title="statement not covered" >            optWord = m[1];</span>
+<span class="cstat-no" title="statement not covered" >            optPrefix = optWord + '=';</span>
+        } else
+            // complete on opts
+            // don't complete on opts in case of --opt=val completion
+            // TODO: don't complete on opts in case of unknown arg after commands
+            // TODO: complete only on opts with arr() or not already used
+            // TODO: complete only on full opts?
+<span class="cstat-no" title="statement not covered" >            compls = Object.keys(cmd._optsByKey);</span>
+    }
+&nbsp;
+    // complete on opt values: next arg case
+<span class="cstat-no" title="statement not covered" >    opts.partialWords[opts.w - 1].indexOf('-') || (optWord = opts.partialWords[opts.w - 1]);</span>
+&nbsp;
+    // complete on opt values: completion
+    let opt;
+<span class="cstat-no" title="statement not covered" >    optWord</span>
+        &amp;&amp; (opt = cmd._optsByKey[optWord])
+        &amp;&amp; !opt._flag
+        &amp;&amp; opt._comp
+        &amp;&amp; (compls = Q.join(compls,
+            Q.when(opt._comp(opts),
+<span class="fstat-no" title="function not covered" >                (c</span>, o) =&gt; <span class="cstat-no" title="statement not covered" >c.concat(o.map(<span class="fstat-no" title="function not covered" >v </span>=&gt; <span class="cstat-no" title="statement not covered" >(optPrefix || '') + v)</span>))</span>));
+&nbsp;
+    // TODO: complete on args values (context aware, custom completion?)
+&nbsp;
+    // custom completion on cmds
+<span class="cstat-no" title="statement not covered" >    cmd._comp &amp;&amp; (compls = Q.join(compls, Q.when(cmd._comp(opts)), <span class="fstat-no" title="function not covered" >(c</span>, o) =&gt; <span class="cstat-no" title="statement not covered" >c.concat(o))</span>);</span>
+&nbsp;
+    // TODO: context aware custom completion on cmds, opts and args
+    // (can depend on already entered values, especially options)
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return Q.when(compls, <span class="fstat-no" title="function not covered" >co</span>mplitions =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        console.error('partialWord: %s', opts.partialWord);</span>
+<span class="cstat-no" title="statement not covered" >        console.error('compls: %j', complitions);</span>
+<span class="cstat-no" title="statement not covered" >        return compls.filter(<span class="fstat-no" title="function not covered" >(c</span>) =&gt; <span class="cstat-no" title="statement not covered" >c.indexOf(opts.partialWord) === 0)</span>;</span>
+    });
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Feb 17 2017 22:25:28 GMT+0300 (MSK)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

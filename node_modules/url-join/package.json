@@ -1,0 +1,23 @@
+{
+  "name": "url-join",
+  "version": "4.0.0",
+  "description": "Join urls and normalize as in path.join.",
+  "main": "lib/url-join.js",
+  "scripts": {
+    "test": "mocha --require should"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jfromaniello/url-join.git"
+  },
+  "keywords": [
+    "url",
+    "join"
+  ],
+  "author": "José F. Romaniello <jfromaniello@gmail.com> (http://joseoncode.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "should": "~1.2.1"
+  }
+}

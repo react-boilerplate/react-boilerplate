@@ -1,0 +1,14 @@
+sudo: false
+language: node_js
+node_js:
+    - 4.2
+    - 5
+    - 6
+before_install: if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
+script: npm run lint && npm test
+notifications:
+    email:
+        recipients:
+            - edf@ericf.me
+        on_success: change
+        on_failure: always

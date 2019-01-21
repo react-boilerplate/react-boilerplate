@@ -1,0 +1,54 @@
+{
+  "name": "is-equal-shallow",
+  "description": "Does a shallow comparison of two objects, returning false if the keys or values differ.",
+  "version": "0.1.3",
+  "homepage": "https://github.com/jonschlinkert/is-equal-shallow",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jonschlinkert/is-equal-shallow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/is-equal-shallow/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "is-primitive": "^2.0.0"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "keywords": [
+    "compare",
+    "comparison",
+    "equal",
+    "equals",
+    "is",
+    "is-equal",
+    "key",
+    "object",
+    "same",
+    "shallow",
+    "value"
+  ],
+  "verbiage": {
+    "related": {
+      "description": "Other object utils:",
+      "list": ["is-plain-object", "isobject", "for-in", "for-own", "clone-deep"]
+    }
+  }
+}

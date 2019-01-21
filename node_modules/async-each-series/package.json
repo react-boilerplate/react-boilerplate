@@ -1,0 +1,45 @@
+{
+  "name": "async-each-series",
+  "version": "1.1.0",
+  "description": "Apply an async function to each Array element in series.",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "url": "git@github.com:jb55/async-each-series.git"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "keywords": [
+    "async",
+    "asyncEachSeries",
+    "eachSeries",
+    "each",
+    "asyncEach"
+  ],
+  "testling": {
+    "harness": "mocha-bdd",
+    "files": "test.js",
+    "browsers": [
+      "ie/8..latest",
+      "chrome/28..latest",
+      "firefox/latest",
+      "safari/latest",
+      "opera/latest",
+      "iphone/6",
+      "ipad/6",
+      "android-browser/latest"
+    ]
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "author": "jb55",
+  "license": "MIT",
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^2.0.1"
+  }
+}

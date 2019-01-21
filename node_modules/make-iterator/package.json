@@ -1,0 +1,68 @@
+{
+  "name": "make-iterator",
+  "description": "Convert an argument into a valid iterator. Based on the `.makeIterator()` implementation in mout https://github.com/mout/mout.",
+  "version": "1.0.1",
+  "homepage": "https://github.com/jonschlinkert/make-iterator",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/make-iterator",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/make-iterator/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "kind-of": "^6.0.2"
+  },
+  "devDependencies": {
+    "gulp-format-md": "^1.0.0",
+    "mocha": "^3.5.3"
+  },
+  "keywords": [
+    "arr",
+    "array",
+    "contains",
+    "for-own",
+    "forown",
+    "forOwn",
+    "function",
+    "iterate",
+    "iterator",
+    "make"
+  ],
+  "verb": {
+    "related": {
+      "list": [
+        "any",
+        "arr-filter",
+        "arr-map",
+        "array-every",
+        "collection-map",
+        "utils"
+      ]
+    },
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "lint": {
+      "reflinks": true
+    },
+    "reflinks": [
+      "verb",
+      "verb-readme-generator"
+    ]
+  }
+}

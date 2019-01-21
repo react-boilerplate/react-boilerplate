@@ -29,65 +29,37 @@ inputField.propTypes = {
 const AddressDetails = () => (
   <div>
     <Form.Group widths="equal">
+      <Field name="addressName" label="Address Name" component={inputField} />
       <Field
-        name={`addressName`}
-        label="Address Name"
-        component={inputField}
-      />
-      <Field
-        name={`addressLine1`}
+        name="addressLine1"
         label="Address Line 1"
         component={inputField}
       />
     </Form.Group>
     <Form.Group widths="equal">
       <Field
-        name={`addressLine2`}
+        name="addressLine2"
         label="Address Line 2"
         component={inputField}
       />
-      <Field
-        name={`city`}
-        label="City"
-        component={inputField}
-      />
+      <Field name="city" label="City" component={inputField} />
     </Form.Group>
 
     <Form.Group widths="equal">
-      <Field
-        name={`state`}
-        label="State"
-        component={inputField}
-      />
-      <Field
-        name={`country`}
-        label="Country"
-        component={inputField}
-      />
+      <Field name="state" label="State" component={inputField} />
+      <Field name="country" label="Country" component={inputField} />
+    </Form.Group>
+    <Form.Group widths="equal">
+      <Field name="pincode" label="Pincode" component={inputField} />
+      <Field name="landmark" label="Landmark" component={inputField} />
     </Form.Group>
     <Form.Group widths="equal">
       <Field
-        name={`pincode`}
-        label="Pincode"
-        component={inputField}
-      />
-      <Field
-        name={`landmark`}
-        label="Landmark"
-        component={inputField}
-      />
-    </Form.Group>
-    <Form.Group widths="equal">
-      <Field
-        name={`contactPerson`}
+        name="contactPerson"
         label="Contact Person"
         component={inputField}
       />
-      <Field
-        name={`contactPhone`}
-        label="Contact Phone"
-        component={inputField}
-      />
+      <Field name="contactPhone" label="Contact Phone" component={inputField} />
     </Form.Group>
   </div>
 );

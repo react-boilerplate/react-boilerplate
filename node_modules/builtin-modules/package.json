@@ -1,0 +1,40 @@
+{
+  "name": "builtin-modules",
+  "version": "1.1.1",
+  "description": "List of the Node.js builtin modules",
+  "license": "MIT",
+  "repository": "sindresorhus/builtin-modules",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && ava",
+    "make": "node make.js"
+  },
+  "files": [
+    "index.js",
+    "static.js",
+    "builtin-modules.json"
+  ],
+  "keywords": [
+    "builtin",
+    "built-in",
+    "builtins",
+    "node",
+    "modules",
+    "core",
+    "bundled",
+    "list",
+    "array",
+    "names"
+  ],
+  "devDependencies": {
+    "ava": "*",
+    "xo": "*"
+  }
+}

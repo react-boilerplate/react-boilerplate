@@ -1,0 +1,46 @@
+{
+  "name": "uuid",
+  "version": "2.0.3",
+  "description": "Rigorous implementation of RFC4122 (v1 and v4) UUIDs.",
+  "keywords": [
+    "uuid",
+    "guid",
+    "rfc4122"
+  ],
+  "author": "Robert Kieffer <robert@broofa.com>",
+  "contributors": [
+    {
+      "name": "Christoph Tavan <dev@tavan.de>",
+      "github": "https://github.com/ctavan"
+    },
+    {
+      "name": "Vincent Voyer <vincent@zeroload.net>",
+      "github": "https://github.com/vvo"
+    }
+  ],
+  "license": "MIT",
+  "main": "./uuid.js",
+  "devDependencies": {
+    "mocha": "1.8.0"
+  },
+  "scripts": {
+    "test": "mocha test/test.js"
+  },
+  "browser": {
+    "./rng.js": "./rng-browser.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/defunctzombie/node-uuid.git"
+  },
+  "testling": {
+    "browsers": [
+      "ie6..latest",
+      "firefox/3.6..latest",
+      "chrome/22..latest",
+      "safari/5.1..latest"
+    ],
+    "harness": "mocha-tdd",
+    "files": "test/*.js"
+  }
+}

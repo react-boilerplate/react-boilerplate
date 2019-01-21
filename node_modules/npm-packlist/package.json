@@ -1,0 +1,37 @@
+{
+  "name": "npm-packlist",
+  "version": "1.1.10",
+  "description": "Get a list of the files to add from a folder into an npm package",
+  "directories": {
+    "test": "test"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "ignore-walk": "^3.0.1",
+    "npm-bundled": "^1.0.1"
+  },
+  "author": "Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me/)",
+  "license": "ISC",
+  "files": [
+    "index.js"
+  ],
+  "devDependencies": {
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.1",
+    "tap": "^10.7.2"
+  },
+  "scripts": {
+    "test": "tap test/*.js --100 -J",
+    "preversion": "npm test",
+    "postversion": "npm publish",
+    "postpublish": "git push origin --all; git push origin --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npm/npm-packlist.git"
+  },
+  "bugs": {
+    "url": "https://github.com/npm/npm-packlist/issues"
+  },
+  "homepage": "https://www.npmjs.com/package/npm-packlist"
+}

@@ -1,0 +1,48 @@
+{
+  "name": "decompress",
+  "version": "3.0.0",
+  "description": "Extracting archives made easy",
+  "license": "MIT",
+  "repository": "kevva/decompress",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "https://github.com/kevva"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "bz2",
+    "bzip2",
+    "decompress",
+    "extract",
+    "tar",
+    "tar.bz",
+    "tar.gz",
+    "zip",
+    "unzip"
+  ],
+  "dependencies": {
+    "buffer-to-vinyl": "^1.0.0",
+    "concat-stream": "^1.4.6",
+    "decompress-tar": "^3.0.0",
+    "decompress-tarbz2": "^3.0.0",
+    "decompress-targz": "^3.0.0",
+    "decompress-unzip": "^3.0.0",
+    "stream-combiner2": "^1.1.1",
+    "vinyl-assign": "^1.0.1",
+    "vinyl-fs": "^2.2.0"
+  },
+  "devDependencies": {
+    "ava": "0.2.0",
+    "rimraf": "^2.2.8",
+    "xo": "*"
+  }
+}

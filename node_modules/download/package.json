@@ -1,0 +1,51 @@
+{
+  "name": "download",
+  "version": "4.4.3",
+  "description": "Download and extract files",
+  "license": "MIT",
+  "repository": "kevva/download",
+  "author": {
+    "email": "kevinmartensson@gmail.com",
+    "name": "Kevin Mårtensson",
+    "url": "github.com/kevva"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "download",
+    "extract",
+    "http",
+    "request",
+    "url"
+  ],
+  "dependencies": {
+    "caw": "^1.0.1",
+    "concat-stream": "^1.4.7",
+    "each-async": "^1.0.0",
+    "filenamify": "^1.0.1",
+    "got": "^5.0.0",
+    "gulp-decompress": "^1.2.0",
+    "gulp-rename": "^1.2.0",
+    "is-url": "^1.2.0",
+    "object-assign": "^4.0.1",
+    "read-all-stream": "^3.0.0",
+    "readable-stream": "^2.0.2",
+    "stream-combiner2": "^1.1.1",
+    "vinyl": "^1.0.0",
+    "vinyl-fs": "^2.2.0",
+    "ware": "^1.2.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "nock": "^3.1.0",
+    "rimraf": "^2.2.8",
+    "xo": "*"
+  }
+}

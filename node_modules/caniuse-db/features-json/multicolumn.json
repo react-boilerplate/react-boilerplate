@@ -1,0 +1,371 @@
+{
+  "title":"CSS3 Multiple column layout",
+  "description":"Method of flowing information in multiple columns",
+  "spec":"https://www.w3.org/TR/css3-multicol/",
+  "status":"cr",
+  "links":[
+    {
+      "url":"https://dev.opera.com/articles/view/css3-multi-column-layout/",
+      "title":"Dev.Opera article"
+    },
+    {
+      "url":"https://webdesign.tutsplus.com/articles/an-introduction-to-the-css3-multiple-column-layout-module--webdesign-4934",
+      "title":"Introduction page"
+    },
+    {
+      "url":"https://www.webplatform.org/docs/css/properties/column-width",
+      "title":"WebPlatform Docs"
+    },
+    {
+      "url":"https://github.com/hamsterbacke23/multicolumn-polyfill",
+      "title":"Polyfill"
+    },
+    {
+      "url":"https://www.chromestatus.com/feature/6298909664083968",
+      "title":"Chrome platform status for CSS column-fill"
+    }
+  ],
+  "bugs":[
+    {
+      "description":"Firefox does not support the `break-before`, `break-after` and `break-inside` properties. See [the bug](https://bugzilla.mozilla.org/show_bug.cgi?id=775628)."
+    },
+    {
+      "description":"In Firefox, the property `column-span` (or `-moz-column-span`) does not yet work. See [the bug](https://bugzilla.mozilla.org/show_bug.cgi?id=616436)."
+    },
+    {
+      "description":"Chrome is reported to incorrectly calculate the container height, and often breaks on margins, padding, and can display 1px of the next column at the bottom of the previous column. Part of these issues can be solved by adding `-webkit-perspective:1;` to the column container. This creates a new stacking context for the container, and apparently causes chrome to (re)calculate column layout.\r\n"
+    },
+    {
+      "description":"Browsers behave differently when flowing `ol` list numbers in columns: IE and Safari only show numbers for the first column. Chrome does not show any numbers. Only Firefox behaves as expected with numbers showing for all items."
+    },
+    {
+      "description":"IE has been reported to incorrectly break on elements across columns when having more than 3 columns.\r\n"
+    },
+    {
+      "description":"IE 10 has a bug where text-shadow doesn't work when used inside columns [see testcase](https://jsfiddle.net/0bwwrtda/)\r\n"
+    },
+    {
+      "description":"Firefox does not split tables into columns"
+    },
+    {
+      "description":"Firefox and Chrome do not support columns on the <fieldset> element [see bug](https://bugzilla.mozilla.org/show_bug.cgi?id=727164)"
+    },
+    {
+      "description":"Safari 5-8 is known to render columns [less evenly](https://stackoverflow.com/questions/14148078/safari-column-count-differs-from-firefox-and-chrome) than other browsers"
+    },
+    {
+      "description":"Safari 5.1-10+ does not work as expected with `min-height` [see testcase](https://codepen.io/herrschuessler/pen/LNVWJE) [see bug](https://bugs.webkit.org/show_bug.cgi?id=65691)"
+    }
+  ],
+  "categories":[
+    "CSS3"
+  ],
+  "stats":{
+    "ie":{
+      "5.5":"n",
+      "6":"n",
+      "7":"n",
+      "8":"n",
+      "9":"n",
+      "10":"y",
+      "11":"y"
+    },
+    "edge":{
+      "12":"y",
+      "13":"y",
+      "14":"y",
+      "15":"y",
+      "16":"y",
+      "17":"y",
+      "18":"y"
+    },
+    "firefox":{
+      "2":"a x #1",
+      "3":"a x #1",
+      "3.5":"a x #1",
+      "3.6":"a x #1",
+      "4":"a x #1",
+      "5":"a x #1",
+      "6":"a x #1",
+      "7":"a x #1",
+      "8":"a x #1",
+      "9":"a x #1",
+      "10":"a x #1",
+      "11":"a x #1",
+      "12":"a x #1",
+      "13":"a x #1",
+      "14":"a x #1",
+      "15":"a x #1",
+      "16":"a x #1",
+      "17":"a x #1",
+      "18":"a x #1",
+      "19":"a x #1",
+      "20":"a x #1",
+      "21":"a x #1",
+      "22":"a x #1",
+      "23":"a x #1",
+      "24":"a x #1",
+      "25":"a x #1",
+      "26":"a x #1",
+      "27":"a x #1",
+      "28":"a x #1",
+      "29":"a x #1",
+      "30":"a x #1",
+      "31":"a x #1",
+      "32":"a x #1",
+      "33":"a x #1",
+      "34":"a x #1",
+      "35":"a x #1",
+      "36":"a x #1",
+      "37":"a x #1",
+      "38":"a x #1",
+      "39":"a x #1",
+      "40":"a x #1",
+      "41":"a x #1",
+      "42":"a x #1",
+      "43":"a x #1",
+      "44":"a x #1",
+      "45":"a x #1",
+      "46":"a x #1",
+      "47":"a x #1",
+      "48":"a x #1",
+      "49":"a x #1",
+      "50":"a x #1",
+      "51":"a x #1",
+      "52":"a #1",
+      "53":"a #1",
+      "54":"a #1",
+      "55":"a #1",
+      "56":"a #1",
+      "57":"a #1",
+      "58":"a #1",
+      "59":"a #1",
+      "60":"a #1",
+      "61":"a #1",
+      "62":"a #1"
+    },
+    "chrome":{
+      "4":"a x #1 #2",
+      "5":"a x #1 #2",
+      "6":"a x #1 #2",
+      "7":"a x #1 #2",
+      "8":"a x #1 #2",
+      "9":"a x #1 #2",
+      "10":"a x #1 #2",
+      "11":"a x #1 #2",
+      "12":"a x #1 #2",
+      "13":"a x #1 #2",
+      "14":"a x #1 #2",
+      "15":"a x #1 #2",
+      "16":"a x #1 #2",
+      "17":"a x #1 #2",
+      "18":"a x #1 #2",
+      "19":"a x #1 #2",
+      "20":"a x #1 #2",
+      "21":"a x #1 #2",
+      "22":"a x #1 #2",
+      "23":"a x #1 #2",
+      "24":"a x #1 #2",
+      "25":"a x #1 #2",
+      "26":"a x #1 #2",
+      "27":"a x #1 #2",
+      "28":"a x #1 #2",
+      "29":"a x #1 #2",
+      "30":"a x #1 #2",
+      "31":"a x #1 #2",
+      "32":"a x #1 #2",
+      "33":"a x #1 #2",
+      "34":"a x #1 #2",
+      "35":"a x #1 #2",
+      "36":"a x #1 #2",
+      "37":"a x #1 #2",
+      "38":"a x #1 #2",
+      "39":"a x #1 #2",
+      "40":"a x #1 #2",
+      "41":"a x #1 #2",
+      "42":"a x #1 #2",
+      "43":"a x #1 #2",
+      "44":"a x #1 #2",
+      "45":"a x #1 #2",
+      "46":"a x #1 #2",
+      "47":"a x #1 #2",
+      "48":"a x #1 #2",
+      "49":"a x #1 #2",
+      "50":"y",
+      "51":"y",
+      "52":"y",
+      "53":"y",
+      "54":"y",
+      "55":"y",
+      "56":"y",
+      "57":"y",
+      "58":"y",
+      "59":"y",
+      "60":"y",
+      "61":"y",
+      "62":"y",
+      "63":"y",
+      "64":"y",
+      "65":"y",
+      "66":"y",
+      "67":"y",
+      "68":"y",
+      "69":"y"
+    },
+    "safari":{
+      "3.1":"a x #1 #2",
+      "3.2":"a x #1 #2",
+      "4":"a x #1 #2",
+      "5":"a x #1 #2",
+      "5.1":"a x #1 #2",
+      "6":"a x #1 #2",
+      "6.1":"a x #1 #2",
+      "7":"a x #1",
+      "7.1":"a x #1",
+      "8":"a x #1",
+      "9":"a #1",
+      "9.1":"a #1",
+      "10":"y",
+      "10.1":"y",
+      "11":"y",
+      "11.1":"y",
+      "12":"y",
+      "TP":"y"
+    },
+    "opera":{
+      "9":"n",
+      "9.5-9.6":"n",
+      "10.0-10.1":"n",
+      "10.5":"n",
+      "10.6":"n",
+      "11":"n",
+      "11.1":"y",
+      "11.5":"y",
+      "11.6":"y",
+      "12":"y",
+      "12.1":"y",
+      "15":"a x #1 #2",
+      "16":"a x #1 #2",
+      "17":"a x #1 #2",
+      "18":"a x #1 #2",
+      "19":"a x #1 #2",
+      "20":"a x #1 #2",
+      "21":"a x #1 #2",
+      "22":"a x #1 #2",
+      "23":"a x #1 #2",
+      "24":"a x #1 #2",
+      "25":"a x #1 #2",
+      "26":"a x #1 #2",
+      "27":"a x #1 #2",
+      "28":"a x #1 #2",
+      "29":"a x #1 #2",
+      "30":"a x #1 #2",
+      "31":"a x #1 #2",
+      "32":"a x #1 #2",
+      "33":"a x #1 #2",
+      "34":"a x #1 #2",
+      "35":"a x #1 #2",
+      "36":"a x #1 #2",
+      "37":"y",
+      "38":"y",
+      "39":"y",
+      "40":"y",
+      "41":"y",
+      "42":"y",
+      "43":"y",
+      "44":"y",
+      "45":"y",
+      "46":"y",
+      "47":"y",
+      "48":"y",
+      "49":"y",
+      "50":"y",
+      "51":"y",
+      "52":"y",
+      "53":"y"
+    },
+    "ios_saf":{
+      "3.2":"a x #1 #2",
+      "4.0-4.1":"a x #1 #2",
+      "4.2-4.3":"a x #1 #2",
+      "5.0-5.1":"a x #1 #2",
+      "6.0-6.1":"a x #1 #2",
+      "7.0-7.1":"a x #1",
+      "8":"a x #1",
+      "8.1-8.4":"a x #1",
+      "9.0-9.2":"a #1",
+      "9.3":"a #1",
+      "10.0-10.2":"y",
+      "10.3":"y",
+      "11.0-11.2":"y",
+      "11.3":"y"
+    },
+    "op_mini":{
+      "all":"y"
+    },
+    "android":{
+      "2.1":"a x #1 #2",
+      "2.2":"a x #1 #2",
+      "2.3":"a x #1 #2",
+      "3":"a x #1 #2",
+      "4":"a x #1 #2",
+      "4.1":"a x #1 #2",
+      "4.2-4.3":"a x #1 #2",
+      "4.4":"a x #1 #2",
+      "4.4.3-4.4.4":"a x #1 #2",
+      "66":"y"
+    },
+    "bb":{
+      "7":"a x #1 #2",
+      "10":"a x #1 #2"
+    },
+    "op_mob":{
+      "10":"n",
+      "11":"n",
+      "11.1":"y",
+      "11.5":"y",
+      "12":"y",
+      "12.1":"y",
+      "46":"a #1"
+    },
+    "and_chr":{
+      "66":"y"
+    },
+    "and_ff":{
+      "60":"a #1"
+    },
+    "ie_mob":{
+      "10":"y",
+      "11":"y"
+    },
+    "and_uc":{
+      "11.8":"y"
+    },
+    "samsung":{
+      "4":"a x #1 #2",
+      "5":"y",
+      "6.2":"y"
+    },
+    "and_qq":{
+      "1.2":"a #1"
+    },
+    "baidu":{
+      "7.12":"a #1"
+    }
+  },
+  "notes":"",
+  "notes_by_num":{
+    "1":"Partial support refers to not supporting the `break-before`, `break-after`, `break-inside` properties. WebKit- and Blink-based browsers do have equivalent support for the non-standard `-webkit-column-break-*` properties to accomplish the same result (but only the `auto` and `always` values). Firefox does not support `break-*` but does support the `page-break-*` properties to accomplish the same result.",
+    "2":"Partial support refers to not supporting the `column-fill` property."
+  },
+  "usage_perc_y":87.51,
+  "usage_perc_a":9.84,
+  "ucprefix":false,
+  "parent":"",
+  "keywords":"column-count,column-width,column-gap,column-rule,column-span,column-fill,break-before,break-after,break-inside",
+  "ie_id":"multicolumnfullsupport",
+  "chrome_id":"6526151266664448,5630943616303104",
+  "firefox_id":"css-multicol",
+  "webkit_id":"",
+  "shown":true
+}

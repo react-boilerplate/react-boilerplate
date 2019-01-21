@@ -1,0 +1,48 @@
+{
+  "name": "find-versions",
+  "version": "1.2.1",
+  "description": "Find semver versions in a string: `unicorn 1.0.0` → `1.0.0`",
+  "license": "MIT",
+  "repository": "sindresorhus/find-versions",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "bin": "cli.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "keywords": [
+    "cli-app",
+    "cli",
+    "semver",
+    "version",
+    "versions",
+    "regex",
+    "regexp",
+    "re",
+    "match",
+    "matching",
+    "semantic",
+    "find",
+    "extract",
+    "get"
+  ],
+  "dependencies": {
+    "array-uniq": "^1.0.0",
+    "get-stdin": "^4.0.1",
+    "meow": "^3.5.0",
+    "semver-regex": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}

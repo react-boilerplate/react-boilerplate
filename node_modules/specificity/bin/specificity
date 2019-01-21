@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var specificity = require('../specificity'),
+    selector = process.argv[2],
+    result;
+
+if (selector) {
+    result = specificity.calculate(selector)[0];
+    console.log(result.specificity);
+} else {
+    console.log('Usage: specificity <selector>');
+    console.log('Computes specificity of a CSS selector.');
+    process.exit(1);
+}

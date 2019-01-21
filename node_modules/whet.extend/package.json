@@ -1,0 +1,32 @@
+{
+  "name": "whet.extend",
+  "version": "0.9.9",
+  "description": "A sharped version of port of jQuery.extend that actually works on node.js",
+  "keywords": [
+    "extend",
+    "jQuery",
+    "jQuery extend",
+    "clone",
+    "copy",
+    "inherit"
+  ],
+  "author": "Dmitrii Karpich <meettya@gmail.com>",
+  "devDependencies": {
+    "should": "0.5.1",
+    "coffee-script": ">=1.3.3",
+    "chai": "~1.4.2",
+    "mocha": "~1.8.1"
+  },
+  "scripts": {
+    "test": "cake test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Meettya/whet.extend.git"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "license": "MIT"
+}

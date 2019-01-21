@@ -1,0 +1,59 @@
+{
+  "name": "cliui",
+  "version": "2.1.0",
+  "description": "easily create complex multi-column command-line-interfaces",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard && mocha --check-leaks --ui exports --require patched-blanket -R mocoverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/bcoe/cliui.git"
+  },
+  "config": {
+    "blanket": {
+      "pattern": [
+        "index.js"
+      ],
+      "data-cover-never": [
+        "node_modules",
+        "test"
+      ],
+      "output-reporter": "spec"
+    }
+  },
+  "standard": {
+    "ignore": [
+      "**/example/**"
+    ],
+    "globals": [
+      "it"
+    ]
+  },
+  "keywords": [
+    "cli",
+    "command-line",
+    "layout",
+    "design",
+    "console",
+    "wrap",
+    "table"
+  ],
+  "author": "Ben Coe <ben@npmjs.com>",
+  "license": "ISC",
+  "dependencies": {
+    "center-align": "^0.1.1",
+    "right-align": "^0.1.1",
+    "wordwrap": "0.0.2"
+  },
+  "devDependencies": {
+    "blanket": "^1.1.6",
+    "chai": "^2.2.0",
+    "coveralls": "^2.11.2",
+    "mocha": "^2.2.4",
+    "mocha-lcov-reporter": "0.0.2",
+    "mocoverage": "^1.0.0",
+    "patched-blanket": "^1.0.1",
+    "standard": "^3.6.1"
+  }
+}

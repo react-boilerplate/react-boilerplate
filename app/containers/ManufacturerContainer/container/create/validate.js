@@ -1,4 +1,4 @@
-const validate = (values) => {
+const validate = values => {
   const error = {};
 
   if (!values.displayName) {

@@ -1,0 +1,11 @@
+{
+  "name": "@webassemblyjs/helper-api-error",
+  "version": "1.5.12",
+  "description": "Common API errors",
+  "main": "lib/index.js",
+  "author": "Sven Sauleau",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

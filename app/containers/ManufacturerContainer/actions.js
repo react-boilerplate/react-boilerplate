@@ -19,8 +19,9 @@ import {
   CREATE_MANUFACTURER,
   CREATE_MANUFACTURER_PROCESSING,
   CREATE_MANUFACTURER_STATUS,
-  VIEW_ALL_MANUFACTURER, VIEW_ALL_MANUFACTURER_PROCESSING,
-  VIEW_ALL_MANUFACTURER_STATUS
+  VIEW_ALL_MANUFACTURER,
+  VIEW_ALL_MANUFACTURER_PROCESSING,
+  VIEW_ALL_MANUFACTURER_STATUS,
 } from './constants';
 
 /**
@@ -39,14 +40,14 @@ export function createManufacturer() {
 export function createManufacturerProcessing(data) {
   return {
     type: CREATE_MANUFACTURER_PROCESSING,
-    payload: data
+    payload: data,
   };
 }
 
 export function createManufacturerSuccess(data) {
   return {
     type: CREATE_MANUFACTURER_STATUS,
-    payload: data
+    payload: data,
   };
 }
 
@@ -59,13 +60,13 @@ export function getAllManufacturers() {
 export function getAllManufacturersProcessing(data) {
   return {
     type: VIEW_ALL_MANUFACTURER_PROCESSING,
-    payload: data
+    payload: data,
   };
 }
 
 export function getAllManufacturersSuccess(data) {
   return {
     type: VIEW_ALL_MANUFACTURER_STATUS,
-    payload: data
+    payload: data,
   };
 }

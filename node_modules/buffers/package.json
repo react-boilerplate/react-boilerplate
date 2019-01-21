@@ -1,0 +1,14 @@
+{
+    "name" : "buffers",
+    "description" : "Treat a collection of Buffers as a single contiguous partially mutable Buffer.",
+    "version" : "0.1.1",
+    "repository" : "http://github.com/substack/node-buffers.git",
+    "author" : "James Halliday <mail@substack.net> (http://substack.net)",
+    "main" : "./index",
+    "scripts" : {
+        "test" : "expresso"
+    },
+    "engines" : {
+        "node" : ">=0.2.0"
+    }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "filename-reserved-regex",
+  "version": "1.0.0",
+  "description": "Regular expression for matching reserved filename characters",
+  "license": "MIT",
+  "repository": "sindresorhus/filename-reserved-regex",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "re",
+    "regex",
+    "regexp",
+    "filename",
+    "reserved"
+  ],
+  "devDependencies": {
+    "ava": "0.0.4"
+  }
+}
