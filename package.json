@@ -1,13 +1,7 @@
 {
-<<<<<<< HEAD
   "name": "manin-ui",
   "version": "0.0.1",
-  "description": "Web App to manage Sellers Retails operations.",
-=======
-  "name": "react-boilerplate",
-  "version": "3.7.0",
-  "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
->>>>>>> mergeb
+  "description": "Web App to manage Sellers Retails operations. A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
   "repository": {
     "type": "git",
     "url": "git@gitlab.com:techarha/manin/manin-ui.git"
