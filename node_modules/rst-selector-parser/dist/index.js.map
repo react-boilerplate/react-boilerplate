@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/index.js"],"names":["createGenerator","createParser"],"mappings":";;;;;;;AAEA;;;;AACA;;;;;;AAHA;;QAMEA,e;QACAC,Y","file":"index.js","sourcesContent":["// @flow\n\nimport createGenerator from './createGenerator';\nimport createParser from './createParser';\n\nexport {\n  createGenerator,\n  createParser\n};\n"]}

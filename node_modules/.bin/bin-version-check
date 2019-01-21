@@ -1,1 +1,0 @@
-../bin-version-check/cli.js

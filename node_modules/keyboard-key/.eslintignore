@@ -1,9 +1,0 @@
-#
-# Heads up!
-# Keep in sync with .prettierignore
-#
-
-.yarn-cache/**
-coverage/**
-node_modules/**
-package.json

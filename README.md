@@ -24,6 +24,10 @@
   <a href="https://coveralls.io/r/react-boilerplate/react-boilerplate">
     <img src="https://coveralls.io/repos/github/react-boilerplate/react-boilerplate/badge.svg" alt="Test Coverage" />
   </a>
+  <a href="https://spectrum.chat/react-boilerplate">
+  <img alt="Chat with us on Spectrum" src="https://withspectrum.github.io/badge/badge.svg" />
+</a>
+
 </div>
 <div align="center">
     <!-- Backers -->
@@ -36,10 +40,6 @@
   </a>
   <a href="http://thinkmill.com.au/?utm_source=github&utm_medium=badge&utm_campaign=react-boilerplate">
     <img alt="Supported by Thinkmill" src="https://thinkmill.github.io/badge/heart.svg" />
-  </a>
-  <!-- Gitter -->
-  <a href="https://gitter.im/mxstbr/react-boilerplate">
-    <img src="https://camo.githubusercontent.com/54dc79dc7da6b76b17bc8013342da9b4266d993c/68747470733a2f2f6261646765732e6769747465722e696d2f6d78737462722f72656163742d626f696c6572706c6174652e737667" alt="Gitter Chat" />
   </a>
 </div>
 
@@ -100,11 +100,10 @@ There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on ho
 
 ## Quick start
 
-1.  Make sure that you have Node v8 or above installed.
-2.  Clone this repo using `git clone --depth=1 https://github.com/react-boilerplate/react-boilerplate.git`
-3.  Move to the appropriate directory: `cd react-boilerplate`.<br />
+1.  Make sure that you have Node.js v8.10 and npm v5 or above installed.
+2.  Clone this repo using `git clone --depth=1 https://github.com/react-boilerplate/react-boilerplate.git <YOUR_PROJECT_NAME>`
+3.  Move to the appropriate directory: `cd <YOUR_PROJECT_NAME>`.<br />
 4.  Run `npm run setup` in order to install dependencies and clean the git repo.<br />
-    _We auto-detect `yarn` for installing packages by default, if you wish to force `npm` usage do: `USE_YARN=false npm run setup`_<br />
     _At this point you can run `npm start` to see the example app at `http://localhost:3000`._
 5.  Run `npm run clean` to delete the example app.
 

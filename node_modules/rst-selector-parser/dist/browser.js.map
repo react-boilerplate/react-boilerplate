@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/browser.js"],"names":["window","Scalpel","createParser"],"mappings":";;AAEA;;;;;;AAEAA,OAAOC,OAAP,GAAiB;AACfC;AADe,CAAjB,C,CAJA","file":"browser.js","sourcesContent":["// @flow\n\nimport createParser from './createParser';\n\nwindow.Scalpel = {\n  createParser\n};\n"]}

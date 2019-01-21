@@ -3,18 +3,22 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { enzymeFind } from 'styled-components/test-utils';
 
 import A from '../index';
 
 const href = 'http://mxstbr.com/';
 const children = <h1>Test</h1>;
-const renderComponent = (props = {}) =>
-  shallow(
+const renderComponent = (props = {}) => {
+  const wrapper = mount(
     <A href={href} {...props}>
       {children}
     </A>,
   );
+
+  return enzymeFind(wrapper, A);
+};
 
 describe('<A />', () => {
   it('should render an <a> tag', () => {

@@ -1,2 +1,0 @@
-// @flow
-export type IsValidInterface = (state: any) => boolean

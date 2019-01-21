@@ -2,6 +2,7 @@
  * Test the request function
  */
 
+import 'whatwg-fetch';
 import request from '../request';
 
 describe('request', () => {
