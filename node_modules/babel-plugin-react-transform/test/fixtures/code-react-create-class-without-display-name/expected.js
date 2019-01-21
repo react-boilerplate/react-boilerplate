@@ -1,1 +1,0 @@
-const Foo = React.createClass({});

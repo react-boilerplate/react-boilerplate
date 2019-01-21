@@ -1,7 +1,0 @@
-{
-  "name": "redux-saga/utils",
-  "private": true,
-  "main": "../lib/utils.js",
-  "module": "../es/utils.js",
-  "jsnext:main": "../es/utils.js"
-}

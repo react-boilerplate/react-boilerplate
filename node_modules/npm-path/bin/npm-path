@@ -1,5 +1,0 @@
-#!/usr/bin/env node
-
-var npmPath = require('../')
-
-console.log(npmPath())

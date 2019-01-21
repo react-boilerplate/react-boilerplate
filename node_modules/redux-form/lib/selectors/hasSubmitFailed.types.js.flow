@@ -1,2 +1,0 @@
-// @flow
-export type HasSubmitFailedInterface = (state: any) => boolean
