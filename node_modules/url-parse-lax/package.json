@@ -1,0 +1,41 @@
+{
+  "name": "url-parse-lax",
+  "version": "1.0.0",
+  "description": "url.parse() with support for protocol-less URLs & IPs",
+  "license": "MIT",
+  "repository": "sindresorhus/url-parse-lax",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "url",
+    "uri",
+    "parse",
+    "parser",
+    "loose",
+    "lax",
+    "protocol",
+    "less",
+    "protocol-less",
+    "ip",
+    "ipv4",
+    "ipv6"
+  ],
+  "dependencies": {
+    "prepend-http": "^1.0.1"
+  },
+  "devDependencies": {
+    "ava": "0.0.4"
+  }
+}

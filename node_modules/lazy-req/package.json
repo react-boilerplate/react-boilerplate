@@ -1,0 +1,41 @@
+{
+  "name": "lazy-req",
+  "version": "1.1.0",
+  "description": "Require modules lazily",
+  "license": "MIT",
+  "repository": "sindresorhus/lazy-req",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "contributors": [
+    {
+      "name": "Jorge Bucaran",
+      "email": "jbucaran@me.com"
+    }
+  ],
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && node test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "require",
+    "load",
+    "module",
+    "modules",
+    "lazy",
+    "lazily",
+    "defer",
+    "deferred"
+  ],
+  "devDependencies": {
+    "ava": "0.0.4",
+    "xo": "*"
+  }
+}

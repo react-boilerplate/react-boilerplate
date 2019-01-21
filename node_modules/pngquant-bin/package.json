@@ -1,0 +1,62 @@
+{
+	"name": "pngquant-bin",
+	"version": "5.0.1",
+	"description": "`pngquant` wrapper that makes it seamlessly available as a local dependency",
+	"license": "MIT",
+	"repository": "imagemin/pngquant-bin",
+	"author": {
+		"name": "Kevin Mårtensson",
+		"email": "kevinmartensson@gmail.com",
+		"url": "github.com/kevva"
+	},
+	"maintainers": [
+		{
+			"name": "Sindre Sorhus",
+			"email": "sindresorhus@gmail.com",
+			"url": "sindresorhus.com"
+		},
+		{
+			"name": "Shinnosuke Watanabe",
+			"url": "github.com/shinnn"
+		}
+	],
+	"bin": {
+		"pngquant": "cli.js"
+	},
+	"engines": {
+		"node": ">=6"
+	},
+	"scripts": {
+		"postinstall": "node lib/install.js",
+		"test": "xo && ava"
+	},
+	"files": [
+		"cli.js",
+		"index.js",
+		"lib",
+		"vendor/source"
+	],
+	"keywords": [
+		"imagemin",
+		"compress",
+		"image",
+		"img",
+		"minify",
+		"optimize",
+		"png",
+		"pngquant"
+	],
+	"dependencies": {
+		"bin-build": "^3.0.0",
+		"bin-wrapper": "^4.0.1",
+		"execa": "^0.10.0",
+		"logalot": "^2.0.0"
+	},
+	"devDependencies": {
+		"ava": "*",
+		"bin-check": "^4.0.1",
+		"compare-size": "^3.0.0",
+		"tempy": "^0.2.1",
+		"xo": "*"
+	}
+}

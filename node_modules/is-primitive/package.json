@@ -1,0 +1,46 @@
+{
+  "name": "is-primitive",
+  "description": "Returns `true` if the value is a primitive. ",
+  "version": "2.0.0",
+  "homepage": "https://github.com/jonschlinkert/is-primitive",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jonschlinkert/is-primitive.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/is-primitive/issues"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/jonschlinkert/is-primitive/blob/master/LICENSE"
+  },
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "^4.0.4"
+  },
+  "keywords": [
+    "boolean",
+    "check",
+    "number",
+    "primitive",
+    "string",
+    "symbol",
+    "type",
+    "typeof",
+    "util"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "name": "parse-glob",
+  "description": "Parse a glob pattern into an object of tokens.",
+  "version": "3.0.4",
+  "homepage": "https://github.com/jonschlinkert/parse-glob",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/parse-glob",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/parse-glob/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "prepublish": "browserify -o browser.js -e index.js"
+  },
+  "dependencies": {
+    "glob-base": "^0.3.0",
+    "is-dotfile": "^1.0.0",
+    "is-extglob": "^1.0.0",
+    "is-glob": "^2.0.0"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "lodash": "^3.3.1",
+    "mocha": "*"
+  },
+  "keywords": [
+    "glob",
+    "match",
+    "bash",
+    "expand",
+    "expansion",
+    "expression",
+    "file",
+    "files",
+    "filter",
+    "find",
+    "glob",
+    "globbing",
+    "globs",
+    "globstar",
+    "match",
+    "matcher",
+    "matches",
+    "matching",
+    "path",
+    "pattern",
+    "patterns",
+    "regex",
+    "regexp",
+    "regular",
+    "shell",
+    "wildcard"
+  ]
+}

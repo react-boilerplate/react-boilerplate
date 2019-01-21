@@ -1,0 +1,2 @@
+// @flow
+export type IsPristineInterface = (state: any, ...fields?: string[]) => boolean

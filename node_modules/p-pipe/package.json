@@ -1,0 +1,41 @@
+{
+  "name": "p-pipe",
+  "version": "1.2.0",
+  "description": "Compose promise-returning & async functions into a reusable pipeline",
+  "license": "MIT",
+  "repository": "sindresorhus/p-pipe",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "promise",
+    "pipe",
+    "pipeline",
+    "compose",
+    "composition",
+    "combine",
+    "flow",
+    "serial",
+    "functions",
+    "reusable",
+    "async",
+    "await",
+    "promises",
+    "bluebird"
+  ],
+  "devDependencies": {
+    "ava": "*",
+    "xo": "*"
+  }
+}

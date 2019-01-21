@@ -1,0 +1,1 @@
+"use strict";function unclosed(e,o){throw e.input.error("Unclosed "+o,e.line,e.pos-e.offset)}Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=unclosed,module.exports=exports.default;

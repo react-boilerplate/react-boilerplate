@@ -1,0 +1,44 @@
+{
+  "name": "vinyl",
+  "description": "A virtual file format",
+  "version": "1.2.0",
+  "homepage": "http://github.com/gulpjs/vinyl",
+  "repository": "git://github.com/gulpjs/vinyl.git",
+  "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
+  "main": "./index.js",
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "dependencies": {
+    "clone": "^1.0.0",
+    "clone-stats": "^0.0.1",
+    "replace-ext": "0.0.1"
+  },
+  "devDependencies": {
+    "buffer-equal": "0.0.1",
+    "eslint": "^1.7.3",
+    "eslint-config-gulp": "^2.0.0",
+    "event-stream": "^3.1.0",
+    "github-changes": "^1.0.1",
+    "istanbul": "^0.3.0",
+    "istanbul-coveralls": "^1.0.1",
+    "jscs": "^2.3.5",
+    "jscs-preset-gulp": "^1.0.0",
+    "lodash.templatesettings": "^3.1.0",
+    "mocha": "^2.0.0",
+    "rimraf": "^2.2.5",
+    "should": "^7.0.0"
+  },
+  "scripts": {
+    "lint": "eslint . && jscs *.js lib/ test/",
+    "pretest": "npm run lint",
+    "test": "mocha",
+    "coveralls": "istanbul cover _mocha && istanbul-coveralls",
+    "changelog": "github-changes -o gulpjs -r vinyl -b master -f ./CHANGELOG.md --order-semver --use-commit-body"
+  },
+  "engines": {
+    "node": ">= 0.9"
+  },
+  "license": "MIT"
+}

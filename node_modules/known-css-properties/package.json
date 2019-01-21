@@ -1,0 +1,54 @@
+{
+  "name": "known-css-properties",
+  "version": "0.8.0",
+  "description": "List of known CSS properties",
+  "repository": "known-css/known-css-properties",
+  "main": "index.js",
+  "scripts": {
+    "bump": "npm version patch && npm publish && git push && git push --tags",
+    "download-w3c-data": "node scripts/download-w3c-data",
+    "generate": "node scripts/generate",
+    "lint": "eslint index.js scripts/*.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "css",
+    "properies",
+    "w3c",
+    "chrome",
+    "firefox",
+    "explorer",
+    "edge",
+    "safari",
+    "opera"
+  ],
+  "contributors": [
+    {
+      "name": "Krzysztof Bebenek",
+      "email": "kbebenek@kbebenek.me",
+      "url": "http://kbebenek.me"
+    },
+    {
+      "name": "Viorel Cojocaru",
+      "email": "vio@beanon.com",
+      "url": "http://beanon.com"
+    }
+  ],
+  "author": {
+    "name": "Viorel Cojocaru",
+    "email": "vio@beanon.com",
+    "url": "http://beanon.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/known-css/known-css-properties/issues"
+  },
+  "homepage": "https://github.com/known-css/known-css-properties#readme",
+  "devDependencies": {
+    "axios": "0.18.0",
+    "eslint": "5.6.0",
+    "globby": "8.0.1",
+    "lodash.sortby": "4.7.0",
+    "lodash.uniq": "4.5.0"
+  }
+}

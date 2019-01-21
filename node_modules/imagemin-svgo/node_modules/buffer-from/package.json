@@ -1,0 +1,16 @@
+{
+  "name": "buffer-from",
+  "version": "0.1.2",
+  "license": "MIT",
+  "repository": "LinusU/buffer-from",
+  "scripts": {
+    "test": "standard && node test"
+  },
+  "devDependencies": {
+    "standard": "^7.1.2"
+  },
+  "keywords": [
+    "buffer",
+    "buffer from"
+  ]
+}

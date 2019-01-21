@@ -1,0 +1,45 @@
+{
+  "name": "title-case",
+  "version": "2.1.1",
+  "description": "Title case a string",
+  "main": "title-case.js",
+  "typings": "title-case.d.ts",
+  "files": [
+    "title-case.js",
+    "title-case.d.ts",
+    "LICENSE"
+  ],
+  "scripts": {
+    "lint": "standard",
+    "test-std": "mocha -- -R spec --bail",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec --bail",
+    "test": "npm run lint && npm run test-cov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blakeembrey/title-case.git"
+  },
+  "keywords": [
+    "title",
+    "case"
+  ],
+  "author": {
+    "name": "Blake Embrey",
+    "email": "hello@blakeembrey.com",
+    "url": "http://blakeembrey.me"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blakeembrey/title-case/issues"
+  },
+  "homepage": "https://github.com/blakeembrey/title-case",
+  "devDependencies": {
+    "istanbul": "^0.4.3",
+    "mocha": "^3.0.0",
+    "standard": "^9.0.2"
+  },
+  "dependencies": {
+    "no-case": "^2.2.0",
+    "upper-case": "^1.0.3"
+  }
+}

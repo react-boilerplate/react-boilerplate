@@ -1,0 +1,38 @@
+{
+  "name": "temp-dir",
+  "version": "1.0.0",
+  "description": "Get the real path of the system temp directory",
+  "license": "MIT",
+  "repository": "sindresorhus/temp-dir",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "temp",
+    "tmp",
+    "dir",
+    "tmpdir",
+    "os",
+    "system",
+    "real",
+    "path",
+    "realpath",
+    "resolved"
+  ],
+  "devDependencies": {
+    "ava": "*",
+    "proxyquire": "^1.7.11",
+    "xo": "*"
+  }
+}

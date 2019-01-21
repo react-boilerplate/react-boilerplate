@@ -1,0 +1,23 @@
+language: node_js
+
+sudo: false
+
+notifications:
+  email:
+    on_failure: always
+    on_success: change
+
+node_js:
+  - "6"
+  - "8"
+
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+
+after_success: npm run coverage

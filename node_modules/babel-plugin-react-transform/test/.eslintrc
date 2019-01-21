@@ -1,0 +1,6 @@
+{
+  "globals": {
+    "React": false,
+    "factory": false
+  }
+}

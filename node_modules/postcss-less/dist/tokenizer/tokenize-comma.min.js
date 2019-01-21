@@ -1,0 +1,1 @@
+"use strict";function tokenizeComma(e){e.tokens.push(["word",e.symbol,e.line,e.pos-e.offset,e.line,e.pos-e.offset+1])}Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=tokenizeComma,module.exports=exports.default;

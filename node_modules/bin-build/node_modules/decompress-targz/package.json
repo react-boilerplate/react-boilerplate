@@ -1,0 +1,43 @@
+{
+  "name": "decompress-targz",
+  "version": "3.1.0",
+  "description": "decompress tar.gz plugin",
+  "license": "MIT",
+  "repository": "kevva/decompress-targz",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "https://github.com/kevva"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "decompress",
+    "decompressplugin",
+    "extract",
+    "gulpplugin",
+    "tar.gz",
+    "targz"
+  ],
+  "dependencies": {
+    "is-gzip": "^1.0.0",
+    "object-assign": "^2.0.0",
+    "strip-dirs": "^1.0.0",
+    "tar-stream": "^1.1.1",
+    "through2": "^0.6.1",
+    "vinyl": "^0.4.3"
+  },
+  "devDependencies": {
+    "ava": "0.0.4",
+    "buffer-equal": "0.0.1",
+    "is-jpg": "^1.0.0",
+    "vinyl-file": "^1.1.0"
+  }
+}

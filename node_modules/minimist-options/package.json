@@ -1,0 +1,30 @@
+{
+  "name": "minimist-options",
+  "version": "3.0.2",
+  "description": "Pretty options for minimist",
+  "repository": "vadimdemedes/minimist-options",
+  "author": "Vadim Demedes <vdemedes@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "minimist",
+    "argv",
+    "args"
+  ],
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "engines": {
+    "node": ">= 4"
+  },
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "arrify": "^1.0.1",
+    "is-plain-obj": "^1.1.0"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "xo": "^0.18.2"
+  }
+}

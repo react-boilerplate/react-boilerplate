@@ -1,0 +1,34 @@
+{
+  "name": "compare-versions",
+  "version": "3.4.0",
+  "description": "Compare semver version strings to find greater, equal or lesser.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omichelsen/compare-versions.git"
+  },
+  "author": "Ole Michelsen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/omichelsen/compare-versions/issues"
+  },
+  "homepage": "https://github.com/omichelsen/compare-versions#readme",
+  "keywords": [
+    "semver",
+    "version",
+    "compare",
+    "browser",
+    "node"
+  ],
+  "scripts": {
+    "test": "nyc mocha"
+  },
+  "main": "index.js",
+  "types": "index.d.ts",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "decompress-tarbz2",
+  "version": "3.1.0",
+  "description": "decompress tar.bz2 plugin",
+  "license": "MIT",
+  "repository": "kevva/decompress-tarbz2",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "https://github.com/kevva"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "bz2",
+    "decompress",
+    "decompressplugin",
+    "extract",
+    "gulpplugin",
+    "tar",
+    "tar.bz2",
+    "tarbz2"
+  ],
+  "dependencies": {
+    "is-bzip2": "^1.0.0",
+    "object-assign": "^2.0.0",
+    "seek-bzip": "^1.0.3",
+    "strip-dirs": "^1.0.0",
+    "tar-stream": "^1.1.1",
+    "through2": "^0.6.1",
+    "vinyl": "^0.4.3"
+  },
+  "devDependencies": {
+    "ava": "0.0.4",
+    "is-jpg": "^1.0.0",
+    "vinyl-file": "^1.1.0"
+  }
+}

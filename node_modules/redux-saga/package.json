@@ -1,0 +1,128 @@
+{
+  "name": "redux-saga",
+  "version": "0.16.2",
+  "description": "Saga middleware for Redux to handle Side Effects",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "unpkg": "dist/redux-saga.min.js",
+  "files": [
+    "es",
+    "lib",
+    "dist",
+    "effects",
+    "utils",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "lint": "eslint src test",
+    "test": "run-s test-**",
+    "check": "run-s lint test",
+    "test-src": "cross-env BABEL_ENV=cjs babel-node test/index.js | tap-spec",
+    "check:bundlesize": "cross-env BABEL_ENV=es bundlesize",
+    "clean": "rimraf dist es lib",
+    "build:umd:dev": "cross-env BABEL_ENV=es NODE_ENV=development rollup -c -i src/index.js -o dist/redux-saga.js",
+    "build:umd:prod": "cross-env BABEL_ENV=es NODE_ENV=production rollup -c -i src/index.js -o dist/redux-saga.min.js",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --out-dir lib",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "build": "npm run clean && run-p build:**",
+    "counter": "cross-env BABEL_ENV=cjs node examples/counter/server.js",
+    "cancellable-counter": "cross-env BABEL_ENV=cjs node examples/cancellable-counter/server.js",
+    "test-counter": "cross-env BABEL_ENV=cjs babel-node examples/counter/test/sagas.js | tap-spec",
+    "shop": "cross-env BABEL_ENV=cjs node examples/shopping-cart/server.js",
+    "test-shop": "cross-env BABEL_ENV=cjs babel-node examples/shopping-cart/test/sagas.js | tap-spec",
+    "async": "cross-env BABEL_ENV=cjs node examples/async/server.js",
+    "test-async": "cross-env BABEL_ENV=cjs babel-node examples/async/test/sagas.js | tap-spec",
+    "real-world": "npm --prefix examples/real-world install examples/real-world && cross-env BABEL_ENV=cjs node --require babel-register examples/real-world/server.js",
+    "docs:clean": "rimraf _book",
+    "docs:prepare": "gitbook install",
+    "docs:build": "npm run docs:prepare && gitbook build -g redux-saga/redux-saga",
+    "docs:watch": "npm run docs:prepare && gitbook serve",
+    "docs:publish": "npm run docs:clean && npm run docs:build && cp CNAME _book && cd _book && git init && git commit --allow-empty -m 'update book' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update book' && git push git@github.com:redux-saga/redux-saga gh-pages --force",
+    "precommit": "lint-staged",
+    "prepare": "npm run build",
+    "prepush": "npm run check",
+    "prerelease": "npm run check && npm run prepare",
+    "release:patch": "npm run prerelease && npm version patch && npm publish && git push --follow-tags",
+    "release:minor": "npm run prerelease && npm version minor && npm publish && git push --follow-tags",
+    "release:major": "npm run prerelease && npm version major && npm publish && git push --follow-tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redux-saga/redux-saga.git"
+  },
+  "keywords": [
+    "javascript",
+    "redux",
+    "middleware",
+    "saga",
+    "effects",
+    "side effects"
+  ],
+  "bundlesize": [
+    {
+      "path": "./dist/redux-saga.min.js",
+      "maxSize": "8 Kb"
+    }
+  ],
+  "author": "Yassine ELOUAFI <yelouafi@gmail.com>",
+  "contributors": [
+    "Mateusz Burzyński <mateuszburzynski@gmail.com> (https://github.com/Andarist)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/redux-saga/redux-saga/issues"
+  },
+  "homepage": "https://redux-saga.js.org/",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.1.18",
+    "babel-core": "^6.21.0",
+    "babel-eslint": "^6.0.3",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-annotate-pure-calls": "^0.2.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-polyfill": "^6.7.4",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-2": "^6.13.0",
+    "bundlesize": "^0.11.0",
+    "cross-env": "^1.0.8",
+    "eslint": "^2.8.0",
+    "express": "^4.13.3",
+    "gitbook-cli": "2.3.0",
+    "husky": "^0.13.3",
+    "isomorphic-fetch": "^2.2.0",
+    "lint-staged": "^3.4.2",
+    "lolex": "^1.5.2",
+    "npm-run-all": "^4.0.2",
+    "prettier": "^1.4.1",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.1",
+    "rimraf": "^2.4.3",
+    "rollup": "^0.66.5",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-replace": "^1.1.1",
+    "rollup-plugin-uglify": "^2.0.1",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.2.2",
+    "typescript": "^2.2.1",
+    "typings-tester": "^0.2.2",
+    "webpack": "1.13.0",
+    "webpack-dev-middleware": "^1.4.0",
+    "webpack-hot-middleware": "^2.6.0"
+  },
+  "typings": "./index.d.ts",
+  "npmName": "redux-saga",
+  "npmFileMap": [
+    {
+      "basePath": "/dist/",
+      "files": [
+        "*.js"
+      ]
+    }
+  ]
+}

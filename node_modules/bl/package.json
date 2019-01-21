@@ -1,0 +1,35 @@
+{
+  "name": "bl",
+  "version": "1.2.2",
+  "description": "Buffer List: collect buffers and access with a standard readable Buffer interface, streamable too!",
+  "main": "bl.js",
+  "scripts": {
+    "test": "node test/test.js | faucet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rvagg/bl.git"
+  },
+  "homepage": "https://github.com/rvagg/bl",
+  "authors": [
+    "Rod Vagg <rod@vagg.org> (https://github.com/rvagg)",
+    "Matteo Collina <matteo.collina@gmail.com> (https://github.com/mcollina)",
+    "Jarett Cruger <jcrugzz@gmail.com> (https://github.com/jcrugzz)"
+  ],
+  "keywords": [
+    "buffer",
+    "buffers",
+    "stream",
+    "awesomesauce"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "readable-stream": "^2.3.5",
+    "safe-buffer": "^5.1.1"
+  },
+  "devDependencies": {
+    "faucet": "0.0.1",
+    "hash_file": "~0.1.1",
+    "tape": "~4.9.0"
+  }
+}

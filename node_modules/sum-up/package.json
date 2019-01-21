@@ -1,0 +1,40 @@
+{
+  "name": "sum-up",
+  "version": "1.0.3",
+  "description": "Summarize package information",
+  "repository": "shinnn/sum-up",
+  "homepage": "https://github.com/shinnn/sum-up",
+  "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
+  "scripts": {
+    "pretest": "eslint --config @shinnn/node-legacy index.js test.js",
+    "test": "node --strong_mode test.js --color && node test.js --no-color",
+    "coverage": "node --strong_mode node_modules/.bin/istanbul cover test.js -- --color",
+    "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "summerize",
+    "summary",
+    "brief",
+    "outline",
+    "info",
+    "information",
+    "description",
+    "data",
+    "package",
+    "color",
+    "cli-friendly"
+  ],
+  "dependencies": {
+    "chalk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@shinnn/eslint-config-node-legacy": "^2.0.0",
+    "eslint": "^2.4.0",
+    "istanbul": "^0.4.2",
+    "tape": "^4.5.1"
+  }
+}

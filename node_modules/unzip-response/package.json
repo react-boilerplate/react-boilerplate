@@ -1,0 +1,50 @@
+{
+  "name": "unzip-response",
+  "version": "1.0.2",
+  "description": "Unzip a HTTP response if needed",
+  "license": "MIT",
+  "repository": "sindresorhus/unzip-response",
+  "maintainers": [
+    {
+      "name": "Sindre Sorhus",
+      "email": "sindresorhus@gmail.com",
+      "url": "sindresorhus.com"
+    },
+    {
+      "name": "Vsevolod Strukchinsky",
+      "email": "floatdrop@gmail.com",
+      "url": "github.com/floatdrop"
+    }
+  ],
+  "engines": {
+    "node": ">=0.10"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "http",
+    "unzip",
+    "zlib",
+    "gzip",
+    "deflate",
+    "incoming",
+    "message",
+    "response",
+    "stream"
+  ],
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "get-stream": "^2.3.0",
+    "pify": "^2.3.0",
+    "pinkie-promise": "^2.0.1",
+    "rfpify": "^1.0.0",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": false
+  }
+}

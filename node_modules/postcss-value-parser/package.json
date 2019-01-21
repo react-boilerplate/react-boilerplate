@@ -1,0 +1,44 @@
+{
+  "name": "postcss-value-parser",
+  "version": "3.3.0",
+  "description": "Transforms css values and at-rule params into the tree",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "eslint": "^2.1.0",
+    "eslint-config-postcss": "^2.0.0",
+    "tap-spec": "^4.1.0",
+    "tape": "^4.2.0"
+  },
+  "scripts": {
+    "test": "tape test/*.js | tap-spec",
+    "posttest": "eslint ."
+  },
+  "eslintConfig": {
+    "extends": "postcss/es5",
+    "rules": {
+      "max-len": 0,
+      "no-bitwise": 0,
+      "complexity": 0,
+      "no-use-before-define": 0,
+      "consistent-return": 0
+    }
+  },
+  "author": "Bogdan Chadkin <trysound@yandex.ru>",
+  "license": "MIT",
+  "homepage": "https://github.com/TrySound/postcss-value-parser",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TrySound/postcss-value-parser.git"
+  },
+  "keywords": [
+    "postcss",
+    "value",
+    "parser"
+  ],
+  "bugs": {
+    "url": "https://github.com/TrySound/postcss-value-parser/issues"
+  }
+}

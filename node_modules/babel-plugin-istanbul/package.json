@@ -1,0 +1,75 @@
+{
+  "name": "babel-plugin-istanbul",
+  "version": "4.1.6",
+  "author": "Thai Pangsakulyanont @dtinth",
+  "license": "BSD-3-Clause",
+  "description": "A babel plugin that adds istanbul instrumentation to ES6 code",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
+    "find-up": "^2.1.0",
+    "istanbul-lib-instrument": "^1.10.1",
+    "test-exclude": "^4.2.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.24.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.24.0",
+    "chai": "^4.1.0",
+    "coveralls": "^3.0.0",
+    "cross-env": "^3.1.4",
+    "mocha": "^4.0.0",
+    "nyc": "^11.1.0",
+    "pmock": "^0.2.3",
+    "standard": "^9.0.2",
+    "standard-version": "^4.0.0"
+  },
+  "scripts": {
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "release": "babel src --out-dir lib",
+    "pretest": "standard && npm run release",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha test/*.js",
+    "prepublish": "npm test && npm run release",
+    "version": "standard-version"
+  },
+  "standard": {
+    "ignore": [
+      "fixtures/has-inline-source-map.js"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/istanbuljs/babel-plugin-istanbul.git"
+  },
+  "keywords": [
+    "istanbul",
+    "babel",
+    "plugin",
+    "instrumentation"
+  ],
+  "nyc": {
+    "include": [
+      "src/*.js",
+      "fixtures/should-cover.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  },
+  "bugs": {
+    "url": "https://github.com/istanbuljs/babel-plugin-istanbul/issues"
+  },
+  "homepage": "https://github.com/istanbuljs/babel-plugin-istanbul#readme",
+  "greenkeeper": {
+    "ignore": [
+      "find-up",
+      "cross-env"
+    ]
+  }
+}

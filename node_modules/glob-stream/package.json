@@ -1,0 +1,51 @@
+{
+  "name": "glob-stream",
+  "version": "5.3.5",
+  "description": "A wrapper around node-glob to make it streamy",
+  "author": "Gulp Team <team@gulpjs.com> (http://gulpjs.com/)",
+  "contributors": [],
+  "homepage": "http://gulpjs.com",
+  "repository": "gulpjs/glob-stream",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "lint": "eslint . && jscs . test/",
+    "pretest": "npm run lint",
+    "test": "mocha",
+    "coveralls": "istanbul cover _mocha --report lcovonly && istanbul-coveralls"
+  },
+  "dependencies": {
+    "extend": "^3.0.0",
+    "glob": "^5.0.3",
+    "glob-parent": "^3.0.0",
+    "micromatch": "^2.3.7",
+    "ordered-read-streams": "^0.3.0",
+    "through2": "^0.6.0",
+    "to-absolute-glob": "^0.1.1",
+    "unique-stream": "^2.0.2"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.2",
+    "eslint": "^1.7.3",
+    "eslint-config-gulp": "^2.0.0",
+    "istanbul": "^0.3.0",
+    "istanbul-coveralls": "^1.0.1",
+    "jscs": "^2.3.5",
+    "jscs-preset-gulp": "^1.0.0",
+    "mocha": "^2.0.0",
+    "mocha-lcov-reporter": "^0.0.2",
+    "rimraf": "^2.2.5",
+    "should": "^7.1.0",
+    "stream-sink": "^1.2.0"
+  },
+  "keywords": [
+    "glob",
+    "stream"
+  ]
+}

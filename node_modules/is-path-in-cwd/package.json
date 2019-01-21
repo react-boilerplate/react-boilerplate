@@ -1,0 +1,38 @@
+{
+  "name": "is-path-in-cwd",
+  "version": "1.0.1",
+  "description": "Check if a path is in the current working directory",
+  "license": "MIT",
+  "repository": "sindresorhus/is-path-in-cwd",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "path",
+    "cwd",
+    "pwd",
+    "check",
+    "filepath",
+    "file",
+    "folder",
+    "in",
+    "inside"
+  ],
+  "dependencies": {
+    "is-path-inside": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}

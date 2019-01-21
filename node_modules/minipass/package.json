@@ -1,0 +1,34 @@
+{
+  "name": "minipass",
+  "version": "2.3.3",
+  "description": "minimal implementation of a PassThrough stream",
+  "main": "index.js",
+  "dependencies": {
+    "safe-buffer": "^5.1.2",
+    "yallist": "^3.0.0"
+  },
+  "devDependencies": {
+    "end-of-stream": "^1.4.0",
+    "tap": "^12.0.1",
+    "through2": "^2.0.3"
+  },
+  "scripts": {
+    "test": "tap test/*.js --100",
+    "preversion": "npm test",
+    "postversion": "npm publish",
+    "postpublish": "git push origin --all; git push origin --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isaacs/minipass.git"
+  },
+  "keywords": [
+    "passthrough",
+    "stream"
+  ],
+  "author": "Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me/)",
+  "license": "ISC",
+  "files": [
+    "index.js"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "name": "ngrok",
+  "version": "3.1.0",
+  "description": "node wrapper for ngrok",
+  "main": "index.js",
+  "types": "ngrok.d.ts",
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/_mocha --exit",
+    "postinstall": "node ./postinstall.js",
+    "postupdate": "node ./postinstall.js"
+  },
+  "files": [
+    "index.js",
+    "postinstall.js",
+    "process.js",
+    "bin/ngrok",
+    "ngrok.d.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bubenshchykov/ngrok.git"
+  },
+  "keywords": [
+    "ngrok",
+    "localhost",
+    "tunneling",
+    "localtunnel",
+    "webhook"
+  ],
+  "author": "bubenshchykov",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/bubenshchykov/ngrok/issues"
+  },
+  "devDependencies": {
+    "chai": "~3.5.0",
+    "colors": "^1.3.2",
+    "homedir": "^0.6.0",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "@types/node": "^8.10.30",
+    "decompress-zip": "^0.3.1",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
+    "uuid": "^3.3.2"
+  },
+  "bin": {
+    "ngrok": "./bin/ngrok"
+  },
+  "engines": {
+    "node": ">=8.3.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    ["../../../src", {
+      "factoryMethods": ["createClass", "factory"],
+      "transforms": [{
+        "transform": "transform-lib"
+      }]
+    }]
+  ]
+}

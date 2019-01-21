@@ -1,0 +1,70 @@
+{
+  "name": "intl-messageformat",
+  "version": "2.2.0",
+  "description": "Formats ICU Message strings with number, date, plural, and select placeholders to create localized messages.",
+  "keywords": [
+    "i18n",
+    "intl",
+    "internationalization",
+    "localization",
+    "globalization",
+    "messageformat",
+    "parser",
+    "plural",
+    "icu"
+  ],
+  "author": "Eric Ferraiuolo <eferraiuolo@gmail.com>",
+  "contributors": [
+    "Drew Folta <drew@folta.net>",
+    "Caridy Patino <caridy@gmail.com>",
+    "Anthony Pipkin <a.pipkin@yahoo.com>"
+  ],
+  "bugs": {
+    "url": "https://github.com/yahoo/intl-messageformat/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:yahoo/intl-messageformat.git"
+  },
+  "main": "index.js",
+  "jsnext:main": "src/main.js",
+  "browser": {
+    "./lib/locales": false,
+    "./lib/locales.js": false
+  },
+  "dependencies": {
+    "intl-messageformat-parser": "1.4.0"
+  },
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "expect.js": "^0.3.1",
+    "grunt": "^0.4.5",
+    "grunt-benchmark": "^0.3.0",
+    "grunt-browserify": "^3.3.0",
+    "grunt-bundle-jsnext-lib": "^0.5.0",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-connect": "^0.9.0",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-extract-cldr-data": "^3.0.0",
+    "grunt-json-remove-fields": "git://github.com/ericf/grunt-json-remove-fields#improve-files-and-output",
+    "grunt-saucelabs": "^8.4.1",
+    "intl": "^0.1.4",
+    "istanbul": "^0.3.0",
+    "mocha": "^2.0.1",
+    "xunit-file": "0.0.6"
+  },
+  "scripts": {
+    "test": "istanbul cover -x lib/locales.js -- _mocha tests/runner.js --reporter spec",
+    "travis": "istanbul cover -x lib/locales.js -- _mocha tests/runner.js --reporter spec && tests/saucelabs.sh",
+    "prepublish": "grunt"
+  },
+  "homepage": "https://github.com/yahoo/intl-messageformat",
+  "directories": {
+    "test": "tests"
+  },
+  "license": "BSD-3-Clause"
+}

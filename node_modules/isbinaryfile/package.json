@@ -1,0 +1,33 @@
+{
+  "name": "isbinaryfile",
+  "description": "Detects if a file is binary in Node.js. Similar to Perl's -B.",
+  "version": "3.0.2",
+  "devDependencies": {
+    "mocha": "^2.2.4",
+    "grunt": "~0.4.1",
+    "grunt-release": "~0.6.0",
+    "grunt-exec": "0.4.3",
+    "grunt-cli": "~0.1.13"
+  },
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "license": "MIT",
+  "main": "./index.js",
+  "maintainers": [
+    {
+      "name": "Garen J. Torikian",
+      "email": "gjtorikian@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gjtorikian/isBinaryFile"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}

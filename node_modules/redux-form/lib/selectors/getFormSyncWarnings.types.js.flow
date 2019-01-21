@@ -1,0 +1,2 @@
+// @flow
+export type GetFormSyncWarningsInterface = (state: any) => Object

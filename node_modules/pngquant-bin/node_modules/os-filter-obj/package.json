@@ -1,0 +1,35 @@
+{
+  "name": "os-filter-obj",
+  "version": "2.0.0",
+  "description": "Filter an array of objects to a specific OS",
+  "license": "MIT",
+  "repository": "kevva/os-filter-obj",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "https://github.com/kevva"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "arch",
+    "filter",
+    "obj",
+    "object",
+    "os"
+  ],
+  "dependencies": {
+    "arch": "^2.1.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "xo": "*"
+  }
+}

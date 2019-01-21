@@ -1,0 +1,49 @@
+{
+  "name": "redux-immutable",
+  "description": "redux-immutable is used to create an equivalent function of Redux combineReducers that works with Immutable.js state.",
+  "main": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gajus/redux-immutable"
+  },
+  "keywords": [
+    "immutable",
+    "redux"
+  ],
+  "version": "4.0.0",
+  "author": {
+    "name": "Gajus Kuizinas",
+    "email": "gajus@anuary.com",
+    "url": "http://gajus.com"
+  },
+  "license": "BSD-3-Clause",
+  "peerDependencies": {
+    "immutable": "^3.8.1 || ^4.0.0-rc.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-flow-runtime": "0.0.6",
+    "babel-plugin-syntax-flow": "^6.18.0",
+    "babel-plugin-transform-flow-strip-types": "^6.21.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "benchmark": "^2.1.3",
+    "chai": "^3.5.0",
+    "eslint": "^3.13.1",
+    "eslint-config-canonical": "^6.0.0",
+    "flow-runtime": "0.0.6",
+    "husky": "^0.12.0",
+    "immutable": "^3.8.1 || ^4.0.0-rc.1",
+    "mocha": "^3.2.0",
+    "semantic-release": "^6.3.2"
+  },
+  "scripts": {
+    "lint": "eslint ./src ./tests",
+    "test": "mocha --compilers js:babel-register './tests/**/*.js'",
+    "build": "babel ./src --source-maps --out-dir ./dist",
+    "benchmark": "NODE_ENV=production node ./benchmarks/index.js",
+    "precommit": "npm run lint && npm run test"
+  }
+}

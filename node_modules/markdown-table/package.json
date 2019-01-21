@@ -1,0 +1,79 @@
+{
+  "name": "markdown-table",
+  "version": "1.1.2",
+  "description": "Markdown/ASCII tables",
+  "license": "MIT",
+  "keywords": [
+    "text",
+    "markdown",
+    "table",
+    "align",
+    "ascii",
+    "rows",
+    "tabular"
+  ],
+  "repository": "wooorm/markdown-table",
+  "bugs": "https://github.com/wooorm/markdown-table/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "browserify": "^16.0.0",
+    "chalk": "^2.0.0",
+    "esmangle": "^1.0.0",
+    "nyc": "^11.0.0",
+    "prettier": "^1.12.1",
+    "remark-cli": "^5.0.0",
+    "remark-preset-wooorm": "^4.0.0",
+    "strip-ansi": "^4.0.0",
+    "tape": "^4.4.0",
+    "xo": "^0.20.0"
+  },
+  "scripts": {
+    "format": "remark . -qfo && prettier --write '**/*.js' && xo --fix",
+    "build-bundle": "browserify index.js -s markdownTable > markdown-table.js",
+    "build-mangle": "esmangle markdown-table.js > markdown-table.min.js",
+    "build": "npm run build-bundle && npm run build-mangle",
+    "test-api": "node test",
+    "test-coverage": "nyc --reporter lcov tape test.js",
+    "test": "npm run format && npm run build && npm run test-coverage"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-wooorm"
+    ]
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "semi": false,
+    "trailingComma": "none"
+  },
+  "xo": {
+    "prettier": true,
+    "esnext": false,
+    "rules": {
+      "complexity": "off",
+      "max-depth": "off",
+      "object-shorthand": "off",
+      "prefer-arrow-callback": "off",
+      "no-var": "off"
+    },
+    "ignores": [
+      "markdown-table.js"
+    ]
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "functions": 100,
+    "branches": 100
+  }
+}

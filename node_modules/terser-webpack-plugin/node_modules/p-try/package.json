@@ -1,0 +1,40 @@
+{
+	"name": "p-try",
+	"version": "2.0.0",
+	"description": "`Start a promise chain",
+	"license": "MIT",
+	"repository": "sindresorhus/p-try",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=6"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"promise",
+		"try",
+		"resolve",
+		"function",
+		"catch",
+		"async",
+		"await",
+		"promises",
+		"settled",
+		"ponyfill",
+		"polyfill",
+		"shim",
+		"bluebird"
+	],
+	"devDependencies": {
+		"ava": "*",
+		"xo": "*"
+	}
+}

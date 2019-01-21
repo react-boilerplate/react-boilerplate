@@ -1,0 +1,56 @@
+{
+  "name": "imagemin-webp",
+  "version": "4.1.0",
+  "description": "WebP imagemin plugin",
+  "license": "MIT",
+  "repository": "imagemin/imagemin-webp",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "github.com/kevva"
+  },
+  "maintainers": [
+    {
+      "name": "Sindre Sorhus",
+      "email": "sindresorhus@gmail.com",
+      "url": "sindresorhus.com"
+    },
+    {
+      "name": "Shinnosuke Watanabe",
+      "url": "github.com/shinnn"
+    }
+  ],
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "compress",
+    "cwebp",
+    "image",
+    "imageminplugin",
+    "img",
+    "jpg",
+    "minify",
+    "optimize",
+    "png",
+    "tif",
+    "webp"
+  ],
+  "dependencies": {
+    "cwebp-bin": "^4.0.0",
+    "exec-buffer": "^3.0.0",
+    "is-cwebp-readable": "^2.0.1"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "is-webp": "^1.0.0",
+    "pify": "^3.0.0",
+    "xo": "*"
+  }
+}

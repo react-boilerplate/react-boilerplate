@@ -1,0 +1,73 @@
+{
+  "name": "yargs",
+  "version": "11.0.0",
+  "description": "yargs the modern, pirate-themed, successor to optimist.",
+  "main": "./index.js",
+  "files": [
+    "index.js",
+    "yargs.js",
+    "lib",
+    "locales",
+    "completion.sh.hbs",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "cliui": "^4.0.0",
+    "decamelize": "^1.1.1",
+    "find-up": "^2.1.0",
+    "get-caller-file": "^1.0.1",
+    "os-locale": "^2.0.0",
+    "require-directory": "^2.1.1",
+    "require-main-filename": "^1.0.1",
+    "set-blocking": "^2.0.0",
+    "string-width": "^2.0.0",
+    "which-module": "^2.0.0",
+    "y18n": "^3.2.1",
+    "yargs-parser": "^9.0.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chalk": "^1.1.3",
+    "coveralls": "^2.11.11",
+    "cpr": "^2.0.0",
+    "cross-spawn": "^5.0.1",
+    "es6-promise": "^4.0.2",
+    "hashish": "0.0.4",
+    "mocha": "^3.0.1",
+    "nyc": "^11.2.1",
+    "rimraf": "^2.5.0",
+    "standard": "^8.6.0",
+    "standard-version": "^4.2.0",
+    "which": "^1.2.9",
+    "yargs-test-extends": "^1.0.1"
+  },
+  "scripts": {
+    "posttest": "standard",
+    "test": "nyc --cache mocha --require ./test/before.js --timeout=8000 --check-leaks",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/yargs/yargs.git"
+  },
+  "homepage": "http://yargs.js.org/",
+  "standard": {
+    "ignore": [
+      "**/example/**"
+    ]
+  },
+  "keywords": [
+    "argument",
+    "args",
+    "option",
+    "parser",
+    "parsing",
+    "cli",
+    "command"
+  ],
+  "license": "MIT",
+  "engine": {
+    "node": ">=4"
+  }
+}

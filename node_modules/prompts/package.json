@@ -1,0 +1,47 @@
+{
+  "name": "prompts",
+  "version": "0.1.14",
+  "description": "Lightweight, beautiful and user-friendly prompts",
+  "homepage": "https://github.com/terkelg/prompts",
+  "repository": "terkelg/prompts",
+  "main": "index.js",
+  "author": {
+    "name": "Terkel Gjervig",
+    "email": "terkel@terkel.com",
+    "url": "https://terkel.com"
+  },
+  "files": [
+    "lib",
+    "dist",
+    "index.js"
+  ],
+  "scripts": {
+    "start": "node lib/index.js",
+    "build": "babel lib -d dist",
+    "prepublishOnly": "npm run build",
+    "test": "tape test/*.js | tap-spec"
+  },
+  "keywords": [
+    "ui",
+    "prompts",
+    "cli",
+    "prompt",
+    "interface",
+    "command-line",
+    "input"
+  ],
+  "dependencies": {
+    "kleur": "^2.0.1",
+    "sisteransi": "^0.1.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.9.1"
+  },
+  "engines": {
+    "node": ">= 6"
+  }
+}

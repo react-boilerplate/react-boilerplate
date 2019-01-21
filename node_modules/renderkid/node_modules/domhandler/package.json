@@ -1,0 +1,28 @@
+{
+  "name": "domhandler",
+  "version": "2.1.0",
+  "description": "handler for htmlparser2 that turns pages into a dom",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha -R list"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fb55/domhandler.git"
+  },
+  "keywords": [
+    "dom",
+    "htmlparser2"
+  ],
+  "dependencies": {
+    "domelementtype": "1"
+  },
+  "devDependencies": {
+    "htmlparser2": "2.3",
+    "mocha": "1"
+  },
+  "author": "Felix Boehm <me@feedic.com>"
+}

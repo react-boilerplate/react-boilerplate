@@ -1,0 +1,46 @@
+{
+  "name": "normalize-url",
+  "version": "2.0.1",
+  "description": "Normalize a URL",
+  "license": "MIT",
+  "repository": "sindresorhus/normalize-url",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "normalize",
+    "url",
+    "uri",
+    "address",
+    "string",
+    "normalization",
+    "normalisation",
+    "query",
+    "querystring",
+    "unicode",
+    "simplify",
+    "strip",
+    "trim",
+    "canonical"
+  ],
+  "dependencies": {
+    "prepend-http": "^2.0.0",
+    "query-string": "^5.0.1",
+    "sort-keys": "^2.0.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "xo": "*"
+  }
+}

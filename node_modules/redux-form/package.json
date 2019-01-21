@@ -1,0 +1,166 @@
+{
+  "name": "redux-form",
+  "version": "7.4.2",
+  "description": "A higher order component decorator for forms using Redux and React",
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "jsnext:main": "./es/index.js",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erikras/redux-form"
+  },
+  "scripts": {
+    "analyze": "webpack src/index.js dist/redux-form.js -p --bail --profile --json > stats.json && webpack-bundle-analyzer stats.json",
+    "build": "npm run build:lib && npm run build:es && npm run build:umd && npm run build:umd:min && npm run build:flow",
+    "build:lib": "babel src --out-dir lib --ignore __tests__",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es --ignore __tests__",
+    "build:flow": "cp src/*.js.flow lib && cp src/selectors/*.js.flow lib/selectors && cp src/*.js.flow es && cp src/selectors/*.js.flow es/selectors",
+    "build:umd": "cross-env NODE_ENV=development webpack src/index.js -o dist/redux-form.js",
+    "build:umd:min": "cross-env NODE_ENV=production webpack src/index.js -o dist/redux-form.min.js",
+    "clean": "rimraf dist lib es",
+    "lint": "eslint src",
+    "example": "npm --prefix ./examples/$form install && npm --prefix ./examples/$form start",
+    "example:asyncChangeValidation": "form=asyncChangeValidation npm run example",
+    "example:asyncValidation": "form=asyncValidation npm run example",
+    "example:fieldArrays": "form=fieldArrays npm run example",
+    "example:fieldLevelValidation": "form=fieldLevelValidation npm run example",
+    "example:immutable": "form=immutable npm run example",
+    "example:initializeFromState": "form=initializeFromState npm run example",
+    "example:material-ui": "form=material-ui npm run example",
+    "example:normalizing": "form=normalizing npm run example",
+    "example:react-widgets": "form=react-widgets npm run example",
+    "example:selectingFormValues": "form=selectingFormValues npm run example",
+    "example:simple": "form=simple npm run example",
+    "example:submitValidation": "form=submitValidation npm run example",
+    "example:syncValidation": "form=syncValidation npm run example",
+    "example:wizard": "form=wizard npm run example",
+    "precommit": "lint-staged",
+    "prepublishOnly": "npm run lint && npm run test:cov && npm run test:flow && npm run clean && npm run build",
+    "validate": "npm run lint && npm run test:cov && npm run test:flow && npm run clean && npm run build",
+    "test": "cross-env NODE_ENV=test jest --runInBand",
+    "test:flow": "flow check",
+    "test:watch": "npm test -- --watch",
+    "test:cov": "npm run test -- --coverage"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "flux",
+    "redux",
+    "react-redux",
+    "redux-form",
+    "form",
+    "decorator"
+  ],
+  "author": "Erik Rasmussen <rasmussenerik@gmail.com> (http://github.com/erikras)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/erikras/redux-form/issues"
+  },
+  "homepage": "https://redux-form.com/",
+  "dependencies": {
+    "es6-error": "^4.1.1",
+    "hoist-non-react-statics": "^2.5.4",
+    "invariant": "^2.2.4",
+    "is-promise": "^2.1.0",
+    "lodash": "^4.17.10",
+    "lodash-es": "^4.17.10",
+    "prop-types": "^15.6.1",
+    "react-lifecycles-compat": "^3.0.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-jest": "^23.0.1",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-istanbul": "^4.1.6",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-plugin-transform-react-jsx-source": "^6.22.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-preset-es2015-no-commonjs": "^0.0.2",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "codecov.io": "^0.1.6",
+    "cross-env": "^5.1.6",
+    "deep-equal": "^1.0.1",
+    "eslint": "^4.19.1",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-flowtype": "^2.49.3",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1",
+    "flow-bin": "^0.54.1",
+    "flux-standard-action": "^2.0.3",
+    "glow": "^1.2.2",
+    "husky": "^0.14.3",
+    "immutable": "^3.8.2",
+    "jest": "^23.1.0",
+    "lint-staged": "^7.2.0",
+    "lodash-webpack-plugin": "^0.11.5",
+    "prettier": "^1.13.5",
+    "prettier-eslint-cli": "^4.7.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-immutablejs": "^0.0.8",
+    "rifraf": "^2.0.3",
+    "rimraf": "^2.5.4",
+    "stringstream": "0.0.6",
+    "tmp": "0.0.33",
+    "webpack": "^4.12.0",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-cli": "^3.0.3"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0-0 || ^16.0.0-0",
+    "react-redux": "^4.3.0 || ^5.0.0",
+    "redux": "^3.0.0 || ^4.0.0"
+  },
+  "files": [
+    "README.md",
+    "es",
+    "lib",
+    "dist",
+    "immutable.js",
+    "*.js.flow"
+  ],
+  "lint-staged": {
+    "*.{js,json,md,css}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/__tests__/**/*.js"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
+    ],
+    "testRegex": "__tests__/.*\\.spec\\.js$",
+    "testEnvironment": "jsdom"
+  },
+  "npmName": "redux-form",
+  "npmFileMap": [
+    {
+      "basePath": "/dist/",
+      "files": [
+        "*.js"
+      ]
+    }
+  ]
+}

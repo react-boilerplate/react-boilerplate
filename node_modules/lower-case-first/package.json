@@ -1,0 +1,48 @@
+{
+  "name": "lower-case-first",
+  "version": "1.0.2",
+  "description": "Lower case the first character of a string",
+  "main": "lower-case-first.js",
+  "typings": "lower-case-first.d.ts",
+  "files": [
+    "lower-case-first.js",
+    "lower-case-first.d.ts",
+    "LICENSE"
+  ],
+  "scripts": {
+    "lint": "standard",
+    "test-std": "mocha -- -R spec --bail",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec --bail",
+    "test": "npm run lint && npm run test-cov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blakeembrey/lower-case-first.git"
+  },
+  "keywords": [
+    "cases",
+    "first",
+    "lower",
+    "lowercase",
+    "case"
+  ],
+  "author": {
+    "name": "Blake Embrey",
+    "email": "hello@blakeembrey.com",
+    "url": "http://blakeembrey.me"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blakeembrey/lower-case-first/issues"
+  },
+  "homepage": "https://github.com/blakeembrey/lower-case-first",
+  "devDependencies": {
+    "istanbul": "^0.3.0",
+    "mocha": "^1.18.2",
+    "pre-commit": "0.0.9",
+    "standard": "^3.3.0"
+  },
+  "dependencies": {
+    "lower-case": "^1.1.2"
+  }
+}

@@ -1,0 +1,19 @@
+# Patrons
+
+The work on React Transform, [React Hot Loader](https://github.com/gaearon/react-hot-loader), [Redux](https://github.com/rackt/redux), and related projects was [funded by the community](https://www.patreon.com/reactdx).  
+Meet some of the outstanding companies and individuals that made it possible:
+
+* [Webflow](https://github.com/webflow)
+* [Ximedes](https://www.ximedes.com/)
+* [Herman J. Radtke III](http://hermanradtke.com)
+* [Ken Wheeler](http://kenwheeler.github.io/)
+* [Chung Yen Li](https://www.facebook.com/prototocal.lee)
+* [Sunil Pai](https://twitter.com/threepointone)
+* [Charlie Cheever](https://twitter.com/ccheever)
+* [Eugene G](https://twitter.com/e1g)
+* [Matt Apperson](https://twitter.com/mattapperson)
+* [Jed Watson](https://twitter.com/jedwatson)
+* [Sasha Aickin](https://twitter.com/xander76)
+* [Stefan Tennigkeit](https://twitter.com/whobubble)
+* [Sam Vincent](https://twitter.com/samvincent)
+* Olegzandr Denman

@@ -1,0 +1,7 @@
+'use strict';
+
+var stringify = require('./scss-stringify');
+var parse = require('./scss-parse');
+
+module.exports = { parse: parse, stringify: stringify };
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNjc3Mtc3ludGF4LmVzNiJdLCJuYW1lcyI6WyJzdHJpbmdpZnkiLCJyZXF1aXJlIiwicGFyc2UiLCJtb2R1bGUiLCJleHBvcnRzIl0sIm1hcHBpbmdzIjoiOztBQUFBLElBQU1BLFlBQVlDLFFBQVEsa0JBQVIsQ0FBbEI7QUFDQSxJQUFNQyxRQUFRRCxRQUFRLGNBQVIsQ0FBZDs7QUFFQUUsT0FBT0MsT0FBUCxHQUFpQixFQUFFRixZQUFGLEVBQVNGLG9CQUFULEVBQWpCIiwiZmlsZSI6InNjc3Mtc3ludGF4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiY29uc3Qgc3RyaW5naWZ5ID0gcmVxdWlyZSgnLi9zY3NzLXN0cmluZ2lmeScpXG5jb25zdCBwYXJzZSA9IHJlcXVpcmUoJy4vc2Nzcy1wYXJzZScpXG5cbm1vZHVsZS5leHBvcnRzID0geyBwYXJzZSwgc3RyaW5naWZ5IH1cbiJdfQ==

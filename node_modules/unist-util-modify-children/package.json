@@ -1,0 +1,78 @@
+{
+  "name": "unist-util-modify-children",
+  "version": "1.1.2",
+  "description": "Unist utility to modify direct children of a parent",
+  "license": "MIT",
+  "keywords": [
+    "unist",
+    "retext",
+    "nlcst",
+    "mdast",
+    "util",
+    "utility",
+    "modify",
+    "children"
+  ],
+  "repository": "syntax-tree/unist-util-modify-children",
+  "bugs": "https://github.com/syntax-tree/unist-util-modify-children/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "array-iterate": "^1.0.0"
+  },
+  "devDependencies": {
+    "browserify": "^16.0.0",
+    "esmangle": "^1.0.0",
+    "nyc": "^11.0.0",
+    "prettier": "^1.12.1",
+    "remark-cli": "^5.0.0",
+    "remark-preset-wooorm": "^4.0.0",
+    "tape": "^4.6.2",
+    "xo": "^0.20.0"
+  },
+  "scripts": {
+    "format": "remark . -qfo && prettier --write '**/*.js' && xo --fix",
+    "build-bundle": "browserify index.js --bare -s unistUtilModifyChildren > unist-util-modify-children.js",
+    "build-mangle": "esmangle < unist-util-modify-children.js > unist-util-modify-children.min.js",
+    "build": "npm run build-bundle && npm run build-mangle",
+    "test-api": "node test",
+    "test-coverage": "nyc --reporter lcov tape test.js",
+    "test": "npm run format && npm run build && npm run test-coverage"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "semi": false,
+    "trailingComma": "none"
+  },
+  "xo": {
+    "prettier": true,
+    "esnext": false,
+    "rules": {
+      "guard-for-in": "off",
+      "no-var": "off",
+      "prefer-arrow-callback": "off"
+    },
+    "ignore": [
+      "unist-util-modify-children.js"
+    ]
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "functions": 100,
+    "branches": 100
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-wooorm"
+    ]
+  }
+}

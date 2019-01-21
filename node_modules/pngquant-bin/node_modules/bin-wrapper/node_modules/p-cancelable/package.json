@@ -1,0 +1,47 @@
+{
+	"name": "p-cancelable",
+	"version": "0.4.1",
+	"description": "Create a promise that can be canceled",
+	"license": "MIT",
+	"repository": "sindresorhus/p-cancelable",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=4"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"promise",
+		"cancelable",
+		"cancel",
+		"canceled",
+		"canceling",
+		"cancellable",
+		"cancellation",
+		"abort",
+		"abortable",
+		"aborting",
+		"cleanup",
+		"task",
+		"token",
+		"async",
+		"function",
+		"await",
+		"promises",
+		"bluebird"
+	],
+	"devDependencies": {
+		"ava": "*",
+		"delay": "^2.0.0",
+		"promise.prototype.finally": "^3.1.0",
+		"xo": "*"
+	}
+}

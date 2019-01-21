@@ -1,0 +1,52 @@
+{
+  "_from": "react-is@0.0.0-4a1072194",
+  "_id": "react-is@0.0.0-4a1072194",
+  "_inBundle": false,
+  "_integrity": "sha512-FbThLNGlcFMndzaw8Vfvu/Nyqd4QB38Xqont9tzN6/7B/9/d97o4KNciSFmKIRgL50kS6wEuaWCkAJr6Qa+xDQ==",
+  "_location": "/react-is",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "react-is@0.0.0-4a1072194",
+    "name": "react-is",
+    "escapedName": "react-is",
+    "rawSpec": "0.0.0-4a1072194",
+    "saveSpec": null,
+    "fetchSpec": "0.0.0-4a1072194"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-is/-/react-is-0.0.0-4a1072194.tgz",
+  "_shasum": "fa55ad1108b807d11d006a1144499a26ce2a6306",
+  "_spec": "react-is@0.0.0-4a1072194",
+  "_where": "/Users/acdlite/Code/react/build/node_modules",
+  "bugs": {
+    "url": "https://github.com/facebook/react/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Brand checking of React Elements.",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "build-info.json",
+    "index.js",
+    "cjs/",
+    "umd/"
+  ],
+  "homepage": "https://reactjs.org/",
+  "keywords": [
+    "react"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "react-is",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facebook/react.git"
+  },
+  "version": "16.7.0"
+}

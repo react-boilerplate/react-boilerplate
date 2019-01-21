@@ -1,0 +1,60 @@
+{
+  "name": "extglob",
+  "description": "Convert extended globs to regex-compatible strings. Add (almost) the expressive power of regular expressions to glob patterns.",
+  "version": "0.3.2",
+  "homepage": "https://github.com/jonschlinkert/extglob",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jonschlinkert/extglob.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/extglob/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "is-extglob": "^1.0.0"
+  },
+  "devDependencies": {
+    "ansi-green": "^0.1.1",
+    "micromatch": "^2.1.6",
+    "minimatch": "^2.0.1",
+    "minimist": "^1.1.0",
+    "mocha": "*",
+    "should": "*",
+    "success-symbol": "^0.1.0"
+  },
+  "keywords": [
+    "bash",
+    "extended",
+    "extglob",
+    "glob",
+    "ksh",
+    "match",
+    "wildcard"
+  ],
+  "verb": {
+    "related": {
+      "list": [
+        "micromatch",
+        "expand-brackets",
+        "braces",
+        "fill-range",
+        "expand-range"
+      ]
+    }
+  }
+}

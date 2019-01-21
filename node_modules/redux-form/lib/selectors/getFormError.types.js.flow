@@ -1,0 +1,2 @@
+// @flow
+export type GetFormErrorInterface = (state: any) => any

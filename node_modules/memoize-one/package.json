@@ -1,0 +1,56 @@
+{
+  "name": "memoize-one",
+  "version": "4.1.0",
+  "description": "A memoization library which only remembers the latest invocation",
+  "main": "dist/memoize-one.cjs.js",
+  "module": "dist/memoize-one.esm.js",
+  "sideEffects": false,
+  "author": "Alex Reardon <alexreardon@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexreardon/memoize-one.git"
+  },
+  "files": [
+    "/dist",
+    "/src"
+  ],
+  "keywords": [
+    "memoize",
+    "memoization",
+    "cache",
+    "performance"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-flow": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "10.0.1",
+    "babel-jest": "^23.6.0",
+    "cross-env": "^5.2.0",
+    "eslint": "5.10.0",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-jest": "^22.1.2",
+    "flow-bin": "0.88.0",
+    "jest": "^23.6.0",
+    "rimraf": "2.6.2",
+    "rollup": "^0.67.4",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-replace": "^2.1.0",
+    "rollup-plugin-uglify": "^6.0.0"
+  },
+  "scripts": {
+    "validate": "yarn run lint && yarn run typecheck",
+    "test": "cross-env NODE_ENV=test jest",
+    "typecheck": "flow check",
+    "lint": "eslint src test",
+    "build": "yarn run build:clean && yarn run build:dist && yarn run build:flow",
+    "build:clean": "rimraf dist",
+    "build:dist": "rollup -c",
+    "build:flow": "echo \"// @flow\n\nexport * from '../src';\" > dist/memoize-one.cjs.js.flow",
+    "prepublish": "yarn run build"
+  }
+}

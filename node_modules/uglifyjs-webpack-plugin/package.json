@@ -1,0 +1,86 @@
+{
+  "name": "uglifyjs-webpack-plugin",
+  "version": "1.2.5",
+  "description": "UglifyJS plugin for webpack",
+  "author": "webpack Contrib Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 4.8 < 5.0.0 || >= 5.10"
+  },
+  "main": "dist/cjs.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "npm run build -- -w",
+    "build": "cross-env NODE_ENV=production babel src -d dist --ignore 'src/**/*.test.js' --copy-files",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --collectCoverageFrom='src/**/*.js' --coverage",
+    "prebuild": "npm run clean",
+    "clean": "del-cli dist",
+    "lint": "eslint --cache src test",
+    "lint-staged": "lint-staged",
+    "prepare": "npm run build",
+    "release": "standard-version",
+    "security": "nsp check",
+    "ci:lint": "npm run lint && npm run security",
+    "ci:test": "npm run test -- --runInBand",
+    "ci:coverage": "npm run test:coverage -- --runInBand",
+    "appveyor:test": "npm run test",
+    "webpack-defaults": "webpack-defaults"
+  },
+  "dependencies": {
+    "cacache": "^10.0.4",
+    "find-cache-dir": "^1.0.0",
+    "serialize-javascript": "^1.4.0",
+    "schema-utils": "^0.4.5",
+    "source-map": "^0.6.1",
+    "uglify-es": "^3.3.4",
+    "webpack-sources": "^1.1.0",
+    "worker-farm": "^1.5.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^22.4.3",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.3",
+    "del-cli": "^1.1.0",
+    "eslint": "^4.14.0",
+    "eslint-config-webpack": "^1.2.5",
+    "eslint-plugin-import": "^2.8.0",
+    "jest": "^22.4.3",
+    "lint-staged": "^6.0.0",
+    "memory-fs": "^0.4.1",
+    "nsp": "^3.1.0",
+    "pre-commit": "^1.2.2",
+    "standard-version": "^4.3.0",
+    "webpack": "^3.10.0",
+    "webpack-defaults": "^1.6.0"
+  },
+  "peerDependencies": {
+    "webpack": "^2.0.0 || ^3.0.0 || ^4.0.0"
+  },
+  "keywords": [
+    "uglify",
+    "uglify-js",
+    "uglify-es",
+    "webpack",
+    "webpack-plugin"
+  ],
+  "bugs": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues",
+  "homepage": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin",
+  "repository": "https://github.com/webpack-contrib/uglifyjs-webpack-plugin.git",
+  "pre-commit": "lint-staged",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "name": "stylelint",
+  "version": "9.6.0",
+  "description": "A mighty, modern CSS linter.",
+  "keywords": [
+    "css",
+    "less",
+    "sass",
+    "scss",
+    "sugarss",
+    "lint",
+    "linter",
+    "stylelint"
+  ],
+  "authors": [
+    "David Clark",
+    "Maxime Thirouin",
+    "Richard Hallows"
+  ],
+  "license": "MIT",
+  "homepage": "https://stylelint.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stylelint/stylelint.git"
+  },
+  "main": "lib/index.js",
+  "bin": "bin/stylelint.js",
+  "files": [
+    "bin",
+    "CONTRIBUTING.md",
+    "docs",
+    "lib",
+    "VISION.md",
+    "!**/__tests__",
+    "flow-typed",
+    "!flow-typed/npm"
+  ],
+  "engines": {
+    "node": ">=6"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.0.0",
+    "balanced-match": "^1.0.0",
+    "chalk": "^2.4.1",
+    "cosmiconfig": "^5.0.0",
+    "debug": "^4.0.0",
+    "execall": "^1.0.0",
+    "file-entry-cache": "^2.0.0",
+    "get-stdin": "^6.0.0",
+    "globby": "^8.0.0",
+    "globjoin": "^0.1.4",
+    "html-tags": "^2.0.0",
+    "ignore": "^4.0.0",
+    "import-lazy": "^3.1.0",
+    "imurmurhash": "^0.1.4",
+    "known-css-properties": "^0.8.0",
+    "leven": "^2.1.0",
+    "lodash": "^4.17.4",
+    "log-symbols": "^2.0.0",
+    "mathml-tag-names": "^2.0.1",
+    "meow": "^5.0.0",
+    "micromatch": "^2.3.11",
+    "normalize-selector": "^0.2.0",
+    "pify": "^4.0.0",
+    "postcss": "^7.0.0",
+    "postcss-html": "^0.34.0",
+    "postcss-jsx": "^0.34.0",
+    "postcss-less": "^2.0.0",
+    "postcss-markdown": "^0.34.0",
+    "postcss-media-query-parser": "^0.2.3",
+    "postcss-reporter": "^6.0.0",
+    "postcss-resolve-nested-selector": "^0.1.1",
+    "postcss-safe-parser": "^4.0.0",
+    "postcss-sass": "^0.3.0",
+    "postcss-scss": "^2.0.0",
+    "postcss-selector-parser": "^3.1.0",
+    "postcss-styled": "^0.34.0",
+    "postcss-syntax": "^0.34.0",
+    "postcss-value-parser": "^3.3.0",
+    "resolve-from": "^4.0.0",
+    "signal-exit": "^3.0.2",
+    "specificity": "^0.4.1",
+    "string-width": "^2.1.0",
+    "style-search": "^0.1.0",
+    "sugarss": "^2.0.0",
+    "svg-tags": "^1.0.0",
+    "table": "^5.0.0"
+  },
+  "devDependencies": {
+    "benchmark": "^2.1.4",
+    "common-tags": "^1.4.0",
+    "coveralls": "^3.0.0",
+    "cp-file": "^6.0.0",
+    "d3-queue": "^3.0.7",
+    "del": "^3.0.0",
+    "eslint": "~5.1.0",
+    "eslint-config-stylelint": "~8.2.0",
+    "file-exists-promise": "^1.0.2",
+    "flow-bin": "^0.81.0",
+    "flow-typed": "^2.5.1",
+    "husky": "^0.14.3",
+    "jest": "^23.4.1",
+    "lint-staged": "^7.0.0",
+    "npm-run-all": "^4.0.2",
+    "npmpub": "^4.1.0",
+    "postcss-import": "^12.0.0",
+    "prettier": "~1.14.0",
+    "remark-cli": "^5.0.0",
+    "remark-lint-no-missing-blank-lines": "^1.0.1",
+    "remark-preset-lint-consistent": "^2.0.0",
+    "remark-preset-lint-recommended": "^3.0.0",
+    "remark-validate-links": "^7.0.0",
+    "request": "^2.81.0",
+    "strip-ansi": "^4.0.0",
+    "weak": "^1.0.1"
+  },
+  "scripts": {
+    "precommit": "lint-staged",
+    "benchmark-rule": "node scripts/benchmark-rule.js",
+    "dry-release": "npmpub  --dry --verbose",
+    "flow": "flow",
+    "flow-defs": "./node_modules/.bin/flow-typed install jest@23 lodash@4",
+    "jest": "jest",
+    "jest:detectleaks": "jest  --detectLeaks",
+    "lint:js": "eslint . --cache",
+    "lint:md": "remark . --quiet --frail",
+    "lint": "npm-run-all --parallel lint:*",
+    "pretest": "npm-run-all --serial lint flow",
+    "prettier:check": "prettier '**/*.js' --list-different",
+    "prettier:fix": "prettier '**/*.js' --write",
+    "release": "npmpub",
+    "test": "jest --coverage",
+    "watch": "jest --watch"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "stylelint"
+    ],
+    "globals": {
+      "testRule": true
+    }
+  },
+  "jest": {
+    "clearMocks": true,
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "lib/**/*.js",
+      "!lib/vendor/**/*.js"
+    ],
+    "coverageDirectory": "./.coverage/",
+    "coverageReporters": [
+      "lcov",
+      "text-summary"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 75,
+        "functions": 75,
+        "lines": 75,
+        "statements": 75
+      }
+    },
+    "setupFiles": [
+      "./jest-setup.js"
+    ],
+    "testEnvironment": "node",
+    "roots": [
+      "lib",
+      "system-tests"
+    ],
+    "testRegex": ".*\\.test\\.js$|rules/.*/__tests__/.*\\.js$"
+  },
+  "greenkeeper": {
+    "ignore": [
+      "micromatch"
+    ]
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-lint-recommended",
+      "preset-lint-consistent",
+      [
+        "lint-no-missing-blank-lines",
+        {
+          "exceptTightLists": true
+        }
+      ],
+      [
+        "validate-links",
+        {
+          "repository": "stylelint/stylelint"
+        }
+      ]
+    ]
+  }
+}

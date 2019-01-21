@@ -1,0 +1,35 @@
+{
+  "name": "is-supported-regexp-flag",
+  "version": "1.0.1",
+  "description": "Check whether a RegExp flag is supported. Mostly useful for `y` and `u`.",
+  "license": "MIT",
+  "repository": "sindresorhus/is-supported-regexp-flag",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "regexp",
+    "regex",
+    "re",
+    "check",
+    "is",
+    "support",
+    "supported",
+    "valid",
+    "flag"
+  ],
+  "devDependencies": {
+    "mocha": "*"
+  }
+}

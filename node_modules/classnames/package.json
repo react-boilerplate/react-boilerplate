@@ -1,0 +1,33 @@
+{
+  "name": "classnames",
+  "version": "2.2.6",
+  "description": "A simple utility for conditionally joining classNames together",
+  "main": "index.js",
+  "author": "Jed Watson",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JedWatson/classnames.git"
+  },
+  "scripts": {
+    "benchmarks": "node ./benchmarks/run",
+    "benchmarks-browserify": "./node_modules/.bin/browserify ./benchmarks/runInBrowser.js >./benchmarks/runInBrowser.bundle.js",
+    "benchmarks-in-browser": "./node_modules/.bin/opn ./benchmarks/benchmarks.html",
+    "test": "mocha tests/*.js"
+  },
+  "keywords": [
+    "react",
+    "css",
+    "classes",
+    "classname",
+    "classnames",
+    "util",
+    "utility"
+  ],
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "browserify": "^14.1.0",
+    "mocha": "^2.1.0",
+    "opn-cli": "^3.1.0"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "name": "mdast-util-compact",
+  "version": "1.0.1",
+  "description": "Make an MDAST tree compact",
+  "license": "MIT",
+  "keywords": [
+    "mdast",
+    "utility",
+    "compact",
+    "node"
+  ],
+  "files": [
+    "index.js"
+  ],
+  "repository": "https://github.com/syntax-tree/mdast-util-compact",
+  "bugs": "https://github.com/syntax-tree/mdast-util-compact/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
+  "dependencies": {
+    "unist-util-modify-children": "^1.0.0",
+    "unist-util-visit": "^1.1.0"
+  },
+  "devDependencies": {
+    "browserify": "^14.0.0",
+    "esmangle": "^1.0.1",
+    "nyc": "^11.0.0",
+    "remark-cli": "^3.0.0",
+    "remark-preset-wooorm": "^3.0.0",
+    "tape": "^4.0.0",
+    "unist-builder": "^1.0.2",
+    "xo": "^0.18.0"
+  },
+  "scripts": {
+    "build-md": "remark . --quiet --frail --output",
+    "build-bundle": "browserify index.js --bare -s mdastUtilCompact > mdast-util-compact.js",
+    "build-mangle": "esmangle < mdast-util-compact.js > mdast-util-compact.min.js",
+    "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+    "lint": "xo",
+    "test-api": "node test",
+    "test-coverage": "nyc --reporter lcov tape test.js",
+    "test": "npm run build && npm run lint && npm run test-coverage"
+  },
+  "xo": {
+    "space": true,
+    "esnext": false,
+    "ignores": [
+      "mdast-util-compact.js"
+    ]
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "functions": 100,
+    "branches": 100
+  },
+  "remarkConfig": {
+    "plugins": [
+      "preset-wooorm"
+    ]
+  }
+}

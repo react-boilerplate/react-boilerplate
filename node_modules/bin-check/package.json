@@ -1,0 +1,33 @@
+{
+  "name": "bin-check",
+  "version": "2.0.0",
+  "description": "Check if a binary is working",
+  "license": "MIT",
+  "repository": "kevva/bin-check",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "https://github.com/kevva"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "binary",
+    "check",
+    "executable",
+    "test"
+  ],
+  "dependencies": {
+    "executable": "^1.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.0.4"
+  }
+}

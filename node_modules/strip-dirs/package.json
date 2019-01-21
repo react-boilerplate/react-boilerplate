@@ -1,0 +1,54 @@
+{
+  "name": "strip-dirs",
+  "version": "1.1.1",
+  "description": "Remove leading directory components from a path, like tar's --strip-components option",
+  "repository": "shinnn/node-strip-dirs",
+  "author": {
+    "name": "Shinnosuke Watanabe",
+    "url": "https://github.com/shinnn"
+  },
+  "bin": "cli.js",
+  "files": [
+    "cli.js",
+    "index.js"
+  ],
+  "scripts": {
+    "pretest": "jscs *.js && eslint *.js",
+    "test": "node test.js | tap-spec",
+    "coverage": "istanbul cover test.js",
+    "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/shinnn/node-strip-dirs/blob/master/LICENSE"
+    }
+  ],
+  "keywords": [
+    "path",
+    "dir",
+    "directory",
+    "strip",
+    "strip-components"
+  ],
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "get-stdin": "^4.0.1",
+    "is-absolute": "^0.1.5",
+    "is-natural-number": "^2.0.0",
+    "minimist": "^1.1.0",
+    "sum-up": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^0.15.0",
+    "istanbul": "^0.3.6",
+    "istanbul-coveralls": "^1.0.1",
+    "jscs": "^1.11.3",
+    "tap-spec": "^2.2.1",
+    "tape": "^3.5.0"
+  },
+  "jscsConfig": {
+    "preset": "google",
+    "maximumLineLength": 95
+  }
+}

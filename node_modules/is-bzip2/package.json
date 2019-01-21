@@ -1,0 +1,34 @@
+{
+  "name": "is-bzip2",
+  "version": "1.0.0",
+  "description": "Check if a Buffer/Uint8Array is a BZIP2 file",
+  "license": "MIT",
+  "repository": "kevva/is-bzip2",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "https://github.com/kevva"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "archive",
+    "buffer",
+    "bzip2",
+    "check",
+    "detect",
+    "type",
+    "uint8array"
+  ],
+  "devDependencies": {
+    "ava": "0.0.4",
+    "read-chunk": "^1.0.0"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "http-cache-semantics",
+  "version": "3.8.1",
+  "description": "Parses Cache-Control and other headers. Helps building correct HTTP caches and proxies",
+  "repository": "https://github.com/pornel/http-cache-semantics.git",
+  "main": "node4/index.js",
+  "scripts": {
+    "compile": "babel -d node4/ index.js; babel -d node4/test test",
+    "prepublish": "npm run compile",
+    "test": "npm run compile; mocha node4/test"
+  },
+  "files": [
+    "node4/index.js"
+  ],
+  "author": "Kornel Lesiński <kornel@geekhood.net> (https://kornel.ski/)",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "mocha": "^3.4.2"
+  }
+}

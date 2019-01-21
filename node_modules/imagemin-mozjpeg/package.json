@@ -1,0 +1,54 @@
+{
+  "name": "imagemin-mozjpeg",
+  "version": "7.0.0",
+  "description": "Imagemin plugin for mozjpeg",
+  "license": "MIT",
+  "repository": "imagemin/imagemin-mozjpeg",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "github.com/kevva"
+  },
+  "maintainers": [
+    {
+      "name": "Sindre Sorhus",
+      "email": "sindresorhus@gmail.com",
+      "url": "sindresorhus.com"
+    },
+    {
+      "name": "Shinnosuke Watanabe",
+      "url": "github.com/shinnn"
+    }
+  ],
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "compress",
+    "image",
+    "imageminplugin",
+    "img",
+    "jpeg",
+    "jpg",
+    "minify",
+    "mozjpeg",
+    "optimize"
+  ],
+  "dependencies": {
+    "execa": "^0.8.0",
+    "is-jpg": "^1.0.0",
+    "mozjpeg": "^5.0.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "is-progressive": "^3.0.0",
+    "pify": "^3.0.0",
+    "xo": "*"
+  }
+}

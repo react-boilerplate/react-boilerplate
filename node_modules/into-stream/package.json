@@ -1,0 +1,50 @@
+{
+  "name": "into-stream",
+  "version": "3.1.0",
+  "description": "Convert a buffer/string/array/object/iterable/promise into a stream",
+  "license": "MIT",
+  "repository": "sindresorhus/into-stream",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "stream",
+    "buffer",
+    "string",
+    "object",
+    "array",
+    "iterable",
+    "promise",
+    "promises",
+    "from",
+    "into",
+    "to",
+    "transform",
+    "convert",
+    "readable",
+    "pull",
+    "gulpfriendly",
+    "value",
+    "str"
+  ],
+  "dependencies": {
+    "from2": "^2.1.1",
+    "p-is-promise": "^1.1.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "get-stream": "^3.0.0",
+    "xo": "*"
+  }
+}

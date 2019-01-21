@@ -1,0 +1,264 @@
+// @flow
+import * as React from 'react'
+import type { Action, GetFormState } from './types'
+import type { Params as DefaultShouldAsyncValidateParams } from './defaultShouldAsyncValidate'
+import type { Params as DefaultShouldValidateParams } from './defaultShouldValidate'
+import type { Params as DefaultShouldErrorParams } from './defaultShouldError'
+import type { Params as DefaultShouldWarnParams } from './defaultShouldWarn'
+import type { Config as ReduxFormConfig } from './createReduxForm'
+import type { Props as _FormProps } from './Form'
+import type { Props as _FormNameProps } from './FormName'
+import type {
+  DefaultProps as FormSectionDefaultProps,
+  Props as _FormSectionProps
+} from './FormSection'
+import type {
+  Props as FieldInputProps,
+  FieldProps as _FieldProps
+} from './FieldProps.types'
+import type { Props as FieldsInputProps } from './FieldsProps.types'
+import type {
+  Props as FieldArrayInputProps,
+  FieldArrayProps as _FieldArrayProps
+} from './FieldArrayProps.types'
+import type { FormValueSelectorInterface } from './formValueSelector.types'
+import type { FormValuesInterface } from './formValues.types'
+import type { GetFormErrorInterface } from './selectors/getFormError.types'
+import type { GetFormNamesInterface } from './selectors/getFormNames.types'
+import type { GetFormValuesInterface } from './selectors/getFormValues.types'
+import type { GetFormInitialValuesInterface } from './selectors/getFormInitialValues.types'
+import type { GetFormSyncErrorsInterface } from './selectors/getFormSyncErrors.types'
+import type { GetFormMetaInterface } from './selectors/getFormMeta.types'
+import type { GetFormAsyncErrorsInterface } from './selectors/getFormAsyncErrors.types'
+import type { GetFormSyncWarningsInterface } from './selectors/getFormSyncWarnings.types'
+import type { GetFormSubmitErrorsInterface } from './selectors/getFormSubmitErrors.types'
+import type { HasSubmitSucceededInterface } from './selectors/hasSubmitSucceeded.types'
+import type { HasSubmitFailedInterface } from './selectors/hasSubmitFailed.types'
+import type { IsDirtyInterface } from './selectors/isDirty.types'
+import type { IsInvalidInterface } from './selectors/isInvalid.types'
+import type { IsPristineInterface } from './selectors/isPristine.types'
+import type { IsValidInterface } from './selectors/isValid.types'
+import type { IsSubmittingInterface } from './selectors/isSubmitting.types'
+import type { Config as ValuesConfig } from './values.types'
+import type { ActionTypes } from './actionTypes.types'
+import type {
+  ArrayInsertAction,
+  ArrayMoveAction,
+  ArrayPopAction,
+  ArrayPushAction,
+  ArrayRemoveAction,
+  ArrayRemoveAllAction,
+  ArrayShiftAction,
+  ArraySpliceAction,
+  ArraySwapAction,
+  ArrayUnshiftAction,
+  AutofillAction,
+  BlurAction,
+  ChangeAction,
+  ClearSubmitErrorsAction,
+  DestroyAction,
+  FocusAction,
+  InitializeAction,
+  RegisterFieldAction,
+  ResetAction,
+  ResetSectionAction,
+  SetSubmitFailedAction,
+  SetSubmitSucceededAction,
+  StartAsyncValidationAction,
+  StartSubmitAction,
+  StopAsyncValidationAction,
+  StopSubmitAction,
+  SubmitAction,
+  TouchAction,
+  UnregisterFieldAction,
+  UntouchAction
+} from './actions.types'
+import type { Actions } from './actions.types'
+
+type StructureMap = Object
+
+export type FormProps = _FormProps
+export type FormNameProps = _FormNameProps
+export type FormSectionProps = _FormSectionProps
+export type FieldProps = _FieldProps
+export type FieldArrayProps = _FieldArrayProps
+
+declare export var actionTypes: ActionTypes
+
+declare export function defaultShouldAsyncValidate(
+  params: DefaultShouldAsyncValidateParams
+): boolean
+
+declare export function defaultShouldValidate(
+  params: DefaultShouldValidateParams
+): boolean
+
+declare export function defaultShouldError(
+  params: DefaultShouldErrorParams
+): boolean
+
+declare export function defaultShouldWarn(
+  params: DefaultShouldWarnParams
+): boolean
+
+declare export var propTypes: Object
+
+declare export var fieldInputPropTypes: Object
+
+declare export var fieldMetaPropTypes: Object
+
+declare export var fieldPropTypes: Object
+
+declare export var fieldArrayFieldsPropTypes: Object
+
+declare export var fieldArrayMetaPropTypes: Object
+
+declare export var fieldArrayPropTypes: Object
+
+declare export var formPropTypes: Object
+
+declare export var FormName: React.ComponentType<FormNameProps>
+
+declare export var Field: React.ComponentType<FieldInputProps>
+
+declare export var Fields: React.ComponentType<FieldsInputProps>
+
+declare export var FieldArray: React.ComponentType<FieldArrayInputProps>
+
+declare export var Form: React.ComponentType<FormProps>
+
+declare export var FormSection: React.ComponentType<FormSectionProps>
+
+declare export function formValueSelector(
+  form: string,
+  getFormState: ?GetFormState
+): FormValueSelectorInterface
+
+declare export function formValues(
+  firstArg: string | Object,
+  ...rest: string[]
+): FormValuesInterface
+
+declare export function getFormError(
+  getFormState: ?GetFormState
+): GetFormErrorInterface<*>
+
+declare export function getFormNames(
+  getFormState: ?GetFormState
+): GetFormNamesInterface<*>
+
+declare export function getFormValues(
+  form: string,
+  getFormState: ?GetFormState
+): GetFormValuesInterface
+
+declare export function getFormInitialValues(
+  form: string,
+  getFormState: ?GetFormState
+): GetFormInitialValuesInterface
+
+declare export function getFormSyncErrors(
+  form: string,
+  getFormState: ?GetFormState
+): GetFormSyncErrorsInterface
+
+declare export function getFormMeta(
+  form: string,
+  getFormState: ?GetFormState
+): GetFormMetaInterface
+
+declare export function getFormAsyncErrors(
+  form: string,
+  getFormState: ?GetFormState
+): GetFormAsyncErrorsInterface
+
+declare export function getFormSyncWarnings(
+  form: string,
+  getFormState: ?GetFormState
+): GetFormSyncWarningsInterface
+
+declare export function getFormSubmitErrors(
+  form: string,
+  getFormState: ?GetFormState
+): GetFormSubmitErrorsInterface
+
+declare export function hasSubmitSucceeded(
+  form: string,
+  getFormState: ?GetFormState
+): HasSubmitSucceededInterface
+
+declare export function hasSubmitFailed(
+  form: string,
+  getFormState: ?GetFormState
+): HasSubmitFailedInterface
+
+declare export function isDirty(
+  form: string,
+  getFormState: ?GetFormState
+): IsDirtyInterface
+
+declare export function isInvalid(
+  form: string,
+  getFormState: ?GetFormState
+): IsInvalidInterface
+
+declare export function isPristine(
+  form: string,
+  getFormState: ?GetFormState
+): IsPristineInterface
+
+declare export function isValid(
+  form: string,
+  getFormState: ?GetFormState
+): IsValidInterface
+
+declare export function isSubmitting(
+  form: string,
+  getFormState: ?GetFormState
+): IsSubmittingInterface
+
+declare export function reduxForm(
+  config: ReduxFormConfig
+): { (WrappedComponent: React.ComponentType<*>): React.ComponentType<*> }
+
+declare export function reducer(state: any, action: Action): any
+
+declare export class SubmissionError {
+  constructor(errors: Object): void;
+}
+
+declare export function values(
+  config: ValuesConfig
+): { (React.ComponentType<*>): React.ComponentType<*> }
+
+// Action creators
+declare export var arrayInsert: ArrayInsertAction
+declare export var arrayMove: ArrayMoveAction
+declare export var arrayPop: ArrayPopAction
+declare export var arrayPush: ArrayPushAction
+declare export var arrayRemove: ArrayRemoveAction
+declare export var arrayRemoveAll: ArrayRemoveAllAction
+declare export var arrayShift: ArrayShiftAction
+declare export var arraySplice: ArraySpliceAction
+declare export var arraySwap: ArraySwapAction
+declare export var arrayUnshift: ArrayUnshiftAction
+declare export var autofill: AutofillAction
+declare export var blur: BlurAction
+declare export var change: ChangeAction
+declare export var clearSubmitErrors: ClearSubmitErrorsAction
+declare export var destroy: DestroyAction
+declare export var focus: FocusAction
+declare export var initialize: InitializeAction
+declare export var registerField: RegisterFieldAction
+declare export var reset: ResetAction
+declare export var resetSection: ResetSectionAction
+declare export var setSubmitFailed: SetSubmitFailedAction
+declare export var setSubmitSucceeded: SetSubmitSucceededAction
+declare export var startAsyncValidation: StartAsyncValidationAction
+declare export var startSubmit: StartSubmitAction
+declare export var stopAsyncValidation: StopAsyncValidationAction
+declare export var stopSubmit: StopSubmitAction
+declare export var submit: SubmitAction
+declare export var touch: TouchAction
+declare export var unregisterField: UnregisterFieldAction
+declare export var untouch: UntouchAction

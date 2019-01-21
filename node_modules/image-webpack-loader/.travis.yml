@@ -1,0 +1,9 @@
+os: osx
+language: node_js
+before_install:
+  - brew update
+  - brew outdated libpng || brew upgrade libpng
+node_js:
+  - "node"
+  - "9"
+  - "8"
