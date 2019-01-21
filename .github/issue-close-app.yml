@@ -1,0 +1,14 @@
+comment: This issue was automatically closed because it does not follow either one of our templates. Please open a new issue and fill out the template that appears instead of deleting it. If you're reporting an issue, it's especially important that you provide detailed steps for how to reproduce it.
+
+issueConfigs:
+
+  - content:
+    - Description
+    - Steps to reproduce
+    - Versions
+
+  - content:
+    - Is your feature request related to a problem
+    - Describe the solution you'd like
+    - Describe alternatives you've considered
+    - Additional context

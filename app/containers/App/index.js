@@ -19,6 +19,8 @@ import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import { ManufacturerContainer } from 'containers/ManufacturerContainer';
 
+import GlobalStyle from '../../global-styles';
+
 const AppWrapper = styled.div`
   max-width: calc(100% - 3%);
   min-height: 100vh;
@@ -46,6 +48,7 @@ export default function App() {
         </Switch>
       </div>
       <Footer />
+      <GlobalStyle />
     </AppWrapper>
   );
 }

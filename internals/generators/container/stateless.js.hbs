@@ -55,7 +55,7 @@ function {{ properCase name }}() {
 
 {{#if wantActionsAndReducer}}
 const mapStateToProps = createStructuredSelector({
-  {{ lowerCase name }}: makeSelect{{properCase name}}(),
+  {{ camelCase name }}: makeSelect{{properCase name}}(),
 });
 {{/if}}
 
@@ -68,12 +68,12 @@ function mapDispatchToProps(dispatch) {
 {{#if wantActionsAndReducer}}
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: '{{ lowerCase name }}', reducer });
+const withReducer = injectReducer({ key: '{{ camelCase name }}', reducer });
 {{else}}
 const withConnect = connect(null, mapDispatchToProps);
 {{/if}}
 {{#if wantSaga}}
-const withSaga = injectSaga({ key: '{{ lowerCase name }}', saga });
+const withSaga = injectSaga({ key: '{{ camelCase name }}', saga });
 {{/if}}
 
 export default compose(

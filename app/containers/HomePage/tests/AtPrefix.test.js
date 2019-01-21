@@ -1,27 +1,32 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { enzymeFind } from 'styled-components/test-utils';
 
 import AtPrefix from '../AtPrefix';
 
 describe('<AtPrefix />', () => {
-  it('should render an <span> tag', () => {
-    const renderedComponent = shallow(<AtPrefix />);
+  it('should render a <span> tag', () => {
+    const wrapper = mount(<AtPrefix />);
+    const renderedComponent = enzymeFind(wrapper, AtPrefix);
     expect(renderedComponent.type()).toEqual('span');
   });
 
   it('should have a className attribute', () => {
-    const renderedComponent = shallow(<AtPrefix />);
+    const wrapper = mount(<AtPrefix />);
+    const renderedComponent = enzymeFind(wrapper, AtPrefix);
     expect(renderedComponent.prop('className')).toBeDefined();
   });
 
   it('should adopt a valid attribute', () => {
-    const id = 'test';
-    const renderedComponent = shallow(<AtPrefix id={id} />);
+    const id = 'testId';
+    const wrapper = mount(<AtPrefix id={id} />);
+    const renderedComponent = enzymeFind(wrapper, AtPrefix);
     expect(renderedComponent.prop('id')).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<AtPrefix attribute="test" />);
+    const wrapper = mount(<AtPrefix attribute="test" />);
+    const renderedComponent = enzymeFind(wrapper, AtPrefix);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

@@ -22,7 +22,7 @@ _Step 5:_ Follow the standard Heroku deploy process:
 
 ### Easy 7-Step Deployment Process
 
-_Step 1:_ Run `yarn` to install dependencies, then `npm run build` to create the `./build` folder.
+_Step 1:_ Run `npm install` to install dependencies, then `npm run build` to create the `./build` folder.
 
 _Step 2:_ Navigate to [AWS S3](https://aws.amazon.com/s3) and login (or sign up if you don't have an account). Click on `Services` followed by `S3` in the dropdown.
 

@@ -1,8 +1,8 @@
 language: node_js
 
 node_js:
-  - 9
-  - 8
+  - 'node'
+  - 'lts/*'
 
 script:
   - node ./internals/scripts/generate-templates-for-linting
@@ -21,6 +21,5 @@ notifications:
 after_success: 'npm run coveralls'
 
 cache:
-  yarn: true
   directories:
     - node_modules

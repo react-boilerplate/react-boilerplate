@@ -6,7 +6,7 @@ import { createSelector } from 'reselect';
 
 const selectGlobal = state => state.get('global');
 
-const selectRoute = state => state.get('route');
+const selectRouter = state => state.get('router');
 
 const makeSelectCurrentUser = () =>
   createSelector(selectGlobal, globalState => globalState.get('currentUser'));
@@ -23,7 +23,9 @@ const makeSelectRepos = () =>
   );
 
 const makeSelectLocation = () =>
-  createSelector(selectRoute, routeState => routeState.get('location').toJS());
+  createSelector(selectRouter, routerState =>
+    routerState.get('location').toJS(),
+  );
 
 export {
   selectGlobal,
