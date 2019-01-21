@@ -20,7 +20,7 @@ const dropdownField = props => (
       fluid
       selection
       options={options}
-      defaultValue={props.input.value}
+      defaultValue={props.meta.initial || props.input.value}
       onChange={(param, data) => props.input.onChange(data.value)}
       placeholder={props.label}
     />
@@ -40,7 +40,7 @@ const inputField = props => (
   <Form.Input
     fluid
     label={props.label}
-    placeholder={props.label}
+    placeholder={props.meta.initial || props.label}
     onChange={(param, data) => props.input.onChange(data.value)}
   />
 );
@@ -56,36 +56,24 @@ inputField.propTypes = {
 
 const BankAccountFormData = () => (
   <div>
-    <Field
-      name="bankAccount.displayName"
-      label="Display Name"
-      component={inputField}
-    />
+    <Field name="displayName" label="Display Name" component={inputField} />
     <Form.Group widths="equal">
-      <Field name="bankAccount.name" label="Name" component={inputField} />
+      <Field name="name" label="Name" component={inputField} />
       <Field
-        name="bankAccount.vpaLink"
+        name="vpaLink"
         label="VPA(Virtual Private Address)"
         component={inputField}
       />
     </Form.Group>
     <Form.Group widths="equal">
       <Field
-        name="bankAccount.accountNumber"
+        name="accountNumber"
         label="Account Number"
         component={inputField}
       />
-      <Field
-        name="bankAccount.ifscCode"
-        label="IFSC Code"
-        component={inputField}
-      />
+      <Field name="ifscCode" label="IFSC Code" component={inputField} />
     </Form.Group>
-    <Field
-      name="bankAccount.accountType"
-      label="Account Type"
-      component={dropdownField}
-    />
+    <Field name="accountType" label="Account Type" component={dropdownField} />
   </div>
 );
 

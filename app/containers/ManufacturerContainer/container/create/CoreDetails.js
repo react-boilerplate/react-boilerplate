@@ -12,8 +12,11 @@ const inputField = props => (
   <Form.Input
     fluid
     label={props.label}
-    placeholder={props.label}
-    onChange={(param, data) => props.input.onChange(data.value)}
+    placeholder={props.meta.initial || props.label}
+    onChange={(event, data) => {
+      console.log('input updated', event, data);
+      return props.input.onChange(data.value);
+    }}
   />
 );
 

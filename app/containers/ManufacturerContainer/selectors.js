@@ -3,13 +3,24 @@
  */
 
 import { createSelector } from 'reselect';
+import { initialState } from './reducer';
 
-const selectForm = state => state.get('form', {});
+const createManufacturerForm = state => state.get('form', initialState);
+const manufacturerState = state => state.get('manufacturer', initialState);
 
 const makeSelectManufacturerFormData = () =>
   createSelector(
-    selectForm,
+    createManufacturerForm,
     formState => formState.createManufacturerForm.values,
   );
 
-export { selectForm, makeSelectManufacturerFormData };
+const makeSelectAllManufacturers = () =>
+  createSelector(manufacturerState, manufacturerState =>
+    manufacturerState.get('manufacturersList'),
+  );
+
+export {
+  createManufacturerForm,
+  makeSelectManufacturerFormData,
+  makeSelectAllManufacturers,
+};

@@ -5,8 +5,8 @@ import { MANIN_BACKEND_ROOT_URL } from '../../../properties/local-props';
 const root = `${MANIN_BACKEND_ROOT_URL}/manufacturer/v1`;
 
 export default class ManufacturerAPI {
-  static get() {
-    return axios.get(root);
+  static getAllManufacturers() {
+    return axios.get(`${root}/getAllManufacturers`);
   }
 
   static edit(payload) {
