@@ -89,7 +89,6 @@
     "sanitize.css": "4.1.0",
     "styled-components": "4.0.2",
     "warning": "4.0.2",
-    "whatwg-fetch": "2.0.4",
     "redux-form": "^7.4.2",
     "axios": "^0.18.0",
     "semantic-ui-css": "^2.4.0",

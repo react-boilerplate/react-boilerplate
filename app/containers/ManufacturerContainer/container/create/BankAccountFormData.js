@@ -33,6 +33,7 @@ dropdownField.propTypes = {
     PropTypes.string,
     PropTypes.array,
   ]),
+  meta: PropTypes.object,
   label: PropTypes.string,
 };
 
@@ -40,6 +41,7 @@ const inputField = props => (
   <Form.Input
     fluid
     label={props.label}
+    defaultValue={props.meta.initial}
     placeholder={props.meta.initial || props.label}
     onChange={(param, data) => props.input.onChange(data.value)}
   />
@@ -47,6 +49,7 @@ const inputField = props => (
 
 inputField.propTypes = {
   label: PropTypes.string,
+  meta: PropTypes.object,
   input: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.string,

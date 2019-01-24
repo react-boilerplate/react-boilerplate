@@ -12,16 +12,15 @@ const inputField = props => (
   <Form.Input
     fluid
     label={props.label}
+    defaultValue={props.meta.initial}
     placeholder={props.meta.initial || props.label}
-    onChange={(event, data) => {
-      console.log('input updated', event, data);
-      return props.input.onChange(data.value);
-    }}
+    onChange={(event, data) => props.input.onChange(data.value)}
   />
 );
 
 inputField.propTypes = {
   label: PropTypes.string,
+  meta: PropTypes.object,
   input: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.string,

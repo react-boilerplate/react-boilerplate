@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import CreateManufacturerForm from '../create';
 import ViewAllManufacturer from './ViewAll';
 
+/* eslint-disable react/prefer-stateless-function */
 export default class ViewManufacturer extends React.Component {
   render() {
     const { match } = this.props;
@@ -17,7 +18,7 @@ export default class ViewManufacturer extends React.Component {
           />
           <Route
             path={`${match.url}/:id`}
-            render={() => <CreateManufacturerForm isEditMode id="473248" />}
+            render={() => <CreateManufacturerForm isEditMode />}
           />
         </Switch>
       </div>

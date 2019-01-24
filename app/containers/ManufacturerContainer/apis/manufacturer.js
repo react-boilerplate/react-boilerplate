@@ -9,6 +9,10 @@ export default class ManufacturerAPI {
     return axios.get(`${root}/getAllManufacturers`);
   }
 
+  static getManufacturerDetailFor(payload) {
+    return axios.get(`${root}/id/${payload}`);
+  }
+
   static edit(payload) {
     return axios.put(`${root}/edit/payload.id`, payload);
   }

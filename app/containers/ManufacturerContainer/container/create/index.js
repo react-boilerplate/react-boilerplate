@@ -5,17 +5,18 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { reduxForm, initialize, FormSection } from 'redux-form';
+import { FormSection, reduxForm } from 'redux-form';
 import { Checkbox, Divider, Form } from 'semantic-ui-react';
 import connect from 'react-redux/es/connect/connect';
 import { compose } from 'redux';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import BankAccountFormData from './BankAccountFormData';
 import AddressDetails from './AddressDetails';
 import CoreDetails from './CoreDetails';
-import { createManufacturer } from '../../actions';
+import { createManufacturer, getManufacturerDetail } from '../../actions';
 import reducer from '../../reducer';
 import saga from '../../saga';
 
@@ -33,8 +34,17 @@ const FormDataWrapper = styled.div`
 export class CreateManufacturerForm extends React.Component {
   state = { shippingSameAsBilling: false };
 
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    if (this.props.isEditMode) {
+      this.props.fetchManufacturerDetail(id);
+    }
+  }
+
   toggleShippingAddress = () =>
-    this.setState({ shippingSameAsBilling: !this.state.shippingSameAsBilling });
+    this.setState(prevState => ({
+      shippingSameAsBilling: !prevState.shippingSameAsBilling,
+    }));
 
   handleSubmit = () => this.props.onSubmitForm();
 
@@ -96,24 +106,20 @@ export class CreateManufacturerForm extends React.Component {
 
 CreateManufacturerForm.propTypes = {
   onSubmitForm: PropTypes.func,
+  fetchManufacturerDetail: PropTypes.func,
   isEditMode: PropTypes.bool,
+  match: PropTypes.object,
 };
 
-const mapStateToProps = (state, props) => {
-  const id = props.match && props.match.params;
-  console.log('value is', id, props);
-  const list = state.get('manufacturer').get('manufacturersList', []);
-  const initialValues = list
-    .filter(m => m.id === props.id)
-    .reduce((a, i) => i, undefined);
-
-  return {
-    initialValues: props.isEditMode ? initialValues : undefined,
-  };
-};
+const mapStateToProps = (state, ownProps) => ({
+  initialValues: ownProps.isEditMode
+    ? state.get('manufacturer').get('manufacturerDetail', {})
+    : undefined,
+});
 
 function mapDispatchToProps(dispatch) {
   return {
+    fetchManufacturerDetail: id => dispatch(getManufacturerDetail(id)),
     onSubmitForm: () => dispatch(createManufacturer()),
   };
 }
@@ -136,6 +142,7 @@ const withReduxForm = reduxForm(
 );
 
 export default compose(
+  withRouter,
   withReducer,
   withSaga,
   withConnect,

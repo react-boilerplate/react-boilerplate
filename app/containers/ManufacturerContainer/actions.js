@@ -22,6 +22,9 @@ import {
   VIEW_ALL_MANUFACTURER,
   VIEW_ALL_MANUFACTURER_PROCESSING,
   VIEW_ALL_MANUFACTURER_STATUS,
+  VIEW_MANUFACTURER_DETAIL,
+  VIEW_MANUFACTURER_DETAIL_PROCESSING,
+  VIEW_MANUFACTURER_DETAIL_STATUS,
 } from './constants';
 
 /**
@@ -31,6 +34,8 @@ import {
  *
  * @return {object}    An action object with a type of CHANGE_USERNAME
  */
+
+/** ************************************************ CREATION Actions ************************************************* */
 export function createManufacturer() {
   return {
     type: CREATE_MANUFACTURER,
@@ -51,6 +56,7 @@ export function createManufacturerSuccess(data) {
   };
 }
 
+/** ************************************************ VIEW_ALL Actions ************************************************* */
 export function getAllManufacturers() {
   return {
     type: VIEW_ALL_MANUFACTURER,
@@ -67,6 +73,28 @@ export function getAllManufacturersProcessing(data) {
 export function getAllManufacturersSuccess(data) {
   return {
     type: VIEW_ALL_MANUFACTURER_STATUS,
+    payload: data,
+  };
+}
+
+/** ********************************************** VIEW_DETAIL Actions *********************************************** */
+export function getManufacturerDetail(data) {
+  return {
+    type: VIEW_MANUFACTURER_DETAIL,
+    payload: data,
+  };
+}
+
+export function getManufacturerDetailProcessing(data) {
+  return {
+    type: VIEW_MANUFACTURER_DETAIL_PROCESSING,
+    payload: data,
+  };
+}
+
+export function getManufacturerDetailSuccess(data) {
+  return {
+    type: VIEW_MANUFACTURER_DETAIL_STATUS,
     payload: data,
   };
 }

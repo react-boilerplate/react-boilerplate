@@ -14,7 +14,7 @@ import { getAllManufacturers } from '../../actions';
 import { makeSelectAllManufacturers } from '../../selectors';
 
 const CardView = props => (
-  <Card>
+  <Card color={props.color}>
     <Card.Content>
       <Img floated="right" size="mini" src={props.imageSrc} alt="image" />
       <Card.Header>{props.title}</Card.Header>
@@ -29,6 +29,7 @@ CardView.propTypes = {
   title: PropTypes.string,
   subTitle: PropTypes.string,
   description: PropTypes.string,
+  color: PropTypes.string,
 };
 
 const Wrapper = styled.div`
@@ -40,7 +41,6 @@ export class ViewAllManufacturer extends React.Component {
   src = '/favicon.ico';
 
   componentDidMount() {
-    console.log('mounted', this.props);
     this.props.fetchAllManufacturers();
   }
 
@@ -49,9 +49,10 @@ export class ViewAllManufacturer extends React.Component {
       <Wrapper>
         <Card.Group itemsPerRow={6}>
           {this.props.manufacturersList &&
-            this.props.manufacturersList.map((item, index) => (
+            this.props.manufacturersList.map(item => (
               <CardView
-                key={index}
+                key={item.id}
+                color={item.color}
                 id={item.id}
                 imageSrc={this.src}
                 title={item.displayName}
@@ -64,6 +65,11 @@ export class ViewAllManufacturer extends React.Component {
     );
   }
 }
+
+ViewAllManufacturer.propTypes = {
+  fetchAllManufacturers: PropTypes.func,
+  manufacturersList: PropTypes.array,
+};
 
 const mapStateToProps = createStructuredSelector({
   manufacturersList: makeSelectAllManufacturers(),

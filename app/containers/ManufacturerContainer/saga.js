@@ -1,16 +1,22 @@
 /**
- * Gets the repositories of the user from Github
+ * Handle all communications with manufacturer API.
  */
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { makeSelectManufacturerFormData } from './selectors';
-import { CREATE_MANUFACTURER, VIEW_ALL_MANUFACTURER } from './constants';
+import {
+  CREATE_MANUFACTURER,
+  VIEW_ALL_MANUFACTURER,
+  VIEW_MANUFACTURER_DETAIL,
+} from './constants';
 import ManufacturerAPI from './apis/manufacturer';
 import {
   createManufacturerProcessing,
   createManufacturerSuccess,
   getAllManufacturersProcessing,
   getAllManufacturersSuccess,
+  getManufacturerDetailProcessing,
+  getManufacturerDetailSuccess,
 } from './actions';
 
 export function* createManufacturer() {
@@ -20,12 +26,9 @@ export function* createManufacturer() {
     // Call our request helper (see 'utils/request')
     yield put(createManufacturerProcessing(true));
     yield call(ManufacturerAPI.create, mfCreationPayload);
-    console.log('call successful with data: ', mfCreationPayload);
     yield put(createManufacturerSuccess(true));
     yield put(createManufacturerProcessing(false));
   } catch (err) {
-    console.error('call failed with data: ', mfCreationPayload);
-    console.error(err);
     yield put(createManufacturerSuccess(false));
     yield put(createManufacturerProcessing(false));
   }
@@ -36,14 +39,27 @@ export function* viewAllManufacturers() {
     // Call our request helper (see 'utils/request')
     yield put(getAllManufacturersProcessing(true));
     const manufacturersList = yield call(ManufacturerAPI.getAllManufacturers);
-    console.log('call successful with data: ', manufacturersList);
     yield put(getAllManufacturersSuccess(manufacturersList.data));
     yield put(getAllManufacturersProcessing(false));
   } catch (err) {
-    console.error('failed to fetch data.');
-    console.error(err);
     yield put(getAllManufacturersProcessing(false));
     yield put(getAllManufacturersSuccess([]));
+  }
+}
+
+export function* viewManufacturerDetail(action) {
+  try {
+    // Call our request helper (see 'utils/request')
+    yield put(getManufacturerDetailProcessing(true));
+    const manufacturer = yield call(
+      ManufacturerAPI.getManufacturerDetailFor,
+      action.payload,
+    );
+    yield put(getManufacturerDetailSuccess(manufacturer.data));
+    yield put(getManufacturerDetailProcessing(false));
+  } catch (err) {
+    yield put(getManufacturerDetailProcessing(false));
+    yield put(getManufacturerDetailSuccess({}));
   }
 }
 
@@ -56,5 +72,6 @@ export default function* manufacturerCreation() {
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
   yield takeLatest(VIEW_ALL_MANUFACTURER, viewAllManufacturers);
+  yield takeLatest(VIEW_MANUFACTURER_DETAIL, viewManufacturerDetail);
   yield takeLatest(CREATE_MANUFACTURER, createManufacturer);
 }

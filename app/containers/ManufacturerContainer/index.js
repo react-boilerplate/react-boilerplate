@@ -1,7 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { Route } from 'react-router';
-import { Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Breadcrumb } from 'semantic-ui-react';
 import CreateManufacturerForm from './container/create';
@@ -43,9 +42,7 @@ export class ManufacturerContainer extends React.Component {
             <Route path={`${match.url}/view`} component={ViewManufacturer} />
             <Route
               path={`${match.url}/create`}
-              render={() => (
-                <CreateManufacturerForm isEditMode={false} id="473248" />
-              )}
+              render={() => <CreateManufacturerForm isEditMode={false} />}
             />
           </Switch>
         </div>

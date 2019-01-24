@@ -16,6 +16,8 @@ import {
   CREATE_MANUFACTURER_STATUS,
   VIEW_ALL_MANUFACTURER_PROCESSING,
   VIEW_ALL_MANUFACTURER_STATUS,
+  VIEW_MANUFACTURER_DETAIL_PROCESSING,
+  VIEW_MANUFACTURER_DETAIL_STATUS,
 } from './constants';
 
 // The initial state of the App
@@ -24,6 +26,8 @@ export const initialState = fromJS({
   manufacturersList: [],
   isCreatingManufacturer: false,
   createManufacturerSuccess: false,
+  isFetchingManufacturerDetail: false,
+  manufacturerDetail: {},
 });
 
 function manufacturerReducer(state = initialState, action) {
@@ -36,6 +40,10 @@ function manufacturerReducer(state = initialState, action) {
       return state.set('isFetchingManufacturersList', action.payload);
     case VIEW_ALL_MANUFACTURER_STATUS:
       return state.set('manufacturersList', action.payload);
+    case VIEW_MANUFACTURER_DETAIL_PROCESSING:
+      return state.set('isFetchingManufacturerDetail', action.payload);
+    case VIEW_MANUFACTURER_DETAIL_STATUS:
+      return state.set('manufacturerDetail', action.payload);
     default:
       return state;
   }
