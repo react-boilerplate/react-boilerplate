@@ -38,7 +38,7 @@ Suppose you want users to access the app on `https://<host>/web-app`
 
 _Step 1:_ Configure webpack to inject necessary environment variables into the app
 
-* Changes below are made to `internals/webpack/webpack.base.babel.js` file.
+- Changes below are made to `internals/webpack/webpack.base.babel.js` file.
 
 ```diff
 + const BUILD_FOLDER_PATH = process.env.BUILD_FOLDER_PATH || 'build';
@@ -59,7 +59,7 @@ _Step 1:_ Configure webpack to inject necessary environment variables into the a
 
 _Step 2:_ add `basename` to the history
 
-* Changes below are made to `app/utils/history.js` file.
+- Changes below are made to `app/utils/history.js` file.
 
 ```diff
 - const history = createHistory();
@@ -74,3 +74,48 @@ _Step 4:_ Upload/Place the created `web-app` folder in your server's web-root fo
 _Endpoint_ The app should be accessible on `https://<host>/web-app`.
 
 _NOTE_ that this has been tested on both APACHE and NGINX servers.
+
+## AWS Elastic Beanstalk
+
+Please refer to to issue [#2566](https://github.com/react-boilerplate/react-boilerplate/issues/2566) for more explanation.
+
+### Pre-requisites
+
+1. Create an account on [AWS console](https://console.aws.amazon.com/)
+2. Install EB CLI ([AWS documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html?icmpid=docs_elasticbeanstalk_console#eb-cli3-install.cli-only))
+3. Create your [AWS EB profile](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-configuration.html#eb-cli3-profile).
+   In case you are using a continous deployment tool, you can create another user
+   for your CD tool as well.
+4. Create your Elastic Beanstalk [application](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/applications.html) and [environment](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.html) (either via CLI or web console)
+5. [Configure your EB CLI](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-configuration.html). You should have a `.elasticbeanstalk/config.yml` if properly configured
+
+### Configuration
+
+_Step 1:_ Add AWS EB start scripts in _package.json_: `"aws-eb:prod": "npm run build && npm run start:prod"`
+
+_Step 2:_ Create a `.ebextensions/aws.config` file:
+
+```yaml
+# Check https://github.com/react-boilerplate/react-boilerplate/issues/2566 for details
+option_settings:
+  aws:elasticbeanstalk:container:nodejs:
+    NodeCommand: 'npm run aws-eb:prod'
+  aws:elasticbeanstalk:application:environment:
+    NPM_USE_PRODUCTION: false
+```
+
+In the likely case of multiple environment, remove the `NodeCommand` entry and
+manually configure it per environment in the web console: _Configuration > Software > Node command_.
+
+_Step 3:_ Create a `.npmrc` file:
+
+```
+# Check https://github.com/react-boilerplate/react-boilerplate/issues/2566 for details
+unsafe-perm=true
+```
+
+_Step 4:_ commit your changes and deploy via EB CLI:
+
+```sh
+eb deploy {target environment name}
+```
