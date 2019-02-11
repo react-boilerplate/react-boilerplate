@@ -23,13 +23,11 @@ export default ({ key, reducer }) => WrappedComponent => {
       WrappedComponent.name ||
       'Component'})`;
 
-    componentWillMount() {
-      const { injectReducer } = this.injectors;
+    constructor(props, context) {
+      super(props, context);
 
-      injectReducer(key, reducer);
+      getInjectors(context.store).injectReducer(key, reducer);
     }
-
-    injectors = getInjectors(this.context.store);
 
     render() {
       return <WrappedComponent {...this.props} />;
