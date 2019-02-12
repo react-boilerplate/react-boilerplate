@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 const shelljs = require('shelljs');
-const animateProgress = require('./helpers/progress');
 const chalk = require('chalk');
+const animateProgress = require('./helpers/progress');
 const addCheckMark = require('./helpers/checkmark');
 
 const progress = animateProgress('Generating stats');
