@@ -68,7 +68,7 @@
     "fontfaceobserver": "2.1.0",
     "history": "4.7.2",
     "hoist-non-react-statics": "3.3.0",
-    "immer": "1.7.4",
+    "immer": "2.0.0",
     "intl": "1.2.5",
     "invariant": "2.2.4",
     "ip": "1.1.5",
