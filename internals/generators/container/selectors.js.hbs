@@ -1,10 +1,11 @@
 import { createSelector } from 'reselect';
+import { initialState } from './reducer';
 
 /**
  * Direct selector to the {{ camelCase name }} state domain
  */
 
-const select{{ properCase name }}Domain = state => state.{{ camelCase name }};
+const select{{ properCase name }}Domain = state => state.{{ camelCase name }} || initialState;
 
 /**
  * Other specific selectors
