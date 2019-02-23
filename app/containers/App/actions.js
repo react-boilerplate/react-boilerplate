@@ -22,10 +22,9 @@ import { LOAD_REPOS, LOAD_REPOS_SUCCESS, LOAD_REPOS_ERROR } from './constants';
  *
  * @return {object} An action object with a type of LOAD_REPOS
  */
-export function loadRepos(username) {
+export function loadRepos() {
   return {
     type: LOAD_REPOS,
-    username,
   };
 }
 

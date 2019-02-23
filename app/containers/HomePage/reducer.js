@@ -15,7 +15,7 @@ import { CHANGE_USERNAME } from './constants';
 
 export const initialState = fromJS({ username: '' });
 
-function homeReducer(state, action) {
+function homeReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_USERNAME:
       // Delete prefixed '@' from the github username
