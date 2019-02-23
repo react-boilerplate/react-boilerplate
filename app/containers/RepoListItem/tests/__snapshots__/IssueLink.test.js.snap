@@ -17,6 +17,7 @@ exports[`<IssueLink /> should match the snapshot 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  white-space: nowrap;
 }
 
 .c0:hover {
