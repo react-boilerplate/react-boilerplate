@@ -28,8 +28,9 @@ export default ({ key, saga, mode }) => WrappedComponent => {
 
     constructor(props, context) {
       super(props, context);
-      const { store } = context;
-      this.injectors = getInjectors(store);
+
+      this.injectors = getInjectors(context.store);
+
       this.injectors.injectSaga(key, { saga, mode }, this.props);
     }
 
