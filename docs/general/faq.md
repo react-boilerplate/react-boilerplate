@@ -256,5 +256,5 @@ More information is available in the [official documentation](https://github.com
 ## Have another question?
 
 Submit an [issue](https://github.com/react-boilerplate/react-boilerplate/issues),
-hop onto the [Gitter channel](https://gitter.im/mxstbr/react-boilerplate)
+hop onto the [Spectrum chat](https://spectrum.chat/react-boilerplate)
 or contact Max direct on [twitter](https://twitter.com/mxstbr)!
