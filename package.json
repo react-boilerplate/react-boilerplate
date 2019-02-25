@@ -151,7 +151,7 @@
     "stylelint-config-styled-components": "0.1.1",
     "stylelint-processor-styled-components": "1.5.2",
     "svg-url-loader": "2.3.2",
-    "terser-webpack-plugin": "1.2.2",
+    "terser-webpack-plugin": "1.2.3",
     "url-loader": "1.1.2",
     "webpack": "4.29.5",
     "webpack-cli": "3.2.3",

@@ -7,25 +7,31 @@ import { routerMiddleware } from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
 
-const sagaMiddleware = createSagaMiddleware();
-
 export default function configureStore(initialState = {}, history) {
+  let composeEnhancers = compose;
+  let reduxSagaMonitorOptions = {};
+
+  // If Redux and Saga DevTools Extension are installed use them
+  /* istanbul ignore next */
+  if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
+    /* eslint-disable no-underscore-dangle */
+    if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
+      composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({});
+    if (window.__SAGA_MONITOR_EXTENSION__)
+      reduxSagaMonitorOptions = {
+        sagaMonitor: window.__SAGA_MONITOR_EXTENSION__,
+      };
+    /* eslint-enable */
+  }
+
+  const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
+
   // Create the store with two middlewares
   // 1. sagaMiddleware: Makes redux-sagas work
   // 2. routerMiddleware: Syncs the location/URL path to the state
   const middlewares = [sagaMiddleware, routerMiddleware(history)];
 
   const enhancers = [applyMiddleware(...middlewares)];
-
-  // If Redux DevTools Extension is installed use it, otherwise use Redux compose
-  /* eslint-disable no-underscore-dangle, indent */
-  const composeEnhancers =
-    process.env.NODE_ENV !== 'production' &&
-    typeof window === 'object' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-      : compose;
-  /* eslint-enable */
 
   const store = createStore(
     createReducer(),

@@ -8,22 +8,21 @@ import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
 
 export default function configureStore(initialState = {}, history) {
-  // If Redux DevTools Extension is installed use it, otherwise use Redux compose
-  /* eslint-disable no-underscore-dangle, indent */
-  const composeEnhancers =
-    process.env.NODE_ENV !== 'production' &&
-    typeof window === 'object' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-      : compose;
+  let composeEnhancers = compose;
+  let reduxSagaMonitorOptions = {};
 
-  const reduxSagaMonitorOptions =
-    process.env.NODE_ENV !== 'production' &&
-    typeof window === 'object' &&
-    window.__SAGA_MONITOR_EXTENSION__
-      ? { sagaMonitor: window.__SAGA_MONITOR_EXTENSION__ }
-      : {};
-  /* eslint-enable */
+  // If Redux and Saga DevTools Extension are installed use them
+  /* istanbul ignore next */
+  if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
+    /* eslint-disable no-underscore-dangle */
+    if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
+      composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({});
+    if (window.__SAGA_MONITOR_EXTENSION__)
+      reduxSagaMonitorOptions = {
+        sagaMonitor: window.__SAGA_MONITOR_EXTENSION__,
+      };
+    /* eslint-enable */
+  }
 
   const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
 
