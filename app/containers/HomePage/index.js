@@ -12,8 +12,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { useReduxReducer } from 'utils/injectReducer';
-import { useSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
 import {
   makeSelectRepos,
   makeSelectLoading,
@@ -43,8 +43,8 @@ function HomePage({
   onSubmitForm,
   onChangeUsername,
 }) {
-  useReduxReducer({ key, reducer });
-  useSaga({ key, saga });
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
 
   React.useEffect(() => {
     // When initial state username is not null, submit the form to load repos
