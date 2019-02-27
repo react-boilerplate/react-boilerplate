@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Toggle /> should contain default text 1`] = `
+<select
+  class="Select-sc-1sm01tk-0 wIjFa"
+>
+  <option
+    value="en"
+  >
+    someContent
+  </option>
+  <option
+    value="de"
+  >
+    someOtherContent
+  </option>
+</select>
+`;

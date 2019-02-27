@@ -4,8 +4,9 @@
 
 import { memoryHistory } from 'react-router-dom';
 import { put } from 'redux-saga/effects';
-import { shallow } from 'enzyme';
+import renderer from 'react-test-renderer';
 import React from 'react';
+import { Provider } from 'react-redux';
 
 import configureStore from '../../configureStore';
 import injectSaga from '../injectSaga';
@@ -43,7 +44,11 @@ describe('injectSaga decorator', () => {
 
   it('should inject given saga, mode, and props', () => {
     const props = { test: 'test' };
-    shallow(<ComponentWithSaga {...props} />, { context: { store } });
+    renderer.create(
+      <Provider store={store}>
+        <ComponentWithSaga {...props} />
+      </Provider>,
+    );
 
     expect(injectors.injectSaga).toHaveBeenCalledTimes(1);
     expect(injectors.injectSaga).toHaveBeenCalledWith(
@@ -55,9 +60,11 @@ describe('injectSaga decorator', () => {
 
   it('should eject on unmount with a correct saga key', () => {
     const props = { test: 'test' };
-    const renderedComponent = shallow(<ComponentWithSaga {...props} />, {
-      context: { store },
-    });
+    const renderedComponent = renderer.create(
+      <Provider store={store}>
+        <ComponentWithSaga {...props} />
+      </Provider>,
+    );
     renderedComponent.unmount();
 
     expect(injectors.ejectSaga).toHaveBeenCalledTimes(1);
@@ -73,10 +80,14 @@ describe('injectSaga decorator', () => {
 
   it('should propagate props', () => {
     const props = { testProp: 'test' };
-    const renderedComponent = shallow(<ComponentWithSaga {...props} />, {
-      context: { store },
-    });
-
-    expect(renderedComponent.prop('testProp')).toBe('test');
+    const renderedComponent = renderer.create(
+      <Provider store={store}>
+        <ComponentWithSaga {...props} />
+      </Provider>,
+    );
+    const {
+      props: { children },
+    } = renderedComponent.getInstance();
+    expect(children.props).toEqual(props);
   });
 });
