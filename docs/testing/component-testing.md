@@ -89,7 +89,7 @@ manually, and you cannot do anything that needs the DOM.
 ## react-testing-library
 
 In order to write more maintainable tests and tests that resemble more closely the way
-our component is used in real live we have [react-testing-library](https://github.com/kentcdodds/react-testing-library).
+our component is used in real live we have included [react-testing-library](https://github.com/kentcdodds/react-testing-library).
 This library renders our component within an actual DOM and provides utilities for querying this DOM. 
 
 Let's give it a go at our `<Button />` component shall we? First, let's asses that it renders our component, with its
