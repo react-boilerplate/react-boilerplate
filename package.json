@@ -142,7 +142,7 @@
     "prettier": "1.16.4",
     "react-app-polyfill": "0.2.1",
     "react-test-renderer": "16.8.3",
-    "react-testing-library": "5.2.3",
+    "react-testing-library": "6.0.0",
     "rimraf": "2.6.3",
     "shelljs": "0.8.3",
     "style-loader": "0.23.1",
