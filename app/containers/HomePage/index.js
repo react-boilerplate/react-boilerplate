@@ -35,7 +35,7 @@ import saga from './saga';
 
 const key = 'home';
 
-function HomePage({
+export function HomePage({
   username,
   loading,
   error,
