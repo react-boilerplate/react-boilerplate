@@ -3,29 +3,30 @@
  */
 
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { cleanup, render } from 'react-testing-library';
 import { IntlProvider } from 'react-intl';
 
-import ReposList from 'components/ReposList';
 import { HomePage, mapDispatchToProps } from '../index';
 import { changeUsername } from '../actions';
 import { loadRepos } from '../../App/actions';
 
 describe('<HomePage />', () => {
-  it('should render the repos list', () => {
-    const renderedComponent = shallow(
-      <HomePage loading error={false} repos={[]} />,
+  afterEach(cleanup);
+
+  it('should render and match the snapshot', () => {
+    const {
+      container: { firstChild },
+    } = render(
+      <IntlProvider locale="en">
+        <HomePage loading={false} error={false} repos={[]} />
+      </IntlProvider>,
     );
-    expect(
-      renderedComponent.contains(
-        <ReposList loading error={false} repos={[]} />,
-      ),
-    ).toEqual(true);
+    expect(firstChild).toMatchSnapshot();
   });
 
   it('should render fetch the repos on mount if a username exists', () => {
     const submitSpy = jest.fn();
-    mount(
+    render(
       <IntlProvider locale="en">
         <HomePage
           username="Not Empty"
@@ -39,7 +40,7 @@ describe('<HomePage />', () => {
 
   it('should not call onSubmitForm if username is an empty string', () => {
     const submitSpy = jest.fn();
-    mount(
+    render(
       <IntlProvider locale="en">
         <HomePage onChangeUsername={() => {}} onSubmitForm={submitSpy} />
       </IntlProvider>,
@@ -49,7 +50,7 @@ describe('<HomePage />', () => {
 
   it('should not call onSubmitForm if username is null', () => {
     const submitSpy = jest.fn();
-    mount(
+    render(
       <IntlProvider locale="en">
         <HomePage
           username=""

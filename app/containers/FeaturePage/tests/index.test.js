@@ -1,26 +1,41 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { FormattedMessage } from 'react-intl';
+import { cleanup, render } from 'react-testing-library';
+import { IntlProvider } from 'react-intl';
 
-import H1 from 'components/H1';
-import messages from '../messages';
 import FeaturePage from '../index';
 
 describe('<FeaturePage />', () => {
+  afterEach(cleanup);
+
   it('should render its heading', () => {
-    const renderedComponent = shallow(<FeaturePage />);
-    expect(
-      renderedComponent.contains(
-        <H1>
-          <FormattedMessage {...messages.header} />
-        </H1>,
-      ),
-    ).toBe(true);
+    const {
+      container: { firstChild },
+    } = render(
+      <IntlProvider locale="en">
+        <FeaturePage />
+      </IntlProvider>,
+    );
+
+    expect(firstChild).toMatchSnapshot();
   });
 
   it('should never re-render the component', () => {
-    const renderedComponent = shallow(<FeaturePage />);
-    const inst = renderedComponent.instance();
-    expect(inst.shouldComponentUpdate()).toBe(false);
+    const shouldComponentUpdateMock = jest.spyOn(
+      FeaturePage.prototype,
+      'shouldComponentUpdate',
+    );
+    const { rerender } = render(
+      <IntlProvider locale="en">
+        <FeaturePage />
+      </IntlProvider>,
+    );
+
+    rerender(
+      <IntlProvider locale="en">
+        <FeaturePage test="dummy" />
+      </IntlProvider>,
+    );
+
+    expect(shouldComponentUpdateMock).toHaveReturnedWith(false);
   });
 });
