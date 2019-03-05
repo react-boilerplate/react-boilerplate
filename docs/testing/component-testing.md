@@ -8,6 +8,8 @@ the _view_ layer of your app, let's see how to test Components too!
 
 - [Shallow rendering](#shallow-rendering)
 - [react-testing-library](#react-testing-library)
+  - [Snapshot testing](#snapshot-testing)
+  - [Behavior testing](#behavior-testing)
 
 <!-- /TOC -->
 
@@ -15,7 +17,7 @@ the _view_ layer of your app, let's see how to test Components too!
 
 React provides us with a nice add-on called the Shallow Renderer. This renderer
 will render a React component **one level deep**. Lets take a look at what that
-means with a simple `<Button>` component...
+means with a simple `<Button>` component.
 
 This component renders a `<button>` element containing a checkmark icon and some
 text:
@@ -78,8 +80,8 @@ containing this "HTML":
 ```
 
 If we test our `Button` with the normal renderer and there's a problem
-with the `CheckmarkIcon` then the test for the `Button` will fail as well...
-but finding the culprit will be hard. Using the _shallow_ renderer, we isolate
+with the `CheckmarkIcon` then the test for the `Button` will fail as well.
+This makes it harder to find the culprit. Using the _shallow_ renderer, we isolate
 the problem's cause since we don't render any other components other than the
 one we're testing!
 
@@ -88,11 +90,11 @@ manually, and you cannot do anything that needs the DOM.
 
 ## react-testing-library
 
-In order to write more maintainable tests and tests that resemble more closely the way
-our component is used in real live we have included [react-testing-library](https://github.com/kentcdodds/react-testing-library).
-This library renders our component within an actual DOM and provides utilities for querying this DOM. 
+In order to write more maintainable tests which also resemble more closely the way
+our component is used in real life, we have included [react-testing-library](https://github.com/kentcdodds/react-testing-library).
+This library renders our component within an actual DOM and provides utilities for querying it.
 
-Let's give it a go at our `<Button />` component shall we? First, let's asses that it renders our component, with its
+Let's give it a go with our `<Button />` component, shall we? First, let's check that it renders our component with its
 children, if any, and second that it handles clicks.
 
 This is our test setup:
@@ -109,12 +111,17 @@ describe('<Button />', () => {
 });
 ```
 
-Let's start with assuring that it renders our component and no changes happened to it since the last time it was,
-successfully, tested. We will do so by rendering it and create a _[snapshot](https://jestjs.io/docs/en/snapshot-testing)_
-and compare this with the previous snapshot, if any exists, otherwise a new one is created.
-For this we first call `render`. This will render our `<Button />` component into a _container_, by default a 
+### Snapshot testing
+
+Let's start by ensuring that it renders our component and no changes happened to it since the last time it was
+successfully tested.
+
+We will do so by rendering it and creating a _[snapshot](https://jestjs.io/docs/en/snapshot-testing)_
+which can be compared with a previously committed snapshot. If no snapshot exists, a new one is created.
+
+For this, we first call `render`. This will render our `<Button />` component into a _container_, by default a 
 `<div>`, which is appended to `document.body`. We then create a snapshot and `expect` that this snapshot is the same as
-the snapshot taken in a previous run of this test.
+the existing snapshot, taken in a previous run of this test and committed to the repository.
 
 ```javascript
 it('renders and matches the snapshot', () => {
@@ -126,7 +133,9 @@ it('renders and matches the snapshot', () => {
 ```
 
 `render` returns an object that has a property `container` and yes, this is the container our
-`<Button />` component has been rendered in. As this is rendered within a _normal_ DOM we can query our
+`<Button />` component has been rendered in.
+
+As this is rendered within a _normal_ DOM we can query our
 component with `container.firstChild`. This will be our subject for a snapshot.
 Snapshots are placed in the `__snapshots__` folder within our `tests` folder. Make sure you commit
 these snapshots to your repository.
@@ -134,10 +143,13 @@ these snapshots to your repository.
 Great! So, now if anyone makes any change to our `<Button />` component the test will fail and we get notified of what
 changed.
 
+### Behavior testing
+
 Onwards to our last and most advanced test: checking that our `<Button />` handles clicks correctly.
+
 We'll use a [mock function](https://jestjs.io/docs/en/mock-functions) for this. A mock function is a function that
-keeps track of _if_, and _how often_, it has been called. We pass this function as the `onClick` handler to our component, 
-simulate a click and, lastly, check our mock function if it was called:
+keeps track of _if_, _how often_, and _with what arguments_ it has been called. We pass this function as the `onClick` handler to our component, 
+simulate a click and, lastly, check that our mock function was called:
 
 ```javascript
 it('handles clicks', () => {
@@ -150,7 +162,8 @@ it('handles clicks', () => {
 });
 ```
 
-Finally we need to cleanup after ourselves. For this react-testing-library provides us with... well... `cleanup`!
+Finally, we need to cleanup after ourselves. For this react-testing-library provides us with... well... `cleanup`!
+
 We will make use of the `afterEach` method, provided by Jest, to unmount and cleanup the DOM after each finished test.
 
 ```javascript
@@ -159,8 +172,8 @@ describe('<Button />', () => {
 });
 ``` 
 
-> Failing to call cleanup when you've called render could result in a memory leak and tests which are not "idempotent"
-(which can lead to difficult to debug errors in your tests). ([react-testing-library](https://github.com/kentcdodds/react-testing-library))
+> Failing to call `cleanup` when you've called `render` could result in a memory leak and tests which are not "idempotent"
+(which can lead to difficult to debug errors in your tests). (From the [react-testing-library documentation](https://testing-library.com/docs/react-testing-library/api#cleanup))
 
 Our finished test file looks like this:
 
