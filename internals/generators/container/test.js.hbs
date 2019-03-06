@@ -21,7 +21,22 @@ import { DEFAULT_LOCALE } from '../../../i18n';
 describe('<{{ properCase name }} />', () => {
   afterEach(cleanup);
 
-  it('Expect to have unit tests specified', () => {
+  it('Expect to not log errors in console', () => {
+    const spy = jest.spyOn(global.console, 'error');
+    const dispatch = jest.fn();
+{{#if wantMessages}}
+    render(
+      <IntlProvider locale={DEFAULT_LOCALE}>
+        <{{ properCase name }} dispatch={dispatch} />
+      </IntlProvider>,
+    );
+{{else}}
+    render(<{{ properCase name }} dispatch={dispatch} />);
+{{/if}}
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('Expect to have additional unit tests specified', () => {
     expect(true).toEqual(false);
   });
 
