@@ -6,7 +6,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { exec } = require('child_process');
+const { execSync } = require('child_process');
 const componentGenerator = require('./component/index.js');
 const containerGenerator = require('./container/index.js');
 const languageGenerator = require('./language/index.js');
@@ -42,8 +42,13 @@ module.exports = plop => {
       '**',
       '**.js',
     )}`;
-    exec(`npm run prettify -- "${folderPath}"`);
-    return folderPath;
+
+    try {
+      execSync(`npm run prettify -- "${folderPath}"`);
+      return folderPath;
+    } catch (err) {
+      throw err;
+    }
   });
   plop.setActionType('backup', (answers, config) => {
     try {
