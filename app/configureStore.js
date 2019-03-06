@@ -18,15 +18,19 @@ export default function configureStore(initialState = {}, history) {
       ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
       : compose;
 
-  const reduxSagaMonitorOptions =
-    process.env.NODE_ENV !== 'production' &&
-    typeof window === 'object' &&
-    window.__SAGA_MONITOR_EXTENSION__
-      ? { sagaMonitor: window.__SAGA_MONITOR_EXTENSION__ }
-      : {};
+  // NOTE: Uncomment the code below to restore support for Redux Saga
+  // Dev Tools once it supports redux-saga version 1.x.x
+
+  // const reduxSagaMonitorOptions =
+  //   process.env.NODE_ENV !== 'production' &&
+  //   typeof window === 'object' &&
+  //   window.__SAGA_MONITOR_EXTENSION__
+  //     ? { sagaMonitor: window.__SAGA_MONITOR_EXTENSION__ }
+  //     : {};
   /* eslint-enable */
 
-  const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
+  // const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
+  const sagaMiddleware = createSagaMiddleware({});
 
   // Create the store with two middlewares
   // 1. sagaMiddleware: Makes redux-sagas work
