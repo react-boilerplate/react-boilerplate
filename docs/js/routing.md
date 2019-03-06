@@ -23,7 +23,7 @@ If you want your route component (or any component for that matter) to be loaded
 To go to a new page use the `push` function by `connected-react-router`:
 
 ```JS
-import { push } from 'connected-react-router/immutable';
+import { push } from 'connected-react-router';
 
 dispatch(push('/path/to/somewhere'));
 ```
@@ -31,7 +31,7 @@ dispatch(push('/path/to/somewhere'));
 You can do the same thing in a saga:
 
 ```JS
-import { push } from 'connected-react-router/immutable'
+import { push } from 'connected-react-router'
 import { put } from 'redux-saga/effects'
 
 export function* mySaga() {
