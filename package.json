@@ -44,6 +44,11 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "prettify": "prettier --write"
   },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "IE 10"
+  ],
   "lint-staged": {
     "*.js": [
       "npm run lint:eslint:fix",
@@ -118,6 +123,7 @@
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-config-prettier": "4.0.0",
     "eslint-import-resolver-webpack": "0.11.0",
+    "eslint-plugin-compat": "2.7.0",
     "eslint-plugin-import": "2.16.0",
     "eslint-plugin-jsx-a11y": "6.2.1",
     "eslint-plugin-prettier": "3.0.1",
