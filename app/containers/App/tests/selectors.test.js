@@ -1,5 +1,3 @@
-import { fromJS } from 'immutable';
-
 import {
   selectGlobal,
   makeSelectCurrentUser,
@@ -11,10 +9,10 @@ import {
 
 describe('selectGlobal', () => {
   it('should select the global state', () => {
-    const globalState = fromJS({});
-    const mockedState = fromJS({
+    const globalState = {};
+    const mockedState = {
       global: globalState,
-    });
+    };
     expect(selectGlobal(mockedState)).toEqual(globalState);
   });
 });
@@ -23,11 +21,11 @@ describe('makeSelectCurrentUser', () => {
   const currentUserSelector = makeSelectCurrentUser();
   it('should select the current user', () => {
     const username = 'mxstbr';
-    const mockedState = fromJS({
+    const mockedState = {
       global: {
         currentUser: username,
       },
-    });
+    };
     expect(currentUserSelector(mockedState)).toEqual(username);
   });
 });
@@ -36,11 +34,11 @@ describe('makeSelectLoading', () => {
   const loadingSelector = makeSelectLoading();
   it('should select the loading', () => {
     const loading = false;
-    const mockedState = fromJS({
+    const mockedState = {
       global: {
         loading,
       },
-    });
+    };
     expect(loadingSelector(mockedState)).toEqual(loading);
   });
 });
@@ -49,11 +47,11 @@ describe('makeSelectError', () => {
   const errorSelector = makeSelectError();
   it('should select the error', () => {
     const error = 404;
-    const mockedState = fromJS({
+    const mockedState = {
       global: {
         error,
       },
-    });
+    };
     expect(errorSelector(mockedState)).toEqual(error);
   });
 });
@@ -61,14 +59,14 @@ describe('makeSelectError', () => {
 describe('makeSelectRepos', () => {
   const reposSelector = makeSelectRepos();
   it('should select the repos', () => {
-    const repositories = fromJS([]);
-    const mockedState = fromJS({
+    const repositories = [];
+    const mockedState = {
       global: {
         userData: {
           repositories,
         },
       },
-    });
+    };
     expect(reposSelector(mockedState)).toEqual(repositories);
   });
 });
@@ -76,11 +74,12 @@ describe('makeSelectRepos', () => {
 describe('makeSelectLocation', () => {
   const locationStateSelector = makeSelectLocation();
   it('should select the location', () => {
-    const mockedState = fromJS({
-      router: { location: { pathname: '/foo' } },
-    });
-    expect(locationStateSelector(mockedState)).toEqual(
-      mockedState.getIn(['router', 'location']).toJS(),
-    );
+    const router = {
+      location: { pathname: '/foo' },
+    };
+    const mockedState = {
+      router,
+    };
+    expect(locationStateSelector(mockedState)).toEqual(router.location);
   });
 });

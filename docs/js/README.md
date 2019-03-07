@@ -3,7 +3,7 @@
 ## State management
 
 This boilerplate manages application state using [Redux](redux.md), makes it
-immutable with [`ImmutableJS`](immutablejs.md) and keeps access performant
+immutable with [`Immer`](immer.md) and keeps access performant
 via [`reselect`](reselect.md).
 
 For managing asynchronous flows (e.g. logging in) we use [`redux-saga`](redux-saga.md).
@@ -20,7 +20,7 @@ add new parts of your application!
 ### Learn more
 
 - [Redux](redux.md)
-- [ImmutableJS](immutablejs.md)
+- [Immer](immer.md)
 - [reselect](reselect.md)
 - [redux-saga](redux-saga.md)
 - [react-intl](i18n.md)

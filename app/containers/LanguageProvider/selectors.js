@@ -2,9 +2,10 @@ import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
 /**
- * Direct selector to the languageToggle state domain
+ * Direct selector to the language domain
  */
-const selectLanguage = state => state.get('language', initialState);
+
+const selectLanguage = state => state.language || initialState;
 
 /**
  * Select the language locale
@@ -13,7 +14,7 @@ const selectLanguage = state => state.get('language', initialState);
 const makeSelectLocale = () =>
   createSelector(
     selectLanguage,
-    languageState => languageState.get('locale'),
+    languageState => languageState.locale,
   );
 
 export { selectLanguage, makeSelectLocale };

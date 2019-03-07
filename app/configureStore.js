@@ -3,34 +3,31 @@
  */
 
 import { createStore, applyMiddleware, compose } from 'redux';
-import { fromJS } from 'immutable';
-import { routerMiddleware } from 'connected-react-router/immutable';
+import { routerMiddleware } from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
 
 export default function configureStore(initialState = {}, history) {
-  // If Redux DevTools Extension is installed use it, otherwise use Redux compose
-  /* eslint-disable no-underscore-dangle, indent */
-  const composeEnhancers =
-    process.env.NODE_ENV !== 'production' &&
-    typeof window === 'object' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-      : compose;
+  let composeEnhancers = compose;
+  const reduxSagaMonitorOptions = {};
 
-  // NOTE: Uncomment the code below to restore support for Redux Saga
-  // Dev Tools once it supports redux-saga version 1.x.x
+  // If Redux Dev Tools and Saga Dev Tools Extensions are installed, enable them
+  /* istanbul ignore next */
+  if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
+    /* eslint-disable no-underscore-dangle */
+    if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
+      composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({});
 
-  // const reduxSagaMonitorOptions =
-  //   process.env.NODE_ENV !== 'production' &&
-  //   typeof window === 'object' &&
-  //   window.__SAGA_MONITOR_EXTENSION__
-  //     ? { sagaMonitor: window.__SAGA_MONITOR_EXTENSION__ }
-  //     : {};
-  /* eslint-enable */
+    // NOTE: Uncomment the code below to restore support for Redux Saga
+    // Dev Tools once it supports redux-saga version 1.x.x
+    // if (window.__SAGA_MONITOR_EXTENSION__)
+    //   reduxSagaMonitorOptions = {
+    //     sagaMonitor: window.__SAGA_MONITOR_EXTENSION__,
+    //   };
+    /* eslint-enable */
+  }
 
-  // const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
-  const sagaMiddleware = createSagaMiddleware({});
+  const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
 
   // Create the store with two middlewares
   // 1. sagaMiddleware: Makes redux-sagas work
@@ -41,7 +38,7 @@ export default function configureStore(initialState = {}, history) {
 
   const store = createStore(
     createReducer(),
-    fromJS(initialState),
+    initialState,
     composeEnhancers(...enhancers),
   );
 

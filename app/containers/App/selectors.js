@@ -3,39 +3,40 @@
  */
 
 import { createSelector } from 'reselect';
+import { initialState } from './reducer';
 
-const selectGlobal = state => state.get('global');
+const selectGlobal = state => state.global || initialState;
 
-const selectRouter = state => state.get('router');
+const selectRouter = state => state.router;
 
 const makeSelectCurrentUser = () =>
   createSelector(
     selectGlobal,
-    globalState => globalState.get('currentUser'),
+    globalState => globalState.currentUser,
   );
 
 const makeSelectLoading = () =>
   createSelector(
     selectGlobal,
-    globalState => globalState.get('loading'),
+    globalState => globalState.loading,
   );
 
 const makeSelectError = () =>
   createSelector(
     selectGlobal,
-    globalState => globalState.get('error'),
+    globalState => globalState.error,
   );
 
 const makeSelectRepos = () =>
   createSelector(
     selectGlobal,
-    globalState => globalState.getIn(['userData', 'repositories']),
+    globalState => globalState.userData.repositories,
   );
 
 const makeSelectLocation = () =>
   createSelector(
     selectRouter,
-    routerState => routerState.get('location').toJS(),
+    routerState => routerState.location,
   );
 
 export {
