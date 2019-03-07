@@ -25,7 +25,7 @@ Here's a curated list of packages that you should be at least familiar with befo
 ### Unit Testing
 
 - [ ] [Jest](http://facebook.github.io/jest/)
-- [ ] [Enzyme](http://airbnb.io/enzyme/)
+- [ ] [react-testing-library](https://github.com/kentcdodds/react-testing-library)
 
 ### Linting
 
