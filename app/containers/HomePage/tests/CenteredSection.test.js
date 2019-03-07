@@ -1,32 +1,37 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { enzymeFind } from 'styled-components/test-utils';
+import { cleanup, render } from 'react-testing-library';
 
 import CenteredSection from '../CenteredSection';
 
 describe('<CenteredSection />', () => {
-  it('should render a <section> tag', () => {
-    const wrapper = mount(<CenteredSection />);
-    const renderedComponent = enzymeFind(wrapper, CenteredSection);
-    expect(renderedComponent.type()).toEqual('section');
+  afterEach(cleanup);
+
+  it('should render an <section> tag', () => {
+    const {
+      container: { firstChild },
+    } = render(<CenteredSection />);
+    expect(firstChild.tagName).toEqual('SECTION');
   });
 
-  it('should have a className attribute', () => {
-    const wrapper = mount(<CenteredSection />);
-    const renderedComponent = enzymeFind(wrapper, CenteredSection);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const {
+      container: { firstChild },
+    } = render(<CenteredSection />);
+    expect(firstChild.hasAttribute('class')).toBe(true);
   });
 
   it('should adopt a valid attribute', () => {
-    const id = 'testId';
-    const wrapper = mount(<CenteredSection id={id} />);
-    const renderedComponent = enzymeFind(wrapper, CenteredSection);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const id = 'test';
+    const {
+      container: { firstChild },
+    } = render(<CenteredSection id={id} />);
+    expect(firstChild.id).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const wrapper = mount(<CenteredSection attribute="test" />);
-    const renderedComponent = enzymeFind(wrapper, CenteredSection);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const {
+      container: { firstChild },
+    } = render(<CenteredSection attribute="test" />);
+    expect(firstChild.hasAttribute('attribute')).toBe(false);
   });
 });

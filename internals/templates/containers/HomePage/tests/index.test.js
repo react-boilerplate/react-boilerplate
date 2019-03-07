@@ -1,15 +1,20 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import { shallow } from 'enzyme';
+import { cleanup, render } from 'react-testing-library';
+import { IntlProvider } from 'react-intl';
 
 import HomePage from '../index';
-import messages from '../messages';
 
 describe('<HomePage />', () => {
-  it('should render the page message', () => {
-    const renderedComponent = shallow(<HomePage />);
-    expect(
-      renderedComponent.contains(<FormattedMessage {...messages.header} />),
-    ).toEqual(true);
+  afterEach(cleanup);
+
+  it('should render and match the snapshot', () => {
+    const {
+      container: { firstChild },
+    } = render(
+      <IntlProvider locale="en">
+        <HomePage />
+      </IntlProvider>,
+    );
+    expect(firstChild).toMatchSnapshot();
   });
 });
