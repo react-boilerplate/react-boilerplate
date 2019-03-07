@@ -7,7 +7,9 @@ the _view_ layer of your app, let's see how to test Components too!
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Shallow rendering](#shallow-rendering)
-- [Enzyme](#enzyme)
+- [react-testing-library](#react-testing-library)
+  - [Snapshot testing](#snapshot-testing)
+  - [Behavior testing](#behavior-testing)
 
 <!-- /TOC -->
 
@@ -15,7 +17,7 @@ the _view_ layer of your app, let's see how to test Components too!
 
 React provides us with a nice add-on called the Shallow Renderer. This renderer
 will render a React component **one level deep**. Lets take a look at what that
-means with a simple `<Button>` component...
+means with a simple `<Button>` component.
 
 This component renders a `<button>` element containing a checkmark icon and some
 text:
@@ -78,108 +80,132 @@ containing this "HTML":
 ```
 
 If we test our `Button` with the normal renderer and there's a problem
-with the `CheckmarkIcon` then the test for the `Button` will fail as well...
-but finding the culprit will be hard. Using the _shallow_ renderer, we isolate
+with the `CheckmarkIcon` then the test for the `Button` will fail as well.
+This makes it harder to find the culprit. Using the _shallow_ renderer, we isolate
 the problem's cause since we don't render any other components other than the
 one we're testing!
 
 The problem with the shallow renderer is that all assertions have to be done
 manually, and you cannot do anything that needs the DOM.
 
-Thankfully, [AirBnB](https://twitter.com/AirbnbEng) has open sourced their
-wrapper around the React shallow renderer and jsdom, called `enzyme`. `enzyme`
-is a testing utility that gives us a nice assertion/traversal/manipulation API.
+## react-testing-library
 
-## Enzyme
+In order to write more maintainable tests which also resemble more closely the way
+our component is used in real life, we have included [react-testing-library](https://github.com/kentcdodds/react-testing-library).
+This library renders our component within an actual DOM and provides utilities for querying it.
 
-Lets test our `<Button>` component! We're going to assess three things: First,
-that it renders a HTML `<button>` tag, second that it renders its children we
-pass it and third that handles clicks!
+Let's give it a go with our `<Button />` component, shall we? First, let's check that it renders our component with its
+children, if any, and second that it handles clicks.
 
-This is our Jest setup:
+This is our test setup:
 
 ```javascript
 import React from 'react';
-import { shallow } from 'enzyme';
-import Button from '../Button.react';
+import { render, fireEvent, cleanup } from 'react-testing-library';
+import Button from '../Button';
 
 describe('<Button />', () => {
-  it('renders a <button>', () => {});
-
-  it('renders its children', () => {});
+  it('renders and matches the snapshot', () => {});
 
   it('handles clicks', () => {});
 });
 ```
 
-Lets start with testing that it renders a `<button>`. To do that we first
-`shallow` render it, and then `expect` that a `<button>` node exists.
+### Snapshot testing
+
+Let's start by ensuring that it renders our component and no changes happened to it since the last time it was
+successfully tested.
+
+We will do so by rendering it and creating a _[snapshot](https://jestjs.io/docs/en/snapshot-testing)_
+which can be compared with a previously committed snapshot. If no snapshot exists, a new one is created.
+
+For this, we first call `render`. This will render our `<Button />` component into a _container_, by default a 
+`<div>`, which is appended to `document.body`. We then create a snapshot and `expect` that this snapshot is the same as
+the existing snapshot, taken in a previous run of this test and committed to the repository.
 
 ```javascript
-it('renders a <button>', () => {
-  const renderedComponent = shallow(<Button />);
-  expect(renderedComponent.find('button').node).toBeDefined();
-});
-```
-
-Nice! If somebody breaks our button component by having it render an `<a>` tag
-or something else we'll immediately know! Let's do something a bit more advanced
-now, and check that our `<Button>` renders its children.
-
-We render our button component with some text, and then verify that our text
-exists:
-
-```javascript
-it('renders its children', () => {
+it('renders and matches the snapshot', () => {
   const text = 'Click me!';
-  const renderedComponent = shallow(<Button>{text}</Button>);
-  expect(renderedComponent.contains(text)).toEqual(true);
+  const { container } = render(<Button>{text}</Button>);
+
+  expect(container.firstChild).toMatchSnapshot();
 });
 ```
 
-Great! Onwards to our last and most advanced test: checking that our `<Button>` handles clicks correctly. We'll use a Spy for that. A Spy is a
-function that knows if, and how often, it has been called. We create the Spy
-(thoughtfully provided by `expect`), pass _it_ as the `onClick` handler to our
-component, simulate a click on the rendered `<button>` element and, lastly,
-see that our Spy was called:
+`render` returns an object that has a property `container` and yes, this is the container our
+`<Button />` component has been rendered in.
+
+As this is rendered within a _normal_ DOM we can query our
+component with `container.firstChild`. This will be our subject for a snapshot.
+Snapshots are placed in the `__snapshots__` folder within our `tests` folder. Make sure you commit
+these snapshots to your repository.
+
+Great! So, now if anyone makes any change to our `<Button />` component the test will fail and we get notified of what
+changed.
+
+### Behavior testing
+
+Onwards to our last and most advanced test: checking that our `<Button />` handles clicks correctly.
+
+We'll use a [mock function](https://jestjs.io/docs/en/mock-functions) for this. A mock function is a function that
+keeps track of _if_, _how often_, and _with what arguments_ it has been called. We pass this function as the `onClick` handler to our component, 
+simulate a click and, lastly, check that our mock function was called:
 
 ```javascript
 it('handles clicks', () => {
-  const onClickSpy = jest.fn();
-  const renderedComponent = shallow(<Button onClick={onClickSpy} />);
-  renderedComponent.find('button').simulate('click');
-  expect(onClickSpy).toHaveBeenCalled();
+  const onClickMock = jest.fn();
+  const text = 'Click me!';
+  const { getByText } = render(<Button onClick={onClickMock}>{text}</Button>);
+
+  fireEvent.click(getByText(text));
+  expect(onClickSpy).toHaveBeenCalledTimes(1);
 });
 ```
+
+Finally, we need to cleanup after ourselves. For this react-testing-library provides us with... well... `cleanup`!
+
+We will make use of the `afterEach` method, provided by Jest, to unmount and cleanup the DOM after each finished test.
+
+```javascript
+describe('<Button />', () => {
+  afterEach(cleanup);
+});
+``` 
+
+> Failing to call `cleanup` when you've called `render` could result in a memory leak and tests which are not "idempotent"
+(which can lead to difficult to debug errors in your tests). (From the [react-testing-library documentation](https://testing-library.com/docs/react-testing-library/api#cleanup))
 
 Our finished test file looks like this:
 
 ```javascript
 import React from 'react';
-import { shallow } from 'enzyme';
-import Button from '../Button.react';
+import { render, fireEvent, cleanup } from 'react-testing-library';
+import Button from '../Button';
 
 describe('<Button />', () => {
-  it('renders a <button>', () => {
-    const renderedComponent = shallow(<Button />);
-    expect(renderedComponent.find('button').node).toBeDefined();
-  });
+  afterEach(cleanup);
 
-  it('renders its children', () => {
+  it('renders and matches the snapshot', () => {
     const text = 'Click me!';
-    const renderedComponent = shallow(<Button>{text}</Button>);
-    expect(renderedComponent.contains(text)).toEqual(true);
+    const { container } = render(<Button>{text}</Button>);
+
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('handles clicks', () => {
-    const onClickSpy = jest.fn();
-    const renderedComponent = shallow(<Button onClick={onClickSpy} />);
-    renderedComponent.find('button').simulate('click');
-    expect(onClickSpy).toHaveBeenCalled();
+    const onClickMock = jest.fn();
+    const text = 'Click me!';
+    const { getByText } = render(<Button onClick={onClickMock}>{text}</Button>);
+  
+    fireEvent.click(getByText(text));
+    expect(onClickSpy).toHaveBeenCalledTimes(1);
   });
 });
 ```
 
 And that's how you unit test your components and make sure they work correctly!
+
+Also have a look at our example application. It deliberately shows some variations of implementing tests with
+react-testing-library.
 
 _Continue to learn how to test your components [remotely](remote-testing.md)!_
