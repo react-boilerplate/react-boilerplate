@@ -22,7 +22,7 @@ module.exports = {
       '<rootDir>/internals/mocks/image.js',
   },
   setupFilesAfterEnv: ['<rootDir>/internals/testing/test-bundler.js'],
-  setupFiles: ['raf/polyfill', '<rootDir>/internals/testing/enzyme-setup.js'],
+  setupFiles: ['raf/polyfill'],
   testRegex: 'tests/.*\\.test\\.js$',
-  snapshotSerializers: ['enzyme-to-json/serializer'],
+  snapshotSerializers: [],
 };

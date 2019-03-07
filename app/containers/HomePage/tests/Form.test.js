@@ -1,32 +1,37 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { enzymeFind } from 'styled-components/test-utils';
+import { cleanup, render } from 'react-testing-library';
 
 import Form from '../Form';
 
 describe('<Form />', () => {
+  afterEach(cleanup);
+
   it('should render an <form> tag', () => {
-    const wrapper = mount(<Form />);
-    const renderedComponent = enzymeFind(wrapper, Form);
-    expect(renderedComponent.type()).toEqual('form');
+    const {
+      container: { firstChild },
+    } = render(<Form />);
+    expect(firstChild.tagName).toEqual('FORM');
   });
 
-  it('should have a className attribute', () => {
-    const wrapper = mount(<Form />);
-    const renderedComponent = enzymeFind(wrapper, Form);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const {
+      container: { firstChild },
+    } = render(<Form />);
+    expect(firstChild.hasAttribute('class')).toBe(true);
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const wrapper = mount(<Form id={id} />);
-    const renderedComponent = enzymeFind(wrapper, Form);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const {
+      container: { firstChild },
+    } = render(<Form id={id} />);
+    expect(firstChild.id).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const wrapper = mount(<Form attribute="test" />);
-    const renderedComponent = enzymeFind(wrapper, Form);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const {
+      container: { firstChild },
+    } = render(<Form attribute="test" />);
+    expect(firstChild.hasAttribute('attribute')).toBe(false);
   });
 });
