@@ -1,0 +1,174 @@
+{
+  "projectName": "react-boilerplate",
+  "projectOwner": "react-boilerplate",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 80,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "mxstbr",
+      "name": "Max Stoiber",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/7525670?v=4",
+      "profile": "https://mxstbr.com",
+      "contributions": [
+        "code",
+        "doc",
+        "ideas",
+        "review",
+        "test"
+      ]
+    },
+    {
+      "login": "julienben",
+      "name": "Julien Benchetrit",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/8948127?v=4",
+      "profile": "https://julien.engineering/",
+      "contributions": [
+        "code",
+        "question",
+        "doc",
+        "review",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "gretzky",
+      "name": "Sara Federico",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/15176096?v=4",
+      "profile": "http://sarafederi.co",
+      "contributions": [
+        "code",
+        "review",
+        "question",
+        "doc",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "justingreenberg",
+      "name": "Justin Greenberg",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1539088?v=4",
+      "profile": "https://justingreenberg.com",
+      "contributions": [
+        "code",
+        "review"
+      ]
+    },
+    {
+      "login": "jwinn",
+      "name": "Jon Winn",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/891726?v=4",
+      "profile": "https://github.com/jwinn",
+      "contributions": [
+        "code",
+        "review"
+      ]
+    },
+    {
+      "login": "Mensae",
+      "name": "Johan Meester",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/474743?v=4",
+      "profile": "https://meester-johan.info/",
+      "contributions": [
+        "code",
+        "test",
+        "doc"
+      ]
+    },
+    {
+      "login": "Dattaya",
+      "name": "Yaroslav Kiliba",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/387256?v=4",
+      "profile": "https://github.com/Dattaya",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "gihrig",
+      "name": "Glen Ihrig",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1481063?v=4",
+      "profile": "https://github.com/gihrig",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "somus",
+      "name": "Somasundaram Ayyappan",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1802828?v=4",
+      "profile": "https://github.com/somus",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "oliverturner",
+      "name": "Oliver Turner",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/21795?v=4",
+      "profile": "https://www.codedsignal.co.uk/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "samit4me",
+      "name": "Samuel Sharpe",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/3248531?v=4",
+      "profile": "https://github.com/samit4me",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "KarandikarMihir",
+      "name": "Mihir Karandikar",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/17466938?v=4",
+      "profile": "https://karandikarmihir.github.io/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "v",
+      "name": "Vaibhav Verma",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/627846?v=4",
+      "profile": "http://www.vverma.net",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "sedubois",
+      "name": "Sébastien Dubois",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/4217871?v=4",
+      "profile": "https://imagineclarity.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "chaintng",
+      "name": "Chainarong Tangsurakit",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/2979072?v=4",
+      "profile": "https://www.chaintng.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "amilajack",
+      "name": "Amila Welihinda",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/6374832?v=4",
+      "profile": "https://amilajack.com",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 8
+}
