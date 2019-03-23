@@ -26,7 +26,7 @@ function List(props) {
 }
 
 List.propTypes = {
-  component: PropTypes.func.isRequired,
+  component: PropTypes.elementType.isRequired,
   items: PropTypes.array,
 };
 

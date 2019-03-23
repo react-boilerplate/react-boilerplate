@@ -1,36 +1,30 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { FormattedMessage } from 'react-intl';
+import renderer from 'react-test-renderer';
+import { IntlProvider } from 'react-intl';
+import { Provider } from 'react-redux';
+import { browserHistory } from 'react-router-dom';
 
-import A from 'components/A';
-import messages from '../messages';
 import Footer from '../index';
+import configureStore from '../../../configureStore';
 
 describe('<Footer />', () => {
-  it('should render the copyright notice', () => {
-    const renderedComponent = shallow(<Footer />);
-    expect(
-      renderedComponent.contains(
-        <section>
-          <FormattedMessage {...messages.licenseMessage} />
-        </section>,
-      ),
-    ).toBe(true);
+  let store;
+
+  beforeAll(() => {
+    store = configureStore({}, browserHistory);
   });
 
-  it('should render the credits', () => {
-    const renderedComponent = shallow(<Footer />);
-    expect(
-      renderedComponent.contains(
-        <section>
-          <FormattedMessage
-            {...messages.authorMessage}
-            values={{
-              author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,
-            }}
-          />
-        </section>,
-      ),
-    ).toBe(true);
+  it('should render and match the snapshot', () => {
+    const renderedComponent = renderer
+      .create(
+        <Provider store={store}>
+          <IntlProvider locale="en">
+            <Footer />
+          </IntlProvider>
+        </Provider>,
+      )
+      .toJSON();
+
+    expect(renderedComponent).toMatchSnapshot();
   });
 });

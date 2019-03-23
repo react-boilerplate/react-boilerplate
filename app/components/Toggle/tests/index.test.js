@@ -1,10 +1,12 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { cleanup, render } from 'react-testing-library';
 import { IntlProvider, defineMessages } from 'react-intl';
 
 import Toggle from '../index';
 
 describe('<Toggle />', () => {
+  afterEach(cleanup);
+
   it('should contain default text', () => {
     const defaultEnMessage = 'someContent';
     const defaultDeMessage = 'someOtherContent';
@@ -18,21 +20,18 @@ describe('<Toggle />', () => {
         defaultMessage: defaultDeMessage,
       },
     });
-    const renderedComponent = shallow(
+    const { container } = render(
       <IntlProvider locale="en">
         <Toggle values={['en', 'de']} messages={messages} />
       </IntlProvider>,
     );
-    expect(
-      renderedComponent.contains(
-        <Toggle values={['en', 'de']} messages={messages} />,
-      ),
-    ).toBe(true);
-    expect(renderedComponent.find('option')).toHaveLength(0);
+    expect(container.firstChild).toMatchSnapshot();
   });
+
   it('should not have ToggleOptions if props.values is not defined', () => {
-    const renderedComponent = shallow(<Toggle />);
-    expect(renderedComponent.contains(<option>--</option>)).toBe(true);
-    expect(renderedComponent.find('option')).toHaveLength(1);
+    const { container } = render(<Toggle />);
+    const elements = container.querySelectorAll('option');
+    expect(elements).toHaveLength(1);
+    expect(container.firstChild.value).toEqual('--');
   });
 });
