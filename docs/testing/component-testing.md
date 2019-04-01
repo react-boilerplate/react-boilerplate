@@ -101,7 +101,7 @@ This is our test setup:
 
 ```javascript
 import React from 'react';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 import Button from '../Button';
 
 describe('<Button />', () => {
@@ -161,30 +161,14 @@ it('handles clicks', () => {
   expect(onClickSpy).toHaveBeenCalledTimes(1);
 });
 ```
-
-Finally, we need to cleanup after ourselves. For this react-testing-library provides us with... well... `cleanup`!
-
-We will make use of the `afterEach` method, provided by Jest, to unmount and cleanup the DOM after each finished test.
-
-```javascript
-describe('<Button />', () => {
-  afterEach(cleanup);
-});
-``` 
-
-> Failing to call `cleanup` when you've called `render` could result in a memory leak and tests which are not "idempotent"
-(which can lead to difficult to debug errors in your tests). (From the [react-testing-library documentation](https://testing-library.com/docs/react-testing-library/api#cleanup))
-
 Our finished test file looks like this:
 
 ```javascript
 import React from 'react';
-import { render, fireEvent, cleanup } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 import Button from '../Button';
 
 describe('<Button />', () => {
-  afterEach(cleanup);
-
   it('renders and matches the snapshot', () => {
     const text = 'Click me!';
     const { container } = render(<Button>{text}</Button>);

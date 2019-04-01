@@ -1,11 +1,9 @@
 import React from 'react';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 import CenteredSection from '../CenteredSection';
 
 describe('<CenteredSection />', () => {
-  afterEach(cleanup);
-
   it('should render an <section> tag', () => {
     const {
       container: { firstChild },

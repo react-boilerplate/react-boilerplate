@@ -1,11 +1,9 @@
 import React from 'react';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 import Select from '../Select';
 
 describe('<Select />', () => {
-  afterEach(cleanup);
-
   it('should render an <select> tag', () => {
     const { container } = render(<Select />);
     expect(container.firstChild.tagName).toEqual('SELECT');

@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { ConnectedRouter } from 'connected-react-router/immutable';
@@ -11,8 +11,6 @@ import configureStore from '../../../configureStore';
 describe('<Header />', () => {
   const history = createHistory();
   const store = configureStore({}, history);
-
-  afterEach(cleanup);
 
   it('should render a div', () => {
     const { container } = render(

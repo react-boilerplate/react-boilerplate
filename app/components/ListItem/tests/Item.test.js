@@ -1,11 +1,9 @@
 import React from 'react';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 import Item from '../Item';
 
 describe('<Item />', () => {
-  afterEach(cleanup);
-
   it('should render an <div> tag', () => {
     const { container } = render(<Item />);
     expect(container.firstChild.tagName).toEqual('DIV');

@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { cleanup, getByText, render } from 'react-testing-library';
+import { getByText, render } from 'react-testing-library';
 import { IntlProvider } from 'react-intl';
 
 import { RepoListItem } from '../index';
@@ -30,8 +30,6 @@ describe('<RepoListItem />', () => {
       full_name: 'react-boilerplate/react-boilerplate',
     };
   });
-
-  afterEach(cleanup);
 
   it('should render a ListItem', () => {
     const { container } = renderComponent({ item });

@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 import A from '../index';
 
@@ -17,8 +17,6 @@ const renderComponent = (props = {}) =>
   );
 
 describe('<A />', () => {
-  afterEach(cleanup);
-
   it('should render an <a> tag', () => {
     const { container } = renderComponent();
     expect(container.querySelector('a')).not.toBeNull();
