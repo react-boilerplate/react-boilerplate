@@ -1,12 +1,10 @@
 import React from 'react';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 import { IntlProvider } from 'react-intl';
 
 import FeaturePage from '../index';
 
 describe('<FeaturePage />', () => {
-  afterEach(cleanup);
-
   it('should render its heading', () => {
     const {
       container: { firstChild },

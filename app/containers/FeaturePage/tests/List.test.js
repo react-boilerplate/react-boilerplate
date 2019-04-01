@@ -1,11 +1,9 @@
 import React from 'react';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 import List from '../List';
 
 describe('<List />', () => {
-  afterEach(cleanup);
-
   it('should render an <ul> tag', () => {
     const {
       container: { firstChild },

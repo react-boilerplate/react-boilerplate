@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 {{#if wantMessages}}
 import { IntlProvider } from 'react-intl';
 {{/if}}
@@ -19,8 +19,6 @@ import { DEFAULT_LOCALE } from '../../../i18n';
 {{/if}}
 
 describe('<{{ properCase name }} />', () => {
-  afterEach(cleanup);
-
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
     const dispatch = jest.fn();

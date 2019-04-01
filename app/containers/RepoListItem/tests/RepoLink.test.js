@@ -1,13 +1,11 @@
 import React from 'react';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
 import RepoLink from '../RepoLink';
 
 describe('<RepoLink />', () => {
-  afterEach(cleanup);
-
   it('should match the snapshot', () => {
     const renderedComponent = renderer.create(<RepoLink />).toJSON();
     expect(renderedComponent).toMatchSnapshot();

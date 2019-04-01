@@ -1,11 +1,9 @@
 import React from 'react';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 import H3 from '../index';
 
 describe('<H3 />', () => {
-  afterEach(cleanup);
-
   it('should render a prop', () => {
     const id = 'testId';
     const { container } = render(<H3 id={id} />);

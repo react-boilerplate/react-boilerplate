@@ -1,11 +1,9 @@
 import React from 'react';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 import List from '../index';
 
 describe('<List />', () => {
-  afterEach(cleanup);
-
   it('should render the passed component if no items are passed', () => {
     const component = () => <li>test</li>; // eslint-disable-line react/prop-types
     const { container } = render(<List component={component} />);

@@ -1,11 +1,9 @@
 import React from 'react';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 import Wrapper from '../Wrapper';
 
 describe('<Wrapper />', () => {
-  afterEach(cleanup);
-
   it('should render an <li> tag', () => {
     const { container } = render(<Wrapper />);
     const element = container.querySelector('li');

@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 import Img from '../index';
 
@@ -9,8 +9,6 @@ const renderComponent = (props = {}) =>
   render(<Img src={src} alt={alt} {...props} />);
 
 describe('<Img />', () => {
-  afterEach(cleanup);
-
   it('should render an <img> tag', () => {
     const { container } = renderComponent();
     const element = container.querySelector('img');
