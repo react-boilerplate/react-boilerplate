@@ -3,13 +3,13 @@ import { render } from 'react-testing-library';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { ConnectedRouter } from 'connected-react-router/immutable';
-import createHistory from 'history/createMemoryHistory';
+import { createMemoryHistory } from 'history';
 
 import Header from '../index';
 import configureStore from '../../../configureStore';
 
 describe('<Header />', () => {
-  const history = createHistory();
+  const history = createMemoryHistory();
   const store = configureStore({}, history);
 
   it('should render a div', () => {
