@@ -4,7 +4,7 @@ exports[`<Header /> should render a div 1`] = `
 <div>
   <a
     class="A-br8h0y-0 A-p44m4v-0 cYguYL"
-    href="https://twitter.com/mxstbr"
+    href="https://www.reactboilerplate.com/"
   >
     <img
       alt="react-boilerplate - Logo"
