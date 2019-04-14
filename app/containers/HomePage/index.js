@@ -110,6 +110,13 @@ HomePage.propTypes = {
   onChangeUsername: PropTypes.func,
 };
 
+const mapStateToProps = createStructuredSelector({
+  repos: makeSelectRepos(),
+  username: makeSelectUsername(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+});
+
 export function mapDispatchToProps(dispatch) {
   return {
     onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
@@ -119,13 +126,6 @@ export function mapDispatchToProps(dispatch) {
     },
   };
 }
-
-const mapStateToProps = createStructuredSelector({
-  repos: makeSelectRepos(),
-  username: makeSelectUsername(),
-  loading: makeSelectLoading(),
-  error: makeSelectError(),
-});
 
 const withConnect = connect(
   mapStateToProps,

@@ -49,10 +49,8 @@ It might be used in another component like this:
 
 import Button from './Button';
 
-class HomePage extends React.Component {
-  render() {
-    return <Button onClick={this.doSomething}>Click me!</Button>;
-  }
+function HomePage() {
+  return <Button onClick={this.doSomething}>Click me!</Button>;
 }
 ```
 

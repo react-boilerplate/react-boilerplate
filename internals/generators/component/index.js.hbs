@@ -4,7 +4,11 @@
  *
  */
 
+{{#if memo}}
+import React, { memo } from 'react';
+{{else}}
 import React from 'react';
+{{/if}}
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
@@ -25,4 +29,8 @@ function {{ properCase name }}() {
 
 {{ properCase name }}.propTypes = {};
 
+{{#if memo}}
+export default memo({{ properCase name }});
+{{else}}
 export default {{ properCase name }};
+{{/if}}

@@ -203,16 +203,16 @@ async function restoreModifiedFile(
  * @param {string} type - Plop Action type
  * @returns {Promise<string>} - Relative path to the generated component
  */
-async function generateComponent({ name, type }) {
+async function generateComponent({ name, memo }) {
   const targetFolder = 'components';
   const componentName = `${NAMESPACE}Component${name}`;
   const relativePath = `${targetFolder}/${componentName}`;
-  const component = `component/${type}`;
+  const component = `component/${memo ? 'Pure' : 'NotPure'}`;
 
   await componentGen
     .runActions({
       name: componentName,
-      type,
+      memo,
       wantMessages: true,
       wantLoadable: true,
     })
@@ -235,16 +235,16 @@ async function generateComponent({ name, type }) {
  * @param {string} type - Plop Action type
  * @returns {Promise<string>} - Relative path to the generated container
  */
-async function generateContainer({ name, type }) {
+async function generateContainer({ name, memo }) {
   const targetFolder = 'containers';
   const componentName = `${NAMESPACE}Container${name}`;
   const relativePath = `${targetFolder}/${componentName}`;
-  const container = `container/${type}`;
+  const container = `container/${memo ? 'Pure' : 'NotPure'}`;
 
   await containerGen
     .runActions({
       name: componentName,
-      type,
+      memo,
       wantHeaders: true,
       wantActionsAndReducer: true,
       wantSagas: true,
@@ -373,18 +373,12 @@ async function generateLanguage(language) {
 /**
  * Run
  */
-(async function() {
+(async function () {
   await generateComponents([
-    { kind: 'component', name: 'Esclass', type: 'React.Component' },
-    { kind: 'component', name: 'Esclasspure', type: 'React.PureComponent' },
-    {
-      kind: 'component',
-      name: 'Statelessfunction',
-      type: 'Stateless Function',
-    },
-    { kind: 'container', name: 'Component', type: 'React.Component' },
-    { kind: 'container', name: 'PureComponent', type: 'React.PureComponent' },
-    { kind: 'container', name: 'Stateless', type: 'Stateless Function' },
+    { kind: 'component', name: 'Component', memo: false },
+    { kind: 'component', name: 'MemoizedComponent', memo: true },
+    { kind: 'container', name: 'Container', memo: false },
+    { kind: 'container', name: 'MemoizedContainer', memo: true },
   ]).catch(reason => reportErrors(reason));
 
   await generateLanguage('fr').catch(reason => reportErrors(reason));
