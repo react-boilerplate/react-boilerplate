@@ -136,12 +136,12 @@ describe('useInjectSaga hook', () => {
 
   it('should eject on unmount with a correct saga key', () => {
     const props = { test: 'test' };
-    const renderedComponent = renderer.create(
+    const { unmount } = render(
       <Provider store={store}>
         <ComponentWithSaga {...props} />
       </Provider>,
     );
-    renderedComponent.unmount();
+    unmount();
 
     expect(injectors.ejectSaga).toHaveBeenCalledTimes(1);
     expect(injectors.ejectSaga).toHaveBeenCalledWith('test');
