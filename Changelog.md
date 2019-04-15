@@ -1,6 +1,6 @@
 # Changelog
 
-## RBP v4: "The One With Hooks (And Much More)" Edition
+## RBP v4: "The One With Hooks (And Much More)" Edition (April 2019)
 
 ### News
 
@@ -32,12 +32,14 @@ We hope you enjoy this release and welcome any feedback, bug reports or feature 
 - **Use `React.lazy` and `Suspense` instead of `loadable-components` to code-split and asynchronously load components** (**@julienben**)
 
 ### Documentation updates
+
 - Update Heroku deployment instructions (**@TheAncientGoat**)
 - Add subfolder deployment instructions (**@nshimiye**)
 - Add AWS EB deployment instructions (**@Al-un**)
 - Spelling and grammar fixes (**@khayyamsaleem**, **@ngtan**)
 
 ### Internals updates
+
 - Many dependency updates including: (**@julienben**)
   - react and react-dom (`16.6` to `16.8.6`)
   - react-redux (`5` to `7`) (**@bumi001**, **@jwinn**)
@@ -58,6 +60,7 @@ We hope you enjoy this release and welcome any feedback, bug reports or feature 
 - Miscellaneous fixes (**@ngtan**)
 
 ### Project maintenance
+
 - Switch from Gitter to Spectrum (**@gretzky**)
 - Update Code of Conduct and Contribution Guidelines (**@julienben**)
 - New Issue Templates (**@gretzky**)
