@@ -122,7 +122,7 @@
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-config-prettier": "4.1.0",
     "eslint-import-resolver-webpack": "0.11.1",
-    "eslint-plugin-import": "2.17.1",
+    "eslint-plugin-import": "2.17.2",
     "eslint-plugin-jsx-a11y": "6.2.1",
     "eslint-plugin-prettier": "3.0.1",
     "eslint-plugin-react": "7.12.4",
