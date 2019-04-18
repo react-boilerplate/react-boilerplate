@@ -1,32 +1,35 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { enzymeFind } from 'styled-components/test-utils';
+import { render } from 'react-testing-library';
 
 import ListItemTitle from '../ListItemTitle';
 
 describe('<ListItemTitle />', () => {
   it('should render an <p> tag', () => {
-    const wrapper = mount(<ListItemTitle />);
-    const renderedComponent = enzymeFind(wrapper, ListItemTitle);
-    expect(renderedComponent.type()).toEqual('p');
+    const {
+      container: { firstChild },
+    } = render(<ListItemTitle />);
+    expect(firstChild.tagName).toEqual('P');
   });
 
-  it('should have a className attribute', () => {
-    const wrapper = mount(<ListItemTitle />);
-    const renderedComponent = enzymeFind(wrapper, ListItemTitle);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const {
+      container: { firstChild },
+    } = render(<ListItemTitle />);
+    expect(firstChild.hasAttribute('class')).toBe(true);
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const wrapper = mount(<ListItemTitle id={id} />);
-    const renderedComponent = enzymeFind(wrapper, ListItemTitle);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const {
+      container: { firstChild },
+    } = render(<ListItemTitle id={id} />);
+    expect(firstChild.id).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const wrapper = mount(<ListItemTitle attribute="test" />);
-    const renderedComponent = enzymeFind(wrapper, ListItemTitle);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const {
+      container: { firstChild },
+    } = render(<ListItemTitle attribute="test" />);
+    expect(firstChild.hasAttribute('attribute')).toBe(false);
   });
 });

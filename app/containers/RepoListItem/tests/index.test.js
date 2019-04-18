@@ -3,10 +3,9 @@
  */
 
 import React from 'react';
-import { shallow, render } from 'enzyme';
+import { getByText, render } from 'react-testing-library';
 import { IntlProvider } from 'react-intl';
 
-import ListItem from 'components/ListItem';
 import { RepoListItem } from '../index';
 
 const renderComponent = (props = {}) =>
@@ -33,38 +32,44 @@ describe('<RepoListItem />', () => {
   });
 
   it('should render a ListItem', () => {
-    const renderedComponent = shallow(<RepoListItem item={item} />);
-    expect(renderedComponent.find(ListItem)).toHaveLength(1);
+    const { container } = renderComponent({ item });
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should not render the current username', () => {
-    const renderedComponent = renderComponent({
+    const { queryByText } = renderComponent({
       item,
       currentUser: item.owner.login,
     });
-    expect(renderedComponent.text()).not.toContain(item.owner.login);
+    expect(queryByText(item.owner.login)).toBeNull();
   });
 
   it('should render usernames that are not the current one', () => {
-    const renderedComponent = renderComponent({
+    const { container } = renderComponent({
       item,
       currentUser: 'nikgraf',
     });
-    expect(renderedComponent.text()).toContain(item.owner.login);
+    expect(
+      getByText(container, content => content.startsWith(item.owner.login)),
+    ).not.toBeNull();
   });
 
   it('should render the repo name', () => {
-    const renderedComponent = renderComponent({ item });
-    expect(renderedComponent.text()).toContain(item.name);
+    const { container } = renderComponent({ item });
+    expect(
+      getByText(container, content => content.endsWith(item.name)),
+    ).not.toBeNull();
   });
 
   it('should render the issue count', () => {
-    const renderedComponent = renderComponent({ item });
-    expect(renderedComponent.text()).toContain(item.open_issues_count);
+    const { container } = renderComponent({ item });
+    expect(
+      getByText(container, item.open_issues_count.toString(10)),
+    ).not.toBeNull();
   });
 
   it('should render the IssueIcon', () => {
-    const renderedComponent = renderComponent({ item });
-    expect(renderedComponent.find('svg')).toHaveLength(1);
+    const { container } = renderComponent({ item });
+    expect(container.querySelector('svg')).not.toBeNull();
   });
 });

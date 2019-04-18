@@ -1,32 +1,27 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { enzymeFind } from 'styled-components/test-utils';
+import { render } from 'react-testing-library';
 
 import Input from '../Input';
 
 describe('<Input />', () => {
   it('should render an <input> tag', () => {
-    const wrapper = mount(<Input />);
-    const renderedComponent = enzymeFind(wrapper, Input);
-    expect(renderedComponent.type()).toEqual('input');
+    const { container } = render(<Input />);
+    expect(container.firstChild.tagName).toEqual('INPUT');
   });
 
-  it('should have a className attribute', () => {
-    const wrapper = mount(<Input />);
-    const renderedComponent = enzymeFind(wrapper, Input);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const { container } = render(<Input />);
+    expect(container.firstChild.hasAttribute('class')).toBe(true);
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const wrapper = mount(<Input id={id} />);
-    const renderedComponent = enzymeFind(wrapper, Input);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { container } = render(<Input id={id} />);
+    expect(container.firstChild.id).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const wrapper = mount(<Input attribute="test" />);
-    const renderedComponent = enzymeFind(wrapper, Input);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const { container } = render(<Input attribute="test" />);
+    expect(container.firstChild.hasAttribute('attribute')).toBe(false);
   });
 });

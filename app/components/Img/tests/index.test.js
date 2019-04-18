@@ -1,43 +1,49 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from 'react-testing-library';
 
 import Img from '../index';
 
 const src = 'test.png';
 const alt = 'test';
 const renderComponent = (props = {}) =>
-  shallow(<Img src={src} alt={alt} {...props} />);
+  render(<Img src={src} alt={alt} {...props} />);
 
 describe('<Img />', () => {
   it('should render an <img> tag', () => {
-    const renderedComponent = renderComponent();
-    expect(renderedComponent.is('img')).toBe(true);
+    const { container } = renderComponent();
+    const element = container.querySelector('img');
+    expect(element).not.toBeNull();
   });
 
   it('should have an src attribute', () => {
-    const renderedComponent = renderComponent();
-    expect(renderedComponent.prop('src')).toEqual(src);
+    const { container } = renderComponent();
+    const element = container.querySelector('img');
+    expect(element.hasAttribute('src')).toBe(true);
   });
 
   it('should have an alt attribute', () => {
-    const renderedComponent = renderComponent();
-    expect(renderedComponent.prop('alt')).toEqual(alt);
+    const { container } = renderComponent();
+    const element = container.querySelector('img');
+    expect(element.hasAttribute('alt')).toBe(true);
   });
 
-  it('should not have a className attribute', () => {
-    const renderedComponent = renderComponent();
-    expect(renderedComponent.prop('className')).toBeUndefined();
+  it('should not have a class attribute', () => {
+    const { container } = renderComponent();
+    const element = container.querySelector('img');
+    expect(element.hasAttribute('class')).toBe(false);
   });
 
   it('should adopt a className attribute', () => {
     const className = 'test';
-    const renderedComponent = renderComponent({ className });
-    expect(renderedComponent.hasClass(className)).toBe(true);
+    const { container } = renderComponent({ className });
+    const element = container.querySelector('img');
+    expect(element.className).toEqual(className);
   });
 
   it('should not adopt a srcset attribute', () => {
     const srcset = 'test-HD.png 2x';
-    const renderedComponent = renderComponent({ srcset });
-    expect(renderedComponent.prop('srcset')).toBeUndefined();
+    const { container } = renderComponent({ srcset });
+    const element = container.querySelector('img');
+    expect(element.hasAttribute('srcset')).toBe(false);
   });
 });

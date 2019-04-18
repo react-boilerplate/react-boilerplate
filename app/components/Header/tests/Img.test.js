@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from 'react-testing-library';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
@@ -13,24 +13,24 @@ describe('<Img />', () => {
     expect(renderedComponent).toMatchSnapshot();
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = mount(
+  it('should have a class attribute', () => {
+    const { container } = render(
       <Img src="http://example.com/test.jpg" alt="test" />,
     );
-    expect(renderedComponent.find('img').prop('className')).toBeDefined();
+    expect(container.querySelector('img').hasAttribute('class')).toBe(true);
   });
 
   it('should adopt a valid attribute', () => {
-    const renderedComponent = mount(
+    const { container } = render(
       <Img src="http://example.com/test.jpg" alt="test" />,
     );
-    expect(renderedComponent.find('img').prop('alt')).toEqual('test');
+    expect(container.querySelector('img').alt).toEqual('test');
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = mount(
+    const { container } = render(
       <Img src="http://example.com/test.jpg" attribute="test" alt="test" />,
     );
-    expect(renderedComponent.find('img').prop('attribute')).toBeUndefined();
+    expect(container.querySelector('img').getAttribute('attribute')).toBeNull();
   });
 });

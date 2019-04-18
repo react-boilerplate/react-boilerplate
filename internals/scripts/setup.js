@@ -6,146 +6,333 @@ const path = require('path');
 const fs = require('fs');
 const readline = require('readline');
 const compareVersions = require('compare-versions');
+const chalk = require('chalk');
+
 const animateProgress = require('./helpers/progress');
 const addCheckMark = require('./helpers/checkmark');
+const addXMark = require('./helpers/xmark');
+const npmConfig = require('./helpers/get-npm-config');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
 
 process.stdout.write('\n');
-let interval;
-let clearRepo = true;
-
-cleanRepo(() => {
-  process.stdout.write(
-    '\nInstalling dependencies... (This might take a while)',
-  );
-  setTimeout(() => {
-    readline.cursorTo(process.stdout, 0);
-    interval = animateProgress('Installing dependencies');
-  }, 500);
-
-  installDeps();
-});
-
-/**
- * Deletes the .git folder in dir only if cloned from our repo
- */
-function cleanRepo(callback) {
-  fs.readFile('.git/config', 'utf8', (err, data) => {
-    if (!err) {
-      const isClonedRepo =
-        typeof data === 'string' &&
-        (data.match(/url\s*=/g) || []).length === 1 &&
-        /react-boilerplate\/react-boilerplate\.git/.test(data);
-      if (isClonedRepo) {
-        process.stdout.write('\nDo you want to clear old repository? [Y/n] ');
-        process.stdin.resume();
-        process.stdin.on('data', pData => {
-          const val = pData.toString().trim();
-          if (val === 'y' || val === 'Y' || val === '') {
-            process.stdout.write('Removing old repository');
-            shell.rm('-rf', '.git/');
-            addCheckMark(callback);
-          } else {
-            dontClearRepo('', callback);
-          }
-        });
-      } else {
-        dontClearRepo('\n', callback);
-      }
-    } else {
-      callback();
-    }
-  });
-}
-
-/**
- * Function which indicates that we are not cleaning git repo
- */
-function dontClearRepo(nl, callback) {
-  clearRepo = false;
-  process.stdout.write(`${nl} Leaving your repository untouched`);
-  addCheckMark(callback);
-}
-
-/**
- * Initializes git again
- */
-function initGit(callback) {
-  exec(
-    'git init && git add . && git commit -m "Initial commit"',
-    addCheckMark.bind(null, callback),
-  );
-}
+let interval = -1;
 
 /**
  * Deletes a file in the current directory
+ * @param {string} file
+ * @returns {Promise<any>}
  */
-function deleteFileInCurrentDir(file, callback) {
-  fs.unlink(path.join(__dirname, file), callback);
+function deleteFileInCurrentDir(file) {
+  return new Promise((resolve, reject) => {
+    fs.unlink(path.join(__dirname, file), err => reject(new Error(err)));
+    resolve();
+  });
 }
 
 /**
- * Installs dependencies
- *
- * NOTE: Could be refactored with aync/await and:
- * const exec = util.promisify(require('child_process').exec);
- *
+ * Checks if we are under Git version control
+ * @returns {Promise<boolean>}
  */
-function installDeps() {
-  exec('node --version', (err, stdout) => {
-    const nodeVersion = stdout.trim();
-    if (err || compareVersions(nodeVersion, '8.10.0') === -1) {
-      installDepsCallback(
-        err ||
-          `[ERROR] You need Node.js v8.10 or above but you have ${nodeVersion}`,
-      );
-    } else {
-      exec('npm --version', (err2, stdout2) => {
-        const npmVersion = stdout2.trim();
-        if (err2 || compareVersions(npmVersion, '5.0.0') === -1) {
-          installDepsCallback(
-            err2 ||
-              `[ERROR] You need npm v5 or above but you have v${npmVersion}`,
-          );
-        } else {
-          exec('npm install', addCheckMark.bind(null, installDepsCallback));
-        }
-      });
+function hasGitRepository() {
+  return new Promise((resolve, reject) => {
+    exec('git status', (err, stdout) => {
+      if (err) {
+        reject(new Error(err));
+      }
+
+      const regex = new RegExp(/fatal:\s+Not\s+a\s+git\s+repository/, 'i');
+
+      /* eslint-disable-next-line no-unused-expressions */
+      regex.test(stdout) ? resolve(false) : resolve(true);
+    });
+  });
+}
+
+/**
+ * Checks if this is a clone from our repo
+ * @returns {Promise<any>}
+ */
+function checkIfRepositoryIsAClone() {
+  return new Promise((resolve, reject) => {
+    exec('git remote -v', (err, stdout) => {
+      if (err) {
+        reject(new Error(err));
+      }
+
+      const isClonedRepo = stdout
+        .split(/\r?\n/)
+        .map(line => line.trim())
+        .filter(line => line.startsWith('origin'))
+        .filter(line => /react-boilerplate\/react-boilerplate\.git/.test(line))
+        .length;
+
+      resolve(!!isClonedRepo);
+    });
+  });
+}
+
+/**
+ * Remove the current Git repository
+ * @returns {Promise<any>}
+ */
+function removeGitRepository() {
+  return new Promise((resolve, reject) => {
+    try {
+      shell.rm('-rf', '.git/');
+      resolve();
+    } catch (err) {
+      reject(err);
     }
   });
 }
 
 /**
- * Callback function after installing dependencies
+ * Ask user if he wants to start with a new repository
+ * @returns {Promise<boolean>}
  */
-function installDepsCallback(error) {
-  clearInterval(interval);
-  process.stdout.write('\n\n');
-  if (error) {
-    process.stderr.write(error);
-    process.stdout.write('\n');
-    process.exit(1);
+function askUserIfWeShouldRemoveRepo() {
+  return new Promise(resolve => {
+    process.stdout.write(
+      '\nDo you want to start with a new repository? [Y/n] ',
+    );
+    process.stdin.resume();
+    process.stdin.on('data', pData => {
+      const answer =
+        pData
+          .toString()
+          .trim()
+          .toLowerCase() || 'y';
+
+      /* eslint-disable-next-line no-unused-expressions */
+      answer === 'y' ? resolve(true) : resolve(false);
+    });
+  });
+}
+
+/**
+ * Checks if we are under Git version control.
+ * If we are and this a clone of our repository the user is given a choice to
+ * either keep it or start with a new repository.
+ * @returns {Promise<boolean>}
+ */
+async function cleanCurrentRepository() {
+  const hasGitRepo = await hasGitRepository().catch(reason =>
+    reportError(reason),
+  );
+
+  // We are not under Git version control. So, do nothing
+  if (hasGitRepo === false) {
+    return false;
   }
 
-  deleteFileInCurrentDir('setup.js', () => {
-    if (clearRepo) {
-      interval = animateProgress('Initialising new repository');
-      process.stdout.write('Initialising new repository');
-      initGit(() => {
-        clearInterval(interval);
-        endProcess();
-      });
-    }
+  const isClone = await checkIfRepositoryIsAClone().catch(reason =>
+    reportError(reason),
+  );
 
-    endProcess();
+  // Not our clone so do nothing
+  if (isClone === false) {
+    return false;
+  }
+
+  const answer = await askUserIfWeShouldRemoveRepo();
+
+  if (answer === true) {
+    process.stdout.write('Removing current repository');
+    await removeGitRepository().catch(reason => reportError(reason));
+    addCheckMark();
+  }
+
+  return answer;
+}
+
+/**
+ * Check Node.js version
+ * @param {!number} minimalNodeVersion
+ * @returns {Promise<any>}
+ */
+function checkNodeVersion(minimalNodeVersion) {
+  return new Promise((resolve, reject) => {
+    exec('node --version', (err, stdout) => {
+      const nodeVersion = stdout.trim();
+      if (err) {
+        reject(new Error(err));
+      } else if (compareVersions(nodeVersion, minimalNodeVersion) === -1) {
+        reject(
+          new Error(
+            `You need Node.js v${minimalNodeVersion} or above but you have v${nodeVersion}`,
+          ),
+        );
+      }
+
+      resolve('Node version OK');
+    });
   });
 }
+
 /**
- * Function which ends setup process
+ * Check NPM version
+ * @param {!number} minimalNpmVersion
+ * @returns {Promise<any>}
+ */
+function checkNpmVersion(minimalNpmVersion) {
+  return new Promise((resolve, reject) => {
+    exec('npm --version', (err, stdout) => {
+      const npmVersion = stdout.trim();
+      if (err) {
+        reject(new Error(err));
+      } else if (compareVersions(npmVersion, minimalNpmVersion) === -1) {
+        reject(
+          new Error(
+            `You need NPM v${minimalNpmVersion} or above but you have v${npmVersion}`,
+          ),
+        );
+      }
+
+      resolve('NPM version OK');
+    });
+  });
+}
+
+/**
+ * Install all packages
+ * @returns {Promise<any>}
+ */
+function installPackages() {
+  return new Promise((resolve, reject) => {
+    process.stdout.write(
+      '\nInstalling dependencies... (This might take a while)',
+    );
+
+    setTimeout(() => {
+      readline.cursorTo(process.stdout, 0);
+      interval = animateProgress('Installing dependencies');
+    }, 500);
+
+    exec('npm install', err => {
+      if (err) {
+        reject(new Error(err));
+      }
+
+      clearInterval(interval);
+      addCheckMark();
+      resolve('Packages installed');
+    });
+  });
+}
+
+/**
+ * Initialize a new Git repository
+ * @returns {Promise<any>}
+ */
+function initGitRepository() {
+  return new Promise((resolve, reject) => {
+    exec('git init', (err, stdout) => {
+      if (err) {
+        reject(new Error(err));
+      } else {
+        resolve(stdout);
+      }
+    });
+  });
+}
+
+/**
+ * Add all files to the new repository
+ * @returns {Promise<any>}
+ */
+function addToGitRepository() {
+  return new Promise((resolve, reject) => {
+    exec('git add .', (err, stdout) => {
+      if (err) {
+        reject(new Error(err));
+      } else {
+        resolve(stdout);
+      }
+    });
+  });
+}
+
+/**
+ * Initial Git commit
+ * @returns {Promise<any>}
+ */
+function commitToGitRepository() {
+  return new Promise((resolve, reject) => {
+    exec('git commit -m "Initial commit"', (err, stdout) => {
+      if (err) {
+        reject(new Error(err));
+      } else {
+        resolve(stdout);
+      }
+    });
+  });
+}
+
+/**
+ * Report the the given error and exits the setup
+ * @param {string} error
+ */
+function reportError(error) {
+  clearInterval(interval);
+
+  if (error) {
+    process.stdout.write('\n\n');
+    addXMark(() => process.stderr.write(chalk.red(` ${error}\n`)));
+    process.exit(1);
+  }
+}
+
+/**
+ * End the setup process
  */
 function endProcess() {
-  process.stdout.write('\nDone!');
+  clearInterval(interval);
+  process.stdout.write(chalk.blue('\n\nDone!\n'));
   process.exit(0);
 }
+
+/**
+ * Run
+ */
+(async () => {
+  const repoRemoved = await cleanCurrentRepository();
+
+  // Take the required Node and NPM version from package.json
+  const {
+    engines: { node, npm },
+  } = npmConfig;
+
+  const requiredNodeVersion = node.match(/([0-9.]+)/g)[0];
+  await checkNodeVersion(requiredNodeVersion).catch(reason =>
+    reportError(reason),
+  );
+
+  const requiredNpmVersion = npm.match(/([0-9.]+)/g)[0];
+  await checkNpmVersion(requiredNpmVersion).catch(reason =>
+    reportError(reason),
+  );
+
+  await installPackages().catch(reason => reportError(reason));
+  await deleteFileInCurrentDir('setup.js').catch(reason => reportError(reason));
+
+  if (repoRemoved) {
+    process.stdout.write('\n');
+    interval = animateProgress('Initialising new repository');
+    process.stdout.write('Initialising new repository');
+
+    try {
+      await initGitRepository();
+      await addToGitRepository();
+      await commitToGitRepository();
+    } catch (err) {
+      reportError(err);
+    }
+
+    addCheckMark();
+    clearInterval(interval);
+  }
+
+  endProcess();
+})();

@@ -1,32 +1,35 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { enzymeFind } from 'styled-components/test-utils';
+import { render } from 'react-testing-library';
 
 import AtPrefix from '../AtPrefix';
 
 describe('<AtPrefix />', () => {
-  it('should render a <span> tag', () => {
-    const wrapper = mount(<AtPrefix />);
-    const renderedComponent = enzymeFind(wrapper, AtPrefix);
-    expect(renderedComponent.type()).toEqual('span');
+  it('should render an <span> tag', () => {
+    const {
+      container: { firstChild },
+    } = render(<AtPrefix />);
+    expect(firstChild.tagName).toEqual('SPAN');
   });
 
-  it('should have a className attribute', () => {
-    const wrapper = mount(<AtPrefix />);
-    const renderedComponent = enzymeFind(wrapper, AtPrefix);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const {
+      container: { firstChild },
+    } = render(<AtPrefix />);
+    expect(firstChild.hasAttribute('class')).toBe(true);
   });
 
   it('should adopt a valid attribute', () => {
-    const id = 'testId';
-    const wrapper = mount(<AtPrefix id={id} />);
-    const renderedComponent = enzymeFind(wrapper, AtPrefix);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const id = 'test';
+    const {
+      container: { firstChild },
+    } = render(<AtPrefix id={id} />);
+    expect(firstChild.id).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const wrapper = mount(<AtPrefix attribute="test" />);
-    const renderedComponent = enzymeFind(wrapper, AtPrefix);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const {
+      container: { firstChild },
+    } = render(<AtPrefix attribute="test" />);
+    expect(firstChild.hasAttribute('attribute')).toBe(false);
   });
 });

@@ -1,16 +1,11 @@
-# Loading components with loadable-components
+# Loading components with React.lazy and Suspense
 
-[`loadable-components`](https://github.com/smooth-code/loadable-components) is integrated into
-`react-boilerplate` because of its rich functionality and good design (it does not
-conflate routes with asynchronous components).
-
-To load a component asynchronously, create a `Loadable` file by hand or via component/container generators
-with the 'Do you want to load resources asynchronously?' option activated.
+To load a component asynchronously, create a `Loadable` file by hand or via component/container generators with the 'Do you want to load resources asynchronously?' option activated.
 
 This is the content of the file by default:
 
 ```JS
-import loadable from 'loadable-components';
+import loadable from 'utils/loadable';
 
 export default loadable(() => import('./index'));
 ```
@@ -18,13 +13,16 @@ export default loadable(() => import('./index'));
 In this case, the app won't show anything while loading your component. You can however make it display a custom loader with:
 
 ```JS
-import loadable from 'loadable-components';
+import React from 'react';
+import loadable from 'utils/loadable';
 
-export default loadable(() => import('./Home'), {
-  LoadingComponent: () => <div>Loading...</div>,
-})
+export default loadable(() => import('./index'), {
+  fallback: <div>Loading...</div>,
+});
 ```
 
-`loadable-components` also allows you to do prefetching, loading multiple components in parallel, handling loading errors and plenty more.
+This feature is built into the boilerplate using React's `lazy` and `Suspense` features.
 
-You can find more information on how to use `loadable-components` in [their docs](https://github.com/smooth-code/loadable-components).
+If you need server-side rendering or are looking for more complex behaviors such as prefetching, loading multiple components in parallel, handling loading errors and more, we recommend  [loadable-components](https://github.com/smooth-code/loadable-components).
+
+You can read a comparison between our solution and that of `loadable-components` on [this page](https://www.smooth-code.com/open-source/loadable-components/docs/loadable-vs-react-lazy/).

@@ -1,30 +1,32 @@
-import { shallow, mount } from 'enzyme';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
+import { Provider } from 'react-redux';
+import { browserHistory } from 'react-router-dom';
+import { render } from 'react-testing-library';
 
-import RepoListItem from 'containers/RepoListItem';
-import List from 'components/List';
-import LoadingIndicator from 'components/LoadingIndicator';
 import ReposList from '../index';
+import configureStore from '../../../configureStore';
 
 describe('<ReposList />', () => {
   it('should render the loading indicator when its loading', () => {
-    const renderedComponent = shallow(<ReposList loading />);
-    expect(
-      renderedComponent.contains(<List component={LoadingIndicator} />),
-    ).toEqual(true);
+    const { container } = render(<ReposList loading />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should render an error if loading failed', () => {
-    const renderedComponent = mount(
+    const { queryByText } = render(
       <IntlProvider locale="en">
         <ReposList loading={false} error={{ message: 'Loading failed!' }} />
       </IntlProvider>,
     );
-    expect(renderedComponent.text()).toMatch(/Something went wrong/);
+    expect(queryByText(/Something went wrong/)).not.toBeNull();
   });
 
   it('should render the repositories if loading was successful', () => {
+    const store = configureStore(
+      { global: { currentUser: 'mxstbr' } },
+      browserHistory,
+    );
     const repos = [
       {
         owner: {
@@ -36,22 +38,22 @@ describe('<ReposList />', () => {
         full_name: 'react-boilerplate/react-boilerplate',
       },
     ];
-    const renderedComponent = shallow(
-      <ReposList repos={repos} error={false} />,
+    const { container } = render(
+      <Provider store={store}>
+        <IntlProvider locale="en">
+          <ReposList repos={repos} error={false} />
+        </IntlProvider>
+      </Provider>,
     );
 
-    expect(
-      renderedComponent.contains(
-        <List items={repos} component={RepoListItem} />,
-      ),
-    ).toEqual(true);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should not render anything if nothing interesting is provided', () => {
-    const renderedComponent = shallow(
+    const { container } = render(
       <ReposList repos={false} error={false} loading={false} />,
     );
 
-    expect(renderedComponent.html()).toEqual(null);
+    expect(container.firstChild).toBeNull();
   });
 });

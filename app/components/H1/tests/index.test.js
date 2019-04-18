@@ -1,21 +1,20 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { enzymeFind } from 'styled-components/test-utils';
+import { render } from 'react-testing-library';
 
 import H1 from '../index';
 
 describe('<H1 />', () => {
   it('should render a prop', () => {
     const id = 'testId';
-    const wrapper = mount(<H1 id={id} />);
-    const renderedComponent = enzymeFind(wrapper, H1);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { container } = render(<H1 id={id} />);
+    expect(container.querySelector('h1').id).toEqual(id);
   });
 
   it('should render its text', () => {
     const children = 'Text';
-    const wrapper = mount(<H1>{children}</H1>);
-    const renderedComponent = enzymeFind(wrapper, H1);
-    expect(renderedComponent.contains(children)).toBe(true);
+    const { container, queryByText } = render(<H1>{children}</H1>);
+    const { childNodes } = container.querySelector('h1');
+    expect(childNodes).toHaveLength(1);
+    expect(queryByText(children)).not.toBeNull();
   });
 });

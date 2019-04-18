@@ -1,6 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { enzymeFind } from 'styled-components/test-utils';
+import { render } from 'react-testing-library';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
@@ -13,21 +12,19 @@ describe('<IssueLink />', () => {
   });
 
   it('should have a className attribute', () => {
-    const wrapper = mount(<IssueLink />);
-    const renderedComponent = enzymeFind(wrapper, IssueLink);
-    expect(renderedComponent.prop('className')).toBeDefined();
+    const { container } = render(<IssueLink />);
+    expect(container.firstChild.hasAttribute('class')).toBe(true);
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const wrapper = mount(<IssueLink id={id} />);
-    const renderedComponent = enzymeFind(wrapper, IssueLink);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { container } = render(<IssueLink id={id} />);
+    expect(container.firstChild.hasAttribute('id')).toBe(true);
+    expect(container.firstChild.id).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const wrapper = mount(<IssueLink attribute="test" />);
-    const renderedComponent = enzymeFind(wrapper, IssueLink);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const { container } = render(<IssueLink attribute="test" />);
+    expect(container.firstChild.hasAttribute('attribute')).toBe(false);
   });
 });
