@@ -1,12 +1,10 @@
 import React from 'react';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 import { IntlProvider } from 'react-intl';
 
 import FeaturePage from '../index';
 
 describe('<FeaturePage />', () => {
-  afterEach(cleanup);
-
   it('should render its heading', () => {
     const {
       container: { firstChild },
@@ -17,25 +15,5 @@ describe('<FeaturePage />', () => {
     );
 
     expect(firstChild).toMatchSnapshot();
-  });
-
-  it('should never re-render the component', () => {
-    const shouldComponentUpdateMock = jest.spyOn(
-      FeaturePage.prototype,
-      'shouldComponentUpdate',
-    );
-    const { rerender } = render(
-      <IntlProvider locale="en">
-        <FeaturePage />
-      </IntlProvider>,
-    );
-
-    rerender(
-      <IntlProvider locale="en">
-        <FeaturePage test="dummy" />
-      </IntlProvider>,
-    );
-
-    expect(shouldComponentUpdateMock).toHaveReturnedWith(false);
   });
 });

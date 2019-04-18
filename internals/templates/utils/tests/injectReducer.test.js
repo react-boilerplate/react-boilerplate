@@ -6,16 +6,16 @@ import { memoryHistory } from 'react-router-dom';
 import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
-import { identity } from 'lodash';
+import { render } from 'react-testing-library';
 
 import configureStore from '../../configureStore';
-import injectReducer from '../injectReducer';
+import injectReducer, { useInjectReducer } from '../injectReducer';
 import * as reducerInjectors from '../reducerInjectors';
 
 // Fixtures
 const Component = () => null;
 
-const reducer = identity;
+const reducer = s => s;
 
 describe('injectReducer decorator', () => {
   let store;
@@ -65,5 +65,34 @@ describe('injectReducer decorator', () => {
     } = renderedComponent.getInstance();
 
     expect(children.props).toEqual(props);
+  });
+});
+
+describe('useInjectReducer hook', () => {
+  let store;
+  let injectors;
+  let ComponentWithReducer;
+
+  beforeAll(() => {
+    injectors = {
+      injectReducer: jest.fn(),
+    };
+    reducerInjectors.default = jest.fn().mockImplementation(() => injectors);
+    store = configureStore({}, memoryHistory);
+    ComponentWithReducer = () => {
+      useInjectReducer({ key: 'test', reducer });
+      return null;
+    };
+  });
+
+  it('should inject a given reducer', () => {
+    render(
+      <Provider store={store}>
+        <ComponentWithReducer />
+      </Provider>,
+    );
+
+    expect(injectors.injectReducer).toHaveBeenCalledTimes(1);
+    expect(injectors.injectReducer).toHaveBeenCalledWith('test', reducer);
   });
 });

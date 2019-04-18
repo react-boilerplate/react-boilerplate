@@ -1,13 +1,11 @@
 import React from 'react';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
 import A from '../A';
 
 describe('<A />', () => {
-  afterEach(cleanup);
-
   it('should match the snapshot', () => {
     const renderedComponent = renderer.create(<A />).toJSON();
     expect(renderedComponent).toMatchSnapshot();

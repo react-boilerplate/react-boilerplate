@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { cleanup, fireEvent, render } from 'react-testing-library';
+import { fireEvent, render } from 'react-testing-library';
 
 import Button from '../index';
 
@@ -18,8 +18,6 @@ const renderComponent = (props = {}) =>
   );
 
 describe('<Button />', () => {
-  afterEach(cleanup);
-
   it('should render an <a> tag if no route is specified', () => {
     const { container } = renderComponent({ href });
     expect(container.querySelector('a')).not.toBeNull();

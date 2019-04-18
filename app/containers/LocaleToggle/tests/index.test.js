@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router-dom';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 import LocaleToggle, { mapDispatchToProps } from '../index';
 import { changeLocale } from '../../LanguageProvider/actions';
@@ -16,8 +16,6 @@ describe('<LocaleToggle />', () => {
   beforeAll(() => {
     store = configureStore({}, browserHistory);
   });
-
-  afterEach(cleanup);
 
   it('should match the snapshot', () => {
     const { container } = render(

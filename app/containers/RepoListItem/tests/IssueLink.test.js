@@ -1,13 +1,11 @@
 import React from 'react';
-import { cleanup, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
 import IssueLink from '../IssueLink';
 
 describe('<IssueLink />', () => {
-  afterEach(cleanup);
-
   it('should match the snapshot', () => {
     const renderedComponent = renderer.create(<IssueLink />).toJSON();
     expect(renderedComponent).toMatchSnapshot();
