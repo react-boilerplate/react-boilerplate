@@ -27,4 +27,8 @@ module.exports = {
   ],
   testRegex: 'tests/.*\\.test\\.js$',
   snapshotSerializers: [],
+  watchPlugins: [
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname',
+  ],
 };
