@@ -4,7 +4,7 @@
  * This is the first thing users see of our App, at the '/' route
  */
 
-import React, { useEffect, memo } from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
@@ -32,7 +32,7 @@ import saga from './saga';
 
 const key = 'home';
 
-export function HomePage() {
+export default function HomePage() {
   const repos = useSelector(makeSelectRepos());
   const username = useSelector(makeSelectUsername());
   const loading = useSelector(makeSelectLoading());
@@ -103,5 +103,3 @@ export function HomePage() {
     </article>
   );
 }
-
-export default memo(HomePage);
