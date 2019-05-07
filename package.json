@@ -78,7 +78,7 @@
     "react-dom": "16.8.6",
     "react-helmet": "6.0.0-beta",
     "react-intl": "2.8.0",
-    "react-redux": "7.0.3",
+    "react-redux": "7.1.0-alpha.4",
     "react-router-dom": "5.0.0",
     "redux": "4.0.1",
     "redux-saga": "1.0.2",
