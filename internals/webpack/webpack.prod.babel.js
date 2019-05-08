@@ -83,7 +83,7 @@ module.exports = require('./webpack.base.babel')({
       },
       inject: true,
     }),
-    
+
     new WebpackPwaManifest({
       name: 'React Boilerplate',
       short_name: 'React BP',
@@ -135,7 +135,7 @@ module.exports = require('./webpack.base.babel')({
       threshold: 10240,
       minRatio: 0.8,
     }),
-    
+
     new HashedModuleIdsPlugin({
       hashFunction: 'sha256',
       hashDigest: 'hex',
