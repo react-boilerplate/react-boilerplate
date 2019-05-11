@@ -30,6 +30,6 @@ describe('<Toggle />', () => {
     const { container } = render(<Toggle />);
     const elements = container.querySelectorAll('option');
     expect(elements).toHaveLength(1);
-    expect(container.firstChild.value).toEqual('--');
+    expect(container.firstChild).toHaveTextContent('--');
   });
 });
