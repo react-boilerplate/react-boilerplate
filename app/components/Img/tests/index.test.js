@@ -19,12 +19,12 @@ describe('<Img />', () => {
   });
 
   it('should throw when no alt attribute is specified', () => {
-    jest.spyOn(console, 'error').mockImplementation(() => {
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {
       /* noop */
     });
     render(<Img src={src} />);
-    expect(console.error).toHaveBeenCalledTimes(1);
-    console.error.mockRestore();
+    expect(consoleSpy).toHaveBeenCalledTimes(1);
+    consoleSpy.mockRestore();
   });
 
   it('should have a src attribute', () => {
