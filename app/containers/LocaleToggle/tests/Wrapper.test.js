@@ -3,26 +3,32 @@ import { render } from 'react-testing-library';
 
 import Wrapper from '../Wrapper';
 
+const renderComponent = (props = {}) => {
+  const utils = render(<Wrapper {...props} />);
+  const wrapper = utils.container.firstChild;
+  return { ...utils, wrapper };
+};
+
 describe('<Wrapper />', () => {
-  it('should render an <div> tag', () => {
-    const { container } = render(<Wrapper />);
-    expect(container.firstChild.tagName).toEqual('DIV');
+  it('should render a <div> tag', () => {
+    const { wrapper } = renderComponent();
+    expect(wrapper).toBeInTheDocument();
+    expect(wrapper.tagName).toEqual('DIV');
   });
 
   it('should have a class attribute', () => {
-    const { container } = render(<Wrapper />);
-    expect(container.firstChild.hasAttribute('class')).toBe(true);
+    const { wrapper } = renderComponent();
+    expect(wrapper).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const { container } = render(<Wrapper id={id} />);
-    expect(container.firstChild.hasAttribute('id')).toBe(true);
-    expect(container.firstChild.id).toEqual(id);
+    const { wrapper } = renderComponent({ id });
+    expect(wrapper).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const { container } = render(<Wrapper attribute="test" />);
-    expect(container.firstChild.hasAttribute('attribute')).toBe(false);
+    const { wrapper } = renderComponent({ attribute: 'test' });
+    expect(wrapper).not.toHaveAttribute('attribute');
   });
 });
