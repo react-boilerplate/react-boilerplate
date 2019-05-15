@@ -3,18 +3,22 @@ import { render } from 'react-testing-library';
 
 import H3 from '../index';
 
+const children = 'Text';
+const renderComponent = (props = {}) => {
+  const utils = render(<H3 {...props}>{children}</H3>);
+  const heading = utils.queryByText(children);
+  return { ...utils, heading };
+};
+
 describe('<H3 />', () => {
   it('should render a prop', () => {
-    const id = 'testId';
-    const { container } = render(<H3 id={id} />);
-    expect(container.querySelector('h3').id).toEqual(id);
+    const id = 'test';
+    const { heading } = renderComponent({ id });
+    expect(heading).toHaveAttribute('id', id);
   });
 
   it('should render its text', () => {
-    const children = 'Text';
-    const { container, queryByText } = render(<H3>{children}</H3>);
-    const { childNodes } = container.querySelector('h3');
-    expect(childNodes).toHaveLength(1);
-    expect(queryByText(children)).not.toBeNull();
+    const { heading } = renderComponent();
+    expect(heading).toHaveTextContent(children);
   });
 });

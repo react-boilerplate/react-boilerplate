@@ -29,14 +29,14 @@ describe('<LocaleToggle />', () => {
   });
 
   it('should present the default `en` english language option', () => {
-    const { container } = render(
+    const { queryByDisplayValue } = render(
       <Provider store={store}>
         <LanguageProvider messages={translationMessages}>
           <LocaleToggle />
         </LanguageProvider>
       </Provider>,
     );
-    expect(container.querySelector('option[value="en"]')).not.toBeNull();
+    expect(queryByDisplayValue('en')).toBeInTheDocument();
   });
 
   describe('mapDispatchToProps', () => {
