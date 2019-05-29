@@ -19,13 +19,14 @@ const messages = defineMessages({
 
 describe('<LanguageProvider />', () => {
   it('should render its children', () => {
-    const children = <h1>Test</h1>;
-    const { container } = render(
+    const text = 'Test';
+    const children = <h1>{text}</h1>;
+    const { queryByText } = render(
       <LanguageProvider messages={messages} locale="en">
         {children}
       </LanguageProvider>,
     );
-    expect(container.firstChild).not.toBeNull();
+    expect(queryByText(text)).toBeInTheDocument();
   });
 });
 
@@ -44,6 +45,8 @@ describe('<ConnectedLanguageProvider />', () => {
         </ConnectedLanguageProvider>
       </Provider>,
     );
-    expect(queryByText(messages.someMessage.defaultMessage)).not.toBeNull();
+    expect(
+      queryByText(messages.someMessage.defaultMessage),
+    ).toBeInTheDocument();
   });
 });

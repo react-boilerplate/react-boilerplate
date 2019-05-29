@@ -19,7 +19,7 @@ describe('<ReposList />', () => {
         <ReposList loading={false} error={{ message: 'Loading failed!' }} />
       </IntlProvider>,
     );
-    expect(queryByText(/Something went wrong/)).not.toBeNull();
+    expect(queryByText(/Something went wrong/)).toBeInTheDocument();
   });
 
   it('should render the repositories if loading was successful', () => {
@@ -54,6 +54,6 @@ describe('<ReposList />', () => {
       <ReposList repos={false} error={false} loading={false} />,
     );
 
-    expect(container.firstChild).toBeNull();
+    expect(container).toBeEmpty();
   });
 });
