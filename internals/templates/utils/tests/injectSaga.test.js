@@ -5,7 +5,7 @@
 import { memoryHistory } from 'react-router-dom';
 import { put } from 'redux-saga/effects';
 import renderer from 'react-test-renderer';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import React from 'react';
 import { Provider } from 'react-redux';
 
