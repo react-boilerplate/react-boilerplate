@@ -7,6 +7,7 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
+import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useInjectReducer } from 'utils/injectReducer';
@@ -32,11 +33,15 @@ import saga from './saga';
 
 const key = 'home';
 
+const selector = createStructuredSelector({
+  repos: makeSelectRepos(),
+  username: makeSelectUsername(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+});
+
 export default function HomePage() {
-  const repos = useSelector(makeSelectRepos());
-  const username = useSelector(makeSelectUsername());
-  const loading = useSelector(makeSelectLoading());
-  const error = useSelector(makeSelectError());
+  const { repos, username, loading, error } = useSelector(selector);
 
   const dispatch = useDispatch();
 
