@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { fireEvent, render } from 'react-testing-library';
+import { fireEvent, render } from '@testing-library/react';
 
 import Button from '../index';
 

@@ -6,7 +6,7 @@ import { memoryHistory } from 'react-router-dom';
 import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 
 import configureStore from '../../configureStore';
 import injectReducer, { useInjectReducer } from '../injectReducer';

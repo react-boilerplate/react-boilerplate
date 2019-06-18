@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { getByText, render } from 'react-testing-library';
+import { getByText, render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 
 import { RepoListItem } from '../index';
