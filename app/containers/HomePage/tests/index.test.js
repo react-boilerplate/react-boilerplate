@@ -45,15 +45,28 @@ describe('<HomePage />', () => {
     expect(firstChild).toMatchSnapshot();
   });
 
-  it("shouldn't fetch repos on mount if username is an empty string", () => {
+  it("shouldn't fetch repos on mount (if username is empty)", () => {
     renderHomePage(store);
     expect(initialState.username).toBe('');
     expect(appActions.loadRepos).not.toHaveBeenCalled();
   });
 
-  it('should fetch repos after a username is entered by the user and the form is submitted', () => {
+  it("shouldn't fetch repos if the form is submitted when the username is empty", () => {
     const { container } = renderHomePage(store);
+
+    const form = container.querySelector('form');
+    fireEvent.submit(form);
+
+    expect(appActions.loadRepos).not.toHaveBeenCalled();
+  });
+
+  it("should fetch repos if the form is submitted when the username isn't empty", () => {
+    const { container } = renderHomePage(store);
+
     store.dispatch(changeUsername('julienben'));
+
+    const input = container.querySelector('input');
+    fireEvent.change(input, { target: { value: 'julienben' } });
     expect(appActions.loadRepos).not.toHaveBeenCalled();
 
     const form = container.querySelector('form');

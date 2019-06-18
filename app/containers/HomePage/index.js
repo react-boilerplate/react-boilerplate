@@ -48,6 +48,7 @@ export default function HomePage() {
   const onChangeUsername = evt => dispatch(changeUsername(evt.target.value));
   const onSubmitForm = evt => {
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+    if (!username) return;
     dispatch(loadRepos());
   };
 

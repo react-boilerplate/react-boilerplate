@@ -51,7 +51,7 @@ describe('<ReposList />', () => {
 
   it('should not render anything if nothing interesting is provided', () => {
     const { container } = render(
-      <ReposList repos={[]} error={false} loading={false} />,
+      <ReposList repos={false} error={false} loading={false} />,
     );
 
     expect(container).toBeEmpty();
