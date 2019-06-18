@@ -16,7 +16,7 @@ export const initialState = {
   error: false,
   currentUser: false,
   userData: {
-    repositories: [],
+    repositories: false,
   },
 };
 

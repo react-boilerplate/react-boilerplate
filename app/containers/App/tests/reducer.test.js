@@ -12,7 +12,7 @@ describe('appReducer', () => {
       error: false,
       currentUser: false,
       userData: {
-        repositories: [],
+        repositories: false,
       },
     };
   });

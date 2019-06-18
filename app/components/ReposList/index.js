@@ -28,7 +28,7 @@ function ReposList({ loading, error, repos }) {
 ReposList.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.any,
-  repos: PropTypes.any,
+  repos: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
 };
 
 export default ReposList;
