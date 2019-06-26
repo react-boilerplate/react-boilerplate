@@ -9,8 +9,7 @@ import React, { memo } from 'react';
 {{else}}
 import React from 'react';
 {{/if}}
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
 {{#if wantHeaders}}
 import { Helmet } from 'react-helmet';
 {{/if}}
@@ -18,9 +17,9 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 {{/if}}
 {{#if wantActionsAndReducer}}
+import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 {{/if}}
-import { compose } from 'redux';
 
 {{#if wantSaga}}
 import { useInjectSaga } from 'utils/injectSaga';
@@ -37,8 +36,17 @@ import saga from './saga';
 import messages from './messages';
 {{/if}}
 
-export function {{ properCase name }}() {
+{{#if wantActionsAndReducer}}
+const selector = createStructuredSelector({
+  {{camelCase name}}: makeSelect{{properCase name}}(),
+});
+{{/if}}
+
+function {{ properCase name }}() {
   {{#if wantActionsAndReducer}}
+  const { {{camelCase name}} } = useSelector(selector);
+  const dispatch = useDispatch();
+
   useInjectReducer({ key: '{{ camelCase name }}', reducer });
   {{/if}}
   {{#if wantSaga}}
@@ -60,31 +68,10 @@ export function {{ properCase name }}() {
   );
 }
 
-{{ properCase name }}.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
+{{ properCase name }}.propTypes = {};
 
-{{#if wantActionsAndReducer}}
-const mapStateToProps = createStructuredSelector({
-  {{ camelCase name }}: makeSelect{{properCase name}}(),
-});
-{{/if}}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
-
-{{#if wantActionsAndReducer}}
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-{{else}}
-const withConnect = connect(null, mapDispatchToProps);
-{{/if}}
-
-export default compose(
-  withConnect,
 {{#if memo}}
-  memo,
+export default memo({{ properCase name }});
+{{else}}
+export default {{ properCase name }};
 {{/if}}
-)({{ properCase name }});
