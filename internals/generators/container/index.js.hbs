@@ -44,13 +44,17 @@ const selector = createStructuredSelector({
 
 function {{ properCase name }}() {
   {{#if wantActionsAndReducer}}
-  const { {{camelCase name}} } = useSelector(selector);
-  const dispatch = useDispatch();
-
   useInjectReducer({ key: '{{ camelCase name }}', reducer });
   {{/if}}
   {{#if wantSaga}}
   useInjectSaga({ key: '{{ camelCase name }}', saga });
+  {{/if}}
+  {{#if wantActionsAndReducer}}
+
+  /* eslint-disable no-unused-vars */
+  const { {{camelCase name}} } = useSelector(selector);
+  const dispatch = useDispatch();
+  /* eslint-enable no-unused-vars */
   {{/if}}
 
   return (
