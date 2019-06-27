@@ -37,7 +37,7 @@ import messages from './messages';
 {{/if}}
 
 {{#if wantActionsAndReducer}}
-const selector = createStructuredSelector({
+const stateSelector = createStructuredSelector({
   {{camelCase name}}: makeSelect{{properCase name}}(),
 });
 {{/if}}
@@ -52,7 +52,7 @@ function {{ properCase name }}() {
   {{#if wantActionsAndReducer}}
 
   /* eslint-disable no-unused-vars */
-  const { {{camelCase name}} } = useSelector(selector);
+  const { {{camelCase name}} } = useSelector(stateSelector);
   const dispatch = useDispatch();
   /* eslint-enable no-unused-vars */
   {{/if}}

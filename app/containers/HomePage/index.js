@@ -33,7 +33,7 @@ import saga from './saga';
 
 const key = 'home';
 
-const selector = createStructuredSelector({
+const stateSelector = createStructuredSelector({
   repos: makeSelectRepos(),
   username: makeSelectUsername(),
   loading: makeSelectLoading(),
@@ -41,7 +41,7 @@ const selector = createStructuredSelector({
 });
 
 export default function HomePage() {
-  const { repos, username, loading, error } = useSelector(selector);
+  const { repos, username, loading, error } = useSelector(stateSelector);
 
   const dispatch = useDispatch();
 

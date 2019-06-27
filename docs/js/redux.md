@@ -23,13 +23,13 @@ import {
 } from './selectors';
 import reducer from './reducer';
 
-const selector = createStructuredSelector({
+const stateSelector = createStructuredSelector({
   data: makeSelectData(),
   otherData: makeSelectOtherData(),
 });
 
 export default function YourComponent() {
-  const { data, otherData } = useSelector(selector);
+  const { data, otherData } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
   useInjectReducer({ key: 'yourComponent', reducer });
