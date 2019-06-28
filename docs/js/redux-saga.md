@@ -46,21 +46,19 @@ export default function* rootSaga() {
 }
 ```
 
-Then, in your `index.js`, use a decorator to inject the root saga:
+Then, in your `index.js`, use our custom hook to inject the root saga:
 
 ```JS
-import injectSaga from 'utils/injectSaga';
+import { useInjectSaga } from 'utils/injectSaga';
 import { DAEMON } from 'utils/constants';
 import saga from './saga';
 
-// ...
+export default function NewContainer(props) {
+  // `mode` is an optional argument, default value is `DAEMON`
+  useInjectSaga({ key: 'newContainer', saga, mode: DAEMON });
 
-// `mode` is an optional argument, default value is `DAEMON`
-const withSaga = injectSaga({ key: 'yourcomponent', saga, mode: DAEMON });
-
-export default compose(
-  withSaga,
-)(YourComponent);
+  // ...
+}
 ```
 
 A `mode` argument can be one of three constants (import them from `utils/constants`):

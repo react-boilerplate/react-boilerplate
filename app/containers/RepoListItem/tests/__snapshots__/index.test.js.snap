@@ -15,7 +15,7 @@ exports[`<RepoListItem /> should render a ListItem 1`] = `
         href="https://github.com/react-boilerplate/react-boilerplate"
         target="_blank"
       >
-        mxstbr/react-boilerplate
+        react-boilerplate/react-boilerplate
       </a>
       <a
         class="A-br8h0y-0 IssueLink-uyzonb-0 kUUUnc"
