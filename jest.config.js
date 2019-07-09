@@ -24,7 +24,7 @@ module.exports = {
   setupFilesAfterEnv: [
     '<rootDir>/internals/testing/test-bundler.js',
     '@testing-library/react/cleanup-after-each',
-    'jest-dom/extend-expect',
+    '@testing-library/jest-dom/extend-expect',
   ],
   testRegex: 'tests/.*\\.test\\.js$',
   snapshotSerializers: [],
