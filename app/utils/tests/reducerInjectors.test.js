@@ -10,19 +10,16 @@ import configureStore from '../../configureStore';
 
 import getInjectors, { injectReducerFactory } from '../reducerInjectors';
 
-// Fixtures
-
 const initialState = { reduced: 'soon' };
 
 /* eslint-disable default-case, no-param-reassign */
-const reducer = (state = initialState, action) =>
-  produce(state, draft => {
-    switch (action.type) {
-      case 'TEST':
-        draft.reduced = action.payload;
-        break;
-    }
-  });
+const reducer = produce((draft, action) => {
+  switch (action.type) {
+    case 'TEST':
+      draft.reduced = action.payload;
+      break;
+  }
+}, initialState);
 
 describe('reducer injectors', () => {
   let store;

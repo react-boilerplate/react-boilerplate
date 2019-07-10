@@ -23,18 +23,19 @@ import { SOME_ACTION, SOME_OTHER_ACTION } from './actions';
 
 // […]
 
+const initialState = {};
+
 /* eslint-disable default-case, no-param-reassign */
-const myReducer = (state = initialState, action) =>
-  produce(state, draft => {
-    switch (action.type) {
-      case SOME_ACTION:
-        draft.myData = action.payload;
-        break;
-      case SOME_OTHER_ACTION:
-        draft.myData.message = action.payload;
-        break;
-    }
-  });
+const myReducer = produce((draft, action) => {
+  switch (action.type) {
+    case SOME_ACTION:
+      draft.myData = action.payload;
+      break;
+    case SOME_OTHER_ACTION:
+      draft.myData.message = action.payload;
+      break;
+  }
+}, initialState);
 ```
 
 We use [`reselect`](./reselect.md) to efficiently cache our computed application
