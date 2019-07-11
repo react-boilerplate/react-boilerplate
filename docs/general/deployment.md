@@ -119,3 +119,17 @@ _Step 4:_ commit your changes and deploy via EB CLI:
 ```sh
 eb deploy {target environment name}
 ```
+
+## Azure
+
+### Easy 3-Step Deployment Process
+_Step 1:_ Within Azure Portal, add a 'Web App' resource to your resource group.  The runtime stack must be one of the Node versions.  Please note that much of the Microsoft quick starts out result in Node being run via IIS which will not work with react-boilerplate.
+
+_Step 2:_ When the resource has finished deploying, go to it's deployment center and select Local Git (other methods will work as well but the rest of these steps assume this approach) and 'App Service' for the build provider.  Note the Git Clone Uri that is presented when the wizard is finished.
+
+_Step 3:_ Within the root of your react-boilerplate source folder, execute the following commands to publish to Azure:
+
+1.  `git remote add azure https://YOUR_RESOURCE_NAME.scm.azurewebsites.net:443/YOUR_RESOURCE_NAME.git`
+2.  `git add .`
+3.  `git commit -m 'Made some epic changes as per usual'`
+4.  `git push azure master`
