@@ -61,28 +61,20 @@ be the HTML output
 (_Comments added in parallel to compare structures in HTML from JSX source_):
 
 ```html
-<button>
-  <!-- <Button>             -->
-  <i class="fa fa-checkmark"></i>
-  <!--   <CheckmarkIcon />  -->
-  Click Me!
-  <!--   { props.children } -->
-</button>
-<!-- </Button>            -->
+<button>                           <!-- <Button>             -->
+  <i class="fa fa-checkmark"></i>  <!--   <CheckmarkIcon />  -->
+  Click Me!                        <!--   { props.children } -->
+</button>                          <!-- </Button>            -->
 ```
 
 Conversely, when rendered with the shallow renderer, we'll get a String
 containing this "HTML":
 
 ```html
-<button>
-  <!-- <Button>             -->
-  <CheckmarkIcon />
-  <!--   NOT RENDERED!      -->
-  Click Me!
-  <!--   { props.children } -->
-</button>
-<!-- </Button>            -->
+<button>              <!-- <Button>             -->
+  <CheckmarkIcon />   <!--   NOT RENDERED!      -->
+  Click Me!           <!--   { props.children } -->
+</button>             <!-- </Button>            -->
 ```
 
 If we test our `Button` with the normal renderer and there's a problem
