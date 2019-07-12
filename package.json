@@ -36,7 +36,6 @@
     "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern internals/scripts",
     "lint:eslint:fix": "eslint --ignore-path .gitignore --ignore-pattern internals/scripts --fix",
     "lint:js": "npm run lint:eslint -- . ",
-    "lint:staged": "lint-staged",
     "pretest": "npm run test:clean && npm run lint",
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
@@ -49,12 +48,16 @@
       "npm run lint:eslint:fix",
       "git add --force"
     ],
-    "*.json": [
+    "*.{md,json}": [
       "prettier --write",
       "git add --force"
     ]
   },
-  "pre-commit": "lint:staged",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "resolutions": {
     "babel-core": "7.0.0-bridge.0"
   },
@@ -71,7 +74,7 @@
     "intl": "1.2.5",
     "invariant": "2.2.4",
     "ip": "1.1.5",
-    "lodash": "4.17.11",
+    "lodash": "4.17.14",
     "minimist": "1.2.0",
     "prop-types": "15.7.2",
     "react": "16.8.6",
@@ -80,7 +83,7 @@
     "react-intl": "2.9.0",
     "react-redux": "7.1.0",
     "react-router-dom": "5.0.1",
-    "redux": "4.0.2",
+    "redux": "4.0.4",
     "redux-saga": "1.0.5",
     "reselect": "4.0.0",
     "sanitize.css": "10.0.0",
@@ -88,13 +91,13 @@
   },
   "devDependencies": {
     "@babel/cli": "7.5.0",
-    "@babel/core": "7.5.0",
+    "@babel/core": "7.5.4",
     "@babel/plugin-proposal-class-properties": "7.5.0",
     "@babel/plugin-syntax-dynamic-import": "7.2.0",
     "@babel/plugin-transform-modules-commonjs": "7.5.0",
     "@babel/plugin-transform-react-constant-elements": "7.5.0",
     "@babel/plugin-transform-react-inline-elements": "7.2.0",
-    "@babel/preset-env": "7.5.2",
+    "@babel/preset-env": "7.5.4",
     "@babel/preset-react": "7.0.0",
     "@babel/register": "7.4.4",
     "@testing-library/jest-dom": "4.0.0",
@@ -105,7 +108,7 @@
     "babel-loader": "8.0.6",
     "babel-plugin-dynamic-import-node": "2.3.0",
     "babel-plugin-lodash": "3.3.4",
-    "babel-plugin-react-intl": "4.0.0",
+    "babel-plugin-react-intl": "4.0.1",
     "babel-plugin-styled-components": "1.10.6",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "circular-dependency-plugin": "5.0.2",
@@ -127,18 +130,18 @@
     "file-loader": "4.0.0",
     "html-loader": "0.5.5",
     "html-webpack-plugin": "3.2.0",
+    "husky": "3.0.0",
     "image-webpack-loader": "5.0.0",
     "imports-loader": "0.8.0",
     "jest-cli": "24.8.0",
     "jest-styled-components": "6.3.3",
     "jest-watch-typeahead": "0.3.1",
-    "lint-staged": "9.1.0",
+    "lint-staged": "9.2.0",
     "ngrok": "3.2.1",
     "node-plop": "0.19.0",
     "null-loader": "3.0.0",
     "offline-plugin": "5.0.7",
     "plop": "2.4.0",
-    "pre-commit": "1.2.2",
     "prettier": "1.18.2",
     "react-app-polyfill": "1.0.1",
     "react-test-renderer": "16.8.6",
