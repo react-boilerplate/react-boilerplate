@@ -33,8 +33,9 @@ selectors and pass them to the `createSelector` call:
 import { createSelector } from 'reselect';
 import mySelector from 'mySelector';
 
-const myComplexSelector = createSelector(mySelector, myState =>
-  myState.someNestedState,
+const myComplexSelector = createSelector(
+  mySelector,
+  myState => myState.someNestedState,
 );
 
 export { myComplexSelector };
@@ -54,7 +55,6 @@ function MyContainer() {
 
   // ...
 }
-
 ```
 
 ### Adding a new selector
