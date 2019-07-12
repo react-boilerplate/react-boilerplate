@@ -159,6 +159,7 @@ it('handles clicks', () => {
   expect(onClickSpy).toHaveBeenCalledTimes(1);
 });
 ```
+
 Our finished test file looks like this:
 
 ```javascript
