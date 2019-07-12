@@ -13,7 +13,7 @@ efficient tooling and cleanest project structure.
 - [Setting up your editor](editor.md)
 - [Tool Configuration](files.md)
 - [Server Configurations](server-configs.md)
-- [Deployment](deployment.md) _(currently Heroku & AWS specific)_
+- [Deployment](deployment.md) _(currently Heroku, AWS, and Azure specific)_
 - [FAQ](faq.md)
 - [Gotchas](gotchas.md)
 
