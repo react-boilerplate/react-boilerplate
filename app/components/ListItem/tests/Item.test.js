@@ -1,27 +1,28 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from 'react-testing-library';
 
 import Item from '../Item';
 
 describe('<Item />', () => {
   it('should render an <div> tag', () => {
-    const renderedComponent = shallow(<Item />);
-    expect(renderedComponent.type()).toEqual('div');
+    const { container } = render(<Item />);
+    expect(container.firstChild.tagName).toEqual('DIV');
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = shallow(<Item />);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const { container } = render(<Item />);
+    expect(container.firstChild.hasAttribute('class')).toBe(true);
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<Item id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { container } = render(<Item id={id} />);
+    expect(container.firstChild.hasAttribute('id')).toBe(true);
+    expect(container.firstChild.id).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Item attribute={'test'} />);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const { container } = render(<Item attribute="test" />);
+    expect(container.firstChild.hasAttribute('attribute')).toBe(false);
   });
 });

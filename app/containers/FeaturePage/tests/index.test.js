@@ -1,20 +1,19 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { FormattedMessage } from 'react-intl';
+import { render } from 'react-testing-library';
+import { IntlProvider } from 'react-intl';
 
-import H1 from 'components/H1';
-import messages from '../messages';
 import FeaturePage from '../index';
 
 describe('<FeaturePage />', () => {
   it('should render its heading', () => {
-    const renderedComponent = shallow(
-      <FeaturePage />
+    const {
+      container: { firstChild },
+    } = render(
+      <IntlProvider locale="en">
+        <FeaturePage />
+      </IntlProvider>,
     );
-    expect(renderedComponent.contains(
-      <H1>
-        <FormattedMessage {...messages.header} />
-      </H1>
-    )).toBe(true);
+
+    expect(firstChild).toMatchSnapshot();
   });
 });

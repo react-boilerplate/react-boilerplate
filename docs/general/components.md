@@ -7,7 +7,7 @@ Since all the files kept in the same folder, this should be a breeze.
 ## When?
 
 Often when working on a project, you find you've created a component that you
-could use is other upcoming projects. You would like to extract that
+could use in other upcoming projects. You would like to extract that
 component to its own git repository and npm package since keeping the version
 histories separate makes a lot of sense.
 
@@ -26,10 +26,10 @@ Npm has a great feature that allows this kind of parallel development of
 packages - `npm link` (read more [here](https://docs.npmjs.com/cli/link)). After
 setting up your new package, you can link it into your main package like this:
 
- 1. `cd` into your new package directory
- 2. Run `npm link`
- 3. `cd` into your main project directory
- 4. Run `npm link <new-package>`
+1.  `cd` into your new package directory
+2.  Run `npm link`
+3.  `cd` into your main project directory
+4.  Run `npm link <new-package>`
 
 ### Configuration
 
@@ -43,29 +43,6 @@ Linking the packages won't save the package as a dependency in your main project
   "<new-package>": "*",
 }
 ```
-
-#### Excluding from Dll
-
-This boilerplate uses the webpack DllPlugin which optimizes build times during
-development. This assumes that your dependencies rarely change and precompiles
-them into one big bundle. But since you will be changing your new package quite
-often, this is probably not what you want.
-
-You can specify that you don't want this package to be included in the dll by
-adding the following to your `package.json`.
-
-```json
-"dllPlugin": {
-  "exclude": [
-    "<new-package>",
-  ]
-}
-```
-
-That's it, you should be all set to work on both your packages. Webpack will
-monitor both your new package and your main project for changes and rebuild
-whenever you change something. This makes development a lot simpler when trying
-to keep things separate while still working on them at the same time.
 
 ## Gotchas
 

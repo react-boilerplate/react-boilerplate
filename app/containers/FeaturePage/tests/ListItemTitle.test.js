@@ -1,27 +1,35 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from 'react-testing-library';
 
 import ListItemTitle from '../ListItemTitle';
 
 describe('<ListItemTitle />', () => {
   it('should render an <p> tag', () => {
-    const renderedComponent = shallow(<ListItemTitle />);
-    expect(renderedComponent.type()).toEqual('p');
+    const {
+      container: { firstChild },
+    } = render(<ListItemTitle />);
+    expect(firstChild.tagName).toEqual('P');
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = shallow(<ListItemTitle />);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const {
+      container: { firstChild },
+    } = render(<ListItemTitle />);
+    expect(firstChild.hasAttribute('class')).toBe(true);
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<ListItemTitle id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const {
+      container: { firstChild },
+    } = render(<ListItemTitle id={id} />);
+    expect(firstChild.id).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<ListItemTitle attribute={'test'} />);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const {
+      container: { firstChild },
+    } = render(<ListItemTitle attribute="test" />);
+    expect(firstChild.hasAttribute('attribute')).toBe(false);
   });
 });

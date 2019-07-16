@@ -1,22 +1,20 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from 'react-testing-library';
 
 import H1 from '../index';
 
 describe('<H1 />', () => {
   it('should render a prop', () => {
     const id = 'testId';
-    const renderedComponent = shallow(
-      <H1 id={id} />
-    );
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { container } = render(<H1 id={id} />);
+    expect(container.querySelector('h1').id).toEqual(id);
   });
 
   it('should render its text', () => {
     const children = 'Text';
-    const renderedComponent = shallow(
-      <H1>{children}</H1>
-    );
-    expect(renderedComponent.contains(children)).toBe(true);
+    const { container, queryByText } = render(<H1>{children}</H1>);
+    const { childNodes } = container.querySelector('h1');
+    expect(childNodes).toHaveLength(1);
+    expect(queryByText(children)).not.toBeNull();
   });
 });

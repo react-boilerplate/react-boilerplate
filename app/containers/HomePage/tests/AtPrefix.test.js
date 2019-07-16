@@ -1,27 +1,35 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from 'react-testing-library';
 
 import AtPrefix from '../AtPrefix';
 
 describe('<AtPrefix />', () => {
   it('should render an <span> tag', () => {
-    const renderedComponent = shallow(<AtPrefix />);
-    expect(renderedComponent.type()).toEqual('span');
+    const {
+      container: { firstChild },
+    } = render(<AtPrefix />);
+    expect(firstChild.tagName).toEqual('SPAN');
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = shallow(<AtPrefix />);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const {
+      container: { firstChild },
+    } = render(<AtPrefix />);
+    expect(firstChild.hasAttribute('class')).toBe(true);
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<AtPrefix id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const {
+      container: { firstChild },
+    } = render(<AtPrefix id={id} />);
+    expect(firstChild.id).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<AtPrefix attribute={'test'} />);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const {
+      container: { firstChild },
+    } = render(<AtPrefix attribute="test" />);
+    expect(firstChild.hasAttribute('attribute')).toBe(false);
   });
 });

@@ -1,27 +1,35 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from 'react-testing-library';
 
 import CenteredSection from '../CenteredSection';
 
 describe('<CenteredSection />', () => {
   it('should render an <section> tag', () => {
-    const renderedComponent = shallow(<CenteredSection />);
-    expect(renderedComponent.type()).toEqual('section');
+    const {
+      container: { firstChild },
+    } = render(<CenteredSection />);
+    expect(firstChild.tagName).toEqual('SECTION');
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = shallow(<CenteredSection />);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const {
+      container: { firstChild },
+    } = render(<CenteredSection />);
+    expect(firstChild.hasAttribute('class')).toBe(true);
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<CenteredSection id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const {
+      container: { firstChild },
+    } = render(<CenteredSection id={id} />);
+    expect(firstChild.id).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<CenteredSection attribute={'test'} />);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const {
+      container: { firstChild },
+    } = render(<CenteredSection attribute="test" />);
+    expect(firstChild.hasAttribute('attribute')).toBe(false);
   });
 });

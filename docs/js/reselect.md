@@ -19,10 +19,7 @@ part of it.
 
 ```javascript
 const mySelector = (state) => state.someState;
-
-export {
-  mySelector,
-};
+export { mySelector };
 ```
 
 ### Complex selectors
@@ -40,19 +37,16 @@ const myComplexSelector = createSelector(
   (myState) => myState.someNestedState
 );
 
-export {
-  myComplexSelector,
-};
+export { myComplexSelector };
 ```
 
 These selectors can then either be used directly in our containers as
 `mapStateToProps` functions or be nested with `createSelector` once again:
 
 ```javascript
-export default connect(createSelector(
-  myComplexSelector,
-  (myNestedState) => ({ data: myNestedState })
-))(SomeComponent);
+export default connect(
+  createSelector(myComplexSelector, myNestedState => ({ data: myNestedState })),
+)(SomeComponent);
 ```
 
 ### Adding a new selector

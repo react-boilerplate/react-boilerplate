@@ -1,27 +1,30 @@
 import React from 'react';
-import { shallow, render } from 'enzyme';
+import { render } from 'react-testing-library';
+import renderer from 'react-test-renderer';
+import 'jest-styled-components';
 
 import IssueLink from '../IssueLink';
 
 describe('<IssueLink />', () => {
-  it('should render an <a> tag', () => {
-    const renderedComponent = render(<IssueLink />);
-    expect(renderedComponent.find('a').length).toEqual(1);
+  it('should match the snapshot', () => {
+    const renderedComponent = renderer.create(<IssueLink />).toJSON();
+    expect(renderedComponent).toMatchSnapshot();
   });
 
   it('should have a className attribute', () => {
-    const renderedComponent = shallow(<IssueLink />);
-    expect(renderedComponent.prop('className')).toBeDefined();
+    const { container } = render(<IssueLink />);
+    expect(container.firstChild.hasAttribute('class')).toBe(true);
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<IssueLink id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { container } = render(<IssueLink id={id} />);
+    expect(container.firstChild.hasAttribute('id')).toBe(true);
+    expect(container.firstChild.id).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<IssueLink attribute={'test'} />);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const { container } = render(<IssueLink attribute="test" />);
+    expect(container.firstChild.hasAttribute('attribute')).toBe(false);
   });
 });

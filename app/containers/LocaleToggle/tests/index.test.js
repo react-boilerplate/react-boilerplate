@@ -1,13 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router';
-import { shallow, mount } from 'enzyme';
+import { browserHistory } from 'react-router-dom';
+import { render } from 'react-testing-library';
 
 import LocaleToggle, { mapDispatchToProps } from '../index';
 import { changeLocale } from '../../LanguageProvider/actions';
 import LanguageProvider from '../../LanguageProvider';
 
-import configureStore from '../../../store';
+import configureStore from '../../../configureStore';
 import { translationMessages } from '../../../i18n';
 
 describe('<LocaleToggle />', () => {
@@ -17,26 +17,26 @@ describe('<LocaleToggle />', () => {
     store = configureStore({}, browserHistory);
   });
 
-  it('should render the default language messages', () => {
-    const renderedComponent = shallow(
+  it('should match the snapshot', () => {
+    const { container } = render(
       <Provider store={store}>
         <LanguageProvider messages={translationMessages}>
           <LocaleToggle />
         </LanguageProvider>
-      </Provider>
+      </Provider>,
     );
-    expect(renderedComponent.contains(<LocaleToggle />)).toBe(true);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should present the default `en` english language option', () => {
-    const renderedComponent = mount(
+    const { container } = render(
       <Provider store={store}>
         <LanguageProvider messages={translationMessages}>
           <LocaleToggle />
         </LanguageProvider>
-      </Provider>
+      </Provider>,
     );
-    expect(renderedComponent.contains(<option value="en">en</option>)).toBe(true);
+    expect(container.querySelector('option[value="en"]')).not.toBeNull();
   });
 
   describe('mapDispatchToProps', () => {

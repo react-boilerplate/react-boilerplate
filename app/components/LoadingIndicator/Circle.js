@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
 const circleFadeDelay = keyframes`
@@ -13,20 +14,19 @@ const circleFadeDelay = keyframes`
   }
 `;
 
-const Circle = (props) => {
+const Circle = props => {
   const CirclePrimitive = styled.div`
     width: 100%;
     height: 100%;
     position: absolute;
     left: 0;
     top: 0;
-    ${props.rotate && `
+    ${props.rotate &&
+      `
       -webkit-transform: rotate(${props.rotate}deg);
       -ms-transform: rotate(${props.rotate}deg);
       transform: rotate(${props.rotate}deg);
-    `}
-
-    &:before {
+    `} &:before {
       content: '';
       display: block;
       margin: 0 auto;
@@ -35,10 +35,11 @@ const Circle = (props) => {
       background-color: #999;
       border-radius: 100%;
       animation: ${circleFadeDelay} 1.2s infinite ease-in-out both;
-      ${props.delay && `
+      ${props.delay &&
+        `
         -webkit-animation-delay: ${props.delay}s;
         animation-delay: ${props.delay}s;
-      `}
+      `};
     }
   `;
   return <CirclePrimitive />;

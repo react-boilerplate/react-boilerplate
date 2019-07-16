@@ -1,30 +1,25 @@
 # Frequently Asked Questions
 
-## Table of Contents
-
-- [Where are Babel and ESLint configured?](#where-are-babel-and-eslint-configured)
+- [Where are Babel, Prettier and ESLint configured?](#where-are-babel-prettier-and-eslint-configured)
 - [Where are the files coming from when I run `npm start`?](#where-are-the-files-coming-from-when-i-run-npm-start)
 - [How do I fix `Error: listen EADDRINUSE 127.0.0.1:3000`?](#how-do-i-fix-error-listen-eaddrinuse-1270013000)
-  - [OS X / Linux](#os-x-linux)
+  - [OS X / Linux:](#os-x--linux)
   - [Windows](#windows)
 - [Issue with local caching when running in production mode (F5 / ctrl+F5 / cmd+r weird behavior)](#issue-with-local-caching-when-running-in-production-mode-f5--ctrlf5--cmdr-weird-behavior)
-  - [Quick fix on your local browser:](#quick-fix-on-your-local-browser)
-  - [Full in-depth explanation](#full-in-depth-explanation)
+    - [Quick fix on your local browser:](#quick-fix-on-your-local-browser)
+    - [Full in-depth explanation](#full-in-depth-explanation)
 - [Local webfonts not working for development](#local-webfonts-not-working-for-development)
 - [Non-route containers](#non-route-containers)
   - [Where do I put the reducer?](#where-do-i-put-the-reducer)
-  - [How do I run the saga?](#how-do-i-run-the-saga)
-- [Using this boilerplate with WebStorm](#using-this-boilerplate-with-webstorm)
-  - [Troubleshooting](#troubleshooting)
-  - [Enable ESLint](#enable-eslint)
 - [Use CI with bitbucket pipelines](#use-ci-with-bitbucket-pipelines)
-- [I'm using Node v0.12 and the server doesn't work?](#im-using-node-v012-and-the-server-doesnt-work)
 - [How to keep my project up-to-date with `react-boilerplate`?](#how-to-keep-my-project-up-to-date-with-react-boilerplate)
+- [How to turn off Webpack performance warnings after production build?](#how-to-turn-off-webpack-performance-warnings-after-production-build)
+- [Styles getting overridden?](#styles-getting-overridden)
 - [Have another question?](#have-another-question)
 
-## Where are Babel and ESLint configured?
+## Where are Babel, Prettier and ESLint configured?
 
-In package.json
+ESLint, Babel and Prettier all have their own config files in the root of the project. Same for Jest and stylelint.
 
 ## Where are the files coming from when I run `npm start`?
 
@@ -39,45 +34,55 @@ The fix is to kill the process and rerun `npm start`.
 
 ### OS X / Linux:
 
-1. Find the process id (PID):
+1.  Find the process id (PID):
+
     ```Shell
     ps aux | grep node
     ```
+
     > This will return the PID as the value following your username:
+    >
     > ```Shell
     > janedoe    29811  49.1  2.1  3394936 356956 s004  S+    4:45pm   2:40.07 node server
     > ```
-    > Note: If nothing is listed, you can try `lsof -i tcp:3000` 
+    >
+    > Note: If nothing is listed, you can try `lsof -i tcp:3000`
 
-1. Then run
+2.  Then run
     ```Shell
     kill -9 YOUR_PID
     ```
     > e.g. given the output from the example above, `YOUR_PID` is `29811`, hence
-    that would mean you would run `kill -9 29811`
+    > that would mean you would run `kill -9 29811`
 
 ### Windows
 
-1. Find the process id (PID):
+1.  Find the process id (PID):
+
     ```Shell
     netstat -a -o -n
     ```
 
     > This will return a list of running processes and the ports they're
-    listening on:
+    > listening on:
+    >
     > ```
     > Proto     Local Address     Foreign Address   State       PID
     > TCP       0.0.0.0:25        0.0.0.0:0         Listening   4196
     > ...
     > TCP       0.0.0.0:3000      0.0.0.0:0         Listening   28344
+    > ```
+
     ```
 
-1. Then run
+    ```
+
+1.  Then run
     ```Shell
     taskkill /F /PID YOUR_PID
     ```
     > e.g. given the output from the example above, `YOUR_PID` is `28344`, hence
-    that would mean you would run `taskkill /F /PID 28344`
+    > that would mean you would run `taskkill /F /PID 28344`
 
 ## Issue with local caching when running in production mode (F5 / ctrl+F5 / cmd+r weird behavior)
 
@@ -87,7 +92,7 @@ Your production site isn't working? You update the code and nothing changes? It 
 
 To fix it on your local browser, just do the following. (Suited when you're testing the production mode locally)
 
-`Chrome dev tools > Application > Clear Storage > Clear site data` *(Chrome)*
+`Chrome dev tools > Application > Clear Storage > Clear site data` _(Chrome)_
 
 #### Full in-depth explanation
 
@@ -113,14 +118,13 @@ output: {
 ## Non-route containers
 
 > Note: Container will always be nested somewhere below a route. Even if there's dozens of components
-in between, somewhere up the tree will be route. (maybe only "/", but still a route)
+> in between, somewhere up the tree will be route. (maybe only "/", but still a route)
 
 ### Where do I put the reducer?
 
 While you can include the reducer statically in `reducers.js`, we don't recommend this as you lose
 the benefits of code splitting. Instead, add it as a _composed reducer_. This means that you
 pass actions onward to a second reducer from a lower-level route reducer like so:
-
 
 ```JS
 // Main route reducer
@@ -136,75 +140,7 @@ function myReducerOfRoute(state, action) {
 That way, you still get the code splitting at route level, but avoid having a static `combineReducers`
 call that includes all of them by default.
 
-*See [this and the following lesson](https://egghead.io/lessons/javascript-redux-reducer-composition-with-arrays?course=getting-started-with-redux) of the egghead.io Redux course for more information about reducer composition!*
-
-### How do I run the saga?
-
-Since a container will always be within a route, one we can simply add it to the exported array in
-`sagas.js` of the route container somewhere up the tree:
-
-```JS
-// /containers/SomeContainer/sagas.js
-
-import { someOtherSagaFromNestedContainer } from './containers/SomeNestedContainer/sagas';
-
-function* someSaga() { /* … */ }
-
-export default [
-  someSaga,
-  someOtherSagaFromNestedContainer,
-];
-```
-
-Or, if you have multiple sagas in the nested container:
-
-
-```JS
-// /containers/SomeContainer/sagas.js
-
-import nestedContainerSagas from './containers/SomeNestedContainer/sagas';
-
-function* someSaga() { /* … */ }
-
-export default [
-  someSaga,
-  ...nestedContainerSagas,
-];
-```
-
-## Using this boilerplate with WebStorm
-
-WebStorm is a powerful IDE, and why not also use it as debugger tool? Here is the steps
-
-1.  [Install JetBrain Chrome Extension](https://chrome.google.com/webstore/detail/jetbrains-ide-support/hmhgeddbohgjknpmjagkdomcpobmllji)
-2.  [Setting up the PORT](https://www.jetbrains.com/help/webstorm/2016.1/using-jetbrains-chrome-extension.html)
-3.  Change WebPack devtool config to `source-map` [(This line)](https://github.com/react-boilerplate/react-boilerplate/blob/56eb5a0ec4aa691169ef427f3a0122fde5a5aa24/internals/webpack/webpack.dev.babel.js#L65)
-4.  Run web server (`npm run start`)
-5.  Create Run Configuration (Run > Edit Configurations)
-6.  Add new `JavaScript Debug`
-7.  Setting up URL
-8.  Start Debug (Click the green bug button)
-9.  Edit Run Configuration Again
-10.  Mapping Url as below picture
-    * Map your `root` directory with `webpack://.` (please note the last dot)
-    * Map your `build` directory with your root path (e.g. `http://localhost:3000`)
-11.  Hit OK and restart debugging session
-
-![How to debug using WebStorm](webstorm-debug.png)
-
-### Troubleshooting
-
-1. You miss the last `.` (dot) in `webpack://.`
-2. The port debugger is listening tool and the JetBrain extension is mismatch.
-
-### Enable ESLint
-
-ESLint help making all developer follow the same coding format. Please also setting up in your IDE, otherwise, you will fail ESLint test.
-1. Go to WebStorm Preference
-2. Search for `ESLint`
-3. Click `Enable`
-
-![Setting up ESLint](webstorm-eslint.png)
+_See [this and the following lesson](https://egghead.io/lessons/javascript-redux-reducer-composition-with-arrays?course=getting-started-with-redux) of the egghead.io Redux course for more information about reducer composition!_
 
 ## Use CI with bitbucket pipelines
 
@@ -223,35 +159,102 @@ pipelines:
           - npm test
 ```
 
-## I'm using Node v0.12 and the server doesn't work?
-
-We settled on supporting the last three major Node.js versions for the boilerplate – at the moment
-of this writing those are v5, v6 and v7. We **highly recommend upgrading to a newer Node.js version**!
-
-If you _have_ to use Node.js 0.12, you can hack around the server not running by using `babel-cli` to
-run the server: `npm install babel-cli`, and then replace all instances of `node server` in the `"scripts"`
-in the `package.json` with `babel server`!
-
 ## How to keep my project up-to-date with `react-boilerplate`?
 
 While it's possible to keep your project up-to-date or "in sync" with `react-boilerplate`, it's usually
-very difficult and therefore ***at your own risk*** and not recommend. You should not need to do it either, as
+very difficult and is therefore **_at your own risk_** and not recommended. You should not need to do it either, as
 every version you use will be amazing! There is a long term goal to make this much easier but no ETA at the moment.
 
 ## How to turn off Webpack performance warnings after production build?
 
 Webpack recommends having those performance hints turned off in development but to keep them on in production. If you still want to disable them, add the next lines to the config in `webpack.prod.babel.js`:
-  
+
 ```js
-  performance: {
-    hints: false
-  }
+performance: {
+  hints: false;
+}
 ```
+
 You can find more information about the `performance` option (how to change maximum allowed size of a generated file, how to exclude some files from being checked and so on) in the [Webpack documentation](https://webpack.js.org/configuration/performance/).
 
+## Styles getting overridden?
+
+There is a strong chance that your styles are getting imported in the wrong order. Confused?
+Let me try and explain with an example!
+
+```javascript
+// MyStyledComponent.js
+const MyStyledComponent = styled.div`
+  background-color: green;
+`;
+```
+
+```css
+/* styles.css */
+.alert {
+  background-color: red;
+}
+```
+
+```javascript
+// ContrivedExample.js
+import MyStyledComponent from './MyStyledComponent';
+import './styles.css';
+
+const ContrivedExample = props => (
+  <MyStyledComponent className="alert">{props.children}</MyStyledComponent>
+);
+```
+
+With the magic of [webpack](https://webpack.js.org/), both `MyStyledComponent.js` and `styles.css`
+will each generate a stylesheet that will be injected at the end of `<head>` and applied to `<MyStyledComponent>`
+via the [`class` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-class).
+
+So, will `<ContrivedExample>` have a green background or a red background?
+
+Applying the rules of [specificity](https://developer.mozilla.org/en/docs/Web/CSS/Specificity), you
+may think red as `styles.css` was imported last. Unfortunately, at the time of writing
+an open issue ["CSS resolving order"](https://github.com/webpack/webpack/issues/215)
+means you cannot control the order in which the stylesheets are injected. So, with this contrived
+example, the background could be either green or red.
+
+To resolve the issue, you can either:
+
+**1) Increase the specificity of the CSS you want to win**
+
+```css
+/* styles.css (imported css to win) */
+.alert.alert {
+  background-color: red;
+}
+```
+
+```javascript
+// MyStyledComponent.js (styled-component css to win)
+const MyStyledComponent = styled.div`
+  && {
+    background-color: green;
+  }
+`;
+```
+
+**2) Import the CSS in the `<head>` of your `index.html` manually**
+
+This is a good choice if you are having issues with third-party styles
+
+```javascript
+// Import bootstrap style (e.g. move this into the <head> of index.html)
+import 'bootstrap/dist/css/bootstrap.min.css';
+```
+
+**3) Change the position of `<GlobalStyle>` in the rendering of `<App>`**
+
+You can do that inside `containers/App/index.js`.
+
+More information is available in the [official documentation](https://github.com/styled-components/styled-components/blob/master/docs/existing-css.md).
 
 ## Have another question?
 
 Submit an [issue](https://github.com/react-boilerplate/react-boilerplate/issues),
-hop onto the [Gitter channel](https://gitter.im/mxstbr/react-boilerplate)
+hop onto the [Spectrum chat](https://spectrum.chat/react-boilerplate)
 or contact Max direct on [twitter](https://twitter.com/mxstbr)!
