@@ -11,9 +11,9 @@ import messages from './messages';
 function Header() {
   return (
     <header>
-      <a href="https://www.reactboilerplate.com/">
-        <img src={Banner} alt="react-boilerplate - Logo" />
-      </a>
+      <A href="https://www.reactboilerplate.com/">
+        <Img src={Banner} alt="react-boilerplate - Logo" />
+      </A>
       <NavBar>
         <HeaderLink to="/">
           <FormattedMessage {...messages.home} />
