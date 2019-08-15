@@ -4,7 +4,7 @@ import { FormattedMessage, defineMessages } from 'react-intl';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router-dom';
 
-import ConnectedLanguageProvider, { LanguageProvider } from '../index';
+import LanguageProvider from '../index';
 import configureStore from '../../../configureStore';
 
 import { translationMessages } from '../../../i18n';
@@ -18,31 +18,31 @@ const messages = defineMessages({
 });
 
 describe('<LanguageProvider />', () => {
+  let store;
+
+  beforeEach(() => {
+    store = configureStore({}, browserHistory);
+  });
+
   it('should render its children', () => {
     const text = 'Test';
     const children = <h1>{text}</h1>;
     const { queryByText } = render(
-      <LanguageProvider messages={messages} locale="en">
-        {children}
-      </LanguageProvider>,
+      <Provider store={store}>
+        <LanguageProvider messages={messages} locale="en">
+          {children}
+        </LanguageProvider>
+      </Provider>,
     );
     expect(queryByText(text)).toBeInTheDocument();
-  });
-});
-
-describe('<ConnectedLanguageProvider />', () => {
-  let store;
-
-  beforeAll(() => {
-    store = configureStore({}, browserHistory);
   });
 
   it('should render the default language messages', () => {
     const { queryByText } = render(
       <Provider store={store}>
-        <ConnectedLanguageProvider messages={translationMessages}>
+        <LanguageProvider messages={translationMessages}>
           <FormattedMessage {...messages.someMessage} />
-        </ConnectedLanguageProvider>
+        </LanguageProvider>
       </Provider>,
     );
     expect(

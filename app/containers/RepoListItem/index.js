@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { FormattedNumber } from 'react-intl';
 
@@ -17,13 +17,17 @@ import IssueLink from './IssueLink';
 import RepoLink from './RepoLink';
 import Wrapper from './Wrapper';
 
-export function RepoListItem(props) {
-  const { item } = props;
+const stateSelector = createStructuredSelector({
+  currentUser: makeSelectCurrentUser(),
+});
+
+export default function RepoListItem({ item }) {
+  const { currentUser } = useSelector(stateSelector);
   let nameprefix = '';
 
   // If the repository is owned by a different person than we got the data for
   // it's a fork and we should show the name of the owner
-  if (item.owner.login !== props.currentUser) {
+  if (item.owner.login !== currentUser) {
     nameprefix = `${item.owner.login}/`;
   }
 
@@ -46,11 +50,4 @@ export function RepoListItem(props) {
 
 RepoListItem.propTypes = {
   item: PropTypes.object,
-  currentUser: PropTypes.string,
 };
-
-export default connect(
-  createStructuredSelector({
-    currentUser: makeSelectCurrentUser(),
-  }),
-)(RepoListItem);

@@ -1,6 +1,6 @@
 import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import { ReactReduxContext } from 'react-redux';
+import { useStore, ReactReduxContext } from 'react-redux';
 
 import getInjectors from './sagaInjectors';
 
@@ -47,9 +47,10 @@ export default ({ key, saga, mode }) => WrappedComponent => {
 };
 
 const useInjectSaga = ({ key, saga, mode }) => {
-  const context = React.useContext(ReactReduxContext);
+  const store = useStore();
+
   React.useEffect(() => {
-    const injectors = getInjectors(context.store);
+    const injectors = getInjectors(store);
     injectors.injectSaga(key, { saga, mode });
 
     return () => {
