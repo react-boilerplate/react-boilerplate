@@ -32,4 +32,7 @@ module.exports = {
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',
   ],
+  transformIgnorePatterns: [
+    '/node_modules/(?!intl-messageformat|intl-messageformat-parser).+\\.js$',
+  ],
 };

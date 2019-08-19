@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /**
  * i18n.js
  *
@@ -7,15 +8,19 @@
  *   script `extract-intl`, and must use CommonJS module syntax
  *   You CANNOT use import/export in this file.
  */
-const addLocaleData = require('react-intl').addLocaleData; //eslint-disable-line
-const enLocaleData = require('react-intl/locale-data/en');
-const deLocaleData = require('react-intl/locale-data/de');
+if (!Intl.PluralRules) {
+  require('intl-pluralrules');
+}
+
+if (!Intl.RelativeTimeFormat) {
+  require('@formatjs/intl-relativetimeformat/polyfill');
+  require('@formatjs/intl-relativetimeformat/dist/include-aliases'); // Optional, if you care about edge cases in locale resolution, e.g zh-CN -> zh-Hans-CN
+  require('@formatjs/intl-relativetimeformat/dist/locale-data/en'); // Add locale data for en
+  require('@formatjs/intl-relativetimeformat/dist/locale-data/de'); // Add locale data for de
+}
 
 const enTranslationMessages = require('./translations/en.json');
 const deTranslationMessages = require('./translations/de.json');
-
-addLocaleData(enLocaleData);
-addLocaleData(deLocaleData);
 
 const DEFAULT_LOCALE = 'en';
 
