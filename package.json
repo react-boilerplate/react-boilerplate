@@ -87,7 +87,7 @@
     "react-redux": "7.0.2",
     "react-router-dom": "5.0.0",
     "redux": "4.0.1",
-    "redux-saga": "1.0.2",
+    "redux-saga": "1.0.5",
     "reselect": "4.0.0",
     "sanitize.css": "8.0.0",
     "styled-components": "4.2.0"
