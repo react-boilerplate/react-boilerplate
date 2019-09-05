@@ -69,6 +69,7 @@ module.exports = {
     'react/forbid-prop-types': 0,
     'react/jsx-first-prop-new-line': [2, 'multiline'],
     'react/jsx-filename-extension': 0,
+    'react/jsx-props-no-spreading': 0,
     'react/jsx-no-target-blank': 0,
     'react/jsx-uses-vars': 2,
     'react/require-default-props': 0,

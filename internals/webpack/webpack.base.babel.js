@@ -8,14 +8,14 @@ const webpack = require('webpack');
 module.exports = options => ({
   mode: options.mode,
   entry: options.entry,
-  output: Object.assign(
-    {
-      // Compile into js/build.js
-      path: path.resolve(process.cwd(), 'build'),
-      publicPath: '/',
-    },
-    options.output,
-  ), // Merge with env dependent settings
+  output: {
+    // Compile into js/build.js
+    path: path.resolve(process.cwd(), 'build'),
+    publicPath: '/',
+
+    // Merge with env dependent settings
+    ...options.output,
+  },
   optimization: options.optimization,
   module: {
     rules: [
