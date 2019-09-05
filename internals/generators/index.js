@@ -32,32 +32,24 @@ module.exports = plop => {
       '**.js',
     )}`;
 
-    try {
-      execSync(`npm run prettify -- "${folderPath}"`);
-      return folderPath;
-    } catch (err) {
-      throw err;
-    }
+    execSync(`npm run prettify -- "${folderPath}"`);
+    return folderPath;
   });
   plop.setActionType('backup', (answers, config) => {
-    try {
-      fs.copyFileSync(
-        path.join(__dirname, config.path, config.file),
-        path.join(
-          __dirname,
-          config.path,
-          `${config.file}.${BACKUPFILE_EXTENSION}`,
-        ),
-        'utf8',
-      );
-      return path.join(
+    fs.copyFileSync(
+      path.join(__dirname, config.path, config.file),
+      path.join(
         __dirname,
         config.path,
         `${config.file}.${BACKUPFILE_EXTENSION}`,
-      );
-    } catch (err) {
-      throw err;
-    }
+      ),
+      'utf8',
+    );
+    return path.join(
+      __dirname,
+      config.path,
+      `${config.file}.${BACKUPFILE_EXTENSION}`,
+    );
   });
 };
 
