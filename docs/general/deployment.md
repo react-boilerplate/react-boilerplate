@@ -119,3 +119,13 @@ _Step 4:_ commit your changes and deploy via EB CLI:
 ```sh
 eb deploy {target environment name}
 ```
+
+## Netlify
+
+Netlify is a static site host that deploys from Git repos. To deploy `react-boilerplate` from Netlify:
+
+1. Set up a git repo for your project on one of the supported hosts
+1. Remove `build` from your `.gitignore`
+1. `npm run build`
+1. Commit the build to your git remote
+1. Netlify detects the push and redeploys your site
