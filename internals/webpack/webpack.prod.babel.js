@@ -35,8 +35,6 @@ module.exports = require('./webpack.base.babel')({
             ascii_only: true,
           },
         },
-        parallel: true,
-        cache: true,
         sourceMap: true,
       }),
     ],
