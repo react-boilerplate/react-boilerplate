@@ -21,11 +21,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 {{/if}}
 
-{{#if wantSaga}}
-import { useInjectSaga } from 'utils/injectSaga';
+{{#if wantActionsAndReducer}}
+  {{#if wantSaga}}
+import { useInjectReducer, useInjectSaga } from 'redux-injectors';
+  {{else}}
+import { useInjectReducer } from 'redux-injectors';
+  {{/if}}
+{{else}}
+  {{#if wantSaga}}
+import { useInjectSaga } from 'redux-injectors';
+  {{/if}}
 {{/if}}
 {{#if wantActionsAndReducer}}
-import { useInjectReducer } from 'utils/injectReducer';
 import makeSelect{{properCase name}} from './selectors';
 import reducer from './reducer';
 {{/if}}
