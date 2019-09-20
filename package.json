@@ -62,6 +62,7 @@
     "babel-core": "7.0.0-bridge.0"
   },
   "dependencies": {
+    "@formatjs/intl-pluralrules": "1.2.0",
     "@formatjs/intl-relativetimeformat": "2.8.0",
     "chalk": "2.4.2",
     "compression": "1.7.4",
@@ -73,7 +74,6 @@
     "hoist-non-react-statics": "3.3.0",
     "immer": "4.0.0",
     "intl": "1.2.5",
-    "intl-pluralrules": "1.0.3",
     "invariant": "2.2.4",
     "ip": "1.1.5",
     "lodash": "4.17.15",
@@ -82,7 +82,7 @@
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-helmet": "6.0.0-beta",
-    "react-intl": "3.1.9",
+    "react-intl": "3.3.0",
     "react-redux": "7.1.1",
     "react-router-dom": "5.0.1",
     "redux": "4.0.4",

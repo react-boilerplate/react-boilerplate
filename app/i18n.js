@@ -9,13 +9,12 @@
  *   You CANNOT use import/export in this file.
  */
 if (!Intl.PluralRules) {
-  require('intl-pluralrules');
+  require('@formatjs/intl-pluralrules/polyfill');
+  require('@formatjs/intl-pluralrules/dist/locale-data/de'); // Add locale data for de
 }
 
 if (!Intl.RelativeTimeFormat) {
   require('@formatjs/intl-relativetimeformat/polyfill');
-  require('@formatjs/intl-relativetimeformat/dist/include-aliases'); // Optional, if you care about edge cases in locale resolution, e.g zh-CN -> zh-Hans-CN
-  require('@formatjs/intl-relativetimeformat/dist/locale-data/en'); // Add locale data for en
   require('@formatjs/intl-relativetimeformat/dist/locale-data/de'); // Add locale data for de
 }
 
