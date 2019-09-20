@@ -123,9 +123,10 @@ eb deploy {target environment name}
 ## Azure
 
 ### Easy 3-Step Deployment Process
-_Step 1:_ Within Azure Portal, add a 'Web App' resource to your resource group.  Select the appropriate version of Node (i.e. 10.14) and verify that the operating system is set to Linux to ensure that Node is being run natively and not via IIS (iisnode).  Note that several of the quick start guides (such as https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-nodejs) result in a Windows + IIS Node configuration that is incompatible with react-boilerplate.
 
-_Step 2:_ When the resource has finished deploying, go to its deployment center and select Local Git (other methods will work as well but the rest of these steps assume this approach) and 'App Service' for the build provider.  Note the Git Clone Uri that is presented when the wizard is finished.
+_Step 1:_ Within Azure Portal, add a 'Web App' resource to your resource group. Select the appropriate version of Node (i.e. 10.14) and verify that the operating system is set to Linux to ensure that Node is being run natively and not via IIS (iisnode). Note that several of the quick start guides (such as https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-nodejs) result in a Windows + IIS Node configuration that is incompatible with react-boilerplate.
+
+_Step 2:_ When the resource has finished deploying, go to its deployment center and select Local Git (other methods will work as well but the rest of these steps assume this approach) and 'App Service' for the build provider. Note the Git Clone Uri that is presented when the wizard is finished.
 
 _Step 3:_ Within the root of your react-boilerplate source folder, execute the following commands to publish to Azure:
 
@@ -133,3 +134,23 @@ _Step 3:_ Within the root of your react-boilerplate source folder, execute the f
 2.  `git add .`
 3.  `git commit -m 'Made some epic changes as per usual'`
 4.  `git push azure master`
+
+## Netlify
+
+Netlify is a static site host that deploys from Git repos. To deploy `react-boilerplate` from Netlify:
+
+_Step 1:_ Clone `react-boilerplate` and remove the default project (`npm run clean`)
+
+_Step 2:_ Create a Git repo for your project on one of the supported hosts (i.e. GitHub)
+
+_Step 3:_ Create a new project on Netlify by logging in via your Git host and selecting the repo you just made
+
+_Step 4:_ In your local repo, change the remote from `react-boilerplate`'s to your own (`git remote set-url origin https://github.com/USERNAME/REPOSITORY.git`)
+
+_Step 5:_ Comment out the `build` line from your `.gitignore` with a text editor
+
+_Step 6:_ Build your project (`npm run build`)
+
+_Step 7:_ Commit and push (`git add build`, `git commit -m "first build"`, `git push origin master`
+
+_Step 8:_ Netlify detects the push and automatically redeploys your site.
