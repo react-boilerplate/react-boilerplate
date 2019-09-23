@@ -7,14 +7,13 @@ If you're reporting a bug, it's especially important that you provide detailed s
 Please note that requests for help should go to [our Spectrum channel](https://spectrum.chat/react-boilerplate?tab=posts)."
 
 issueConfigs:
+  - content:
+      - Description
+      - Steps to reproduce
+      - Versions
 
   - content:
-    - Description
-    - Steps to reproduce
-    - Versions
-
-  - content:
-    - Is your feature request related to a problem
-    - Describe the solution you'd like
-    - Describe alternatives you've considered
-    - Additional context
+      - Is your feature request related to a problem
+      - Describe the solution you'd like
+      - Describe alternatives you've considered
+      - Additional context

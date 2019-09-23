@@ -94,7 +94,7 @@ But wait... there's more!
 - _Catch problems:_ AppVeyor and TravisCI setups included by default, so your
   tests get run automatically on Windows and Unix.
 
-There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on how to structure your React.js apps with scalability in mind. It provides rationale for the majority of boilerplate's design decisions.
+There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on how to structure your React apps with scalability in mind. It provides rationale for the majority of boilerplate's design decisions.
 
 <sub><i>Keywords: React.js, Redux, Hot Reloading, ESNext, Babel, react-router, Offline First, ServiceWorker, `styled-components`, redux-saga, FontFaceObserver</i></sub>
 
