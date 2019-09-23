@@ -29,7 +29,6 @@ module.exports = {
     'import/imports-first': 0,
     'import/newline-after-import': 0,
     'import/no-dynamic-require': 0,
-    'import/no-extraneous-dependencies': 0,
     'import/no-named-as-default': 0,
     'import/no-unresolved': 2,
     'import/no-webpack-loader-syntax': 0,
@@ -80,6 +79,14 @@ module.exports = {
     'redux-saga/yield-effects': 2,
     'require-yield': 0,
   },
+  overrides: [
+    {
+      files: ['internals/**/*.*', 'server/**/*.*'],
+      rules: {
+        'import/no-extraneous-dependencies': 0,
+      },
+    },
+  ],
   settings: {
     'import/resolver': {
       webpack: {
