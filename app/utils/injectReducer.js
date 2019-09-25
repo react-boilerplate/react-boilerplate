@@ -38,9 +38,12 @@ export default ({ key, reducer }) => WrappedComponent => {
 const useInjectReducer = ({ key, reducer }) => {
   const store = useStore();
 
-  React.useEffect(() => {
+  const isInjected = React.useRef(false);
+
+  if (!isInjected.current) {
     getInjectors(store).injectReducer(key, reducer);
-  }, []);
+    isInjected.current = true;
+  }
 };
 
 export { useInjectReducer };
