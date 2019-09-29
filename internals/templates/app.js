@@ -61,6 +61,8 @@ if (module.hot) {
   });
 }
 
+render(translationMessages);
+
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
 // we do not want it installed
