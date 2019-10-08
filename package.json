@@ -76,7 +76,6 @@
     "ip": "1.1.5",
     "lodash": "4.17.15",
     "minimist": "1.2.0",
-    "offline-plugin": "5.0.7",
     "prop-types": "15.7.2",
     "react": "16.9.0",
     "react-app-polyfill": "1.0.3",
@@ -160,6 +159,7 @@
     "webpack-dev-middleware": "3.7.1",
     "webpack-hot-middleware": "2.25.0",
     "webpack-pwa-manifest": "4.0.0",
-    "whatwg-fetch": "3.0.0"
+    "whatwg-fetch": "3.0.0",
+    "workbox-webpack-plugin": "4.3.1"
   }
 }
