@@ -285,8 +285,8 @@
     "babel-plugin-transform-es2015-modules-commonjs": "6.24.1",
     "babel-plugin-transform-react-constant-elements": "6.23.0",
     "babel-plugin-transform-react-inline-elements": "6.22.0",
-    "babel-plugin-transform-react-remove-prop-types": "0.4.5",
     "babel-plugin-transform-react-jsx-source": "6.22.0",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.5",
     "babel-preset-env": "1.5.1",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
@@ -316,7 +316,6 @@
     "ngrok": "2.2.9",
     "node-plop": "0.7.0",
     "null-loader": "0.1.1",
-    "offline-plugin": "4.9.0",
     "plop": "1.8.0",
     "raf": "3.4.0",
     "react-test-renderer": "16.2.0",
@@ -331,6 +330,7 @@
     "webpack": "4.1.0",
     "webpack-cli": "2.0.10",
     "webpack-dev-middleware": "3.0.0",
-    "webpack-hot-middleware": "2.21.2"
+    "webpack-hot-middleware": "2.21.2",
+    "workbox-webpack-plugin": "4.3.1"
   }
 }

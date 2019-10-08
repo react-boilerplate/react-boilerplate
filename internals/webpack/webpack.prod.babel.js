@@ -1,7 +1,7 @@
 // Important modules this config uses
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 module.exports = require('./webpack.base.babel')({
   mode: 'production',
@@ -41,36 +41,22 @@ module.exports = require('./webpack.base.babel')({
       },
       inject: true,
     }),
-
     // Put it in the end to capture all the HtmlWebpackPlugin's
     // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
-    new OfflinePlugin({
-      relativePaths: false,
-      publicPath: '/',
-
-      // No need to cache .htaccess. See http://mxs.is/googmp,
-      // this is applied before any match in `caches` section
-      excludes: ['.htaccess'],
-
-      // Don't minify Service Worker code
-      // TODO: Remove this when offline-plugin supports webpack 4
-      ServiceWorker: {
-        minify: false,
-      },
-
-      caches: {
-        main: [':rest:'],
-
-        // All chunks marked as `additional`, loaded after main section
-        // and do not prevent SW to install. Change to `optional` if
-        // do not want them to be preloaded at all (cached only when first loaded)
-        additional: ['*.chunk.js'],
-      },
-
-      // Removes warning for about `additional` section usage
-      safeToUseOptionalCaches: true,
-
-      AppCache: false,
+    new WorkboxWebpackPlugin.GenerateSW({
+      clientsClaim: true,
+      exclude: [/\.map$/, /asset-manifest\.json$/, /.htaccess/],
+      importWorkboxFrom: 'cdn',
+      navigateFallback: '/index.html',
+      navigateFallbackBlacklist: [
+        // Exclude URLs starting with /_, as they're likely an API call
+        new RegExp('^/_'),
+        // Exclude any URLs whose last part seems to be a file extension
+        // as they're likely a resource and not a SPA route.
+        // URLs containing a "?" character won't be blacklisted as they're likely
+        // a route with query params (e.g. auth callbacks).
+        new RegExp('/[^/?]+\\.[^/]+$'),
+      ],
     }),
   ],
 

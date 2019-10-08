@@ -117,6 +117,7 @@ Now you're ready to rumble!
 - [Styling](docs/css): How to work with the CSS tooling
 - [Your app](docs/js): Supercharging your app with Routing, Redux, simple
   asynchronicity helpers, etc.
+- [Offline support](docs/general/offline.md): How to opt-in for Service worker
 - [**Troubleshooting**](docs/general/gotchas.md): Solutions to common problems faced by developers.
 
 ## Supporters
