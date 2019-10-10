@@ -33,6 +33,9 @@ import configureStore from './configureStore';
 // Import i18n messages
 import { translationMessages } from './i18n';
 
+// SW
+import * as serviceWorker from './serviceWorker';
+
 // Create redux store with history
 const initialState = {};
 const store = configureStore(initialState, history);
@@ -75,9 +78,7 @@ if (!window.Intl) {
   render(translationMessages);
 }
 
-// Install ServiceWorker and AppCache in the end since
-// it's not most important operation and if main code fails,
-// we do not want it installed
-if (process.env.NODE_ENV === 'production') {
-  require('offline-plugin/runtime').install(); // eslint-disable-line global-require
-}
+// If you want your app to work offline and load faster,
+// you can change unregister() to register() below. Note this comes with some pitfalls.
+// Learn more: https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/offline.md
+serviceWorker.unregister();
