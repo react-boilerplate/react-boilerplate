@@ -48,7 +48,7 @@ function deleteFileInCurrentDir(file) {
 function askUserIfWeShouldRemoveRepo() {
   return new Promise(resolve => {
     process.stdout.write(
-      '\nDo you want to start with a new repository? [Y/n] ',
+      '\nDo you want to delete the current git repository and create a new one? [Y/n] ',
     );
     process.stdin.resume();
     process.stdin.on('data', pData => {
