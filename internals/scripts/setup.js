@@ -114,7 +114,7 @@ function checkNodeVersion(minimalNodeVersion) {
       } else if (compareVersions(nodeVersion, minimalNodeVersion) === -1) {
         reject(
           new Error(
-            `You need Node.js v${minimalNodeVersion} or above but you have v${nodeVersion}`,
+            `You need Node v${minimalNodeVersion} or above but you have v${nodeVersion}`,
           ),
         );
       }
