@@ -373,7 +373,7 @@ async function generateLanguage(language) {
 /**
  * Run
  */
-(async function () {
+(async function() {
   await generateComponents([
     { kind: 'component', name: 'Component', memo: false },
     { kind: 'component', name: 'MemoizedComponent', memo: true },

@@ -12,7 +12,7 @@ const addCheckMark = require('./helpers/checkmark');
 const addXMark = require('./helpers/xmark');
 const {
   requiredNpmVersion,
-  requiredNodeVersion
+  requiredNodeVersion,
 } = require('./helpers/get-required-node-npm-versions');
 const {
   initGitRepository,
