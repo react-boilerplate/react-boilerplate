@@ -11,7 +11,10 @@ const chalk = require('chalk');
 const animateProgress = require('./helpers/progress');
 const addCheckMark = require('./helpers/checkmark');
 const addXMark = require('./helpers/xmark');
-const npmConfig = require('./helpers/get-npm-config');
+const {
+  requiredNpmVersion,
+  requiredNodeVersion
+} = require('./helpers/get-required-node-npm-versions');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
@@ -299,17 +302,10 @@ function endProcess() {
 (async () => {
   const repoRemoved = await cleanCurrentRepository();
 
-  // Take the required Node and NPM version from package.json
-  const {
-    engines: { node, npm },
-  } = npmConfig;
-
-  const requiredNodeVersion = node.match(/([0-9.]+)/g)[0];
   await checkNodeVersion(requiredNodeVersion).catch(reason =>
     reportError(reason),
   );
 
-  const requiredNpmVersion = npm.match(/([0-9.]+)/g)[0];
   await checkNpmVersion(requiredNpmVersion).catch(reason =>
     reportError(reason),
   );
