@@ -81,7 +81,7 @@
     "react": "16.9.0",
     "react-app-polyfill": "1.0.3",
     "react-dom": "16.9.0",
-    "react-helmet": "6.0.0-beta",
+    "react-helmet-async": "1.0.4",
     "react-intl": "2.9.0",
     "react-redux": "7.1.1",
     "react-router-dom": "5.0.1",
