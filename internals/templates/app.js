@@ -26,6 +26,7 @@ import LanguageProvider from 'containers/LanguageProvider';
 /* eslint-disable import/no-unresolved */
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess';
+/* eslint-enable import/no-unresolved */
 
 import { HelmetProvider } from 'react-helmet-async';
 import configureStore from './configureStore';
