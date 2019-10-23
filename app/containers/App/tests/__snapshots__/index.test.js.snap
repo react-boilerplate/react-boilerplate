@@ -2,7 +2,7 @@
 
 exports[`<App /> should render and match the snapshot 1`] = `
 <ForwardRef(App__AppWrapper)>
-  <HelmetWrapper
+  <Helmet
     defaultTitle="React Boilerplate"
     defer={true}
     encodeSpecialCharacters={true}
@@ -12,7 +12,7 @@ exports[`<App /> should render and match the snapshot 1`] = `
       content="A React Boilerplate application"
       name="description"
     />
-  </HelmetWrapper>
+  </Helmet>
   <Header />
   <Switch>
     <Route
