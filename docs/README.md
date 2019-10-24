@@ -109,8 +109,8 @@ JavaScript side of things.
 
 ### SEO
 
-We use [react-helmet](https://github.com/nfl/react-helmet) for managing document head tags. Examples on how to
-write head tags can be found [here](https://github.com/nfl/react-helmet#examples).
+We use [react-helmet-async](https://github.com/staylor/react-helmet-async) for managing document head tags. Examples on how to
+write head tags can be found [here](https://github.com/staylor/react-helmet-async#usage).
 
 ### Testing
 
