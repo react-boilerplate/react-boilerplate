@@ -12,6 +12,7 @@ module.exports = require('./webpack.base.babel')({
 
   // Add hot reloading in development
   entry: [
+    'react-hot-loader/patch',
     'webpack-hot-middleware/client?reload=true',
     path.join(process.cwd(), 'app/app.js'), // Start with js/app.js
   ],

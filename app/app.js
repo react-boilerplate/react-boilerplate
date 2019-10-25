@@ -8,7 +8,7 @@
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 
-// Import all the third party stuff
+import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -47,26 +47,27 @@ const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
+const ConnectedApp = hot(messages => (
+  <Provider store={store}>
+    <LanguageProvider messages={messages}>
+      <ConnectedRouter history={history}>
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
+      </ConnectedRouter>
+    </LanguageProvider>
+  </Provider>
+));
+
 const render = messages => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <LanguageProvider messages={messages}>
-        <ConnectedRouter history={history}>
-          <HelmetProvider>
-            <App />
-          </HelmetProvider>
-        </ConnectedRouter>
-      </LanguageProvider>
-    </Provider>,
-    MOUNT_NODE,
-  );
+  ReactDOM.render(<ConnectedApp messages={messages} />, MOUNT_NODE);
 };
 
 if (module.hot) {
-  // Hot reloadable React components and translation json files
+  // Hot reloadable translation json files
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
-  module.hot.accept(['./i18n', 'containers/App'], () => {
+  module.hot.accept(['./i18n'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render(translationMessages);
   });

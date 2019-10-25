@@ -59,6 +59,7 @@
     "babel-core": "7.0.0-bridge.0"
   },
   "dependencies": {
+    "@hot-loader/react-dom": "16.9.0",
     "chalk": "2.4.2",
     "compression": "1.7.4",
     "connected-react-router": "6.5.2",
@@ -79,6 +80,7 @@
     "react-app-polyfill": "1.0.4",
     "react-dom": "16.11.0",
     "react-helmet-async": "1.0.4",
+    "react-hot-loader": "4.12.15",
     "react-intl": "2.9.0",
     "react-redux": "7.1.1",
     "react-router-dom": "5.1.2",
