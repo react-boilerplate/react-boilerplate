@@ -48,18 +48,15 @@ const task = message => {
 // Wrap async functions below into a promise
 const glob = pattern =>
   new Promise((resolve, reject) => {
-    nodeGlob(
-      pattern,
-      (error, value) => (error ? reject(error) : resolve(value)),
+    nodeGlob(pattern, (error, value) =>
+      error ? reject(error) : resolve(value),
     );
   });
 
 const readFile = fileName =>
   new Promise((resolve, reject) => {
-    fs.readFile(
-      fileName,
-      'utf8',
-      (error, value) => (error ? reject(error) : resolve(value)),
+    fs.readFile(fileName, 'utf8', (error, value) =>
+      error ? reject(error) : resolve(value),
     );
   });
 
