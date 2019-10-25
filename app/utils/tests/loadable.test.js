@@ -5,6 +5,10 @@ import loadable from 'utils/loadable';
 const LoadingIndicator = () => <div>Loading</div>;
 
 const LazyComponent = loadable(() => import('./loadable.index'));
+const LazyComponentWithEmptyOptions = loadable(
+  () => import('./loadable.index'),
+  {},
+);
 
 const LazyComponentWithFallback = loadable(() => import('./loadable.index'), {
   fallback: <LoadingIndicator />,
@@ -15,6 +19,13 @@ describe('loadable', () => {
     const {
       container: { firstChild },
     } = render(<LazyComponent />);
+    expect(firstChild).toMatchSnapshot();
+  });
+
+  it('should render null by default with empty options', () => {
+    const {
+      container: { firstChild },
+    } = render(<LazyComponentWithEmptyOptions />);
     expect(firstChild).toMatchSnapshot();
   });
 
