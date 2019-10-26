@@ -28,6 +28,7 @@ import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess';
 /* eslint-enable import/no-unresolved */
 
+import { HelmetProvider } from 'react-helmet-async';
 import configureStore from './configureStore';
 
 // Import i18n messages
@@ -43,7 +44,9 @@ const render = messages => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App />
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,
