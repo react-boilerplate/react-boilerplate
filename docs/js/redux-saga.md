@@ -46,7 +46,7 @@ export default function* rootSaga() {
 }
 ```
 
-Then, in your `index.js`, use `useInjectSaga` from `redux-injectors` to inject the root saga:
+Then, in your `index.js`, use [`useInjectSaga`](https://github.com/react-boilerplate/redux-injectors/blob/master/docs/api.md#useinjectsaga) from `redux-injectors` to inject the root saga:
 
 ```JS
 import { useInjectSaga, SagaInjectionModes } from 'redux-injectors';
