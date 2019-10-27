@@ -12,7 +12,6 @@ import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 {{/if}}
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
 
 import {{ properCase name }} from '../index';
 {{#if wantMessages}}
@@ -24,7 +23,7 @@ describe('<{{ properCase name }} />', () => {
   let store;
 
   beforeEach(() => {
-    store = configureStore({}, browserHistory);
+    store = configureStore({});
   });
 
   it('Expect to not log errors in console', () => {
