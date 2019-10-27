@@ -16,7 +16,7 @@ injected when the component it attached to is mounted. In your component's `inde
 ```JS
 import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectReducer } from 'redux-injectors';
 import {
   makeSelectData,
   makeSelectOtherData,
