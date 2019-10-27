@@ -29,7 +29,7 @@ export default function configureStore(initialState = {}, history) {
   }
 
   const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
-  const runSaga = sagaMiddleware.run;
+  const { run: runSaga } = sagaMiddleware;
 
   // Create the store with two middlewares
   // 1. sagaMiddleware: Makes redux-sagas work
