@@ -6,7 +6,6 @@ import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
 
 import * as appActions from 'containers/App/actions';
 import { HelmetProvider } from 'react-helmet-async';
@@ -35,7 +34,7 @@ describe('<HomePage />', () => {
   });
 
   beforeEach(() => {
-    store = configureStore({}, browserHistory);
+    store = configureStore({});
     appActions.loadRepos.mockClear();
   });
 
