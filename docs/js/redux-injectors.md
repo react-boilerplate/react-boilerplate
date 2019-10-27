@@ -1,6 +1,6 @@
 # `redux-injectors`
 
-[`redux-injectors`](<(https://github.com/react-boilerplate/redux-injectors)>) is
+[`redux-injectors`](https://github.com/react-boilerplate/redux-injectors) is
 an official `react-boilerplate` companion library. We built it so that it can be
 used and maintained independently from react-boilerplate. It allows you to
 dynamically load reducers and sagas as needed, instead of loading them all
