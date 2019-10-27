@@ -10,7 +10,7 @@ If you really want to get rid of it, you will have to remove its presence from s
 1.  Remove statement `import createSagaMiddleware from 'redux-saga'`.
 2.  Remove statement `const sagaMiddleware = createSagaMiddleware()`.
 3.  Remove `sagaMiddleware` from `middlewares` array.
-4.  Remove statement `const runSaga = sagaMiddleware.run;`
+4.  Remove statement `const { run: runSaga } = sagaMiddleware;`
 5.  Remove `runSaga` from `createInjectorsEnhancer` params
 
 **app/containers/\*/index.js**
