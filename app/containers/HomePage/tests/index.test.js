@@ -6,9 +6,9 @@ import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
 
 import * as appActions from 'containers/App/actions';
+import { HelmetProvider } from 'react-helmet-async';
 import configureStore from '../../../configureStore';
 import HomePage from '../index';
 import { initialState } from '../reducer';
@@ -18,7 +18,9 @@ const renderHomePage = store =>
   render(
     <Provider store={store}>
       <IntlProvider locale="en">
-        <HomePage />
+        <HelmetProvider>
+          <HomePage />
+        </HelmetProvider>
       </IntlProvider>
     </Provider>,
   );
@@ -32,7 +34,7 @@ describe('<HomePage />', () => {
   });
 
   beforeEach(() => {
-    store = configureStore({}, browserHistory);
+    store = configureStore({});
     appActions.loadRepos.mockClear();
   });
 

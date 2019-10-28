@@ -11,7 +11,7 @@ import React from 'react';
 {{/if}}
 // import PropTypes from 'prop-types';
 {{#if wantHeaders}}
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 {{/if}}
 {{#if wantMessages}}
 import { FormattedMessage } from 'react-intl';
@@ -21,11 +21,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 {{/if}}
 
-{{#if wantSaga}}
-import { useInjectSaga } from 'utils/injectSaga';
+{{#if wantActionsAndReducer}}
+  {{#if wantSaga}}
+import { useInjectReducer, useInjectSaga } from 'redux-injectors';
+  {{else}}
+import { useInjectReducer } from 'redux-injectors';
+  {{/if}}
+{{else}}
+  {{#if wantSaga}}
+import { useInjectSaga } from 'redux-injectors';
+  {{/if}}
 {{/if}}
 {{#if wantActionsAndReducer}}
-import { useInjectReducer } from 'utils/injectReducer';
 import makeSelect{{properCase name}} from './selectors';
 import reducer from './reducer';
 {{/if}}
