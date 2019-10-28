@@ -22,7 +22,7 @@ module.exports = options => ({
       {
         test: /\.jsx?$/, // Transform all .js and .jsx files required somewhere with Babel
         // excluding full node_modules folder except for react-intl related deps, see: https://github.com/formatjs/react-intl/blob/master/docs/Getting-Started.md#esm-build
-        exclude: /node_modules\/(?!(react-intl|intl-messageformat|intl-messageformat-parser)\/).*/,
+        exclude: /node_modules[\\,/](?!(react-intl|intl-messageformat|intl-messageformat-parser)[\\,/]).*/,
         use: {
           loader: 'babel-loader',
         },
