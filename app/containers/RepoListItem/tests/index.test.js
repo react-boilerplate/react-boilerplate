@@ -6,13 +6,12 @@ import React from 'react';
 import { getByText, render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
 
 import RepoListItem from '../index';
 import configureStore from '../../../configureStore';
 
 const renderComponent = (item, currentUser) => {
-  const store = configureStore({ global: { currentUser } }, browserHistory);
+  const store = configureStore({ global: { currentUser } });
 
   return render(
     <Provider store={store}>

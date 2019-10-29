@@ -13,3 +13,5 @@ exports[`loadable should render fallback if given one 1`] = `
 `;
 
 exports[`loadable should render null by default 1`] = `null`;
+
+exports[`loadable should render null by default with empty options 1`] = `null`;
