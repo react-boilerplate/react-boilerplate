@@ -51,12 +51,14 @@ _Step 7:_ Click on the `Properties` tab, open `Static Website Hosting`, and clic
 >
 > S3 objects' `Cache-Control` metadata can cause problems on deployments, such like not serving the new `index.html` file but returning the cached one. This might result in users not getting the recently deployed web app. Since the `index.html` and `sw.js` files are the initially loaded files (all the js bundles and chunks comes later depending on these two files) adjusting the `Cache-Control` metadata is suggested after deployments for these two files. To do so, go to the file, then `Properties` -> `Metadata`. Add `max-age=0,no-cache,no-store,must-revalidate` to the key `Cache-Control`
 
-### Enabling HTTPS with Cloudfront
+### Cloudfront for HTTPS and GZIP
 
-`S3` serves only `HTTP`, so for `HTTPS` you can use `Cloudfront`. Setting up `Cloudfront` is a bit longer than `S3 Static Website Hosting`. Therefore follow [AWS Instructions](https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/) - follow the second configuration steps (Using a website endpoint as the origin with anonymous (public) access allowed) -
+_HTTPS_: `S3` serves only `HTTP`, so for `HTTPS` you can use `Cloudfront`. Setting up `Cloudfront` is a bit longer than `S3 Static Website Hosting`. Therefore follow [AWS Instructions](https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/) - follow the second configuration steps (Using a website endpoint as the origin with anonymous (public) access allowed) -
 to set a `Cloudfront` distribution using your `S3 Website`.
 
 > Note: SPA applications handles routing inside the client, so, pages like `/about` is unknown to the `Cloudfront` (its configured as always returning `index.html` file in `S3 Bucket`). To prevent `404 Not Found` responses, after setting up your Cloudfront Distribution, go to the `Error Pages` then `Create Custom Error Response` which you will map `404` code to `200`.
+
+_GZIP Compression_: Enabling gzip can reduce chunk sizes dramatically and improve loading performance greatly. To enable gzip with `Cloudfront` navigate to your distribution then `Behaviors` -> `Edit` -> `Compress Objects Automatically`. Mark `Yes`. This alone **isn't enough**. You must update your `S3 Bucket CORS Configuration` to send `Content-Length` header by adding `<AllowedHeader>Content-Length</AllowedHeader>` in a [CORSRule](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html).
 
 ## Deploying in a subfolder of an existing server
 
