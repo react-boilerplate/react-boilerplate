@@ -43,7 +43,7 @@ _Step 4:_ To make the bucket objects publicly viewable, go into the bucket, then
 
 _Step 5:_ Go to `Properties`. Click on the `Static Website Hosting` accordion where you should see the URL (or _endpoint_) of your website (ie. example.s3-website-us-east-1.amazonaws.com). Click `Enable website hosting` and fill in both the `Index document` and `Error document` input fields with `index.html`. Click `Save`.
 
-_Step 6:_ Click on your new S3 bucket on the left to open the bucket. Click `Upload` and select all the files within your `./build` folder. Click `Start Upload`.
+_Step 6:_ Click on your new S3 bucket on the left to open the bucket. Click `Upload` and select all the files within your `./build` folder. Click `Start Upload`. You can easily automate the deployment with a single [helper script](https://gist.github.com/Can-Sahin/d7de7e2ff5c1a39b82ced2d9bd7c60ae) that uses `aws-cli`. Running the shell script with necessary permissions on `AWS` will take care of all the issues mentioned in `IMPORTANT ⚠️` below
 
 _Step 7:_ Click on the `Properties` tab, open `Static Website Hosting`, and click on the _Endpoint_ link. The app should be running on that URL.
 
