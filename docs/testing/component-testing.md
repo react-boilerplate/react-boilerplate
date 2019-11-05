@@ -151,7 +151,7 @@ simulate a click and, lastly, check that our mock function was called:
 
 ```javascript
 it('handles clicks', () => {
-  const onClickMock = jest.fn();
+  const onClickSpy = jest.fn();
   const text = 'Click me!';
   const { getByText } = render(<Button onClick={onClickMock}>{text}</Button>);
 
@@ -175,7 +175,7 @@ describe('<Button />', () => {
   });
 
   it('handles clicks', () => {
-    const onClickMock = jest.fn();
+    const onClickSpy = jest.fn();
     const text = 'Click me!';
     const { getByText } = render(<Button onClick={onClickMock}>{text}</Button>);
   
