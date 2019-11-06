@@ -74,4 +74,3 @@ ESLint helps developers on a team follow the same coding format. It's highly rec
 3.  Click `Enable`
 
 ![Setting up ESLint](webstorm-eslint.png)
-

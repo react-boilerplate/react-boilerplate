@@ -1,27 +1,34 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 
 import A from '../A';
 
+const renderComponent = (props = {}) => {
+  const utils = render(<A {...props}>Link</A>);
+  const link = utils.queryByText('Link');
+  return { ...utils, link };
+};
+
 describe('<A />', () => {
   it('should render an <a> tag', () => {
-    const { container } = render(<A />);
-    expect(container.querySelector('a')).not.toBeNull();
+    const { link } = renderComponent();
+    expect(link).toBeInTheDocument();
+    expect(link.tagName).toBe('A');
   });
 
   it('should have a class attribute', () => {
-    const { container } = render(<A />);
-    expect(container.querySelector('a').hasAttribute('class')).toBe(true);
+    const { link } = renderComponent();
+    expect(link).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const { container } = render(<A id={id} />);
-    expect(container.querySelector('a').id).toEqual(id);
+    const { link } = renderComponent({ id });
+    expect(link).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const { container } = render(<A attribute="test" />);
-    expect(container.querySelector('a[attribute="test"]')).toBeNull();
+    const { link } = renderComponent({ attribute: 'test' });
+    expect(link).not.toHaveAttribute('attribute');
   });
 });

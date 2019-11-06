@@ -4,7 +4,7 @@
  * List all the features
  */
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { FormattedMessage } from 'react-intl';
 
 import H1 from 'components/H1';
@@ -20,7 +20,7 @@ export default function FeaturePage() {
         <title>Feature Page</title>
         <meta
           name="description"
-          content="Feature page of React.js Boilerplate application"
+          content="Feature page of React Boilerplate application"
         />
       </Helmet>
       <H1>

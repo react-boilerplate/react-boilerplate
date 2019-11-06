@@ -1,27 +1,34 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 
 import StyledButton from '../StyledButton';
 
+const renderComponent = (props = {}) => {
+  const utils = render(<StyledButton {...props}>Button</StyledButton>);
+  const button = utils.queryByText('Button');
+  return { ...utils, button };
+};
+
 describe('<StyledButton />', () => {
-  it('should render an <button> tag', () => {
-    const { container } = render(<StyledButton />);
-    expect(container.querySelector('button')).not.toBeNull();
+  it('should render a <button> tag', () => {
+    const { button } = renderComponent();
+    expect(button).toBeInTheDocument();
+    expect(button.tagName).toBe('BUTTON');
   });
 
   it('should have a class attribute', () => {
-    const { container } = render(<StyledButton />);
-    expect(container.querySelector('button').hasAttribute('class')).toBe(true);
+    const { button } = renderComponent();
+    expect(button).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const { container } = render(<StyledButton id={id} />);
-    expect(container.querySelector('button').id).toEqual(id);
+    const { button } = renderComponent({ id });
+    expect(button).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const { container } = render(<StyledButton attribute="test" />);
-    expect(container.querySelector('button[attribute="test"]')).toBeNull();
+    const { button } = renderComponent({ attribute: 'test' });
+    expect(button).not.toHaveAttribute('attribute');
   });
 });

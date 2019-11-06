@@ -1,27 +1,34 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 
 import Input from '../Input';
 
+const renderComponent = (props = {}) => {
+  const utils = render(<Input {...props} />);
+  const element = utils.container.firstChild;
+  return { ...utils, element };
+};
+
 describe('<Input />', () => {
-  it('should render an <input> tag', () => {
-    const { container } = render(<Input />);
-    expect(container.firstChild.tagName).toEqual('INPUT');
+  it('should render a <input> tag', () => {
+    const { element } = renderComponent();
+    expect(element).toBeInTheDocument();
+    expect(element.tagName).toEqual('INPUT');
   });
 
   it('should have a class attribute', () => {
-    const { container } = render(<Input />);
-    expect(container.firstChild.hasAttribute('class')).toBe(true);
+    const { element } = renderComponent();
+    expect(element).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const { container } = render(<Input id={id} />);
-    expect(container.firstChild.id).toEqual(id);
+    const { element } = renderComponent({ id });
+    expect(element).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const { container } = render(<Input attribute="test" />);
-    expect(container.firstChild.hasAttribute('attribute')).toBe(false);
+    const { element } = renderComponent({ attribute: 'test' });
+    expect(element).not.toHaveAttribute('attribute');
   });
 });

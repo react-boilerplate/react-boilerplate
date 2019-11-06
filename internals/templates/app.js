@@ -5,8 +5,8 @@
  * code.
  */
 
-// Needed for redux-saga es6 generator support
-import '@babel/polyfill';
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
 
 // Import all the third party stuff
 import React from 'react';
@@ -23,11 +23,12 @@ import App from 'containers/App';
 import LanguageProvider from 'containers/LanguageProvider';
 
 // Load the favicon and the .htaccess file
-/* eslint-disable import/no-unresolved, import/extensions */
+/* eslint-disable import/no-unresolved */
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess';
-/* eslint-enable import/no-unresolved, import/extensions */
+/* eslint-enable import/no-unresolved */
 
+import { HelmetProvider } from 'react-helmet-async';
 import configureStore from './configureStore';
 
 // Import i18n messages
@@ -43,7 +44,9 @@ const render = messages => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App />
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,

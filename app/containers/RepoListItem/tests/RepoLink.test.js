@@ -1,30 +1,35 @@
 import React from 'react';
-import { render } from 'react-testing-library';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import 'jest-styled-components';
 
 import RepoLink from '../RepoLink';
 
+const renderComponent = (props = {}) => {
+  const text = 'Test';
+  const utils = render(<RepoLink {...props}>{text}</RepoLink>);
+  const element = utils.queryByText(text);
+  return { ...utils, element };
+};
+
 describe('<RepoLink />', () => {
   it('should match the snapshot', () => {
-    const renderedComponent = renderer.create(<RepoLink />).toJSON();
-    expect(renderedComponent).toMatchSnapshot();
+    const { element } = renderComponent();
+    expect(element).toMatchSnapshot();
   });
 
   it('should have a className attribute', () => {
-    const { container } = render(<RepoLink />);
-    expect(container.firstChild.hasAttribute('class')).toBe(true);
+    const { element } = renderComponent();
+    expect(element).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const { container } = render(<RepoLink id={id} />);
-    expect(container.firstChild.hasAttribute('id')).toBe(true);
-    expect(container.firstChild.id).toEqual(id);
+    const { element } = renderComponent({ id });
+    expect(element).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const { container } = render(<RepoLink attribute="test" />);
-    expect(container.firstChild.hasAttribute('attribute')).toBe(false);
+    const { element } = renderComponent({ attribute: 'test' });
+    expect(element).not.toHaveAttribute('attribute');
   });
 });

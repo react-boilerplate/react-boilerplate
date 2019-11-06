@@ -14,32 +14,32 @@ or a component that will be loaded dynamically. Dynamic means that it will be
 injected when the component it attached to is mounted. In your component's `index.js`:
 
 ```JS
-import injectReducer from 'utils/injectReducer';
+import { createStructuredSelector } from 'reselect';
+import { useSelector, useDispatch } from 'react-redux';
+import { useInjectReducer } from 'redux-injectors';
+import {
+  makeSelectData,
+  makeSelectOtherData,
+} from './selectors';
 import reducer from './reducer';
 
-// ...
-
-export function mapDispatchToProps(dispatch) {
-  // ...
-}
-
-const mapStateToProps = createStructuredSelector({
-  // ...
+const stateSelector = createStructuredSelector({
+  data: makeSelectData(),
+  otherData: makeSelectOtherData(),
 });
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+export default function YourComponent() {
+  const { data, otherData } = useSelector(stateSelector);
+  const dispatch = useDispatch();
 
-const withReducer = injectReducer({ key: 'yourcomponent', reducer });
+  useInjectReducer({ key: 'yourComponent', reducer });
 
-export default compose(
-  // Put `withReducer` before `withConnect`
-  withReducer,
-  withConnect,
-)(YourComponent);
+  // ...
+}
 ```
 
-You don't need to do it by hand, a `container` generator will generate everything
-that's necessary.
+You don't need to write this boilerplate code by hand, the `container`
+generator will generate everything you need to make it work.
 
 ### Login Flow Example
 

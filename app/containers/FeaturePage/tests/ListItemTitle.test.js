@@ -1,35 +1,34 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 
 import ListItemTitle from '../ListItemTitle';
 
+const renderComponent = (props = {}) => {
+  const utils = render(<ListItemTitle {...props} />);
+  const element = utils.container.firstChild;
+  return { ...utils, element };
+};
+
 describe('<ListItemTitle />', () => {
   it('should render an <p> tag', () => {
-    const {
-      container: { firstChild },
-    } = render(<ListItemTitle />);
-    expect(firstChild.tagName).toEqual('P');
+    const { element } = renderComponent();
+    expect(element).toBeInTheDocument();
+    expect(element.tagName).toEqual('P');
   });
 
   it('should have a class attribute', () => {
-    const {
-      container: { firstChild },
-    } = render(<ListItemTitle />);
-    expect(firstChild.hasAttribute('class')).toBe(true);
+    const { element } = renderComponent();
+    expect(element).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const {
-      container: { firstChild },
-    } = render(<ListItemTitle id={id} />);
-    expect(firstChild.id).toEqual(id);
+    const { element } = renderComponent({ id });
+    expect(element).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const {
-      container: { firstChild },
-    } = render(<ListItemTitle attribute="test" />);
-    expect(firstChild.hasAttribute('attribute')).toBe(false);
+    const { element } = renderComponent({ attribute: 'test' });
+    expect(element).not.toHaveAttribute('attribute');
   });
 });

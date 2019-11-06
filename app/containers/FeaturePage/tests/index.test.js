@@ -1,6 +1,7 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
+import { HelmetProvider } from 'react-helmet-async';
 
 import FeaturePage from '../index';
 
@@ -10,7 +11,9 @@ describe('<FeaturePage />', () => {
       container: { firstChild },
     } = render(
       <IntlProvider locale="en">
-        <FeaturePage />
+        <HelmetProvider>
+          <FeaturePage />
+        </HelmetProvider>
       </IntlProvider>,
     );
 

@@ -1,29 +1,34 @@
 import React from 'react';
-import { render } from 'react-testing-library';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import 'jest-styled-components';
 
 import A from '../A';
 
+const renderComponent = (props = {}) => {
+  const utils = render(<A {...props}>Link</A>);
+  const link = utils.queryByText('Link');
+  return { ...utils, link };
+};
+
 describe('<A />', () => {
   it('should match the snapshot', () => {
-    const renderedComponent = renderer.create(<A />).toJSON();
-    expect(renderedComponent).toMatchSnapshot();
+    const { container } = renderComponent();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should have a class attribute', () => {
-    const { container } = render(<A />);
-    expect(container.querySelector('a').hasAttribute('class')).toBe(true);
+    const { link } = renderComponent();
+    expect(link).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const { container } = render(<A id={id} />);
-    expect(container.querySelector('a').id).toEqual(id);
+    const { link } = renderComponent({ id });
+    expect(link).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const { container } = render(<A attribute="test" />);
-    expect(container.querySelector('a').getAttribute('attribute')).toBeNull();
+    const { link } = renderComponent({ attribute: 'test' });
+    expect(link).not.toHaveAttribute('attribute');
   });
 });

@@ -1,20 +1,24 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 
 import H2 from '../index';
 
+const children = 'Text';
+const renderComponent = (props = {}) => {
+  const utils = render(<H2 {...props}>{children}</H2>);
+  const heading = utils.queryByText(children);
+  return { ...utils, heading };
+};
+
 describe('<H2 />', () => {
   it('should render a prop', () => {
-    const id = 'testId';
-    const { container } = render(<H2 id={id} />);
-    expect(container.querySelector('h2').id).toEqual(id);
+    const id = 'test';
+    const { heading } = renderComponent({ id });
+    expect(heading).toHaveAttribute('id', id);
   });
 
   it('should render its text', () => {
-    const children = 'Text';
-    const { container, queryByText } = render(<H2>{children}</H2>);
-    const { childNodes } = container.querySelector('h2');
-    expect(childNodes).toHaveLength(1);
-    expect(queryByText(children)).not.toBeNull();
+    const { heading } = renderComponent();
+    expect(heading).toHaveTextContent(children);
   });
 });

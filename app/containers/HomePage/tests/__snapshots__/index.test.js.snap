@@ -54,13 +54,6 @@ exports[`<HomePage /> should render and match the snapshot 1`] = `
           />
         </label>
       </form>
-      <div
-        class="Wrapper-sc-1umgotm-0 laCwDT"
-      >
-        <ul
-          class="Ul-mwnq6h-0 jcxXFy"
-        />
-      </div>
     </section>
   </div>
 </article>

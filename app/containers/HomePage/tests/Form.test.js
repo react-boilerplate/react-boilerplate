@@ -1,35 +1,34 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 
 import Form from '../Form';
 
+const renderComponent = (props = {}) => {
+  const utils = render(<Form {...props} />);
+  const element = utils.container.firstChild;
+  return { ...utils, element };
+};
+
 describe('<Form />', () => {
-  it('should render an <form> tag', () => {
-    const {
-      container: { firstChild },
-    } = render(<Form />);
-    expect(firstChild.tagName).toEqual('FORM');
+  it('should render a <form> tag', () => {
+    const { element } = renderComponent();
+    expect(element).toBeInTheDocument();
+    expect(element.tagName).toEqual('FORM');
   });
 
   it('should have a class attribute', () => {
-    const {
-      container: { firstChild },
-    } = render(<Form />);
-    expect(firstChild.hasAttribute('class')).toBe(true);
+    const { element } = renderComponent();
+    expect(element).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const {
-      container: { firstChild },
-    } = render(<Form id={id} />);
-    expect(firstChild.id).toEqual(id);
+    const { element } = renderComponent({ id });
+    expect(element).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const {
-      container: { firstChild },
-    } = render(<Form attribute="test" />);
-    expect(firstChild.hasAttribute('attribute')).toBe(false);
+    const { element } = renderComponent({ attribute: 'test' });
+    expect(element).not.toHaveAttribute('attribute');
   });
 });
