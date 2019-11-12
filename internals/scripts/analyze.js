@@ -9,7 +9,7 @@ const progress = animateProgress('Generating stats');
 
 // Generate stats.json file with webpack
 shelljs.exec(
-  'webpack --config internals/webpack/webpack.prod.babel.js --profile --json > stats.json',
+  'cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --json > stats.json',
   addCheckMark.bind(null, callback), // Output a checkmark on completion
 );
 

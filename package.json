@@ -86,6 +86,7 @@
     "react-router-dom": "5.1.2",
     "redux": "4.0.4",
     "redux-saga": "1.1.1",
+    "redux-injectors": "1.2.0",
     "reselect": "4.0.0",
     "sanitize.css": "11.0.0",
     "styled-components": "4.4.0"
