@@ -46,28 +46,25 @@ export default function* rootSaga() {
 }
 ```
 
-Then, in your `index.js`, use a decorator to inject the root saga:
+Then, in your `index.js`, use [`useInjectSaga`](https://github.com/react-boilerplate/redux-injectors/blob/master/docs/api.md#useinjectsaga) from `redux-injectors` to inject the root saga:
 
 ```JS
-import injectSaga from 'utils/injectSaga';
-import { RESTART_ON_REMOUNT } from 'utils/constants';
+import { useInjectSaga, SagaInjectionModes } from 'redux-injectors';
 import saga from './saga';
 
-// ...
+export default function NewContainer(props) {
+  // `mode` is an optional argument, default value is `DAEMON`
+  useInjectSaga({ key: 'newContainer', saga, mode: SagaInjectionModes.DAEMON });
 
-// `mode` is an optional argument, default value is `RESTART_ON_REMOUNT`
-const withSaga = injectSaga({ key: 'yourcomponent', saga, mode: RESTART_ON_REMOUNT });
-
-export default compose(
-  withSaga,
-)(YourComponent);
+  // ...
+}
 ```
 
-A `mode` argument can be one of three constants (import them from `utils/constants`):
+A `mode` argument can be one of three constants (import the enum `SagaInjectionModes` from `redux-injectors`):
 
-- `RESTART_ON_REMOUNT` (default value) — starts a saga when a component is being mounted
+- `DAEMON` (default value) — starts a saga on component mount and never cancels it or starts again;
+- `RESTART_ON_REMOUNT` — starts a saga when a component is being mounted
   and cancels with `task.cancel()` on component un-mount for improved performance;
-- `DAEMON` — starts a saga on component mount and never cancels it or starts again;
 - `ONCE_TILL_UNMOUNT` — behaves like `RESTART_ON_REMOUNT` but never runs the saga again.
 
 Now add as many sagas to your `saga.js` file as you want!

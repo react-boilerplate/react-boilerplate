@@ -1,27 +1,34 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import AtPrefix from '../AtPrefix';
 
+const renderComponent = (props = {}) => {
+  const utils = render(<AtPrefix {...props} />);
+  const element = utils.container.firstChild;
+  return { ...utils, element };
+};
+
 describe('<AtPrefix />', () => {
-  it('should render an <span> tag', () => {
-    const renderedComponent = shallow(<AtPrefix />);
-    expect(renderedComponent.type()).toEqual('span');
+  it('should render a <span> tag', () => {
+    const { element } = renderComponent();
+    expect(element).toBeInTheDocument();
+    expect(element.tagName).toEqual('SPAN');
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = shallow(<AtPrefix />);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const { element } = renderComponent();
+    expect(element).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<AtPrefix id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { element } = renderComponent({ id });
+    expect(element).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<AtPrefix attribute="test" />);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const { element } = renderComponent({ attribute: 'test' });
+    expect(element).not.toHaveAttribute('attribute');
   });
 });

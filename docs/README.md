@@ -27,7 +27,7 @@
   - [LESS](css/README.md#less)
 - [JS](js)
   - [Redux](js/redux.md)
-  - [ImmutableJS](js/immutablejs.md)
+  - [Immer](js/immer.md)
   - [reselect](js/reselect.md)
   - [redux-saga](js/redux-saga.md)
   - [i18n](js/i18n.md)
@@ -90,7 +90,7 @@ _(If they do have to be changed, please [submit an issue](https://github.com/rea
 
 ### CSS
 
-Utilising [tagged template literals](https://www.styled-components.com/docs/advanced#tagged-template-literals)
+Using [tagged template literals](https://www.styled-components.com/docs/advanced#tagged-template-literals)
 (a recent addition to JavaScript) and the [power of CSS](https://github.com/styled-components/styled-components/blob/master/docs/css-we-support.md),
 `styled-components` allows you to write actual CSS code to style your components.
 It also removes the mapping between components and styles – using components as a
@@ -109,8 +109,8 @@ JavaScript side of things.
 
 ### SEO
 
-We use [react-helmet](https://github.com/nfl/react-helmet) for managing document head tags. Examples on how to
-write head tags can be found [here](https://github.com/nfl/react-helmet#examples).
+We use [react-helmet-async](https://github.com/staylor/react-helmet-async) for managing document head tags. Examples on how to
+write head tags can be found [here](https://github.com/staylor/react-helmet-async#usage).
 
 ### Testing
 

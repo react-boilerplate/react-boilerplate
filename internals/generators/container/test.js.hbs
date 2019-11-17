@@ -1,10 +1,80 @@
-// import React from 'react';
-// import { shallow } from 'enzyme';
+/**
+ *
+ * Tests for {{ properCase name }}
+ *
+ * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
+ *
+ */
 
-// import { {{ properCase name }} } from '../index';
+import React from 'react';
+import { render } from '@testing-library/react';
+{{#if wantMessages}}
+import { IntlProvider } from 'react-intl';
+{{/if}}
+import { Provider } from 'react-redux';
+
+import {{ properCase name }} from '../index';
+{{#if wantMessages}}
+import { DEFAULT_LOCALE } from '../../../i18n';
+{{/if}}
+import configureStore from '../../../configureStore';
 
 describe('<{{ properCase name }} />', () => {
-  it('Expect to have unit tests specified', () => {
+  let store;
+
+  beforeEach(() => {
+    store = configureStore({});
+  });
+
+  it('Expect to not log errors in console', () => {
+    const spy = jest.spyOn(global.console, 'error');
+{{#if wantMessages}}
+    render(
+      <Provider store={store}>
+        <IntlProvider locale={DEFAULT_LOCALE}>
+          <{{ properCase name }} />
+        </IntlProvider>
+      </Provider>,
+    );
+{{else}}
+    render(
+      <Provider store={store}>
+        <{{ properCase name }} />
+      </Provider>,
+    );
+{{/if}}
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('Expect to have additional unit tests specified', () => {
     expect(true).toEqual(false);
+  });
+
+  /**
+   * Unskip this test to use it
+   *
+   * @see {@link https://jestjs.io/docs/en/api#testskipname-fn}
+   */
+  it.skip('Should render and match the snapshot', () => {
+{{#if wantMessages}}
+    const {
+      container: { firstChild },
+    } = render(
+      <Provider store={store}>
+        <IntlProvider locale={DEFAULT_LOCALE}>
+          <{{ properCase name }} />
+        </IntlProvider>
+      </Provider>,
+    );
+{{else}}
+    const {
+      container: { firstChild },
+    } = render(
+      <Provider store={store}>
+        <{{ properCase name }} />
+      </Provider>,
+    );
+{{/if}}
+    expect(firstChild).toMatchSnapshot();
   });
 });

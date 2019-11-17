@@ -1,12 +1,12 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import 'jest-styled-components';
 
 import LoadingIndicator from '../index';
 
 describe('<LoadingIndicator />', () => {
   it('should match the snapshot', () => {
-    const renderedComponent = renderer.create(<LoadingIndicator />).toJSON();
-    expect(renderedComponent).toMatchSnapshot();
+    const { container } = render(<LoadingIndicator />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

@@ -1,36 +1,31 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import 'jest-styled-components';
 
 import Img from '../Img';
 
+const alt = 'test';
+const renderComponent = (props = {}) => {
+  const utils = render(
+    <Img src="http://example.com/test.jpg" alt={alt} {...props} />,
+  );
+  const image = utils.queryByAltText(alt);
+  return { ...utils, image };
+};
+
 describe('<Img />', () => {
   it('should match the snapshot', () => {
-    const renderedComponent = renderer
-      .create(<Img src="http://example.com/test.jpg" alt="test" />)
-      .toJSON();
-    expect(renderedComponent).toMatchSnapshot();
+    const { container } = renderComponent();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = mount(
-      <Img src="http://example.com/test.jpg" alt="test" />,
-    );
-    expect(renderedComponent.find('img').prop('className')).toBeDefined();
-  });
-
-  it('should adopt a valid attribute', () => {
-    const renderedComponent = mount(
-      <Img src="http://example.com/test.jpg" alt="test" />,
-    );
-    expect(renderedComponent.find('img').prop('alt')).toEqual('test');
+  it('should have a class attribute', () => {
+    const { image } = renderComponent();
+    expect(image).toHaveAttribute('class');
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = mount(
-      <Img src="http://example.com/test.jpg" attribute="test" alt="test" />,
-    );
-    expect(renderedComponent.find('img').prop('attribute')).toBeUndefined();
+    const { image } = renderComponent({ attribute: 'test' });
+    expect(image).not.toHaveAttribute('attribute');
   });
 });

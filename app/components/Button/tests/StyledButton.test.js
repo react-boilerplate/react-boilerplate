@@ -1,27 +1,34 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import StyledButton from '../StyledButton';
 
+const renderComponent = (props = {}) => {
+  const utils = render(<StyledButton {...props}>Button</StyledButton>);
+  const button = utils.queryByText('Button');
+  return { ...utils, button };
+};
+
 describe('<StyledButton />', () => {
-  it('should render an <button> tag', () => {
-    const renderedComponent = shallow(<StyledButton />);
-    expect(renderedComponent.type()).toEqual('button');
+  it('should render a <button> tag', () => {
+    const { button } = renderComponent();
+    expect(button).toBeInTheDocument();
+    expect(button.tagName).toBe('BUTTON');
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = shallow(<StyledButton />);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const { button } = renderComponent();
+    expect(button).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<StyledButton id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { button } = renderComponent({ id });
+    expect(button).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<StyledButton attribute="test" />);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const { button } = renderComponent({ attribute: 'test' });
+    expect(button).not.toHaveAttribute('attribute');
   });
 });

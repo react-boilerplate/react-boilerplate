@@ -1,27 +1,35 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import Ul from '../Ul';
 
+const testId = 'list';
+const renderComponent = (props = {}) => {
+  const utils = render(<Ul {...props} data-testid={testId} />);
+  const list = utils.queryByTestId(testId);
+  return { ...utils, list };
+};
+
 describe('<Ul />', () => {
-  it('should render an <ul> tag', () => {
-    const renderedComponent = shallow(<Ul />);
-    expect(renderedComponent.type()).toEqual('ul');
+  it('should render a <ul> tag', () => {
+    const { list } = renderComponent();
+    expect(list).toBeInTheDocument();
+    expect(list.tagName).toBe('UL');
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = shallow(<Ul />);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const { list } = renderComponent();
+    expect(list).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<Ul id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { list } = renderComponent({ id });
+    expect(list).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Ul attribute="test" />);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const { list } = renderComponent({ attribute: 'test' });
+    expect(list).not.toHaveAttribute('attribute');
   });
 });

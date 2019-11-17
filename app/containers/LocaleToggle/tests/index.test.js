@@ -1,10 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
-import { shallow, mount } from 'enzyme';
+import { render, fireEvent } from '@testing-library/react';
 
-import LocaleToggle, { mapDispatchToProps } from '../index';
-import { changeLocale } from '../../LanguageProvider/actions';
+import LocaleToggle from '../index';
+import * as actions from '../../LanguageProvider/actions';
 import LanguageProvider from '../../LanguageProvider';
 
 import configureStore from '../../../configureStore';
@@ -14,49 +13,43 @@ describe('<LocaleToggle />', () => {
   let store;
 
   beforeAll(() => {
-    store = configureStore({}, browserHistory);
+    actions.changeLocale = jest.fn(() => ({ type: 'test' }));
+    store = configureStore({});
   });
 
-  it('should render the default language messages', () => {
-    const renderedComponent = shallow(
+  it('should match the snapshot', () => {
+    const { container } = render(
       <Provider store={store}>
         <LanguageProvider messages={translationMessages}>
           <LocaleToggle />
         </LanguageProvider>
       </Provider>,
     );
-    expect(renderedComponent.contains(<LocaleToggle />)).toBe(true);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should present the default `en` english language option', () => {
-    const renderedComponent = mount(
+    const { queryByDisplayValue } = render(
       <Provider store={store}>
         <LanguageProvider messages={translationMessages}>
           <LocaleToggle />
         </LanguageProvider>
       </Provider>,
     );
-    expect(renderedComponent.contains(<option value="en">en</option>)).toBe(
-      true,
-    );
+    expect(queryByDisplayValue('en')).toBeInTheDocument();
   });
 
-  describe('mapDispatchToProps', () => {
-    describe('onLocaleToggle', () => {
-      it('should be injected', () => {
-        const dispatch = jest.fn();
-        const result = mapDispatchToProps(dispatch);
-        expect(result.onLocaleToggle).toBeDefined();
-      });
-
-      it('should dispatch changeLocale when called', () => {
-        const dispatch = jest.fn();
-        const result = mapDispatchToProps(dispatch);
-        const locale = 'de';
-        const evt = { target: { value: locale } };
-        result.onLocaleToggle(evt);
-        expect(dispatch).toHaveBeenCalledWith(changeLocale(locale));
-      });
-    });
+  it('should dispatch changeLocale when user selects a new option', () => {
+    const { container } = render(
+      <Provider store={store}>
+        <LanguageProvider messages={translationMessages}>
+          <LocaleToggle />
+        </LanguageProvider>
+      </Provider>,
+    );
+    const newLocale = 'de';
+    const select = container.querySelector('select');
+    fireEvent.change(select, { target: { value: newLocale } });
+    expect(actions.changeLocale).toHaveBeenCalledWith(newLocale);
   });
 });

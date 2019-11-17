@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> should render a div 1`] = `
+<div>
+  <a
+    class="A-br8h0y-0 A-p44m4v-0 cYguYL"
+    href="https://www.reactboilerplate.com/"
+  >
+    <img
+      alt="react-boilerplate - Logo"
+      class="Img-sc-9pa8on-0 eepIiv"
+      src="IMAGE_MOCK"
+    />
+  </a>
+  <div
+    class="NavBar-sc-3b48xb-0 ioQxlc"
+  >
+    <a
+      class="HeaderLink-sc-1mtyaiv-0 hMiTYG"
+      href="/"
+    >
+      <span>
+        Home
+      </span>
+    </a>
+    <a
+      class="HeaderLink-sc-1mtyaiv-0 hMiTYG"
+      href="/features"
+    >
+      <span>
+        Features
+      </span>
+    </a>
+  </div>
+</div>
+`;

@@ -1,29 +1,34 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import 'jest-styled-components';
 
 import A from '../A';
 
+const renderComponent = (props = {}) => {
+  const utils = render(<A {...props}>Link</A>);
+  const link = utils.queryByText('Link');
+  return { ...utils, link };
+};
+
 describe('<A />', () => {
   it('should match the snapshot', () => {
-    const renderedComponent = renderer.create(<A />).toJSON();
-    expect(renderedComponent).toMatchSnapshot();
+    const { container } = renderComponent();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = mount(<A />);
-    expect(renderedComponent.find('a').prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const { link } = renderComponent();
+    expect(link).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = mount(<A id={id} />);
-    expect(renderedComponent.find('a').prop('id')).toEqual(id);
+    const { link } = renderComponent({ id });
+    expect(link).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = mount(<A attribute="test" />);
-    expect(renderedComponent.find('a').prop('attribute')).toBeUndefined();
+    const { link } = renderComponent({ attribute: 'test' });
+    expect(link).not.toHaveAttribute('attribute');
   });
 });

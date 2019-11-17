@@ -1,18 +1,24 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import H3 from '../index';
 
+const children = 'Text';
+const renderComponent = (props = {}) => {
+  const utils = render(<H3 {...props}>{children}</H3>);
+  const heading = utils.queryByText(children);
+  return { ...utils, heading };
+};
+
 describe('<H3 />', () => {
   it('should render a prop', () => {
-    const id = 'testId';
-    const renderedComponent = shallow(<H3 id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const id = 'test';
+    const { heading } = renderComponent({ id });
+    expect(heading).toHaveAttribute('id', id);
   });
 
   it('should render its text', () => {
-    const children = 'Text';
-    const renderedComponent = shallow(<H3>{children}</H3>);
-    expect(renderedComponent.contains(children)).toBe(true);
+    const { heading } = renderComponent();
+    expect(heading).toHaveTextContent(children);
   });
 });

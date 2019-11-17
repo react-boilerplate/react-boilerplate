@@ -1,27 +1,34 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import Section from '../Section';
 
+const renderComponent = (props = {}) => {
+  const utils = render(<Section {...props} />);
+  const element = utils.container.firstChild;
+  return { ...utils, element };
+};
+
 describe('<Section />', () => {
-  it('should render an <section> tag', () => {
-    const renderedComponent = shallow(<Section />);
-    expect(renderedComponent.type()).toEqual('section');
+  it('should render a <section> tag', () => {
+    const { element } = renderComponent();
+    expect(element).toBeInTheDocument();
+    expect(element.tagName).toEqual('SECTION');
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = shallow(<Section />);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const { element } = renderComponent();
+    expect(element).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<Section id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { element } = renderComponent({ id });
+    expect(element).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Section attribute="test" />);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const { element } = renderComponent({ attribute: 'test' });
+    expect(element).not.toHaveAttribute('attribute');
   });
 });

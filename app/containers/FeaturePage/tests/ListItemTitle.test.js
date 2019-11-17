@@ -1,27 +1,34 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import ListItemTitle from '../ListItemTitle';
 
+const renderComponent = (props = {}) => {
+  const utils = render(<ListItemTitle {...props} />);
+  const element = utils.container.firstChild;
+  return { ...utils, element };
+};
+
 describe('<ListItemTitle />', () => {
   it('should render an <p> tag', () => {
-    const renderedComponent = shallow(<ListItemTitle />);
-    expect(renderedComponent.type()).toEqual('p');
+    const { element } = renderComponent();
+    expect(element).toBeInTheDocument();
+    expect(element.tagName).toEqual('P');
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = shallow(<ListItemTitle />);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const { element } = renderComponent();
+    expect(element).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<ListItemTitle id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { element } = renderComponent({ id });
+    expect(element).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<ListItemTitle attribute="test" />);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const { element } = renderComponent({ attribute: 'test' });
+    expect(element).not.toHaveAttribute('attribute');
   });
 });

@@ -1,4 +1,4 @@
-# The Hitchhikers Guide to `react-boilerplate`
+# The Hitchhiker's Guide to `react-boilerplate`
 
 The [`README.md`](https://github.com/react-boilerplate/react-boilerplate#features) gives you adequate information on how to clone boilerplate files, install dependencies and launch the example app.
 
@@ -19,13 +19,13 @@ Here's a curated list of packages that you should be at least familiar with befo
 - [ ] [Redux](http://redux.js.org/)
 - [ ] [Redux Saga](https://redux-saga.github.io/redux-saga/)
 - [ ] [Reselect](https://github.com/reactjs/reselect)
-- [ ] [ImmutableJS](https://facebook.github.io/immutable-js/)
+- [ ] [Immer](https://github.com/mweststrate/immer)
 - [ ] [Styled Components](https://github.com/styled-components/styled-components)
 
 ### Unit Testing
 
 - [ ] [Jest](http://facebook.github.io/jest/)
-- [ ] [Enzyme](http://airbnb.io/enzyme/)
+- [ ] [react-testing-library](https://github.com/testing-library/react-testing-library)
 
 ### Linting
 
@@ -35,8 +35,8 @@ Here's a curated list of packages that you should be at least familiar with befo
 
 Note that while `react-boilerplate` includes a lot of features, many of them are optional and you can find instructions in the docs on how to remove...
 
-- [...`redux-saga` or `reselect`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/js/remove.md).
-- ...[offline-first, add to homescreen, performant web font loading and image optimisation](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/remove.md)
+- [`redux-saga` or `reselect`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/js/remove.md)
+- [offline-first, add to homescreen, performant web font loading and image optimisation](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/remove.md)
 - [`sanitize.css`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/css/remove.md)
 - [i18n (i.e. `react-intl`)](https://github.com/react-boilerplate/react-boilerplate/blob/0f88f55ed905f8432c3dd7b452d713df5fb76d8e/docs/js/i18n.md#removing-i18n-and-react-intl)
 
@@ -96,7 +96,7 @@ Webpack requires an entry point to your application. Think of it as a door to yo
 
 `app/app.js` is one of the biggest files of the boilerplate. It contains all the global setup to make sure your app runs smoothly. Let's break its contents down:
 
-- `@babel/polyfill` is imported. This enables cool stuff like generator functions, `Promise`s, etc.
+- `react-app-polyfill` is imported to enable compatibility with many browsers and cool stuff like generator functions, Promises, etc.
 - A `history` object is created, which remembers all the browsing history for your app. This is used by the ConnectedRouter to know which pages your users visit. (Very useful for analytics, by the way.)
 - A redux `store` is instantiated.
 - `ReactDOM.render()` not only renders the [root react component](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/index.js) called `<App />`, of your application, but it renders it with `<Provider />`, `<LanguageProvider />` and `<ConnectedRouter />`.
@@ -156,7 +156,7 @@ Imagine that your application is fetching data in json format from a back-end. F
 2.  `API_SUCCESS`: Upon dispatching this, your application should show the data to the user.
 3.  `API_FAILURE`: Upon dispatching this, your application should show an error message to the user.
 
-And this is only for **_one_** API call. In a real-world scenario, one page of your application could be making tens of API calls. How do we manage all of them effectively? This essentially boils down to controlling the flow of your application. What if there was a background process that handles multiple actions simultaneously, communicates with redux store and react containers at the same time? This is where redux-saga comes into the picture.
+And this is only for **_one_** API call. In a real-world scenario, one page of your application could be making tens of API calls. How do we manage all of them effectively? This essentially boils down to controlling the flow of your application. What if there was a background process that handles multiple actions simultaneously, communicates with the Redux store and react containers at the same time? This is where redux-saga comes into the picture.
 
 The mental model is that a saga is like a separate thread in your application that's solely responsible for side effects. `redux-saga` is a redux middleware, which means this thread can be started, paused and cancelled from the main application with normal redux actions, it has access to the full redux application state and it can dispatch redux actions as well.
 
@@ -182,16 +182,18 @@ The example application is a simple service which shows a list of repositories f
 
 Run `npm start` to launch the application. If you start browsing at [https://localhost:3000](https://localhost:3000), by default you will be navigated to the home page. Here, notice that route is `"/"`, so the [`<HomePage />`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/HomePage/index.js) container will be mounted. It is responsible for rendering a form with a textbox and a list of repositories.
 
-- `mapDispatchToProps()`: Generally, we provide outgoing action creators (functions that create [action](http://redux.js.org/docs/basics/Actions.html) objects) to the react component through this method. Notice that for every keypress in textbox, your state will be updated by dispatching a `changeUsername` action to the store. So at any point in time, your Redux state will hold the currently typed username. When you submit the form, another action, `loadRepos` will be dispatched.
+The container reads state and interacts with it using two React Hooks provided by `react-redux`:
 
-- `mapStateToProps()`: Generally, we provide incoming state from Redux store to the react component through this method. Notice that the we do not provide the entire state to the component, simply because we don't want the react component to have access to irrelevant data. The state will be filtered by selectors such as `selectRepos`, `selectUsername` etc.
+- `dispatch = useDispatch()`: The React component dispatches outgoing actions by passing action creators (functions that create [action](http://redux.js.org/docs/basics/Actions.html) objects) to the dispatch method. Notice that for every keypress in textbox, your state will be updated by dispatching a `changeUsername` action to the store. So at any point in time, your Redux state will hold the currently typed username. When you submit the form, another action, `loadRepos` will be dispatched.
 
-Together these two methods work like magic. When you type something in the textbox the following things will happen in a sequential manner:
+- `state = useSelector()`: We provide incoming state from the Redux store to the React component through this method. Notice that we do not provide the entire state to the component, simply because we don't want the React component to have access to irrelevant data. The state will be filtered by selectors such as `selectRepos`, `selectUsername`, etc.
 
-1.  `changeUsername()` will send text to the Redux store. The text can be accessed using `evt.target.value`. Here, `evt` is the `onChange` event emmited by pressing a key.
+Together these two Hooks work like magic. When you type something in the textbox the following things will happen in a sequential manner:
+
+1.  `changeUsername()` will send text to the Redux store. The text can be accessed using `evt.target.value`. Here, `evt` is the `onChange` event emitted by pressing a key.
 2.  The Redux store will consult with its corresponding reducer, since a reducer knows what to do with the data.
 3.  When a reducer computes a new state tree, the store will update its state with the newly typed data.
-4.  An update has occured in the state, therefore `mapStateToProps()` will be triggered and your react component will get the new data.
+4.  An update has occured in the state, therefore `useSelector()` will be triggered and your react component will get the new data.
 5.  The updated data will be set as the `value` to your `<Input />`.
 
 _So you see, if you type something in the textbox, it will not be directly reflected in the DOM. It must pass through redux. Redux will update the state and return it to the component. It's the component's responsibility to show the updated data._
@@ -205,10 +207,10 @@ Sagas are nothing but ES6 [generator functions](https://developer.mozilla.org/en
 Check out [`HomePage/saga.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/HomePage/saga.js). It can be confusing for untrained eyes. The API of `redux-saga` is self-descriptive once you've seen it, so let's go over what happens in there:
 
 - You can `fork` a saga to send it to the background. That way, your code will not get blocked even when the saga is continuously running.
-- `takeLatest` is used for listening for a particular action. In this case, it will wait for a `LOAD_REPOS` action. Whenever you disptach this action, the saga will understand that you want to fetch repos from github's public API by calling `getRepos()`.
-- If the API successfully returns some data, a `reposLoaded()` action will be dispatched which carries the data. When redux store receives this action, [a reducer](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/reducer.js) will set incoming data in the new state tree.
+- `takeLatest` is used for listening for a particular action. In this case, it will wait for a `LOAD_REPOS` action. Whenever you dispatch this action, the saga will understand that you want to fetch repos from github's public API by calling `getRepos()`.
+- If the API successfully returns some data, a `reposLoaded()` action will be dispatched which carries the data. When the Redux store receives this action, [a reducer](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/reducer.js) will set incoming data in the new state tree.
 
-_An update has occurred!_ `mapStateToProps()` will be triggered. `<HomePage />` will receive the new data and rerender.
+_An update has occurred!_ `useSelector()` will be triggered. `<HomePage />` will receive the new data and rerender.
 
 ## Why all this fuss just to load a list of repos?
 

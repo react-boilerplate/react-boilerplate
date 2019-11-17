@@ -1,29 +1,35 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import 'jest-styled-components';
 
 import RepoLink from '../RepoLink';
 
+const renderComponent = (props = {}) => {
+  const text = 'Test';
+  const utils = render(<RepoLink {...props}>{text}</RepoLink>);
+  const element = utils.queryByText(text);
+  return { ...utils, element };
+};
+
 describe('<RepoLink />', () => {
   it('should match the snapshot', () => {
-    const renderedComponent = renderer.create(<RepoLink />).toJSON();
-    expect(renderedComponent).toMatchSnapshot();
+    const { element } = renderComponent();
+    expect(element).toMatchSnapshot();
   });
 
   it('should have a className attribute', () => {
-    const renderedComponent = shallow(<RepoLink />);
-    expect(renderedComponent.prop('className')).toBeDefined();
+    const { element } = renderComponent();
+    expect(element).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<RepoLink id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { element } = renderComponent({ id });
+    expect(element).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<RepoLink attribute="test" />);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const { element } = renderComponent({ attribute: 'test' });
+    expect(element).not.toHaveAttribute('attribute');
   });
 });

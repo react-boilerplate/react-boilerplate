@@ -1,27 +1,34 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import Wrapper from '../Wrapper';
 
+const renderComponent = (props = {}) => {
+  const utils = render(<Wrapper {...props}>Wrapper</Wrapper>);
+  const wrapper = utils.queryByText('Wrapper');
+  return { ...utils, wrapper };
+};
+
 describe('<Wrapper />', () => {
-  it('should render an <footer> tag', () => {
-    const renderedComponent = shallow(<Wrapper />);
-    expect(renderedComponent.type()).toEqual('footer');
+  it('should render a <footer> tag', () => {
+    const { wrapper } = renderComponent();
+    expect(wrapper).toBeInTheDocument();
+    expect(wrapper.tagName).toBe('FOOTER');
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = shallow(<Wrapper />);
-    expect(renderedComponent.prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const { wrapper } = renderComponent();
+    expect(wrapper).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<Wrapper id={id} />);
-    expect(renderedComponent.prop('id')).toEqual(id);
+    const { wrapper } = renderComponent({ id });
+    expect(wrapper).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Wrapper attribute="test" />);
-    expect(renderedComponent.prop('attribute')).toBeUndefined();
+    const { wrapper } = renderComponent({ attribute: 'test' });
+    expect(wrapper).not.toHaveAttribute('attribute');
   });
 });

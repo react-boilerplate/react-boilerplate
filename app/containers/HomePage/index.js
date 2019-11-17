@@ -2,18 +2,16 @@
  * HomePage
  *
  * This is the first thing users see of our App, at the '/' route
+ *
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
+import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import { useSelector, useDispatch } from 'react-redux';
 
-import injectReducer from 'utils/injectReducer';
-import injectSaga from 'utils/injectSaga';
+import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import {
   makeSelectRepos,
   makeSelectLoading,
@@ -33,106 +31,81 @@ import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-/* eslint-disable react/prefer-stateless-function */
-export class HomePage extends React.PureComponent {
-  /**
-   * when initial state username is not null, submit the form to load repos
-   */
-  componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
-      this.props.onSubmitForm();
-    }
-  }
+const key = 'home';
 
-  render() {
-    const { loading, error, repos } = this.props;
-    const reposListProps = {
-      loading,
-      error,
-      repos,
-    };
-
-    return (
-      <article>
-        <Helmet>
-          <title>Home Page</title>
-          <meta
-            name="description"
-            content="A React.js Boilerplate application homepage"
-          />
-        </Helmet>
-        <div>
-          <CenteredSection>
-            <H2>
-              <FormattedMessage {...messages.startProjectHeader} />
-            </H2>
-            <p>
-              <FormattedMessage {...messages.startProjectMessage} />
-            </p>
-          </CenteredSection>
-          <Section>
-            <H2>
-              <FormattedMessage {...messages.trymeHeader} />
-            </H2>
-            <Form onSubmit={this.props.onSubmitForm}>
-              <label htmlFor="username">
-                <FormattedMessage {...messages.trymeMessage} />
-                <AtPrefix>
-                  <FormattedMessage {...messages.trymeAtPrefix} />
-                </AtPrefix>
-                <Input
-                  id="username"
-                  type="text"
-                  placeholder="mxstbr"
-                  value={this.props.username}
-                  onChange={this.props.onChangeUsername}
-                />
-              </label>
-            </Form>
-            <ReposList {...reposListProps} />
-          </Section>
-        </div>
-      </article>
-    );
-  }
-}
-
-HomePage.propTypes = {
-  loading: PropTypes.bool,
-  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  onSubmitForm: PropTypes.func,
-  username: PropTypes.string,
-  onChangeUsername: PropTypes.func,
-};
-
-export function mapDispatchToProps(dispatch) {
-  return {
-    onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
-    onSubmitForm: evt => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadRepos());
-    },
-  };
-}
-
-const mapStateToProps = createStructuredSelector({
+const stateSelector = createStructuredSelector({
   repos: makeSelectRepos(),
   username: makeSelectUsername(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
 });
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+export default function HomePage() {
+  const { repos, username, loading, error } = useSelector(stateSelector);
 
-const withReducer = injectReducer({ key: 'home', reducer });
-const withSaga = injectSaga({ key: 'home', saga });
+  const dispatch = useDispatch();
 
-export default compose(
-  withReducer,
-  withSaga,
-  withConnect,
-)(HomePage);
+  const onChangeUsername = evt => dispatch(changeUsername(evt.target.value));
+  const onSubmitForm = evt => {
+    if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+    if (!username) return;
+    dispatch(loadRepos());
+  };
+
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
+
+  useEffect(() => {
+    // When initial state username is not null, submit the form to load repos
+    if (username && username.trim().length > 0) onSubmitForm();
+  }, []);
+
+  const reposListProps = {
+    loading,
+    error,
+    repos,
+  };
+
+  return (
+    <article>
+      <Helmet>
+        <title>Home Page</title>
+        <meta
+          name="description"
+          content="A React Boilerplate application homepage"
+        />
+      </Helmet>
+      <div>
+        <CenteredSection>
+          <H2>
+            <FormattedMessage {...messages.startProjectHeader} />
+          </H2>
+          <p>
+            <FormattedMessage {...messages.startProjectMessage} />
+          </p>
+        </CenteredSection>
+        <Section>
+          <H2>
+            <FormattedMessage {...messages.trymeHeader} />
+          </H2>
+          <Form onSubmit={onSubmitForm}>
+            <label htmlFor="username">
+              <FormattedMessage {...messages.trymeMessage} />
+              <AtPrefix>
+                <FormattedMessage {...messages.trymeAtPrefix} />
+              </AtPrefix>
+              <Input
+                id="username"
+                type="text"
+                placeholder="mxstbr"
+                value={username}
+                onChange={onChangeUsername}
+              />
+            </label>
+          </Form>
+          <ReposList {...reposListProps} />
+        </Section>
+      </div>
+    </article>
+  );
+}

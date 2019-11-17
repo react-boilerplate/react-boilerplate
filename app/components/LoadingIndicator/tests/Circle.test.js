@@ -1,22 +1,22 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import Circle from '../Circle';
 
 describe('<Circle />', () => {
-  it('should render an <div> tag', () => {
-    const renderedComponent = mount(<Circle />);
-    expect(renderedComponent.find('div')).toHaveLength(1);
+  it('should render a <div> tag', () => {
+    const { container } = render(<Circle />);
+    expect(container.firstChild.tagName).toEqual('DIV');
   });
 
-  it('should have a className attribute', () => {
-    const renderedComponent = mount(<Circle />);
-    expect(renderedComponent.find('div').prop('className')).toBeDefined();
+  it('should have a class attribute', () => {
+    const { container } = render(<Circle />);
+    expect(container.firstChild).toHaveAttribute('class');
   });
 
   it('should not adopt attributes', () => {
     const id = 'test';
-    const renderedComponent = mount(<Circle id={id} />);
-    expect(renderedComponent.find('div').prop('id')).toBeUndefined();
+    const { container } = render(<Circle id={id} />);
+    expect(container.firstChild).not.toHaveAttribute('id');
   });
 });

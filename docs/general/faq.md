@@ -1,7 +1,5 @@
 # Frequently Asked Questions
 
-## Table of Contents
-
 - [Where are Babel, Prettier and ESLint configured?](#where-are-babel-prettier-and-eslint-configured)
 - [Where are the files coming from when I run `npm start`?](#where-are-the-files-coming-from-when-i-run-npm-start)
 - [How do I fix `Error: listen EADDRINUSE 127.0.0.1:3000`?](#how-do-i-fix-error-listen-eaddrinuse-1270013000)
@@ -21,7 +19,7 @@
 
 ## Where are Babel, Prettier and ESLint configured?
 
-Babel is configured inside package.json. ESLint and Prettier have their own config files in the root of the project.
+ESLint, Babel and Prettier all have their own config files in the root of the project. Same for Jest and stylelint.
 
 ## Where are the files coming from when I run `npm start`?
 
@@ -50,7 +48,7 @@ The fix is to kill the process and rerun `npm start`.
     >
     > Note: If nothing is listed, you can try `lsof -i tcp:3000`
 
-1.  Then run
+2.  Then run
     ```Shell
     kill -9 YOUR_PID
     ```
@@ -242,20 +240,21 @@ const MyStyledComponent = styled.div`
 
 **2) Import the CSS in the `<head>` of your `index.html` manually**
 
-This is a good choice if you are having issues with third-party styles and `global-styles.js`
+This is a good choice if you are having issues with third-party styles
 
 ```javascript
 // Import bootstrap style (e.g. move this into the <head> of index.html)
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-// Import CSS reset and Global Styles
-import './global-styles';
 ```
 
-More information is available in the [official documents](https://github.com/styled-components/styled-components/blob/master/docs/existing-css.md).
+**3) Change the position of `<GlobalStyle>` in the rendering of `<App>`**
+
+You can do that inside `containers/App/index.js`.
+
+More information is available in the [official documentation](https://github.com/styled-components/styled-components/blob/master/docs/existing-css.md).
 
 ## Have another question?
 
 Submit an [issue](https://github.com/react-boilerplate/react-boilerplate/issues),
-hop onto the [Gitter channel](https://gitter.im/mxstbr/react-boilerplate)
+hop onto the [Spectrum chat](https://spectrum.chat/react-boilerplate)
 or contact Max direct on [twitter](https://twitter.com/mxstbr)!

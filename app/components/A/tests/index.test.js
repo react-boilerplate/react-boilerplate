@@ -3,50 +3,53 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import A from '../index';
 
 const href = 'http://mxstbr.com/';
 const children = <h1>Test</h1>;
-const renderComponent = (props = {}) =>
-  shallow(
+const renderComponent = (props = {}) => {
+  const utils = render(
     <A href={href} {...props}>
       {children}
     </A>,
   );
+  const link = utils.container.querySelector('a');
+  return { ...utils, link };
+};
 
 describe('<A />', () => {
   it('should render an <a> tag', () => {
-    const renderedComponent = renderComponent();
-    expect(renderedComponent.type()).toEqual('a');
+    const { link } = renderComponent();
+    expect(link).toBeInTheDocument();
   });
 
   it('should have an href attribute', () => {
-    const renderedComponent = renderComponent();
-    expect(renderedComponent.prop('href')).toEqual(href);
+    const { link } = renderComponent();
+    expect(link).toHaveAttribute('href', href);
   });
 
   it('should have children', () => {
-    const renderedComponent = renderComponent();
-    expect(renderedComponent.contains(children)).toEqual(true);
+    const { link } = renderComponent();
+    expect(link.children).toHaveLength(1);
   });
 
-  it('should have a className attribute', () => {
+  it('should have a class attribute', () => {
     const className = 'test';
-    const renderedComponent = renderComponent({ className });
-    expect(renderedComponent.find('a').hasClass(className)).toEqual(true);
+    const { link } = renderComponent({ className });
+    expect(link).toHaveClass(className);
   });
 
   it('should adopt a target attribute', () => {
     const target = '_blank';
-    const renderedComponent = renderComponent({ target });
-    expect(renderedComponent.prop('target')).toEqual(target);
+    const { link } = renderComponent({ target });
+    expect(link).toHaveAttribute('target', target);
   });
 
   it('should adopt a type attribute', () => {
     const type = 'text/html';
-    const renderedComponent = renderComponent({ type });
-    expect(renderedComponent.prop('type')).toEqual(type);
+    const { link } = renderComponent({ type });
+    expect(link).toHaveAttribute('type', type);
   });
 });

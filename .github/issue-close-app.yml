@@ -1,0 +1,19 @@
+comment: "This issue was automatically closed because it does not follow either one of react-boilerplate's templates.
+
+If your issue is indeed a bug report or a feature request, please open a new issue and fill out the relevant template instead of deleting it.
+
+If you're reporting a bug, it's especially important that you provide detailed steps for how to reproduce it.
+
+Please note that requests for help should go to [our Spectrum channel](https://spectrum.chat/react-boilerplate?tab=posts)."
+
+issueConfigs:
+  - content:
+      - Description
+      - Steps to reproduce
+      - Versions
+
+  - content:
+      - Is your feature request related to a problem
+      - Describe the solution you'd like
+      - Describe alternatives you've considered
+      - Additional context

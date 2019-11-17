@@ -1,9 +1,7 @@
 /**
  * Asynchronously loads the component for HomePage
  */
-import Loadable from 'react-loadable';
 
-export default Loadable({
-  loader: () => import('./index'),
-  loading: () => null,
-});
+import loadable from 'utils/loadable';
+
+export default loadable(() => import('./index'));
