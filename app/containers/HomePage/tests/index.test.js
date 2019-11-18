@@ -31,6 +31,7 @@ describe('<HomePage />', () => {
   beforeAll(() => {
     // loadRepos is mocked so that we can spy on it but also so that it doesn't trigger a network request
     appActions.loadRepos = jest.fn(() => ({ type: '' }));
+    appActions.loadRepos.type = 'app/loadRepos';
   });
 
   beforeEach(() => {
