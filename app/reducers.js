@@ -6,7 +6,7 @@ import { combineReducers } from '@reduxjs/toolkit';
 import { connectRouter } from 'connected-react-router';
 
 import history from 'utils/history';
-import globalReducer from 'containers/App/reducer';
+import globalReducer from 'containers/App/appSlice';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 
 /**
