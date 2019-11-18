@@ -40,7 +40,7 @@ export default function configureAppStore(initialState = {}, history) {
 
   const store = configureStore({
     reducer: createReducer(),
-    initialState,
+    initialState: preloadedState,
     middleware: [...getDefaultMiddleware(), ...middlewares],
     enhancers,
   });
