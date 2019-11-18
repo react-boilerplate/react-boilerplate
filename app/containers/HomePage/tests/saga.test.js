@@ -40,7 +40,9 @@ describe('getRepos Saga', () => {
       },
     ];
     const putDescriptor = getReposGenerator.next(response).value;
-    expect(putDescriptor).toEqual(put(reposLoaded({ response, username })));
+    expect(putDescriptor).toEqual(
+      put(reposLoaded({ repos: response, username })),
+    );
   });
 
   it('should call the repoLoadingError action if the response errors', () => {
