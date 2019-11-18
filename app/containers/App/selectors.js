@@ -2,7 +2,7 @@
  * The global state selectors
  */
 
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
 import { initialState } from './reducer';
 
 const selectGlobal = state => state.global || initialState;
