@@ -83,7 +83,6 @@
     "react-intl": "2.9.0",
     "react-redux": "7.1.1",
     "react-router-dom": "5.1.2",
-    "redux": "4.0.4",
     "redux-injectors": "1.2.0",
     "redux-saga": "1.1.1",
     "reselect": "4.0.0",
