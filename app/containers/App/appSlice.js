@@ -11,11 +11,12 @@ export const initialState = {
   },
 };
 
+/* eslint-disable default-case, no-param-reassign */
 const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    loadRepos(state, action) {
+    loadRepos(state) {
       state.loading = true;
       state.error = false;
       state.userData.repositories = false;
