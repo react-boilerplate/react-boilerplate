@@ -59,6 +59,7 @@
     "babel-core": "7.0.0-bridge.0"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "1.0.4",
     "chalk": "2.4.2",
     "compression": "1.7.4",
     "connected-react-router": "6.5.2",
@@ -83,8 +84,8 @@
     "react-redux": "7.1.1",
     "react-router-dom": "5.1.2",
     "redux": "4.0.4",
-    "redux-saga": "1.1.1",
     "redux-injectors": "1.2.0",
+    "redux-saga": "1.1.1",
     "reselect": "4.0.0",
     "sanitize.css": "11.0.0",
     "styled-components": "4.4.0"
