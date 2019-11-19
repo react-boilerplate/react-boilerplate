@@ -10,15 +10,16 @@ import { Helmet } from 'react-helmet-async';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
+
 import H2 from 'components/H2';
 import ReposList from 'components/ReposList';
-import AtPrefix from './AtPrefix';
-import CenteredSection from './CenteredSection';
-import Form from './Form';
-import Input from './Input';
-import Section from './Section';
+import AtPrefix from './components/AtPrefix';
+import CenteredSection from './components/CenteredSection';
+import Form from './components/Form';
+import Input from './components/Input';
+import Section from './components/Section';
+
 import messages from './messages';
 import { reducer, loadRepos, changeUsername } from './slice';
 import {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import CenteredSection from '../CenteredSection';
+import CenteredSection from '../components/CenteredSection';
 
 const renderComponent = (props = {}) => {
   const utils = render(<CenteredSection {...props} />);
