@@ -12,11 +12,6 @@ import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
-import {
-  makeSelectRepos,
-  makeSelectLoading,
-  makeSelectError,
-} from 'containers/App/selectors';
 import H2 from 'components/H2';
 import ReposList from 'components/ReposList';
 import AtPrefix from './AtPrefix';
@@ -25,13 +20,14 @@ import Form from './Form';
 import Input from './Input';
 import Section from './Section';
 import messages from './messages';
-import { loadRepos } from '../App/appSlice';
-import { changeUsername } from './actions';
-import { makeSelectUsername } from './selectors';
-import reducer from './reducer';
+import { reducer, loadRepos, changeUsername } from './slice';
+import {
+  makeSelectUsername,
+  makeSelectRepos,
+  makeSelectLoading,
+  makeSelectError,
+} from './selectors';
 import saga from './saga';
-
-const key = 'home';
 
 const stateSelector = createStructuredSelector({
   repos: makeSelectRepos(),
@@ -41,19 +37,20 @@ const stateSelector = createStructuredSelector({
 });
 
 export default function HomePage() {
-  const { repos, username, loading, error } = useSelector(stateSelector);
+  useInjectReducer({ key: 'home', reducer });
+  useInjectSaga({ key: 'home', saga });
 
   const dispatch = useDispatch();
+  const { repos, username, loading, error } = useSelector(stateSelector);
 
-  const onChangeUsername = evt => dispatch(changeUsername(evt.target.value));
+  const onChangeUsername = evt =>
+    dispatch(changeUsername({ username: evt.target.value }));
+
   const onSubmitForm = evt => {
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
     if (!username) return;
     dispatch(loadRepos());
   };
-
-  useInjectReducer({ key, reducer });
-  useInjectSaga({ key, saga });
 
   useEffect(() => {
     // When initial state username is not null, submit the form to load repos

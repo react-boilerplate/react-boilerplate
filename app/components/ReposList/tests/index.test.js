@@ -1,10 +1,8 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
-import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 
 import ReposList from '../index';
-import configureStore from '../../../configureStore';
 
 describe('<ReposList />', () => {
   it('should render the loading indicator when its loading', () => {
@@ -22,9 +20,9 @@ describe('<ReposList />', () => {
   });
 
   it('should render the repositories if loading was successful', () => {
-    const store = configureStore({ global: { currentUser: 'mxstbr' } });
     const repos = [
       {
+        isOwnRepo: true,
         owner: {
           login: 'mxstbr',
         },
@@ -35,11 +33,9 @@ describe('<ReposList />', () => {
       },
     ];
     const { container } = render(
-      <Provider store={store}>
-        <IntlProvider locale="en">
-          <ReposList repos={repos} error={false} />
-        </IntlProvider>
-      </Provider>,
+      <IntlProvider locale="en">
+        <ReposList repos={repos} error={false} />
+      </IntlProvider>,
     );
 
     expect(container.firstChild).toMatchSnapshot();

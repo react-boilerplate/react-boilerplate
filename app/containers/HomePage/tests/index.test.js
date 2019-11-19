@@ -7,12 +7,10 @@ import { render, cleanup, fireEvent } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 
-import * as appActions from 'containers/App/appSlice';
 import { HelmetProvider } from 'react-helmet-async';
 import configureStore from '../../../configureStore';
 import HomePage from '../index';
-import { initialState } from '../reducer';
-import { changeUsername } from '../actions';
+import * as slice from '../slice';
 
 const renderHomePage = store =>
   render(
@@ -29,14 +27,14 @@ describe('<HomePage />', () => {
   let store;
 
   beforeAll(() => {
-    // loadRepos is mocked so that we can spy on it but also so that it doesn't trigger a network request
-    appActions.loadRepos = jest.fn(() => ({ type: '' }));
-    appActions.loadRepos.type = 'app/loadRepos';
+    // slice.loadRepos is mocked so that we can spy on it but also so that it doesn't trigger a network request
+    slice.loadRepos = jest.fn(() => ({ type: '' }));
+    slice.loadRepos.type = 'app/slice.loadRepos';
   });
 
   beforeEach(() => {
     store = configureStore({});
-    appActions.loadRepos.mockClear();
+    slice.loadRepos.mockClear();
   });
 
   afterEach(cleanup);
@@ -50,8 +48,8 @@ describe('<HomePage />', () => {
 
   it("shouldn't fetch repos on mount (if username is empty)", () => {
     renderHomePage(store);
-    expect(initialState.username).toBe('');
-    expect(appActions.loadRepos).not.toHaveBeenCalled();
+    expect(slice.initialState.username).toBe('');
+    expect(slice.loadRepos).not.toHaveBeenCalled();
   });
 
   it("shouldn't fetch repos if the form is submitted when the username is empty", () => {
@@ -60,20 +58,20 @@ describe('<HomePage />', () => {
     const form = container.querySelector('form');
     fireEvent.submit(form);
 
-    expect(appActions.loadRepos).not.toHaveBeenCalled();
+    expect(slice.loadRepos).not.toHaveBeenCalled();
   });
 
   it("should fetch repos if the form is submitted when the username isn't empty", () => {
     const { container } = renderHomePage(store);
 
-    store.dispatch(changeUsername('julienben'));
+    store.dispatch(slice.changeUsername({ username: 'julienben' }));
 
     const input = container.querySelector('input');
     fireEvent.change(input, { target: { value: 'julienben' } });
-    expect(appActions.loadRepos).not.toHaveBeenCalled();
+    expect(slice.loadRepos).not.toHaveBeenCalled();
 
     const form = container.querySelector('form');
     fireEvent.submit(form);
-    expect(appActions.loadRepos).toHaveBeenCalled();
+    expect(slice.loadRepos).toHaveBeenCalled();
   });
 });

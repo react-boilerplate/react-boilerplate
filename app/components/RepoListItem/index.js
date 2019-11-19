@@ -6,36 +6,28 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import { FormattedNumber } from 'react-intl';
 
-import { makeSelectCurrentUser } from 'containers/App/selectors';
 import ListItem from 'components/ListItem';
 import IssueIcon from './IssueIcon';
 import IssueLink from './IssueLink';
 import RepoLink from './RepoLink';
 import Wrapper from './Wrapper';
 
-const stateSelector = createStructuredSelector({
-  currentUser: makeSelectCurrentUser(),
-});
-
 export default function RepoListItem({ item }) {
-  const { currentUser } = useSelector(stateSelector);
-  let nameprefix = '';
+  let namePrefix = '';
 
-  // If the repository is owned by a different person than we got the data for
-  // it's a fork and we should show the name of the owner
-  if (item.owner.login !== currentUser) {
-    nameprefix = `${item.owner.login}/`;
+  // If the repository is owned by a different user then the submitted
+  // username, it's a fork and we will show the name of the owner
+  if (!item.isOwnRepo) {
+    namePrefix = `${item.owner.login}/`;
   }
 
   // Put together the content of the repository
   const content = (
     <Wrapper>
       <RepoLink href={item.html_url} target="_blank">
-        {nameprefix + item.name}
+        {namePrefix + item.name}
       </RepoLink>
       <IssueLink href={`${item.html_url}/issues`} target="_blank">
         <IssueIcon />

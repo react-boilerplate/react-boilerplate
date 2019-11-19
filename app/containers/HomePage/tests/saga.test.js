@@ -4,15 +4,28 @@
 
 import { put, takeLatest } from 'redux-saga/effects';
 
-import {
-  loadRepos,
-  reposLoaded,
-  repoLoadingError,
-} from 'containers/App/appSlice';
+import { loadRepos, reposLoaded, repoLoadingError } from '../slice';
 
-import githubData, { getRepos } from '../saga';
+import githubData, { getRepos, addRepoOwnershipKey } from '../saga';
 
-const username = 'mxstbr';
+const username = 'username';
+
+const repos = [
+  {
+    name: 'First repo',
+    owner: {
+      login: 'react-boilerplate',
+    },
+  },
+  {
+    name: 'Second repo',
+    owner: {
+      login: 'react-boilerplate',
+    },
+  },
+];
+
+const reposWithOwnershipKeys = addRepoOwnershipKey({ username, repos });
 
 /* eslint-disable redux-saga/yield-effects */
 describe('getRepos Saga', () => {
@@ -26,29 +39,24 @@ describe('getRepos Saga', () => {
     const selectDescriptor = getReposGenerator.next().value;
     expect(selectDescriptor).toMatchSnapshot();
 
-    const callDescriptor = getReposGenerator.next(username).value;
-    expect(callDescriptor).toMatchSnapshot();
+    const requestDescriptor = getReposGenerator.next(username).value;
+    expect(requestDescriptor).toMatchSnapshot();
+
+    const addRepoOwnershipKeyDescriptor = getReposGenerator.next(repos).value;
+    expect(addRepoOwnershipKeyDescriptor).toMatchSnapshot();
   });
 
   it('should dispatch the reposLoaded action if it requests the data successfully', () => {
-    const response = [
-      {
-        name: 'First repo',
-      },
-      {
-        name: 'Second repo',
-      },
-    ];
-    const putDescriptor = getReposGenerator.next(response).value;
+    const putDescriptor = getReposGenerator.next(reposWithOwnershipKeys).value;
     expect(putDescriptor).toEqual(
-      put(reposLoaded({ repos: response, username })),
+      put(reposLoaded({ repos: reposWithOwnershipKeys })),
     );
   });
 
   it('should call the repoLoadingError action if the response errors', () => {
-    const response = new Error('Some error');
-    const putDescriptor = getReposGenerator.throw(response).value;
-    expect(putDescriptor).toEqual(put(repoLoadingError(response)));
+    const putDescriptor = getReposGenerator.throw(new Error('Some error'))
+      .value;
+    expect(putDescriptor).toEqual(put(repoLoadingError()));
   });
 });
 

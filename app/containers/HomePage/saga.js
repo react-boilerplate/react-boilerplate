@@ -3,14 +3,17 @@
  */
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import {
-  loadRepos,
-  reposLoaded,
-  repoLoadingError,
-} from 'containers/App/appSlice';
-
 import request from 'utils/request';
 import { makeSelectUsername } from 'containers/HomePage/selectors';
+import { loadRepos, reposLoaded, repoLoadingError } from './slice';
+
+// If the repository is owned by a different user then the submitted
+// username, it's a fork and we will show the name of the owner in RepoListItem
+export const addRepoOwnershipKey = ({ username, repos }) =>
+  repos.map(repo => ({
+    isOwnRepo: repo.owner.login === username,
+    ...repo,
+  }));
 
 /**
  * Github repos request/response handler
@@ -23,9 +26,13 @@ export function* getRepos() {
   try {
     // Call our request helper (see 'utils/request')
     const repos = yield call(request, requestURL);
-    yield put(reposLoaded({ repos, username }));
+    const reposWithOwnershipKey = yield call(addRepoOwnershipKey, {
+      username,
+      repos,
+    });
+    yield put(reposLoaded({ repos: reposWithOwnershipKey }));
   } catch (err) {
-    yield put(repoLoadingError(err));
+    yield put(repoLoadingError());
   }
 }
 
