@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { render, fireEvent } from '@testing-library/react';
 
 import LocaleToggle from '../index';
-import * as actions from '../../LanguageProvider/actions';
+import * as slice from '../../LanguageProvider/slice';
 import LanguageProvider from '../../LanguageProvider';
 
 import configureStore from '../../../configureStore';
@@ -13,7 +13,7 @@ describe('<LocaleToggle />', () => {
   let store;
 
   beforeAll(() => {
-    actions.changeLocale = jest.fn(() => ({ type: 'test' }));
+    slice.changeLocale = jest.fn(() => ({ type: 'test' }));
     store = configureStore({});
   });
 
@@ -50,6 +50,6 @@ describe('<LocaleToggle />', () => {
     const newLocale = 'de';
     const select = container.querySelector('select');
     fireEvent.change(select, { target: { value: newLocale } });
-    expect(actions.changeLocale).toHaveBeenCalledWith(newLocale);
+    expect(slice.changeLocale).toHaveBeenCalledWith({ locale: newLocale });
   });
 });
