@@ -1,6 +1,6 @@
 import { reducer, changeLocale } from '../slice';
 
-describe('slice and reducer', () => {
+describe('slice actions and reducer', () => {
   it('returns the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
       locale: 'en',
