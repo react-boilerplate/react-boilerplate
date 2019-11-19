@@ -8,7 +8,7 @@ import {
   repoLoadingError,
 } from '../slice';
 
-describe('slice and reducer', () => {
+describe('slice actions and reducer', () => {
   let state;
 
   beforeEach(() => {
