@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Form from '../Form';
+import Form from '../components/Form';
 
 const renderComponent = (props = {}) => {
   const utils = render(<Form {...props} />);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Input from '../Input';
+import Input from '../components/Input';
 
 const renderComponent = (props = {}) => {
   const utils = render(<Input {...props} />);
