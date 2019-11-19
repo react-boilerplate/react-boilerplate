@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
-import RepoListItem from 'containers/RepoListItem';
+import RepoListItem from 'components/RepoListItem';
 
 function ReposList({ loading, error, repos }) {
   if (loading) {
