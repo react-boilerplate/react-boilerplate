@@ -12,7 +12,7 @@ import Toggle from 'components/Toggle';
 import Wrapper from './Wrapper';
 import messages from './messages';
 import { appLocales } from '../../i18n';
-import { changeLocale } from '../LanguageProvider/actions';
+import { changeLocale } from '../LanguageProvider/slice';
 import { makeSelectLocale } from '../LanguageProvider/selectors';
 
 const stateSelector = createSelector(
@@ -26,7 +26,8 @@ export default function LocaleToggle() {
   const { locale } = useSelector(stateSelector);
   const dispatch = useDispatch();
 
-  const onLocaleToggle = evt => dispatch(changeLocale(evt.target.value));
+  const onLocaleToggle = evt =>
+    dispatch(changeLocale({ locale: evt.target.value }));
 
   return (
     <Wrapper>

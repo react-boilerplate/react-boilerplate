@@ -89,7 +89,7 @@ module.exports = {
     },
     {
       /* slice.js files contain immer-based reducers where param reassignment is a requirement */
-      files: ['**/slice.js'],
+      files: ['**/slice.js', '**/slice.test.js'],
       rules: {
         'no-param-reassign': 0,
       },

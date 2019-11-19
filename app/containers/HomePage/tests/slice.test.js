@@ -8,9 +8,9 @@ import {
   repoLoadingError,
 } from '../slice';
 
-/* eslint-disable no-param-reassign */
-describe('slice', () => {
+describe('slice and reducer', () => {
   let state;
+
   beforeEach(() => {
     state = {
       username: '',
@@ -18,6 +18,11 @@ describe('slice', () => {
       loading: false,
       error: false,
     };
+  });
+
+  it('should return the initial state', () => {
+    const expectedResult = state;
+    expect(reducer(undefined, {})).toEqual(expectedResult);
   });
 
   it('should handle the changeUsername action correctly', () => {
@@ -29,11 +34,6 @@ describe('slice', () => {
     expect(reducer(state, changeUsername({ username: fixture }))).toEqual(
       expectedResult,
     );
-  });
-
-  it('should return the initial state', () => {
-    const expectedResult = state;
-    expect(reducer(undefined, {})).toEqual(expectedResult);
   });
 
   it('should handle the loadRepos action correctly', () => {
