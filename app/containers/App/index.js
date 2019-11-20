@@ -12,6 +12,7 @@ import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
+import { hot } from 'react-hot-loader/root';
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -29,7 +30,7 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-export default function App() {
+function App() {
   return (
     <AppWrapper>
       <Helmet
@@ -49,3 +50,5 @@ export default function App() {
     </AppWrapper>
   );
 }
+
+export default hot(App);

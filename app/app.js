@@ -8,7 +8,7 @@
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 
-import { hot } from 'react-hot-loader/root';
+import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -47,9 +47,9 @@ const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
-const ConnectedApp = hot(messages => (
+const ConnectedApp = props => (
   <Provider store={store}>
-    <LanguageProvider messages={messages}>
+    <LanguageProvider messages={props.messages}>
       <ConnectedRouter history={history}>
         <HelmetProvider>
           <App />
@@ -57,7 +57,11 @@ const ConnectedApp = hot(messages => (
       </ConnectedRouter>
     </LanguageProvider>
   </Provider>
-));
+);
+
+ConnectedApp.propTypes = {
+  messages: PropTypes.object,
+};
 
 const render = messages => {
   ReactDOM.render(<ConnectedApp messages={messages} />, MOUNT_NODE);

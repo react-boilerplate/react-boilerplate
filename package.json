@@ -80,7 +80,7 @@
     "react-app-polyfill": "1.0.4",
     "react-dom": "16.11.0",
     "react-helmet-async": "1.0.4",
-    "react-hot-loader": "4.12.15",
+    "react-hot-loader": "4.12.18",
     "react-intl": "2.9.0",
     "react-redux": "7.1.1",
     "react-router-dom": "5.1.2",
