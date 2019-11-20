@@ -10,7 +10,14 @@ import { Helmet } from 'react-helmet-async';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
-import { useInjectReducer, useInjectSaga } from 'redux-injectors';
+import { useInjectReducer } from 'redux-injectors';
+
+import {
+  makeSelectRepos,
+  makeSelectLoading,
+  makeSelectError,
+} from 'containers/ReposManager/selectors';
+import { loadRepos } from 'containers/ReposManager/slice';
 
 import H2 from 'components/H2';
 import ReposList from 'components/ReposList';
@@ -21,25 +28,18 @@ import Input from './components/Input';
 import Section from './components/Section';
 
 import messages from './messages';
-import { reducer, loadRepos, changeUsername } from './slice';
-import {
-  makeSelectUsername,
-  makeSelectRepos,
-  makeSelectLoading,
-  makeSelectError,
-} from './selectors';
-import saga from './saga';
+import { reducer, changeUsername } from './slice';
+import { makeSelectUsername } from './selectors';
 
 const stateSelector = createStructuredSelector({
-  repos: makeSelectRepos(),
   username: makeSelectUsername(),
+  repos: makeSelectRepos(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
 });
 
 export default function HomePage() {
   useInjectReducer({ key: 'home', reducer });
-  useInjectSaga({ key: 'home', saga });
 
   const dispatch = useDispatch();
   const { repos, username, loading, error } = useSelector(stateSelector);

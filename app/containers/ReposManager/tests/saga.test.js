@@ -1,5 +1,5 @@
 /**
- * Tests for HomePage sagas
+ * Tests for ReposManager sagas
  */
 
 import { put, takeLatest } from 'redux-saga/effects';
