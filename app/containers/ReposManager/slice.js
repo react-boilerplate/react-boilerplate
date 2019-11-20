@@ -1,5 +1,5 @@
 /*
- * HomePage Slice
+ * ReposManager Slice
  *
  * Here we define:
  * - The shape of our container's slice of Redux store,
@@ -13,23 +13,34 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
-// The initial state of the HomePage container
+// The initial state of the ReposManager container
 export const initialState = {
-  username: '',
+  repositories: [],
+  loading: false,
+  error: false,
 };
 
 const slice = createSlice({
-  name: 'home',
+  name: 'reposManager',
   initialState,
   reducers: {
-    changeUsername(state, action) {
-      // Delete prefixed '@' from the github username
-      const username = action.payload.username.replace(/@/gi, '');
-      state.username = username;
+    loadRepos(state) {
+      state.loading = true;
+      state.error = false;
+      state.repositories = [];
+    },
+    reposLoaded(state, action) {
+      const { repos } = action.payload;
+      state.repositories = repos;
+      state.loading = false;
+    },
+    repoLoadingError(state) {
+      state.error = true;
+      state.loading = false;
     },
   },
 });
 
-export const { changeUsername } = slice.actions;
+export const { loadRepos, reposLoaded, repoLoadingError } = slice.actions;
 
 export const { reducer } = slice;

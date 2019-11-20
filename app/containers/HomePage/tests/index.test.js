@@ -6,8 +6,9 @@ import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-
 import { HelmetProvider } from 'react-helmet-async';
+
+import * as reposManagerSlice from 'containers/ReposManager/slice';
 import configureStore from '../../../configureStore';
 import HomePage from '../index';
 import * as slice from '../slice';
@@ -27,14 +28,13 @@ describe('<HomePage />', () => {
   let store;
 
   beforeAll(() => {
-    // slice.loadRepos is mocked so that we can spy on it but also so that it doesn't trigger a network request
-    slice.loadRepos = jest.fn(() => ({ type: '' }));
-    slice.loadRepos.type = 'app/slice.loadRepos';
+    reposManagerSlice.loadRepos = jest.fn(() => ({ type: '' }));
+    reposManagerSlice.loadRepos.type = 'app/slice.loadRepos';
   });
 
   beforeEach(() => {
     store = configureStore({});
-    slice.loadRepos.mockClear();
+    reposManagerSlice.loadRepos.mockClear();
   });
 
   afterEach(cleanup);
@@ -49,7 +49,7 @@ describe('<HomePage />', () => {
   it("shouldn't fetch repos on mount (if username is empty)", () => {
     renderHomePage(store);
     expect(slice.initialState.username).toBe('');
-    expect(slice.loadRepos).not.toHaveBeenCalled();
+    expect(reposManagerSlice.loadRepos).not.toHaveBeenCalled();
   });
 
   it("shouldn't fetch repos if the form is submitted when the username is empty", () => {
@@ -58,7 +58,7 @@ describe('<HomePage />', () => {
     const form = container.querySelector('form');
     fireEvent.submit(form);
 
-    expect(slice.loadRepos).not.toHaveBeenCalled();
+    expect(reposManagerSlice.loadRepos).not.toHaveBeenCalled();
   });
 
   it("should fetch repos if the form is submitted when the username isn't empty", () => {
@@ -68,10 +68,10 @@ describe('<HomePage />', () => {
 
     const input = container.querySelector('input');
     fireEvent.change(input, { target: { value: 'julienben' } });
-    expect(slice.loadRepos).not.toHaveBeenCalled();
+    expect(reposManagerSlice.loadRepos).not.toHaveBeenCalled();
 
     const form = container.querySelector('form');
     fireEvent.submit(form);
-    expect(slice.loadRepos).toHaveBeenCalled();
+    expect(reposManagerSlice.loadRepos).toHaveBeenCalled();
   });
 });
