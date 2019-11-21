@@ -15,9 +15,6 @@ const renderComponent = item =>
     </IntlProvider>,
   );
 
-// const defaultUser = 'mxstbr';
-// const forkUser = 'julienben';
-
 describe('<RepoListItem />', () => {
   let ownedItem;
   let notOwnedItem;
