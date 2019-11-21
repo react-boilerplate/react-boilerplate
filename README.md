@@ -122,9 +122,18 @@ Now you're ready to rumble!
   asynchronicity helpers, etc.
 - [**Troubleshooting**](docs/general/gotchas.md): Solutions to common problems faced by developers.
 
+## Ongoing Work
+
+In between [releases](https://github.com/react-boilerplate/react-boilerplate/releases), we work on the `dev` branch and rarely ever update `master`. For that reason, it sometimes look like the repo isn't actively maintained. This isn't the case, React Boilerplate is alive and kicking.
+
+Please feel free to check out:
+
+- our [`dev` branch](https://github.com/react-boilerplate/react-boilerplate/tree/dev) for the latest updates. You are always welcome to use it as the basis for your project. We only merge to `dev` projects which are fully ready.
+- our open [issues](https://github.com/react-boilerplate/react-boilerplate/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) and [pull requests](https://github.com/react-boilerplate/react-boilerplate/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc) to see what we are currently working on. Suggestions and contributions are always welcome!
+
 ## Contributors
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks go to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
