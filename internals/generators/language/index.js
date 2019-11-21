@@ -55,7 +55,7 @@ module.exports = {
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
-      pattern: /(require\('@formatjs\/intl-pluralrules\/dist\/locale-data\/..'\);\n)+/g,
+      pattern: /(require\('@formatjs\/intl-pluralrules\/dist\/locale-data\/en'\);\n)+/g,
       templateFile: './language/intl-locale-data.hbs',
     });
     actions.push({
@@ -73,7 +73,7 @@ module.exports = {
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
-      pattern: /(require\('@formatjs\/intl-relativetimeformat\/dist\/locale-data\/..'\);\n)/g,
+      pattern: /(require\('@formatjs\/intl-relativetimeformat\/dist\/locale-data\/en'\);\n)/g,
       templateFile: './language/add-locale-data.hbs',
     });
     actions.push({
