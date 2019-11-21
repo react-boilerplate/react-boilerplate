@@ -50,6 +50,12 @@ module.exports = {
         path: '../../app',
         file: 'app.js',
       });
+
+      actions.push({
+        type: 'backup',
+        path: '../../app',
+        file: 'locales.js',
+      });
     }
 
     actions.push({
