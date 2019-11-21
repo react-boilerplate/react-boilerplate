@@ -18,7 +18,7 @@ export const initialState = {
   username: '',
 };
 
-const slice = createSlice({
+const homePageSlice = createSlice({
   name: 'home',
   initialState,
   reducers: {
@@ -30,6 +30,6 @@ const slice = createSlice({
   },
 });
 
-export const { changeUsername } = slice.actions;
+export const { changeUsername } = homePageSlice.actions;
 
-export const { reducer } = slice;
+export const { reducer } = homePageSlice;

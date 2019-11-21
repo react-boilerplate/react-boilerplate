@@ -20,7 +20,7 @@ export const initialState = {
   error: false,
 };
 
-const slice = createSlice({
+const reposManagerSlice = createSlice({
   name: 'reposManager',
   initialState,
   reducers: {
@@ -41,6 +41,10 @@ const slice = createSlice({
   },
 });
 
-export const { loadRepos, reposLoaded, repoLoadingError } = slice.actions;
+export const {
+  loadRepos,
+  reposLoaded,
+  repoLoadingError,
+} = reposManagerSlice.actions;
 
-export const { reducer } = slice;
+export const { reducer } = reposManagerSlice;
