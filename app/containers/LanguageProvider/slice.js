@@ -19,7 +19,7 @@ export const initialState = {
   locale: DEFAULT_LOCALE,
 };
 
-const slice = createSlice({
+const languageProviderSlice = createSlice({
   name: 'language',
   initialState,
   reducers: {
@@ -29,6 +29,6 @@ const slice = createSlice({
   },
 });
 
-export const { changeLocale } = slice.actions;
+export const { changeLocale } = languageProviderSlice.actions;
 
-export const { reducer } = slice;
+export const { reducer } = languageProviderSlice;
