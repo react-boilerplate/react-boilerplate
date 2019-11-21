@@ -11,7 +11,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import * as reposManagerSlice from 'containers/ReposManager/slice';
 import configureStore from '../../../configureStore';
 import HomePage from '../index';
-import * as slice from '../slice';
+import { initialState } from '../slice';
 
 const renderHomePage = store =>
   render(
@@ -23,6 +23,14 @@ const renderHomePage = store =>
       </IntlProvider>
     </Provider>,
   );
+
+const setUsernameInStoreAndUnmount = ({ store, username }) => {
+  // Render, update the state and unmount
+  const { container, unmount } = renderHomePage(store);
+  const input = container.querySelector('input');
+  fireEvent.change(input, { target: { value: username } });
+  unmount();
+};
 
 describe('<HomePage />', () => {
   let store;
@@ -46,10 +54,28 @@ describe('<HomePage />', () => {
     expect(firstChild).toMatchSnapshot();
   });
 
-  it("shouldn't fetch repos on mount (if username is empty)", () => {
+  it("shouldn't fetch repos on mount if username is empty", () => {
     renderHomePage(store);
-    expect(slice.initialState.username).toBe('');
+    expect(initialState.username).toBe('');
     expect(reposManagerSlice.loadRepos).not.toHaveBeenCalled();
+  });
+
+  it("shouldn't fetch repos on mount if username is truthy but not empty", () => {
+    setUsernameInStoreAndUnmount({ store, username: ' ' });
+
+    // Now render again to trigger useEffect
+    renderHomePage(store);
+
+    expect(reposManagerSlice.loadRepos).not.toHaveBeenCalled();
+  });
+
+  it('should fetch repos on mount if username is set', () => {
+    setUsernameInStoreAndUnmount({ store, username: 'julienben' });
+
+    // Now render again to trigger useEffect
+    renderHomePage(store);
+
+    expect(reposManagerSlice.loadRepos).toHaveBeenCalledTimes(1);
   });
 
   it("shouldn't fetch repos if the form is submitted when the username is empty", () => {
@@ -63,8 +89,6 @@ describe('<HomePage />', () => {
 
   it("should fetch repos if the form is submitted when the username isn't empty", () => {
     const { container } = renderHomePage(store);
-
-    store.dispatch(slice.changeUsername({ username: 'julienben' }));
 
     const input = container.querySelector('input');
     fireEvent.change(input, { target: { value: 'julienben' } });
