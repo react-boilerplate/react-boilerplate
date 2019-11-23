@@ -13,10 +13,10 @@ exports[`<Header /> should render a div 1`] = `
     />
   </a>
   <div
-    class="NavBar-sc-3b48xb-0 ioQxlc"
+    class="NavBar___default-sc-3b48xb-0 VAzAd"
   >
     <a
-      class="HeaderLink-sc-1mtyaiv-0 hMiTYG"
+      class="HeaderLink___default-sc-1mtyaiv-0 ljfKqy"
       href="/"
     >
       <span>
@@ -24,7 +24,7 @@ exports[`<Header /> should render a div 1`] = `
       </span>
     </a>
     <a
-      class="HeaderLink-sc-1mtyaiv-0 hMiTYG"
+      class="HeaderLink___default-sc-1mtyaiv-0 ljfKqy"
       href="/features"
     >
       <span>

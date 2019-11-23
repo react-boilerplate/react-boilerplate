@@ -50,6 +50,12 @@ module.exports = {
         path: '../../app',
         file: 'app.js',
       });
+
+      actions.push({
+        type: 'backup',
+        path: '../../app',
+        file: 'locales.js',
+      });
     }
 
     actions.push({
@@ -60,7 +66,7 @@ module.exports = {
     });
     actions.push({
       type: 'modify',
-      path: '../../app/i18n.js',
+      path: '../../app/locales.js',
       pattern: /(\s+'[a-z]+',\n)(?!.*\s+'[a-z]+',)/g,
       templateFile: './language/app-locale.hbs',
     });
