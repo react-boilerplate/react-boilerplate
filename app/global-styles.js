@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   input, select {
+    font-family: inherit;
     font-size: inherit;
   }
 `;
