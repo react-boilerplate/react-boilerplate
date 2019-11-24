@@ -14,7 +14,7 @@ const get = require('lodash/get');
 const animateProgress = require('./helpers/progress');
 const addCheckmark = require('./helpers/checkmark');
 
-const { appLocales, DEFAULT_LOCALE } = require('../../app/i18n');
+const { appLocales, DEFAULT_LOCALE } = require('../../app/locales');
 
 const babel = require('../../babel.config.js');
 const { presets } = babel;
