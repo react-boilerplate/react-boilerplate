@@ -11,7 +11,10 @@ describe('<List />', () => {
   });
 
   it('should pass all items props to rendered component', () => {
-    const items = [{ id: 1, name: 'Hello' }, { id: 2, name: 'World' }];
+    const items = [
+      { id: 1, name: 'Hello' },
+      { id: 2, name: 'World' },
+    ];
 
     const component = ({ item }) => <li>{item.name}</li>; // eslint-disable-line react/prop-types
 

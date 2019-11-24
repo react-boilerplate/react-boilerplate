@@ -15,12 +15,9 @@ import { appLocales } from '../../locales';
 import { changeLocale } from '../LanguageProvider/actions';
 import { makeSelectLocale } from '../LanguageProvider/selectors';
 
-const stateSelector = createSelector(
-  makeSelectLocale(),
-  locale => ({
-    locale,
-  }),
-);
+const stateSelector = createSelector(makeSelectLocale(), locale => ({
+  locale,
+}));
 
 export default function LocaleToggle() {
   const { locale } = useSelector(stateSelector);
