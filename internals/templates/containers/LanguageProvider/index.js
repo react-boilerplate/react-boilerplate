@@ -12,10 +12,10 @@ import { useSelector } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
 import { IntlProvider } from 'react-intl';
 
-import { makeSelectLocale } from './selectors';
+import { selectLocale } from './selectors';
 
 const stateSelector = createSelector(
-  makeSelectLocale(),
+  selectLocale(),
   locale => ({
     locale,
   }),
