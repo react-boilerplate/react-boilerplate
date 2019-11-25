@@ -168,6 +168,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "joeyparis",
+      "name": "Joey Paris",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1377422?s=180&v=4",
+      "profile": "https://leadjig.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 8
