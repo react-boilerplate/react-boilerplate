@@ -4,7 +4,7 @@
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
-import { makeSelectUsername } from 'containers/HomePage/selectors';
+import { selectUsername } from 'containers/HomePage/selectors';
 import { loadRepos, reposLoaded, repoLoadingError } from './slice';
 
 // If the repository is owned by a different user then the submitted
@@ -20,7 +20,7 @@ export const addRepoOwnershipKey = ({ username, repos }) =>
  */
 export function* getRepos() {
   // Select username from store
-  const username = yield select(makeSelectUsername());
+  const username = yield select(selectUsername);
   const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
 
   try {

@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import { createSelector } from '@reduxjs/toolkit';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Toggle from 'components/Toggle';
@@ -13,17 +12,10 @@ import Wrapper from './Wrapper';
 import messages from './messages';
 import { appLocales } from '../../locales';
 import { changeLocale } from '../LanguageProvider/slice';
-import { makeSelectLocale } from '../LanguageProvider/selectors';
-
-const stateSelector = createSelector(
-  makeSelectLocale(),
-  locale => ({
-    locale,
-  }),
-);
+import { selectLocale } from '../LanguageProvider/selectors';
 
 export default function LocaleToggle() {
-  const { locale } = useSelector(stateSelector);
+  const locale = useSelector(selectLocale);
   const dispatch = useDispatch();
 
   const onLocaleToggle = evt =>

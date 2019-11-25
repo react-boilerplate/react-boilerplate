@@ -8,14 +8,13 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FormattedMessage } from 'react-intl';
-import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
 import { useInjectReducer } from 'redux-injectors';
 
 import {
-  makeSelectRepos,
-  makeSelectLoading,
-  makeSelectError,
+  selectRepos,
+  selectLoading,
+  selectError,
 } from 'containers/ReposManager/selectors';
 import { loadRepos } from 'containers/ReposManager/slice';
 
@@ -29,20 +28,16 @@ import Section from './components/Section';
 
 import messages from './messages';
 import { reducer, changeUsername } from './slice';
-import { makeSelectUsername } from './selectors';
-
-const stateSelector = createStructuredSelector({
-  username: makeSelectUsername(),
-  repos: makeSelectRepos(),
-  loading: makeSelectLoading(),
-  error: makeSelectError(),
-});
+import { selectUsername } from './selectors';
 
 export default function HomePage() {
   useInjectReducer({ key: 'home', reducer });
 
   const dispatch = useDispatch();
-  const { repos, username, loading, error } = useSelector(stateSelector);
+  const username = useSelector(selectUsername);
+  const repos = useSelector(selectRepos);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
 
   const onChangeUsername = evt =>
     dispatch(changeUsername({ username: evt.target.value }));
