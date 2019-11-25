@@ -1,8 +1,8 @@
 import {
   selectReposManagerDomain,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectRepos,
+  selectLoading,
+  selectError,
+  selectRepos,
 } from '../selectors';
 import { initialState } from '../slice';
 
@@ -24,41 +24,38 @@ describe('selectReposManagerDomain', () => {
   });
 });
 
-describe('makeSelectLoading', () => {
+describe('selectLoading', () => {
   it('should select the loading', () => {
-    const loadingSelector = makeSelectLoading();
     const loading = false;
     const mockedState = {
       reposManager: {
         loading,
       },
     };
-    expect(loadingSelector(mockedState)).toEqual(loading);
+    expect(selectLoading(mockedState)).toEqual(loading);
   });
 });
 
-describe('makeSelectError', () => {
+describe('selectError', () => {
   it('should select the error', () => {
-    const errorSelector = makeSelectError();
     const error = true;
     const mockedState = {
       reposManager: {
         error,
       },
     };
-    expect(errorSelector(mockedState)).toEqual(error);
+    expect(selectError(mockedState)).toEqual(error);
   });
 });
 
-describe('makeSelectRepos', () => {
+describe('selectRepos', () => {
   it('should select the repos', () => {
-    const reposSelector = makeSelectRepos();
     const repositories = [];
     const mockedState = {
       reposManager: {
         repositories,
       },
     };
-    expect(reposSelector(mockedState)).toEqual(repositories);
+    expect(selectRepos(mockedState)).toEqual(repositories);
   });
 });

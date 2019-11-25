@@ -1,4 +1,4 @@
-import { selectHome, makeSelectUsername } from '../selectors';
+import { selectHome, selectUsername } from '../selectors';
 import { initialState } from '../slice';
 
 describe('selectHome', () => {
@@ -17,8 +17,7 @@ describe('selectHome', () => {
   });
 });
 
-describe('makeSelectUsername', () => {
-  const usernameSelector = makeSelectUsername();
+describe('selectUsername', () => {
   it('should select the username', () => {
     const username = 'mxstbr';
     const mockedState = {
@@ -26,6 +25,6 @@ describe('makeSelectUsername', () => {
         username,
       },
     };
-    expect(usernameSelector(mockedState)).toEqual(username);
+    expect(selectUsername(mockedState)).toEqual(username);
   });
 });
