@@ -48,7 +48,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
-        <Route path="" component={NotFoundPage} />
+        <Route component={NotFoundPage} />
       </Switch>
 
       <Footer />
