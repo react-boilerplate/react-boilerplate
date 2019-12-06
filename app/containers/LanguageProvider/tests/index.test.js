@@ -19,9 +19,7 @@ describe('<LanguageProvider />', () => {
   let store;
 
   beforeEach(() => {
-    // The language store must be defined with an `undefined`` locale otherwise the DEFAULT_LOCALE
-    // will be set to 'en' from `app/locales.js` which "breaks" the testing for `defaultMessage``
-    store = configureStore({ language: { locale: undefined } });
+    store = configureStore({});
   });
 
   it('should render its children', () => {
@@ -37,7 +35,7 @@ describe('<LanguageProvider />', () => {
 
   it('should render the default language messages', () => {
     const { queryByText } = render(
-      <Provider store={store}>
+      <Provider store={configureStore({ language: { locale: undefined } })}>
         <LanguageProvider messages={translationMessages}>
           <FormattedMessage {...messages.someMessage} />
         </LanguageProvider>
