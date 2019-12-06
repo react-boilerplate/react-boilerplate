@@ -14,21 +14,14 @@ import { IntlProvider } from 'react-intl';
 
 import { selectLocale } from './selectors';
 
-const stateSelector = createSelector(
-  selectLocale(),
-  locale => ({
-    locale,
-  }),
-);
+const stateSelector = createSelector(selectLocale(), locale => ({
+  locale,
+}));
 
 export default function LanguageProvider(props) {
   const { locale } = useSelector(stateSelector);
   return (
-    <IntlProvider
-      locale={locale}
-      key={locale}
-      messages={props.messages[locale]}
-    >
+    <IntlProvider locale={locale} messages={props.messages[locale]}>
       {React.Children.only(props.children)}
     </IntlProvider>
   );
