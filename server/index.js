@@ -30,6 +30,7 @@ const prettyHost = customHost || 'localhost';
 
 // use the gzipped bundle
 app.get('*.js', (req, res, next) => {
+  throw new Error('Please change name');
   req.url = req.url + '.gz'; // eslint-disable-line
   res.set('Content-Encoding', 'gzip');
   next();
