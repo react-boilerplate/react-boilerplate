@@ -48,8 +48,8 @@ module.exports = {
   actions: data => {
     // Generate index.js and index.test.js
     let filePath = data.name.split('/').map(properCase)
-    const fullPath = filePath.join('/')
     const shortName = filePath.pop()
+    const fullPath = `${filePath}/${shortName}`
     filePath = filePath.join('/')
 
     const actions = [
