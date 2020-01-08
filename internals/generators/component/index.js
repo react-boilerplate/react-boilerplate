@@ -58,12 +58,14 @@ module.exports = {
         path: `../../app/components/${fullPath}/index.js`,
         templateFile: './component/index.js.hbs',
         abortOnFail: true,
+        data: {filePath, shortName},
       },
       {
         type: 'add',
         path: `../../app/components/${fullPath}/tests/index.test.js`,
         templateFile: './component/test.js.hbs',
         abortOnFail: true,
+        data: {filePath, shortName},
       },
     ];
 
@@ -74,6 +76,7 @@ module.exports = {
         path: `../../app/components/${fullPath}/messages.js`,
         templateFile: './component/messages.js.hbs',
         abortOnFail: true,
+        data: {filePath, shortName},
       });
     }
 
@@ -84,13 +87,15 @@ module.exports = {
         path: `../../app/components/${fullPath}/Loadable.js`,
         templateFile: './component/loadable.js.hbs',
         abortOnFail: true,
+        data: {filePath, shortName},
       });
     }
 
     actions.push({
       type: 'prettify',
       path: `/components${filePath ? `/${filePath}/` : '/'}`,
-      name: shortName
+      name: shortName,
+      data: {filePath, shortName},
     });
 
     return actions;

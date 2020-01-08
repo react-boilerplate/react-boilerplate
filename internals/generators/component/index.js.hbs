@@ -1,6 +1,6 @@
 /**
  *
- * {{ properCase name }}
+ * {{ filePath }}/{{ properCase shortName }}
  *
  */
 
@@ -17,7 +17,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 {{/if}}
 
-function {{ properCase name }}() {
+function {{ properCase shortName }}() {
   return (
     <div>
     {{#if wantMessages}}
@@ -27,10 +27,10 @@ function {{ properCase name }}() {
   );
 }
 
-{{ properCase name }}.propTypes = {};
+{{ properCase shortName }}.propTypes = {};
 
 {{#if memo}}
-export default memo({{ properCase name }});
+export default memo({{ properCase shortName }});
 {{else}}
-export default {{ properCase name }};
+export default {{ properCase shortName }};
 {{/if}}

@@ -1,6 +1,6 @@
 /**
  *
- * Tests for {{ properCase name }}
+ * Tests for {{ filePath }}/{{ properCase shortName }}
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -12,22 +12,22 @@ import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 {{/if}}
 
-import {{ properCase name }} from '../index';
+import {{ properCase shortName }} from '../index';
 {{#if wantMessages}}
 import { DEFAULT_LOCALE } from '../../../locales';
 {{/if}}
 
-describe('<{{ properCase name }} />', () => {
+describe('<{{ properCase shortName }} />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
 {{#if wantMessages}}
     render(
       <IntlProvider locale={DEFAULT_LOCALE}>
-        <{{ properCase name }} />
+        <{{ properCase shortName }} />
       </IntlProvider>,
     );
 {{else}}
-    render(<{{ properCase name }} />);
+    render(<{{ properCase shortName }} />);
 {{/if}}
     expect(spy).not.toHaveBeenCalled();
   });
@@ -47,13 +47,13 @@ describe('<{{ properCase name }} />', () => {
       container: { firstChild },
     } = render(
       <IntlProvider locale={DEFAULT_LOCALE}>
-        <{{ properCase name }} />
+        <{{ properCase shortName }} />
       </IntlProvider>,
     );
 {{else}}
     const {
       container: { firstChild },
-    } = render(<{{ properCase name }} />);
+    } = render(<{{ properCase shortName }} />);
 {{/if}}
     expect(firstChild).toMatchSnapshot();
   });
