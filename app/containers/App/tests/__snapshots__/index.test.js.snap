@@ -29,6 +29,6 @@ exports[`<App /> should render and match the snapshot 1`] = `
     />
   </Switch>
   <Footer />
-  <GlobalStyleComponent />
+  <UNDEFINED />
 </ForwardRef(App__AppWrapper)>
 `;

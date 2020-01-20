@@ -2,7 +2,7 @@
 
 exports[`<Footer /> should render and match the snapshot 1`] = `
 <footer
-  className="Wrapper-wcfdfo-0 dPvBog"
+  className="Wrapper-wcfdfo-0 gkRjxJ"
 >
   <section>
     <span>
@@ -11,10 +11,10 @@ exports[`<Footer /> should render and match the snapshot 1`] = `
   </section>
   <section>
     <div
-      className="Wrapper-xnjoq9-0 dNmQIR"
+      className="Wrapper-xnjoq9-0 jdNcyG"
     >
       <select
-        className="Select-sc-1sm01tk-0 wIjFa"
+        className="Select-sc-1sm01tk-0 UGvsg"
         onChange={[Function]}
         value="en"
       >
@@ -36,7 +36,7 @@ exports[`<Footer /> should render and match the snapshot 1`] = `
       
       Made with love by 
       <a
-        className="A-br8h0y-0 dwVNvo"
+        className="A-br8h0y-0 keMyW"
         href="https://twitter.com/mxstbr"
       >
         Max Stoiber
