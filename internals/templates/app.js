@@ -54,23 +54,40 @@ const render = () => {
   ReactDOM.render(<ConnectedApp />, MOUNT_NODE);
 };
 
-// Chunked polyfill for browsers without Intl support
-if (!window.Intl) {
-  new Promise(resolve => {
-    resolve(
-      Promise.all([
-        import('@formatjs/intl-pluralrules/polyfill'),
-        import('@formatjs/intl-relativetimeformat/polyfill'),
-      ]),
-    );
-  })
-    .then(() =>
-      Promise.all([
-        import('@formatjs/intl-pluralrules/dist/locale-data/en'),
+if (module.hot) {
+  // Hot reloadable React components and translation json files
+  // Hot reloadable translation json files
+  // modules.hot.accept does not accept dynamic dependencies,
+  // have to be constants at compile-time
+  module.hot.accept(['./i18n'], () => {
+    ReactDOM.unmountComponentAtNode(MOUNT_NODE);
+    render();
+  });
+}
 
-        import('@formatjs/intl-relativetimeformat/dist/locale-data/en'),
-      ]),
-    ) // eslint-disable-line prettier/prettier
+// Chunked polyfill for browsers without Intl support
+if (!Intl.PluralRules || !Intl.RelativeTimeFormat) {
+  new Promise(resolve => {
+    if (!Intl.PluralRules) {
+      resolve(
+        Promise.all([
+          import('@formatjs/intl-pluralrules/polyfill'),
+          import('@formatjs/intl-pluralrules/dist/locale-data/en'),
+        ]),
+      );
+    } else {
+      resolve();
+    }
+  })
+    .then(() => {
+      if (!Intl.RelativeTimeFormat) {
+        return Promise.all([
+          import('@formatjs/intl-relativetimeformat/polyfill'),
+          import('@formatjs/intl-relativetimeformat/dist/locale-data/en'),
+        ]);
+      }
+      return Promise.resolve();
+    }) // eslint-disable-line prettier/prettier
     .then(() => render())
     .catch(err => {
       throw err;
