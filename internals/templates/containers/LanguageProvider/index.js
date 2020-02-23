@@ -9,25 +9,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { createSelector } from 'reselect';
+import { createStructuredSelector } from 'reselect';
 import { IntlProvider } from 'react-intl';
+import { useInjectSaga } from 'redux-injectors';
 
-import { makeSelectLocale } from './selectors';
+import saga from './saga';
+import { makeSelectLocale, makeSelectMessages } from './selectors';
 
-const stateSelector = createSelector(makeSelectLocale(), locale => ({
-  locale,
-}));
+const stateSelector = createStructuredSelector({
+  locale: makeSelectLocale(),
+  messages: makeSelectMessages(),
+});
+
+const key = 'languageSaga';
 
 export default function LanguageProvider(props) {
-  const { locale } = useSelector(stateSelector);
+  useInjectSaga({ key, saga });
+  const { locale, messages } = useSelector(stateSelector);
   return (
-    <IntlProvider locale={locale} messages={props.messages[locale]}>
+    <IntlProvider locale={locale} messages={messages}>
       {React.Children.only(props.children)}
     </IntlProvider>
   );
 }
 
 LanguageProvider.propTypes = {
-  messages: PropTypes.object,
   children: PropTypes.element.isRequired,
 };
