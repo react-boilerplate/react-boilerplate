@@ -61,7 +61,7 @@ module.exports = {
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
-      pattern: /(const ..LocaleData = require\('react-intl\/locale-data\/..'\);\n)+/g,
+      pattern: /(require\('@formatjs\/intl-pluralrules\/dist\/locale-data\/en'\);\n)+/g,
       templateFile: './language/intl-locale-data.hbs',
     });
     actions.push({
@@ -79,7 +79,7 @@ module.exports = {
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
-      pattern: /(addLocaleData\([a-z]+LocaleData\);\n)(?!.*addLocaleData\([a-z]+LocaleData\);)/g,
+      pattern: /(require\('@formatjs\/intl-relativetimeformat\/dist\/locale-data\/en'\);\n)/g,
       templateFile: './language/add-locale-data.hbs',
     });
     actions.push({
@@ -93,12 +93,6 @@ module.exports = {
       path: '../../app/translations/{{language}}.json',
       templateFile: './language/translations-json.hbs',
       abortOnFail: true,
-    });
-    actions.push({
-      type: 'modify',
-      path: '../../app/app.js',
-      pattern: /(import\('intl\/locale-data\/jsonp\/[a-z]+\.js'\),\n)(?!.*import\('intl\/locale-data\/jsonp\/[a-z]+\.js'\),)/g,
-      templateFile: './language/polyfill-intl-locale.hbs',
     });
 
     if (!test) {

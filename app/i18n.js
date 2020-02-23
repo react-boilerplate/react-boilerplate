@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /**
  * i18n.js
  *
@@ -7,17 +8,22 @@
  *   script `extract-intl`, and must use CommonJS module syntax
  *   You CANNOT use import/export in this file.
  */
+/* istanbul ignore next */
+if (!Intl.PluralRules) {
+  require('@formatjs/intl-pluralrules/polyfill');
+  require('@formatjs/intl-pluralrules/dist/locale-data/en');
+  require('@formatjs/intl-pluralrules/dist/locale-data/de');
+}
 
-const { addLocaleData } = require('react-intl');
-const enLocaleData = require('react-intl/locale-data/en');
-const deLocaleData = require('react-intl/locale-data/de');
+/* istanbul ignore next */
+if (!Intl.RelativeTimeFormat) {
+  require('@formatjs/intl-relativetimeformat/polyfill');
+  require('@formatjs/intl-relativetimeformat/dist/locale-data/en');
+  require('@formatjs/intl-relativetimeformat/dist/locale-data/de');
+}
 const { DEFAULT_LOCALE } = require('./locales');
-
 const enTranslationMessages = require('./translations/en.json');
 const deTranslationMessages = require('./translations/de.json');
-
-addLocaleData(enLocaleData);
-addLocaleData(deLocaleData);
 
 const formatTranslationMessages = (locale, messages) => {
   const defaultFormattedMessages =
