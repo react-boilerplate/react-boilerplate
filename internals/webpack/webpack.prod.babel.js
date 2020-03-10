@@ -82,6 +82,9 @@ module.exports = require('./webpack.base.babel')({
     // Put it in the end to capture all the HtmlWebpackPlugin's
     // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
     new OfflinePlugin({
+      // replace with 'cache-first' for faster performance. See https://github.com/NekR/offline-plugin/blob/master/docs/options.md#responsestrategy-cache-first--network-first
+      responseStrategy: 'network-first',
+
       relativePaths: false,
       publicPath: '/',
       appShell: '/',

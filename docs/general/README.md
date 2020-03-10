@@ -88,6 +88,9 @@ connection from the instant your users load the app. This is done with a
 ServiceWorker and a fallback to AppCache, so this feature even works on older
 browsers!
 
+> For better performance you can switch to [cache-first](https://github.com/NekR/offline-plugin/blob/master/docs/options.md#responsestrategy-cache-first--network-first) strategy.
+> You can also force update the SW/AppCache by following the [instructions](https://github.com/NekR/offline-plugin/blob/master/docs/updates.md), which will avoid delayed updating problems for the new deployments
+
 > All your files are included automatically. No manual intervention needed
 > thanks to Webpack's [`offline-plugin`](https://github.com/NekR/offline-plugin)
 
