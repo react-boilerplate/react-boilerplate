@@ -15,7 +15,7 @@
 - [How to keep my project up-to-date with `react-boilerplate`?](#how-to-keep-my-project-up-to-date-with-react-boilerplate)
 - [How to turn off Webpack performance warnings after production build?](#how-to-turn-off-webpack-performance-warnings-after-production-build)
 - [Styles getting overridden?](#styles-getting-overridden)
-- [SSR & Prerendering](<#ssr-(server-side-rendering)-&-prerendering>)
+- [SSR & Prerendering](#ssr-server-side-rendering--prerendering)
 - [Have another question?](#have-another-question)
 
 ## Where are Babel, Prettier and ESLint configured?
