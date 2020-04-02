@@ -1,26 +1,7 @@
 {
   "name": "cra-template-react-boilerplate",
-  "version": "0.0.1",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "typecheck": "tsc --noEmit && npm run lint",
-    "lint": "eslint --ext js,ts,tsx src"
-
-  },
-  "keywords": [
-    "react",
-    "create-react-app",
-    "template",
-    "typescript",
-    "redux",
-    "reduxjs",
-    "react-redux"
-  ],
   "description": "",
-  "main": "template.json",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/can-sahin/cra-template-react-boilerplate.git"
@@ -33,10 +14,44 @@
   "bugs": {
     "url": "https://github.com/can-sahin/cra-template-react-boilerplate/issues"
   },
+  "main": "template.json",
   "files": [
     "template",
     "template.json"
   ],
+  "keywords": [
+    "react",
+    "create-react-app",
+    "template",
+    "typescript",
+    "redux",
+    "reduxjs",
+    "react-redux",
+    "react-boilerplate",
+    "styled-components"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "typecheck": "tsc --noEmit && npm run lint",
+    "lint": "eslint --ext js,ts,tsx src",
+    "lint:fix": "eslint --ext js,ts,tsx src --fix"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "npm run lint:fix"
+    ],
+    "*.{md,json}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run typecheck"
+    }
+  },
   "dependencies": {
     "@hot-loader/react-dom": "16.13.0",
     "@reduxjs/toolkit": "1.3.2",
