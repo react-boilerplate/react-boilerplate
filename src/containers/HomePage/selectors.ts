@@ -6,7 +6,8 @@ import { createSelector } from 'reselect';
 import { RootState } from 'types/RootState';
 import { initialState } from './slice';
 
-const selectHomePageDomain = (state: RootState) => state.homepage || initialState;
+const selectHomePageDomain = (state: RootState) =>
+  state.homepage || initialState;
 
 export const selectUsername = createSelector(
   [selectHomePageDomain],

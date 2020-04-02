@@ -32,11 +32,10 @@ export default function HomePage() {
 
   const dispatch = useDispatch();
 
-  // Not gonna declare event types here. No need. any is fine
-  const onChangeUsername = (evt: any) =>
-    dispatch(homepageActions.changeUsername(evt.target.value));
+  const onChangeUsername = (evt: React.ChangeEvent<HTMLInputElement>) =>
+    dispatch(homepageActions.changeUsername(evt.currentTarget.value));
 
-  const onSubmitForm = (evt?: any) => {
+  const onSubmitForm = (evt?: React.FormEvent<HTMLFormElement>) => {
     if (evt !== undefined && evt.preventDefault) {
       evt.preventDefault();
     }
@@ -46,12 +45,16 @@ export default function HomePage() {
     dispatch(homepageActions.loadRepos());
   };
 
-  useEffect(() => {
+  const useEffectOnMount = (effect: React.EffectCallback) => {
+    useEffect(effect, []);
+  };
+
+  useEffectOnMount(() => {
     // When initial state username is not null, submit the form to load repos
     if (username && username.trim().length > 0) {
       onSubmitForm();
     }
-  }, []);
+  });
 
   return (
     <article>
