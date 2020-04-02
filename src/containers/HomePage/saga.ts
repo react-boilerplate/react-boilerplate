@@ -5,7 +5,7 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
 import { selectUsername } from 'containers/HomePage/selectors';
-import { homepageActions } from './slice';
+import { actions } from './slice';
 import { Repo } from 'types/Repo';
 
 // If the repository is owned by a different user then the submitted
@@ -37,9 +37,9 @@ export function* getRepos() {
       username,
       repos,
     });
-    yield put(homepageActions.reposLoaded(reposWithOwnershipKey));
+    yield put(actions.reposLoaded(reposWithOwnershipKey));
   } catch (err) {
-    yield put(homepageActions.repoLoadingError());
+    yield put(actions.repoLoadingError());
   }
 }
 
@@ -51,5 +51,5 @@ export function* homepageSaga() {
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
-  yield takeLatest(homepageActions.loadRepos.type, getRepos);
+  yield takeLatest(actions.loadRepos.type, getRepos);
 }

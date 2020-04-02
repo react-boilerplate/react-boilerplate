@@ -19,5 +19,5 @@ export default function createReducer(
     router: connectRouter(history),
   });
 
-  return rootReducer as any; // FIXME: remove after you add language reducer
+  return rootReducer;
 }

@@ -50,5 +50,4 @@ const homepageSlice = createSlice({
   },
 });
 
-export const homepageActions = homepageSlice.actions;
-export const homepageReducer = homepageSlice.reducer;
+export const { actions, reducer } = homepageSlice;

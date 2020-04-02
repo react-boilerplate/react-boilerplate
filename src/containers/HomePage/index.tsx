@@ -18,11 +18,11 @@ import {
   selectRepos,
   selectUsername,
 } from './selectors';
-import { homepageActions, homepageReducer } from './slice';
+import { actions, reducer } from './slice';
 import { homepageSaga } from './saga';
 
 export default function HomePage() {
-  useInjectReducer({ key: 'homepage', reducer: homepageReducer });
+  useInjectReducer({ key: 'homepage', reducer: reducer });
   useInjectSaga({ key: 'homepage', saga: homepageSaga });
 
   const username = useSelector(selectUsername);
@@ -33,7 +33,7 @@ export default function HomePage() {
   const dispatch = useDispatch();
 
   const onChangeUsername = (evt: React.ChangeEvent<HTMLInputElement>) =>
-    dispatch(homepageActions.changeUsername(evt.currentTarget.value));
+    dispatch(actions.changeUsername(evt.currentTarget.value));
 
   const onSubmitForm = (evt?: React.FormEvent<HTMLFormElement>) => {
     if (evt !== undefined && evt.preventDefault) {
@@ -42,7 +42,7 @@ export default function HomePage() {
     if (!username) {
       return;
     }
-    dispatch(homepageActions.loadRepos());
+    dispatch(actions.loadRepos());
   };
 
   const useEffectOnMount = (effect: React.EffectCallback) => {
