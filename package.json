@@ -5,7 +5,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "react",
@@ -36,6 +37,7 @@
   ],
   "dependencies": {
     "@hot-loader/react-dom": "16.13.0",
+    "@reduxjs/toolkit": "1.3.2",
     "connected-react-router": "6.8.0",
     "fontfaceobserver": "2.1.0",
     "history": "4.10.1",

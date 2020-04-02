@@ -1,0 +1,379 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoadingIndicator /> should match the snapshot 1`] = `
+.c0 {
+  margin: 2em auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.c1 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.c1:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  height: 15%;
+  background-color: #999;
+  border-radius: 100%;
+  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
+  animation: evVlQQ 1.2s infinite ease-in-out both;
+}
+
+.c2 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  -webkit-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+
+.c2:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  height: 15%;
+  background-color: #999;
+  border-radius: 100%;
+  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
+  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation-delay: -1.1s;
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.c3 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform: rotate(60deg);
+  -ms-transform: rotate(60deg);
+  -webkit-transform: rotate(60deg);
+  -ms-transform: rotate(60deg);
+  transform: rotate(60deg);
+}
+
+.c3:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  height: 15%;
+  background-color: #999;
+  border-radius: 100%;
+  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
+  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation-delay: -1s;
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+}
+
+.c4 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.c4:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  height: 15%;
+  background-color: #999;
+  border-radius: 100%;
+  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
+  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation-delay: -0.9s;
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.c5 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform: rotate(120deg);
+  -ms-transform: rotate(120deg);
+  -webkit-transform: rotate(120deg);
+  -ms-transform: rotate(120deg);
+  transform: rotate(120deg);
+}
+
+.c5:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  height: 15%;
+  background-color: #999;
+  border-radius: 100%;
+  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
+  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation-delay: -0.8s;
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+.c6 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform: rotate(150deg);
+  -ms-transform: rotate(150deg);
+  -webkit-transform: rotate(150deg);
+  -ms-transform: rotate(150deg);
+  transform: rotate(150deg);
+}
+
+.c6:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  height: 15%;
+  background-color: #999;
+  border-radius: 100%;
+  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
+  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation-delay: -0.7s;
+  -webkit-animation-delay: -0.7s;
+  animation-delay: -0.7s;
+}
+
+.c7 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.c7:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  height: 15%;
+  background-color: #999;
+  border-radius: 100%;
+  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
+  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation-delay: -0.6s;
+  -webkit-animation-delay: -0.6s;
+  animation-delay: -0.6s;
+}
+
+.c8 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform: rotate(210deg);
+  -ms-transform: rotate(210deg);
+  -webkit-transform: rotate(210deg);
+  -ms-transform: rotate(210deg);
+  transform: rotate(210deg);
+}
+
+.c8:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  height: 15%;
+  background-color: #999;
+  border-radius: 100%;
+  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
+  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation-delay: -0.5s;
+  -webkit-animation-delay: -0.5s;
+  animation-delay: -0.5s;
+}
+
+.c9 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform: rotate(240deg);
+  -ms-transform: rotate(240deg);
+  -webkit-transform: rotate(240deg);
+  -ms-transform: rotate(240deg);
+  transform: rotate(240deg);
+}
+
+.c9:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  height: 15%;
+  background-color: #999;
+  border-radius: 100%;
+  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
+  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation-delay: -0.4s;
+  -webkit-animation-delay: -0.4s;
+  animation-delay: -0.4s;
+}
+
+.c10 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
+.c10:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  height: 15%;
+  background-color: #999;
+  border-radius: 100%;
+  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
+  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation-delay: -0.3s;
+  -webkit-animation-delay: -0.3s;
+  animation-delay: -0.3s;
+}
+
+.c11 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform: rotate(300deg);
+  -ms-transform: rotate(300deg);
+  -webkit-transform: rotate(300deg);
+  -ms-transform: rotate(300deg);
+  transform: rotate(300deg);
+}
+
+.c11:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  height: 15%;
+  background-color: #999;
+  border-radius: 100%;
+  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
+  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation-delay: -0.2s;
+  -webkit-animation-delay: -0.2s;
+  animation-delay: -0.2s;
+}
+
+.c12 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform: rotate(330deg);
+  -ms-transform: rotate(330deg);
+  -webkit-transform: rotate(330deg);
+  -ms-transform: rotate(330deg);
+  transform: rotate(330deg);
+}
+
+.c12:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  height: 15%;
+  background-color: #999;
+  border-radius: 100%;
+  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
+  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation-delay: -0.1s;
+  -webkit-animation-delay: -0.1s;
+  animation-delay: -0.1s;
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  />
+  <div
+    class="c2"
+  />
+  <div
+    class="c3"
+  />
+  <div
+    class="c4"
+  />
+  <div
+    class="c5"
+  />
+  <div
+    class="c6"
+  />
+  <div
+    class="c7"
+  />
+  <div
+    class="c8"
+  />
+  <div
+    class="c9"
+  />
+  <div
+    class="c10"
+  />
+  <div
+    class="c11"
+  />
+  <div
+    class="c12"
+  />
+</div>
+`;
