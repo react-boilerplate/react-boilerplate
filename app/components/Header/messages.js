@@ -1,7 +1,7 @@
 /*
- * HomePage Messages
+ * Header Messages
  *
- * This contains all the text for the HomePage component.
+ * This contains all the text for the Header component.
  */
 import { defineMessages } from 'react-intl';
 
