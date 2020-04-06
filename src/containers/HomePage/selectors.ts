@@ -2,10 +2,12 @@
  * Homepage selectors
  */
 
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
+
 import { RootState } from 'types/RootState';
 import { initialState } from './slice';
 
+// TODO: Add an explanation for this
 const selectHomePageDomain = (state: RootState) =>
   state.homepage || initialState;
 

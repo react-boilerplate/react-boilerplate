@@ -8,7 +8,7 @@
 
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
-import styled from 'styles/styled-components';
+import styled from 'styled-components/macro';
 import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 

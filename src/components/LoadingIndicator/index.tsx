@@ -3,6 +3,7 @@ import * as React from 'react';
 import Circle from './Circle';
 import Wrapper from './Wrapper';
 
+//FIXME: dynamic creation problem https://github.com/styled-components/styled-components/issues/3015
 const LoadingIndicator = () => (
   <Wrapper>
     <Circle />

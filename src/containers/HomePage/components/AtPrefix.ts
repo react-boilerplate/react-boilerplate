@@ -1,4 +1,4 @@
-import styled from 'styles/styled-components';
+import styled from 'styled-components/macro';
 
 const AtPrefix = styled.span`
   color: black;

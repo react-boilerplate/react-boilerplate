@@ -12,4 +12,4 @@ export interface HomePageState {
   If you want to use 'ContainerState' keyword everywhere in your feature folder, 
   instead of the 'HomePageState' keyword.
 */
-// export type ContainerState = HomePageState;
+export type ContainerState = HomePageState;

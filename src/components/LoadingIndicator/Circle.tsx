@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, { keyframes } from 'styles/styled-components';
+import styled, { keyframes } from 'styled-components/macro';
 
 const circleFadeDelay = keyframes`
   0%,
