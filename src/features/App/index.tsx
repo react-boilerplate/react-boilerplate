@@ -12,7 +12,7 @@ import styled from 'styled-components/macro';
 import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 
-import HomePage from 'containers/HomePage/Loadable';
+import HomePage from 'features/HomePage/Loadable';
 
 import GlobalStyle from '../../global-styles';
 

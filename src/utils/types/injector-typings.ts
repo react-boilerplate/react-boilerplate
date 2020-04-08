@@ -1,4 +1,4 @@
-import { RootState } from 'types/RootState';
+import { RootState } from 'types';
 import { Reducer, AnyAction } from 'redux';
 import { Saga } from 'redux-saga';
 import { SagaInjectionModes } from 'redux-injectors';

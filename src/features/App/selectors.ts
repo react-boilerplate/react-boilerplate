@@ -3,7 +3,7 @@
  */
 
 import { createSelector } from '@reduxjs/toolkit';
-import { RootState } from 'types/RootState';
+import { RootState } from 'types';
 
 const selectRouter = (state: RootState) => state.router;
 

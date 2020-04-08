@@ -4,7 +4,7 @@
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
-import { selectUsername } from 'containers/HomePage/selectors';
+import { selectUsername } from 'features/HomePage/selectors';
 import { actions } from './slice';
 import { Repo } from 'types/Repo';
 

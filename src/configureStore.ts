@@ -9,7 +9,7 @@ import createSagaMiddleware from 'redux-saga';
 import { History } from 'history';
 
 import createReducer from './reducers';
-import { RootState } from 'types/RootState';
+import { RootState } from 'types';
 
 export default function configureAppStore(
   initialState: RootState | {} = {},

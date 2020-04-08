@@ -48,7 +48,6 @@ export default function HomePage() {
   const useEffectOnMount = (effect: React.EffectCallback) => {
     useEffect(effect, []);
   };
-
   useEffectOnMount(() => {
     // When initial state username is not null, submit the form to load repos
     if (username && username.trim().length > 0) {
@@ -73,7 +72,7 @@ export default function HomePage() {
             <Input
               id="username"
               type="text"
-              placeholder="mxstbr"
+              placeholder="enter a github user"
               value={username}
               onChange={onChangeUsername}
             />

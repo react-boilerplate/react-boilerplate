@@ -20,7 +20,7 @@ import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
-import App from 'containers/App';
+import App from 'features/App';
 
 // Import Language Provider
 
@@ -63,6 +63,13 @@ const ConnectedApp = () => (
 const render = () => {
   ReactDOM.render(<ConnectedApp />, MOUNT_NODE);
 };
+
+// if (module.hot) {
+//   module.hot.accept('./App', () => {
+//     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
+//     render();
+//   });
+// }
 
 render();
 

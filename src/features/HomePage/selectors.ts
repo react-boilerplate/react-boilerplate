@@ -4,7 +4,7 @@
 
 import { createSelector } from '@reduxjs/toolkit';
 
-import { RootState } from 'types/RootState';
+import { RootState } from 'types';
 import { initialState } from './slice';
 
 // TODO: Add an explanation for this
