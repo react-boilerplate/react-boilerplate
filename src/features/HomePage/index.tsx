@@ -18,12 +18,12 @@ import {
   selectRepos,
   selectUsername,
 } from './selectors';
-import { actions, reducer } from './slice';
+import { actions, reducer, sliceKey } from './slice';
 import { homepageSaga } from './saga';
 
 export default function HomePage() {
-  useInjectReducer({ key: 'homepage', reducer: reducer });
-  useInjectSaga({ key: 'homepage', saga: homepageSaga });
+  useInjectReducer({ key: sliceKey, reducer: reducer });
+  useInjectSaga({ key: sliceKey, saga: homepageSaga });
 
   const username = useSelector(selectUsername);
   const repos = useSelector(selectRepos);

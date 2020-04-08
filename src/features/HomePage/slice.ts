@@ -50,4 +50,4 @@ const homepageSlice = createSlice({
   },
 });
 
-export const { actions, reducer } = homepageSlice;
+export const { actions, reducer, name: sliceKey } = homepageSlice;
