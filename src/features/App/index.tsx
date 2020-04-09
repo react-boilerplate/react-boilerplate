@@ -12,9 +12,9 @@ import styled from 'styled-components/macro';
 import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 
-import HomePage from 'features/HomePage/Loadable';
+import HomePage from 'features/homepage/Loadable';
 
-import GlobalStyle from '../../global-styles';
+import GlobalStyle from '../../styles/global-styles';
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);

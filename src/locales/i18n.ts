@@ -3,16 +3,15 @@ import { initReactI18next } from 'react-i18next';
 
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-import translationEN from './en/translation.json';
-import translationDE from './de/translation.json';
+import en from './en/translation.json';
+import de from './de/translation.json';
 
-// the translations
 export const translations = {
   en: {
-    translation: translationEN,
+    translations: en,
   },
   de: {
-    translation: translationDE,
+    translations: de,
   },
 };
 
