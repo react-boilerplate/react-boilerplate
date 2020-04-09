@@ -30,9 +30,9 @@ import App from 'features/App';
 
 import { HelmetProvider } from 'react-helmet-async';
 
-import configureStore from './configureStore';
+import configureStore from './store/configureStore';
 
-import './i18n';
+import './locales/i18n';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
