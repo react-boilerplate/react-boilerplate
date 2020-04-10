@@ -1,6 +1,6 @@
 import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
 import { ThemeState, ThemeKeyType } from './types';
-import { themes } from './themes';
+import { themes, Theme } from './themes';
 
 export const initialState: ThemeState = {
   selected: 'default',
@@ -18,7 +18,7 @@ const themeSlice = createSlice({
 
 export const selectTheme = createSelector(
   [(state: { theme: ThemeState }) => state.theme || initialState],
-  theme => themes[theme.selected],
+  theme => themes[theme.selected] as Theme,
 );
 
 export const { changeTheme } = themeSlice.actions;

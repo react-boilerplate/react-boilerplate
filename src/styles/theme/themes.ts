@@ -1,12 +1,18 @@
+const defaultTheme = {
+  primary: '',
+  componentBackground: '',
+  componentBackgroundSecondary: '',
+};
+
+const darkTheme: Theme = {
+  primary: '',
+  componentBackground: '',
+  componentBackgroundSecondary: '',
+};
+
+export type Theme = typeof defaultTheme;
+
 export const themes = {
-  default: {
-    primary: '',
-    componentBackground: '',
-    componentBackgroundSecondary: '',
-  },
-  dark: {
-    primary: '',
-    componentBackground: '',
-    componentBackgroundSecondary: '',
-  },
+  default: defaultTheme,
+  dark: darkTheme,
 };
