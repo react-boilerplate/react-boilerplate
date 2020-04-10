@@ -33,6 +33,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import configureStore from './store/configureStore';
 
 import './locales/i18n';
+import ThemeProvider from 'styles/theme/ThemeProvider';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -51,11 +52,13 @@ const MOUNT_NODE = document.getElementById('root') as HTMLElement;
 const ConnectedApp = () => (
   <React.StrictMode>
     <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <HelmetProvider>
-          <App />
-        </HelmetProvider>
-      </ConnectedRouter>
+      <ThemeProvider>
+        <ConnectedRouter history={history}>
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
+        </ConnectedRouter>
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>
 );

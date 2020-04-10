@@ -1,4 +1,4 @@
-import { i18n, TFunction as OriginalTFunction } from 'i18next';
+import 'i18next';
 
 import { translations } from './i18n';
 
@@ -11,7 +11,8 @@ declare module 'i18next' {
     changeLanguage(lng: LanguageKeys, callback?: Callback): Promise<TFunction>;
   }
 
-  export interface TFunction extends OriginalTFunction {
+  export interface TFunction {
+    // typed key values
     <
       TResult extends TFunctionResult = string,
       TInterpolationMap extends object = StringMap

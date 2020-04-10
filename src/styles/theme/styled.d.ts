@@ -1,7 +1,7 @@
 import 'styled-components';
-import { theme } from './theme';
+import { defaultTheme } from './themes';
 
-type Theme = typeof theme;
+type Theme = typeof defaultTheme;
 
 /* This is the suggested way of declaring theme types */
 declare module 'styled-components' {
