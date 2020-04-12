@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { StyleConstants } from './StyleConstants';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -10,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding-top: ${StyleConstants.NAV_BAR_HEIGHT};
   }
 
   body.fontLoaded {

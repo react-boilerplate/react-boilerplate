@@ -20,6 +20,7 @@ import {
 } from './selectors';
 import { actions, reducer, sliceKey } from './slice';
 import { homepageSaga } from './saga';
+import NavBar from 'components/NavBar';
 
 export default function HomePage() {
   useInjectReducer({ key: sliceKey, reducer: reducer });
@@ -64,7 +65,8 @@ export default function HomePage() {
           content="A React.js Boilerplate application homepage"
         />
       </Helmet>
-      <div>
+      <NavBar />
+      {/* <div>
         Hello Inter Font Family, this is test text
         <Form onSubmit={onSubmitForm}>
           <label htmlFor="username">
@@ -79,7 +81,7 @@ export default function HomePage() {
             />
           </label>
         </Form>
-      </div>
+      </div> */}
     </article>
   );
 }
