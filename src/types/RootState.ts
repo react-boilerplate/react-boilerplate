@@ -1,5 +1,5 @@
 import { RouterState } from 'connected-react-router';
-import { HomePageState } from 'features/homepage/types';
+import { HomePageState } from 'features/HomePage/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
