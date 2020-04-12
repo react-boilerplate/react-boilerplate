@@ -65,6 +65,7 @@ export default function HomePage() {
         />
       </Helmet>
       <div>
+        Hello Inter Font Family, this is test text
         <Form onSubmit={onSubmitForm}>
           <label htmlFor="username">
             Try me
