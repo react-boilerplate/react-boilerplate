@@ -15,17 +15,17 @@ interface Options {
 }
 
 export function generateCRA(opts: Options = {}) {
-  shell.echo('Generating CRA...');
-
   let abortOnFailEnabled = false;
   if (opts.forTesting) {
     abortOnFailEnabled = shellEnableAbortOnFail();
   }
-  generateTemplateFolder();
-
   const craAppName = 'generated-cra-app';
 
   shell.rm('-rf', `${craAppName}`);
+
+  generateTemplateFolder();
+
+  shell.echo('Generating CRA...');
 
   const child = shell.exec(
     `npx create-react-app ${craAppName} --template file:.`,
@@ -36,7 +36,7 @@ export function generateCRA(opts: Options = {}) {
     },
   );
   child.on('exit', code => {
-    shell.echo('Generating CRA Done');
+    shell.echo('Generating CRA finished!');
 
     removeTemplateFolder();
     if (code || opts.forTesting) {

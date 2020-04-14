@@ -41,8 +41,6 @@
     "prettify": "prettier --write",
     "generate-cra": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/generate-cra.ts",
     "generate-cra:test": "npm run generate-cra -- --forTesting"
-
-
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [

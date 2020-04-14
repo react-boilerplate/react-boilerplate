@@ -25,6 +25,7 @@ export function generateTemplateFolder(opts: Options = {}) {
 
   shell.mkdir('template');
 
+  copyToTemplate('.vscode', true);
   copyToTemplate('public', true);
   copyToTemplate('src', true);
   copyToTemplate('.env.local');
@@ -40,7 +41,7 @@ export function generateTemplateFolder(opts: Options = {}) {
 
   shell.mv('template/.gitignore', 'template/gitignore');
 
-  shell.echo('Done');
+  shell.echo('Generating template folder done!');
   if (abortOnFailEnabled) shellDisableAbortOnFail();
 }
 
