@@ -21,6 +21,7 @@ import {
 import { actions, reducer, sliceKey } from './slice';
 import { homepageSaga } from './saga';
 import NavBar from 'components/NavBar';
+import Masthead from 'components/Masthead';
 
 export default function HomePage() {
   useInjectReducer({ key: sliceKey, reducer: reducer });
@@ -66,6 +67,7 @@ export default function HomePage() {
         />
       </Helmet>
       <NavBar />
+      <Masthead />
       {/* <div>
         Hello Inter Font Family, this is test text
         <Form onSubmit={onSubmitForm}>
