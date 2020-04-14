@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const Title = styled.h1`
+const Title = styled.div`
   font-size: 1.25rem;
   color: ${p => p.theme.text};
   font-weight: bold;
