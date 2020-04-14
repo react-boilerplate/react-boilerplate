@@ -15,7 +15,7 @@ export default function Nav() {
         href="https://github.com/Can-Sahin/cra-template-react-boilerplate"
         target="_blank"
         title="Github Page"
-        rel="external"
+        rel="noopener noreferrer"
       >
         <GithubIcon />
         Github
