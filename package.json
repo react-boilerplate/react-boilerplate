@@ -37,7 +37,8 @@
     "eject": "react-scripts eject",
     "typecheck": "tsc --noEmit && npm run lint",
     "lint": "eslint --ext js,ts,tsx src",
-    "lint:fix": "eslint --ext js,ts,tsx src --fix"
+    "lint:fix": "eslint --ext js,ts,tsx src --fix",
+    "generate-cra-template": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/generate-cra-template.ts"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
@@ -53,34 +54,23 @@
     }
   },
   "dependencies": {
-    "@hot-loader/react-dom": "16.13.0",
     "@reduxjs/toolkit": "1.3.2",
     "connected-react-router": "6.8.0",
     "fontfaceobserver": "2.1.0",
     "history": "4.10.1",
-    "hoist-non-react-statics": "3.3.0",
     "i18next": "19.3.4",
     "i18next-browser-languagedetector": "4.0.2",
-    "i18next-xhr-backend": "3.2.2",
-    "intl": "1.2.5",
-    "lodash": "4.17.15",
-    "offline-plugin": "5.0.7",
     "react": "16.13.0",
     "react-app-polyfill": "1.0.6",
     "react-dom": "16.13.0",
     "react-helmet-async": "1.0.4",
-    "react-hot-loader": "4.12.20",
     "react-i18next": "11.3.4",
-    "react-intl": "2.9.0",
     "react-redux": "7.2.0",
     "react-router-dom": "5.1.2",
-    "redux": "4.0.5",
     "redux-injectors": "1.3.0",
     "redux-saga": "1.1.3",
-    "reselect": "4.0.0",
     "sanitize.css": "11.0.0",
-    "styled-components": "5.0.1",
-    "typesafe-actions": "5.1.0"
+    "styled-components": "5.0.1"
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",
@@ -94,6 +84,7 @@
     "@babel/preset-react": "7.9.1",
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "10.0.1",
+    "@types/chalk": "2.2.0",
     "@types/fontfaceobserver": "0.0.6",
     "@types/history": "4.7.5",
     "@types/hoist-non-react-statics": "3.3.1",
@@ -106,6 +97,7 @@
     "@types/react-router-dom": "5.1.3",
     "@types/react-test-renderer": "16.9.2",
     "@types/redux-devtools": "3.0.47",
+    "@types/shelljs": "0.8.7",
     "@types/styled-components": "5.0.1",
     "@types/testing-library__jest-dom": "5.0.2",
     "@types/webpack": "4.41.8",
@@ -171,6 +163,7 @@
     "terser-webpack-plugin": "2.3.5",
     "ts-jest": "25.2.1",
     "ts-loader": "6.2.2",
+    "ts-node": "8.8.2",
     "typescript": "3.8.2",
     "typescript-plugin-styled-components": "1.4.4",
     "url-loader": "4.0.0",

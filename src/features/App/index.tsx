@@ -10,7 +10,6 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components/macro';
 import { Switch, Route } from 'react-router-dom';
-import { hot } from 'react-hot-loader/root';
 
 import HomePage from 'features/HomePage/Loadable';
 
@@ -42,4 +41,4 @@ function App() {
     </AppWrapper>
   );
 }
-export default hot(App);
+export default App;

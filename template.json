@@ -1,7 +1,41 @@
 {
   "package": {
+    "engines": {
+      "npm": ">=6.4.1",
+      "node": ">=10.13.0"
+    },
+    "scripts": {
+      "typecheck": "tsc --noEmit && npm run lint",
+      "lint": "eslint --ext js,ts,tsx src",
+      "lint:fix": "eslint --ext js,ts,tsx src --fix"
+    },
+    "lint-staged": {
+      "*.{ts,tsx,js,jsx}": ["npm run lint:fix"],
+      "*.{md,json}": ["prettier --write"]
+    },
+    "husky": {
+      "hooks": {
+        "pre-commit": "lint-staged && npm run typecheck"
+      }
+    },
     "dependencies": {
-    
+      "@reduxjs/toolkit": "1.3.2",
+      "connected-react-router": "6.8.0",
+      "fontfaceobserver": "2.1.0",
+      "history": "4.10.1",
+      "i18next": "19.3.4",
+      "i18next-browser-languagedetector": "4.0.2",
+      "react": "16.13.0",
+      "react-app-polyfill": "1.0.6",
+      "react-dom": "16.13.0",
+      "react-helmet-async": "1.0.4",
+      "react-i18next": "11.3.4",
+      "react-redux": "7.2.0",
+      "react-router-dom": "5.1.2",
+      "redux-injectors": "1.3.0",
+      "redux-saga": "1.1.3",
+      "sanitize.css": "11.0.0",
+      "styled-components": "5.0.1"
     }
   }
 }
