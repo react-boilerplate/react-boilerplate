@@ -20,7 +20,8 @@ const darkTheme: Theme = {
 
 export type Theme = typeof lightTheme;
 
-export const themes = {
+type ThemesDict = { [key: string]: Theme };
+export const themes: ThemesDict = {
   default: lightTheme,
   dark: darkTheme,
 };
