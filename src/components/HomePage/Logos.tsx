@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { ReactComponent as CRALogo } from './cra-logo.svg';
-import { ReactComponent as RPLogo } from './rp-logo.svg';
-import { ReactComponent as PlusSign } from './plus-sign.svg';
+import { ReactComponent as CRALogo } from './assets/cra-logo.svg';
+import { ReactComponent as RPLogo } from './assets/rp-logo.svg';
+import { ReactComponent as PlusSign } from './assets/plus-sign.svg';
 
 export default function Logos() {
   return (

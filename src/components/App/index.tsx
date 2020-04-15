@@ -10,7 +10,7 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Switch, Route } from 'react-router-dom';
 
-import HomePage from 'features/HomePage/Loadable';
+import HomePage from '../HomePage/Loadable';
 
 import GlobalStyle from '../../styles/global-styles';
 

@@ -20,7 +20,7 @@ import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
-import App from 'features/App';
+import App from 'components/App';
 
 // Import Language Provider
 

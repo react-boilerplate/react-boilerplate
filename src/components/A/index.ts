@@ -6,6 +6,7 @@ const A = styled.a`
 
   &:hover {
     text-decoration: underline;
+    opacity: 0.8;
   }
 
   &:active {

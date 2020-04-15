@@ -1,5 +1,4 @@
 import { RouterState } from 'connected-react-router';
-import { HomePageState } from 'features/HomePage/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
@@ -8,7 +7,6 @@ import { HomePageState } from 'features/HomePage/types';
 */
 export interface RootState {
   readonly router: RouterState;
-  readonly homepage: HomePageState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 
   // Used in tests

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
-import { ReactComponent as DocumentationIcon } from './documentation-icon.svg';
-import { ReactComponent as GithubIcon } from './github-icon.svg';
+import { ReactComponent as DocumentationIcon } from './assets/documentation-icon.svg';
+import { ReactComponent as GithubIcon } from './assets/github-icon.svg';
 
 export default function Nav() {
   return (
@@ -47,9 +47,7 @@ const Item = styled.a`
     opacity: 0.4;
   }
 
-  svg {
-    width: 1.5rem;
-    height: 1.5rem;
+  .icon {
     margin-right: 0.25rem;
   }
 `;
