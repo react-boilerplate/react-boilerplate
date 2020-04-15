@@ -14,12 +14,12 @@ module.exports = {
   ],
   plugins: ['prettier'],
   rules: {
-    'prettier/prettier': ['warn', prettierOptions],
+    'prettier/prettier': ['error', prettierOptions],
   },
   overrides: [
     {
       files: ['**/*.ts?(x)'],
-      rules: { 'prettier/prettier': ['error', prettierOptions] },
+      rules: { 'prettier/prettier': ['warn', prettierOptions] },
     },
   ],
 };
