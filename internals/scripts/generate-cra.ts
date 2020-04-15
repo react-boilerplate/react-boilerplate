@@ -46,5 +46,5 @@ export function generateCRA(opts: Options = {}) {
 process.chdir(path.join(__dirname, '../..'));
 
 generateCRA({
-  forTesting: process.env.NODE_ENV === 'test' || process.env.CI === '',
+  forTesting: process.env.NODE_ENV === 'test' || process.env.CI === 'true',
 });
