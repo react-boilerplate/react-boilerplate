@@ -18,6 +18,6 @@ jobs:
       - run: npm run generate-cra:test
         env:
           CI: true
-      - run: npm run test --if-present
-        env:
-          CI: true
+      # - run: npm run test --if-present
+      #   env:
+      #     CI: true

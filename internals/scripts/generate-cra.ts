@@ -4,11 +4,7 @@ import {
   generateTemplateFolder,
   removeTemplateFolder,
 } from './generate-template-folder';
-import {
-  shellEnableAbortOnFail,
-  shellDisableAbortOnFail,
-  parseArgv,
-} from './utils';
+import { shellEnableAbortOnFail, shellDisableAbortOnFail } from './utils';
 
 interface Options {
   forTesting?: boolean;
@@ -50,5 +46,5 @@ export function generateCRA(opts: Options = {}) {
 process.chdir(path.join(__dirname, '../..'));
 
 generateCRA({
-  forTesting: parseArgv(process.argv, 'forTesting', true) as boolean,
+  forTesting: process.env.NODE_ENV === 'test' || process.env.CI === '',
 });
