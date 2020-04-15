@@ -14,7 +14,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 10.x
-      - run: npm ci --no-optional # https://github.com/npm/cli/issues/558
+      - run: npm i # There is a bug with npm ci -> https://github.com/npm/cli/issues/558
+      - run: npm run lint
       - run: npm run generate-cra:test
         env:
           CI: true

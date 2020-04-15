@@ -35,16 +35,16 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "typecheck": "tsc --noEmit && npm run lint",
+    "checkTs": "tsc --noEmit",
     "lint": "eslint --ext js,ts,tsx src",
-    "lint:fix": "eslint --ext js,ts,tsx src --fix",
+    "lint:fix": "eslint --ext js,ts,tsx --fix src",
     "prettify": "prettier --write",
     "generate-cra": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/generate-cra.ts",
     "generate-cra:test": "cross-env NODE_ENV=test && npm run generate-cra"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
-      "npm run lint:fix"
+      "eslint --ext js,ts,tsx --fix"
     ],
     "*.{md,json}": [
       "prettier --write"
@@ -52,7 +52,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run typecheck"
+      "pre-commit": "lint-staged && npm run checkTs"
     }
   },
   "dependencies": {
