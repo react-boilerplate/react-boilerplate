@@ -3,10 +3,12 @@ import styled from 'styled-components/macro';
 import Title from 'components/Title';
 import Lead from 'components/Lead';
 import { ReactComponent as StateIcon } from './assets/state.svg';
+import { ReactComponent as CSSIcon } from './assets/css.svg';
 import SubTitle from 'components/SubTitle';
 import P from 'components/P';
 import A from 'components/A';
 import Repos from 'components/Repos';
+import ThemeSwitch from 'components/ThemeSwitch';
 
 export default function Features() {
   return (
@@ -47,6 +49,20 @@ export default function Features() {
               Redux Dev Tools.
             </P>
             <Repos />
+          </Content>
+        </Feature>
+        <Feature>
+          <CSSIcon className="feature-icon" />
+          <Content>
+            <SubTitle>Next Generation CSS</SubTitle>
+            <P>
+              Write composable CSS that’s co-located with your components for
+              complete modularity. Ship only the styles that are on the page for
+              the best performance. Generate application-wide styles and themes
+              for your components. Change the theme below to see how easy and
+              intuitive theming can ever be!
+            </P>
+            <ThemeSwitch />
           </Content>
         </Feature>
       </List>
