@@ -5,18 +5,17 @@
       "node": ">=10.13.0"
     },
     "scripts": {
-      "typecheck": "tsc --noEmit && npm run lint",
+      "checkTs": "tsc --noEmit",
       "lint": "eslint --ext js,ts,tsx src",
-      "lint:fix": "eslint --ext js,ts,tsx src --fix",
-      "prettify": "prettier --write"
+      "lint:fix": "eslint --ext js,ts,tsx --fix src"
     },
     "lint-staged": {
-      "*.{ts,tsx,js,jsx}": ["npm run lint:fix"],
+      "*.{ts,tsx,js,jsx}": ["eslint --ext js,ts,tsx --fix"],
       "*.{md,json}": ["prettier --write"]
     },
     "husky": {
       "hooks": {
-        "pre-commit": "lint-staged && npm run typecheck"
+        "pre-commit": "lint-staged && npm run checkTs"
       }
     },
     "dependencies": {

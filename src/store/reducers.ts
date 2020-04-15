@@ -2,8 +2,8 @@
  * Combine all reducers in this file and export the combined reducers.
  */
 
-import { combineReducers } from '@reduxjs/toolkit';
-import { connectRouter } from 'connected-react-router';
+import { combineReducers, Reducer, AnyAction } from '@reduxjs/toolkit';
+import { connectRouter, RouterState } from 'connected-react-router';
 
 import history from 'utils/history';
 import { InjectedReducersType } from 'utils/types/injector-typings';
@@ -16,7 +16,7 @@ export default function createReducer(
 ) {
   const rootReducer = combineReducers({
     ...injectedReducers,
-    router: connectRouter(history),
+    router: connectRouter(history) as Reducer<RouterState, AnyAction>,
   });
 
   return rootReducer as any; // TODO: any

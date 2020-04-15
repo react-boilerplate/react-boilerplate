@@ -1,0 +1,38 @@
+{
+  "projectName": "cra-template-react-boilerplate",
+  "projectOwner": "cra-template-react-boilerplate",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 80,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "Can-Sahin",
+      "name": "Can Sahin",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/33245689",
+      "profile": "https://github.com/Can-Sahin",
+      "contributions": [
+        "code",
+        "doc",
+        "ideas",
+        "review",
+        "test"
+      ]
+    },
+    {
+      "login": "receptiryaki",
+      "name": "Recep Tiryaki",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3495307",
+      "profile": "https://github.com/receptiryaki",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 8,
+  "commitConvention": "none"
+}
