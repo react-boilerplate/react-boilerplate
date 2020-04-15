@@ -23,7 +23,7 @@ export function generateCRA(opts: Options = {}) {
 
   shell.rm('-rf', `${craAppName}`);
 
-  generateTemplateFolder();
+  generateTemplateFolder(opts);
 
   shell.echo('Generating CRA...');
 

@@ -1,0 +1,23 @@
+name: build
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - run: npm ci
+      - run: npm run generate-cra:test
+        env:
+          CI: true
+      - run: npm run test --if-present
+        env:
+          CI: true
