@@ -1,0 +1,9 @@
+/**
+*
+* Asynchronously loads the component for {{ properCase componentName }}
+*
+*/
+
+import { lazyLoad } from 'utils/loadable';
+
+export const {{ properCase componentName }} = lazyLoad(() => import('./index'), module => module.{{ properCase componentName }});

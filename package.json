@@ -38,9 +38,10 @@
     "checkTs": "tsc --noEmit",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --ext js,ts,tsx --fix src",
-    "prettify": "prettier --write",
+    "generate": "cross-env TS_NODE_PROJECT='./internals/ts-node.tsconfig.json' plop --plopfile internals/generators/plopfile.ts",
     "generate-cra": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/generate-cra.ts",
-    "generate-cra:test": "cross-env NODE_ENV=test && npm run generate-cra"
+    "generate-cra:test": "cross-env NODE_ENV=test npm run generate-cra",
+    "prettify": "prettier --write"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
