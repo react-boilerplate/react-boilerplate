@@ -16,6 +16,11 @@ export const Input = styled.input`
   height: 2.75rem;
   padding: 0 0.75rem;
 
+  &::placeholder {
+    font-weight: 300;
+    color: ${p => p.theme.textSecondary};
+  }
+
   &:focus {
     border-color: ${p => p.theme.primary};
     box-shadow: 0 0 0 3px

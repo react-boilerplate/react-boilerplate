@@ -15,7 +15,6 @@ import {
   selectLoading,
   selectError,
 } from './selectors';
-import AtPrefix from './components/AtPrefix';
 import { LoadingIndicator } from 'app/components/LoadingIndicator';
 
 export function GithubRepoForm() {
@@ -58,16 +57,13 @@ export function GithubRepoForm() {
   return (
     <Wrapper>
       <FormGroup onSubmit={onSubmitForm}>
-        <FormLabel>
-          Github Username
-          <AtPrefix>@</AtPrefix>
-          <Input
-            type="text"
-            placeholder="react-boilerplate"
-            value={username}
-            onChange={onChangeUsername}
-          />
-        </FormLabel>
+        <FormLabel>Github Username</FormLabel>
+        <Input
+          type="text"
+          placeholder="Type any Github username"
+          value={username}
+          onChange={onChangeUsername}
+        />
       </FormGroup>
       {repos?.length > 0 ? (
         <List>
