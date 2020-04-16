@@ -1,6 +1,6 @@
 /**
 *
-* {{ properCase componentName }}
+* {{ properCase ComponentName }}
 *
 */
 {{#if wantMemo}}
@@ -18,9 +18,9 @@ import { useTranslation } from 'react-i18next';
 interface Props {}
 
 {{#if wantMemo}}
-export const {{ properCase componentName }} = memo((props: Props) => {
+export const {{ properCase ComponentName }} = memo((props: Props) => {
 {{else}}
-function {{ properCase componentName }}(props: Props) {
+function {{ properCase ComponentName }}(props: Props) {
 {{/if}}
   {{#if wantTranslations}}
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

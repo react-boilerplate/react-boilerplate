@@ -8,7 +8,7 @@ import path from 'path';
 import { componentExists } from '../utils';
 
 enum ProptNames {
-  'componentName' = 'componentName',
+  'ComponentName' = 'ComponentName',
   'wantMemo' = 'wantMemo',
   'wantStyledComponents' = 'wantStyledComponents',
   'wantTranslations' = 'wantTranslations',
@@ -20,7 +20,7 @@ export const componentGenerator: PlopGenerator = {
   prompts: [
     {
       type: 'input',
-      name: ProptNames.componentName,
+      name: ProptNames.ComponentName,
       message: 'What should it be called?',
       default: 'Button',
       validate: value => {
@@ -70,12 +70,11 @@ export const componentGenerator: PlopGenerator = {
     const actions: Actions = [
       {
         type: 'add',
-        path: `${componentsPath}/{{properCase ${ProptNames.componentName}}}/index.tsx`,
+        path: `${componentsPath}/{{properCase ${ProptNames.ComponentName}}}/index.tsx`,
         templateFile: './component/index.tsx.hbs',
         abortOnFail: true,
       },
     ];
-    console.log(actions);
 
     // if (data.wantTests) {
     //   actions.push({
@@ -89,7 +88,7 @@ export const componentGenerator: PlopGenerator = {
     if (data.wantLoadable) {
       actions.push({
         type: 'add',
-        path: `${componentsPath}/{{properCase ${ProptNames.componentName}}}/Loadable.ts`,
+        path: `${componentsPath}/{{properCase ${ProptNames.ComponentName}}}/Loadable.ts`,
         templateFile: './component/loadable.ts.hbs',
         abortOnFail: true,
       });
@@ -97,7 +96,7 @@ export const componentGenerator: PlopGenerator = {
 
     actions.push({
       type: 'prettify',
-      data: { path: `${componentsPath}/${data.componentName}/**` },
+      data: { path: `${componentsPath}/${data.ComponentName}/**` },
     });
 
     return actions;

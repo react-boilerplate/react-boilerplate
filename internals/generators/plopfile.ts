@@ -17,7 +17,6 @@ interface CustomActionData {
 
 /**
  * Every generated backup file gets this extension
- * @type {string}
  */
 export const BACKUPFILE_EXTENSION = 'rbgen';
 
@@ -26,14 +25,6 @@ export default function plop(plop: NodePlopAPI) {
   plop.setGenerator('component', componentGenerator);
   plop.setActionType('prettify', (answers, config) => {
     const data = config.data as CustomActionData;
-    console.log('config:', data);
-    // const folderPath = `${path.join(
-    //   __dirname,
-    //   '/../../app/',
-    //   config.path,
-    //   plop.getHelper('properCase')(answers.name),
-    //   '**.ts*',
-    // )}`;
     exec(`npm run prettify -- "${data.path}"`);
     return '';
   });
