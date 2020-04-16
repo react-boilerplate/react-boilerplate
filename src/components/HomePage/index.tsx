@@ -13,7 +13,7 @@ import Features from './Features';
 
 export default function HomePage() {
   return (
-    <article>
+    <>
       <Helmet>
         <title>Home Page</title>
         <meta
@@ -26,6 +26,6 @@ export default function HomePage() {
         <Masthead />
         <Features />
       </Container>
-    </article>
+    </>
   );
 }

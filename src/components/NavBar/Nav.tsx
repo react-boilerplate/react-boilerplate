@@ -7,7 +7,7 @@ import { ReactComponent as GithubIcon } from './assets/github-icon.svg';
 export default function Nav() {
   return (
     <Wrapper>
-      <Item as={Link} to="/" title="Documentation Page">
+      <Item as={Link} to="/documentation" title="Documentation Page">
         <DocumentationIcon />
         Documentation
       </Item>
