@@ -35,7 +35,7 @@ export function ThemeSwitch() {
       <Themes>
         <Radio
           id="default"
-          label="Default"
+          label="System theme"
           className="radio"
           name="theme"
           onChange={handleThemeChange('default')}

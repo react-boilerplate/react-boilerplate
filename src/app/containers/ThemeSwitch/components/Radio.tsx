@@ -37,6 +37,7 @@ const Wrapper = styled.div`
       position: relative;
       cursor: pointer;
       font-size: 0.875rem;
+      color: ${p => p.theme.text};
 
       a {
         color: ${p => p.theme.text};

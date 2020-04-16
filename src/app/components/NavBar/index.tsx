@@ -30,7 +30,7 @@ const Wrapper = styled.header`
     background-color: ${p =>
       p.theme.background.replace(
         /rgba?(\(\s*\d+\s*,\s*\d+\s*,\s*\d+)(?:\s*,.+?)?\)/,
-        'rgba$1,0.8)',
+        'rgba$1,0.75)',
       )};
   }
 

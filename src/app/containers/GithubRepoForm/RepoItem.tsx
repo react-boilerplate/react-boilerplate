@@ -33,6 +33,7 @@ const Wrapper = styled.div`
   padding: 0 1rem;
   min-height: 2.75rem;
   font-weight: 500;
+  color: ${p => p.theme.text};
 
   &:nth-child(odd) {
     background-color: ${p => p.theme.backgroundVariant};
