@@ -1,38 +1,91 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import styled from 'styled-components/macro';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { FormLabel } from 'app/components/FormLabel';
 import { Input } from './components/Input';
-import styled from 'styled-components/macro';
 import { RepoItem } from './RepoItem';
-import { TextButton } from 'app/containers/GithubRepoForm/components/TextButton';
+import { TextButton } from './components/TextButton';
+import { sliceKey, reducer, actions } from './slice';
+import { githubRepoFormSaga } from './saga';
+import {
+  selectUsername,
+  selectRepos,
+  selectLoading,
+  selectError,
+} from './selectors';
+import AtPrefix from './components/AtPrefix';
+import { LoadingIndicator } from 'app/components/LoadingIndicator';
 
 export function GithubRepoForm() {
-  const handleShowMoreClick = (e: React.MouseEvent) => {
-    console.log(e.target);
+  useInjectReducer({ key: sliceKey, reducer: reducer });
+  useInjectSaga({ key: sliceKey, saga: githubRepoFormSaga });
+
+  const username = useSelector(selectUsername);
+  const repos = useSelector(selectRepos);
+  const isLoading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+
+  const dispatch = useDispatch();
+
+  const onChangeUsername = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(actions.changeUsername(evt.currentTarget.value));
   };
+
+  const onSubmitForm = (evt?: React.FormEvent<HTMLFormElement>) => {
+    if (evt !== undefined && evt.preventDefault) {
+      evt.preventDefault();
+    }
+    if (!username) {
+      return;
+    }
+    dispatch(actions.loadRepos());
+  };
+
+  const useEffectOnMount = (effect: React.EffectCallback) => {
+    useEffect(effect, []);
+  };
+  useEffectOnMount(() => {
+    // When initial state username is not null, submit the form to load repos
+    if (username && username.trim().length > 0) {
+      onSubmitForm();
+    }
+  });
+  // const handleShowMoreClick = (e: React.MouseEvent) => {
+  //   console.log(e.target);
+  // };
   return (
     <Wrapper>
-      <FormGroup>
-        <FormLabel>Github Username</FormLabel>
-        <Input />
+      <FormGroup onSubmit={onSubmitForm}>
+        <FormLabel>
+          Github Username
+          <AtPrefix>@</AtPrefix>
+          <Input
+            type="text"
+            placeholder="react-boilerplate"
+            value={username}
+            onChange={onChangeUsername}
+          />
+        </FormLabel>
       </FormGroup>
-      <List>
-        <RepoItem
-          name="react-boilerplate-typescript"
-          starCount={199}
-          url="https://github.com/react-boilerplate/react-boilerplate-typescript"
-        />
-        <RepoItem
-          name="react-boilerplate-typescript"
-          starCount={199}
-          url="https://github.com/react-boilerplate/react-boilerplate-typescript"
-        />
-        <RepoItem
-          name="react-boilerplate-typescript"
-          starCount={199}
-          url="https://github.com/react-boilerplate/react-boilerplate-typescript"
-        />
-      </List>
-      <TextButton onClick={handleShowMoreClick}>Show More</TextButton>
+      {repos?.length > 0 ? (
+        <List>
+          {repos.map(repo => (
+            <RepoItem
+              name={repo.name}
+              starCount={repo.stargazers_count}
+              url={repo.html_url}
+            />
+          ))}
+        </List>
+      ) : isLoading ? (
+        <LoadingIndicator />
+      ) : error ? (
+        <span>Error</span>
+      ) : null}
+
+      {/* <TextButton onClick={handleShowMoreClick}>Show More</TextButton> */}
     </Wrapper>
   );
 }
@@ -44,7 +97,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const FormGroup = styled.div`
+const FormGroup = styled.form`
   display: flex;
   flex-direction: column;
   width: ${100 / 3}%;

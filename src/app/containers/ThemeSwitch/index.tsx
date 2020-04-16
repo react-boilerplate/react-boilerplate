@@ -2,10 +2,32 @@ import React from 'react';
 import { FormLabel } from 'app/components/FormLabel';
 import { Radio } from './components/Radio';
 import styled from 'styled-components/macro';
+import { changeTheme, initialState } from 'styles/theme/slice';
+import { useDispatch } from 'react-redux';
+import { ThemeKeyType } from 'styles/theme/types';
 
+type ChangeThemeType = 'default' | 'light' | 'dark';
 export function ThemeSwitch() {
-  const handleThemeChange = (e: any) => {
-    console.log(e.target.value);
+  const dispatch = useDispatch();
+
+  const handleThemeChange = (type: ChangeThemeType) => {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
+      let theme: ThemeKeyType = 'default';
+      switch (type) {
+        case 'default':
+          theme = initialState.selected;
+          break;
+        case 'light':
+          theme = 'default';
+          break;
+        case 'dark':
+          theme = 'dark';
+          break;
+        default:
+          break;
+      }
+      dispatch(changeTheme(theme));
+    };
   };
   return (
     <Wrapper>
@@ -16,7 +38,7 @@ export function ThemeSwitch() {
           label="Default"
           className="radio"
           name="theme"
-          onChange={handleThemeChange}
+          onChange={handleThemeChange('default')}
           value="default"
         />
         <Radio
@@ -24,7 +46,7 @@ export function ThemeSwitch() {
           label="Light"
           className="radio"
           name="theme"
-          onChange={handleThemeChange}
+          onChange={handleThemeChange('light')}
           value="light"
         />
         <Radio
@@ -32,7 +54,7 @@ export function ThemeSwitch() {
           label="Dark"
           className="radio"
           name="theme"
-          onChange={handleThemeChange}
+          onChange={handleThemeChange('dark')}
           value="dark"
         />
       </Themes>

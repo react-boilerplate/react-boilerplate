@@ -2,8 +2,10 @@ import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
 import { ThemeState, ThemeKeyType } from './types';
 import { themes } from './themes';
 
+const isSysyemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
 export const initialState: ThemeState = {
-  selected: 'default',
+  selected: isSysyemDark ? 'dark' : 'default',
 };
 
 const themeSlice = createSlice({

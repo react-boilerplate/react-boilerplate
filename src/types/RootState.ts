@@ -1,4 +1,5 @@
 import { RouterState } from 'connected-react-router';
+import { GithubRepoFormState } from 'app/containers/GithubRepoForm/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
@@ -7,6 +8,7 @@ import { RouterState } from 'connected-react-router';
 */
 export interface RootState {
   readonly router: RouterState;
+  readonly githubRepoForm: GithubRepoFormState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 
   // Used in tests
