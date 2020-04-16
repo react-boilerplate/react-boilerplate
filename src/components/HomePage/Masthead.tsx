@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import Logos from './Logos';
-import Title from 'components/Title';
-import Lead from 'components/Lead';
-import A from 'components/A';
+import { Logos } from './Logos';
+import { Title } from 'components/Title';
+import { Lead } from 'components/Lead';
+import { A } from 'components/A';
 
-export default function Masthead() {
+export function Masthead() {
   return (
     <Wrapper>
       <Logos />

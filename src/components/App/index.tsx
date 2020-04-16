@@ -10,12 +10,12 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Switch, Route } from 'react-router-dom';
 
-import HomePage from '../HomePage/Loadable';
+import { GlobalStyle } from '../../styles/global-styles';
 
-import GlobalStyle from '../../styles/global-styles';
-import NotFoundPage from '../NotFoundPage/Loadable';
+import { HomePage } from '../HomePage/Loadable';
+import { NotFoundPage } from '../NotFoundPage/Loadable';
 
-function App() {
+export function App() {
   return (
     <>
       <Helmet
@@ -33,4 +33,3 @@ function App() {
     </>
   );
 }
-export default App;

@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import Circle from './Circle';
-import Wrapper from './Wrapper';
+import { Circle } from './Circle';
+import { Wrapper } from './Wrapper';
 
 //FIXME: dynamic creation problem https://github.com/styled-components/styled-components/issues/3015
-const LoadingIndicator = () => (
+export const LoadingIndicator = () => (
   <Wrapper>
     <Circle />
     <Circle rotate={30} delay={-1.1} />
@@ -20,5 +20,3 @@ const LoadingIndicator = () => (
     <Circle rotate={330} delay={-0.1} />
   </Wrapper>
 );
-
-export default LoadingIndicator;

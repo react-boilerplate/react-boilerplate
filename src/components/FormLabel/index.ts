@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 
-const FormLabel = styled.label`
+export const FormLabel = styled.label`
   text-transform: uppercase;
   font-weight: normal;
   margin: 0;
@@ -8,5 +8,3 @@ const FormLabel = styled.label`
   color: ${p => p.theme.textSecondary};
   font-size: 0.75rem;
 `;
-
-export default FormLabel;

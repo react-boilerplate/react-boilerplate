@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-export default function Logo() {
+export function Logo() {
   return (
     <Wrapper>
       <Title>React Boilerplate</Title>

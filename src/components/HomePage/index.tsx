@@ -6,12 +6,12 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import NavBar from '../NavBar';
-import Masthead from './Masthead';
-import Container from '../Container';
-import Features from './Features';
+import { NavBar } from '../NavBar';
+import { Masthead } from './Masthead';
+import { Container } from '../Container';
+import { Features } from './Features';
 
-export default function HomePage() {
+export function HomePage() {
   return (
     <>
       <Helmet>

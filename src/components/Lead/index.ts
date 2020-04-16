@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 
-const Lead = styled.p`
+export const Lead = styled.p`
   font-size: 1.5rem;
   font-weight: 300;
   line-height: 1.5;
@@ -11,5 +11,3 @@ const Lead = styled.p`
     color: ${p => p.theme.text};
   }
 `;
-
-export default Lead;

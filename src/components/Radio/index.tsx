@@ -12,7 +12,7 @@ interface Props {
   value: string;
 }
 
-export default function Radio({ id, label, className, ...restOf }: Props) {
+export function Radio({ id, label, className, ...restOf }: Props) {
   return (
     <Wrapper className={className}>
       <RadioInput id={id} {...restOf} />

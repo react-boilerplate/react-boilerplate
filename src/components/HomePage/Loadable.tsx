@@ -3,9 +3,13 @@
  */
 
 import * as React from 'react';
-import loadable from 'utils/loadable';
-import LoadingIndicator from 'components/LoadingIndicator';
+import { lazyLoad } from 'utils/loadable';
+import { LoadingIndicator } from 'components/LoadingIndicator';
 
-export default loadable(() => import('./index'), {
-  fallback: <LoadingIndicator />,
-});
+export const HomePage = lazyLoad(
+  () => import('./index'),
+  module => module.HomePage,
+  {
+    fallback: <LoadingIndicator />,
+  },
+);

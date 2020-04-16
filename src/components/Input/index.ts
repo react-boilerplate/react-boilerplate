@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 
-const Input = styled.input`
+export const Input = styled.input`
   border: 1px solid ${p => p.theme.border};
   border-radius: 4px;
   color: ${p => p.theme.text};
@@ -26,5 +26,3 @@ const Input = styled.input`
         )};
   }
 `;
-
-export default Input;

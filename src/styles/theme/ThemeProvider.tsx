@@ -1,10 +1,10 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { ThemeProvider as OriginalThemeProvider } from 'styled-components';
 import { useSelector } from 'react-redux';
 import { selectTheme, themeSliceKey, reducer } from './slice';
 import { useInjectReducer } from 'redux-injectors';
 
-const ThemeProvider = (props: { children: React.ReactChild }) => {
+export const ThemeProvider = (props: { children: React.ReactChild }) => {
   useInjectReducer({ key: themeSliceKey, reducer: reducer });
 
   const theme = useSelector(selectTheme);
@@ -14,5 +14,3 @@ const ThemeProvider = (props: { children: React.ReactChild }) => {
     </OriginalThemeProvider>
   );
 };
-
-export default memo(ThemeProvider);

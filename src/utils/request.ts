@@ -45,7 +45,7 @@ function checkStatus(response: Response) {
  *
  * @return {object}           The response data
  */
-export default async function request(
+export async function request(
   url: string,
   options?: RequestInit,
 ): Promise<{} | { err: ResponseError }> {

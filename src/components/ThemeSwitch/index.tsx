@@ -1,9 +1,9 @@
 import React from 'react';
-import FormLabel from 'components/FormLabel';
-import Radio from 'components/Radio';
+import { FormLabel } from 'components/FormLabel';
+import { Radio } from 'components/Radio';
 import styled from 'styled-components/macro';
 
-export default function ThemeSwitch() {
+export function ThemeSwitch() {
   const handleThemeChange = (e: any) => {
     console.log(e.target.value);
   };

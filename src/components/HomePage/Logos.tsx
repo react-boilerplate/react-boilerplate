@@ -4,7 +4,7 @@ import { ReactComponent as CRALogo } from './assets/cra-logo.svg';
 import { ReactComponent as RPLogo } from './assets/rp-logo.svg';
 import { ReactComponent as PlusSign } from './assets/plus-sign.svg';
 
-export default function Logos() {
+export function Logos() {
   return (
     <Wrapper>
       <CRALogo className="logo" />

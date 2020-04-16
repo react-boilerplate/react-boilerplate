@@ -16,11 +16,11 @@ import { ConnectedRouter } from 'connected-react-router';
 import FontFaceObserver from 'fontfaceobserver';
 import * as serviceWorker from './serviceWorker';
 
-import history from 'utils/history';
+import { history } from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
-import App from 'components/App';
+import { App } from 'components/App';
 
 // Import Language Provider
 
@@ -30,10 +30,10 @@ import App from 'components/App';
 
 import { HelmetProvider } from 'react-helmet-async';
 
-import configureStore from './store/configureStore';
+import { configureAppStore } from './store/configureStore';
 
 import './locales/i18n';
-import ThemeProvider from 'styles/theme/ThemeProvider';
+import { ThemeProvider } from 'styles/theme/ThemeProvider';
 
 // Observe loading of Inter (to remove 'Inter', remove the <link> tag in
 // the index.html file and this observer)
@@ -46,7 +46,7 @@ openSansObserver.load().then(() => {
 
 // Create redux store with history
 const initialState = {};
-const store = configureStore(initialState, history);
+const store = configureAppStore(initialState, history);
 const MOUNT_NODE = document.getElementById('root') as HTMLElement;
 
 const ConnectedApp = () => (

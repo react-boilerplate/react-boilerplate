@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import P from 'components/P';
-import Link from 'components/Link';
-import NavBar from 'components/NavBar';
+import { P } from 'components/P';
+import { Link } from 'components/Link';
+import { NavBar } from 'components/NavBar';
 import { Helmet } from 'react-helmet-async';
 import { StyleConstants } from 'styles/StyleConstants';
 
-export default function NotFoundPage() {
+export function NotFoundPage() {
   return (
     <>
       <Helmet>

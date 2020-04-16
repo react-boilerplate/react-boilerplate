@@ -1,11 +1,11 @@
 import React from 'react';
-import FormLabel from 'components/FormLabel';
-import Input from 'components/Input';
+import { FormLabel } from 'components/FormLabel';
+import { Input } from 'components/Input';
 import styled from 'styled-components/macro';
-import RepoItem from './RepoItem';
-import TextButton from 'components/TextButton';
+import { RepoItem } from './RepoItem';
+import { TextButton } from 'components/TextButton';
 
-export default function Repos() {
+export function Repos() {
   const handleShowMoreClick = (e: React.MouseEvent) => {
     console.log(e.target);
   };

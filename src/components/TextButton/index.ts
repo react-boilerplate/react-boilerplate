@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 
-const TextButton = styled.button`
+export const TextButton = styled.button`
   background: none;
   outline: none;
   padding: 0;
@@ -18,5 +18,3 @@ const TextButton = styled.button`
     opacity: 0.4;
   }
 `;
-
-export default TextButton;

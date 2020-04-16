@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import Container from 'components/Container';
-import Logo from './Logo';
+import { Container } from 'components/Container';
+import { Logo } from './Logo';
 import { StyleConstants } from 'styles/StyleConstants';
-import Nav from './Nav';
+import { Nav } from './Nav';
 
-export default function NavBar() {
+export function NavBar() {
   return (
     <Wrapper>
       <Container>

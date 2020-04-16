@@ -8,10 +8,10 @@ import { createInjectorsEnhancer, forceReducerReload } from 'redux-injectors';
 import createSagaMiddleware from 'redux-saga';
 import { History } from 'history';
 
-import createReducer from './reducers';
+import { createReducer } from './reducers';
 import { RootState } from 'types';
 
-export default function configureAppStore(
+export function configureAppStore(
   initialState: RootState | {} = {},
   history: History,
 ) {

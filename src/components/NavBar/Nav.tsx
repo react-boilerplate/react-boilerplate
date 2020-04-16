@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as DocumentationIcon } from './assets/documentation-icon.svg';
 import { ReactComponent as GithubIcon } from './assets/github-icon.svg';
 
-export default function Nav() {
+export function Nav() {
   return (
     <Wrapper>
       <Item as={Link} to="/documentation" title="Documentation Page">

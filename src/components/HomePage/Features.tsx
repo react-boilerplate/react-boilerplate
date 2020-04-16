@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import Title from 'components/Title';
-import Lead from 'components/Lead';
+import { Title } from 'components/Title';
+import { Lead } from 'components/Lead';
 import { ReactComponent as StateIcon } from './assets/state.svg';
 import { ReactComponent as CSSIcon } from './assets/css.svg';
-import SubTitle from 'components/SubTitle';
-import P from 'components/P';
-import A from 'components/A';
-import Repos from 'components/Repos';
-import ThemeSwitch from 'components/ThemeSwitch';
+import { SubTitle } from 'components/SubTitle';
+import { P } from 'components/P';
+import { A } from 'components/A';
+import { Repos } from 'components/Repos';
+import { ThemeSwitch } from 'components/ThemeSwitch';
 
-export default function Features() {
+export function Features() {
   return (
     <>
       <Title as="h2">Features</Title>
