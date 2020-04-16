@@ -12,12 +12,12 @@ export function ThemeSwitch() {
 
   const dispatch = useDispatch();
 
-  const handleThemeChange = (theme: ThemeKeyType) => {
-    return (e: React.ChangeEvent<HTMLInputElement>) => {
-      saveTheme(theme);
-      dispatch(changeTheme(theme));
-    };
+  const handleThemeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value as ThemeKeyType;
+    saveTheme(value);
+    dispatch(changeTheme(value));
   };
+
   return (
     <Wrapper>
       <FormLabel>Select Theme</FormLabel>
@@ -27,8 +27,8 @@ export function ThemeSwitch() {
           label="System theme"
           className="radio"
           name="theme"
-          onChange={handleThemeChange('system')}
-          value="default"
+          onChange={handleThemeChange}
+          value="system"
           isSelected={theme === 'system'}
         />
         <Radio
@@ -36,16 +36,16 @@ export function ThemeSwitch() {
           label="Light"
           className="radio"
           name="theme"
-          onChange={handleThemeChange('default')}
+          onChange={handleThemeChange}
           value="light"
-          isSelected={theme === 'default'}
+          isSelected={theme === 'light'}
         />
         <Radio
           id="dark"
           label="Dark"
           className="radio"
           name="theme"
-          onChange={handleThemeChange('dark')}
+          onChange={handleThemeChange}
           value="dark"
           isSelected={theme === 'dark'}
         />

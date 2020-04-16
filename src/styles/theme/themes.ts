@@ -21,6 +21,6 @@ const darkTheme: Theme = {
 export type Theme = typeof lightTheme;
 
 export const themes = {
-  default: lightTheme,
+  light: lightTheme,
   dark: darkTheme,
 };

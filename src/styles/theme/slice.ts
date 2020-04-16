@@ -4,7 +4,7 @@ import { themes } from './themes';
 import { getThemeFromStorage, isSysyemDark } from './utils';
 
 export const initialState: ThemeState = {
-  selected: getThemeFromStorage() || 'default',
+  selected: getThemeFromStorage() || 'system',
 };
 
 const themeSlice = createSlice({
@@ -21,7 +21,7 @@ export const selectTheme = createSelector(
   [(state: { theme: ThemeState }) => state.theme || initialState],
   theme => {
     if (theme.selected === 'system') {
-      return isSysyemDark ? themes.dark : themes.default;
+      return isSysyemDark ? themes.dark : themes.light;
     }
     return themes[theme.selected];
   },
