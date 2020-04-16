@@ -14,7 +14,8 @@ enum ProptNames {
   'wantTranslations' = 'wantTranslations',
   'wantLoadable' = 'wantLoadable',
 }
-const componentsPath = path.join(__dirname, '../../../src/components');
+const componentsPath = path.join(__dirname, '../../../src/app/components');
+
 export const componentGenerator: PlopGenerator = {
   description: 'Add an unconnected component',
   prompts: [
@@ -26,7 +27,7 @@ export const componentGenerator: PlopGenerator = {
       validate: value => {
         if (/.+/.test(value)) {
           return componentExists(value)
-            ? 'A component or container with this name already exists'
+            ? 'A component with this name already exists'
             : true;
         }
 
@@ -50,7 +51,7 @@ export const componentGenerator: PlopGenerator = {
       name: ProptNames.wantTranslations,
       default: false,
       message:
-        'Do you want i18n messages and translations (i.e. will this component use text)?',
+        'Do you want i18n translations (i.e. will this component use text)?',
     },
     {
       type: 'confirm',
@@ -58,15 +59,8 @@ export const componentGenerator: PlopGenerator = {
       default: false,
       message: 'Do you want to load the component asynchronously?',
     },
-    // {
-    //   type: 'confirm',
-    //   name: 'wantTests',
-    //   default: true,
-    //   message: 'Do you want tests?',
-    // },
   ],
   actions: (data: { [P in ProptNames]: string }) => {
-    console.log('data: ', data);
     const actions: Actions = [
       {
         type: 'add',
@@ -75,15 +69,6 @@ export const componentGenerator: PlopGenerator = {
         abortOnFail: true,
       },
     ];
-
-    // if (data.wantTests) {
-    //   actions.push({
-    //     type: 'add',
-    //     path: `${componentsPath}/{{properCase name}}/index.tsx`,
-    //     templateFile: './component/test.tsx.hbs',
-    //     abortOnFail: true,
-    //   });
-    // }
 
     if (data.wantLoadable) {
       actions.push({

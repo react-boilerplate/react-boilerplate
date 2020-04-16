@@ -7,11 +7,16 @@
 import fs from 'fs';
 import path from 'path';
 
-export function componentExists(comp: string) {
-  const pageComponents = fs.readdirSync(
+export function componentExists(component: string) {
+  const components = fs.readdirSync(
     path.join(__dirname, '../../../src/app/components'),
   );
-  const pageContainers = [];
-  const components = pageComponents.concat(pageContainers);
-  return components.indexOf(comp) >= 0;
+  return components.indexOf(component) >= 0;
+}
+
+export function containerExists(container: string) {
+  const containers = fs.readdirSync(
+    path.join(__dirname, '../../../src/app/containers'),
+  );
+  return containers.indexOf(container) >= 0;
 }
