@@ -7,7 +7,7 @@ import path from 'path';
 
 import { containerExists } from '../utils';
 
-enum ProptNames {
+export enum ContainerProptNames {
   'ComponentName' = 'ComponentName',
   'wantMemo' = 'wantMemo',
   'wantHeaders' = 'wantHeaders',
@@ -26,7 +26,7 @@ export const containerGenerator: PlopGenerator = {
   prompts: [
     {
       type: 'input',
-      name: ProptNames.ComponentName,
+      name: ContainerProptNames.ComponentName,
       message: 'What should it be called?',
       default: 'Form',
       validate: value => {
@@ -41,51 +41,51 @@ export const containerGenerator: PlopGenerator = {
     },
     {
       type: 'confirm',
-      name: ProptNames.wantMemo,
+      name: ContainerProptNames.wantMemo,
       default: false,
       message: 'Do you want to wrap your component in React.memo?',
     },
     {
       type: 'confirm',
-      name: ProptNames.wantHeaders,
+      name: ContainerProptNames.wantHeaders,
       default: false,
       message: 'Do you want headers?',
     },
     {
       type: 'confirm',
-      name: ProptNames.wantSlice,
+      name: ContainerProptNames.wantSlice,
       default: true,
       message:
         'Do you want a redux slice(actions/selectors/reducer) for this container?',
     },
     {
       type: 'confirm',
-      name: ProptNames.wantSaga,
+      name: ContainerProptNames.wantSaga,
       default: true,
       message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
     },
     {
       type: 'confirm',
-      name: ProptNames.wantStyledComponents,
+      name: ContainerProptNames.wantStyledComponents,
       default: true,
       message: 'Do you want to use styled-components?',
     },
     {
       type: 'confirm',
-      name: ProptNames.wantTranslations,
+      name: ContainerProptNames.wantTranslations,
       default: false,
       message:
         'Do you want i18n translations (i.e. will this component use text)?',
     },
     {
       type: 'confirm',
-      name: ProptNames.wantLoadable,
+      name: ContainerProptNames.wantLoadable,
       default: false,
       message: 'Do you want to load the component asynchronously?',
     },
   ],
-  actions: (data: { [P in ProptNames]: string }) => {
-    const containerPath = `${containersPath}/{{properCase ${ProptNames.ComponentName}}}`;
+  actions: (data: { [P in ContainerProptNames]: string }) => {
+    const containerPath = `${containersPath}/{{properCase ${ContainerProptNames.ComponentName}}}`;
 
     const actions: Actions = [
       {

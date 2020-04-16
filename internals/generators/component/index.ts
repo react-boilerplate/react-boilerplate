@@ -7,7 +7,7 @@ import path from 'path';
 
 import { componentExists } from '../utils';
 
-enum ProptNames {
+export enum ComponentProptNames {
   'ComponentName' = 'ComponentName',
   'wantMemo' = 'wantMemo',
   'wantStyledComponents' = 'wantStyledComponents',
@@ -21,7 +21,7 @@ export const componentGenerator: PlopGenerator = {
   prompts: [
     {
       type: 'input',
-      name: ProptNames.ComponentName,
+      name: ComponentProptNames.ComponentName,
       message: 'What should it be called?',
       default: 'Button',
       validate: value => {
@@ -36,35 +36,35 @@ export const componentGenerator: PlopGenerator = {
     },
     {
       type: 'confirm',
-      name: ProptNames.wantMemo,
+      name: ComponentProptNames.wantMemo,
       default: false,
       message: 'Do you want to wrap your component in React.memo?',
     },
     {
       type: 'confirm',
-      name: ProptNames.wantStyledComponents,
+      name: ComponentProptNames.wantStyledComponents,
       default: true,
       message: 'Do you want to use styled-components?',
     },
     {
       type: 'confirm',
-      name: ProptNames.wantTranslations,
+      name: ComponentProptNames.wantTranslations,
       default: false,
       message:
         'Do you want i18n translations (i.e. will this component use text)?',
     },
     {
       type: 'confirm',
-      name: ProptNames.wantLoadable,
+      name: ComponentProptNames.wantLoadable,
       default: false,
       message: 'Do you want to load the component asynchronously?',
     },
   ],
-  actions: (data: { [P in ProptNames]: string }) => {
+  actions: (data: { [P in ComponentProptNames]: string }) => {
     const actions: Actions = [
       {
         type: 'add',
-        path: `${componentsPath}/{{properCase ${ProptNames.ComponentName}}}/index.tsx`,
+        path: `${componentsPath}/{{properCase ${ComponentProptNames.ComponentName}}}/index.tsx`,
         templateFile: './component/index.tsx.hbs',
         abortOnFail: true,
       },
@@ -73,7 +73,7 @@ export const componentGenerator: PlopGenerator = {
     if (data.wantLoadable) {
       actions.push({
         type: 'add',
-        path: `${componentsPath}/{{properCase ${ProptNames.ComponentName}}}/Loadable.ts`,
+        path: `${componentsPath}/{{properCase ${ComponentProptNames.ComponentName}}}/Loadable.ts`,
         templateFile: './component/loadable.ts.hbs',
         abortOnFail: true,
       });

@@ -1,9 +1,3 @@
-/**
- * generator/index.js
- *
- * Exports the generators so plop knows them
- */
-
 import { NodePlopAPI } from 'node-plop';
 import { componentGenerator } from './component';
 import { containerGenerator } from './container';
@@ -14,6 +8,7 @@ import { exec } from 'child_process';
 
 interface CustomActionData {
   path: string;
+  file?: string;
 }
 
 /**
@@ -29,5 +24,19 @@ export default function plop(plop: NodePlopAPI) {
     const data = config.data as CustomActionData;
     exec(`npm run prettify -- "${data.path}"`);
     return '';
+  });
+
+  plop.setActionType('backup', (answers, config) => {
+    const data = config.data as CustomActionData;
+
+    fs.copyFileSync(
+      path.join(__dirname, data.path, data.file),
+      path.join(__dirname, data.path, `${data.file}.${BACKUPFILE_EXTENSION}`),
+    );
+    return path.join(
+      __dirname,
+      data.path,
+      `${data.file}.${BACKUPFILE_EXTENSION}`,
+    );
   });
 }

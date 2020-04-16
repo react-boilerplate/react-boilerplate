@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "module": "CommonJS",
+    "module": "commonjs",
     "moduleResolution": "node",
-    "noEmit": true
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true
   }
 }

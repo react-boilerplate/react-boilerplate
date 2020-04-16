@@ -20,3 +20,10 @@ jobs:
       # - run: npm run test --if-present
       #   env:
       #     CI: true
+  testGenerators:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm run test:generators
+        env:
+          CI: true
