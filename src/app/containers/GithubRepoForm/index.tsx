@@ -73,6 +73,7 @@ export function GithubRepoForm() {
         <List>
           {repos.map(repo => (
             <RepoItem
+              key={repo.id}
               name={repo.name}
               starCount={repo.stargazers_count}
               url={repo.html_url}
