@@ -51,9 +51,7 @@ export function GithubRepoForm() {
       onSubmitForm();
     }
   });
-  // const handleShowMoreClick = (e: React.MouseEvent) => {
-  //   console.log(e.target);
-  // };
+
   return (
     <Wrapper>
       <FormGroup onSubmit={onSubmitForm}>
@@ -79,10 +77,8 @@ export function GithubRepoForm() {
       ) : isLoading ? (
         <LoadingIndicator />
       ) : error ? (
-        <span>Error</span>
+        <ErrorText>There is an error occurred!</ErrorText>
       ) : null}
-
-      {/* <TextButton onClick={handleShowMoreClick}>Show More</TextButton> */}
     </Wrapper>
   );
 }
@@ -92,6 +88,10 @@ const Wrapper = styled.div`
     margin: 16px 0;
     font-size: 0.875rem;
   }
+`;
+
+const ErrorText = styled.span`
+  color: ${p => p.theme.text};
 `;
 
 const FormGroup = styled.form`

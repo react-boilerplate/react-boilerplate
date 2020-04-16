@@ -1,11 +1,10 @@
 import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
 import { ThemeState, ThemeKeyType } from './types';
 import { themes } from './themes';
-
-const isSysyemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+import { getThemeFromStorage, isSysyemDark } from './utils';
 
 export const initialState: ThemeState = {
-  selected: isSysyemDark ? 'dark' : 'default',
+  selected: getThemeFromStorage() || 'default',
 };
 
 const themeSlice = createSlice({
@@ -20,7 +19,17 @@ const themeSlice = createSlice({
 
 export const selectTheme = createSelector(
   [(state: { theme: ThemeState }) => state.theme || initialState],
-  theme => themes[theme.selected],
+  theme => {
+    if (theme.selected === 'system') {
+      return isSysyemDark ? themes.dark : themes.default;
+    }
+    return themes[theme.selected];
+  },
+);
+
+export const selectThemeKey = createSelector(
+  [(state: { theme: ThemeState }) => state.theme || initialState],
+  theme => theme.selected,
 );
 
 export const { changeTheme } = themeSlice.actions;

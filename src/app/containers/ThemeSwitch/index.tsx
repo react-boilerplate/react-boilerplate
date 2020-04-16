@@ -2,30 +2,19 @@ import React from 'react';
 import { FormLabel } from 'app/components/FormLabel';
 import { Radio } from './components/Radio';
 import styled from 'styled-components/macro';
-import { changeTheme, initialState } from 'styles/theme/slice';
-import { useDispatch } from 'react-redux';
+import { changeTheme, selectThemeKey } from 'styles/theme/slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { saveTheme } from 'styles/theme/utils';
 import { ThemeKeyType } from 'styles/theme/types';
 
-type ChangeThemeType = 'default' | 'light' | 'dark';
 export function ThemeSwitch() {
+  const theme = useSelector(selectThemeKey);
+
   const dispatch = useDispatch();
 
-  const handleThemeChange = (type: ChangeThemeType) => {
+  const handleThemeChange = (theme: ThemeKeyType) => {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
-      let theme: ThemeKeyType = 'default';
-      switch (type) {
-        case 'default':
-          theme = initialState.selected;
-          break;
-        case 'light':
-          theme = 'default';
-          break;
-        case 'dark':
-          theme = 'dark';
-          break;
-        default:
-          break;
-      }
+      saveTheme(theme);
       dispatch(changeTheme(theme));
     };
   };
@@ -38,16 +27,18 @@ export function ThemeSwitch() {
           label="System theme"
           className="radio"
           name="theme"
-          onChange={handleThemeChange('default')}
+          onChange={handleThemeChange('system')}
           value="default"
+          isSelected={theme === 'system'}
         />
         <Radio
           id="light"
           label="Light"
           className="radio"
           name="theme"
-          onChange={handleThemeChange('light')}
+          onChange={handleThemeChange('default')}
           value="light"
+          isSelected={theme === 'default'}
         />
         <Radio
           id="dark"
@@ -56,6 +47,7 @@ export function ThemeSwitch() {
           name="theme"
           onChange={handleThemeChange('dark')}
           value="dark"
+          isSelected={theme === 'dark'}
         />
       </Themes>
     </Wrapper>

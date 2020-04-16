@@ -10,12 +10,13 @@ interface Props extends InputProps {
   id: string;
   label: string;
   className?: string;
+  isSelected?: boolean;
 }
 
-export function Radio({ id, label, className, ...restOf }: Props) {
+export function Radio({ id, label, className, isSelected, ...restOf }: Props) {
   return (
     <Wrapper className={className}>
-      <input type="radio" id={id} {...restOf} />
+      <input type="radio" id={id} checked={isSelected} {...restOf} />
       <label htmlFor={id}>{label}</label>
     </Wrapper>
   );
