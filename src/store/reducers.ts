@@ -19,5 +19,5 @@ export default function createReducer(
     router: connectRouter(history) as Reducer<RouterState, AnyAction>,
   });
 
-  return rootReducer as any; // TODO: any
+  return rootReducer;
 }
