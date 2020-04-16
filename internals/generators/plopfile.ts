@@ -21,7 +21,6 @@ interface CustomActionData {
 export const BACKUPFILE_EXTENSION = 'rbgen';
 
 export default function plop(plop: NodePlopAPI) {
-  console.log('plop started');
   plop.setGenerator('component', componentGenerator);
   plop.setActionType('prettify', (answers, config) => {
     const data = config.data as CustomActionData;

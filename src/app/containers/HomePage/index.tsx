@@ -6,10 +6,10 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { NavBar } from '../NavBar';
+import { NavBar } from '../../components/NavBar';
 import { Masthead } from './Masthead';
-import { Container } from '../Container';
 import { Features } from './Features';
+import { PageWrapper } from 'app/components/PageWrapper';
 
 export function HomePage() {
   return (
@@ -22,10 +22,10 @@ export function HomePage() {
         />
       </Helmet>
       <NavBar />
-      <Container>
+      <PageWrapper>
         <Masthead />
         <Features />
-      </Container>
+      </PageWrapper>
     </>
   );
 }

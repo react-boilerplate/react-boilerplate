@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Container } from 'components/Container';
+import { PageWrapper } from 'app/components/PageWrapper';
 import { Logo } from './Logo';
 import { StyleConstants } from 'styles/StyleConstants';
 import { Nav } from './Nav';
@@ -8,10 +8,10 @@ import { Nav } from './Nav';
 export function NavBar() {
   return (
     <Wrapper>
-      <Container>
+      <PageWrapper>
         <Logo />
         <Nav />
-      </Container>
+      </PageWrapper>
     </Wrapper>
   );
 }
@@ -34,7 +34,7 @@ const Wrapper = styled.header`
       )};
   }
 
-  ${Container} {
+  ${PageWrapper} {
     display: flex;
     align-items: center;
     justify-content: space-between;

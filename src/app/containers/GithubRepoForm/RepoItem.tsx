@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { ReactComponent as StarIcon } from './assets/star.svg';
 import { ReactComponent as NewWindowIcon } from './assets/new-window.svg';
-import { A } from 'components/A';
+import { A } from 'app/components/A';
 
 interface Props {
   name: string;

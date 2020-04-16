@@ -9,7 +9,7 @@ import path from 'path';
 
 export function componentExists(comp: string) {
   const pageComponents = fs.readdirSync(
-    path.join(__dirname, '../../../src/components'),
+    path.join(__dirname, '../../../src/app/components'),
   );
   const pageContainers = [];
   const components = pageComponents.concat(pageContainers);

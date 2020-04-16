@@ -1,6 +1,6 @@
 import React from 'react';
-import { FormLabel } from 'components/FormLabel';
-import { Radio } from 'components/Radio';
+import { FormLabel } from 'app/components/FormLabel';
+import { Radio } from './components/Radio';
 import styled from 'styled-components/macro';
 
 export function ThemeSwitch() {
