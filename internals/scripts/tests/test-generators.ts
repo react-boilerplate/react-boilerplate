@@ -14,7 +14,7 @@ import { PlopGenerator } from '../typings/PlopGenerator';
 
 if (process.env.TESTING_GENERATED_CRA) {
   process.chdir(
-    path.join(__dirname, '../../generated-cra-app/internals/generators'),
+    path.join(__dirname, '../../../generated-cra-app/internals/generators'),
   );
 } else {
   process.chdir(path.join(__dirname, '../generators'));

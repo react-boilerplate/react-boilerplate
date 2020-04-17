@@ -45,8 +45,6 @@
 
     "generate-cra": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/generate-cra.ts",
     "test:generators:cra": "cross-env TESTING_GENERATED_CRA=true npm run test:generators",
-    "cleanExampleApp:cra": "cd generated-cra-app && npm run cleanExampleApp",
-
     "test:generators": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/tests/test-generators.ts",
     "generate-template": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/generate-template.ts"
   },
