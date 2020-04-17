@@ -23,7 +23,7 @@ export function ThemeSwitch() {
       <FormLabel>Select Theme</FormLabel>
       <Themes>
         <Radio
-          id="default"
+          id="system"
           label="System theme"
           className="radio"
           name="theme"
