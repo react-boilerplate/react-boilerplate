@@ -8,10 +8,10 @@ import de from './de/translation.json';
 
 export const translations = {
   en: {
-    translations: en,
+    translation: en,
   },
   de: {
-    translations: de,
+    translation: de,
   },
 };
 

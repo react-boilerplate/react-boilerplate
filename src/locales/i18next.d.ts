@@ -3,7 +3,7 @@ import 'i18next';
 import { translations } from './i18n';
 
 type TranslationsType = typeof translations;
-type LanguageKeys = keyof TranslationsType;
+export type LanguageKeys = keyof TranslationsType;
 type TranslationKeys = keyof TranslationsType['en']['translations'];
 
 declare module 'i18next' {
