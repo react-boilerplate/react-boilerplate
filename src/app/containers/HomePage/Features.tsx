@@ -18,8 +18,13 @@ import { ReactComponent as InstantFeedbackIcon } from './assets/instant-feedback
 import { ReactComponent as ScaffoldingIcon } from './assets/scaffolding.svg';
 import { ReactComponent as OfflineFirstIcon } from './assets/offline-first.svg';
 import { ReactComponent as CodeAnalysisIcon } from './assets/code-analysis.svg';
+import { useTranslation } from 'react-i18next';
+import { translations } from 'locales/i18n';
+import { Link } from 'app/components/Link';
 
 export function Features() {
+  const { t } = useTranslation();
+
   return (
     <>
       <Title as="h2">Features</Title>
@@ -77,36 +82,44 @@ export function Features() {
         <Feature>
           <INTLIcon className="feature-icon" />
           <Content>
-            <SubTitle>i18n Internationalization </SubTitle>
+            <SubTitle>{t(translations.i18nFeature.title())} </SubTitle>
             <P>
-              Scalable apps need to support multiple languages, easily add and
-              support multiple languages. Change the language below to see how
-              instantly it updates the page without refreshing.
+              {t(translations.i18nFeature.description())}
+              <br />
+              <span>
+                (Only some of the features below are translated to demonstrate
+                an example)
+              </span>
             </P>
             <LanguageSwitch />
           </Content>
         </Feature>
         <Feature>
-          <TSLogo className="feature-icon" />
+          <RouteIcon className="feature-icon" />
           <Content>
-            <SubTitle>TypeScript</SubTitle>
+            <SubTitle>{t(translations.routingFeature.title())}</SubTitle>
             <P>
-              Typescript is the key to scalability. Build self-documented code,
-              easy-to-debug code and create maintainable large applications and
-              codebases with a highly productive development experience.
+              {t(translations.routingFeature.description())}
+              <br />
+              <span>
+                Go to our <Link to="/notfound">/NotFound</Link> page to see how
+                routing works
+              </span>
             </P>
           </Content>
         </Feature>
         <Feature>
-          <RouteIcon className="feature-icon" />
+          <InstantFeedbackIcon className="feature-icon" />
           <Content>
-            <SubTitle>Industry-Standard routing</SubTitle>
-            <P>
-              It's natural to want to add pages (e.g. `/about`) to your
-              application, and routing makes this possible. Go to our{' '}
-              <strong>/NotFound</strong>
-              page to see how routing works
-            </P>
+            <SubTitle>{t(translations.feedbackFeature.title())}</SubTitle>
+            <P>{t(translations.feedbackFeature.description())}</P>
+          </Content>
+        </Feature>
+        <Feature>
+          <ScaffoldingIcon className="feature-icon" />
+          <Content>
+            <SubTitle>{t(translations.scaffoldingFeature.title())}</SubTitle>
+            <P>{t(translations.scaffoldingFeature.description())}</P>
           </Content>
         </Feature>
         <Feature>
@@ -120,24 +133,13 @@ export function Features() {
           </Content>
         </Feature>
         <Feature>
-          <InstantFeedbackIcon className="feature-icon" />
+          <TSLogo className="feature-icon" />
           <Content>
-            <SubTitle>Instant Feedback</SubTitle>
+            <SubTitle>TypeScript</SubTitle>
             <P>
-              Enjoy the best DX (Developer eXperience) and code your app at the
-              speed of thought! Your saved changes to the CSS and JS are
-              reflected instantaneously without refreshing the page.
-            </P>
-          </Content>
-        </Feature>
-        <Feature>
-          <ScaffoldingIcon className="feature-icon" />
-          <Content>
-            <SubTitle>Quick Scaffolding</SubTitle>
-            <P>
-              Automate the creation of components, features, routes, selectors
-              and sagas - and their tests - right from the CLI! Avoid fighting
-              the glue of your code and focus on your app!
+              Typescript is the key to scalability. Build self-documented code,
+              easy-to-debug code and create maintainable large applications and
+              codebases with a highly productive development experience.
             </P>
           </Content>
         </Feature>

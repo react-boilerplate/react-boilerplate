@@ -7,10 +7,10 @@ import { GithubRepoFormState } from 'app/containers/GithubRepoForm/types';
   You have to declare them here manually
 */
 export interface RootState {
-  readonly router: RouterState;
-  readonly githubRepoForm: GithubRepoFormState;
+  router: RouterState;
+  githubRepoForm: GithubRepoFormState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 
   // Used in tests
-  readonly testStateKey: any;
+  testStateKey: any;
 }

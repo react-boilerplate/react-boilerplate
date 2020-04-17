@@ -32,29 +32,33 @@ const initialState = {};
 const store = configureAppStore(initialState, history);
 const MOUNT_NODE = document.getElementById('root') as HTMLElement;
 
-const ConnectedApp = () => (
+interface Props {
+  Component: typeof App;
+}
+const ConnectedApp = ({ Component }: Props) => (
   <React.StrictMode>
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <HelmetProvider>
-          <App />
+          <Component />
         </HelmetProvider>
       </ConnectedRouter>
     </Provider>
   </React.StrictMode>
 );
-const render = () => {
-  ReactDOM.render(<ConnectedApp />, MOUNT_NODE);
+const render = (Component: typeof App) => {
+  ReactDOM.render(<ConnectedApp Component={Component} />, MOUNT_NODE);
 };
 
-// if (module.hot) {
-//   module.hot.accept('./App', () => {
-//     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
-//     render();
-//   });
-// }
+if (module.hot) {
+  module.hot.accept(['./app', './locales/i18n'], () => {
+    ReactDOM.unmountComponentAtNode(MOUNT_NODE);
+    const App = require('./app').App;
+    render(App);
+  });
+}
 
-render();
+render(App);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

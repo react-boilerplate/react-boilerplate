@@ -5,14 +5,32 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 import en from './en/translation.json';
 import de from './de/translation.json';
+import { ConvertedToFunctionsType } from './types';
 
-export const translations = {
+const translationsJson = {
   en: {
     translation: en,
   },
   de: {
     translation: de,
   },
+};
+
+export type TranslationResource = typeof en;
+export type LanguageKeys = keyof TranslationResource;
+
+export const translations: ConvertedToFunctionsType<TranslationResource> = {} as any;
+
+const convertToFunctions = (obj: any, dict: {}, current?: string) => {
+  Object.keys(obj).forEach(key => {
+    const currentLookupKey = current ? `${current}.${key}` : key;
+    if (typeof obj[key] === 'object') {
+      dict[key] = {};
+      convertToFunctions(obj[key], dict[key], currentLookupKey);
+    } else {
+      dict[key] = () => currentLookupKey;
+    }
+  });
 };
 
 export const i18n = i18next
@@ -23,13 +41,16 @@ export const i18n = i18next
   .use(LanguageDetector)
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
-  .init({
-    resources: translations,
+  .init(
+    {
+      resources: translationsJson,
 
-    fallbackLng: 'en',
-    debug: true,
+      fallbackLng: 'en',
+      debug: process.env.NODE_ENV !== 'production',
 
-    interpolation: {
-      escapeValue: false, // not needed for react as it escapes by default
+      interpolation: {
+        escapeValue: false, // not needed for react as it escapes by default
+      },
     },
-  });
+    () => convertToFunctions(en, translations),
+  );
