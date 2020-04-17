@@ -4,7 +4,7 @@ import { translations } from './i18n';
 
 type TranslationsType = typeof translations;
 export type LanguageKeys = keyof TranslationsType;
-type TranslationKeys = keyof TranslationsType['en']['translations'];
+type TranslationKeys = keyof TranslationsType['en']['translation'];
 
 declare module 'i18next' {
   export interface i18n {
