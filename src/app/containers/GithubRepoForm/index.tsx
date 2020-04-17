@@ -30,6 +30,7 @@ export function GithubRepoForm() {
 
   const onChangeUsername = (evt: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(actions.changeUsername(evt.currentTarget.value));
+    dispatch(actions.loadRepos());
   };
 
   const onSubmitForm = (evt?: React.FormEvent<HTMLFormElement>) => {

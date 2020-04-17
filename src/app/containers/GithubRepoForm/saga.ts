@@ -2,7 +2,7 @@
  * Gets the repositories of the user from Github
  */
 
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest, delay } from 'redux-saga/effects';
 import { request } from 'utils/request';
 import { selectUsername } from './selectors';
 import { actions } from './slice';
@@ -26,6 +26,7 @@ export const addRepoOwnershipKey = ({
  * Github repos request/response handler
  */
 export function* getRepos() {
+  yield delay(500);
   // Select username from store
   const username: string = yield select(selectUsername);
   const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
