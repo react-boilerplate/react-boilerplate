@@ -23,8 +23,10 @@ export default ({ key, reducer }) => WrappedComponent => {
 
     constructor(props, context) {
       super(props, context);
-
-      getInjectors(context.store).injectReducer(key, reducer);
+    }
+  
+    componentDidMount() {
+      getInjectors(this.context.store).injectReducer(key, reducer);
     }
 
     render() {
