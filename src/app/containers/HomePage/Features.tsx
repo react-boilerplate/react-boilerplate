@@ -86,10 +86,10 @@ export function Features() {
             <P>
               {t(translations.i18nFeature.description())}
               <br />
-              <span>
+              <small>
                 (Only some of the features below are translated to demonstrate
                 an example)
-              </span>
+              </small>
             </P>
             <LanguageSwitch />
           </Content>
@@ -101,10 +101,10 @@ export function Features() {
             <P>
               {t(translations.routingFeature.description())}
               <br />
-              <span>
+              <small>
                 Go to our <Link to="/notfound">/NotFound</Link> page to see how
                 routing works
-              </span>
+              </small>
             </P>
           </Content>
         </Feature>
