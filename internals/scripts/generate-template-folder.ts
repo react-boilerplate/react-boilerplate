@@ -31,6 +31,7 @@ export function generateTemplateFolder(opts: Options = {}) {
   copyToTemplate('.vscode', true);
   copyToTemplate('public', true);
   copyToTemplate('src', true);
+  copyToTemplate('.babel-plugin-macrosrc.js');
   copyToTemplate('.env.local');
   copyToTemplate('.env.production');
   copyToTemplate('.eslintrc.js');
