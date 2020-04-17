@@ -19,10 +19,10 @@ export function App() {
   return (
     <>
       <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
+        titleTemplate="%s - React Boilerplate"
+        defaultTitle="React Boilerplate"
       >
-        <meta name="description" content="A React.js Boilerplate application" />
+        <meta name="description" content="A React Boilerplate application" />
       </Helmet>
 
       <Switch>

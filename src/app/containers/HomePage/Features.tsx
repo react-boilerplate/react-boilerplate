@@ -57,8 +57,8 @@ export function Features() {
                 rel="noopener noreferrer"
               >
                 Install Chrome Redux Dev Tools
-              </A>
-              to see how your application changes to state, travel in time to
+              </A>{' '}
+              to see how your application's state changes and travel in time to
               debug. Type any github username below and see it in action with
               Redux Dev Tools.
             </P>

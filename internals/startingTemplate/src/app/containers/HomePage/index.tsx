@@ -12,10 +12,7 @@ export function HomePage() {
     <>
       <Helmet>
         <title>Home Page</title>
-        <meta
-          name="description"
-          content="A React.js Boilerplate application homepage"
-        />
+        <meta name="description" content="A Boilerplate application homepage" />
       </Helmet>
       <span>HomePage container</span>
     </>

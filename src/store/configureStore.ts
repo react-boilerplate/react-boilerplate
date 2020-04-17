@@ -35,6 +35,7 @@ export function configureAppStore(
     reducer: createReducer(),
     preloadedState: initialState,
     middleware: [...getDefaultMiddleware(), ...middlewares],
+    devTools: process.env.NODE_ENV !== 'production',
     enhancers,
   });
 
