@@ -1,15 +1,10 @@
 import shell from 'shelljs';
 import { shellEnableAbortOnFail, shellDisableAbortOnFail } from './utils';
 
-interface Options {
-  forTesting?: boolean;
-}
+interface Options {}
 
 export function generateTemplateFolder(opts: Options = {}) {
-  let abortOnFailEnabled = false;
-  if (opts.forTesting) {
-    abortOnFailEnabled = shellEnableAbortOnFail();
-  }
+  const abortOnFailEnabled = shellEnableAbortOnFail();
 
   shell.echo('Generating template folder...');
 
@@ -31,6 +26,7 @@ export function generateTemplateFolder(opts: Options = {}) {
   copyToTemplate('internals/ts-node.tsconfig.json');
   shell.mkdir('template/internals/scripts');
   copyToTemplate('internals/scripts/clean.ts');
+  copyToTemplate('internals/startingTemplate', true);
 
   copyToTemplate('.vscode', true);
   copyToTemplate('public', true);

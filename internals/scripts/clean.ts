@@ -4,6 +4,8 @@ import chalk from 'chalk';
 
 interface Options {}
 
+process.chdir(path.join(__dirname, '../..'));
+
 export function cleanExampleApp(opts: Options = {}) {
   if (!shell.test('-e', 'internals/startingTemplate')) {
     shell.echo('The example app has already deleted.');
@@ -16,6 +18,7 @@ export function cleanExampleApp(opts: Options = {}) {
 
   shell.cp('-r', 'internals/startingTemplate/public/*', 'public');
   shell.cp('-r', 'internals/startingTemplate/src/*', 'src');
+  shell.cp('internals/startingTemplate/tsconfig.json', 'tsconfig.json');
 
   shell.rm('-rf', 'internals/startingTemplate');
   shell.rm('-rf', 'internals/scripts');
@@ -26,6 +29,5 @@ export function cleanExampleApp(opts: Options = {}) {
 }
 
 (function () {
-  process.chdir(path.join(__dirname, '../..'));
   cleanExampleApp();
 })();

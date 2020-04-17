@@ -6,15 +6,11 @@ import {
 } from './generate-template-folder';
 import { shellEnableAbortOnFail, shellDisableAbortOnFail } from './utils';
 
-interface Options {
-  forTesting?: boolean;
-}
+interface Options {}
 
 export function generateCRA(opts: Options = {}) {
-  let abortOnFailEnabled = false;
-  if (opts.forTesting) {
-    abortOnFailEnabled = shellEnableAbortOnFail();
-  }
+  const abortOnFailEnabled = shellEnableAbortOnFail();
+
   const craAppName = 'generated-cra-app';
 
   shell.rm('-rf', `${craAppName}`);
@@ -26,7 +22,7 @@ export function generateCRA(opts: Options = {}) {
   const child = shell.exec(
     `npx create-react-app ${craAppName} --template file:.`,
     {
-      silent: opts.forTesting,
+      silent: false,
       async: true,
       fatal: true,
     },
@@ -35,7 +31,7 @@ export function generateCRA(opts: Options = {}) {
     shell.echo('Generating CRA finished!');
 
     removeTemplateFolder();
-    if (code || opts.forTesting) {
+    if (code) {
       shell.rm('-rf', `${craAppName}`);
     }
   });
@@ -45,6 +41,4 @@ export function generateCRA(opts: Options = {}) {
 
 process.chdir(path.join(__dirname, '../..'));
 
-generateCRA({
-  forTesting: process.env.NODE_ENV === 'test' || process.env.CI === 'true',
-});
+generateCRA();

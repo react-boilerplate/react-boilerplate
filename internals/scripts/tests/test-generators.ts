@@ -5,14 +5,20 @@ import shell from 'shelljs';
 import path from 'path';
 import nodePlop from 'node-plop';
 
-import { addCheckMark } from './helpers/checkmark';
-import { addXMark } from './helpers/xmark';
-import { BACKUPFILE_EXTENSION } from '../generators/plopfile';
-import { ComponentProptNames } from '../generators/component';
-import { ContainerProptNames } from '../generators/container';
-import { PlopGenerator } from './PlopGenerator';
+import { addCheckMark } from '../helpers/checkmark';
+import { addXMark } from '../helpers/xmark';
+import { BACKUPFILE_EXTENSION } from '../../generators/plopfile';
+import { ComponentProptNames } from '../../generators/component';
+import { ContainerProptNames } from '../../generators/container';
+import { PlopGenerator } from '../typings/PlopGenerator';
 
-process.chdir(path.join(__dirname, '../generators'));
+if (process.env.TESTING_GENERATED_CRA) {
+  process.chdir(
+    path.join(__dirname, '../../generated-cra-app/internals/generators'),
+  );
+} else {
+  process.chdir(path.join(__dirname, '../generators'));
+}
 
 const plop = nodePlop('./plopfile.ts');
 const componentGen = plop.getGenerator('component') as PlopGenerator;
@@ -20,9 +26,10 @@ const containerGen = plop.getGenerator('container') as PlopGenerator;
 
 const NAMESPACE = 'RBGenerated';
 
-const componentsPath = path.join(__dirname, '../../src/app/components');
-const containersPath = path.join(__dirname, '../../src/app/containers');
-const rootStatePath = path.join(__dirname, '../../src/types/RootState.ts');
+const componentsPath = path.join(process.cwd(), '../../src/app/components');
+console.log('compontens: ', componentsPath);
+const containersPath = path.join(process.cwd(), '../../src/app/containers');
+const rootStatePath = path.join(process.cwd(), '../../src/types/RootState.ts');
 
 function runLinting() {
   return new Promise((resolve, reject) => {
@@ -151,7 +158,7 @@ async function generateContainer() {
   const containerCleanup = await generateContainer().catch(reason =>
     reportErrors(reason),
   );
-  // Run lint when all the components and languages are generated to see if they have any linting erros
+  // Run lint when all the components are generated to see if they have any linting erros
   const lintingResult = await runLinting()
     .then(reportSuccess(`Linting test passed`))
     .catch(reason => {

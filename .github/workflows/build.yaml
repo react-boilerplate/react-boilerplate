@@ -14,17 +14,16 @@ jobs:
         with:
           node-version: 10.x
       - run: npm i # There is a bug with npm ci -> https://github.com/npm/cli/issues/558
-      - run: npm run generate-cra:test
-        env:
-          CI: true
-      # - run: npm run test --if-present
-      #   env:
-      #     CI: true
-  testGenerators:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: npm i # There is a bug with npm ci -> https://github.com/npm/cli/issues/558
-      - run: npm run test:generators
-        env:
-          CI: true
+      - run: npm run generate-cra
+      - run: npm run lint
+        working-directory: generated-cra-app
+      - run: npm run checkTs
+        working-directory: generated-cra-app
+      - run: npm run test:generators:cra
+      - run: npm run cleanExampleApp
+        working-directory: generated-cra-app
+      - run: npm run lint
+        working-directory: generated-cra-app
+      - run: npm run checkTs
+        working-directory: generated-cra-app
+

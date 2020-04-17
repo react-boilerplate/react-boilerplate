@@ -10,6 +10,7 @@
       "lint": "npm run eslint -- src",
       "lint:fix": "npm run eslint -- --fix src",
       "generate": "cross-env TS_NODE_PROJECT='./internals/ts-node.tsconfig.json' plop --plopfile internals/generators/plopfile.ts",
+      "cleanExampleApp": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/clean.ts",
       "prettify": "prettier --write"
     },
     "lint-staged": {
