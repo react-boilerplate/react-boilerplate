@@ -2,15 +2,22 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Title } from 'app/containers/HomePage/components/Title';
 import { Lead } from './components/Lead';
-import { ReactComponent as StateIcon } from './assets/state.svg';
-import { ReactComponent as CSSIcon } from './assets/css.svg';
-import { ReactComponent as INTLIcon } from './assets/intl.svg';
 import { SubTitle } from 'app/containers/HomePage/components/SubTitle';
 import { P } from './components/P';
 import { A } from 'app/components/A';
 import { GithubRepoForm } from 'app/containers/GithubRepoForm';
 import { ThemeSwitch } from 'app/containers/ThemeSwitch';
 import { LanguageSwitch } from '../LanguageSwitch';
+import { ReactComponent as StateIcon } from './assets/state.svg';
+import { ReactComponent as CSSIcon } from './assets/css.svg';
+import { ReactComponent as INTLIcon } from './assets/intl.svg';
+import { ReactComponent as TSLogo } from './assets/ts.svg';
+import { ReactComponent as RouteIcon } from './assets/route.svg';
+import { ReactComponent as SEOIcon } from './assets/seo.svg';
+import { ReactComponent as InstantFeedbackIcon } from './assets/instant-feedback.svg';
+import { ReactComponent as ScaffoldingIcon } from './assets/scaffolding.svg';
+import { ReactComponent as OfflineFirstIcon } from './assets/offline-first.svg';
+import { ReactComponent as CodeAnalysisIcon } from './assets/code-analysis.svg';
 
 export function Features() {
   return (
@@ -77,6 +84,82 @@ export function Features() {
               instantly it updates the page without refreshing.
             </P>
             <LanguageSwitch />
+          </Content>
+        </Feature>
+        <Feature>
+          <TSLogo className="feature-icon" />
+          <Content>
+            <SubTitle>TypeScript</SubTitle>
+            <P>
+              Typescript is the key to scalability. Build self-documented code,
+              easy-to-debug code and create maintainable large applications and
+              codebases with a highly productive development experience.
+            </P>
+          </Content>
+        </Feature>
+        <Feature>
+          <RouteIcon className="feature-icon" />
+          <Content>
+            <SubTitle>Industry-Standard routing</SubTitle>
+            <P>
+              It's natural to want to add pages (e.g. `/about`) to your
+              application, and routing makes this possible. Go to our{' '}
+              <strong>/NotFound</strong>
+              page to see how routing works
+            </P>
+          </Content>
+        </Feature>
+        <Feature>
+          <SEOIcon className="feature-icon" />
+          <Content>
+            <SubTitle>SEO</SubTitle>
+            <P>
+              Supports SEO (document head tags management) for search engines
+              that support indexing of JavaScript content.
+            </P>
+          </Content>
+        </Feature>
+        <Feature>
+          <InstantFeedbackIcon className="feature-icon" />
+          <Content>
+            <SubTitle>Instant Feedback</SubTitle>
+            <P>
+              Enjoy the best DX (Developer eXperience) and code your app at the
+              speed of thought! Your saved changes to the CSS and JS are
+              reflected instantaneously without refreshing the page.
+            </P>
+          </Content>
+        </Feature>
+        <Feature>
+          <ScaffoldingIcon className="feature-icon" />
+          <Content>
+            <SubTitle>Quick Scaffolding</SubTitle>
+            <P>
+              Automate the creation of components, features, routes, selectors
+              and sagas - and their tests - right from the CLI! Avoid fighting
+              the glue of your code and focus on your app!
+            </P>
+          </Content>
+        </Feature>
+        <Feature>
+          <OfflineFirstIcon className="feature-icon" />
+          <Content>
+            <SubTitle>Offline-First</SubTitle>
+            <P>
+              The next frontier in performant web apps: availability without a
+              network connection from the instant your users load the app.
+            </P>
+          </Content>
+        </Feature>
+        <Feature>
+          <CodeAnalysisIcon className="feature-icon" />
+          <Content>
+            <SubTitle>Static Code Analysis</SubTitle>
+            <P>
+              Focus on writing new features without worrying about formatting or
+              code quality. With the right editor setup, your code will
+              automatically be formatted and linted as you work.
+            </P>
           </Content>
         </Feature>
       </List>
