@@ -49,7 +49,7 @@
     "test:generators:cra": "cross-env TESTING_GENERATED_CRA=true npm run test:generators",
     "test:generators": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/tests/test-generators.ts",
     "generate-template": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/generate-template.ts",
-    "test:cra": "npm run generate-cra && test:generators:cra && cd generated-cra-app && npm run lint && npm run cleanExampleApp && npm run lint"
+    "test:cra": "npm run generate-cra && npm run test:generators:cra && cd generated-cra-app && npm run lint && npm run cleanExampleApp && npm run lint"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
