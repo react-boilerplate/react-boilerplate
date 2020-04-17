@@ -17,6 +17,7 @@ export function Logos() {
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
+  color: ${p => p.theme.border};
 
   .logo {
     width: 4.5rem;

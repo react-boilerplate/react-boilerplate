@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormLabel } from 'app/components/FormLabel';
-import { Radio } from './components/Radio';
+import { Radio } from 'app/components/Radio';
 import styled from 'styled-components/macro';
 import { changeTheme, selectThemeKey } from 'styles/theme/slice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,7 +23,7 @@ export function ThemeSwitch() {
       <FormLabel>Select Theme</FormLabel>
       <Themes>
         <Radio
-          id="default"
+          id="system"
           label="System theme"
           className="radio"
           name="theme"

@@ -4,11 +4,13 @@ import { Title } from 'app/containers/HomePage/components/Title';
 import { Lead } from './components/Lead';
 import { ReactComponent as StateIcon } from './assets/state.svg';
 import { ReactComponent as CSSIcon } from './assets/css.svg';
+import { ReactComponent as INTLIcon } from './assets/intl.svg';
 import { SubTitle } from 'app/containers/HomePage/components/SubTitle';
 import { P } from './components/P';
 import { A } from 'app/components/A';
 import { GithubRepoForm } from 'app/containers/GithubRepoForm';
 import { ThemeSwitch } from 'app/containers/ThemeSwitch';
+import { LanguageSwitch } from '../LanguageSwitch';
 
 export function Features() {
   return (
@@ -63,6 +65,18 @@ export function Features() {
               intuitive theming can ever be!
             </P>
             <ThemeSwitch />
+          </Content>
+        </Feature>
+        <Feature>
+          <INTLIcon className="feature-icon" />
+          <Content>
+            <SubTitle>i18n Internationalization </SubTitle>
+            <P>
+              Scalable apps need to support multiple languages, easily add and
+              support multiple languages. Change the language below to see how
+              instantly it updates the page without refreshing.
+            </P>
+            <LanguageSwitch />
           </Content>
         </Feature>
       </List>

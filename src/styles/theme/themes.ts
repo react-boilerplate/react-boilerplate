@@ -9,7 +9,7 @@ const lightTheme = {
 };
 
 const darkTheme: Theme = {
-  primary: 'rgba(200, 104, 21, 1)',
+  primary: 'rgba(220, 120, 95, 1)',
   text: 'rgba(241, 233, 231, 1)',
   textSecondary: 'rgba(241, 233, 231, 0.6)',
   background: 'rgba(0, 0, 0, 1)',
