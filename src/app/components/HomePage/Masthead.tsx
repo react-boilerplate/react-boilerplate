@@ -21,7 +21,7 @@ export function Masthead() {
         </A>{' '}
         as{' '}
         <A
-          href="https://create-react-app.dev/"
+          href="https://github.com/facebook/create-react-app"
           target="_blank"
           rel="noopener noreferrer"
         >

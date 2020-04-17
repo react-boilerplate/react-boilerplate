@@ -102,8 +102,9 @@ export function Features() {
               {t(translations.routingFeature.description())}
               <br />
               <small>
-                Go to our <Link to="/notfound">/NotFound</Link> page to see how
-                routing works
+                Go to our{' '}
+                <Link to={process.env.PUBLIC_URL + '/notfound'}>/NotFound</Link>{' '}
+                page to see how routing works
               </small>
             </P>
           </Content>
