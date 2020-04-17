@@ -32,6 +32,7 @@ export function generateTemplateFolder(opts: Options = {}) {
   copyToTemplate('public', true);
   copyToTemplate('src', true);
   copyToTemplate('.env.local');
+  copyToTemplate('.env.production');
   copyToTemplate('.eslintrc.js');
   copyToTemplate('.gitattributes');
   copyToTemplate('.gitignore');

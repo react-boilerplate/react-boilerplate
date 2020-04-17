@@ -35,8 +35,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start:prod": "npm run build && serve -s build",
-
     "checkTs": "tsc --noEmit",
     "eslint": "eslint --ext js,ts,tsx",
     "lint": "npm run eslint -- src",
@@ -44,6 +42,9 @@
     "generate": "cross-env TS_NODE_PROJECT='./internals/ts-node.tsconfig.json' plop --plopfile internals/generators/plopfile.ts",
     "cleanExampleApp": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/clean.ts",
     "prettify": "prettier --write",
+
+    "start:prod": "npm run build && serve -s build",
+    "publish:github": "cross-env PUBLIC_URL='/cra-template-react-boilerplate' npm run build && gh-pages -d build",
     "generate-cra": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/generate-cra.ts",
     "test:generators:cra": "cross-env TESTING_GENERATED_CRA=true npm run test:generators",
     "test:generators": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/tests/test-generators.ts",
@@ -144,6 +145,7 @@
     "express": "4.17.1",
     "file-loader": "6.0.0",
     "fork-ts-checker-webpack-plugin": "4.1.1",
+    "gh-pages": "2.2.0",
     "html-loader": "1.0.0",
     "html-webpack-plugin": "4.0.1",
     "husky": "4.2.3",
