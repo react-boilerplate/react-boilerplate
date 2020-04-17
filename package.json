@@ -40,9 +40,11 @@
     "lint": "npm run eslint -- src",
     "lint:fix": "npm run eslint -- --fix src",
     "generate": "cross-env TS_NODE_PROJECT='./internals/ts-node.tsconfig.json' plop --plopfile internals/generators/plopfile.ts",
+    "cleanExampleApp": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/clean.ts",
+    "generate-template": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/generate-template.ts",
     "generate-cra": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/generate-cra.ts",
-    "test:generators": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/test-generators.ts",
     "generate-cra:test": "cross-env NODE_ENV=test npm run generate-cra",
+    "test:generators": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/test-generators.ts",
     "prettify": "prettier --write"
   },
   "lint-staged": {

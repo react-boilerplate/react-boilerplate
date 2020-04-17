@@ -6,12 +6,14 @@
     },
     "scripts": {
       "checkTs": "tsc --noEmit",
-      "lint": "eslint --ext js,ts,tsx src",
-      "lint:fix": "eslint --ext js,ts,tsx --fix src",
+      "eslint": "eslint --ext js,ts,tsx",
+      "lint": "npm run eslint -- src",
+      "lint:fix": "npm run eslint -- --fix src",
+      "generate": "cross-env TS_NODE_PROJECT='./internals/ts-node.tsconfig.json' plop --plopfile internals/generators/plopfile.ts",
       "prettify": "prettier --write"
     },
     "lint-staged": {
-      "*.{ts,tsx,js,jsx}": ["eslint --ext js,ts,tsx --fix"],
+      "*.{ts,tsx,js,jsx}": ["npm run eslint -- --fix"],
       "*.{md,json}": ["prettier --write"]
     },
     "husky": {

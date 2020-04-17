@@ -4,6 +4,7 @@ import { shellEnableAbortOnFail, shellDisableAbortOnFail } from './utils';
 interface Options {
   forTesting?: boolean;
 }
+
 export function generateTemplateFolder(opts: Options = {}) {
   let abortOnFailEnabled = false;
   if (opts.forTesting) {
@@ -24,6 +25,12 @@ export function generateTemplateFolder(opts: Options = {}) {
   shell.rm('-rf', 'template');
 
   shell.mkdir('template');
+
+  shell.mkdir('template/internals');
+  copyToTemplate('internals/generators', true);
+  copyToTemplate('internals/ts-node.tsconfig.json');
+  shell.mkdir('template/internals/scripts');
+  copyToTemplate('internals/scripts/clean.ts');
 
   copyToTemplate('.vscode', true);
   copyToTemplate('public', true);
