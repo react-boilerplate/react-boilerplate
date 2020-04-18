@@ -9,7 +9,6 @@ export function saveTheme(theme: ThemeKeyType) {
     localStorage.setItem('selectedTheme', theme);
   }
 }
-
 export function getThemeFromStorage(): ThemeKeyType | null {
   return window.localStorage
     ? (localStorage.getItem('selectedTheme') as ThemeKeyType) || null

@@ -69,10 +69,13 @@
       "src/**/*.{js,jsx,ts,tsx}",
       "!<rootDir>/node_modules/",
       "!<rootDir>/internals/",
+      "!src/**/*/Loadable.{js,jsx,ts,tsx}",
       "!src/**/*.test.{js,jsx,ts,tsx}",
       "!src/index.tsx",
+      "!src/serviceWorker.ts",
       "!src/styles/global-styles.ts",
-      "!src/**/*/Loadable.{js,jsx,ts,tsx}"
+      "!src/utils/@reduxjs/*",
+      "!src/utils/redux-injectors.ts"
     ],
     "coverageThreshold": {
       "global": {
