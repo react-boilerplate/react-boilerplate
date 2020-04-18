@@ -5,8 +5,8 @@ export function ExportedFunc() {
 }
 export default ExportedFunc;
 
-describe('dummy', () => {
-  it('because jest thinks this is a test file', () => {
+test.skip('dummy', () => {
+  it.skip('because jest thinks this is a test file', () => {
     expect(ExportedFunc()).toBeDefined();
   });
 });
