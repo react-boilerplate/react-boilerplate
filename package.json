@@ -63,6 +63,30 @@
       "pre-commit": "lint-staged && npm run checkTs"
     }
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/internals/",
+      "!src/**/*.test.{js,jsx,ts,tsx}",
+      "!src/index.tsx",
+      "!src/styles/global-styles.ts",
+      "!src/**/*/Loadable.{js,jsx,ts,tsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "moduleNameMapper": {
+      ".*\\.(css|less|styl|scss|sass)$": "<rootDir>/internals/mocks/cssModule.ts",
+      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+      "<rootDir>/internals/mocks/image.ts"
+    }
+  },
   "dependencies": {
     "@reduxjs/toolkit": "1.3.2",
     "connected-react-router": "6.8.0",
@@ -112,7 +136,7 @@
     "eslint-plugin-redux-saga": "1.1.3",
     "gh-pages": "2.2.0",
     "husky": "4.2.3",
-    "jest-styled-components": "7.0.0",
+    "jest-styled-components": "7.0.2",
     "jest-watch-typeahead": "0.4.2",
     "lint-staged": "10.0.8",
     "node-plop": "0.25.0",
@@ -128,7 +152,6 @@
     "stylelint-config-recommended": "3.0.0",
     "stylelint-config-styled-components": "0.1.1",
     "stylelint-processor-styled-components": "1.10.0",
-    "ts-jest": "25.2.1",
     "ts-node": "8.8.2",
     "typescript": "3.8.2"
   },
