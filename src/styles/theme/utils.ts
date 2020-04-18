@@ -1,7 +1,8 @@
 import { ThemeKeyType } from './types';
 
-export const isSysyemDark = window.matchMedia('(prefers-color-scheme: dark)')
-  .matches;
+export const isSysyemDark = window.matchMedia
+  ? window.matchMedia('(prefers-color-scheme: dark)')?.matches
+  : undefined;
 
 export function saveTheme(theme: ThemeKeyType) {
   if (window.localStorage) {
