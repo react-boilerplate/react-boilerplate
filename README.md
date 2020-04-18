@@ -45,22 +45,21 @@
 <br />
 
 <div align="center">
+  <a href="https://github.com/Can-Sahin/cra-template-react-boilerplate/actions?query=workflow%3Abuild">
+    <img src="https://github.com/Can-Sahin/cra-template-react-boilerplate/workflows/build/badge.svg" alt="Build Status" />
+  </a>
+  <a href="https://github.com/Can-Sahin/cra-template-react-boilerplate/actions?query=workflow%3Atests">
+    <img src="  https://github.com/Can-Sahin/cra-template-react-boilerplate/workflows/tests/badge.svg" alt="Tests Status" />
+  </a>
+  <a href="https://coveralls.io/github/Can-Sahin/cra-template-react-boilerplate">
+    <img src="https://coveralls.io/repos/github/Can-Sahin/cra-template-react-boilerplate/badge.svg" alt="Coverage" />
+  </a>
   <a href="https://david-dm.org/can-sahin/cra-template-react-boilerplate">
     <img src="https://david-dm.org/can-sahin/cra-template-react-boilerplate.svg" alt="Dependency Status" />
   </a>
   <a href="https://david-dm.org/can-sahin/cra-template-react-boilerplate#info=devDependencies">
     <img src="https://david-dm.org/can-sahin/cra-template-react-boilerplate/dev-status.svg" alt="devDependency Status" />
   </a>
-  <a href="https://github.com/Can-Sahin/cra-template-react-boilerplate/actions?query=workflow%3Abuild">
-    <img src="https://github.com/Can-Sahin/cra-template-react-boilerplate/workflows/build/badge.svg" alt="Build Status" />
-  </a>
-  <a href="https://github.com/Can-Sahin/cra-template-react-boilerplate/actions?query=workflow%3Atests">
-    <img src="  https://github.com/Can-Sahin/cra-template-react-boilerplate/workflows/test/badge.svg" alt="Tests Status" />
-  </a>
-  <a href="https://coveralls.io/github/Can-Sahin/cra-template-react-boilerplate">
-    <img src="https://coveralls.io/repos/github/Can-Sahin/cra-template-react-boilerplate/badge.svg" alt="Coverage" />
-  </a>
-
 </a>
 
 </div>

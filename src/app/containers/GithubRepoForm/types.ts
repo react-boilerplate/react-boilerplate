@@ -2,10 +2,10 @@ import { Repo } from 'types/Repo';
 
 /* --- STATE --- */
 export interface GithubRepoFormState {
-  readonly username: string;
-  readonly loading: boolean;
-  readonly error?: RepoErrorTypes | null;
-  readonly repositories: Repo[];
+  username: string;
+  loading: boolean;
+  error?: RepoErrorTypes | null;
+  repositories: Repo[];
 }
 
 export enum RepoErrorTypes {

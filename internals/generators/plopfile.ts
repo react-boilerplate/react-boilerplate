@@ -19,6 +19,7 @@ export default function plop(plop: NodePlopAPI) {
 
   plop.setActionType('prettify', (answers, config) => {
     const data = config.data as CustomActionData;
+    console.log('prettify path: ', data.path);
     exec(`npm run prettify -- "${data.path}"`);
     return '';
   });
