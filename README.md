@@ -54,6 +54,13 @@
   <a href="https://github.com/Can-Sahin/cra-template-react-boilerplate/actions?query=workflow%3Abuild">
     <img src="https://github.com/Can-Sahin/cra-template-react-boilerplate/workflows/build/badge.svg" alt="Build Status" />
   </a>
+  <a href="https://github.com/Can-Sahin/cra-template-react-boilerplate/actions?query=workflow%tests">
+    <img src="  https://github.com/Can-Sahin/cra-template-react-boilerplate/workflows/test/badge.svg" alt="Tests Status" />
+  </a>
+  <a href="https://coveralls.io/github/Can-Sahin/cra-template-react-boilerplate">
+    <img src="https://coveralls.io/repos/github/Can-Sahin/cra-template-react-boilerplate/badge.svg" alt="Coverage" />
+  </a>
+
 </a>
 
 </div>
