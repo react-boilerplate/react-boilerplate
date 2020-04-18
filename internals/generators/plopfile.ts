@@ -1,7 +1,7 @@
 import { NodePlopAPI } from 'node-plop';
 import { componentGenerator } from './component';
 import { containerGenerator } from './container';
-import { exec } from 'child_process';
+import shell from 'shelljs';
 
 interface CustomActionData {
   path: string;
@@ -20,7 +20,8 @@ export default function plop(plop: NodePlopAPI) {
   plop.setActionType('prettify', (answers, config) => {
     const data = config.data as CustomActionData;
     console.log('prettify path: ', data.path);
-    exec(`npm run prettify -- "${data.path}"`);
+    console.log('path: ', shell.pwd());
+    shell.exec(`npm run prettify -- "${data.path}"`);
     return '';
   });
 }
