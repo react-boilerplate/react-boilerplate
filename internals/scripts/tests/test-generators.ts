@@ -24,7 +24,7 @@ const plop = nodePlop('./plopfile.ts');
 const componentGen = plop.getGenerator('component') as PlopGenerator;
 const containerGen = plop.getGenerator('container') as PlopGenerator;
 
-const NAMESPACE = 'RBGenerated';
+const NAMESPACE = 'RbGenerated';
 
 const componentsPath = path.join(process.cwd(), '../../src/app/components');
 const containersPath = path.join(process.cwd(), '../../src/app/containers');
