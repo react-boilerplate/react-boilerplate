@@ -57,12 +57,15 @@ export function GithubRepoForm() {
     <Wrapper>
       <FormGroup onSubmit={onSubmitForm}>
         <FormLabel>Github Username</FormLabel>
-        <Input
-          type="text"
-          placeholder="Type any Github username"
-          value={username}
-          onChange={onChangeUsername}
-        />
+        <InputWrapper>
+          <Input
+            type="text"
+            placeholder="Type any Github username"
+            value={username}
+            onChange={onChangeUsername}
+          />
+          {isLoading && <LoadingIndicator small />}
+        </InputWrapper>
       </FormGroup>
       {repos?.length > 0 ? (
         <List>
@@ -75,8 +78,6 @@ export function GithubRepoForm() {
             />
           ))}
         </List>
-      ) : isLoading ? (
-        <LoadingIndicator small />
       ) : error ? (
         <ErrorText>There is an error occurred!</ErrorText>
       ) : null}
@@ -91,6 +92,16 @@ const Wrapper = styled.div`
   }
 `;
 
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
+  ${Input} {
+    width: ${100 / 3}%;
+    margin-right: 0.5rem;
+  }
+`;
+
 const ErrorText = styled.span`
   color: ${p => p.theme.text};
 `;
@@ -98,7 +109,6 @@ const ErrorText = styled.span`
 const FormGroup = styled.form`
   display: flex;
   flex-direction: column;
-  width: ${100 / 3}%;
   margin-bottom: 1rem;
 
   ${FormLabel} {
