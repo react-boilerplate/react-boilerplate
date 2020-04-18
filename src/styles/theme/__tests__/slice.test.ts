@@ -4,7 +4,7 @@ import { RootState } from 'types';
 import { themes } from '../themes';
 import { DefaultTheme } from 'styled-components';
 
-describe('slice actions and reducer', () => {
+describe('theme slice', () => {
   let state: ThemeState;
 
   beforeEach(() => {

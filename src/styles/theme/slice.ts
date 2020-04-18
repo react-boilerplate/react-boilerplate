@@ -1,7 +1,7 @@
 import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
 import { ThemeState, ThemeKeyType } from './types';
 import { themes } from './themes';
-import { getThemeFromStorage, isSysyemDark } from './utils';
+import { getThemeFromStorage, isSystemDark } from './utils';
 import { RootState } from 'types';
 
 export const initialState: ThemeState = {
@@ -22,7 +22,7 @@ export const selectTheme = createSelector(
   [(state: RootState) => state.theme || initialState],
   theme => {
     if (theme.selected === 'system') {
-      return isSysyemDark ? themes.dark : themes.light;
+      return isSystemDark ? themes.dark : themes.light;
     }
     return themes[theme.selected];
   },

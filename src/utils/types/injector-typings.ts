@@ -4,7 +4,7 @@ import { SagaInjectionModes } from 'redux-injectors';
 import { Reducer, AnyAction } from '@reduxjs/toolkit';
 
 type RequiredRootState = Required<RootState>;
-// Exclude reducer key that is used in test cases
+
 export type RootStateKeyType = keyof RootState;
 
 export type InjectedReducersType = {

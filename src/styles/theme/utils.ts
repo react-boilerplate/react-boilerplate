@@ -1,13 +1,11 @@
 import { ThemeKeyType } from './types';
 
-export const isSysyemDark = window?.matchMedia
+export const isSystemDark = window?.matchMedia
   ? window.matchMedia('(prefers-color-scheme: dark)')?.matches
   : undefined;
 
 export function saveTheme(theme: ThemeKeyType) {
-  if (window.localStorage) {
-    localStorage.setItem('selectedTheme', theme);
-  }
+  window.localStorage && localStorage.setItem('selectedTheme', theme);
 }
 export function getThemeFromStorage(): ThemeKeyType | null {
   return window.localStorage
