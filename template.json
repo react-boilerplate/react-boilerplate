@@ -22,6 +22,29 @@
         "pre-commit": "lint-staged && npm run checkTs"
       }
     },
+    "jest": {
+      "collectCoverageFrom": [
+        "src/**/*.{js,jsx,ts,tsx}",
+        "!<rootDir>/node_modules/",
+        "!<rootDir>/internals/",
+        "!src/**/*.test.{js,jsx,ts,tsx}",
+        "!src/index.tsx",
+        "!src/styles/global-styles.ts",
+        "!src/**/*/Loadable.{js,jsx,ts,tsx}"
+      ],
+      "coverageThreshold": {
+        "global": {
+          "branches": 90,
+          "functions": 90,
+          "lines": 90,
+          "statements": 90
+        }
+      },
+      "moduleNameMapper": {
+        ".*\\.(css|less|styl|scss|sass)$": "<rootDir>/internals/testing/cssModuleMock.ts",
+        ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/testing/imageMock.ts"
+      }
+    },
     "dependencies": {
       "@reduxjs/toolkit": "1.3.2",
       "connected-react-router": "6.8.0",
@@ -41,7 +64,27 @@
       "redux-saga": "1.1.3",
       "sanitize.css": "11.0.0",
       "styled-components": "5.0.1",
-      "ts-node": "8.8.2"
+      "ts-node": "8.8.2",
+      "@testing-library/jest-dom": "5.1.1",
+      "@testing-library/react": "10.0.1",
+      "@types/fontfaceobserver": "0.0.6",
+      "@types/history": "4.7.5",
+      "@types/jest": "25.1.4",
+      "@types/node": "13.9.3",
+      "@types/react": "16.9.25",
+      "@types/react-dom": "16.9.3",
+      "@types/react-helmet": "5.0.15",
+      "@types/react-redux": "7.1.7",
+      "@types/react-router-dom": "5.1.3",
+      "@types/react-test-renderer": "16.9.2",
+      "@types/styled-components": "5.0.1",
+      "@types/testing-library__jest-dom": "5.0.2",
+      "cross-env": "7.0.2",
+      "jest-styled-components": "7.0.2",
+      "react-test-renderer": "16.13.0",
+      "lint-staged": "10.0.8",
+      "node-plop": "0.25.0",
+      "plop": "2.6.0"
     }
   }
 }

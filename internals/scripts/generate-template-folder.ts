@@ -27,6 +27,7 @@ export function generateTemplateFolder(opts: Options = {}) {
   shell.mkdir('template/internals/scripts');
   copyToTemplate('internals/scripts/clean.ts');
   copyToTemplate('internals/startingTemplate', true);
+  copyToTemplate('internals/testing', true);
 
   copyToTemplate('.vscode', true);
   copyToTemplate('public', true);

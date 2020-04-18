@@ -28,8 +28,7 @@ import { configureAppStore } from 'store/configureStore';
 import './locales/i18n';
 
 // Create redux store with history
-const initialState = {};
-const store = configureAppStore(initialState, history);
+const store = configureAppStore(history);
 const MOUNT_NODE = document.getElementById('root') as HTMLElement;
 
 interface Props {
