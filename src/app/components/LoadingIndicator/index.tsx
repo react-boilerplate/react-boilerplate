@@ -1,22 +1,50 @@
-import * as React from 'react';
+import React from 'react';
+import styled, { keyframes } from 'styled-components/macro';
 
-import { Circle } from './Circle';
-import { Wrapper } from './Wrapper';
+interface Props extends SvgProps {}
 
-//FIXME: dynamic creation problem https://github.com/styled-components/styled-components/issues/3015
-export const LoadingIndicator = () => (
-  <Wrapper>
-    <Circle />
-    <Circle rotate={30} delay={-1.1} />
-    <Circle rotate={60} delay={-1} />
-    <Circle rotate={90} delay={-0.9} />
-    <Circle rotate={120} delay={-0.8} />
-    <Circle rotate={150} delay={-0.7} />
-    <Circle rotate={180} delay={-0.6} />
-    <Circle rotate={210} delay={-0.5} />
-    <Circle rotate={240} delay={-0.4} />
-    <Circle rotate={270} delay={-0.3} />
-    <Circle rotate={300} delay={-0.2} />
-    <Circle rotate={330} delay={-0.1} />
-  </Wrapper>
+export const LoadingIndicator = (props: Props) => (
+  <Svg viewBox="-24 -24 48 48" small={props.small}>
+    <Circle cx="0" cy="0" r="20" fill="none" strokeWidth="4"></Circle>
+  </Svg>
 );
+
+const speed = 1.5;
+
+const rotate = keyframes`
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+const dash = keyframes`
+  0% {
+    stroke-dasharray: 0, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 100, 150;
+    stroke-dashoffset: -24;
+  }
+  100% {
+    stroke-dasharray: 0, 150;
+    stroke-dashoffset: -124;
+  }
+`;
+
+interface SvgProps {
+  small?: boolean;
+}
+
+const Svg = styled.svg<SvgProps>`
+  animation: ${rotate} ${speed * 1.75}s linear infinite;
+  height: ${p => (p.small ? '1.25rem' : '3rem')};
+  width: ${p => (p.small ? '1.25rem' : '3rem')};
+  transform-origin: center;
+`;
+
+const Circle = styled.circle`
+  animation: ${dash} ${speed}s ease-in-out infinite;
+  stroke: ${p => p.theme.primary};
+  stroke-linecap: round;
+`;
