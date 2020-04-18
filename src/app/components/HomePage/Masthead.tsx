@@ -19,7 +19,7 @@ export function Masthead() {
         >
           React Boilerplate
         </A>{' '}
-        as{' '}
+        as a{' '}
         <A
           href="https://github.com/facebook/create-react-app"
           target="_blank"
