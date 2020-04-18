@@ -4,7 +4,7 @@ import { Repo } from 'types/Repo';
 export interface GithubRepoFormState {
   readonly username: string;
   readonly loading: boolean;
-  readonly error?: boolean;
+  readonly error?: boolean | string;
   readonly repositories: Repo[];
 }
 

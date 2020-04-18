@@ -41,8 +41,8 @@ const githubRepoFormSlice = createSlice({
       state.repositories = repos;
       state.loading = false;
     },
-    repoLoadingError(state) {
-      state.error = true;
+    repoLoadingError(state, action: PayloadAction<string | undefined>) {
+      state.error = action?.payload ?? false;
       state.loading = false;
     },
   },

@@ -78,7 +78,9 @@ export function GithubRepoForm() {
       ) : isLoading ? (
         <LoadingIndicator small />
       ) : error ? (
-        <ErrorText>Oops! An error has occurred</ErrorText>
+        <ErrorText>
+          {typeof error === 'string' ? error : 'Oops! An error has occurred'}
+        </ErrorText>
       ) : null}
     </Wrapper>
   );

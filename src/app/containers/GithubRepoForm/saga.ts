@@ -3,7 +3,7 @@
  */
 
 import { call, put, select, takeLatest, delay } from 'redux-saga/effects';
-import { request } from 'utils/request';
+import { request, ResponseError } from 'utils/request';
 import { selectUsername } from './selectors';
 import { actions } from './slice';
 import { Repo } from 'types/Repo';
@@ -40,7 +40,11 @@ export function* getRepos() {
     });
     yield put(actions.reposLoaded(reposWithOwnershipKey));
   } catch (err) {
-    yield put(actions.repoLoadingError());
+    if (err instanceof ResponseError && err.response.status === 404) {
+      yield put(actions.repoLoadingError('There is no such user :('));
+    } else {
+      yield put(actions.repoLoadingError());
+    }
   }
 }
 
