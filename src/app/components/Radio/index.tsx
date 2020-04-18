@@ -46,6 +46,7 @@ const Wrapper = styled.div`
       cursor: pointer;
       font-size: 0.875rem;
       color: ${p => p.theme.text};
+      z-index: 1;
 
       a {
         color: ${p => p.theme.text};
