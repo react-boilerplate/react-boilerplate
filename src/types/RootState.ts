@@ -1,5 +1,6 @@
 import { RouterState } from 'connected-react-router';
 import { GithubRepoFormState } from 'app/containers/GithubRepoForm/types';
+import { ThemeState } from 'styles/theme/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /* 
@@ -7,10 +8,8 @@ import { GithubRepoFormState } from 'app/containers/GithubRepoForm/types';
   You have to declare them here manually
 */
 export interface RootState {
-  router: RouterState;
-  githubRepoForm: GithubRepoFormState;
+  router?: RouterState;
+  theme?: ThemeState;
+  githubRepoForm?: GithubRepoFormState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
-
-  // Used in tests
-  testStateKey: any;
 }

@@ -3,16 +3,17 @@ import { Saga } from 'redux-saga';
 import { SagaInjectionModes } from 'redux-injectors';
 import { Reducer, AnyAction } from '@reduxjs/toolkit';
 
+type RequiredRootState = Required<RootState>;
 // Exclude reducer key that is used in test cases
-export type RootStateKeyType = Exclude<keyof RootState, 'testStateKey'>;
+export type RootStateKeyType = keyof RootState;
 
 export type InjectedReducersType = {
-  [P in RootStateKeyType]?: Reducer<RootState[P], AnyAction>;
+  [P in RootStateKeyType]?: Reducer<RequiredRootState[P], AnyAction>;
 };
 
 export interface InjectReducerParams<Key extends RootStateKeyType> {
   key: Key;
-  reducer: Reducer<RootState[Key], AnyAction>;
+  reducer: Reducer<RequiredRootState[Key], AnyAction>;
 }
 
 export interface InjectSagaParams {
