@@ -3,10 +3,11 @@
  */
 
 import { call, put, select, takeLatest, delay } from 'redux-saga/effects';
-import { request, ResponseError } from 'utils/request';
+import { request } from 'utils/request';
 import { selectUsername } from './selectors';
 import { actions } from './slice';
 import { Repo } from 'types/Repo';
+import { RepoErrorTypes } from './types';
 
 // If the repository is owned by a different user then the submitted
 // username, it's a fork and we will show the name of the owner in RepoListItem
@@ -29,6 +30,10 @@ export function* getRepos() {
   yield delay(500);
   // Select username from store
   const username: string = yield select(selectUsername);
+  if (username.length === 0) {
+    yield put(actions.repoError(RepoErrorTypes.USERNAME_EMPTY));
+    return;
+  }
   const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
 
   try {
@@ -38,12 +43,19 @@ export function* getRepos() {
       username,
       repos,
     });
-    yield put(actions.reposLoaded(reposWithOwnershipKey));
-  } catch (err) {
-    if (err instanceof ResponseError && err.response.status === 404) {
-      yield put(actions.repoLoadingError('There is no such user :('));
+    if (reposWithOwnershipKey.length) {
+      yield put(actions.reposLoaded(reposWithOwnershipKey));
     } else {
-      yield put(actions.repoLoadingError());
+      yield put(actions.repoError(RepoErrorTypes.USER_HAS_NO_REPO));
+    }
+  } catch (err) {
+    if (err.response?.status === 404) {
+      yield put(actions.repoError(RepoErrorTypes.USER_NOT_FOUND));
+    }
+    if (err.message === 'Failed to fetch') {
+      yield put(actions.repoError(RepoErrorTypes.GITHUB_RATE_LIMIT));
+    } else {
+      yield put(actions.repoError(RepoErrorTypes.RESPONSE_ERROR));
     }
   }
 }

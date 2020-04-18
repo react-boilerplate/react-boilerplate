@@ -31,7 +31,6 @@ function checkStatus(response: Response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
-
   const error = new ResponseError(response);
   error.response = response;
   throw error;
@@ -50,6 +49,6 @@ export async function request(
   options?: RequestInit,
 ): Promise<{} | { err: ResponseError }> {
   const fetchResponse = await fetch(url, options);
-  const response = await checkStatus(fetchResponse);
+  const response = checkStatus(fetchResponse);
   return parseJSON(response);
 }

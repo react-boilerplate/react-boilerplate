@@ -13,7 +13,7 @@
 
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
-import { ContainerState } from './types';
+import { ContainerState, RepoErrorTypes } from './types';
 import { Repo } from 'types/Repo';
 
 // The initial state of the GithubRepoForm container
@@ -21,7 +21,7 @@ export const initialState: ContainerState = {
   username: 'react-boilerplate',
   repositories: [],
   loading: false,
-  error: false,
+  error: null,
 };
 
 const githubRepoFormSlice = createSlice({
@@ -33,7 +33,7 @@ const githubRepoFormSlice = createSlice({
     },
     loadRepos(state) {
       state.loading = true;
-      state.error = false;
+      state.error = null;
       state.repositories = [];
     },
     reposLoaded(state, action: PayloadAction<Repo[]>) {
@@ -41,8 +41,8 @@ const githubRepoFormSlice = createSlice({
       state.repositories = repos;
       state.loading = false;
     },
-    repoLoadingError(state, action: PayloadAction<string | undefined>) {
-      state.error = action?.payload ?? false;
+    repoError(state, action: PayloadAction<RepoErrorTypes>) {
+      state.error = action.payload;
       state.loading = false;
     },
   },

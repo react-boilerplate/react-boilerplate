@@ -16,6 +16,7 @@ import {
   selectError,
 } from './selectors';
 import { LoadingIndicator } from 'app/components/LoadingIndicator';
+import { RepoErrorTypes } from './types';
 
 export function GithubRepoForm() {
   useInjectReducer({ key: sliceKey, reducer: reducer });
@@ -53,6 +54,21 @@ export function GithubRepoForm() {
     }
   });
 
+  const renderRepoErrorText = () => {
+    switch (error) {
+      case RepoErrorTypes.USER_NOT_FOUND:
+        return 'There is no such user 😞';
+      case RepoErrorTypes.USERNAME_EMPTY:
+        return 'Type any Github username';
+      case RepoErrorTypes.USER_HAS_NO_REPO:
+        return 'User has no repository 🥺';
+      case RepoErrorTypes.GITHUB_RATE_LIMIT:
+        return 'Looks like github api`s rate limit(60 request/h) has exceeded 🤔';
+      default:
+        return 'An error has occurred!';
+    }
+  };
+
   return (
     <Wrapper>
       <FormGroup onSubmit={onSubmitForm}>
@@ -79,9 +95,7 @@ export function GithubRepoForm() {
           ))}
         </List>
       ) : error ? (
-        <ErrorText>
-          {typeof error === 'string' ? error : 'Oops! An error has occurred'}
-        </ErrorText>
+        <ErrorText>{renderRepoErrorText()}</ErrorText>
       ) : null}
     </Wrapper>
   );
