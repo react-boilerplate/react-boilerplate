@@ -1,1 +1,3 @@
-module.exports = 'CSS_MODULE';
+const content = 'CSS_MODULE';
+export const ReactComponent = 'CSS_MODULE';
+export default content;

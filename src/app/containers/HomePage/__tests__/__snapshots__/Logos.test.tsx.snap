@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Logos /> should render and match the snapshot 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0 .logo {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.c0 .sign {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 2rem;
+}
+
+<div
+  className="c0"
+>
+  <IMAGE_MOCK
+    className="logo"
+  />
+  <IMAGE_MOCK
+    className="sign"
+  />
+  <IMAGE_MOCK
+    className="logo"
+  />
+</div>
+`;

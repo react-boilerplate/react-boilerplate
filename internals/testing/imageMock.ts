@@ -1,1 +1,3 @@
-module.exports = 'IMAGE_MOCK';
+const content = 'IMAGE_MOCK';
+export const ReactComponent = 'IMAGE_MOCK';
+export default content;
