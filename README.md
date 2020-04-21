@@ -2,8 +2,14 @@
 
 <img width="914" alt="React Boilerplate Meets CRA" src="https://user-images.githubusercontent.com/3495307/79694949-7b098b00-827c-11ea-8f8b-cb4b9e673b5c.png" align="center">
 <br />
-<br />
-<div align="center">Create React App template of React Boilerplate </div>
+
+<div align="center">
+
+```html
+Create React App template of React Boilerplate
+```
+
+</div>
 <br />
 <div align="center">Crafted for <strong>highly scalable</strong>, <strong>easily maintainable</strong> and <strong>highly performant</strong> React.js applications with a focus on <strong>best DX</strong> and <strong>best practices</strong>.</div>
 
@@ -19,10 +25,15 @@
   <a href="https://coveralls.io/github/Can-Sahin/cra-template-react-boilerplate">
     <img src="https://coveralls.io/repos/github/Can-Sahin/cra-template-react-boilerplate/badge.svg" alt="Coverage" />
   </a>
+</a>
+</div>
+<div align="center">
   <a href="https://david-dm.org/can-sahin/cra-template-react-boilerplate">
     <img src="https://david-dm.org/can-sahin/cra-template-react-boilerplate.svg" alt="Dependency Status" />
   </a>
-</a>
+  <a href="https://david-dm.org/can-sahin/cra-template-react-boilerplate#info=devDependencies">
+    <img src="https://david-dm.org/can-sahin/cra-template-react-boilerplate/dev-status.svg" alt="devDependency Status" />
+  </a>
 </div>
 <div align="center">
   <a href="https://opencollective.com/react-boilerplate">
