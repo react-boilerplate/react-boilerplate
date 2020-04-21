@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Logos } from './Logos';
-import { Title } from 'app/components/HomePage/components/Title';
-import { Lead } from 'app/components/HomePage/components/Lead';
+import { Title } from 'app/containers/HomePage/components/Title';
+import { Lead } from 'app/containers/HomePage/components/Lead';
 import { A } from 'app/components/A';
 
 export function Masthead() {

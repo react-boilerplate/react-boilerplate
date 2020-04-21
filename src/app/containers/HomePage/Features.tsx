@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Title } from 'app/components/HomePage/components/Title';
+import { Title } from 'app/containers/HomePage/components/Title';
 import { Lead } from './components/Lead';
-import { SubTitle } from 'app/components/HomePage/components/SubTitle';
+import { SubTitle } from 'app/containers/HomePage/components/SubTitle';
 import { P } from './components/P';
 import { A } from 'app/components/A';
 import { GithubRepoForm } from 'app/containers/GithubRepoForm';
 import { ThemeSwitch } from 'app/containers/ThemeSwitch';
-import { LanguageSwitch } from '../../containers/LanguageSwitch';
+import { LanguageSwitch } from '../LanguageSwitch';
 import { ReactComponent as StateIcon } from './assets/state.svg';
 import { ReactComponent as CSSIcon } from './assets/css.svg';
 import { ReactComponent as INTLIcon } from './assets/intl.svg';
