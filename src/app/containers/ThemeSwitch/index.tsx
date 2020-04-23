@@ -9,7 +9,6 @@ import { ThemeKeyType } from 'styles/theme/types';
 
 export function ThemeSwitch() {
   const theme = useSelector(selectThemeKey);
-
   const dispatch = useDispatch();
 
   const handleThemeChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,6 +1,5 @@
 import React from 'react';
 import { createRenderer } from 'react-test-renderer/shallow';
-import { create } from 'react-test-renderer';
 import { Features } from '../Features';
 import i18next from 'i18next';
 
