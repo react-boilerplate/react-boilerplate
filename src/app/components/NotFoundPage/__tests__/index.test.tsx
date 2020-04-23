@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import { NotFoundPage } from '../';
 import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';

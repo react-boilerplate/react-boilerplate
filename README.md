@@ -52,6 +52,8 @@ The official [Create React App](https://github.com/facebook/create-react-app) te
 
 Start your `create-react-app` projects in seconds with the best, industry-standard tools and practices made ready for you.
 
+**📝 Documentation: [GitBook](https://cansahin.gitbook.io/cra-template-react-boilerplate/)**
+
 ---
 
 ## Install & Start
