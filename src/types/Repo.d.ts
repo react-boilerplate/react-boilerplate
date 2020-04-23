@@ -77,7 +77,6 @@ interface ReposListForksResponseItem {
 }
 
 export interface Repo extends ReposListForksResponseItem {
-  isOwnRepo: boolean;
   forks: number;
   open_issues: number;
   watchers: number;

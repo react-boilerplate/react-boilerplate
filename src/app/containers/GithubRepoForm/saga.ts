@@ -2,26 +2,21 @@
  * Gets the repositories of the user from Github
  */
 
-import { call, put, select, takeLatest, delay } from 'redux-saga/effects';
+import {
+  call,
+  put,
+  select,
+  takeLatest,
+  delay,
+  PutEffect,
+  CallEffect,
+  SelectEffect,
+} from 'redux-saga/effects';
 import { request } from 'utils/request';
 import { selectUsername } from './selectors';
 import { actions } from './slice';
 import { Repo } from 'types/Repo';
 import { RepoErrorTypes } from './types';
-
-// If the repository is owned by a different user then the submitted
-// username, it's a fork and we will show the name of the owner in RepoListItem
-export const addRepoOwnershipKey = ({
-  username,
-  repos,
-}: {
-  username: string;
-  repos: Repo[];
-}) =>
-  repos.map(repo => ({
-    isOwnRepo: repo.owner.login.toLowerCase() === username.toLowerCase(),
-    ...repo,
-  }));
 
 /**
  * Github repos request/response handler
@@ -38,13 +33,9 @@ export function* getRepos() {
 
   try {
     // Call our request helper (see 'utils/request')
-    const repos = yield call(request, requestURL);
-    const reposWithOwnershipKey: Repo[] = yield call(addRepoOwnershipKey, {
-      username,
-      repos,
-    });
-    if (reposWithOwnershipKey.length) {
-      yield put(actions.reposLoaded(reposWithOwnershipKey));
+    const repos: Repo[] = yield call(request, requestURL);
+    if (repos?.length > 0) {
+      yield put(actions.reposLoaded(repos));
     } else {
       yield put(actions.repoError(RepoErrorTypes.USER_HAS_NO_REPO));
     }
