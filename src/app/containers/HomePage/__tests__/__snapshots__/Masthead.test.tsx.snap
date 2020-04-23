@@ -1,123 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Masthead /> should render and match the snapshot 1`] = `
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c1 .logo {
-  width: 4.5rem;
-  height: 4.5rem;
-}
-
-.c1 .sign {
-  width: 2rem;
-  height: 2rem;
-  margin: 0 2rem;
-}
-
-.c2 {
-  font-size: 32px;
-  font-weight: bold;
-  margin: 1rem 0;
-}
-
-.c3 {
-  font-size: 1.5rem;
-  font-weight: 300;
-  line-height: 1.5;
-  margin: 0 0 1.5rem 0;
-}
-
-.c4 {
-  -webkit-text-decoration: none;
-  text-decoration: none;
-}
-
-.c4:hover {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-  opacity: 0.8;
-}
-
-.c4:active {
-  opacity: 0.4;
-}
-
-.c0 {
-  height: 60vh;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  min-height: 320px;
-}
-
-<main
-  className="c0"
->
-  <div
-    className="c1"
-  >
-    <IMAGE_MOCK
-      className="logo"
-    />
-    <IMAGE_MOCK
-      className="sign"
-    />
-    <IMAGE_MOCK
-      className="logo"
-    />
-  </div>
-  <h1
-    className="c2"
-  >
+<ForwardRef(Masthead__Wrapper)>
+  <Logos />
+  <ForwardRef(Title)>
     React Boilerplate meets CRA
-  </h1>
-  <p
-    className="c3"
-  >
+  </ForwardRef(Title)>
+  <ForwardRef(Lead)>
     Now you can use the
      
-    <a
-      className="c4"
+    <ForwardRef(A)
       href="https://www.reactboilerplate.com/"
       rel="noopener noreferrer"
       target="_blank"
     >
       React Boilerplate
-    </a>
+    </ForwardRef(A)>
      
     as a
      
-    <a
-      className="c4"
+    <ForwardRef(A)
       href="https://github.com/facebook/create-react-app"
       rel="noopener noreferrer"
       target="_blank"
     >
       Create React App
-    </a>
+    </ForwardRef(A)>
      
     template.
-  </p>
-</main>
+  </ForwardRef(Lead)>
+</ForwardRef(Masthead__Wrapper)>
 `;

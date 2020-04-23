@@ -1,3 +1,3 @@
-const content = 'IMAGE_MOCK';
-export const ReactComponent = 'IMAGE_MOCK';
+const content = 'ImageMock';
+export const ReactComponent = 'ImageMock';
 export default content;

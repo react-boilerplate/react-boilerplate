@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import * as slice from '../slice';
 import { Store } from '@reduxjs/toolkit';
@@ -26,8 +26,6 @@ describe('<ThemeProvider />', () => {
   beforeEach(() => {
     store = configureAppStore();
   });
-
-  afterEach(cleanup);
 
   it('should render its children', () => {
     const text = 'Test';

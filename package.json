@@ -86,9 +86,7 @@
       }
     },
     "moduleNameMapper": {
-      ".*\\.(css|less|styl|scss|sass)$": "<rootDir>/internals/testing/cssModuleMock.ts",
-      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/testing/imageMock.ts"
-    }
+      }
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.3.2",

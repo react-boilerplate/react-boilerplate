@@ -3,12 +3,12 @@ import { createRenderer } from 'react-test-renderer/shallow';
 
 import { HomePage } from '..';
 
-const renderer = createRenderer();
+const shallowRenderer = createRenderer();
 
 describe('<HomePage />', () => {
   it('should render and match the snapshot', () => {
-    renderer.render(<HomePage />);
-    const renderedOutput = renderer.getRenderOutput();
+    shallowRenderer.render(<HomePage />);
+    const renderedOutput = shallowRenderer.getRenderOutput();
     expect(renderedOutput).toMatchSnapshot();
   });
 });
