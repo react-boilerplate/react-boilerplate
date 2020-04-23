@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Link /> should match snapshot 1`] = `
+.c0 {
+  color: rgba(215,113,88,1);
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c0:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.c0:active {
+  opacity: 0.4;
+}
+
+<a
+  class="c0"
+  href="/test"
+  theme="[object Object]"
+>
+  HeaderLink
+</a>
+`;

@@ -1,23 +1,23 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { A } from '../index';
+import { FormLabel } from '../index';
 import { themes } from 'styles/theme/themes';
 import { DefaultTheme } from 'styled-components';
 
 const renderWithTheme = (theme?: DefaultTheme) =>
-  render(<A theme={theme || themes.light} />);
+  render(<FormLabel theme={theme || themes.light} />);
 
-describe('<A />', () => {
-  it('should render an <a> tag', () => {
-    const a = renderWithTheme();
-    expect(a.container.querySelector('a')).toBeInTheDocument();
+describe('<FormLabel />', () => {
+  it('should render an <label> tag', () => {
+    const label = renderWithTheme();
+    expect(label.container.querySelector('label')).toBeInTheDocument();
   });
 
   it('should have theme', () => {
     const a = renderWithTheme();
     expect(a.container.firstChild).toHaveStyle(
-      `color: ${themes.light.primary}`,
+      `color: ${themes.light.textSecondary}`,
     );
   });
 });
