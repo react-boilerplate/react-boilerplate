@@ -37,9 +37,7 @@ Create React App template of React Boilerplate
   <a href="https://opencollective.com/react-boilerplate/">
     <img src="https://opencollective.com/react-boilerplate/sponsors/badge.svg" alt="Sponsors" />
   </a>
-  <a href="">
-    <img src="https://img.shields.io/github/license/can-sahin/cra-template-react-boilerplate" alt="License" />
-  </a>
+  <img src="https://img.shields.io/github/license/can-sahin/cra-template-react-boilerplate" alt="License" />
 </div>
 
 <br />
