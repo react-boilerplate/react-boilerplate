@@ -39,9 +39,6 @@ describe('<GithubRepoForm />', () => {
   afterEach(() => {
     component.unmount();
   });
-  it('should match the snapshot', () => {
-    expect(component.container.firstChild).toMatchSnapshot();
-  });
 
   it("should fetch repos on mount if username isn't empty", () => {
     component.unmount();

@@ -1,7 +1,7 @@
 {
-  "name": "cra-template-react-boilerplate",
-  "description": "",
-  "version": "0.0.1",
+  "name": "cra-template-rb",
+  "description": "The official React Boilerplate template for Create React App",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/can-sahin/cra-template-react-boilerplate.git"
@@ -32,6 +32,7 @@
   ],
   "scripts": {
     "start": "react-scripts start",
+    "start:prod": "npm run build && serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:all": "npm run test -- --watchAll=false",
@@ -39,11 +40,12 @@
     "checkTs": "tsc --noEmit",
     "eslint": "eslint --ext js,ts,tsx",
     "lint": "npm run eslint -- src",
+    "lint:css": "stylelint src/**/*.css",
     "lint:fix": "npm run eslint -- --fix src",
     "generate": "cross-env TS_NODE_PROJECT='./internals/ts-node.tsconfig.json' plop --plopfile internals/generators/plopfile.ts",
     "cleanExampleApp": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/clean.ts",
     "prettify": "prettier --write",
-    "start:prod": "npm run build && serve -s build",
+    "publish:npm": "npm run generate-template",
     "publish:github": "cross-env PUBLIC_URL='/cra-template-react-boilerplate' npm run build && gh-pages -d build",
     "generate-cra": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/generate-cra.ts",
     "test:generators:cra": "cross-env TESTING_GENERATED_CRA=true npm run test:generators",
@@ -80,9 +82,7 @@
         "lines": 90,
         "statements": 90
       }
-    },
-    "moduleNameMapper": {
-      }
+    }
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.3.2",
@@ -143,7 +143,6 @@
     "rimraf": "3.0.2",
     "serve": "11.3.0",
     "shelljs": "0.8.3",
-    "style-loader": "1.1.3",
     "stylelint": "13.2.1",
     "stylelint-config-recommended": "3.0.0",
     "stylelint-config-styled-components": "0.1.1",

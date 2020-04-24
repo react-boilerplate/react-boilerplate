@@ -58,6 +58,7 @@ const ConnectedApp = ({ Component }: Props) => (
     </Provider>
   </React.StrictMode>
 );
+
 const render = (Component: typeof App) => {
   ReactDOM.render(<ConnectedApp Component={Component} />, MOUNT_NODE);
 };

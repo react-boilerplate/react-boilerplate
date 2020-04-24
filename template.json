@@ -5,10 +5,12 @@
       "node": ">=10.13.0"
     },
     "scripts": {
+      "start:prod": "npm run build && serve -s build",
       "checkTs": "tsc --noEmit",
       "eslint": "eslint --ext js,ts,tsx",
       "lint": "npm run eslint -- src",
       "lint:fix": "npm run eslint -- --fix src",
+      "lint:css": "stylelint src/**/*.css",
       "generate": "cross-env TS_NODE_PROJECT='./internals/ts-node.tsconfig.json' plop --plopfile internals/generators/plopfile.ts",
       "cleanExampleApp": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/clean.ts",
       "prettify": "prettier --write"
@@ -25,12 +27,11 @@
     "jest": {
       "collectCoverageFrom": [
         "src/**/*.{js,jsx,ts,tsx}",
-        "!<rootDir>/node_modules/",
-        "!<rootDir>/internals/",
-        "!src/**/*.test.{js,jsx,ts,tsx}",
+        "!src/**/*/*.d.ts",
+        "!src/**/*/Loadable.{js,jsx,ts,tsx}",
+        "!src/**/*/types.ts",
         "!src/index.tsx",
-        "!src/styles/global-styles.ts",
-        "!src/**/*/Loadable.{js,jsx,ts,tsx}"
+        "!src/serviceWorker.ts"
       ],
       "coverageThreshold": {
         "global": {
@@ -39,10 +40,6 @@
           "lines": 90,
           "statements": 90
         }
-      },
-      "moduleNameMapper": {
-        ".*\\.(css|less|styl|scss|sass)$": "<rootDir>/internals/testing/cssModuleMock.ts",
-        ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/testing/imageMock.ts"
       }
     },
     "dependencies": {
@@ -65,6 +62,12 @@
       "sanitize.css": "11.0.0",
       "styled-components": "5.0.1",
       "ts-node": "8.8.2",
+      "stylelint": "13.2.1",
+      "stylelint-config-recommended": "3.0.0",
+      "stylelint-config-styled-components": "0.1.1",
+      "stylelint-processor-styled-components": "1.10.0",
+      "typescript": "3.8.2",
+
       "@testing-library/jest-dom": "5.1.1",
       "@testing-library/react": "10.0.1",
       "@types/fontfaceobserver": "0.0.6",
@@ -79,12 +82,17 @@
       "@types/react-test-renderer": "16.9.2",
       "@types/styled-components": "5.0.1",
       "@types/testing-library__jest-dom": "5.0.2",
+      "@types/webpack-env": "1.15.1",
       "cross-env": "7.0.2",
+      "eslint-config-prettier": "6.10.1",
+      "eslint-plugin-prettier": "3.1.2",
       "jest-styled-components": "7.0.2",
       "react-test-renderer": "16.13.0",
       "lint-staged": "10.0.8",
       "node-plop": "0.25.0",
-      "plop": "2.6.0"
+      "plop": "2.6.0",
+      "serve": "11.3.0",
+      "shelljs": "0.8.3"
     }
   }
 }

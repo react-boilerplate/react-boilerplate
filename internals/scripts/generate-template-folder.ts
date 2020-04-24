@@ -44,6 +44,7 @@ export function generateTemplateFolder(opts: Options = {}) {
   copyToTemplate('.prettierrc');
   copyToTemplate('.stylelintrc');
   copyToTemplate('tsconfig.json');
+  copyToTemplate('README.md');
 
   shell.mv('template/.gitignore', 'template/gitignore');
 
