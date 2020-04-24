@@ -1,5 +1,5 @@
 import React from 'react';
-import { NotFoundPage } from '../';
+import { NotFoundPage } from '..';
 import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { themes } from 'styles/theme/themes';
