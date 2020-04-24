@@ -1,6 +1,6 @@
 import * as selectors from '../selectors';
 import { RootState } from 'types';
-import { ContainerState, RepoErrorTypes } from '../types';
+import { ContainerState, RepoErrorType } from '../types';
 import { initialState } from '../slice';
 import { Repo } from 'types/Repo';
 
@@ -32,7 +32,7 @@ describe('GithubRepoForm selectors', () => {
   });
 
   it('should select error', () => {
-    const error = RepoErrorTypes.USER_NOT_FOUND;
+    const error = RepoErrorType.USER_NOT_FOUND;
     state = {
       githubRepoForm: { ...initialState, error: error },
     };

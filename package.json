@@ -67,22 +67,18 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
-      "!<rootDir>/node_modules/",
-      "!<rootDir>/internals/",
+      "!src/**/*/*.d.ts",
       "!src/**/*/Loadable.{js,jsx,ts,tsx}",
-      "!src/**/*.test.{js,jsx,ts,tsx}",
+      "!src/**/*/types.ts",
       "!src/index.tsx",
-      "!src/serviceWorker.ts",
-      "!src/styles/global-styles.ts",
-      "!src/utils/@reduxjs/*",
-      "!src/utils/redux-injectors.ts"
+      "!src/serviceWorker.ts"
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 1,
-        "functions": 1,
-        "lines": 1,
-        "statements": 1
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
       }
     },
     "moduleNameMapper": {

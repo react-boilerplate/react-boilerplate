@@ -4,16 +4,16 @@ import { Repo } from 'types/Repo';
 export interface GithubRepoFormState {
   username: string;
   loading: boolean;
-  error?: RepoErrorTypes | null;
+  error?: RepoErrorType | null;
   repositories: Repo[];
 }
 
-export enum RepoErrorTypes {
-  RESPONSE_ERROR,
-  USER_NOT_FOUND,
-  USERNAME_EMPTY,
-  USER_HAS_NO_REPO,
-  GITHUB_RATE_LIMIT,
+export enum RepoErrorType {
+  RESPONSE_ERROR = 1,
+  USER_NOT_FOUND = 2,
+  USERNAME_EMPTY = 3,
+  USER_HAS_NO_REPO = 4,
+  GITHUB_RATE_LIMIT = 5,
 }
 
 /* 

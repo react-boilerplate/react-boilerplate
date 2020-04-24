@@ -20,6 +20,7 @@ describe('theme slice', () => {
       { selected: 'dark' },
     );
   });
+
   describe('selectors', () => {
     it('selectTheme', () => {
       let state: RootState = {};
@@ -34,6 +35,7 @@ describe('theme slice', () => {
       };
       expect(slice.selectTheme(state)).toEqual<DefaultTheme>(themes.dark);
     });
+
     it('selectThemeKey', () => {
       let state: RootState = {};
       expect(slice.selectThemeKey(state)).toEqual<ThemeKeyType>(

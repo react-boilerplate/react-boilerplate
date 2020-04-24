@@ -3,7 +3,7 @@ import * as slice from '../slice';
 
 import { githubRepoFormSaga, getRepos } from '../saga';
 import { Repo } from 'types/Repo';
-import { RepoErrorTypes } from '../types';
+import { RepoErrorType } from '../types';
 
 describe('getRepos Saga', () => {
   let username: any;
@@ -25,7 +25,7 @@ describe('getRepos Saga', () => {
     username = '';
     const putDescriptor = getReposIterator.next(username).value;
     expect(putDescriptor).toEqual(
-      put(slice.actions.repoError(RepoErrorTypes.USERNAME_EMPTY)),
+      put(slice.actions.repoError(RepoErrorType.USERNAME_EMPTY)),
     );
 
     const iteration = getReposIterator.next();
@@ -59,7 +59,7 @@ describe('getRepos Saga', () => {
     const putDescriptor = getReposIterator.throw({ response: { status: 404 } })
       .value;
     expect(putDescriptor).toEqual(
-      put(slice.actions.repoError(RepoErrorTypes.USER_NOT_FOUND)),
+      put(slice.actions.repoError(RepoErrorType.USER_NOT_FOUND)),
     );
   });
   it('should dispatch the user has no repo error', () => {
@@ -71,7 +71,7 @@ describe('getRepos Saga', () => {
 
     const putDescriptor = getReposIterator.next(repos).value;
     expect(putDescriptor).toEqual(
-      put(slice.actions.repoError(RepoErrorTypes.USER_HAS_NO_REPO)),
+      put(slice.actions.repoError(RepoErrorType.USER_HAS_NO_REPO)),
     );
   });
   it('should dispatch the github rate limit error', () => {
@@ -83,7 +83,7 @@ describe('getRepos Saga', () => {
     const putDescriptor = getReposIterator.throw(new Error('Failed to fetch'))
       .value;
     expect(putDescriptor).toEqual(
-      put(slice.actions.repoError(RepoErrorTypes.GITHUB_RATE_LIMIT)),
+      put(slice.actions.repoError(RepoErrorType.GITHUB_RATE_LIMIT)),
     );
   });
 
@@ -95,7 +95,7 @@ describe('getRepos Saga', () => {
 
     const putDescriptor = getReposIterator.throw(new Error('some error')).value;
     expect(putDescriptor).toEqual(
-      put(slice.actions.repoError(RepoErrorTypes.RESPONSE_ERROR)),
+      put(slice.actions.repoError(RepoErrorType.RESPONSE_ERROR)),
     );
   });
 });

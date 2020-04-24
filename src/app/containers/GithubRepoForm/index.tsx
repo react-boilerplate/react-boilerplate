@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { FormLabel } from 'app/components/FormLabel';
 import { Input } from './components/Input';
@@ -16,7 +15,7 @@ import {
   selectError,
 } from './selectors';
 import { LoadingIndicator } from 'app/components/LoadingIndicator';
-import { RepoErrorTypes } from './types';
+import { RepoErrorType } from './types';
 
 export function GithubRepoForm() {
   useInjectReducer({ key: sliceKey, reducer: reducer });
@@ -34,38 +33,20 @@ export function GithubRepoForm() {
     dispatch(actions.loadRepos());
   };
 
-  const onSubmitForm = (evt?: React.FormEvent<HTMLFormElement>) => {
-    if (evt !== undefined && evt.preventDefault) {
-      evt.preventDefault();
-    }
-    if (!username) {
-      return;
-    }
-    dispatch(actions.loadRepos());
-  };
-
   const useEffectOnMount = (effect: React.EffectCallback) => {
     useEffect(effect, []);
   };
   useEffectOnMount(() => {
     // When initial state username is not null, submit the form to load repos
     if (username && username.trim().length > 0) {
-      onSubmitForm();
+      dispatch(actions.loadRepos());
     }
   });
 
-  const renderRepoErrorText = () => {
-    switch (error) {
-      case RepoErrorTypes.USER_NOT_FOUND:
-        return 'There is no such user 😞';
-      case RepoErrorTypes.USERNAME_EMPTY:
-        return 'Type any Github username';
-      case RepoErrorTypes.USER_HAS_NO_REPO:
-        return 'User has no repository 🥺';
-      case RepoErrorTypes.GITHUB_RATE_LIMIT:
-        return 'Looks like github api`s rate limit(60 request/h) has exceeded 🤔';
-      default:
-        return 'An error has occurred!';
+  const onSubmitForm = (evt?: React.FormEvent<HTMLFormElement>) => {
+    /* istanbul ignore next  */
+    if (evt !== undefined && evt.preventDefault) {
+      evt.preventDefault();
     }
   };
 
@@ -95,11 +76,26 @@ export function GithubRepoForm() {
           ))}
         </List>
       ) : error ? (
-        <ErrorText>{renderRepoErrorText()}</ErrorText>
+        <ErrorText>{repoErrorText(error)}</ErrorText>
       ) : null}
     </Wrapper>
   );
 }
+
+export const repoErrorText = (error: RepoErrorType) => {
+  switch (error) {
+    case RepoErrorType.USER_NOT_FOUND:
+      return 'There is no such user 😞';
+    case RepoErrorType.USERNAME_EMPTY:
+      return 'Type any Github username';
+    case RepoErrorType.USER_HAS_NO_REPO:
+      return 'User has no repository 🥺';
+    case RepoErrorType.GITHUB_RATE_LIMIT:
+      return 'Looks like github api`s rate limit(60 request/h) has exceeded 🤔';
+    default:
+      return 'An error has occurred!';
+  }
+};
 
 const Wrapper = styled.div`
   ${TextButton} {

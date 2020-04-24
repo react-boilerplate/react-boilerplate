@@ -1,5 +1,5 @@
 import * as slice from '../slice';
-import { ContainerState, RepoErrorTypes } from '../types';
+import { ContainerState, RepoErrorType } from '../types';
 import { Repo } from 'types/Repo';
 
 describe('GithubRepoForm slice', () => {
@@ -46,7 +46,7 @@ describe('GithubRepoForm slice', () => {
   });
 
   it('should handle repoError', () => {
-    const repoError = RepoErrorTypes.USER_NOT_FOUND;
+    const repoError = RepoErrorType.USER_NOT_FOUND;
     expect(slice.reducer(state, slice.actions.repoError(repoError))).toEqual<
       ContainerState
     >({
