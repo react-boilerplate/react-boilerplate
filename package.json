@@ -1,7 +1,7 @@
 {
   "name": "cra-template-rb",
   "description": "The official React Boilerplate template for Create React App",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/can-sahin/cra-template-react-boilerplate.git"
@@ -39,7 +39,7 @@
     "test:coverage": "npm run test:all -- --coverage",
     "test:generators": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/tests/test-generators.ts",
     "test:generators:cra": "cross-env TESTING_GENERATED_CRA=true npm run test:generators",
-    "test:cra": "npm run generate-cra && npm run test:generators:cra && cd generated-cra-app && npm run lint && npm run cleanExampleApp && npm run lint", 
+    "test:cra": "npm run generate-cra && npm run test:generators:cra && cd generated-cra-app && npm run lint && npm run cleanExampleApp && npm run lint",
     "checkTs": "tsc --noEmit",
     "eslint": "eslint --ext js,ts,tsx",
     "lint": "npm run eslint -- src",
