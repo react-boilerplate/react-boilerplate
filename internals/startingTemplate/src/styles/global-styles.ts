@@ -9,31 +9,21 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: #ffffff;
   }
 
-  body.fontLoaded {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
-
-  #app {
-    background-color: #fafafa;
+  #root {
     min-height: 100%;
     min-width: 100%;
   }
 
   p,
   label {
+    font-family: Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;
   }
 
-  input, select, button {
+  input, select {
     font-family: inherit;
     font-size: inherit;
-  }
-
-  .icon {
-    width: 1.5rem;
-    height: 1.5rem;
   }
 `;

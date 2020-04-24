@@ -6,9 +6,6 @@ import { RouterState } from 'connected-react-router';
   You have to declare them here manually
 */
 export interface RootState {
-  router: RouterState;
+  router?: RouterState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
-
-  // Used in tests
-  testStateKey: any;
 }

@@ -10,8 +10,6 @@ export type RootStateKeyType = keyof RootState;
 export type InjectedReducersType = {
   [P in RootStateKeyType]?: Reducer<RequiredRootState[P], AnyAction>;
 };
-
-/* istanbul ignore next */
 export interface InjectReducerParams<Key extends RootStateKeyType> {
   key: Key;
   reducer: Reducer<RequiredRootState[Key], AnyAction>;

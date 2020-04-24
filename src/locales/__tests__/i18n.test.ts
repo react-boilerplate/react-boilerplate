@@ -1,4 +1,4 @@
-import { i18n, translations } from 'locales/i18n';
+import { i18n, translations } from '../i18n';
 
 describe('i18n', () => {
   it('should initate i18n', async () => {
