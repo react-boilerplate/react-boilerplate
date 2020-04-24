@@ -17,6 +17,12 @@ export type LanguageKeys = keyof TranslationResource;
 
 export const translations: ConvertedToFunctionsType<TranslationResource> = {} as any;
 
+/*
+ * Converts the static JSON file into object where keys are identical
+ * but values are functions that produces the same key as string.
+ * This is helpful when using the JSON file keys and still have the intellisense support
+ * along with type-safety
+ */
 const convertToFunctions = (obj: any, dict: {}, current?: string) => {
   Object.keys(obj).forEach(key => {
     const currentLookupKey = current ? `${current}.${key}` : key;

@@ -1,7 +1,3 @@
-/**
- * Test store addons
- */
-
 import { configureAppStore } from '../configureStore';
 import { history } from '../../utils/history';
 

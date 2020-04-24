@@ -1,7 +1,3 @@
-/**
- * Create the store with dynamic reducers
- */
-
 import {
   configureStore,
   getDefaultMiddleware,

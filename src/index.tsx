@@ -1,5 +1,5 @@
 /**
- * app.js
+ * index.tsx
  *
  * This is the entry file for the application, only setup and boilerplate
  * code.
@@ -8,25 +8,25 @@
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 
-// Import all the third party stuff
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import FontFaceObserver from 'fontfaceobserver';
 import * as serviceWorker from 'serviceWorker';
-
 import { history } from 'utils/history';
+
 import 'sanitize.css/sanitize.css';
 
-// Import root app
+// Initialize languages
+import './locales/i18n';
+
 import { App } from 'app';
 
 import { HelmetProvider } from 'react-helmet-async';
 
 import { configureAppStore } from 'store/configureStore';
 
-import './locales/i18n';
 import { ThemeProvider } from 'styles/theme/ThemeProvider';
 
 // Observe loading of Inter (to remove 'Inter', remove the <link> tag in
@@ -64,6 +64,9 @@ const render = (Component: typeof App) => {
 };
 
 if (module.hot) {
+  // Hot reloadable translation json files and app
+  // modules.hot.accept does not accept dynamic dependencies,
+  // have to be constants at compile-time
   module.hot.accept(['./app', './locales/i18n'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     const App = require('./app').App;

@@ -23,11 +23,14 @@ export function generateTemplateFolder(opts: Options = {}) {
 
   shell.mkdir('template/internals');
   copyToTemplate('internals/generators', true);
-  copyToTemplate('internals/ts-node.tsconfig.json');
+
   shell.mkdir('template/internals/scripts');
   copyToTemplate('internals/scripts/clean.ts');
+
   copyToTemplate('internals/startingTemplate', true);
   copyToTemplate('internals/testing', true);
+
+  copyToTemplate('internals/ts-node.tsconfig.json');
 
   copyToTemplate('.vscode', true);
   copyToTemplate('public', true);

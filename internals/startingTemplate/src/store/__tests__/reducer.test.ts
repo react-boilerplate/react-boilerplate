@@ -1,6 +1,3 @@
-/**
- * Test store addons
- */
 import { createReducer } from '../reducers';
 import { Reducer } from '@reduxjs/toolkit';
 

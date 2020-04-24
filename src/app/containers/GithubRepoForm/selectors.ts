@@ -1,13 +1,9 @@
-/**
- * Homepage selectors
- */
-
 import { createSelector } from '@reduxjs/toolkit';
 
 import { RootState } from 'types';
 import { initialState } from './slice';
 
-// TODO: Add an explanation for this
+// First select the relevant part from the state
 const selectDomain = (state: RootState) => state.githubRepoForm || initialState;
 
 export const selectUsername = createSelector(

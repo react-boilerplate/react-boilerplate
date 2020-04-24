@@ -1,7 +1,3 @@
-/**
- * Gets the repositories of the user from Github
- */
-
 import { call, put, select, takeLatest, delay } from 'redux-saga/effects';
 import { request } from 'utils/request';
 import { selectUsername } from './selectors';
@@ -45,7 +41,7 @@ export function* getRepos() {
  * Root saga manages watcher lifecycle
  */
 export function* githubRepoFormSaga() {
-  // Watches for LOAD_REPOS actions and calls getRepos when one comes in.
+  // Watches for loadRepos actions and calls getRepos when one comes in.
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
