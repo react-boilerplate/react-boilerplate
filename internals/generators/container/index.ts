@@ -16,6 +16,7 @@ export enum ContainerProptNames {
   'wantStyledComponents' = 'wantStyledComponents',
   'wantTranslations' = 'wantTranslations',
   'wantLoadable' = 'wantLoadable',
+  'wantTests' = 'wantTests',
 }
 
 const containersPath = path.join(__dirname, '../../../src/app/containers');
@@ -83,6 +84,12 @@ export const containerGenerator: PlopGenerator = {
       default: false,
       message: 'Do you want to load the component asynchronously?',
     },
+    {
+      type: 'confirm',
+      name: ContainerProptNames.wantTests,
+      default: false,
+      message: 'Do you want to have tests?',
+    },
   ],
   actions: (data: { [P in ContainerProptNames]: string }) => {
     const containerPath = `${containersPath}/{{properCase ${ContainerProptNames.ComponentName}}}`;
@@ -142,7 +149,16 @@ export const containerGenerator: PlopGenerator = {
       actions.push({
         type: 'add',
         path: `${containerPath}/Loadable.ts`,
-        templateFile: './component/loadable.ts.hbs',
+        templateFile: './container/loadable.ts.hbs',
+        abortOnFail: true,
+      });
+    }
+
+    if (data.wantTests) {
+      actions.push({
+        type: 'add',
+        path: `${containerPath}/__tests__/index.test.tsx`,
+        templateFile: './container/index.test.tsx.hbs',
         abortOnFail: true,
       });
     }

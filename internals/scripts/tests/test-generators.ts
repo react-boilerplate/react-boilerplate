@@ -109,6 +109,7 @@ async function generateComponent() {
       wantStyledComponents: true,
       wantLoadable: true,
       wantTranslations: true,
+      wantTests: true,
     })
     .then(handleResult)
     .then(feedbackToUser(`Generated '${componentName}'`));
@@ -135,6 +136,7 @@ async function generateContainer() {
       wantStyledComponents: true,
       wantLoadable: true,
       wantTranslations: true,
+      wantTests: true,
     })
     .then(handleResult)
     .then(feedbackToUser(`Generated '${componentName}'`));
