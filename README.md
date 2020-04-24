@@ -23,7 +23,7 @@ Create React App template of React Boilerplate
     <img src="https://github.com/Can-Sahin/cra-template-react-boilerplate/workflows/tests/badge.svg" alt="Tests Status" />
   </a>
   <a href="https://coveralls.io/github/Can-Sahin/cra-template-react-boilerplate">
-    <img src="https://coveralls.io/repos/github/Can-Sahin/cra-template-react-boilerplate/badge.svg" alt="Coverage" />
+    <img src="https://coveralls.io/repos/github/Can-Sahin/cra-template-react-boilerplate/badge.svg?branch=master" alt="Coverage" />
   </a>
   <a href="https://david-dm.org/can-sahin/cra-template-react-boilerplate">
     <img src="https://david-dm.org/can-sahin/cra-template-react-boilerplate.svg" alt="Dependency Status" />

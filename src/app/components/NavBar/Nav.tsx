@@ -1,13 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Link } from 'react-router-dom';
 import { ReactComponent as DocumentationIcon } from './assets/documentation-icon.svg';
 import { ReactComponent as GithubIcon } from './assets/github-icon.svg';
 
 export function Nav() {
   return (
     <Wrapper>
-      <Item as={Link} to="/documentation" title="Documentation Page">
+      <Item
+        href="https://cansahin.gitbook.io/cra-template-react-boilerplate/"
+        target="_blank"
+        title="Documentation Page"
+        rel="noopener noreferrer"
+      >
         <DocumentationIcon />
         Documentation
       </Item>

@@ -133,8 +133,9 @@ Array [
       >
         <a
           className="c7"
-          href="/documentation"
-          onClick={[Function]}
+          href="https://cansahin.gitbook.io/cra-template-react-boilerplate/"
+          rel="noopener noreferrer"
+          target="_blank"
           title="Documentation Page"
         >
           <svg>
