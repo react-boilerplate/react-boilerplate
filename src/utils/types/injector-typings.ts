@@ -18,7 +18,7 @@ export interface InjectReducerParams<Key extends RootStateKeyType> {
 }
 
 export interface InjectSagaParams {
-  key: RootStateKeyType;
+  key: RootStateKeyType | string;
   saga: Saga;
   mode?: SagaInjectionModes;
 }

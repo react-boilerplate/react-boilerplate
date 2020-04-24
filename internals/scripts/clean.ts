@@ -23,7 +23,7 @@ export function cleanExampleApp(opts: Options = {}) {
   shell.rm('-rf', 'internals/startingTemplate');
   shell.rm('-rf', 'internals/scripts');
 
-  shell.exec('npm run prettify -- src/*');
+  shell.exec('npm run prettify -- src/*', { silent: true });
 
   shell.echo(chalk.green('Example App removed. Happy Coding!!!'));
 }
