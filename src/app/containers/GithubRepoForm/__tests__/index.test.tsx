@@ -7,8 +7,6 @@ import { HelmetProvider } from 'react-helmet-async';
 import { GithubRepoForm, repoErrorText } from '..';
 import { configureAppStore } from 'store/configureStore';
 import { actions, initialState } from '../slice';
-import { create } from 'react-test-renderer';
-import { RepoItem } from '../RepoItem';
 import { RepoErrorType } from '../types';
 
 function* mockGithubRepoFormSaga() {}
@@ -19,17 +17,6 @@ jest.mock('../saga', () => ({
 
 const renderGithubRepoForm = (store: Store) =>
   render(
-    <Provider store={store}>
-      <ThemeProvider>
-        <HelmetProvider>
-          <GithubRepoForm />
-        </HelmetProvider>
-      </ThemeProvider>
-    </Provider>,
-  );
-
-const createGithubRepoForm = (store: Store) =>
-  create(
     <Provider store={store}>
       <ThemeProvider>
         <HelmetProvider>

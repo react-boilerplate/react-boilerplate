@@ -1,6 +1,6 @@
 import * as selectors from '../selectors';
 import { RootState } from 'types';
-import { ContainerState, RepoErrorType } from '../types';
+import { RepoErrorType } from '../types';
 import { initialState } from '../slice';
 import { Repo } from 'types/Repo';
 
