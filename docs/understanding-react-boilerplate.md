@@ -49,6 +49,13 @@ We use the [container/component architecture](https://medium.com/@dan_abramov/sm
 
 We've found that for many applications treating single pages (e.g. the LoginPage, the HomePage, etc.) as containers and their small parts (e.g. the Login form, the Navigation bar) as components works well, but there are no rigid rules. **Bend the architecture to the needs of your app, nothing is set in stone!**
 
+{% hint style="warning" %}
+
+🧙**Learn More:** See [this article](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
+by Dan Abramov for a great introduction to this approach.
+
+{% endhint %}
+
 ### `src/`
 
 Here is the rest of the code that doesn't actually make your visible app but contains the features like creating redux store, translations, styles & themes, and your redux state types (or any custom typings)...
