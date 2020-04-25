@@ -6,6 +6,7 @@
 ## Tools
 
 - [CLI & Scaffolding](tools/commands.md)
+- [Editor Configuration](tools/editors.md)
 
 ## Building Blocks
 
