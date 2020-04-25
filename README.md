@@ -48,7 +48,7 @@ Start your `create-react-app` projects in seconds with the best, industry-standa
 
 **📝 Documentation:** [Gitbook](https://cansahin.gitbook.io/react-boilerplate-cra-template/)
 
-**🔗 Package:** [npm](https://www.npmjs.com/package/cra-template-rb)
+**📦 Package:** [npm](https://www.npmjs.com/package/cra-template-rb)
 
 **👁️ Explore the Example Application:** [Example Application](https://react-boilerplate.github.io/react-boilerplate-cra-template/)
 
