@@ -136,7 +136,7 @@
     "jest-watch-typeahead": "0.4.2",
     "lint-staged": "10.0.8",
     "node-plop": "0.25.0",
-    "np": "6.2.2",
+    "np": "*",
     "plop": "2.6.0",
     "prettier": "2.0.1",
     "react-scripts": "3.4.1",
