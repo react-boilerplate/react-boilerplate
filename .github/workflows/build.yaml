@@ -18,6 +18,7 @@ jobs:
   
   testCRA:
     needs: buildCRA
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./generated-cra-app
