@@ -1,5 +1,3 @@
-# UNDER DEVELOPMENT!
-
 <img width="914" alt="React Boilerplate Meets CRA" src="https://user-images.githubusercontent.com/3495307/79694949-7b098b00-827c-11ea-8f8b-cb4b9e673b5c.png" align="center">
 <br />
 
@@ -50,17 +48,24 @@ The official [Create React App](https://github.com/facebook/create-react-app) te
 
 Start your `create-react-app` projects in seconds with the best, industry-standard tools and practices made ready for you.
 
-**📝 Documentation: [GitBook](https://cansahin.gitbook.io/cra-template-react-boilerplate/)**
+**📝 Documentation:** [gitbook](https://cansahin.gitbook.io/cra-template-react-boilerplate/)
+
+**🔗 Package:** [npm](https://www.npmjs.com/package/cra-template-rb)
 
 ---
 
 ## Install & Start
 
-```sh
-npx create-react-app --template cra-template-react-boilerplate my-app # Create React App with the template
+```shell
+# Create React App with the template
+npx create-react-app --template cra-template-rb my-app
+
+# Check the example app
 cd my-app
-npm start # Check the example app
-npm run cleanExampleApp # Ready to start your project!
+npm start
+
+# Remove the example app and start your project!
+npm run cleanExampleApp
 ```
 
 ## Features
