@@ -18,4 +18,5 @@ yarn-error.log*
 
 # boilerplate internals
 generated-cra-app
+.cra-template-rb
 template

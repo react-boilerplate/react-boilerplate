@@ -3,10 +3,8 @@ import { shellEnableAbortOnFail, shellDisableAbortOnFail } from './utils';
 
 interface Options {}
 
-export function generateTemplateFolder(opts: Options = {}) {
+export function crateTemplateFolder(opts: Options = {}) {
   const abortOnFailEnabled = shellEnableAbortOnFail();
-
-  shell.echo('Generating template folder...');
 
   const copyToTemplate = (path: string, isRecursive?: boolean) => {
     if (isRecursive) {
@@ -51,7 +49,6 @@ export function generateTemplateFolder(opts: Options = {}) {
 
   shell.mv('template/.gitignore', 'template/gitignore');
 
-  shell.echo('Generating template folder done!');
   if (abortOnFailEnabled) shellDisableAbortOnFail();
 }
 

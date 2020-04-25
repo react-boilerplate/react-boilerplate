@@ -1,26 +1,22 @@
 import shell from 'shelljs';
-import path from 'path';
-import {
-  generateTemplateFolder,
-  removeTemplateFolder,
-} from './generate-template-folder';
 import { shellEnableAbortOnFail, shellDisableAbortOnFail } from './utils';
+import { createNpmPackage, removeNpmPackage } from './create-npm-package';
 
 interface Options {}
 
-export function generateCRA(opts: Options = {}) {
+export function createCRAProject(opts: Options = {}) {
   const abortOnFailEnabled = shellEnableAbortOnFail();
 
-  const craAppName = 'generated-cra-app';
+  const craAppName = '.generated-cra-app';
 
   shell.rm('-rf', `${craAppName}`);
 
-  generateTemplateFolder(opts);
+  const npmPackageFolder = createNpmPackage(opts);
 
-  shell.echo('Generating CRA...');
+  shell.echo('Creating CRA...');
 
   const child = shell.exec(
-    `npx create-react-app ${craAppName} --template file:.`,
+    `npx create-react-app ${craAppName} --template file:${npmPackageFolder}`,
     {
       silent: false,
       async: true,
@@ -28,9 +24,9 @@ export function generateCRA(opts: Options = {}) {
     },
   );
   child.on('exit', code => {
-    shell.echo('Generating CRA finished!');
+    shell.echo('Creating CRA finished!');
 
-    removeTemplateFolder();
+    removeNpmPackage();
     if (code) {
       shell.rm('-rf', `${craAppName}`);
     }
@@ -38,7 +34,3 @@ export function generateCRA(opts: Options = {}) {
 
   if (abortOnFailEnabled) shellDisableAbortOnFail();
 }
-
-process.chdir(path.join(__dirname, '../..'));
-
-generateCRA();

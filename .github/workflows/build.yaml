@@ -5,26 +5,30 @@ on:
   - pull_request
 
 jobs:
-  buildCRA:
+  createNpmPackage:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 10.x
-        uses: actions/setup-node@v1
+      - run: npm i shelljs 
+      - run: npm run create:npm-package
+      - name: Upload template
+        uses: actions/upload-artifact@v1
         with:
-          node-version: 10.x
-      - run: npm i # There is a bug with npm ci -> https://github.com/npm/cli/issues/558
-      - run: npm run generate-cra
+          name: cra-template-rb
+          path: .cra-template-rb
   
   testCRA:
-    needs: buildCRA
+    needs: createNpmPackage
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./generated-cra-app
     steps:
-      - run: npm run test:generators:cra
-        working-directory: ../
+      - name: Download template
+        uses: actions/download-artifact@v1
+        with:
+          name: cra-template-rb
+          path: ../cra-template-rb # Put into upper folder. create-react-app wants the current directory empty
+      - name: Create CRA from downloaded template
+        run: npx create-react-app --template file:../cra-template-rb .
+      - run: npm run test:generators
       - run: npm run lint
       - run: npm run checkTs
       - run: npm run cleanExampleApp

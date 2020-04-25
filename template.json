@@ -5,6 +5,7 @@
       "node": ">=10.13.0"
     },
     "scripts": {
+      "test:generators": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/testing/test-generators.ts",
       "start:prod": "npm run build && serve -s build",
       "checkTs": "tsc --noEmit",
       "eslint": "eslint --ext js,ts,tsx",

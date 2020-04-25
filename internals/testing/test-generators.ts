@@ -5,20 +5,18 @@ import shell from 'shelljs';
 import path from 'path';
 import nodePlop from 'node-plop';
 
-import { addCheckMark } from '../helpers/checkmark';
-import { addXMark } from '../helpers/xmark';
-import { BACKUPFILE_EXTENSION } from '../../generators/plopfile';
-import { ComponentProptNames } from '../../generators/component';
-import { ContainerProptNames } from '../../generators/container';
-import { PlopGenerator } from '../typings/PlopGenerator';
+import { BACKUPFILE_EXTENSION } from '../generators/plopfile';
+import { ComponentProptNames } from '../generators/component';
+import { ContainerProptNames } from '../generators/container';
+import { PlopGenerator as PG } from 'node-plop';
 
-if (process.env.TESTING_GENERATED_CRA) {
-  process.chdir(
-    path.join(__dirname, '../../../generated-cra-app/internals/generators'),
-  );
-} else {
-  process.chdir(path.join(__dirname, '../../generators'));
+interface PlopGenerator extends PG {
+  runActions?: <T extends string | number>(
+    props: { [P in T]: any },
+  ) => Promise<{ changes: []; failures: [] }>;
 }
+
+process.chdir(path.join(__dirname, '../generators'));
 
 const plop = nodePlop('./plopfile.ts');
 const componentGen = plop.getGenerator('component') as PlopGenerator;
@@ -85,13 +83,13 @@ function feedbackToUser(info) {
 
 function reportSuccess(message: string) {
   return result => {
-    addCheckMark(() => console.log(chalk.green(` ${message}`)));
+    console.log(chalk.green(` ✓ ${message}`));
     return result;
   };
 }
 
 function reportErrors(reason: Error, shouldExist = true) {
-  addXMark(() => console.error(chalk.red(` ${reason}`)));
+  console.error(chalk.red(` ✘ ${reason}`));
   if (shouldExist) {
     process.exit(1);
   }

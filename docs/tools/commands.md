@@ -25,6 +25,12 @@ Allows you to auto-generate boilerplate code for common parts of your
 application, specifically `component`s, and `container`s. You can
 also run `npm run generate <part>` to skip the first selection. (e.g. `npm run generate container`)
 
+```Shell
+npm run test:generators
+```
+
+If you want to test if generators are working fine. It generates components and containers with various settings. It would be usefull if you start customizing the generators for your needs
+
 ## Production
 
 ```Shell
