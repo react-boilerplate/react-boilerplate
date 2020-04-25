@@ -9,17 +9,17 @@ with a focus on
 <br />
 
 <div align="center">
-  <a href="https://github.com/Can-Sahin/react-boilerplate-cra-template/actions?query=workflow%3Abuild">
-    <img src="https://github.com/Can-Sahin/react-boilerplate-cra-template/workflows/build/badge.svg" alt="Build Status" />
+  <a href="https://github.com/react-boilerplate/react-boilerplate-cra-template/actions?query=workflow%3Abuild">
+    <img src="https://github.com/react-boilerplate/react-boilerplate-cra-template/workflows/build/badge.svg" alt="Build Status" />
   </a>
-  <a href="https://github.com/Can-Sahin/react-boilerplate-cra-template/actions?query=workflow%3Atests">
-    <img src="https://github.com/Can-Sahin/react-boilerplate-cra-template/workflows/tests/badge.svg" alt="Tests Status" />
+  <a href="https://github.com/react-boilerplate/react-boilerplate-cra-template/actions?query=workflow%3Atests">
+    <img src="https://github.com/react-boilerplate/react-boilerplate-cra-template/workflows/tests/badge.svg" alt="Tests Status" />
   </a>
-  <a href="https://coveralls.io/github/Can-Sahin/react-boilerplate-cra-template">
-    <img src="https://coveralls.io/repos/github/Can-Sahin/react-boilerplate-cra-template/badge.svg?branch=master" alt="Coverage" />
+  <a href="https://coveralls.io/github/react-boilerplate/react-boilerplate-cra-template">
+    <img src="https://coveralls.io/repos/github/react-boilerplate/react-boilerplate-cra-template/badge.svg?branch=master" alt="Coverage" />
   </a>
-  <a href="https://david-dm.org/can-sahin/react-boilerplate-cra-template">
-    <img src="https://david-dm.org/can-sahin/react-boilerplate-cra-template.svg" alt="Dependency Status" />
+  <a href="https://david-dm.org/react-boilerplate/react-boilerplate-cra-template">
+    <img src="https://david-dm.org/react-boilerplate/react-boilerplate-cra-template.svg" alt="Dependency Status" />
   </a>
 </a>
 </div>
@@ -30,7 +30,7 @@ with a focus on
   <a href="https://opencollective.com/react-boilerplate/">
     <img src="https://opencollective.com/react-boilerplate/sponsors/badge.svg" alt="Sponsors" />
   </a>
-  <img src="https://img.shields.io/github/license/can-sahin/react-boilerplate-cra-template" alt="License" />
+  <img src="https://img.shields.io/github/license/react-boilerplate/react-boilerplate-cra-template" alt="License" />
 </div>
 
 <br />
@@ -112,8 +112,8 @@ But wait... there's more!
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/Can-Sahin"><img src="https://avatars2.githubusercontent.com/u/33245689" width="80px;" alt=""/><br /><sub><b>Can Sahin</b></sub></a><br /><a href="https://github.com/can-sahin/react-boilerplate-cra-template/commits?author=Can-Sahin" title="Code">💻</a> <a href="https://github.com/can-sahin/react-boilerplate-cra-template/commits?author=Can-Sahin" title="Documentation">📖</a> <a href="#ideas-Can-Sahin" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/can-sahin/react-boilerplate-cra-template/pulls?q=is%3Apr+reviewed-by%3ACan-Sahin" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/can-sahin/react-boilerplate-cra-template/commits?author=Can-Sahin" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://github.com/receptiryaki"><img src="https://avatars0.githubusercontent.com/u/3495307" width="80px;" alt=""/><br /><sub><b>Recep Tiryaki</b></sub></a><br /><a href="https://github.com/can-sahin/react-boilerplate-cra-template/commits?author=receptiryaki" title="Code">💻</a> <a href="#ideas-receptiryaki" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/Can-Sahin"><img src="https://avatars2.githubusercontent.com/u/33245689" width="80px;" alt=""/><br /><sub><b>Can Sahin</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate-cra-template/commits?author=Can-Sahin" title="Code">💻</a> <a href="https://github.com/react-boilerplate/react-boilerplate-cra-template/commits?author=Can-Sahin" title="Documentation">📖</a> <a href="#ideas-Can-Sahin" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/react-boilerplate/react-boilerplate-cra-template/pulls?q=is%3Apr+reviewed-by%3ACan-Sahin" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/react-boilerplate/react-boilerplate-cra-template/commits?author=Can-Sahin" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/receptiryaki"><img src="https://avatars0.githubusercontent.com/u/3495307" width="80px;" alt=""/><br /><sub><b>Recep Tiryaki</b></sub></a><br /><a href="https://github.com/react-boilerplate/react-boilerplate-cra-template/commits?author=receptiryaki" title="Code">💻</a> <a href="#ideas-receptiryaki" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 

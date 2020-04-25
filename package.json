@@ -4,7 +4,7 @@
   "version": "0.0.4",
   "repository": {
     "type": "git",
-    "url": "https://github.com/can-sahin/react-boilerplate-cra-template.git"
+    "url": "https://github.com/react-boilerplate/react-boilerplate-cra-template.git"
   },
   "license": "MIT",
   "engines": {
@@ -12,7 +12,7 @@
     "node": ">=10.13.0"
   },
   "bugs": {
-    "url": "https://github.com/can-sahin/react-boilerplate-cra-template/issues"
+    "url": "https://github.com/react-boilerplate/react-boilerplate-cra-template/issues"
   },
   "main": "template.json",
   "files": [
