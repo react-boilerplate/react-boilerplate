@@ -1,6 +1,6 @@
-# CRA React Boilerplate
+# React Boilerplate CRA Template
 
-## What is CRA React Boilerplate
+## What is React Boilerplate CRA Template
 
 {% hint style="info" %}
 

@@ -1,7 +1,6 @@
 <img width="914" alt="React Boilerplate Meets CRA" src="https://user-images.githubusercontent.com/3495307/80274591-2d5daa00-86e4-11ea-8fba-404f1cdba87e.png" align="center">
 <br />
 
-<br />
 <div align="center" >Crafted for <strong>highly scalable</strong> & <strong>performant</strong> and <strong>easily maintainable</strong> React.js applications <br /> 
 with a focus on  
 <strong>best DX</strong> and <strong>best practices</strong>.
@@ -104,7 +103,7 @@ But wait... there's more!
 - _Stay fast_: Profile your app's performance from the comfort of your command
   line!
 
-<sub><i>Keywords: Crate React App, React Boilerplate, Typescript, React.js, Redux, Hot Reloading, ESNext, Babel, react-router, Offline First, ServiceWorker, `styled-components`, redux-saga, FontFaceObserver</i></sub>
+<sub><i>Keywords: Crate React App, React Boilerplate, Custom Template, Typescript, React.js, Redux, Hot Reloading, ESNext, Babel, react-router, Offline First, ServiceWorker, `styled-components`, redux-saga, FontFaceObserver</i></sub>
 
 ## Contributors
 
