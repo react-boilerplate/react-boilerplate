@@ -7,7 +7,7 @@ export function Nav() {
   return (
     <Wrapper>
       <Item
-        href="https://cansahin.gitbook.io/cra-template-react-boilerplate/"
+        href="https://cansahin.gitbook.io/react-boilerplate-cra-template/"
         target="_blank"
         title="Documentation Page"
         rel="noopener noreferrer"
@@ -16,7 +16,7 @@ export function Nav() {
         Documentation
       </Item>
       <Item
-        href="https://github.com/Can-Sahin/cra-template-react-boilerplate"
+        href="https://github.com/Can-Sahin/react-boilerplate-cra-template"
         target="_blank"
         title="Github Page"
         rel="noopener noreferrer"

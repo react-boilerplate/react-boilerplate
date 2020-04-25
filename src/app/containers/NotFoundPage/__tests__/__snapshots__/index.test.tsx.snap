@@ -133,7 +133,7 @@ Array [
       >
         <a
           className="c7"
-          href="https://cansahin.gitbook.io/cra-template-react-boilerplate/"
+          href="https://cansahin.gitbook.io/react-boilerplate-cra-template/"
           rel="noopener noreferrer"
           target="_blank"
           title="Documentation Page"
@@ -145,7 +145,7 @@ Array [
         </a>
         <a
           className="c7"
-          href="https://github.com/Can-Sahin/cra-template-react-boilerplate"
+          href="https://github.com/Can-Sahin/react-boilerplate-cra-template"
           rel="noopener noreferrer"
           target="_blank"
           title="Github Page"

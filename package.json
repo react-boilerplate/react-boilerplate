@@ -4,7 +4,7 @@
   "version": "0.0.4",
   "repository": {
     "type": "git",
-    "url": "https://github.com/can-sahin/cra-template-react-boilerplate.git"
+    "url": "https://github.com/can-sahin/react-boilerplate-cra-template.git"
   },
   "license": "MIT",
   "engines": {
@@ -12,7 +12,7 @@
     "node": ">=10.13.0"
   },
   "bugs": {
-    "url": "https://github.com/can-sahin/cra-template-react-boilerplate/issues"
+    "url": "https://github.com/can-sahin/react-boilerplate-cra-template/issues"
   },
   "main": "template.json",
   "files": [
@@ -38,7 +38,7 @@
     "test:all": "npm run test -- --watchAll=false",
     "test:coverage": "npm run test:all -- --coverage",
     "test:generators": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/testing/test-generators.ts",
-    "test:cra": "npm run create:cra-project && cd generated-cra-app && npm run test:generators && npm run lint && npm run checkTs && npm run cleanExampleApp && npm run lint && npm run checkTs",
+    "test:cra": "npm run create:cra-app && cd generated-cra-app && npm run test:generators && npm run lint && npm run checkTs && npm run cleanExampleApp && npm run lint && npm run checkTs",
     "checkTs": "tsc --noEmit",
     "eslint": "eslint --ext js,ts,tsx",
     "lint": "npm run eslint -- src",
@@ -51,7 +51,7 @@
     "create:npm-package": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/create-npm-package.script.ts",
     "publish:npm": "np",
     "version": "npm run create:npm-package",
-    "publish:github": "cross-env PUBLIC_URL='/cra-template-react-boilerplate' npm run build && gh-pages -d build"
+    "publish:github": "cross-env PUBLIC_URL='/react-boilerplate-cra-template' npm run build && gh-pages -d build"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [

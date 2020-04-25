@@ -43,7 +43,7 @@ exports[`<Nav /> should match the snapshot 1`] = `
 >
   <a
     class="c1"
-    href="https://cansahin.gitbook.io/cra-template-react-boilerplate/"
+    href="https://cansahin.gitbook.io/react-boilerplate-cra-template/"
     rel="noopener noreferrer"
     target="_blank"
     title="Documentation Page"
@@ -55,7 +55,7 @@ exports[`<Nav /> should match the snapshot 1`] = `
   </a>
   <a
     class="c1"
-    href="https://github.com/Can-Sahin/cra-template-react-boilerplate"
+    href="https://github.com/Can-Sahin/react-boilerplate-cra-template"
     rel="noopener noreferrer"
     target="_blank"
     title="Github Page"
