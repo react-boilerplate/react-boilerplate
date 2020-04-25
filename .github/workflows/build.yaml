@@ -15,15 +15,18 @@ jobs:
           node-version: 10.x
       - run: npm i # There is a bug with npm ci -> https://github.com/npm/cli/issues/558
       - run: npm run generate-cra
-      - run: npm run lint
-        working-directory: generated-cra-app
-      - run: npm run checkTs
-        working-directory: generated-cra-app
+  
+  testCRA:
+    needs: buildCRA
+    defaults:
+      run:
+        working-directory: ./generated-cra-app
+    steps:
       - run: npm run test:generators:cra
-      - run: npm run cleanExampleApp
-        working-directory: generated-cra-app
+        working-directory: ../
       - run: npm run lint
-        working-directory: generated-cra-app
       - run: npm run checkTs
-        working-directory: generated-cra-app
+      - run: npm run cleanExampleApp
+      - run: npm run lint
+      - run: npm run checkTs
 
