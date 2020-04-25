@@ -24,6 +24,9 @@ with a focus on
 </a>
 </div>
 <div align="center">
+  <a href="https://www.npmjs.com/package/cra-template-rb">
+    <img src="https://img.shields.io/npm/v/cra-template-rb" alt="npm" />
+  </a>
   <a href="https://opencollective.com/react-boilerplate">
     <img src="https://opencollective.com/react-boilerplate/backers/badge.svg" alt="Backers" />
   </a>
