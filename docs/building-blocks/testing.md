@@ -49,7 +49,7 @@ function HomePage() {
 }
 ```
 
-_Note: This is a [state**ful** ("smart") component](../js/README.md#architecture-components-and-containers)!_
+_Note: This is a [state**ful** ("smart") component](../understanding-react-boilerplate.md#src-app)_
 
 When rendered normally with the standard `ReactDOM.render` function, this will
 be the HTML output

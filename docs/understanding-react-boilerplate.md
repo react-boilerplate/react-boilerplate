@@ -31,9 +31,6 @@ Here's a curated list of packages that you should be at least familiar with befo
 - [Prettier](https://prettier.io/)
 - [Stylelint](https://stylelint.io/)
 
-[create-react-app]: https://github.com/facebook/create-react-app
-[react-boilerplate]: https://github.com/react-boilerplate/react-boilerplate
-
 ## Code/Folder Structure
 
 Let's start with understanding why we have chosen our particular structure. It has been an [evolving discussion](https://github.com/react-boilerplate/react-boilerplate/issues/27), and if you have an afternoon or two we recommend you read the full thread.

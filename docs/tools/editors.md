@@ -6,7 +6,7 @@ You can edit React Boilerplate using any editor or IDE, but there are a few extr
 
 We provide `.vscode` folder out of the box which includes the **recommend extensions** and **debugger configuration** and **settings**
 
-They are highly suggested for better the Developer Experience. Extensions are responsible for:
+They are highly suggested for the better the Developer Experience. Extensions are responsible for:
 
 - Eslint
 - Prettier

@@ -10,7 +10,9 @@ Removes the example app, replacing it with the smallest amount of boilerplate
 code necessary to start writing your app!
 
 {% hint style="warning" %}
+
 **Note:** This command is self-destructive, once you've run it you cannot run it again. This is for your own safety, so you can't delete portions of your project irreversibly by accident.
+
 {% endhint %}
 
 ## Generators

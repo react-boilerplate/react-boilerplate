@@ -14,7 +14,6 @@ It is one of the biggest files of the boilerplate. It contains all the global se
 - `ReactDOM.render()` not only renders the [root react component](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/index.js) called `<App />`, of your application, but it renders it with `<Provider />`, `<ConnectedRouter />`.
 - Hot module replacement is set up via [Webpack HMR](https://webpack.js.org/guides/hot-module-replacement/) that makes all the reducers, injected sagas, components, containers, and i18n messages hot reloadable.
 - i18n internationalization support setup.
-- Offline plugin support to make your app [offline-first](https://developers.google.com/web/fundamentals/getting-started/codelabs/offline/).
 - `<Provider />` connects your app with the redux `store`.
 
 So, all the bootstrapping and setup of the features we are using are being handled here. Here is the summary of the **building blocks**
