@@ -49,7 +49,8 @@
     "cleanExampleApp": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/clean.ts",
     "create:cra-app": "rm -rf generated-cra-app && npm run create:npm-package && npx create-react-app generated-cra-app --template file:.cra-template-rb && rm -rf .cra-template-rb",
     "create:npm-package": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/create-npm-package.script.ts",
-    "publish:npm": "npm run create:npm-package && np",
+    "publish:npm": "np",
+    "version": "npm run create:npm-package",
     "publish:github": "cross-env PUBLIC_URL='/cra-template-react-boilerplate' npm run build && gh-pages -d build"
   },
   "lint-staged": {
