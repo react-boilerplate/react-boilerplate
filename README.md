@@ -18,14 +18,12 @@ with a focus on
   <a href="https://coveralls.io/github/react-boilerplate/react-boilerplate-cra-template">
     <img src="https://coveralls.io/repos/github/react-boilerplate/react-boilerplate-cra-template/badge.svg?branch=master" alt="Coverage" />
   </a>
-  <a href="https://david-dm.org/react-boilerplate/react-boilerplate-cra-template">
-    <img src="https://david-dm.org/react-boilerplate/react-boilerplate-cra-template.svg" alt="Dependency Status" />
-  </a>
+
 </a>
 </div>
 <div align="center">
-  <a href="https://www.npmjs.com/package/cra-template-rb">
-    <img src="https://img.shields.io/npm/v/cra-template-rb" alt="npm" />
+  <a href="https://david-dm.org/react-boilerplate/react-boilerplate-cra-template">
+    <img src="https://david-dm.org/react-boilerplate/react-boilerplate-cra-template.svg" alt="Dependency Status" />
   </a>
   <a href="https://opencollective.com/react-boilerplate">
     <img src="https://opencollective.com/react-boilerplate/backers/badge.svg" alt="Backers" />
@@ -49,6 +47,9 @@ Start your `create-react-app` projects in seconds with the best, industry-standa
 **📝 Documentation:** [Gitbook](https://cansahin.gitbook.io/react-boilerplate-cra-template/)
 
 **📦 Package:** [npm](https://www.npmjs.com/package/cra-template-rb)
+
+![version](https://img.shields.io/npm/v/cra-template-rb)
+![version](https://img.shields.io/npm/dt/cra-template-rb)
 
 **👁️ Explore the Example Application:** [Example Application](https://react-boilerplate.github.io/react-boilerplate-cra-template/)
 
