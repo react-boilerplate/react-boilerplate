@@ -13,7 +13,8 @@ const addXMark = require('./helpers/xmark');
 const {
   requiredNpmVersion,
   requiredNodeVersion,
-} = require('./helpers/get-required-node-npm-versions');
+  requiredYarnVersion
+} = require('./helpers/get-required-node-npm-yarn-versions');
 const {
   initGitRepository,
   addToGitRepository,
@@ -22,6 +23,11 @@ const {
   checkIfRepositoryIsAClone,
   removeGitRepository,
 } = require('./helpers/git-utils');
+
+// Selecting a package manager (Npm or Yarn)
+const args = process.argv.slice(2);
+const scriptIndex = args.findIndex(x => x === 'PACKAGE_MANAGER=yarn');
+const usePackageManager = scriptIndex !== -1 ? 'yarn' : 'npm';
 
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
@@ -149,6 +155,31 @@ function checkNpmVersion(minimalNpmVersion) {
 }
 
 /**
+ * Check Yarn version
+ * @param {!number} minimalYarnVersion
+ * @returns {Promise<any>}
+ */
+function checkYarnVersion(minimalYarnVersion) {
+  return new Promise((resolve, reject) => {
+    exec('yarn --version', (err, stdout) => {
+      const yarnVersion = stdout.trim();
+      if (err) {
+        reject(new Error(err));
+      } else if (compareVersions(yarnVersion, minimalYarnVersion) === -1) {
+        reject(
+          new Error(
+            `You need Yarn v${minimalYarnVersion} or above but you have v${yarnVersion}`,
+          ),
+        );
+      }
+
+      resolve('Yarn version OK');
+    });
+  });
+}
+
+
+/**
  * Install all packages
  * @returns {Promise<any>}
  */
@@ -163,7 +194,7 @@ function installPackages() {
       interval = animateProgress('Installing dependencies');
     }, 500);
 
-    exec('npm install', err => {
+    exec(usePackageManager +' install', err => {
       if (err) {
         reject(new Error(err));
       }
@@ -208,9 +239,14 @@ function endProcess() {
     reportError(reason),
   );
 
-  await checkNpmVersion(requiredNpmVersion).catch(reason =>
-    reportError(reason),
-  );
+  if(usePackageManager === 'yarn') 
+    await checkYarnVersion(requiredYarnVersion).catch(reason =>
+      reportError(reason),
+    );
+  else 
+    await checkNpmVersion(requiredNpmVersion).catch(reason =>
+      reportError(reason),
+    );
 
   await installPackages().catch(reason => reportError(reason));
   await deleteFileInCurrentDir('setup.js').catch(reason => reportError(reason));
