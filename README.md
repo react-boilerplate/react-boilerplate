@@ -49,7 +49,7 @@ Start your `create-react-app` projects in seconds with the best, industry-standa
 **📦 Package:** [npm](https://www.npmjs.com/package/cra-template-rb)
 
 ![version](https://img.shields.io/npm/v/cra-template-rb)
-![version](https://img.shields.io/npm/dt/cra-template-rb)
+![version](https://img.shields.io/npm/dm/cra-template-rb)
 
 **👁️ Explore the Example Application:** [Example Application](https://react-boilerplate.github.io/react-boilerplate-cra-template/)
 
