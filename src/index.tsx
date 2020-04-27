@@ -46,17 +46,17 @@ interface Props {
   Component: typeof App;
 }
 const ConnectedApp = ({ Component }: Props) => (
-  <React.StrictMode>
-    <Provider store={store}>
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
       <ThemeProvider>
-        <ConnectedRouter history={history}>
-          <HelmetProvider>
+        <HelmetProvider>
+          <React.StrictMode>
             <Component />
-          </HelmetProvider>
-        </ConnectedRouter>
+          </React.StrictMode>
+        </HelmetProvider>
       </ThemeProvider>
-    </Provider>
-  </React.StrictMode>
+    </ConnectedRouter>
+  </Provider>
 );
 
 const render = (Component: typeof App) => {
