@@ -34,15 +34,15 @@ interface Props {
   Component: typeof App;
 }
 const ConnectedApp = ({ Component }: Props) => (
-  <React.StrictMode>
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <HelmetProvider>
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <HelmetProvider>
+        <React.StrictMode>
           <Component />
-        </HelmetProvider>
-      </ConnectedRouter>
-    </Provider>
-  </React.StrictMode>
+        </React.StrictMode>
+      </HelmetProvider>
+    </ConnectedRouter>
+  </Provider>
 );
 const render = (Component: typeof App) => {
   ReactDOM.render(<ConnectedApp Component={Component} />, MOUNT_NODE);
