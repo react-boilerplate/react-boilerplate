@@ -1,7 +1,7 @@
 {
   "name": "cra-template-rb",
   "description": "The official React Boilerplate template for Create React App",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/react-boilerplate/react-boilerplate-cra-template.git"
