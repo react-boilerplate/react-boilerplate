@@ -7,7 +7,6 @@ enabling you to use the [full power of CSS](https://github.com/styled-components
 without mapping between styles and components.
 There are many ways to style react applications, but many find `styled-components`
 to be a more natural approach to styling components.
-Watch this video for a comparison and to see how it enforces best practices!
 
 ### Linting
 

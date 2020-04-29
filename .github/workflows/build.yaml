@@ -32,6 +32,7 @@ jobs:
           path: ../cra-template-rb # Put into upper folder. create-react-app wants the current directory empty
       - name: Create CRA from downloaded template
         run: npx create-react-app --template file:../cra-template-rb .
+      - run: npm run build
       - run: npm run test:generators
       - run: npm run lint
       - run: npm run checkTs
