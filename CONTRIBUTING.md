@@ -94,6 +94,12 @@ Since the `master` branch is what people actually use in production, we have a
 consider that stable we merge it into the `master` branch and release the
 changes for real.
 
+⚠️ **WARNING**
+
+This project uses [commitlint](https://github.com/conventional-changelog/commitlint) for formating the commit messages. Check [here](https://www.conventionalcommits.org/en/v1.0.0/) for understanding the commit message format.
+
+> List of available [commit types](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#type)
+
 **IMPORTANT**: By submitting a patch, you agree to allow the project
 owners to license your work under the terms of the [MIT License](https://github.com/react-boilerplate/react-boilerplate/blob/master/LICENSE.md).
 

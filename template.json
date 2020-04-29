@@ -18,11 +18,12 @@
     },
     "lint-staged": {
       "*.{ts,tsx,js,jsx}": ["npm run eslint -- --fix"],
+      "*.{ts,tsx}": ["npm run checkTs"],
       "*.{md,json}": ["prettier --write"]
     },
     "husky": {
       "hooks": {
-        "pre-commit": "lint-staged && npm run checkTs"
+        "pre-commit": "lint-staged"
       }
     },
     "jest": {
