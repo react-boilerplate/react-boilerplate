@@ -29,7 +29,7 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: cra-template-rb
-          path: ../cra-template-rb # Put into upper folder. create-react-app wants the current directory empty
+          path: ../cra-template-rb # Put into the upper folder. create-react-app wants the current directory empty
       - name: Create CRA from downloaded template
         run: npx create-react-app --template file:../cra-template-rb .
       - run: npm run build
@@ -37,6 +37,8 @@ jobs:
       - run: npm run lint
       - run: npm run checkTs
       - run: npm run cleanExampleApp
+      - run: npm run build
+      - run: npm run test:generators
       - run: npm run lint
       - run: npm run checkTs
 
