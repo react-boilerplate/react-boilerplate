@@ -67,6 +67,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
+      "prepare-commit-msg": "devmoji -e",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
@@ -131,6 +132,7 @@
     "chalk": "3.0.0",
     "coveralls": "3.0.11",
     "cross-env": "7.0.2",
+    "devmoji": "2.1.9",
     "eslint-config-prettier": "6.10.1",
     "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-react": "7.19.0",
