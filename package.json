@@ -49,7 +49,7 @@
     "// ---TESTING TEMPLATE---": "",
     "test:all": "npm run test -- --watchAll=false",
     "test:coverage": "npm run test:all -- --coverage",
-    "test:cra": "npm run create:cra-app && cd generated-cra-app && npm run test:generators && npm run lint && npm run checkTs && npm run cleanExampleApp && npm run lint && npm run checkTs",
+    "test:cra": "npm run create:cra-app && cd generated-cra-app && npm run test:generators && npm run lint && npm run checkTs && npm run test && npm run cleanExampleApp && npm run lint && npm run checkTs",
     "// ---BUILDING TEMPLATE---": "",
     "create:npm-package": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/create-npm-package.script.ts",
     "create:cra-app": "rm -rf generated-cra-app && npm run create:npm-package && npx create-react-app generated-cra-app --template file:.cra-template-rb && rm -rf .cra-template-rb",

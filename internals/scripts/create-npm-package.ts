@@ -17,9 +17,10 @@ export function createNpmPackage(opts: Options = {}) {
 
   crateTemplateFolder(opts);
 
-  shell.exec(`npm pack`);
+  shell.exec(`npm pack`, { silent: true });
   shell.exec(
     `tar -xvf ${packageName}-${packageVersion}.tgz && mv package ${packageFolder} && rm ${packageName}-${packageVersion}.tgz`,
+    { silent: true },
   );
 
   removeTemplateFolder();
