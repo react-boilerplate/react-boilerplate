@@ -94,11 +94,23 @@ Since the `master` branch is what people actually use in production, we have a
 consider that stable we merge it into the `master` branch and release the
 changes for real.
 
-⚠️ **WARNING**
+## Commit Messages
 
-This project uses [commitlint](https://github.com/conventional-changelog/commitlint) for formating the commit messages. Check [here](https://www.conventionalcommits.org/en/v1.0.0/) for understanding the commit message format.
+This project uses [commitlint](https://github.com/conventional-changelog/commitlint) for formating the commit messages. Check [here](https://www.conventionalcommits.org/en/v1.0.0/) for understanding the commit message format (or take a look at our commit history).
 
-> List of available [commit types](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum)
+Pull Requests are squashed merged, so you don't have to use this format for your commits. Git hook is only running if you are commit to the `dev` branch directly. However, your PR title will be checked and you can see the results in the status checks for your PR
+
+In short PR title must follow the format
+
+```
+<type>[optional scope]: <description>
+```
+
+where `type` can be one of the followings in [.versionrc.js](./.versionrc.js)
+
+Those commits will be used to generate [CHANGELOG.md](./CHANGELOG.md) automatically before the releases.
+
+> More info: [standard-version](https://github.com/conventional-changelog/standard-version)
 
 **IMPORTANT**: By submitting a patch, you agree to allow the project
 owners to license your work under the terms of the [MIT License](https://github.com/react-boilerplate/react-boilerplate/blob/master/LICENSE.md).

@@ -49,15 +49,15 @@
     "// ---TESTING TEMPLATE---": "",
     "test:all": "npm run test -- --watchAll=false",
     "test:coverage": "npm run test:all -- --coverage",
-    "test:cra": "npm run create:cra-app && cd generated-cra-app && npm run test:generators && npm run lint && npm run checkTs && npm run test && npm run cleanExampleApp && npm run lint && npm run checkTs",
+    "test:cra": "npm run create:cra-app && cd generated-cra-app && npm run test:generators && npm run lint && npm run checkTs && npm run cleanExampleApp && npm run lint && npm run checkTs",
     "// ---BUILDING TEMPLATE---": "",
+    "delete:cra-app": "rm -rf generated-cra-app",
     "create:npm-package": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/create-npm-package.script.ts",
     "create:cra-app": "rm -rf generated-cra-app && npm run create:npm-package && npx create-react-app generated-cra-app --template file:.cra-template-rb && rm -rf .cra-template-rb",
     "// ---PUBLISHING---": "",
     "publish:github": "cross-env PUBLIC_URL='/react-boilerplate-cra-template' npm run build && gh-pages -d build",
-    "publish:npm": "np",
-    "// Run packaging after 'np' bumps the version": "",
-    "version": "npm run create:npm-package"
+    "release": "standard-version",
+    "publish:npm": "npm run create:npm-package && npm publish .cra-template-rb"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
@@ -69,9 +69,9 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run checkTs && lint-staged",
+      "pre-commit": "npm run delete:cra-app && npm run checkTs && lint-staged",
       "prepare-commit-msg": "devmoji -e",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "commit-msg": "if git-branch-is dev; then commitlint -E HUSKY_GIT_PARAMS; fi"
     }
   },
   "jest": {
@@ -142,12 +142,12 @@
     "eslint-plugin-react-hooks": "3.0.0",
     "eslint-plugin-redux-saga": "1.1.3",
     "gh-pages": "2.2.0",
-    "husky": "4.2.3",
+    "git-branch-is": "3.1.0",
+    "husky": "4.2.5",
     "jest-styled-components": "7.0.2",
     "jest-watch-typeahead": "0.4.2",
     "lint-staged": "10.0.8",
     "node-plop": "0.25.0",
-    "np": "*",
     "plop": "2.6.0",
     "prettier": "2.0.1",
     "react-scripts": "3.4.1",
@@ -155,6 +155,7 @@
     "rimraf": "3.0.2",
     "serve": "11.3.0",
     "shelljs": "0.8.3",
+    "standard-version": "7.1.0",
     "stylelint": "13.2.1",
     "stylelint-config-recommended": "3.0.0",
     "stylelint-config-styled-components": "0.1.1",
