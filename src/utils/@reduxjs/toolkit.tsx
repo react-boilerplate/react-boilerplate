@@ -5,7 +5,7 @@ import {
   CreateSliceOptions,
 } from '@reduxjs/toolkit';
 
-/* Wrap createClice with stricter Name options */
+/* Wrap createSlice with stricter Name options */
 
 /* istanbul ignore next */
 export const createSlice = <
