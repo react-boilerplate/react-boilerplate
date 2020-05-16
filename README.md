@@ -15,12 +15,14 @@ with a focus on
   <a href="https://github.com/react-boilerplate/react-boilerplate-cra-template/actions?query=workflow%3Atests">
     <img src="https://github.com/react-boilerplate/react-boilerplate-cra-template/workflows/test/badge.svg" alt="Tests Status" />
   </a>
+  <a href="https://github.com/react-boilerplate/react-boilerplate-cra-template/actions?query=workflow%release">
+    <img src="https://github.com/react-boilerplate/react-boilerplate-cra-template/workflows/release/badge.svg" alt="Release Status" />
+  </a>
   <a href="https://coveralls.io/github/react-boilerplate/react-boilerplate-cra-template">
     <img src="https://coveralls.io/repos/github/react-boilerplate/react-boilerplate-cra-template/badge.svg?branch=master" alt="Coverage" />
   </a>
-
-</a>
 </div>
+
 <div align="center">
   <a href="https://david-dm.org/react-boilerplate/react-boilerplate-cra-template">
     <img src="https://david-dm.org/react-boilerplate/react-boilerplate-cra-template.svg" alt="Dependency Status" />
@@ -31,7 +33,6 @@ with a focus on
   <a href="https://opencollective.com/react-boilerplate/">
     <img src="https://opencollective.com/react-boilerplate/sponsors/badge.svg" alt="Sponsors" />
   </a>
-  <img src="https://img.shields.io/github/license/react-boilerplate/react-boilerplate-cra-template" alt="License" />
 </div>
 
 <br />
@@ -44,14 +45,18 @@ The official [Create React App](https://github.com/facebook/create-react-app) te
 
 Start your `create-react-app` projects in seconds with the best, industry-standard tools and practices made ready for you.
 
-**📝 Documentation:** [Gitbook](https://cansahin.gitbook.io/react-boilerplate-cra-template/)
+**📚Documentation:** [Gitbook](https://cansahin.gitbook.io/react-boilerplate-cra-template/)
+
+**🎨Explore the Example Application:** [Example Application](https://react-boilerplate.github.io/react-boilerplate-cra-template/)
+
+**💡Examples & Tutorials of commonly needed **`'How to'`**'s:** [Collection of examples & tutorials](https://github.com/react-boilerplate/cra-template-examples)
+
+> Feel free to contribute with your `how to do this and that` examples and guides.
 
 **📦 Package:** [npm](https://www.npmjs.com/package/cra-template-rb)
 
 ![version](https://img.shields.io/npm/v/cra-template-rb)
 ![version](https://img.shields.io/npm/dm/cra-template-rb)
-
-**👁️ Explore the Example Application:** [Example Application](https://react-boilerplate.github.io/react-boilerplate-cra-template/)
 
 ---
 
