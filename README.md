@@ -47,11 +47,9 @@ Start your `create-react-app` projects in seconds with the best, industry-standa
 
 **📚Documentation:** [Gitbook](https://cansahin.gitbook.io/react-boilerplate-cra-template/)
 
-**🎨Explore the Example Application:** [Example Application](https://react-boilerplate.github.io/react-boilerplate-cra-template/)
+**🎨 Check the example app:** [Boilerplate Example Application](https://react-boilerplate.github.io/react-boilerplate-cra-template/)
 
-**💡Examples & Tutorials of commonly needed **`'How to'`**'s:** [Collection of examples & tutorials](https://github.com/react-boilerplate/cra-template-examples)
-
-> Feel free to contribute with your `how to do this and that` examples and guides.
+**🚑 Collection of `'HOW TO'`s:** [Examples & Tutorials for common patterns](https://github.com/react-boilerplate/cra-template-examples)
 
 **📦 Package:** [npm](https://www.npmjs.com/package/cra-template-rb)
 
@@ -62,15 +60,22 @@ Start your `create-react-app` projects in seconds with the best, industry-standa
 
 ## Install & Start
 
-```shell
-# Create React App with the template
-npx create-react-app --template cra-template-rb my-app
+Create React App with the template
 
-# Check the example app
+```shell
+npx create-react-app --template cra-template-rb my-app
+```
+
+Start and check our example app, if you want
+
+```shell
 cd my-app
 npm start
+```
 
-# Remove the example app and start your project!
+Remove the example app to start your project!
+
+```shell
 npm run cleanExampleApp
 ```
 
