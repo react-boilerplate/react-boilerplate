@@ -29,6 +29,6 @@ module.exports = {
     { type: 'style', section: internalSection, hidden: false },
   ],
   skip: {
-    commit: true,
+    changelog: true,
   },
 };

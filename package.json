@@ -56,6 +56,7 @@
     "create:cra-app": "rm -rf generated-cra-app && npm run create:npm-package && npx create-react-app generated-cra-app --template file:.cra-template-rb && rm -rf .cra-template-rb",
     "// ---PUBLISHING---": "",
     "publish:github": "cross-env PUBLIC_URL='/react-boilerplate-cra-template' npm run build && gh-pages -d build",
+    "changelog": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/create-changelog.script.ts",
     "release": "standard-version",
     "publish:npm": "npm run create:npm-package && npm publish .cra-template-rb"
   },
