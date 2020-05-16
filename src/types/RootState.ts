@@ -1,4 +1,3 @@
-import { RouterState } from 'connected-react-router';
 import { GithubRepoFormState } from 'app/containers/GithubRepoForm/types';
 import { ThemeState } from 'styles/theme/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
@@ -10,7 +9,6 @@ import { ThemeState } from 'styles/theme/types';
   So, not available always
 */
 export interface RootState {
-  router?: RouterState;
   theme?: ThemeState;
   githubRepoForm?: GithubRepoFormState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly

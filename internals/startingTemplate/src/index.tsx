@@ -11,9 +11,7 @@ import 'react-app-polyfill/stable';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
 import * as serviceWorker from 'serviceWorker';
-import { history } from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
@@ -26,8 +24,7 @@ import { configureAppStore } from 'store/configureStore';
 // Initialize languages
 import './locales/i18n';
 
-// Create redux store with history
-const store = configureAppStore(history);
+const store = configureAppStore();
 const MOUNT_NODE = document.getElementById('root') as HTMLElement;
 
 interface Props {
@@ -35,13 +32,11 @@ interface Props {
 }
 const ConnectedApp = ({ Component }: Props) => (
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <HelmetProvider>
-        <React.StrictMode>
-          <Component />
-        </React.StrictMode>
-      </HelmetProvider>
-    </ConnectedRouter>
+    <HelmetProvider>
+      <React.StrictMode>
+        <Component />
+      </React.StrictMode>
+    </HelmetProvider>
   </Provider>
 );
 const render = (Component: typeof App) => {

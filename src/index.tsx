@@ -11,10 +11,8 @@ import 'react-app-polyfill/stable';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
 import FontFaceObserver from 'fontfaceobserver';
 import * as serviceWorker from 'serviceWorker';
-import { history } from 'utils/history';
 
 import 'sanitize.css/sanitize.css';
 
@@ -38,8 +36,7 @@ openSansObserver.load().then(() => {
   document.body.classList.add('fontLoaded');
 });
 
-// Create redux store with history
-const store = configureAppStore(history);
+const store = configureAppStore();
 const MOUNT_NODE = document.getElementById('root') as HTMLElement;
 
 interface Props {
@@ -47,15 +44,13 @@ interface Props {
 }
 const ConnectedApp = ({ Component }: Props) => (
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <ThemeProvider>
-        <HelmetProvider>
-          <React.StrictMode>
-            <Component />
-          </React.StrictMode>
-        </HelmetProvider>
-      </ThemeProvider>
-    </ConnectedRouter>
+    <ThemeProvider>
+      <HelmetProvider>
+        <React.StrictMode>
+          <Component />
+        </React.StrictMode>
+      </HelmetProvider>
+    </ThemeProvider>
   </Provider>
 );
 

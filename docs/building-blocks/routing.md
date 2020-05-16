@@ -1,12 +1,10 @@
 # Routing
 
 `react-router` is the de-facto standard routing solution for react applications.
-The thing is that with redux and a single state tree, the URL is part of that
-state. `connected-react-router` takes care of synchronizing the location of our
-application with the application state.
 
-(See the [`connected-react-router` FAQ](https://github.com/supasate/connected-react-router/blob/master/FAQ.md)
-for more information)
+## Why not using [connected-react-router](https://github.com/supasate/connected-react-router)?
+
+There is detailed explanation [here](https://reacttraining.com/react-router/web/guides/redux-integration/deep-integration). In short, it is not suggested to integrate route with redux, simply because it shouldn't be needed. There are other ways of navigating as explained there.
 
 ## Usage
 
@@ -19,25 +17,6 @@ To add a new route, simply import the `Route` component and use it standalone or
 Top level routes are located in `src/app/index.tsx`.
 
 If you want your route component (or any component for that matter) to be loaded asynchronously, use container or component generator with 'Do you want to load resources asynchronously?' option activated.
-
-To go to a new page use the `push` function by `connected-react-router`:
-
-```ts
-import { push } from 'connected-react-router';
-
-dispatch(push('/path/to/somewhere'));
-```
-
-You can do the same thing in a saga:
-
-```ts
-import { push } from 'connected-react-router';
-import { put } from 'redux-saga/effects';
-
-export function* mySaga() {
-  yield put(push('/home'));
-}
-```
 
 ## Child Routes
 

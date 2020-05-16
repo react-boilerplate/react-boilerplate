@@ -20,7 +20,6 @@ import navigationBarReducer from 'containers/NavigationBar/reducer';
 export function createReducer(injectedReducers: InjectedReducersType = {}) {
   const rootReducer = combineReducers({
     navigationBar: navigationBarReducer,
-    router: connectRouter(history) as Reducer<RouterState, AnyAction>,
     ...injectedReducers,
   });
 

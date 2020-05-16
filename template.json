@@ -45,7 +45,6 @@
     },
     "dependencies": {
       "@reduxjs/toolkit": "1.3.2",
-      "connected-react-router": "6.8.0",
       "fontfaceobserver": "2.1.0",
       "history": "4.10.1",
       "i18next": "19.3.4",
