@@ -20,7 +20,7 @@
       "*.{ts,tsx,js,jsx}": ["npm run eslint -- --fix"],
       "*.{md,json}": ["prettier --write"]
     },
-    "husky": {
+    "husky(remove-everything-in-these-parentheses.See-the-issue-#29)": {
       "hooks": {
         "pre-commit": "npm run checkTs && lint-staged"
       }
@@ -93,7 +93,8 @@
       "plop": "2.6.0",
       "serve": "11.3.0",
       "shelljs": "0.8.3",
-      "husky": "4.2.3"
+      "husky": "4.2.3",
+      "replace-in-file": "6.0.0"
     }
   }
 }
