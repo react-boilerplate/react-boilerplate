@@ -9,9 +9,12 @@ export function createChangeLog(opts: Options = {}) {
     console.error('Error: Unstaged files');
     process.exit(1);
   }
-  shell.exec(`npx standard-version --skip.commit --skip.tag`, {
-    silent: false,
-  });
+  shell.exec(
+    `npx standard-version --skip.commit --skip.tag --skip.changelog=0`,
+    {
+      silent: false,
+    },
+  );
 
   // Revert the bumbped version
   shell.exec(`git checkout -- package-lock.json`, { silent: true });
