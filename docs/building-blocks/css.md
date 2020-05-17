@@ -61,3 +61,21 @@ _(The CSS rules are automatically vendor prefixed, so you don't have to think ab
 🧙**Tips:** Importing from `styled-components/macro` will enable some features you can [see here](https://styled-components.com/docs/tooling#babel-macro)
 
 {% endhint %}
+
+## Media queries
+
+Type-safe media queries can be complicated if you haven't mastered the typescript. Therefore we include a [media utility file](../../src/styles/media.ts) to make things easier for you.
+
+### Example Usage
+
+```ts
+import { media } from 'styles/media';
+
+const SomeDiv = styled.div`
+  display: flex;
+  ....
+    ${media.medium`
+      display: block
+  `};
+`;
+```
