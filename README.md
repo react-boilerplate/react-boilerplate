@@ -76,7 +76,7 @@ npm start
 Remove the example app to start your project!
 
 ```shell
-npm run cleanExampleApp
+npm run cleanAndSetup
 ```
 
 ## Features

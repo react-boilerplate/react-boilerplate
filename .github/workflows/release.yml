@@ -23,7 +23,7 @@ jobs:
       - run: npm run test:generators
       - run: npm run lint
       - run: npm run checkTs
-      - run: npm run cleanExampleApp
+      - run: npm run cleanAndSetup
       - run: npm run build
       - run: npm run test:generators
       - run: npm run lint
