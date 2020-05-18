@@ -10,13 +10,12 @@ import {
 
 /* Wrap redux-injectors with stricter types */
 
-export function useInjectReducer<Key extends RootStateKeyType>({
-  key,
-  reducer,
-}: InjectReducerParams<Key>) {
-  return useReducer({ key, reducer });
+export function useInjectReducer<Key extends RootStateKeyType>(
+  params: InjectReducerParams<Key>,
+) {
+  return useReducer(params);
 }
 
-export function useInjectSaga({ key, saga, mode }: InjectSagaParams) {
-  return useSaga({ key, saga, mode });
+export function useInjectSaga(params: InjectSagaParams) {
+  return useSaga(params);
 }
