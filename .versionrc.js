@@ -31,4 +31,5 @@ module.exports = {
   skip: {
     changelog: true,
   },
+  commitAll: true,
 };
