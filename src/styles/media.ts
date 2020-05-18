@@ -17,7 +17,7 @@ import {
  */
 
 // Update your breakpoints if you want
-const sizes = {
+export const sizes = {
   small: 600,
   medium: 1024,
   large: 1440,
