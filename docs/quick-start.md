@@ -18,7 +18,7 @@ npm start
 **3)** When you are done examining the sample application. Clean it and start your own app!!
 
 ```shell
-npm run cleanExampleApp
+npm run cleanAndSetup
 ```
 
 {% hint style="success" %}

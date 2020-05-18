@@ -8,7 +8,7 @@
 
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
 import { GlobalStyle } from 'styles/global-styles';
 
@@ -17,7 +17,7 @@ import { NotFoundPage } from './components/NotFoundPage/Loadable';
 
 export function App() {
   return (
-    <>
+    <BrowserRouter>
       <Helmet
         titleTemplate="%s - React Boilerplate"
         defaultTitle="React Boilerplate"
@@ -30,6 +30,6 @@ export function App() {
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
-    </>
+    </BrowserRouter>
   );
 }

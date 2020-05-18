@@ -30,4 +30,4 @@
 
 ## Misc
 
-- [Gotchas & Tips](misc/gotchas.md)
+- [FAQ](misc/faq.md)

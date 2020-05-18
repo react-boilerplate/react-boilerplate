@@ -13,7 +13,7 @@ const translationsJson = {
 };
 
 export type TranslationResource = typeof en;
-export type LanguageKeys = keyof TranslationResource;
+export type LanguageKey = keyof TranslationResource;
 
 export const translations: ConvertedToFunctionsType<TranslationResource> = {} as any;
 

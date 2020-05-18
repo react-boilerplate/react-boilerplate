@@ -3,11 +3,11 @@
 ## Cleaning
 
 ```Shell
-npm run cleanExampleApp
+npm run cleanAndSetup
 ```
 
 Removes the example app, replacing it with the smallest amount of boilerplate
-code necessary to start writing your app!
+code necessary to start writing your app! Also, it makes some necessary changes to your setup to give you a clean and working start
 
 {% hint style="warning" %}
 

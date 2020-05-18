@@ -9,9 +9,8 @@ First we have to look at what is happening when react starts its life with out `
 It is one of the biggest files of the boilerplate. It contains all the global setup to make sure your app runs smoothly. Let's break its contents down:
 
 - `react-app-polyfill` is imported to enable compatibility with many browsers and cool stuff like generator functions, Promises, etc.
-- A `history` object is created, which remembers all the browsing history for your app. This is used by the ConnectedRouter to know which pages your users visit. (Very useful for analytics, by the way.)
 - A redux `store` is instantiated.
-- `ReactDOM.render()` not only renders the [root react component](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/index.js) called `<App />`, of your application, but it renders it with `<Provider />`, `<ConnectedRouter />`.
+- `ReactDOM.render()` not only renders the [root react component](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/index.js) called `<App />`, of your application, but it renders it with `<Provider />`.
 - Hot module replacement is set up via [Webpack HMR](https://webpack.js.org/guides/hot-module-replacement/) that makes all the reducers, injected sagas, components, containers, and i18n messages hot reloadable.
 - i18n internationalization support setup.
 - `<Provider />` connects your app with the redux `store`.
@@ -40,10 +39,9 @@ The store is created with the `createStore()` factory, which accepts three param
 2.  **Initial state:** The initial state of your app as determined by your reducers.
 3.  **Middleware/enhancers:** Middlewares are third party libraries which intercept each redux action dispatched to the redux store and then... do stuff. For example, if you install the [`redux-logger`](https://github.com/evgenyrodionov/redux-logger) middleware, it will listen to all the actions being dispatched to the store and print previous and next state in the browser console. It's helpful to track what happens in your app.
 
-In our application we are using two such middleware.
+In our application we are using a single middleware.
 
-1.  **Router middleware:** Keeps your routes in sync with the redux `store`.
-2.  **Redux saga:** Used for managing _side-effects_ such as dispatching actions asynchronously or accessing browser data.
+1.  **Redux saga:** Used for managing _side-effects_ such as dispatching actions asynchronously or accessing browser data.
 
 ### Redux-Toolkit
 
