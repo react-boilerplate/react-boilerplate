@@ -47,6 +47,7 @@
     "cleanAndSetup": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/clean.ts",
     "prettify": "prettier --write",
     "// ---TESTING TEMPLATE---": "",
+    "verify-startingTemplate-changes": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/verify-startingTemplate-changes.ts",
     "test:all": "npm run test -- --watchAll=false",
     "test:coverage": "npm run test:all -- --coverage",
     "test:cra": "npm run create:cra-app && cd generated-cra-app && npm run test:generators && npm run lint && npm run checkTs && npm run cleanAndSetup && npm run lint && npm run checkTs",
@@ -69,7 +70,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run checkTs && lint-staged",
+      "pre-commit": "npm run verify-startingTemplate-changes && npm run checkTs && lint-staged",
       "prepare-commit-msg": "devmoji -e",
       "commit-msg": "if git-branch-is dev; then commitlint -E HUSKY_GIT_PARAMS; fi"
     }
