@@ -43,7 +43,6 @@ module.exports = plop => {
         config.path,
         `${config.file}.${BACKUPFILE_EXTENSION}`,
       ),
-      'utf8',
     );
     return path.join(
       __dirname,
