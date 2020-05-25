@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
 import { initialState } from './slice';
 
 /**
@@ -11,27 +11,19 @@ const selectReposManagerDomain = state => state.reposManager || initialState;
  * Other specific selectors
  */
 
-const makeSelectLoading = () =>
-  createSelector(
-    selectReposManagerDomain,
-    reposManagerState => reposManagerState.loading,
-  );
+const selectLoading = createSelector(
+  [selectReposManagerDomain],
+  reposManagerState => reposManagerState.loading,
+);
 
-const makeSelectError = () =>
-  createSelector(
-    selectReposManagerDomain,
-    reposManagerState => reposManagerState.error,
-  );
+const selectError = createSelector(
+  [selectReposManagerDomain],
+  reposManagerState => reposManagerState.error,
+);
 
-const makeSelectRepos = () =>
-  createSelector(
-    selectReposManagerDomain,
-    reposManagerState => reposManagerState.repositories,
-  );
+const selectRepos = createSelector(
+  [selectReposManagerDomain],
+  reposManagerState => reposManagerState.repositories,
+);
 
-export {
-  selectReposManagerDomain,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectRepos,
-};
+export { selectReposManagerDomain, selectLoading, selectError, selectRepos };
