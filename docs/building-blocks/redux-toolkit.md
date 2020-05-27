@@ -11,7 +11,7 @@ management - is a complex topic that is too involved to properly discuss here.
 
 ### Declaring your state
 
-Redux manages your **state** so we have to declare our state first. We can create `types.ts` file in our container. Types is a crucial for the efficient and safe development. Your compiler and intellisense will be understanding what is your state made of and help you coding rest of your operations much faster and safer.
+Redux manages your **state** so we have to declare our state first. We can create a `types.ts` file in our container. Types are crucial for efficient and safe development. Your compiler and code completion will understand the shape of your state and help you code the rest of your project faster and safer.
 
 Lets say our container is called `HomePage`
 
