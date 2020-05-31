@@ -70,7 +70,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run verify-startingTemplate-changes && npm run checkTs && lint-staged",
+      "pre-commit": "npm run checkTs && lint-staged && npm run verify-startingTemplate-changes",
       "prepare-commit-msg": "devmoji -e",
       "commit-msg": "if git-branch-is dev; then commitlint -E HUSKY_GIT_PARAMS; fi"
     }
