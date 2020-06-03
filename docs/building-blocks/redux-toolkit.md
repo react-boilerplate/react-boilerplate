@@ -84,7 +84,7 @@ const homepageSlice = createSlice({
  * `actions` will be used to trigger change in the state from where ever you want
  * `name` will be used to add this slice to our Redux Store
  */
-export const { actions, reducer, name: sliceKey } = githubRepoFormSlice;
+export const { actions, reducer, name: sliceKey } = homepageSlice;
 ```
 
 ### Adding the slice to your Redux Store
