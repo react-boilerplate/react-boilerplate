@@ -168,7 +168,17 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Tommoore96",
+      "name": "Tom Moore",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/27972790?v=4",
+      "profile": "https://github.com/Tommoore96",
+      "contributions": [
+        "code"
+      ]
     }
   ],
-  "contributorsPerLine": 8
+  "contributorsPerLine": 8,
+  "skipCi": true
 }
