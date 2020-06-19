@@ -27,12 +27,11 @@ You can also get VSCode to understand your project's static code analysis setup.
 - You'll see any warnings or errors directly within VSCode
 - VSCode can also automatically fix or format your code for you
 
-To make this happen, install both the ESLint and Prettier extensions for VSCode and add the following to either your User or Workspace Settings:
+To make this happen, install the ESLint extension for VSCode and add the following to either your User or Workspace Settings:
 
 ```json
 {
   "editor.formatOnSave": true,
-  "prettier.eslintIntegration": true,
   "eslint.run": "onSave"
 }
 ```
