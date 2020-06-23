@@ -4,7 +4,7 @@
 
 ## Why not using [connected-react-router](https://github.com/supasate/connected-react-router)?
 
-There is detailed explanation [here](https://reacttraining.com/react-router/web/guides/redux-integration/deep-integration). In short, it is not suggested to integrate route with redux, simply because it shouldn't be needed. There are other ways of navigating as explained there.
+There is detailed explanation [here](https://reacttraining.com/react-router/web/guides/deep-redux-integration). In short, it is not suggested to integrate route with redux, simply because it shouldn't be needed. There are other ways of navigating as explained there.
 
 ## Usage
 
