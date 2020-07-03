@@ -44,6 +44,14 @@
   <sub>Created by <a href="https://twitter.com/mxstbr">Max Stoiber</a> and maintained with ❤️ by an amazing <a href="https://github.com/orgs/react-boilerplate/people">team of developers</a>.</sub>
 </div>
 
+---
+
+## About the v5.0
+
+There have been major changes to React Boilerplate with release of v5.0. You can read more about this [here](docs/v5-update.md)
+
+---
+
 Start your `create-react-app` projects in seconds with the best, industry-standard tools and practices made ready for you.
 
 **📚Documentation:** [Gitbook](https://cansahin.gitbook.io/react-boilerplate-cra-template/)
