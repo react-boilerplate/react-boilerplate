@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/react-boilerplate/react-boilerplate-cra-template/compare/v1.0.0...v1.0.1) (2020-07-03)
+
+### Bug Fixes
+
+- 🐛 switched to plain objects in i18n helper function ([de76cf6](https://github.com/react-boilerplate/react-boilerplate-cra-template/commit/de76cf66da852a786822109e04b49aa62b5b0511))
+
+### Documentation
+
+- 📚️ added react-router hooks ([3927a1b](https://github.com/react-boilerplate/react-boilerplate-cra-template/commit/3927a1b513035c6a19d0dab532f76655418fa002))
+
+### Internals
+
+**This section only concerns the contributors of this project. You can ignore these changes since they DO NOT create changes in the CRA Template**
+
+<details><summary>Click to see the internal changes</summary>
+
+- 📚 fix redux-toolkit docs ([#35](https://github.com/react-boilerplate/react-boilerplate-cra-template/issues/35)) ([30732a8](https://github.com/react-boilerplate/react-boilerplate-cra-template/commit/30732a8f68766e1a5a0685dfe5f5e8d1260f30c2))
+- 📚️ fixed docs issues ([97d67f0](https://github.com/react-boilerplate/react-boilerplate-cra-template/commit/97d67f0b1f53af6922017b83f3568710a7dda50a))
+- 📚️ fix redux url ([#42](https://github.com/react-boilerplate/react-boilerplate-cra-template/issues/42)) ([a491728](https://github.com/react-boilerplate/react-boilerplate-cra-template/commit/a49172853e87caa720d0af99341a932e98f3f537))
+- 🐛 removing redundant "history" ([#31](https://github.com/react-boilerplate/react-boilerplate-cra-template/issues/31)) ([0793d31](https://github.com/react-boilerplate/react-boilerplate-cra-template/commit/0793d314439afd434e6ea7a07d9fef15cd47e30b))
+- ♻️ fixing variable name in redux-toolkit docs ([#37](https://github.com/react-boilerplate/react-boilerplate-cra-template/issues/37)) ([3968ade](https://github.com/react-boilerplate/react-boilerplate-cra-template/commit/3968aded3182ab16a35f5596ef2f53e05109d296))
+- ♻️ update redux-toolkit docs ([#33](https://github.com/react-boilerplate/react-boilerplate-cra-template/issues/33)) ([8dd5931](https://github.com/react-boilerplate/react-boilerplate-cra-template/commit/8dd5931b0bd62416446dfb0b2fa761ee77eab852))
+- 🎨 added og meta tags ([43657d6](https://github.com/react-boilerplate/react-boilerplate-cra-template/commit/43657d634e28d7a1fa46779657f86e46586c5ac2))
+- 🔧 merge dev for the release ([#48](https://github.com/react-boilerplate/react-boilerplate-cra-template/issues/48)) ([043c524](https://github.com/react-boilerplate/react-boilerplate-cra-template/commit/043c52477b0c15360a9682d2e0e928dd4b72fbdb))
+- **deps:** 🔗 bump websocket-extensions from 0.1.3 to 0.1.4 ([#39](https://github.com/react-boilerplate/react-boilerplate-cra-template/issues/39)) ([36e1f9e](https://github.com/react-boilerplate/react-boilerplate-cra-template/commit/36e1f9eb4c5439cc4e6ec9ed71a535d52de3ecd8))
+- 🔧 removed theme from startingTemplate ([02d1e62](https://github.com/react-boilerplate/react-boilerplate-cra-template/commit/02d1e627ea8b3918f26efc461db3faafaa86a278))
+
+</details>
+
 ## [1.0.0](https://github.com/react-boilerplate/react-boilerplate-cra-template/compare/v0.1.3...v1.0.0) (2020-05-18)
 
 ### Features

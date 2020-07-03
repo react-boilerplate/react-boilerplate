@@ -1,4 +1,4 @@
-const internalSection = `_Internals (This section should NOT concern the template users)_`;
+const internalSection = `Internals`;
 /*
  * Used for creating CHANGELOG.md automatically.
  * Anything under the internalSection should be boilerplate internals
