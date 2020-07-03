@@ -7,7 +7,7 @@
   - [Introduction ](general/introduction.md)
   - [Tool Configuration](general/files.md)
   - [Server Configurations](general/server-configs.md)
-  - [Deployment](general/deployment.md) _(currently Heroku and AWS S3 specific)_
+  - [Deployment](general/deployment.md)
   - [Debugging](general/debugging.md)
   - [FAQ](general/faq.md)
   - [Gotchas](general/gotchas.md)
