@@ -1,8 +1,8 @@
 # FAQ
 
 - [Using global reducers instead of injecting](#load-reducers-optimistically)
-- [Keeping up-to-date with the template](keeping-up-to-date-with-the-template)
-- [Are there any examples or tutorials?](examples-and-tutorials)
+- [Keeping up-to-date with the template](#keeping-up-to-date-with-the-template)
+- [Are there any examples or tutorials?](#examples-and-tutorials)
 
 ## Using reducers optimistically
 
