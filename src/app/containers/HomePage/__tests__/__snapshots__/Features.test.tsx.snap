@@ -1,0 +1,415 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Features /> should render with de translations 1`] = `
+<React.Fragment>
+  <ForwardRef(Title)
+    as="h2"
+  >
+    Features
+  </ForwardRef(Title)>
+  <ForwardRef(Lead)>
+    Crafted for 
+    <strong>
+      highly scalable
+    </strong>
+    ,
+     
+    <strong>
+      easily maintainable
+    </strong>
+     and
+     
+    <strong>
+      highly performant
+    </strong>
+     React.js applications with a focus on
+     
+    <strong>
+      best DX
+    </strong>
+     and 
+    <strong>
+      best practices
+    </strong>
+    .
+  </ForwardRef(Lead)>
+  <ForwardRef(Features__List)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgState)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          Predictable State
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Build easy to test and debug, flexible and extensible applications using
+           
+          <ForwardRef(A)
+            href="https://redux.js.org/basics/usage-with-react"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Redux
+          </ForwardRef(A)>
+          . Unidirectional data flow allows for change logging and time travel debugging.
+           
+          <ForwardRef(A)
+            href="https://github.com/zalmoxisus/redux-devtools-extension"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Install Chrome Redux Dev Tools
+          </ForwardRef(A)>
+           
+          to see how your application's state changes and travel in time to debug. Type any github username below and see it in action with Redux Dev Tools.
+        </ForwardRef(P)>
+        <GithubRepoForm />
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgCss)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          Next Generation CSS
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Write composable CSS that’s co-located with your components for complete modularity. Ship only the styles that are on the page for the best performance. Generate application-wide styles and themes for your components. Change the theme below to see how easy and intuitive theming can ever be!
+        </ForwardRef(P)>
+        <ThemeSwitch />
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgIntl)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          i18n Internationalisierung und Pluralisierung
+           
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Das Internet ist global. Mehrsprachige- und Pluralisierungsunterstützung ist entscheidend für große Web-Anwendungen. Sie können die Sprache unten verändern, ohne die Seite aktualisieren zu müssen.
+          <br />
+          <small>
+            (Only some of the features below are translated to demonstrate an example)
+          </small>
+        </ForwardRef(P)>
+        <LanguageSwitch />
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgRoute)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          Standard Routing
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Routing macht es möglich Seiten (z.B. '/about') Ihrer Anwendung hinzuzufügen.
+          <br />
+          <small>
+            Go to our
+             
+            <ForwardRef(Link)
+              to="/notfound"
+            >
+              /NotFound
+            </ForwardRef(Link)>
+             
+            page to see how routing works
+          </small>
+        </ForwardRef(P)>
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgInstantFeedback)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          Sofortiges Feedback
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Genießen Sie die beste Entwicklungserfahrung und programmieren Sie Ihre App so schnell wie noch nie! Ihre Änderungen an dem CSS und JavaScript sind sofort reflektiert, ohne die Seite aktualisieren zu müssen.
+        </ForwardRef(P)>
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgScaffolding)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          Schnelles Scaffolding
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Automatisieren Sie die Kreation von Komponenten, Containern, Routen, Selektoren und Sagas – und ihre Tests – direkt von dem Terminal!
+        </ForwardRef(P)>
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgSeo)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          SEO
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Supports SEO (document head tags management) for search engines that support indexing of JavaScript content.
+        </ForwardRef(P)>
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgTs)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          TypeScript
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Typescript is the key to scalability. Build self-documented code, easy-to-debug code and create maintainable large applications and codebases with a highly productive development experience.
+        </ForwardRef(P)>
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgOfflineFirst)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          Offline-First
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          The next frontier in performant web apps: availability without a network connection from the instant your users load the app.
+        </ForwardRef(P)>
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgCodeAnalysis)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          Static Code Analysis
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Focus on writing new features without worrying about formatting or code quality. With the right editor setup, your code will automatically be formatted and linted as you work.
+        </ForwardRef(P)>
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+  </ForwardRef(Features__List)>
+</React.Fragment>
+`;
+
+exports[`<Features /> should render with en translations 1`] = `
+<React.Fragment>
+  <ForwardRef(Title)
+    as="h2"
+  >
+    Features
+  </ForwardRef(Title)>
+  <ForwardRef(Lead)>
+    Crafted for 
+    <strong>
+      highly scalable
+    </strong>
+    ,
+     
+    <strong>
+      easily maintainable
+    </strong>
+     and
+     
+    <strong>
+      highly performant
+    </strong>
+     React.js applications with a focus on
+     
+    <strong>
+      best DX
+    </strong>
+     and 
+    <strong>
+      best practices
+    </strong>
+    .
+  </ForwardRef(Lead)>
+  <ForwardRef(Features__List)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgState)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          Predictable State
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Build easy to test and debug, flexible and extensible applications using
+           
+          <ForwardRef(A)
+            href="https://redux.js.org/basics/usage-with-react"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Redux
+          </ForwardRef(A)>
+          . Unidirectional data flow allows for change logging and time travel debugging.
+           
+          <ForwardRef(A)
+            href="https://github.com/zalmoxisus/redux-devtools-extension"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Install Chrome Redux Dev Tools
+          </ForwardRef(A)>
+           
+          to see how your application's state changes and travel in time to debug. Type any github username below and see it in action with Redux Dev Tools.
+        </ForwardRef(P)>
+        <GithubRepoForm />
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgCss)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          Next Generation CSS
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Write composable CSS that’s co-located with your components for complete modularity. Ship only the styles that are on the page for the best performance. Generate application-wide styles and themes for your components. Change the theme below to see how easy and intuitive theming can ever be!
+        </ForwardRef(P)>
+        <ThemeSwitch />
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgIntl)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          i18n Internationalization & Pluralization
+           
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Scalable apps need to support multiple languages, easily add and support multiple languages. Change the language below to see how instantly it updates the page without refreshing.
+          <br />
+          <small>
+            (Only some of the features below are translated to demonstrate an example)
+          </small>
+        </ForwardRef(P)>
+        <LanguageSwitch />
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgRoute)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          Industry-standard Routing
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          It's natural to want to add pages (e.g. \`/about\`) to your application, and routing makes this possible.
+          <br />
+          <small>
+            Go to our
+             
+            <ForwardRef(Link)
+              to="/notfound"
+            >
+              /NotFound
+            </ForwardRef(Link)>
+             
+            page to see how routing works
+          </small>
+        </ForwardRef(P)>
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgInstantFeedback)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          Instant Feedback
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Enjoy the best DX and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page.
+        </ForwardRef(P)>
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgScaffolding)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          Quick Scaffolding
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Automate the creation of components, features, routes, selectors and sagas - and their tests - right from the CLI! Avoid fighting the glue of your code and focus on your app!
+        </ForwardRef(P)>
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgSeo)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          SEO
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Supports SEO (document head tags management) for search engines that support indexing of JavaScript content.
+        </ForwardRef(P)>
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgTs)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          TypeScript
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Typescript is the key to scalability. Build self-documented code, easy-to-debug code and create maintainable large applications and codebases with a highly productive development experience.
+        </ForwardRef(P)>
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgOfflineFirst)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          Offline-First
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          The next frontier in performant web apps: availability without a network connection from the instant your users load the app.
+        </ForwardRef(P)>
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+    <ForwardRef(Features__Feature)>
+      <ForwardRef(SvgCodeAnalysis)
+        className="feature-icon"
+      />
+      <ForwardRef(Features__Content)>
+        <ForwardRef(SubTitle)>
+          Static Code Analysis
+        </ForwardRef(SubTitle)>
+        <ForwardRef(P)>
+          Focus on writing new features without worrying about formatting or code quality. With the right editor setup, your code will automatically be formatted and linted as you work.
+        </ForwardRef(P)>
+      </ForwardRef(Features__Content)>
+    </ForwardRef(Features__Feature)>
+  </ForwardRef(Features__List)>
+</React.Fragment>
+`;

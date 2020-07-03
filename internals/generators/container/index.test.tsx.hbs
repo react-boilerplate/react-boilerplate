@@ -1,0 +1,53 @@
+import React from 'react';
+import { render } from '@testing-library/react';
+{{#if wantSlice}}
+import { Store } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+{{/if}}
+{{#if wantHeaders}}
+import { HelmetProvider } from 'react-helmet-async';
+{{/if}}
+
+{{#if wantSlice}}
+import { configureAppStore } from 'store/configureStore';
+{{/if}}
+import { {{ properCase ComponentName }} } from '..';
+
+{{#if wantSlice}}
+const renderComponent = (store: Store) =>
+{{else}}
+const renderComponent = () =>
+{{/if}}
+  render(
+    {{#if wantSlice}}
+    <Provider store={store}>
+    {{/if}}
+      {{#if wantHeaders}}
+      <HelmetProvider>
+      {{/if}}
+        <{{ properCase ComponentName }}  />
+      {{#if wantHeaders}}
+      </HelmetProvider>
+      {{/if}}
+    {{#if wantSlice}}
+    </Provider>
+    {{/if}}
+  );
+
+describe('<{{ properCase ComponentName }} />', () => {
+  {{#if wantSlice}}
+  let store: ReturnType<typeof configureAppStore>;
+  
+  beforeEach(() => {
+    store = configureAppStore();
+  });
+  {{/if}}
+  it('should match the snapshot', () => {
+    {{#if wantSlice}}
+    const component = renderComponent(store);
+    {{else}}
+    const component = renderComponent();
+    {{/if}}
+    expect(component.container.firstChild).toMatchSnapshot();
+  });
+});

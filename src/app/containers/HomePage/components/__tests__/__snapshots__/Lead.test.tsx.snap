@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Lead /> should render and match the snapshot 1`] = `
+.c0 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: rgba(58,52,51,0.7);
+  margin: 0 0 1.5rem 0;
+}
+
+.c0 strong {
+  color: rgba(58,52,51,1);
+}
+
+<p
+  class="c0"
+/>
+`;

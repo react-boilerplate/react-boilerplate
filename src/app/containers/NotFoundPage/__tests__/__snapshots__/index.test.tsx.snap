@@ -1,0 +1,248 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NotFoundPage /> should match snapshot 1`] = `
+Array [
+  .c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c4 {
+  font-size: 1.25rem;
+  color: rgba(58,52,51,1);
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.c5 {
+  font-size: 0.875rem;
+  color: rgba(58,52,51,0.7);
+  font-weight: normal;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: -1rem;
+}
+
+.c7 {
+  color: rgba(215,113,88,1);
+  cursor: pointer;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.25rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c7:hover {
+  opacity: 0.8;
+}
+
+.c7:active {
+  opacity: 0.4;
+}
+
+.c7 .icon {
+  margin-right: 0.25rem;
+}
+
+.c2 {
+  width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: content-box;
+}
+
+.c0 {
+  box-shadow: 0 1px 0 0 rgba(58,52,51,0.05);
+  height: 4rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(255,255,255,1);
+  z-index: 2;
+}
+
+.c0 .c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+@supports (-webkit-backdrop-filter:blur(10px)) or (backdrop-filter:blur(10px)) {
+  .c0 {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(255,255,255,0.75);
+  }
+}
+
+<header
+    className="c0"
+  >
+    <div
+      className="c1 c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          React Boilerplate
+        </div>
+        <div
+          className="c5"
+        >
+          Create React App Template
+        </div>
+      </div>
+      <nav
+        className="c6"
+      >
+        <a
+          className="c7"
+          href="https://cansahin.gitbook.io/react-boilerplate-cra-template/"
+          rel="noopener noreferrer"
+          target="_blank"
+          title="Documentation Page"
+        >
+          <svg>
+            documentation-icon.svg
+          </svg>
+          Documentation
+        </a>
+        <a
+          className="c7"
+          href="https://github.com/react-boilerplate/react-boilerplate-cra-template"
+          rel="noopener noreferrer"
+          target="_blank"
+          title="Github Page"
+        >
+          <svg>
+            github-icon.svg
+          </svg>
+          Github
+        </a>
+      </nav>
+    </div>
+  </header>,
+  .c2 {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(58,52,51,0.7);
+  margin: 0.625rem 0 1.5rem 0;
+}
+
+.c3 {
+  color: rgba(215,113,88,1);
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c3:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.c3:active {
+  opacity: 0.4;
+}
+
+.c0 {
+  height: calc(100vh - 4rem);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 320px;
+}
+
+.c1 {
+  margin-top: -8vh;
+  font-weight: bold;
+  color: rgba(58,52,51,1);
+  font-size: 3.375rem;
+}
+
+.c1 span {
+  font-size: 3.125rem;
+}
+
+@supports (-webkit-backdrop-filter:blur(10px)) or (backdrop-filter:blur(10px)) {
+
+}
+
+<div
+    className="c0"
+  >
+    <div
+      className="c1"
+    >
+      4
+      <span
+        aria-label="Crying Face"
+        role="img"
+      >
+        😢
+      </span>
+      4
+    </div>
+    <p
+      className="c2"
+    >
+      Page not found.
+    </p>
+    <a
+      className="c3"
+      href="/"
+      onClick={[Function]}
+    >
+      Return to Home Page
+    </a>
+  </div>,
+]
+`;

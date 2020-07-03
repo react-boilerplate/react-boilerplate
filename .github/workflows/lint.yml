@@ -1,0 +1,11 @@
+name: lint
+on:
+  - push
+  - pull_request
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm i # There is a bug with npm ci -> https://github.com/npm/cli/issues/558
+      - run: npm run lint

@@ -1,0 +1,31 @@
+# Run commitlint on Pull Requests and commits
+name: commitlint
+on:
+  pull_request:
+      types: ['opened', 'edited', 'reopened', 'synchronize']
+  push:
+      branches:
+        - master
+        - dev
+
+jobs:
+  lint-pull-request-name:
+    # Only on pull requests
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: npm i @commitlint/config-conventional
+      - uses: JulienKode/pull-request-name-linter-action@v0.1.2
+  lint-commits:
+    # Only if we are pushing or merging PR to the master
+    if: (github.event_name == 'pull_request' && github.base_ref == 'refs/heads/master') || github.event_name == 'push'
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 30 # Its fine to lint last 30 commits only
+      - run: npm i @commitlint/config-conventional
+      - uses: wagoid/commitlint-github-action@v1

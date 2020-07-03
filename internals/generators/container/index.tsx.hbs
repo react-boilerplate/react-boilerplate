@@ -1,0 +1,107 @@
+/**
+*
+* {{ properCase ComponentName }}
+*
+*/
+
+{{#if wantMemo}}
+import React, { memo } from 'react';
+{{else}}
+import React from 'react';
+{{/if}}
+{{#if wantHeaders}}
+import { Helmet } from 'react-helmet-async';
+{{/if}}
+{{#if wantTranslations}}
+import { useTranslation } from 'react-i18next';
+{{/if}}
+{{#if wantSlice}}
+import { useSelector, useDispatch } from 'react-redux';
+{{/if}}
+{{#if wantStyledComponents}}
+import styled from 'styled-components/macro';
+{{/if}}
+
+{{#if wantSlice}}
+{{#if wantSaga}}
+import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
+{{else}}
+import { useInjectReducer } from 'utils/redux-injectors';
+{{/if}}
+{{else}}
+{{#if wantSaga}}
+import { useInjectSaga } from 'utils/redux-injectors';
+{{/if}}
+{{/if}}
+{{#if wantSlice}}
+import { reducer, sliceKey } from './slice';
+import { select{{ properCase ComponentName }} } from './selectors';
+{{/if}}
+{{#if wantSaga}}
+import { {{ camelCase ComponentName }}Saga } from './saga';
+{{/if}}
+
+interface Props {}
+
+
+{{#if wantMemo}}
+export const {{ properCase ComponentName }} = memo((props: Props) => {
+{{else}}
+export function {{ properCase ComponentName }}(props: Props) {
+{{/if}}
+{{#if wantSlice}}
+useInjectReducer({ key: sliceKey, reducer: reducer });
+{{/if}}
+{{#if wantSaga}}
+  {{#if wantSlice}}
+  useInjectSaga({ key: sliceKey, saga: {{ camelCase ComponentName }}Saga });
+  {{else}}
+  useInjectSaga({ key: '{{ camelCase ComponentName }}', saga: {{ camelCase ComponentName }}Saga });
+  {{/if}}
+{{/if}}
+
+{{#if wantSlice}}
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const {{ camelCase ComponentName }} = useSelector(select{{ properCase ComponentName }});
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const dispatch = useDispatch();
+{{/if}}
+
+{{#if wantTranslations}}
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { t, i18n } = useTranslation();
+{{/if}}
+
+return (
+<>
+  {{#if wantHeaders}}
+  <Helmet>
+    <title>{{properCase ComponentName}}</title>
+    <meta name="description" content="Description of {{properCase ComponentName}}" />
+  </Helmet>
+  {{/if}}
+  {{#if wantStyledComponents}}
+  <Div>
+    {{else}}
+    <div>
+      {{/if}}
+      {{#if wantTranslations}}
+      {t('')}
+      {{/if}}
+      {{#if wantStyledComponents}}
+    </Div>
+    {{else}}
+  </div>
+  {{/if}}
+</>
+);
+
+{{#if wantMemo}}
+});
+{{else}}
+};
+{{/if}}
+
+{{#if wantStyledComponents}}
+const Div = styled.div``;
+{{/if}}

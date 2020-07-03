@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoadingIndicator /> should match snapshot 1`] = `
+.c0 {
+  -webkit-animation: cqkDSr 2.625s linear infinite;
+  animation: cqkDSr 2.625s linear infinite;
+  height: 3rem;
+  width: 3rem;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+}
+
+.c1 {
+  -webkit-animation: caVMmK 1.5s ease-in-out infinite;
+  animation: caVMmK 1.5s ease-in-out infinite;
+  stroke: rgba(215,113,88,1);
+  stroke-linecap: round;
+}
+
+<svg
+  class="c0"
+  viewBox="-24 -24 48 48"
+>
+  <circle
+    class="c1"
+    cx="0"
+    cy="0"
+    fill="none"
+    r="20"
+    stroke-width="4"
+  />
+</svg>
+`;
+
+exports[`<LoadingIndicator /> should match snapshot when props changed 1`] = `
+.c0 {
+  -webkit-animation: cqkDSr 2.625s linear infinite;
+  animation: cqkDSr 2.625s linear infinite;
+  height: 1.25rem;
+  width: 1.25rem;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+}
+
+.c1 {
+  -webkit-animation: caVMmK 1.5s ease-in-out infinite;
+  animation: caVMmK 1.5s ease-in-out infinite;
+  stroke: rgba(215,113,88,1);
+  stroke-linecap: round;
+}
+
+<svg
+  class="c0"
+  viewBox="-24 -24 48 48"
+>
+  <circle
+    class="c1"
+    cx="0"
+    cy="0"
+    fill="none"
+    r="20"
+    stroke-width="4"
+  />
+</svg>
+`;

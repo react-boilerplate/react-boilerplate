@@ -1,0 +1,45 @@
+name: build
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  createNpmPackage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm i shelljs 
+      - run: npm run create:npm-package
+      - name: Upload template
+        uses: actions/upload-artifact@v1
+        with:
+          name: cra-template-rb
+          path: .cra-template-rb
+  
+  createAndTestCRA:
+    needs: createNpmPackage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: Download template
+        uses: actions/download-artifact@v1
+        with:
+          name: cra-template-rb
+          path: ../cra-template-rb # Put into the upper folder. create-react-app wants the current directory empty
+      - name: Create CRA from downloaded template
+        run: npx create-react-app --template file:../cra-template-rb .
+      - run: npm run build
+      - run: npm run test:generators
+      - run: npm run lint
+      - run: npm run checkTs
+      - run: npm run test
+      - run: npm run cleanAndSetup
+      - run: npm run build
+      - run: npm run test:generators
+      - run: npm run lint
+      - run: npm run checkTs
+

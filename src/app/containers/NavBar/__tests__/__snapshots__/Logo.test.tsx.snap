@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Logo /> should match snapshot 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.c2 {
+  font-size: 0.875rem;
+  font-weight: normal;
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    React Boilerplate
+  </div>
+  <div
+    class="c2"
+  >
+    Create React App Template
+  </div>
+</div>
+`;

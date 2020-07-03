@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Masthead /> should render and match the snapshot 1`] = `
+<ForwardRef(Masthead__Wrapper)>
+  <Logos />
+  <ForwardRef(Title)>
+    React Boilerplate meets CRA
+  </ForwardRef(Title)>
+  <ForwardRef(Lead)>
+    Now you can use the
+     
+    <ForwardRef(A)
+      href="https://www.reactboilerplate.com/"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      React Boilerplate
+    </ForwardRef(A)>
+     
+    as a
+     
+    <ForwardRef(A)
+      href="https://github.com/facebook/create-react-app"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      Create React App
+    </ForwardRef(A)>
+     
+    template.
+  </ForwardRef(Lead)>
+</ForwardRef(Masthead__Wrapper)>
+`;

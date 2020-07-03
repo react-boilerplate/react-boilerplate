@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Logos /> should render and match the snapshot 1`] = `
+<DocumentFragment>
+  .c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: rgba(58,52,51,0.12);
+}
+
+.c0 .logo {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.c0 .sign {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 2rem;
+}
+
+<div
+    class="c0"
+  >
+    <svg
+      class="logo"
+    >
+      cra-logo.svg
+    </svg>
+    <svg
+      class="sign"
+    >
+      plus-sign.svg
+    </svg>
+    <svg
+      class="logo"
+    >
+      rp-logo.svg
+    </svg>
+  </div>
+</DocumentFragment>
+`;

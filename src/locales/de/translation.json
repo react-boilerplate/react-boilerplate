@@ -1,0 +1,19 @@
+{
+  "routingFeature": {
+    "title": "Standard Routing",
+    "description": "Routing macht es möglich Seiten (z.B. '/about') Ihrer Anwendung hinzuzufügen."
+  },
+  "i18nFeature": {
+    "title": "i18n Internationalisierung und Pluralisierung",
+    "selectLanguage": "Sprache auswählen",
+    "description": "Das Internet ist global. Mehrsprachige- und Pluralisierungsunterstützung ist entscheidend für große Web-Anwendungen. Sie können die Sprache unten verändern, ohne die Seite aktualisieren zu müssen."
+  },
+  "feedbackFeature": {
+    "title": "Sofortiges Feedback",
+    "description": "Genießen Sie die beste Entwicklungserfahrung und programmieren Sie Ihre App so schnell wie noch nie! Ihre Änderungen an dem CSS und JavaScript sind sofort reflektiert, ohne die Seite aktualisieren zu müssen."
+  },
+  "scaffoldingFeature": {
+    "title": "Schnelles Scaffolding",
+    "description": "Automatisieren Sie die Kreation von Komponenten, Containern, Routen, Selektoren und Sagas – und ihre Tests – direkt von dem Terminal!"
+  }
+}

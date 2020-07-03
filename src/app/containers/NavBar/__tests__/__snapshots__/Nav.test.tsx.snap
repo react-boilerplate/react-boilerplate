@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Nav /> should match the snapshot 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: -1rem;
+}
+
+.c1 {
+  cursor: pointer;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.25rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1:hover {
+  opacity: 0.8;
+}
+
+.c1:active {
+  opacity: 0.4;
+}
+
+.c1 .icon {
+  margin-right: 0.25rem;
+}
+
+<nav
+  class="c0"
+>
+  <a
+    class="c1"
+    href="https://cansahin.gitbook.io/react-boilerplate-cra-template/"
+    rel="noopener noreferrer"
+    target="_blank"
+    title="Documentation Page"
+  >
+    <svg>
+      documentation-icon.svg
+    </svg>
+    Documentation
+  </a>
+  <a
+    class="c1"
+    href="https://github.com/react-boilerplate/react-boilerplate-cra-template"
+    rel="noopener noreferrer"
+    target="_blank"
+    title="Github Page"
+  >
+    <svg>
+      github-icon.svg
+    </svg>
+    Github
+  </a>
+</nav>
+`;

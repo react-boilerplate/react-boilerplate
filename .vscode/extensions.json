@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "msjsdiag.debugger-for-chrome",
+    "vscode-icons-team.vscode-icons",
+    "Orta.vscode-jest",
+    "eg2.vscode-npm-script",
+    "jpoissonnier.vscode-styled-components"
+  ]
+}

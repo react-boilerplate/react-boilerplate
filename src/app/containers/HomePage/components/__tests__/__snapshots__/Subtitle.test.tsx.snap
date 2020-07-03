@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Subtitle /> should render and match the snapshot 1`] = `
+.c0 {
+  font-size: 1.25rem;
+  margin: 0;
+  color: rgba(58,52,51,1);
+}
+
+<h3
+  class="c0"
+/>
+`;

@@ -1,0 +1,54 @@
+/**
+*
+* {{ properCase ComponentName }}
+*
+*/
+{{#if wantMemo}}
+import React, { memo } from 'react';
+{{else}}
+import React from 'react';
+{{/if}}
+{{#if wantStyledComponents}}
+import styled from 'styled-components/macro';
+{{/if}}
+{{#if wantTranslations}}
+import { useTranslation } from 'react-i18next';
+{{/if}}
+
+interface Props {}
+
+{{#if wantMemo}}
+export const {{ properCase ComponentName }} = memo((props: Props) => {
+{{else}}
+export function {{ properCase ComponentName }}(props: Props) {
+{{/if}}
+  {{#if wantTranslations}}
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { t, i18n } = useTranslation();
+  {{/if}}
+
+  return (
+  {{#if wantStyledComponents}}
+  <Div>
+  {{else}}
+  <div>
+  {{/if}}
+    {{#if wantTranslations}}
+    {t('')}
+    {{/if}}
+  {{#if wantStyledComponents}}
+  </Div>
+  {{else}}
+  </div>
+  {{/if}}
+  );
+
+{{#if wantMemo}}
+});
+{{else}}
+};
+{{/if}}
+
+{{#if wantStyledComponents}}
+const Div = styled.div``;
+{{/if}}

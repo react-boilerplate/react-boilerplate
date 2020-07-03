@@ -1,0 +1,98 @@
+{
+  "package": {
+    "engines": {
+      "npm": ">=6.4.1",
+      "node": ">=10.13.0"
+    },
+    "scripts": {
+      "test:generators": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/testing/test-generators.ts",
+      "start:prod": "npm run build && serve -s build",
+      "checkTs": "tsc --noEmit",
+      "eslint": "eslint --ext js,ts,tsx",
+      "lint": "npm run eslint -- src",
+      "lint:fix": "npm run eslint -- --fix src",
+      "lint:css": "stylelint src/**/*.css",
+      "generate": "cross-env TS_NODE_PROJECT='./internals/ts-node.tsconfig.json' plop --plopfile internals/generators/plopfile.ts",
+      "cleanAndSetup": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/clean.ts",
+      "prettify": "prettier --write"
+    },
+    "lint-staged": {
+      "*.{ts,tsx,js,jsx}": ["npm run eslint -- --fix"],
+      "*.{md,json}": ["prettier --write"]
+    },
+    "husky(remove-everything-in-these-parentheses.See-the-issue-#29)": {
+      "hooks": {
+        "pre-commit": "npm run checkTs && lint-staged"
+      }
+    },
+    "jest": {
+      "collectCoverageFrom": [
+        "src/**/*.{js,jsx,ts,tsx}",
+        "!src/**/*/*.d.ts",
+        "!src/**/*/Loadable.{js,jsx,ts,tsx}",
+        "!src/**/*/types.ts",
+        "!src/index.tsx",
+        "!src/serviceWorker.ts"
+      ],
+      "coverageThreshold": {
+        "global": {
+          "branches": 90,
+          "functions": 90,
+          "lines": 90,
+          "statements": 90
+        }
+      }
+    },
+    "dependencies": {
+      "@reduxjs/toolkit": "1.3.2",
+      "fontfaceobserver": "2.1.0",
+      "i18next": "19.3.4",
+      "i18next-browser-languagedetector": "4.0.2",
+      "prettier": "2.0.1",
+      "react": "16.13.0",
+      "react-app-polyfill": "1.0.6",
+      "react-dom": "16.13.0",
+      "react-helmet-async": "1.0.4",
+      "react-i18next": "11.3.4",
+      "react-redux": "7.2.0",
+      "react-router-dom": "5.1.2",
+      "redux-injectors": "1.3.0",
+      "redux-saga": "1.1.3",
+      "sanitize.css": "11.0.0",
+      "styled-components": "5.0.1",
+      "ts-node": "8.8.2",
+      "stylelint": "13.2.1",
+      "stylelint-config-recommended": "3.0.0",
+      "stylelint-config-styled-components": "0.1.1",
+      "stylelint-processor-styled-components": "1.10.0",
+      "typescript": "3.8.2",
+
+      "@testing-library/jest-dom": "5.1.1",
+      "@testing-library/react": "10.0.1",
+      "@types/fontfaceobserver": "0.0.6",
+      "@types/jest": "25.1.4",
+      "@types/node": "13.9.3",
+      "@types/react": "16.9.25",
+      "@types/react-dom": "16.9.3",
+      "@types/react-helmet": "5.0.15",
+      "@types/react-redux": "7.1.7",
+      "@types/react-router-dom": "5.1.3",
+      "@types/react-test-renderer": "16.9.2",
+      "@types/styled-components": "5.0.1",
+      "@types/testing-library__jest-dom": "5.0.2",
+      "@types/webpack-env": "1.15.1",
+      "cross-env": "7.0.2",
+      "eslint-config-prettier": "6.10.1",
+      "eslint-plugin-prettier": "3.1.2",
+      "jest-styled-components": "7.0.2",
+      "react-test-renderer": "16.13.0",
+      "lint-staged": "10.0.8",
+      "node-plop": "0.25.0",
+      "plop": "2.6.0",
+      "serve": "11.3.0",
+      "shelljs": "0.8.3",
+      "husky": "4.2.3",
+      "replace-in-file": "6.0.0"
+    }
+  }
+}

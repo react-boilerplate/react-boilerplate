@@ -1,0 +1,30 @@
+name: release
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  createAndTestCRAFromNpm:
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Create CRA from npm template
+        run: npx create-react-app --template cra-template-rb .
+      - run: npm run build
+      - run: npm run test:generators
+      - run: npm run lint
+      - run: npm run checkTs
+      - run: npm run cleanAndSetup
+      - run: npm run build
+      - run: npm run test:generators
+      - run: npm run lint
+      - run: npm run checkTs

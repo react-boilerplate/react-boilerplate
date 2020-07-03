@@ -1,0 +1,177 @@
+{
+  "name": "cra-template-rb",
+  "description": "The official React Boilerplate template for Create React App",
+  "version": "1.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-boilerplate/react-boilerplate-cra-template.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "npm": ">=6.4.1",
+    "node": ">=10.13.0"
+  },
+  "bugs": {
+    "url": "https://github.com/react-boilerplate/react-boilerplate-cra-template/issues"
+  },
+  "main": "template.json",
+  "files": [
+    "template",
+    "template.json"
+  ],
+  "keywords": [
+    "react",
+    "create-react-app",
+    "template",
+    "typescript",
+    "redux",
+    "reduxjs",
+    "react-redux",
+    "react-boilerplate",
+    "styled-components"
+  ],
+  "scripts": {
+    "// ---DEFAULT CRA---": "",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "// ---TEMPLATE---": "Scripts will be also in the template",
+    "start:prod": "npm run build && serve -s build",
+    "test:generators": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/testing/test-generators.ts",
+    "checkTs": "tsc --noEmit",
+    "eslint": "eslint --ext js,ts,tsx",
+    "lint": "npm run eslint -- src",
+    "lint:fix": "npm run eslint -- --fix src",
+    "lint:css": "stylelint src/**/*.css",
+    "generate": "cross-env TS_NODE_PROJECT='./internals/ts-node.tsconfig.json' plop --plopfile internals/generators/plopfile.ts",
+    "cleanAndSetup": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/clean.ts",
+    "prettify": "prettier --write",
+    "// ---TESTING TEMPLATE---": "",
+    "verify-startingTemplate-changes": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/verify-startingTemplate-changes.ts",
+    "test:all": "npm run test -- --watchAll=false",
+    "test:coverage": "npm run test:all -- --coverage",
+    "test:cra": "npm run create:cra-app && cd generated-cra-app && npm run test:generators && npm run lint && npm run checkTs && npm run cleanAndSetup && npm run lint && npm run checkTs",
+    "// ---BUILDING TEMPLATE---": "",
+    "create:npm-package": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/create-npm-package.script.ts",
+    "create:cra-app": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/create-cra-app.script.ts",
+    "// ---PUBLISHING---": "",
+    "publish:github": "cross-env PUBLIC_URL='/react-boilerplate-cra-template' npm run build && gh-pages -d build",
+    "changelog": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/create-changelog.script.ts",
+    "release": "standard-version",
+    "publish:npm": "npm run create:npm-package && npm publish .cra-template-rb"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "npm run eslint -- --fix"
+    ],
+    "*.{md,json}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run checkTs && lint-staged && npm run verify-startingTemplate-changes",
+      "prepare-commit-msg": "devmoji -e",
+      "commit-msg": "if git-branch-is dev; then commitlint -E HUSKY_GIT_PARAMS; fi"
+    }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*/*.d.ts",
+      "!src/**/*/Loadable.{js,jsx,ts,tsx}",
+      "!src/**/*/types.ts",
+      "!src/index.tsx",
+      "!src/serviceWorker.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "1.3.2",
+    "fontfaceobserver": "2.1.0",
+    "i18next": "19.3.4",
+    "i18next-browser-languagedetector": "4.0.2",
+    "react": "16.13.0",
+    "react-app-polyfill": "1.0.6",
+    "react-dom": "16.13.0",
+    "react-helmet-async": "1.0.4",
+    "react-i18next": "11.3.4",
+    "react-redux": "7.2.0",
+    "react-router-dom": "5.1.2",
+    "redux-injectors": "1.3.0",
+    "redux-saga": "1.1.3",
+    "sanitize.css": "11.0.0",
+    "styled-components": "5.0.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "8.3.5",
+    "@commitlint/config-conventional": "8.3.4",
+    "@testing-library/jest-dom": "5.1.1",
+    "@testing-library/react": "10.0.1",
+    "@types/fontfaceobserver": "0.0.6",
+    "@types/jest": "25.1.4",
+    "@types/node": "13.9.3",
+    "@types/react": "16.9.25",
+    "@types/react-dom": "16.9.3",
+    "@types/react-helmet": "5.0.15",
+    "@types/react-redux": "7.1.7",
+    "@types/react-router-dom": "5.1.3",
+    "@types/react-test-renderer": "16.9.2",
+    "@types/rimraf": "3.0.0",
+    "@types/shelljs": "0.8.7",
+    "@types/styled-components": "5.0.1",
+    "@types/testing-library__jest-dom": "5.0.2",
+    "@types/webpack": "4.41.8",
+    "@types/webpack-env": "1.15.1",
+    "chalk": "3.0.0",
+    "coveralls": "3.0.11",
+    "cross-env": "7.0.2",
+    "devmoji": "2.1.9",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-prettier": "3.1.2",
+    "eslint-plugin-react": "7.19.0",
+    "eslint-plugin-react-hooks": "3.0.0",
+    "eslint-plugin-redux-saga": "1.1.3",
+    "gh-pages": "2.2.0",
+    "git-branch-is": "3.1.0",
+    "husky": "4.2.5",
+    "jest-styled-components": "7.0.2",
+    "jest-watch-typeahead": "0.4.2",
+    "lint-staged": "10.0.8",
+    "node-plop": "0.25.0",
+    "plop": "2.6.0",
+    "prettier": "2.0.1",
+    "react-scripts": "3.4.1",
+    "react-test-renderer": "16.13.0",
+    "replace-in-file": "6.0.0",
+    "rimraf": "3.0.2",
+    "serve": "11.3.0",
+    "shelljs": "0.8.3",
+    "standard-version": "7.1.0",
+    "stylelint": "13.2.1",
+    "stylelint-config-recommended": "3.0.0",
+    "stylelint-config-styled-components": "0.1.1",
+    "stylelint-processor-styled-components": "1.10.0",
+    "ts-node": "8.8.2",
+    "typescript": "3.8.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

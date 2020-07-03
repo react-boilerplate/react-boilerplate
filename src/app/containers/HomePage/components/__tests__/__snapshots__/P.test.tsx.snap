@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<P /> should render and match the snapshot 1`] = `
+.c0 {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(58,52,51,0.7);
+  margin: 0.625rem 0 1.5rem 0;
+}
+
+<p
+  class="c0"
+/>
+`;

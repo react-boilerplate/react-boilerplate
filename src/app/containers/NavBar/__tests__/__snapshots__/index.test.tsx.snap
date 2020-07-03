@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NavBar /> should match snapshot 1`] = `
+<ForwardRef(NavBar__Wrapper)>
+  <ForwardRef(PageWrapper)>
+    <Logo />
+    <Nav />
+  </ForwardRef(PageWrapper)>
+</ForwardRef(NavBar__Wrapper)>
+`;
