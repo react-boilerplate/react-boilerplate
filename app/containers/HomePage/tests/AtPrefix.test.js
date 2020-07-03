@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import AtPrefix from '../AtPrefix';
+import AtPrefix from '../components/AtPrefix';
 
 const renderComponent = (props = {}) => {
   const utils = render(<AtPrefix {...props} />);

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HeaderLink /> should match the snapshot 1`] = `
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  padding: 0.25em 2em;
+  margin: 1em;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border-radius: 4px;
+  -webkit-font-smoothing: antialiased;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  outline: 0;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  border: 2px solid #41addd;
+  color: #41addd;
+}
+
+.c0:active {
+  background: #41addd;
+  color: #fff;
+}
+
+<a
+  class="c0"
+  href="/test"
+>
+  HeaderLink
+</a>
+`;

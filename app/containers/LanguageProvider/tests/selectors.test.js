@@ -1,5 +1,5 @@
 import { selectLanguage } from '../selectors';
-import { initialState } from '../reducer';
+import { initialState } from '../slice';
 
 describe('selectLanguage', () => {
   it('should select the language state', () => {

@@ -34,7 +34,7 @@ import { useInjectSaga } from 'redux-injectors';
 {{/if}}
 {{#if wantActionsAndReducer}}
 import makeSelect{{properCase name}} from './selectors';
-import reducer from './reducer';
+import { reducer } from './slice';
 {{/if}}
 {{#if wantSaga}}
 import saga from './saga';

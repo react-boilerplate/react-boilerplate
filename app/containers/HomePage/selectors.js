@@ -2,8 +2,8 @@
  * Homepage selectors
  */
 
-import { createSelector } from 'reselect';
-import { initialState } from './reducer';
+import { createSelector } from '@reduxjs/toolkit';
+import { initialState } from './slice';
 
 const selectHome = state => state.home || initialState;
 

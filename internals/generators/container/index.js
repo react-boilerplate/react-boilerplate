@@ -87,31 +87,9 @@ module.exports = {
       });
     }
 
-    // If they want actions and a reducer, generate actions.js, constants.js,
-    // reducer.js and the corresponding tests for actions and the reducer
+    // If they want actions and a reducer, generate the slice,
+    // the selectors and the corresponding tests
     if (data.wantActionsAndReducer) {
-      // Actions
-      actions.push({
-        type: 'add',
-        path: '../../app/containers/{{properCase name}}/actions.js',
-        templateFile: './container/actions.js.hbs',
-        abortOnFail: true,
-      });
-      actions.push({
-        type: 'add',
-        path: '../../app/containers/{{properCase name}}/tests/actions.test.js',
-        templateFile: './container/actions.test.js.hbs',
-        abortOnFail: true,
-      });
-
-      // Constants
-      actions.push({
-        type: 'add',
-        path: '../../app/containers/{{properCase name}}/constants.js',
-        templateFile: './container/constants.js.hbs',
-        abortOnFail: true,
-      });
-
       // Selectors
       actions.push({
         type: 'add',
@@ -127,17 +105,17 @@ module.exports = {
         abortOnFail: true,
       });
 
-      // Reducer
+      // Slice
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/reducer.js',
-        templateFile: './container/reducer.js.hbs',
+        path: '../../app/containers/{{properCase name}}/slice.js',
+        templateFile: './container/slice.js.hbs',
         abortOnFail: true,
       });
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/tests/reducer.test.js',
-        templateFile: './container/reducer.test.js.hbs',
+        path: '../../app/containers/{{properCase name}}/tests/slice.test.js',
+        templateFile: './container/slice.test.js.hbs',
         abortOnFail: true,
       });
     }

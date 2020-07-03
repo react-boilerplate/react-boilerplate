@@ -81,9 +81,17 @@ module.exports = {
   },
   overrides: [
     {
+      /* internals and server folder are for dev */
       files: ['internals/**/*.*', 'server/**/*.*'],
       rules: {
         'import/no-extraneous-dependencies': 0,
+      },
+    },
+    {
+      /* slice.js files contain immer-based reducers where param reassignment is a requirement */
+      files: ['**/slice.js', '**/slice.test.js'],
+      rules: {
+        'no-param-reassign': 0,
       },
     },
   ],

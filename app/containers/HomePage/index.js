@@ -10,50 +10,48 @@ import { Helmet } from 'react-helmet-async';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
+import { useInjectReducer } from 'redux-injectors';
 
-import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import {
   makeSelectRepos,
   makeSelectLoading,
   makeSelectError,
-} from 'containers/App/selectors';
+} from 'containers/ReposManager/selectors';
+import { loadRepos } from 'containers/ReposManager/slice';
+
 import H2 from 'components/H2';
 import ReposList from 'components/ReposList';
-import AtPrefix from './AtPrefix';
-import CenteredSection from './CenteredSection';
-import Form from './Form';
-import Input from './Input';
-import Section from './Section';
-import messages from './messages';
-import { loadRepos } from '../App/actions';
-import { changeUsername } from './actions';
-import { makeSelectUsername } from './selectors';
-import reducer from './reducer';
-import saga from './saga';
+import AtPrefix from './components/AtPrefix';
+import CenteredSection from './components/CenteredSection';
+import Form from './components/Form';
+import Input from './components/Input';
+import Section from './components/Section';
 
-const key = 'home';
+import messages from './messages';
+import { reducer, changeUsername } from './slice';
+import { makeSelectUsername } from './selectors';
 
 const stateSelector = createStructuredSelector({
-  repos: makeSelectRepos(),
   username: makeSelectUsername(),
+  repos: makeSelectRepos(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
 });
 
 export default function HomePage() {
-  const { repos, username, loading, error } = useSelector(stateSelector);
+  useInjectReducer({ key: 'home', reducer });
 
   const dispatch = useDispatch();
+  const { repos, username, loading, error } = useSelector(stateSelector);
 
-  const onChangeUsername = evt => dispatch(changeUsername(evt.target.value));
+  const onChangeUsername = evt =>
+    dispatch(changeUsername({ username: evt.target.value }));
+
   const onSubmitForm = evt => {
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
     if (!username) return;
     dispatch(loadRepos());
   };
-
-  useInjectReducer({ key, reducer });
-  useInjectSaga({ key, saga });
 
   useEffect(() => {
     // When initial state username is not null, submit the form to load repos
