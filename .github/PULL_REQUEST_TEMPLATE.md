@@ -1,6 +1,4 @@
-## React Boilerplate CRA Template
-
-### ⚠️ Clear this template before you submit (after you read the things below)
+## React Boilerplate
 
 Thank you for contributing! Please take a moment to review our [**contributing guidelines**](https://github.com/react-boilerplate/react-boilerplate/blob/master/CONTRIBUTING.md)
 to make the process easy and effective for everyone involved.

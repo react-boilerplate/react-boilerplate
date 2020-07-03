@@ -1,6 +1,6 @@
 # Contributing to React Boilerplate CRA Template
 
-Love react-boilerplate-cra-template and want to help? Thanks so much, there's something to do for everybody!
+Love react-boilerplate and want to help? Thanks so much, there's something to do for everybody!
 
 Please take a moment to review this document in order to make the contribution process easy and effective for everyone involved.
 
@@ -8,7 +8,7 @@ Following these guidelines helps to communicate that you respect the time of the
 
 ## Using the issue tracker
 
-The [issue tracker](https://github.com/react-boilerplate/react-boilerplate-cra-template/issues) is
+The [issue tracker](https://github.com/react-boilerplate/react-boilerplate/issues) is
 the preferred channel for [bug reports](#bugs), [features requests](#features)
 and [submitting pull requests](#pull-requests).
 
@@ -61,7 +61,7 @@ Example:
 >
 > ## Versions
 >
-> - react-boilerplate-cra-template:
+> - react-boilerplate:
 > - Node/NPM:
 > - Browser:
 

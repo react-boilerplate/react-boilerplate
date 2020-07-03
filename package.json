@@ -1,10 +1,10 @@
 {
   "name": "cra-template-rb",
-  "description": "The official React Boilerplate template for Create React App",
+  "description": "React Boilerplate template for Create React App",
   "version": "1.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/react-boilerplate/react-boilerplate-cra-template.git"
+    "url": "https://github.com/react-boilerplate/react-boilerplate.git"
   },
   "license": "MIT",
   "engines": {
@@ -12,7 +12,7 @@
     "node": ">=10.13.0"
   },
   "bugs": {
-    "url": "https://github.com/react-boilerplate/react-boilerplate-cra-template/issues"
+    "url": "https://github.com/react-boilerplate/react-boilerplate/issues"
   },
   "main": "template.json",
   "files": [
