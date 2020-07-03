@@ -15,8 +15,7 @@ const select{{ properCase name }}Domain = state => state.{{ camelCase name }} ||
  * Default selector used by {{ properCase name }}
  */
 
-const makeSelect{{ properCase name }} = () =>
-  createSelector(select{{ properCase name }}Domain, substate => substate);
+const select{{ properCase name }} = createSelector(select{{ properCase name }}Domain, substate => substate);
 
-export default makeSelect{{ properCase name }};
+export default select{{ properCase name }};
 export { select{{ properCase name }}Domain };

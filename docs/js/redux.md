@@ -14,22 +14,17 @@ or a component that will be loaded dynamically. Dynamic means that it will be
 injected when the component it attached to is mounted. In your component's `index.js`:
 
 ```JS
-import { createStructuredSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
 import { useInjectReducer } from 'redux-injectors';
 import {
-  makeSelectData,
-  makeSelectOtherData,
+  selectData,
+  selectOtherData,
 } from './selectors';
 import reducer from './reducer';
 
-const stateSelector = createStructuredSelector({
-  data: makeSelectData(),
-  otherData: makeSelectOtherData(),
-});
-
 export default function YourComponent() {
-  const { data, otherData } = useSelector(stateSelector);
+  const data = useSelector(selectData);
+  const otherData = useSelector(selectOtherData);
   const dispatch = useDispatch();
 
   useInjectReducer({ key: 'yourComponent', reducer });
