@@ -18,14 +18,11 @@ with a focus on
   <a href="https://github.com/react-boilerplate/react-boilerplate-cra-template/actions?query=workflow%release">
     <img src="https://github.com/react-boilerplate/react-boilerplate-cra-template/workflows/release/badge.svg" alt="Release Status" />
   </a>
-  <a href="https://coveralls.io/github/react-boilerplate/react-boilerplate-cra-template">
-    <img src="https://coveralls.io/repos/github/react-boilerplate/react-boilerplate-cra-template/badge.svg?branch=master" alt="Coverage" />
-  </a>
 </div>
 
 <div align="center">
-  <a href="https://david-dm.org/react-boilerplate/react-boilerplate-cra-template">
-    <img src="https://david-dm.org/react-boilerplate/react-boilerplate-cra-template.svg" alt="Dependency Status" />
+  <a href="https://coveralls.io/github/react-boilerplate/react-boilerplate-cra-template">
+    <img src="https://coveralls.io/repos/github/react-boilerplate/react-boilerplate-cra-template/badge.svg?branch=master" alt="Coverage" />
   </a>
   <a href="https://opencollective.com/react-boilerplate">
     <img src="https://opencollective.com/react-boilerplate/backers/badge.svg" alt="Backers" />
@@ -41,7 +38,6 @@ with a focus on
 
 The official [Create React App](https://github.com/facebook/create-react-app) template of [React Boilerplate](https://github.com/react-boilerplate/react-boilerplate)
 ![](https://img.shields.io/github/stars/react-boilerplate/react-boilerplate?style=flat)
-![](https://img.shields.io/github/contributors/react-boilerplate/react-boilerplate)
 
 Start your `create-react-app` projects in seconds with the best, industry-standard tools and practices made ready for you.
 

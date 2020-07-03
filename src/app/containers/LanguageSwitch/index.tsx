@@ -14,7 +14,7 @@ export function LanguageSwitch() {
 
   return (
     <Wrapper>
-      <FormLabel>{t(translations.i18nFeature.selectLanguage())}</FormLabel>
+      <FormLabel>{t(translations.i18nFeature.selectLanguage)}</FormLabel>
       <Languages>
         <Radio
           id="en"

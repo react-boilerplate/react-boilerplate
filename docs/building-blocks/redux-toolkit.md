@@ -84,7 +84,7 @@ const homepageSlice = createSlice({
  * `actions` will be used to trigger change in the state from where ever you want
  * `name` will be used to add this slice to our Redux Store
  */
-export const { actions, reducer, name: sliceKey } = githubRepoFormSlice;
+export const { actions, reducer, name: sliceKey } = homepageSlice;
 ```
 
 ### Adding the slice to your Redux Store
@@ -103,6 +103,9 @@ import { sliceKey, reducer, actions } from './slice';
 import { selectUsername } from './selectors';
 
 export function HomePage() {
+  // Used to dispatch slice actions
+  const dispatch = useDispatch();
+
   // Inject the slice to redux
   useInjectReducer({ key: sliceKey, reducer: reducer });
 
@@ -112,7 +115,7 @@ export function HomePage() {
 
   const textInputChanged = evt => {
     // Trigger the action to change the state. It accepts `string` as we declared in `slice.ts`. Fully type-safe ✅
-    actions.changeUsername(evt.target.value);
+    dispatch(actions.changeUsername(evt.target.value));
   };
   // ...
 }

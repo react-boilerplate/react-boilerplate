@@ -70,7 +70,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run verify-startingTemplate-changes && npm run checkTs && lint-staged",
+      "pre-commit": "npm run checkTs && lint-staged && npm run verify-startingTemplate-changes",
       "prepare-commit-msg": "devmoji -e",
       "commit-msg": "if git-branch-is dev; then commitlint -E HUSKY_GIT_PARAMS; fi"
     }
@@ -96,7 +96,6 @@
   "dependencies": {
     "@reduxjs/toolkit": "1.3.2",
     "fontfaceobserver": "2.1.0",
-    "history": "4.10.1",
     "i18next": "19.3.4",
     "i18next-browser-languagedetector": "4.0.2",
     "react": "16.13.0",
@@ -117,7 +116,6 @@
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "10.0.1",
     "@types/fontfaceobserver": "0.0.6",
-    "@types/history": "4.7.5",
     "@types/jest": "25.1.4",
     "@types/node": "13.9.3",
     "@types/react": "16.9.25",
