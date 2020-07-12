@@ -7,29 +7,41 @@
  */
 
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 {{#if wantMessages}}
 import { IntlProvider } from 'react-intl';
 {{/if}}
-// import 'jest-dom/extend-expect'; // add some helpful assertions
+import { Provider } from 'react-redux';
 
-import { {{ properCase name }} } from '../index';
+import {{ properCase name }} from '../index';
 {{#if wantMessages}}
-import { DEFAULT_LOCALE } from '../../../i18n';
+import { DEFAULT_LOCALE } from '../../../locales';
 {{/if}}
+import configureStore from '../../../configureStore';
 
 describe('<{{ properCase name }} />', () => {
+  let store;
+
+  beforeEach(() => {
+    store = configureStore({});
+  });
+
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    const dispatch = jest.fn();
 {{#if wantMessages}}
     render(
-      <IntlProvider locale={DEFAULT_LOCALE}>
-        <{{ properCase name }} dispatch={dispatch} />
-      </IntlProvider>,
+      <Provider store={store}>
+        <IntlProvider locale={DEFAULT_LOCALE}>
+          <{{ properCase name }} />
+        </IntlProvider>
+      </Provider>,
     );
 {{else}}
-    render(<{{ properCase name }} dispatch={dispatch} />);
+    render(
+      <Provider store={store}>
+        <{{ properCase name }} />
+      </Provider>,
+    );
 {{/if}}
     expect(spy).not.toHaveBeenCalled();
   });
@@ -48,14 +60,20 @@ describe('<{{ properCase name }} />', () => {
     const {
       container: { firstChild },
     } = render(
-      <IntlProvider locale={DEFAULT_LOCALE}>
-        <{{ properCase name }} />
-      </IntlProvider>,
+      <Provider store={store}>
+        <IntlProvider locale={DEFAULT_LOCALE}>
+          <{{ properCase name }} />
+        </IntlProvider>
+      </Provider>,
     );
 {{else}}
     const {
       container: { firstChild },
-    } = render(<{{ properCase name }} />);
+    } = render(
+      <Provider store={store}>
+        <{{ properCase name }} />
+      </Provider>,
+    );
 {{/if}}
     expect(firstChild).toMatchSnapshot();
   });

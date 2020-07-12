@@ -1,8 +1,7 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router-dom';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 
 import ReposList from '../index';
 import configureStore from '../../../configureStore';
@@ -19,14 +18,11 @@ describe('<ReposList />', () => {
         <ReposList loading={false} error={{ message: 'Loading failed!' }} />
       </IntlProvider>,
     );
-    expect(queryByText(/Something went wrong/)).not.toBeNull();
+    expect(queryByText(/Something went wrong/)).toBeInTheDocument();
   });
 
   it('should render the repositories if loading was successful', () => {
-    const store = configureStore(
-      { global: { currentUser: 'mxstbr' } },
-      browserHistory,
-    );
+    const store = configureStore({ global: { currentUser: 'mxstbr' } });
     const repos = [
       {
         owner: {
@@ -54,6 +50,6 @@ describe('<ReposList />', () => {
       <ReposList repos={false} error={false} loading={false} />,
     );
 
-    expect(container.firstChild).toBeNull();
+    expect(container).toBeEmpty();
   });
 });

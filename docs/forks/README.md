@@ -20,6 +20,6 @@ This repo receives many requests for server-side rendering and there have been p
 
 Since we don't support TypeScript out of the box, for those in need, we can direct you to a TypeScript implementation of this repo.
 
-TS Fork: [react-boilerplate-typescript](https://github.com/Can-Sahin/react-boilerplate-typescript) 
+TS Fork: [react-boilerplate-typescript](https://github.com/Can-Sahin/react-boilerplate-typescript)
 
-Details:  [Docs](https://github.com/Can-Sahin/react-boilerplate-typescript/blob/master/docs/general/typescript.md)
+Details: [Docs](https://github.com/Can-Sahin/react-boilerplate-typescript/blob/master/docs/general/typescript.md)

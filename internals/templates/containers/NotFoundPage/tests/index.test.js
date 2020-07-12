@@ -1,18 +1,21 @@
+/**
+ * Testing the NotFoundPage
+ */
+
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 
-import NotFoundPage from '../index';
+import NotFound from '../index';
+import messages from '../messages';
 
-describe('<NotFoundPage />', () => {
-  it('should render and match the snapshot', () => {
-    const {
-      container: { firstChild },
-    } = render(
+describe('<NotFound />', () => {
+  it('should render the Page Not Found text', () => {
+    const { queryByText } = render(
       <IntlProvider locale="en">
-        <NotFoundPage />
+        <NotFound />
       </IntlProvider>,
     );
-    expect(firstChild).toMatchSnapshot();
+    expect(queryByText(messages.header.defaultMessage)).toBeInTheDocument();
   });
 });

@@ -23,6 +23,7 @@ add new parts of your application!
 - [Immer](immer.md)
 - [reselect](reselect.md)
 - [redux-saga](redux-saga.md)
+- [redux-injectors](redux-injectors.md)
 - [react-intl](i18n.md)
 - [routing](routing.md)
 - [Asynchronously loaded components](async-components.md)

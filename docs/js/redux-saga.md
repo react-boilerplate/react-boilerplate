@@ -46,24 +46,21 @@ export default function* rootSaga() {
 }
 ```
 
-Then, in your `index.js`, use a decorator to inject the root saga:
+Then, in your `index.js`, use [`useInjectSaga`](https://github.com/react-boilerplate/redux-injectors/blob/master/docs/api.md#useinjectsaga) from `redux-injectors` to inject the root saga:
 
 ```JS
-import injectSaga from 'utils/injectSaga';
-import { DAEMON } from 'utils/constants';
+import { useInjectSaga, SagaInjectionModes } from 'redux-injectors';
 import saga from './saga';
 
-// ...
+export default function NewContainer(props) {
+  // `mode` is an optional argument, default value is `DAEMON`
+  useInjectSaga({ key: 'newContainer', saga, mode: SagaInjectionModes.DAEMON });
 
-// `mode` is an optional argument, default value is `DAEMON`
-const withSaga = injectSaga({ key: 'yourcomponent', saga, mode: DAEMON });
-
-export default compose(
-  withSaga,
-)(YourComponent);
+  // ...
+}
 ```
 
-A `mode` argument can be one of three constants (import them from `utils/constants`):
+A `mode` argument can be one of three constants (import the enum `SagaInjectionModes` from `redux-injectors`):
 
 - `DAEMON` (default value) — starts a saga on component mount and never cancels it or starts again;
 - `RESTART_ON_REMOUNT` — starts a saga when a component is being mounted

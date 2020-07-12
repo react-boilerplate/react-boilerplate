@@ -4,7 +4,6 @@ These are some things to be aware of when using this boilerplate.
 
 - [Special images in HTML files](#special-images-in-html-files)
 - [Load reducers optimistically](#load-reducers-optimistically)
-- [Exclude modules from Babel processing](#exclude-modules-from-babel-processing)
 - [Running tests in `watch` mode](#running-tests-in-watch-mode)
 - [When in doubt, re-install!](#when-in-doubt-re-install)
 - [Cleaning up Jest cache](#cleaning-up-jest-cache)
@@ -54,26 +53,6 @@ export default function createReducer(injectedReducers = {}) {
 
   return rootReducer;
 }
-```
-
-## Exclude modules from Babel processing
-
-You need to exclude packages which are not intended to be processed by babel. For e.g. Server packages such as 'express' or a CSS file. Just add the package name to `exclude` array in `internals/config.js` and you're all set!
-
-```js
-// in internals/config.js
-
-exclude: [
-  'chalk',
-  'compression',
-  'cross-env',
-  'express',
-  'ip',
-  'minimist',
-  'sanitize.css',
-  'your-unwanted-package', <- add your-unwanted-package
-  ...
-]
 ```
 
 ## Running tests in `watch` mode

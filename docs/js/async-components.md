@@ -23,6 +23,6 @@ export default loadable(() => import('./index'), {
 
 This feature is built into the boilerplate using React's `lazy` and `Suspense` features.
 
-If you need server-side rendering or are looking for more complex behaviors such as prefetching, loading multiple components in parallel, handling loading errors and more, we recommend  [loadable-components](https://github.com/smooth-code/loadable-components).
+If you need server-side rendering or are looking for more complex behaviors such as prefetching, loading multiple components in parallel, handling loading errors and more, we recommend [loadable-components](https://github.com/smooth-code/loadable-components).
 
 You can read a comparison between our solution and that of `loadable-components` on [this page](https://www.smooth-code.com/open-source/loadable-components/docs/loadable-vs-react-lazy/).

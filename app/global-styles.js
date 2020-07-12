@@ -27,6 +27,11 @@ const GlobalStyle = createGlobalStyle`
     font-family: Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;
   }
+
+  input, select {
+    font-family: inherit;
+    font-size: inherit;
+  }
 `;
 
 export default GlobalStyle;

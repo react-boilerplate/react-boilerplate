@@ -6,8 +6,8 @@
   - [OS X / Linux:](#os-x--linux)
   - [Windows](#windows)
 - [Issue with local caching when running in production mode (F5 / ctrl+F5 / cmd+r weird behavior)](#issue-with-local-caching-when-running-in-production-mode-f5--ctrlf5--cmdr-weird-behavior)
-    - [Quick fix on your local browser:](#quick-fix-on-your-local-browser)
-    - [Full in-depth explanation](#full-in-depth-explanation)
+  - [Quick fix on your local browser:](#quick-fix-on-your-local-browser)
+  - [Full in-depth explanation](#full-in-depth-explanation)
 - [Local webfonts not working for development](#local-webfonts-not-working-for-development)
 - [Non-route containers](#non-route-containers)
   - [Where do I put the reducer?](#where-do-i-put-the-reducer)
@@ -15,6 +15,7 @@
 - [How to keep my project up-to-date with `react-boilerplate`?](#how-to-keep-my-project-up-to-date-with-react-boilerplate)
 - [How to turn off Webpack performance warnings after production build?](#how-to-turn-off-webpack-performance-warnings-after-production-build)
 - [Styles getting overridden?](#styles-getting-overridden)
+- [SSR & Prerendering](#ssr-server-side-rendering--prerendering)
 - [Have another question?](#have-another-question)
 
 ## Where are Babel, Prettier and ESLint configured?
@@ -252,6 +253,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 You can do that inside `containers/App/index.js`.
 
 More information is available in the [official documentation](https://github.com/styled-components/styled-components/blob/master/docs/existing-css.md).
+
+## SSR (Server side rendering) & Prerendering
+
+This boilerplate provides you a `Client Side Rendered(CSR)` application. There have been many requests and attempts to add server-side rendering capabilities, yet, none of them have resulted successfully. You check the issues & pull requests for the details.
+
+`Prerendering` is a method used for leveraging the advantages of SSR such like improved SEO, social media tags, etc... Unlike `SSR`, integrating prerendering to your application is suprisingly straightforward and easy. There are many services you can use for that and the majority of them would work seamlessly.
+
+> Note: Prerendering with `prerender.io` and `react-snap` have already been implemented by the other users and it is working. However, there are more services providing different functionalities.
 
 ## Have another question?
 

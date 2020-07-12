@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { IntlProvider, defineMessages } from 'react-intl';
 
 import ToggleOption from '../index';
@@ -27,6 +27,6 @@ describe('<ToggleOption />', () => {
         <ToggleOption value="de" />
       </IntlProvider>,
     );
-    expect(queryByText('de')).toBeDefined();
+    expect(queryByText('de')).toBeInTheDocument();
   });
 });

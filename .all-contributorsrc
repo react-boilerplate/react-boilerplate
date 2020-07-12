@@ -168,6 +168,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Can-Sahin",
+      "name": "Can Sahin",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/33245689?v=4",
+      "profile": "https://github.com/Can-Sahin",
+      "contributions": [
+        "code",
+        "doc",
+      ]
     }
   ],
   "contributorsPerLine": 8
