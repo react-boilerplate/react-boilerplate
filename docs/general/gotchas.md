@@ -37,7 +37,7 @@ If you have containers that should be available throughout the app, like a `Navi
 // In app/reducers.js
 
 ...
-import { combineReducers } from 'redux';
+import { combineReducers } from '@reduxjs/toolkit';
 ...
 
 import navigationBarReducer from 'containers/NavigationBar/reducer';

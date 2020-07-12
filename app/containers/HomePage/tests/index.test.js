@@ -6,13 +6,12 @@ import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
-
-import * as appActions from 'containers/App/actions';
 import { HelmetProvider } from 'react-helmet-async';
+
+import * as reposManagerSlice from 'containers/ReposManager/slice';
 import configureStore from '../../../configureStore';
 import HomePage from '../index';
-import { initialState } from '../reducer';
-import { changeUsername } from '../actions';
+import { initialState } from '../slice';
 
 const renderHomePage = store =>
   render(
@@ -25,17 +24,25 @@ const renderHomePage = store =>
     </Provider>,
   );
 
+const setUsernameInStoreAndUnmount = ({ store, username }) => {
+  // Render, update the state and unmount
+  const { container, unmount } = renderHomePage(store);
+  const input = container.querySelector('input');
+  fireEvent.change(input, { target: { value: username } });
+  unmount();
+};
+
 describe('<HomePage />', () => {
   let store;
 
   beforeAll(() => {
-    // loadRepos is mocked so that we can spy on it but also so that it doesn't trigger a network request
-    appActions.loadRepos = jest.fn(() => ({ type: '' }));
+    reposManagerSlice.loadRepos = jest.fn(() => ({ type: '' }));
+    reposManagerSlice.loadRepos.type = 'app/slice.loadRepos';
   });
 
   beforeEach(() => {
     store = configureStore({});
-    appActions.loadRepos.mockClear();
+    reposManagerSlice.loadRepos.mockClear();
   });
 
   afterEach(cleanup);
@@ -47,10 +54,28 @@ describe('<HomePage />', () => {
     expect(firstChild).toMatchSnapshot();
   });
 
-  it("shouldn't fetch repos on mount (if username is empty)", () => {
+  it("shouldn't fetch repos on mount if username is empty", () => {
     renderHomePage(store);
     expect(initialState.username).toBe('');
-    expect(appActions.loadRepos).not.toHaveBeenCalled();
+    expect(reposManagerSlice.loadRepos).not.toHaveBeenCalled();
+  });
+
+  it("shouldn't fetch repos on mount if username is truthy but not empty", () => {
+    setUsernameInStoreAndUnmount({ store, username: ' ' });
+
+    // Now render again to trigger useEffect
+    renderHomePage(store);
+
+    expect(reposManagerSlice.loadRepos).not.toHaveBeenCalled();
+  });
+
+  it('should fetch repos on mount if username is set', () => {
+    setUsernameInStoreAndUnmount({ store, username: 'julienben' });
+
+    // Now render again to trigger useEffect
+    renderHomePage(store);
+
+    expect(reposManagerSlice.loadRepos).toHaveBeenCalledTimes(1);
   });
 
   it("shouldn't fetch repos if the form is submitted when the username is empty", () => {
@@ -59,20 +84,18 @@ describe('<HomePage />', () => {
     const form = container.querySelector('form');
     fireEvent.submit(form);
 
-    expect(appActions.loadRepos).not.toHaveBeenCalled();
+    expect(reposManagerSlice.loadRepos).not.toHaveBeenCalled();
   });
 
   it("should fetch repos if the form is submitted when the username isn't empty", () => {
     const { container } = renderHomePage(store);
 
-    store.dispatch(changeUsername('julienben'));
-
     const input = container.querySelector('input');
     fireEvent.change(input, { target: { value: 'julienben' } });
-    expect(appActions.loadRepos).not.toHaveBeenCalled();
+    expect(reposManagerSlice.loadRepos).not.toHaveBeenCalled();
 
     const form = container.querySelector('form');
     fireEvent.submit(form);
-    expect(appActions.loadRepos).toHaveBeenCalled();
+    expect(reposManagerSlice.loadRepos).toHaveBeenCalled();
   });
 });

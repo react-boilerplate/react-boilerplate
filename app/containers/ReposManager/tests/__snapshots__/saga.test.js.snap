@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getRepos Saga should call the repoLoadingError action if the response errors 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [],
+    "selector": [Function],
+  },
+  "type": "SELECT",
+}
+`;
+
+exports[`getRepos Saga should call the repoLoadingError action if the response errors 2`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      "https://api.github.com/users/username/repos?type=all&sort=updated",
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;
+
+exports[`getRepos Saga should call the repoLoadingError action if the response errors 3`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      Object {
+        "repos": Array [
+          Object {
+            "name": "First repo",
+            "owner": Object {
+              "login": "react-boilerplate",
+            },
+          },
+          Object {
+            "name": "Second repo",
+            "owner": Object {
+              "login": "react-boilerplate",
+            },
+          },
+        ],
+        "username": "username",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;
+
+exports[`getRepos Saga should dispatch the reposLoaded action if it requests the data successfully 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [],
+    "selector": [Function],
+  },
+  "type": "SELECT",
+}
+`;
+
+exports[`getRepos Saga should dispatch the reposLoaded action if it requests the data successfully 2`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      "https://api.github.com/users/username/repos?type=all&sort=updated",
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;
+
+exports[`getRepos Saga should dispatch the reposLoaded action if it requests the data successfully 3`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "combinator": false,
+  "payload": Object {
+    "args": Array [
+      Object {
+        "repos": Array [
+          Object {
+            "name": "First repo",
+            "owner": Object {
+              "login": "react-boilerplate",
+            },
+          },
+          Object {
+            "name": "Second repo",
+            "owner": Object {
+              "login": "react-boilerplate",
+            },
+          },
+        ],
+        "username": "username",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+  "type": "CALL",
+}
+`;

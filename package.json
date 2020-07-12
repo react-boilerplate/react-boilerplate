@@ -60,6 +60,7 @@
   },
   "dependencies": {
     "@hot-loader/react-dom": "16.11.0",
+    "@reduxjs/toolkit": "1.0.4",
     "chalk": "3.0.0",
     "compression": "1.7.4",
     "connected-react-router": "6.6.0",
@@ -84,9 +85,8 @@
     "react-intl": "2.9.0",
     "react-redux": "7.1.3",
     "react-router-dom": "5.1.2",
-    "redux": "4.0.4",
-    "redux-saga": "1.1.3",
     "redux-injectors": "1.2.0",
+    "redux-saga": "1.1.3",
     "reselect": "4.0.0",
     "sanitize.css": "11.0.0",
     "styled-components": "4.4.1"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Section from '../Section';
+import Section from '../components/Section';
 
 const renderComponent = (props = {}) => {
   const utils = render(<Section {...props} />);
