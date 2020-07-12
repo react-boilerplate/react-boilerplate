@@ -27,7 +27,7 @@ module.exports = plop => {
       __dirname,
       '/../../app/',
       config.path,
-      plop.getHelper('properCase')(answers.name),
+      plop.getHelper('properCase')(config.name || answers.name),
       '**',
       '**.js',
     )}`;
