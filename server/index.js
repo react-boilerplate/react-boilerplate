@@ -32,6 +32,7 @@ const prettyHost = customHost || 'localhost';
 app.get('*.js', (req, res, next) => {
   req.url = req.url + '.gz'; // eslint-disable-line
   res.set('Content-Encoding', 'gzip');
+  res.setHeader('X-Powered-By', 'react-boilerplate');
   next();
 });
 
