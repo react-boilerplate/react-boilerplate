@@ -76,7 +76,7 @@ const Wrapper = styled.section`
 `;
 
 // Use them like any other React component – except they're styled!
-function Button() {
+function Header() {
   return (
     <Wrapper>
       <Title>
