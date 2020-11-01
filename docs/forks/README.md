@@ -1,5 +1,17 @@
 # Forks
 
+## TypeScript
+
+<!-- TODO: Add link to TS discussion here -->
+
+We are currently discussing adding full TypeScript support to React Boilerplate. Feel free to join the conversation and add your input at []().
+
+Until we finalize our eventual migration, we can direct you to a TypeScript implementation of this repo maintained by @Can-Sahin.
+
+TS Fork: [react-boilerplate-typescript](https://github.com/Can-Sahin/react-boilerplate-typescript)
+
+Details: [Docs](https://github.com/Can-Sahin/react-boilerplate-typescript/blob/master/docs/general/typescript.md)
+
 ## Electron
 
 Electron is a very popular open source library developed by GitHub. It enables the creation of cross-platform desktop applications using HTML, CSS and Javascript. This fork provide steps through which you can kickstart an Electron application using `react-boilerplate`.
@@ -15,11 +27,3 @@ This fork gives you two options:
 ## Server-side rendering
 
 This repo receives many requests for server-side rendering and there have been plenty of long discussions on the topic. None have led to an implementation that we're happy to merge into the main repo. That being said, @gretzky has a fork which you can use as a solid starting point for your SSR needs: [react-boilerplate-ssr](https://github.com/gretzky/react-boilerplate-ssr)
-
-## TypeScript
-
-Since we don't support TypeScript out of the box, for those in need, we can direct you to a TypeScript implementation of this repo.
-
-TS Fork: [react-boilerplate-typescript](https://github.com/Can-Sahin/react-boilerplate-typescript)
-
-Details: [Docs](https://github.com/Can-Sahin/react-boilerplate-typescript/blob/master/docs/general/typescript.md)

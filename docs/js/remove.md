@@ -1,17 +1,18 @@
 ## Removing `redux-saga`
 
 **We don't recommend removing `redux-saga`**, as we strongly feel that it's the
-way to go for most redux based applications.
+way to go for most redux-based applications.
 
 If you really want to get rid of it, you will have to remove its presence from several places.
 
 **app/configureStore.js**
 
 1.  Remove statement `import createSagaMiddleware from 'redux-saga'`.
-2.  Remove statement `const sagaMiddleware = createSagaMiddleware()`.
-3.  Remove `sagaMiddleware` from `middlewares` array.
-4.  Remove statement `const { run: runSaga } = sagaMiddleware;`
-5.  Remove `runSaga` from `createInjectorsEnhancer` params
+2.  Remove statement `const reduxSagaMonitorOptions = {}`
+3.  Remove statement `const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions)`
+4.  Remove statement `const { run: runSaga } = sagaMiddleware`
+5.  Remove `sagaMiddleware` from `middlewares` array
+6.  Remove `runSaga` from `createInjectorsEnhancer` params
 
 **app/containers/\*/index.js**
 

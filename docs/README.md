@@ -52,7 +52,7 @@
     - Add a Github username to see Redux and Redux Sagas in action: effortless
       async state updates and side effects are now yours :)
     - Edit the file at `./app/components/Header/index.js` so that the text of
-      the `<Button>` component reads "Features!!!"... [Hot Module Reloading](https://webpack.js.org/guides/hot-module-replacement/) gives
+      the `<HeaderLink to="/features">` reads "Features!!!"... [Hot Module Reloading](https://webpack.js.org/guides/hot-module-replacement/) gives
       you a feedback loop with your UI so smooth it's almost conversational!
     - Click your (newly emphatic) Features button to see React Router in action...
       Now you can share a direct link to that content privately over your LAN or
@@ -91,7 +91,7 @@ _(If they do have to be changed, please [submit an issue](https://github.com/rea
 ### CSS
 
 Using [tagged template literals](https://www.styled-components.com/docs/advanced#tagged-template-literals)
-(a recent addition to JavaScript) and the [power of CSS](https://github.com/styled-components/styled-components/blob/master/docs/css-we-support.md),
+(a recent addition to JavaScript) and the [power of CSS](https://www.styled-components.com/docs/api#supported-css),
 `styled-components` allows you to write actual CSS code to style your components.
 It also removes the mapping between components and styles – using components as a
 low-level styling construct could not be easier!
@@ -100,7 +100,7 @@ See the [CSS documentation](./css/README.md) for more information.
 
 ### JS
 
-We bundle all your clientside scripts and chunk them into several files using
+We bundle all your client-side scripts and chunk them into several files using
 code splitting where possible. We then automatically optimize your code when
 building for production so you don't have to worry about that.
 

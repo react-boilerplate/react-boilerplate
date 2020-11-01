@@ -9,10 +9,17 @@ To get the best editing experience with [VS Code](https://code.visualstudio.com)
 ```json
 {
   "compilerOptions": {
-    "baseUrl": "app",
     "module": "commonjs",
     "target": "es2016",
-    "jsx": "react"
+    "jsx": "react",
+    "baseUrl": "app",
+    "paths": {
+      "components/*": ["./components/*"],
+      "containers/*": ["./containers/*"],
+      "images/*": ["./images/*"],
+      "translations/*": ["./translations/*"],
+      "utils/*": ["./utils/*"]
+    }
   },
   "exclude": ["node_modules", "**/node_modules/*"]
 }

@@ -14,18 +14,18 @@ Here's a curated list of packages that you should be at least familiar with befo
 
 ### Core
 
-- [ ] [React](https://facebook.github.io/react/)
-- [ ] [React Router](https://github.com/ReactTraining/react-router)
+- [ ] [React](https://reactjs.org/)
+- [ ] [React Router](https://reacttraining.com/react-router/web/)
 - [ ] [Redux](http://redux.js.org/)
-- [ ] [Redux Saga](https://redux-saga.github.io/redux-saga/)
-- [ ] [Reselect](https://github.com/reactjs/reselect)
-- [ ] [Immer](https://github.com/mweststrate/immer)
-- [ ] [Styled Components](https://github.com/styled-components/styled-components)
+- [ ] [Redux Toolkit](https://redux-toolkit.js.org/)
+- [ ] [Redux Saga](https://redux-saga.js.org/)
+- [ ] [Reselect](https://github.com/reduxjs/reselect)
+- [ ] [Styled Components](https://www.styled-components.com/)
 
 ### Unit Testing
 
-- [ ] [Jest](http://facebook.github.io/jest/)
-- [ ] [react-testing-library](https://github.com/testing-library/react-testing-library)
+- [ ] [Jest](https://jestjs.io/)
+- [ ] [react-testing-library](https://testing-library.com/docs/react-testing-library/intro)
 
 ### Linting
 
@@ -35,10 +35,10 @@ Here's a curated list of packages that you should be at least familiar with befo
 
 Note that while `react-boilerplate` includes a lot of features, many of them are optional and you can find instructions in the docs on how to remove...
 
-- [`redux-saga` or `reselect`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/js/remove.md)
-- [offline-first, add to homescreen, performant web font loading and image optimisation](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/remove.md)
-- [`sanitize.css`](https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/css/remove.md)
-- [i18n (i.e. `react-intl`)](https://github.com/react-boilerplate/react-boilerplate/blob/0f88f55ed905f8432c3dd7b452d713df5fb76d8e/docs/js/i18n.md#removing-i18n-and-react-intl)
+- [`redux-saga` or `reselect`](../js/remove.md)
+- [offline-first, add to homescreen, performant web font loading and image optimisation](../general/remove.md)
+- [`sanitize.css`](../css/remove.md)
+- [i18n (i.e. `react-intl`)](../js/i18n.md#removing-i18n-and-react-intl)
 
 ## Project Structure
 
@@ -58,11 +58,11 @@ We've found that for many applications treating single pages (e.g. the LoginPage
 
 ### `internals/`
 
-You can call this area the "engine" of your app. Your source code cannot be executed as-is in the web browser. It needs to pass through webpack to get converted into a version of Javascript that web browsers understand. While it's certainly helpful to understand what's happening here, for real world usage, you won't have to mess around with this folder much.
+You can call this area the "engine" of your app. Your source code cannot be executed as-is in the web browser. It needs to pass through Webpack to get converted into a version of Javascript that web browsers understand. While it's certainly helpful to understand what's happening here, for real world usage, you won't have to mess around with this folder much.
 
-- `internals/webpack`: You'll most probably use ECMAScript 6 or ECMAScript 7 to write the source code of your app. webpack takes care of making it compatible with a majority of browsers.
+- `internals/webpack`: You'll most probably use ECMAScript 6 or ECMAScript 7 to write the source code of your app. Webpack takes care of making it compatible with a majority of browsers.
 
-> ([ECMAScript](http://stackoverflow.com/a/33748400/5241520) is the standard for JavaScript. Most people are still using browsers which understand ECMAScript 5. So your code must be [transpiled](https://scotch.io/tutorials/javascript-transpilers-what-they-are-why-we-need-them) into browser-understandable code. To apply the transpiler to your source code, you will use webpack. Feeling the jitters already? [Don't worry](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f#.d2uasw2n6). Take a tea-break and then read on.)
+> ([ECMAScript](http://stackoverflow.com/a/33748400/5241520) is the standard for JavaScript. Most people are still using browsers which understand ECMAScript 5. So your code must be [transpiled](https://scotch.io/tutorials/javascript-transpilers-what-they-are-why-we-need-them) into browser-understandable code. To apply the transpiler to your source code, you will use Webpack. Feeling the jitters already? [Don't worry](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f#.d2uasw2n6). Take a tea-break and then read on.)
 
 - `internals/generators`: This folder has the code to scaffold out new components, containers and routes. Read [more about scaffolding](https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/general#quick-scaffolding) in the docs.
 
@@ -82,11 +82,11 @@ You can launch the example app by running `npm start`. To fully understand its i
 
 ### How does the application boot up?
 
-Like any other webpage your app starts with the [`app/index.html`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/index.html) file. React will render your application into `div#app` .
+Like any other webpage your app starts with the [`app/index.html`](../../app/index.html) file. React will render your application into `div#app` .
 
-But how do we include all of your react components into a single HTML file? That's where webpack comes into the picture. webpack will literally pack your application into small javascript files. These files will be injected into the `index.html` as `<script>` tags.
+But how do we include all of your react components into a single HTML file? That's where Webpack comes into the picture. Webpack will literally pack your application into small javascript files. These files will be injected into the `index.html` as `<script>` tags.
 
-When your application is deployed on a server, browsers will load this HTML file. The Javascript files that webpack has included will be executed by the browser, thereby booting up your React application! It's magic really! No, not really, though it can certainly seem that way. Let's dissect this phenomenon to better know what's really going on.
+When your application is deployed on a server, browsers will load this HTML file. The Javascript files that Webpack has included will be executed by the browser, thereby booting up your React application! It's magic really! No, not really, though it can certainly seem that way. Let's dissect this phenomenon to better know what's really going on.
 
 ### `app/app.js`:
 
@@ -99,13 +99,14 @@ Webpack requires an entry point to your application. Think of it as a door to yo
 - `react-app-polyfill` is imported to enable compatibility with many browsers and cool stuff like generator functions, Promises, etc.
 - A `history` object is created, which remembers all the browsing history for your app. This is used by the ConnectedRouter to know which pages your users visit. (Very useful for analytics, by the way.)
 - A redux `store` is instantiated.
-- `ReactDOM.render()` not only renders the [root react component](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/index.js) called `<App />`, of your application, but it renders it with `<Provider />`, `<LanguageProvider />` and `<ConnectedRouter />`.
-- Hot module replacement is set up via vanilla [Webpack HMR](https://webpack.js.org/guides/hot-module-replacement/) that makes all the reducers, injected sagas, components, containers, and i18n messages hot reloadable.
+- `ReactDOM.render()` not only renders the [root react component](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/index.js) called `<App />`, of your application, but it renders it with `<Provider />`, `<LanguageProvider />`, `<ConnectedRouter />` and `<HelmetProvider />`.
+- Hot module replacement is set up via vanilla [Webpack HMR](https://webpack.js.org/guides/hot-module-replacement/) and [react-hot-loader](https://github.com/gaearon/react-hot-loader) to make all the reducers, injected sagas, components, containers, and i18n messages hot-reloadable.
 - i18n internationalization support setup.
 - Offline plugin support to make your app [offline-first](https://developers.google.com/web/fundamentals/getting-started/codelabs/offline/).
 
 * `<Provider />` connects your app with the redux `store`.
 * `<LanguageProvider />` provides language translation support to your app.
+* `<ConnectedRouter />` synchronizes the router state and history with the redux store.
 
 ### Redux
 
@@ -115,42 +116,42 @@ Redux is going to play a huge role in your application. If you're new to Redux, 
 - [ ] Understand the three principles of Redux
 - [ ] Implement Redux in a small React app of yours
 
-The Redux `store` is the heart of your application. Check out [`configureStore.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/configureStore.js) to see how we have configured the store.
+The Redux `store` is the heart of your application. Check out [`configureStore.js`](../../app/configureStore.js) to see how we have configured the store.
 
-The store is created with the `createStore()` factory, which accepts three parameters.
+The store is created with Redux Toolkit's `configureStore()` factory, which accepts an object with four keys.
 
-1.  **Root reducer:** A master reducer combining all your reducers.
-2.  **Initial state:** The initial state of your app as determined by your reducers.
-3.  **Middleware/enhancers:** Middlewares are third party libraries which intercept each redux action dispatched to the redux store and then... do stuff. For example, if you install the [`redux-logger`](https://github.com/evgenyrodionov/redux-logger) middleware, it will listen to all the actions being dispatched to the store and print previous and next state in the browser console. It's helpful to track what happens in your app.
+1.  **`reducer`:** A master reducer combining all your reducers.
+2.  **`preloadedState`:** The initial state of your app as determined by your reducers.
+3.  **`middleware`:** Middlewares are third party libraries which intercept each redux action dispatched to the redux store and then... do stuff. For example, if you install the [`redux-logger`](https://github.com/LogRocket/redux-logger) middleware, it will listen to all the actions being dispatched to the store and print previous and next state in the browser console. It's helpful to track what happens in your app.
 
 In our application we are using two such middleware.
 
 1.  **Router middleware:** Keeps your routes in sync with the redux `store`.
-2.  **Redux saga:** Used for managing _side-effects_ such as dispatching actions asynchronously or accessing browser data.
+2.  **Saga middleware:** Used for managing _side-effects_ such as dispatching actions asynchronously or accessing browser data. More on that later.
 
 ### Reselect
 
-Reselect is a library used for slicing your redux state and providing only the relevant sub-tree to a react component. It has three key features:
+Reselect is a library used for slicing your redux state and providing only the relevant sub-tree to a React component. It has three key features:
 
 1.  Computational power
 2.  Memoization
 3.  Composability
 
-Imagine an application that shows a list of users. Its redux state tree stores an array of usernames with signatures:
+Imagine an application that shows a list of users. Its Redux state tree stores an array of usernames with signatures:
 
 `{ id: number, username: string, gender: string, age: number }`.
 
 Let's see how the three features of reselect help.
 
-- **Computation:** While performing a search operation, reselect will filter the original array and return only matching usernames. Redux state does not have to store a separate array of filtered usernames.
-- **Memoization:** A selector will not compute a new result unless one of its arguments change. That means, if you are repeating the same search once again, reselect will not filter the array over and over. It will just return the previously computed, and subsequently cached, result. Reselect compares the old and the new arguments and then decides whether to compute again or return the cached result.
-- **Composability:** You can combine multiple selectors. For example, one selector can filter usernames according to a search key and another selector can filter the already filtered array according to gender. One more selector can further filter according to age. You combine these selectors by using `createSelector()`
+- **Computation:** While performing a search operation, Reselect will filter the original array and return only matching usernames. The Redux state does not have to store a separate array of filtered usernames.
+- **Memoization:** A selector will not compute a new result unless one of its arguments change. That means, if you are repeating the same search once again, Reselect will not filter the array over and over. It will just return the previously computed, and subsequently cached, result. Reselect compares the old and the new arguments and then decides whether to compute again or return the cached result.
+- **Composability:** You can combine multiple selectors. For example, one selector can filter usernames according to a search key and another selector can filter the already filtered array according to gender. One more selector can further filter according to age. You combine these selectors by using `createSelector()`.
 
 ### Redux Saga
 
-If your application is going to interact with some back-end application for data, we recommend using redux saga for side effect management. Too much jargon? Let's simplify.
+If your application is going to interact with some back end application for data, we recommend using Redux Saga for side effect management. Too much jargon? Let's simplify.
 
-Imagine that your application is fetching data in json format from a back-end. For every API call, ideally you should define at least three kinds of [action creators](http://redux.js.org/docs/basics/Actions.html):
+Imagine that your application is fetching data in JSON format from a back end. For every API call, ideally you should define at least three kinds of actions:
 
 1.  `API_REQUEST`: Upon dispatching this, your application should show a spinner to let the user know that something's happening.
 2.  `API_SUCCESS`: Upon dispatching this, your application should show the data to the user.

@@ -132,7 +132,7 @@ option_settings:
     NPM_USE_PRODUCTION: false
 ```
 
-In the likely case of multiple environment, remove the `NodeCommand` entry and
+If you need to set up multiple environments, remove the `NodeCommand` entry and
 manually configure it per environment in the web console: _Configuration > Software > Node command_.
 
 _Step 3:_ Create a `.npmrc` file:
@@ -142,7 +142,7 @@ _Step 3:_ Create a `.npmrc` file:
 unsafe-perm=true
 ```
 
-_Step 4:_ commit your changes and deploy via EB CLI:
+_Step 4:_ Commit your changes and deploy via EB CLI:
 
 ```sh
 eb deploy {target environment name}
