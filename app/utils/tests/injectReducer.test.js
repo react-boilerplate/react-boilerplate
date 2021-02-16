@@ -9,30 +9,34 @@ import renderer from 'react-test-renderer';
 import { render } from 'react-testing-library';
 
 import configureStore from '../../configureStore';
+import reducerInjectors from '../reducerInjectors';
+jest.mock("../reducerInjectors", () => {
+  const injectReducer = jest.fn();
+  const ejectReducer = jest.fn();
+  const getInjectors = () => ({
+    injectReducer,
+    ejectReducer
+  });
+  return getInjectors;
+});
+
 import injectReducer, { useInjectReducer } from '../injectReducer';
-import * as reducerInjectors from '../reducerInjectors';
+
 
 // Fixtures
+const injectors = reducerInjectors();
 const Component = () => null;
 
 const reducer = s => s;
 
 describe('injectReducer decorator', () => {
   let store;
-  let injectors;
   let ComponentWithReducer;
 
-  beforeAll(() => {
-    reducerInjectors.default = jest.fn().mockImplementation(() => injectors);
-  });
 
   beforeEach(() => {
     store = configureStore({}, memoryHistory);
-    injectors = {
-      injectReducer: jest.fn(),
-    };
     ComponentWithReducer = injectReducer({ key: 'test', reducer })(Component);
-    reducerInjectors.default.mockClear();
   });
 
   it('should inject a given reducer', () => {
@@ -68,18 +72,14 @@ describe('injectReducer decorator', () => {
 });
 
 describe('useInjectReducer hook', () => {
-  jest.mock('../reducerInjectors');
   let store;
-  let injectors;
   let ComponentWithReducer;
 
   beforeAll(() => {
-    injectors = {
-      injectReducer: jest.fn(),
-    };
     store = configureStore({}, memoryHistory);
-    reducerInjectors.default.mockImplementation(() => injectors);
     ComponentWithReducer = injectReducer({ key: 'test', reducer })(Component);
+    injectors.injectReducer.mockClear();
+    injectors.ejectReducer.mockClear();
   });
 
   it('should inject a given reducer', () => {
@@ -89,7 +89,6 @@ describe('useInjectReducer hook', () => {
       </Provider>,
     );
 
-    expect(reducerInjectors.default).toHaveBeenCalledWith(store);
     expect(injectors.injectReducer).toHaveBeenCalledTimes(1);
     expect(injectors.injectReducer).toHaveBeenCalledWith('test', reducer);
   });
