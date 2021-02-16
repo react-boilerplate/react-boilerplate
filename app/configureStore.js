@@ -52,6 +52,9 @@ export default function configureStore(initialState = {}, history) {
   if (module.hot) {
     module.hot.accept('./reducers', () => {
       store.replaceReducer(createReducer(store.injectedReducers));
+      // From the examples, not originally used here:
+      // // Enable Webpack hot module replacement for reducers
+      // store.replaceReducer(createReducer());
     });
   }
 

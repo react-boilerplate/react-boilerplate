@@ -7,15 +7,55 @@
  *   script `extract-intl`, and must use CommonJS module syntax
  *   You CANNOT use import/export in this file.
  */
-const addLocaleData = require('react-intl').addLocaleData; //eslint-disable-line
-const enLocaleData = require('react-intl/locale-data/en');
-const deLocaleData = require('react-intl/locale-data/de');
 
 const enTranslationMessages = require('./translations/en.json');
 const deTranslationMessages = require('./translations/de.json');
 
-addLocaleData(enLocaleData);
-addLocaleData(deLocaleData);
+const {shouldPolyfill: shouldPolyfillRules } = require('@formatjs/intl-pluralrules/should-polyfill');
+const {shouldPolyfill: shouldPolyfillRelativeTime } = require('@formatjs/intl-relativetimeformat/should-polyfill');
+const {shouldPolyfill: shouldPolyfillLocale } = require('@formatjs/intl-locale/should-polyfill');
+const {shouldPolyfill: shouldPolyfillCannonical } = require('@formatjs/intl-getcanonicallocales/should-polyfill');
+
+
+function polyfill(locale) {
+  if (shouldPolyfillCannonical()) {
+    require('@formatjs/intl-getcanonicallocales/polyfill')
+  }
+  if (shouldPolyfillLocale()) {
+    require('@formatjs/intl-locale/polyfill')
+  }
+  if (shouldPolyfillRules()) {
+    // Load the polyfill 1st BEFORE loading data
+    require('@formatjs/intl-pluralrules/polyfill')
+  }
+
+  if (Intl.PluralRules.polyfilled) {
+    switch (locale) {
+      default:
+        require('@formatjs/intl-pluralrules/locale-data/en')
+        break
+      case 'de':
+        require('@formatjs/intl-pluralrules/locale-data/de')
+        break
+    }
+  }
+  if (shouldPolyfillRelativeTime()) {
+    // Load the polyfill 1st BEFORE loading data
+    require('@formatjs/intl-relativetimeformat/polyfill')
+  }
+
+  if (Intl.RelativeTimeFormat.polyfilled) {
+    switch (locale) {
+      default:
+        require('@formatjs/intl-relativetimeformat/locale-data/en')
+        break
+      case 'fr':
+        require('@formatjs/intl-relativetimeformat/locale-data/fr')
+        break
+    }
+  }
+}
+polyfill('en');
 
 const DEFAULT_LOCALE = 'en';
 

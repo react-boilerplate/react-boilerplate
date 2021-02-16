@@ -2,13 +2,20 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+const memfs = require('memfs');
+const mkdirp = require('mkdirp');
+
+// add required methods to memfs
+// see https://github.com/webpack/webpack-dev-middleware#outputfilesystem
+memfs.join = path.join;
+memfs.mkdirp = mkdirp;
+
 
 function createWebpackMiddleware(compiler, publicPath) {
   return webpackDevMiddleware(compiler, {
-    logLevel: 'warn',
     publicPath,
-    silent: true,
     stats: 'errors-only',
+    outputFileSystem: memfs
   });
 }
 
@@ -22,12 +29,10 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
 
-  // Since webpackDevMiddleware uses memory-fs internally to store build
-  // artifacts, we use it instead
-  const fs = middleware.fileSystem;
-
   app.get('*', (req, res) => {
-    fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
+    // Since webpackDevMiddleware uses memfs internally to store build
+    // artifacts, we use it here
+    memfs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
       if (err) {
         res.sendStatus(404);
       } else {
