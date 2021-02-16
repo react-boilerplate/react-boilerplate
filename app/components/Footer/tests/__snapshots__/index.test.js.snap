@@ -2,19 +2,17 @@
 
 exports[`<Footer /> should render and match the snapshot 1`] = `
 <footer
-  className="Wrapper-wcfdfo-0 dPvBog"
+  className="Wrapper-wcfdfo-0 gKUkCQ"
 >
   <section>
-    <span>
-      This project is licensed under the MIT license.
-    </span>
+    This project is licensed under the MIT license.
   </section>
   <section>
     <div
-      className="Wrapper-xnjoq9-0 dNmQIR"
+      className="Wrapper-xnjoq9-0 kJymFL"
     >
       <select
-        className="Select-sc-1sm01tk-0 wIjFa"
+        className="Select-sc-1sm01tk-0 igKyVl"
         onChange={[Function]}
         value="en"
       >
@@ -32,18 +30,16 @@ exports[`<Footer /> should render and match the snapshot 1`] = `
     </div>
   </section>
   <section>
-    <span>
-      
-      Made with love by 
-      <a
-        className="A-br8h0y-0 dwVNvo"
-        href="https://twitter.com/mxstbr"
-      >
-        Max Stoiber
-      </a>
-      .
     
-    </span>
+      Made with love by 
+    <a
+      className="A-br8h0y-0 hIdlSr"
+      href="https://twitter.com/mxstbr"
+    >
+      Max Stoiber
+    </a>
+    .
+    
   </section>
 </footer>
 `;

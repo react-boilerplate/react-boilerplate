@@ -49,23 +49,23 @@ function polyfill(locale) {
       default:
         require('@formatjs/intl-relativetimeformat/locale-data/en')
         break
-      case 'fr':
-        require('@formatjs/intl-relativetimeformat/locale-data/fr')
+      case 'de':
+        require('@formatjs/intl-relativetimeformat/locale-data/de')
         break
     }
   }
 }
-polyfill('en');
 
 const DEFAULT_LOCALE = 'en';
 
 // prettier-ignore
 const appLocales = [
-  'en',
+  DEFAULT_LOCALE,
   'de',
 ];
 
 const formatTranslationMessages = (locale, messages) => {
+  polyfill(locale);
   const defaultFormattedMessages =
     locale !== DEFAULT_LOCALE
       ? formatTranslationMessages(DEFAULT_LOCALE, enTranslationMessages)

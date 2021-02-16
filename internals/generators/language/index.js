@@ -52,6 +52,7 @@ module.exports = {
       });
     }
 
+    // TODO: replace with @pluralRules and relativeTimeFormat
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
@@ -70,6 +71,7 @@ module.exports = {
       pattern: /(const ..TranslationMessages = require\('\.\/translations\/..\.json'\);\n)(?!const ..TranslationMessages = require\('\.\/translations\/..\.json'\);\n)/g,
       templateFile: './language/translation-messages.hbs',
     });
+    // TODO: remove
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',

@@ -60,15 +60,15 @@ describe('injectReducer decorator', () => {
         <ComponentWithReducer {...props} />
       </Provider>,
     );
-    const {
-      props: { children },
-    } = renderedComponent.getInstance();
 
-    expect(children.props).toEqual(props);
+    const child = renderedComponent.root.findByType(Component);
+
+    expect(child.props).toEqual(props);
   });
 });
 
 describe('useInjectReducer hook', () => {
+  jest.mock('../reducerInjectors');
   let store;
   let injectors;
   let ComponentWithReducer;
@@ -77,21 +77,19 @@ describe('useInjectReducer hook', () => {
     injectors = {
       injectReducer: jest.fn(),
     };
-    reducerInjectors.default = jest.fn().mockImplementation(() => injectors);
     store = configureStore({}, memoryHistory);
-    ComponentWithReducer = () => {
-      useInjectReducer({ key: 'test', reducer });
-      return null;
-    };
+    reducerInjectors.default.mockImplementation(() => injectors);
+    ComponentWithReducer = injectReducer({ key: 'test', reducer })(Component);
   });
 
   it('should inject a given reducer', () => {
-    render(
+    renderer.create(
       <Provider store={store}>
         <ComponentWithReducer />
       </Provider>,
     );
 
+    expect(reducerInjectors.default).toHaveBeenCalledWith(store);
     expect(injectors.injectReducer).toHaveBeenCalledTimes(1);
     expect(injectors.injectReducer).toHaveBeenCalledWith('test', reducer);
   });

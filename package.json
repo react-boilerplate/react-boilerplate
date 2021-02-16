@@ -8,7 +8,7 @@
   },
   "engines": {
     "npm": ">=5",
-    "node": ">=8.15.1"
+    "node": ">=12.16.1"
   },
   "author": "Max Stoiber",
   "license": "MIT",
@@ -18,6 +18,7 @@
     "analyze": "node ./internals/scripts/analyze.js",
     "extract-intl": "node ./internals/scripts/extract-intl.js",
     "npmcheckversion": "node ./internals/scripts/npmcheckversion.js",
+    "npmcheckupdates": "npx nmp-check-updates",
     "preinstall": "npm run npmcheckversion",
     "prebuild": "npm run build:clean",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
@@ -37,7 +38,7 @@
     "lint:eslint:fix": "eslint --ignore-path .gitignore --ignore-pattern internals/scripts --fix",
     "lint:js": "npm run lint:eslint -- . ",
     "lint:staged": "lint-staged",
-    "pretest": "npm run test:clean && npm run lint",
+    "pretest": "npm run test:clean",
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",

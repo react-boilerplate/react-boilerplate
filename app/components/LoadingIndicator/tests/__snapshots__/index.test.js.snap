@@ -24,8 +24,8 @@ exports[`<LoadingIndicator /> should match the snapshot 1`] = `
   height: 15%;
   background-color: #999;
   border-radius: 100%;
-  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
-  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation: hRYYZp 1.2s infinite ease-in-out both;
+  animation: hRYYZp 1.2s infinite ease-in-out both;
 }
 
 .c2 {
@@ -49,8 +49,8 @@ exports[`<LoadingIndicator /> should match the snapshot 1`] = `
   height: 15%;
   background-color: #999;
   border-radius: 100%;
-  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
-  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation: hRYYZp 1.2s infinite ease-in-out both;
+  animation: hRYYZp 1.2s infinite ease-in-out both;
   -webkit-animation-delay: -1.1s;
   -webkit-animation-delay: -1.1s;
   animation-delay: -1.1s;
@@ -77,8 +77,8 @@ exports[`<LoadingIndicator /> should match the snapshot 1`] = `
   height: 15%;
   background-color: #999;
   border-radius: 100%;
-  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
-  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation: hRYYZp 1.2s infinite ease-in-out both;
+  animation: hRYYZp 1.2s infinite ease-in-out both;
   -webkit-animation-delay: -1s;
   -webkit-animation-delay: -1s;
   animation-delay: -1s;
@@ -105,8 +105,8 @@ exports[`<LoadingIndicator /> should match the snapshot 1`] = `
   height: 15%;
   background-color: #999;
   border-radius: 100%;
-  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
-  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation: hRYYZp 1.2s infinite ease-in-out both;
+  animation: hRYYZp 1.2s infinite ease-in-out both;
   -webkit-animation-delay: -0.9s;
   -webkit-animation-delay: -0.9s;
   animation-delay: -0.9s;
@@ -133,8 +133,8 @@ exports[`<LoadingIndicator /> should match the snapshot 1`] = `
   height: 15%;
   background-color: #999;
   border-radius: 100%;
-  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
-  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation: hRYYZp 1.2s infinite ease-in-out both;
+  animation: hRYYZp 1.2s infinite ease-in-out both;
   -webkit-animation-delay: -0.8s;
   -webkit-animation-delay: -0.8s;
   animation-delay: -0.8s;
@@ -161,8 +161,8 @@ exports[`<LoadingIndicator /> should match the snapshot 1`] = `
   height: 15%;
   background-color: #999;
   border-radius: 100%;
-  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
-  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation: hRYYZp 1.2s infinite ease-in-out both;
+  animation: hRYYZp 1.2s infinite ease-in-out both;
   -webkit-animation-delay: -0.7s;
   -webkit-animation-delay: -0.7s;
   animation-delay: -0.7s;
@@ -189,8 +189,8 @@ exports[`<LoadingIndicator /> should match the snapshot 1`] = `
   height: 15%;
   background-color: #999;
   border-radius: 100%;
-  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
-  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation: hRYYZp 1.2s infinite ease-in-out both;
+  animation: hRYYZp 1.2s infinite ease-in-out both;
   -webkit-animation-delay: -0.6s;
   -webkit-animation-delay: -0.6s;
   animation-delay: -0.6s;
@@ -217,8 +217,8 @@ exports[`<LoadingIndicator /> should match the snapshot 1`] = `
   height: 15%;
   background-color: #999;
   border-radius: 100%;
-  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
-  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation: hRYYZp 1.2s infinite ease-in-out both;
+  animation: hRYYZp 1.2s infinite ease-in-out both;
   -webkit-animation-delay: -0.5s;
   -webkit-animation-delay: -0.5s;
   animation-delay: -0.5s;
@@ -245,8 +245,8 @@ exports[`<LoadingIndicator /> should match the snapshot 1`] = `
   height: 15%;
   background-color: #999;
   border-radius: 100%;
-  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
-  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation: hRYYZp 1.2s infinite ease-in-out both;
+  animation: hRYYZp 1.2s infinite ease-in-out both;
   -webkit-animation-delay: -0.4s;
   -webkit-animation-delay: -0.4s;
   animation-delay: -0.4s;
@@ -273,8 +273,8 @@ exports[`<LoadingIndicator /> should match the snapshot 1`] = `
   height: 15%;
   background-color: #999;
   border-radius: 100%;
-  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
-  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation: hRYYZp 1.2s infinite ease-in-out both;
+  animation: hRYYZp 1.2s infinite ease-in-out both;
   -webkit-animation-delay: -0.3s;
   -webkit-animation-delay: -0.3s;
   animation-delay: -0.3s;
@@ -301,8 +301,8 @@ exports[`<LoadingIndicator /> should match the snapshot 1`] = `
   height: 15%;
   background-color: #999;
   border-radius: 100%;
-  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
-  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation: hRYYZp 1.2s infinite ease-in-out both;
+  animation: hRYYZp 1.2s infinite ease-in-out both;
   -webkit-animation-delay: -0.2s;
   -webkit-animation-delay: -0.2s;
   animation-delay: -0.2s;
@@ -329,8 +329,8 @@ exports[`<LoadingIndicator /> should match the snapshot 1`] = `
   height: 15%;
   background-color: #999;
   border-radius: 100%;
-  -webkit-animation: evVlQQ 1.2s infinite ease-in-out both;
-  animation: evVlQQ 1.2s infinite ease-in-out both;
+  -webkit-animation: hRYYZp 1.2s infinite ease-in-out both;
+  animation: hRYYZp 1.2s infinite ease-in-out both;
   -webkit-animation-delay: -0.1s;
   -webkit-animation-delay: -0.1s;
   animation-delay: -0.1s;
