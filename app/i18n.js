@@ -19,46 +19,45 @@ const {shouldPolyfill: shouldPolyfillCannonical } = require('@formatjs/intl-getc
 
 function polyfill(locale) {
   if (shouldPolyfillCannonical()) {
-    require('@formatjs/intl-getcanonicallocales/polyfill')
+    require('@formatjs/intl-getcanonicallocales/polyfill');
   }
   if (shouldPolyfillLocale()) {
-    require('@formatjs/intl-locale/polyfill')
+    require('@formatjs/intl-locale/polyfill');
   }
   if (shouldPolyfillRules()) {
     // Load the polyfill 1st BEFORE loading data
-    require('@formatjs/intl-pluralrules/polyfill')
+    require('@formatjs/intl-pluralrules/polyfill');
   }
 
   if (Intl.PluralRules.polyfilled) {
     switch (locale) {
       default:
-        require('@formatjs/intl-pluralrules/locale-data/en')
-        break
+        require('@formatjs/intl-pluralrules/locale-data/en');
+        break;
       case 'de':
-        require('@formatjs/intl-pluralrules/locale-data/de')
-        break
+        require('@formatjs/intl-pluralrules/locale-data/de');
+        break;
     }
   }
   if (shouldPolyfillRelativeTime()) {
     // Load the polyfill 1st BEFORE loading data
-    require('@formatjs/intl-relativetimeformat/polyfill')
+    require('@formatjs/intl-relativetimeformat/polyfill');
   }
 
   if (Intl.RelativeTimeFormat.polyfilled) {
     switch (locale) {
       default:
-        require('@formatjs/intl-relativetimeformat/locale-data/en')
-        break
+        require('@formatjs/intl-relativetimeformat/locale-data/en');
+        break;
       case 'de':
-        require('@formatjs/intl-relativetimeformat/locale-data/de')
-        break
+        require('@formatjs/intl-relativetimeformat/locale-data/de');
+        break;
     }
   }
 }
 
 const DEFAULT_LOCALE = 'en';
 
-// prettier-ignore
 const appLocales = [
   DEFAULT_LOCALE,
   'de',
