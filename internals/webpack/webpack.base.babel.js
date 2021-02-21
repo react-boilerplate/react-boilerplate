@@ -1,3 +1,4 @@
+/* eslint-disable prefer-object-spread */
 /**
  * COMMON WEBPACK CONFIGURATION
  */

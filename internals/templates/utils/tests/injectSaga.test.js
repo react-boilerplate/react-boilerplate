@@ -24,7 +24,7 @@ jest.mock("../sagaInjectors", () => {
 
 const injectors = sagaInjectors();
 
-import injectSaga, { useInjectSaga } from '../injectSaga';
+import injectSaga, { useInjectSaga } from '../injectSaga'; // eslint-disable-line
 
 // Fixtures
 const Component = () => null;
