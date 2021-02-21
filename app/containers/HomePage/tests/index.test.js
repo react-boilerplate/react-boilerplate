@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { act, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router-dom';

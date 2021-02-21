@@ -72,21 +72,25 @@ describe('injectReducer decorator', () => {
 
 describe('useInjectReducer hook', () => {
   let store;
-  let ComponentWithReducer;
+  let ComponentWithHook;
 
   beforeAll(() => {
     store = configureStore({}, memoryHistory);
-    ComponentWithReducer = injectReducer({ key: 'test', reducer })(Component);
+    ComponentWithHook = () => {
+      useInjectReducer({ key: 'test', reducer });
+      return <div/>
+    };
     injectors.injectReducer.mockClear();
     injectors.ejectReducer.mockClear();
   });
 
-  it('should inject a given reducer', () => {
-    renderer.create(
+  it('should inject a given reducer', async () => {
+
+    renderer.act(() => renderer.create(
       <Provider store={store}>
-        <ComponentWithReducer />
+        <ComponentWithHook />
       </Provider>,
-    );
+    ));
 
     expect(injectors.injectReducer).toHaveBeenCalledTimes(1);
     expect(injectors.injectReducer).toHaveBeenCalledWith('test', reducer);
