@@ -60,7 +60,7 @@ describe('injectReducer decorator', () => {
     const props = { testProp: 'test' };
     const renderedComponent = renderer.create(
       <Provider store={store}>
-        <ComponentWithReducer {props} />
+        <ComponentWithReducer {...props} />
       </Provider>,
     );
 
