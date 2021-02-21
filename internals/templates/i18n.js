@@ -8,12 +8,12 @@
  *   You CANNOT use import/export in this file.
  */
 
-const enTranslationMessages = require('./translations/en.json');
+ const { shouldPolyfill: shouldPolyfillRules } = require('@formatjs/intl-pluralrules/should-polyfill');
+const { shouldPolyfill: shouldPolyfillRelativeTime } = require('@formatjs/intl-relativetimeformat/should-polyfill');
+const { shouldPolyfill: shouldPolyfillLocale } = require('@formatjs/intl-locale/should-polyfill');
+const { shouldPolyfill: shouldPolyfillCannonical } = require('@formatjs/intl-getcanonicallocales/should-polyfill');
 
-const {shouldPolyfill: shouldPolyfillRules } = require('@formatjs/intl-pluralrules/should-polyfill');
-const {shouldPolyfill: shouldPolyfillRelativeTime } = require('@formatjs/intl-relativetimeformat/should-polyfill');
-const {shouldPolyfill: shouldPolyfillLocale } = require('@formatjs/intl-locale/should-polyfill');
-const {shouldPolyfill: shouldPolyfillCannonical } = require('@formatjs/intl-getcanonicallocales/should-polyfill');
+const enTranslationMessages = require('./translations/en.json');
 
 
 function polyfill(locale) {

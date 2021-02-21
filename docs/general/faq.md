@@ -100,7 +100,7 @@ Read more at https://github.com/NekR/offline-plugin/blob/master/docs/updates.md
 
 ## Local webfonts not working for development
 
-In development mode CSS sourcemaps require that styling is loaded by blob://,
+In development mode CSS s require that styling is loaded by blob://,
 resulting in browsers resolving font files relative to the main document.
 
 A way to use local webfonts in development mode is to add an absolute
