@@ -19,7 +19,7 @@ jest.mock("../reducerInjectors", () => {
   return getInjectors;
 });
 
-import injectReducer, { useInjectReducer } from '../injectReducer';
+import injectReducer, { useInjectReducer } from '../injectReducer'; // eslint-disable-line
 
 
 // Fixtures

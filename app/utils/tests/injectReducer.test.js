@@ -19,7 +19,7 @@ jest.mock("../reducerInjectors", () => {
   return getInjectors;
 });
 
-import injectReducer, { useInjectReducer } from '../injectReducer';
+import injectReducer, { useInjectReducer } from '../injectReducer'; // eslint-disable-line
 
 
 // Fixtures
@@ -60,7 +60,7 @@ describe('injectReducer decorator', () => {
     const props = { testProp: 'test' };
     const renderedComponent = renderer.create(
       <Provider store={store}>
-        <ComponentWithReducer {...props} />
+        <ComponentWithReducer {props} />
       </Provider>,
     );
 
