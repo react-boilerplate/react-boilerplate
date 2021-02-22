@@ -72,7 +72,7 @@
     "intl": "1.2.5",
     "invariant": "2.2.4",
     "ip": "1.1.5",
-    "lodash": "4.17.15",
+    "lodash": "4.17.21",
     "minimist": "1.2.0",
     "offline-plugin": "5.0.7",
     "prop-types": "15.7.2",
