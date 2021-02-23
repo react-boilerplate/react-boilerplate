@@ -2,49 +2,49 @@
 
 exports[`<ReposList /> should render the loading indicator when its loading 1`] = `
 <div
-  class="Wrapper-sc-1umgotm-0 laCwDT"
+  class="Wrapper-sc-1umgotm-0 cTMECS"
 >
   <ul
-    class="Ul-mwnq6h-0 jcxXFy"
+    class="Ul-mwnq6h-0 eRDZZH"
   >
     <div
-      class="Wrapper-sc-12uw37d-0 bTWIVF"
+      class="Wrapper-sc-12uw37d-0 fGJsLF"
     >
       <div
-        class="Circle__CirclePrimitive-ww56dy-0 enQIMS"
+        class="Circle__CirclePrimitive-ww56dy-0 cOZGBv"
       />
       <div
-        class="Circle__CirclePrimitive-ww56dy-0 jCxmwS"
+        class="Circle__CirclePrimitive-ww56dy-0 jGyTHs"
       />
       <div
-        class="Circle__CirclePrimitive-ww56dy-0 dyFXB"
+        class="Circle__CirclePrimitive-ww56dy-0 kUvQVN"
       />
       <div
-        class="Circle__CirclePrimitive-ww56dy-0 ikwUeP"
+        class="Circle__CirclePrimitive-ww56dy-0 ecKOfy"
       />
       <div
-        class="Circle__CirclePrimitive-ww56dy-0 hwlQRz"
+        class="Circle__CirclePrimitive-ww56dy-0 ciGHiw"
       />
       <div
-        class="Circle__CirclePrimitive-ww56dy-0 jjXxyb"
+        class="Circle__CirclePrimitive-ww56dy-0 AAkKr"
       />
       <div
-        class="Circle__CirclePrimitive-ww56dy-0 jVExkJ"
+        class="Circle__CirclePrimitive-ww56dy-0 keXZZa"
       />
       <div
-        class="Circle__CirclePrimitive-ww56dy-0 haCVIz"
+        class="Circle__CirclePrimitive-ww56dy-0 UBCFA"
       />
       <div
-        class="Circle__CirclePrimitive-ww56dy-0 ghhiLZ"
+        class="Circle__CirclePrimitive-ww56dy-0 jUfWth"
       />
       <div
-        class="Circle__CirclePrimitive-ww56dy-0 bCbqdt"
+        class="Circle__CirclePrimitive-ww56dy-0 fjfAtK"
       />
       <div
-        class="Circle__CirclePrimitive-ww56dy-0 hZPQMA"
+        class="Circle__CirclePrimitive-ww56dy-0 lhQmTI"
       />
       <div
-        class="Circle__CirclePrimitive-ww56dy-0 fsGOmP"
+        class="Circle__CirclePrimitive-ww56dy-0 htVEzr"
       />
     </div>
   </ul>
@@ -53,34 +53,34 @@ exports[`<ReposList /> should render the loading indicator when its loading 1`] 
 
 exports[`<ReposList /> should render the repositories if loading was successful 1`] = `
 <div
-  class="Wrapper-sc-1umgotm-0 laCwDT"
+  class="Wrapper-sc-1umgotm-0 cTMECS"
 >
   <ul
-    class="Ul-mwnq6h-0 jcxXFy"
+    class="Ul-mwnq6h-0 eRDZZH"
   >
     <li
-      class="Wrapper-euo0oy-0 jLvxtc"
+      class="Wrapper-euo0oy-0 ibSUIe"
     >
       <div
-        class="Item-sc-3y9mie-0 fKXSkT"
+        class="Item-sc-3y9mie-0 kYKzDe"
       >
         <div
-          class="Wrapper-sc-17s0rao-0 dlZQhZ"
+          class="Wrapper-sc-17s0rao-0 RQzWL"
         >
           <a
-            class="A-br8h0y-0 RepoLink-pvpwpn-0 eEveIZ"
+            class="A-br8h0y-0 RepoLink-pvpwpn-0 hIdlSr kbBOw"
             href="https://github.com/react-boilerplate/react-boilerplate"
             target="_blank"
           >
             react-boilerplate
           </a>
           <a
-            class="A-br8h0y-0 IssueLink-uyzonb-0 kUUUnc"
+            class="A-br8h0y-0 IssueLink-uyzonb-0 hIdlSr fTLVom"
             href="https://github.com/react-boilerplate/react-boilerplate/issues"
             target="_blank"
           >
             <svg
-              class="IssueIcon-s8m34y-0 jEBeEF"
+              class="IssueIcon-s8m34y-0 drzuHG"
               height="1em"
               width="0.875em"
             >
@@ -88,9 +88,7 @@ exports[`<ReposList /> should render the repositories if loading was successful 
                 d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z m1 3H6v5h2V4z m0 6H6v2h2V10z"
               />
             </svg>
-            <span>
-              20
-            </span>
+            20
           </a>
         </div>
       </div>

@@ -4,49 +4,39 @@ exports[`<HomePage /> should render and match the snapshot 1`] = `
 <article>
   <div>
     <section
-      class="Section-sc-1eulrsm-0 CenteredSection-sc-6zy0wx-0 imGCbL"
+      class="Section-sc-1eulrsm-0 CenteredSection-sc-6zy0wx-0 bWVmWd ioTIpK"
     >
       <h2
-        class="H2-egphza-0 HsCXl"
+        class="H2-egphza-0 dbcEJu"
       >
-        <span>
-          Start your next react project in seconds
-        </span>
+        Start your next react project in seconds
       </h2>
       <p>
-        <span>
-          A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices
-        </span>
+        A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices
       </p>
     </section>
     <section
-      class="Section-sc-1eulrsm-0 eTEsZl"
+      class="Section-sc-1eulrsm-0 bWVmWd"
     >
       <h2
-        class="H2-egphza-0 HsCXl"
+        class="H2-egphza-0 dbcEJu"
       >
-        <span>
-          Try me!
-        </span>
+        Try me!
       </h2>
       <form
-        class="Form-dmhz4x-0 ZClLh"
+        class="Form-dmhz4x-0 ffWJHY"
       >
         <label
           for="username"
         >
-          <span>
-            Show Github repositories by
-          </span>
+          Show Github repositories by
           <span
-            class="AtPrefix-sc-1suuq8o-0 fvrDQr"
+            class="AtPrefix-sc-1suuq8o-0 ioJcLB"
           >
-            <span>
-              @
-            </span>
+            @
           </span>
           <input
-            class="Input-sc-19rkjmi-0 gyJaEd"
+            class="Input-sc-19rkjmi-0 fsleiu"
             id="username"
             placeholder="mxstbr"
             type="text"
@@ -55,10 +45,10 @@ exports[`<HomePage /> should render and match the snapshot 1`] = `
         </label>
       </form>
       <div
-        class="Wrapper-sc-1umgotm-0 laCwDT"
+        class="Wrapper-sc-1umgotm-0 cTMECS"
       >
         <ul
-          class="Ul-mwnq6h-0 jcxXFy"
+          class="Ul-mwnq6h-0 eRDZZH"
         />
       </div>
     </section>

@@ -3,6 +3,13 @@
 exports[`<IssueLink /> should match the snapshot 1`] = `
 .c0 {
   color: #41addd;
+}
+
+.c0:hover {
+  color: #6cc0e5;
+}
+
+.c1 {
   height: 100%;
   color: black;
   display: -webkit-box;
@@ -20,11 +27,7 @@ exports[`<IssueLink /> should match the snapshot 1`] = `
   white-space: nowrap;
 }
 
-.c0:hover {
-  color: #6cc0e5;
-}
-
 <a
-  className="c0"
+  className="c0 c1"
 />
 `;

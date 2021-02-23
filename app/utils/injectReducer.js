@@ -1,3 +1,4 @@
+/* eslint-disable react/static-property-placement */
 import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { ReactReduxContext } from 'react-redux';
@@ -28,7 +29,7 @@ export default ({ key, reducer }) => WrappedComponent => {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      return <WrappedComponent {...this.props} />; // eslint-disable-line react/jsx-props-no-spreading
     }
   }
 

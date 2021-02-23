@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /**
  * i18n.js
  *
@@ -7,21 +8,56 @@
  *   script `extract-intl`, and must use CommonJS module syntax
  *   You CANNOT use import/export in this file.
  */
-const addLocaleData = require('react-intl').addLocaleData; //eslint-disable-line
-const enLocaleData = require('react-intl/locale-data/en');
+
+const { shouldPolyfill: shouldPolyfillRules } = require('@formatjs/intl-pluralrules/should-polyfill');
+const { shouldPolyfill: shouldPolyfillRelativeTime } = require('@formatjs/intl-relativetimeformat/should-polyfill');
+const { shouldPolyfill: shouldPolyfillLocale } = require('@formatjs/intl-locale/should-polyfill');
+const { shouldPolyfill: shouldPolyfillCannonical } = require('@formatjs/intl-getcanonicallocales/should-polyfill');
 
 const enTranslationMessages = require('./translations/en.json');
 
-addLocaleData(enLocaleData);
+
+function polyfill(locale) {
+  if (shouldPolyfillCannonical()) {
+    require('@formatjs/intl-getcanonicallocales/polyfill');
+  }
+  if (shouldPolyfillLocale()) {
+    require('@formatjs/intl-locale/polyfill');
+  }
+  if (shouldPolyfillRules()) {
+    // Load the polyfill 1st BEFORE loading data
+    require('@formatjs/intl-pluralrules/polyfill');
+  }
+
+  if (Intl.PluralRules.polyfilled) {
+    switch (locale) {
+      default:
+        require('@formatjs/intl-pluralrules/locale-data/en');
+        break;
+    }
+  }
+  if (shouldPolyfillRelativeTime()) {
+    // Load the polyfill 1st BEFORE loading data
+    require('@formatjs/intl-relativetimeformat/polyfill');
+  }
+
+  if (Intl.RelativeTimeFormat.polyfilled) {
+    switch (locale) {
+      default:
+        require('@formatjs/intl-relativetimeformat/locale-data/en');
+        break;
+    }
+  }
+}
 
 const DEFAULT_LOCALE = 'en';
 
-// prettier-ignore
 const appLocales = [
-  'en',
+  DEFAULT_LOCALE,
 ];
 
 const formatTranslationMessages = (locale, messages) => {
+  polyfill(locale);
   const defaultFormattedMessages =
     locale !== DEFAULT_LOCALE
       ? formatTranslationMessages(DEFAULT_LOCALE, enTranslationMessages)

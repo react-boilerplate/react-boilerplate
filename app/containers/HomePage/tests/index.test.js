@@ -33,7 +33,7 @@ describe('<HomePage />', () => {
     expect(firstChild).toMatchSnapshot();
   });
 
-  it('should fetch the repos on mount if a username exists', () => {
+  it('should fetch the repos on mount if a username exists', async () => {
     const submitSpy = jest.fn();
     render(
       <Provider store={store}>
@@ -44,7 +44,7 @@ describe('<HomePage />', () => {
             onSubmitForm={submitSpy}
           />
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     expect(submitSpy).toHaveBeenCalled();
   });

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /**
  * Test injectors
  */
@@ -6,33 +7,36 @@ import { memoryHistory } from 'react-router-dom';
 import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
-import { render } from 'react-testing-library';
 
 import configureStore from '../../configureStore';
-import injectReducer, { useInjectReducer } from '../injectReducer';
-import * as reducerInjectors from '../reducerInjectors';
+import reducerInjectors from '../reducerInjectors';
+jest.mock("../reducerInjectors", () => {
+  const injectReducer = jest.fn();
+  const ejectReducer = jest.fn();
+  const getInjectors = () => ({
+    injectReducer,
+    ejectReducer
+  });
+  return getInjectors;
+});
+
+import injectReducer, { useInjectReducer } from '../injectReducer'; // eslint-disable-line
+
 
 // Fixtures
+const injectors = reducerInjectors();
 const Component = () => null;
 
 const reducer = s => s;
 
 describe('injectReducer decorator', () => {
   let store;
-  let injectors;
   let ComponentWithReducer;
 
-  beforeAll(() => {
-    reducerInjectors.default = jest.fn().mockImplementation(() => injectors);
-  });
 
   beforeEach(() => {
     store = configureStore({}, memoryHistory);
-    injectors = {
-      injectReducer: jest.fn(),
-    };
     ComponentWithReducer = injectReducer({ key: 'test', reducer })(Component);
-    reducerInjectors.default.mockClear();
   });
 
   it('should inject a given reducer', () => {
@@ -60,37 +64,34 @@ describe('injectReducer decorator', () => {
         <ComponentWithReducer {...props} />
       </Provider>,
     );
-    const {
-      props: { children },
-    } = renderedComponent.getInstance();
 
-    expect(children.props).toEqual(props);
+    const child = renderedComponent.root.findByType(Component);
+
+    expect(child.props).toEqual(props);
   });
 });
 
 describe('useInjectReducer hook', () => {
   let store;
-  let injectors;
-  let ComponentWithReducer;
+  let ComponentWithHook;
 
   beforeAll(() => {
-    injectors = {
-      injectReducer: jest.fn(),
-    };
-    reducerInjectors.default = jest.fn().mockImplementation(() => injectors);
     store = configureStore({}, memoryHistory);
-    ComponentWithReducer = () => {
+    ComponentWithHook = () => {
       useInjectReducer({ key: 'test', reducer });
-      return null;
+      return <div/>
     };
+    injectors.injectReducer.mockClear();
+    injectors.ejectReducer.mockClear();
   });
 
-  it('should inject a given reducer', () => {
-    render(
+  it('should inject a given reducer', async () => {
+
+    renderer.act(() => renderer.create(
       <Provider store={store}>
-        <ComponentWithReducer />
+        <ComponentWithHook />
       </Provider>,
-    );
+    ));
 
     expect(injectors.injectReducer).toHaveBeenCalledTimes(1);
     expect(injectors.injectReducer).toHaveBeenCalledWith('test', reducer);

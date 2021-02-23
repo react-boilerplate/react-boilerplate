@@ -55,31 +55,32 @@ module.exports = {
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
-      pattern: /(const ..LocaleData = require\('react-intl\/locale-data\/..'\);\n)+/g,
-      templateFile: './language/intl-locale-data.hbs',
+      pattern: /(((default)|(case\s'[a-z]+')):\n\s+require\('@formatjs\/intl-pluralrules\/locale-data\/..'\);\n\s+break;)+/,
+      templateFile: './language/intl-pluralrules-locale-data.hbs',
     });
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
-      pattern: /(\s+'[a-z]+',\n)(?!.*\s+'[a-z]+',)/g,
+      pattern: /(((default)|(case\s'[a-z]+')):\n\s+require\('@formatjs\/intl-relativetimeformat\/locale-data\/..'\);\n\s+break;)+/,
+      templateFile: './language/intl-relativetimeformate-locale-data.hbs',
+    });
+
+    actions.push({
+      type: 'modify',
+      path: '../../app/i18n.js',
+      pattern: /(const\sappLocales\s=\s\[\n\s+DEFAULT_LOCALE,)/,
       templateFile: './language/app-locale.hbs',
     });
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
-      pattern: /(const ..TranslationMessages = require\('\.\/translations\/..\.json'\);\n)(?!const ..TranslationMessages = require\('\.\/translations\/..\.json'\);\n)/g,
+      pattern: /(const ..TranslationMessages = require\('\.\/translations\/..\.json'\);\n)(?!const ..TranslationMessages = require\('\.\/translations\/..\.json'\);\n)/,
       templateFile: './language/translation-messages.hbs',
     });
     actions.push({
       type: 'modify',
       path: '../../app/i18n.js',
-      pattern: /(addLocaleData\([a-z]+LocaleData\);\n)(?!.*addLocaleData\([a-z]+LocaleData\);)/g,
-      templateFile: './language/add-locale-data.hbs',
-    });
-    actions.push({
-      type: 'modify',
-      path: '../../app/i18n.js',
-      pattern: /([a-z]+:\sformatTranslationMessages\('[a-z]+',\s[a-z]+TranslationMessages\),\n)(?!.*[a-z]+:\sformatTranslationMessages\('[a-z]+',\s[a-z]+TranslationMessages\),)/g,
+      pattern: /([a-z]+:\sformatTranslationMessages\('[a-z]+',\s[a-z]+TranslationMessages\),\n)(?!.*[a-z]+:\sformatTranslationMessages\('[a-z]+',\s[a-z]+TranslationMessages,\))/,
       templateFile: './language/format-translation-messages.hbs',
     });
     actions.push({
@@ -91,7 +92,7 @@ module.exports = {
     actions.push({
       type: 'modify',
       path: '../../app/app.js',
-      pattern: /(import\('intl\/locale-data\/jsonp\/[a-z]+\.js'\),\n)(?!.*import\('intl\/locale-data\/jsonp\/[a-z]+\.js'\),)/g,
+      pattern: /(import\('intl\/locale-data\/jsonp\/[a-z]+\.js'\),\n)(?!.*import\('intl\/locale-data\/jsonp\/[a-z]+\.js,'\))/g,
       templateFile: './language/polyfill-intl-locale.hbs',
     });
 
