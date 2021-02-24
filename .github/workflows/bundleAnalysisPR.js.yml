@@ -1,0 +1,31 @@
+
+name: PR Analysis
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  CompareBundleSize:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node.j 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Install Dependencies
+      run: npm ci
+    - name: Webpack Stats
+      run: npm run analyze
+    - name: Download head artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: main-stats
+    - name: Compare & Comment
+      uses: chronotruck/webpack-stats-diff-action@1.0.0 # https://github.com/marketplace/actions/webpack-stats-difference
+      with:
+        base_stats_path: 'stats.json'
+        head_stats_path: 'main-stats.json'
+        token: ${{ secrets.GITHUB_TOKEN }}

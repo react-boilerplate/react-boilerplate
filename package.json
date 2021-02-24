@@ -38,11 +38,11 @@
     "lint:eslint:fix": "eslint --ignore-path .gitignore --ignore-pattern internals/scripts --fix",
     "lint:js": "npm run lint:eslint -- . ",
     "lint:staged": "lint-staged",
-    "pretest": "npm run test:clean",
-    "test:clean": "rimraf ./coverage",
-    "test": "cross-env NODE_ENV=test jest --coverage",
+    "pretest:coverage": "npm run test:clean",
+    "test:clean": "rm -f ./coverage-summary.json",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:coverage": "cross-env NODE_ENV=test jest --silent --coverage --coverageDirectory='./' --coverageReporters=\"json-summary\"",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
-    "coveralls": "cat ./coverage/lcov.info | coveralls",
     "prettify": "prettier --write"
   },
   "browserslist": [
@@ -122,7 +122,6 @@
     "circular-dependency-plugin": "5.2.2",
     "compare-versions": "3.6.0",
     "compression-webpack-plugin": "^7.1.2",
-    "coveralls": "3.1.0",
     "css-loader": "5.0.2",
     "eslint": "7.20.0",
     "eslint-config-airbnb": "18.2.1",

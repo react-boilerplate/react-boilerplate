@@ -1,0 +1,65 @@
+
+
+name: Test App
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  Jest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node.j ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install Dependencies
+      run: npm ci
+    - name: Test
+      run: npm run test
+
+  Coverage:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm ci
+    - name: TestCoverage
+      id: testCovergae
+      uses: anuraag016/Jest-Coverage-Diff@master
+      with:
+        fullCoverageDiff: false
+        runCommand: "npm run test:coverage"
+
+  # # Comment on code lines where tests fail
+  # TestResultComments:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: mattallty/jest-github-action@v1
+  #     env:
+  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     with:
+  #       test-command: "npm run test"
+  #       coverage-comment: true
+  #       changes-only: true
+
+  # TestCoverage:
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     CI_JOB_NUMBER: 1
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - uses: artiomtr/jest-coverage-report-action@v1.0
+  #     with:
+  #       github_token: ${{ secrets.GITHUB_TOKEN }}

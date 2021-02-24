@@ -1,5 +1,5 @@
 # Don't check auto-generated stuff into git
-coverage
+coverage-summary.json
 build
 node_modules
 stats.json
