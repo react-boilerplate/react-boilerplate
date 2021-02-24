@@ -39,7 +39,7 @@
     "lint:js": "npm run lint:eslint -- . ",
     "lint:staged": "lint-staged",
     "pretest:coverage": "npm run test:clean",
-    "test:clean": "rm -f ./coverage-summary.json",
+    "test:clean": "rimraf ./coverage-summary.json",
     "test": "cross-env NODE_ENV=test jest",
     "test:coverage": "cross-env NODE_ENV=test jest --silent --coverage --coverageDirectory='./' --coverageReporters=\"json-summary\"",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
