@@ -11,10 +11,9 @@ they do.
 
 - `.gitignore`: Tells `git` to ignore certain files and folders which don't need to be version controlled, like the build folder.
 
-- `.travis.yml` and `appveyor.yml`: Continuous Integration configuration<br/>
-  This boilerplate uses [Travis CI](https://travis-ci.com) for Linux environments
-  and [AppVeyor](https://www.appveyor.com/) for Windows platforms, but feel free
-  to swap either out for your own choice of CI.
+- `.github/workflows/*`: Continuous Integration configuration<br/>
+- `.github/ISSUE_TEMPLATE`: Template for github Issues<br/>
+- `.github/PULL_REQUEST_TEMPLATE`: Template for github pull requests<br/>
 
 - `package.json`: Our `npm` configuration file has three functions:
 

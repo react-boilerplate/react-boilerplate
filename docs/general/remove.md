@@ -8,10 +8,10 @@ To remove offline capability, delete the `offline-plugin` from the
 [`app.js`](../../app/app.js) and remove the plugin from the
 [`webpack.prod.babel.js`](../../internals/webpack/webpack.prod.babel.js).
 
-### Removing add to homescreen functionality
+<!-- ### Removing add to homescreen functionality
 
 Delete `webpack-pwa-manifest` from the the list of plugins in
-[`webpack.prod.babel.js`](../../internals/webpack/webpack.prod.babel.js).
+[`webpack.prod.babel.js`](../../internals/webpack/webpack.prod.babel.js). -->
 
 ### Removing performant web font loading
 
