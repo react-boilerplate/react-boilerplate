@@ -17,15 +17,15 @@ _Step 3:_ Follow the standard Heroku deploy process:
 ## AWS S3
 ### USING AWS CLI (fastest):
 _step 1:_ install + configure aws CLI with an IAM role (do not use root).
-- _Install:_ https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
-- _Create IAM role:_ https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html
-- _Configure CLI:_ https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html
+- [Install AWS CLI (aws docs)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+- [Create IAM role (aws docs)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html)
+- [Configure AWS CLI (aws docs)](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
 
 _step 2:_ `npm run build`
 
 _step 3:_  Run our deployment script: `./aws/deploy_s3.sh create-build <URL> <AWS_REGION> <AWS_CLI_PROFILE>` (AWS_CLI_PROFILE is optional)
-- The URL should match the domain name you wish to use, not including www prefix e.g. .`react-boilerplate.com`.
-- The website will be deployed at <URL>.s3-website-<AWS_REGION>.amazonaws.com
+- The URL should match the domain name you wish to use, not including www prefix e.g.`react-boilerplate.com`. See [this tutorial](https://blog.eq8.eu/article/custom-domain-subdomain-for-website-hosted-on-aws-s3.html) for how to configure a custom domain name.
+- The website will be deployed at `<URL>.s3-website-<AWS_REGION>.amazonaws.com`
 - To redeploy after changes, run `npm run build && ./aws/deploy_s3.sh clean-build <URL> <AWS_REGION> <AWS_CLI_PROFILE>`
 ### Using AWS console:
 
