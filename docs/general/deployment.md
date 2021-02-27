@@ -15,8 +15,19 @@ _Step 3:_ Follow the standard Heroku deploy process:
 3.  `git push heroku master`
 
 ## AWS S3
+### USING AWS CLI (fastest):
+_step 1:_ install + configure aws CLI with an IAM role (do not use root).
+- _Install:_ https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
+- _Create IAM role:_ https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html
+- _Configure CLI:_ https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html
 
-### Easy 7-Step Deployment Process
+_step 2:_ `npm run build`
+
+_step 3:_  Run our deployment script: `./aws/deploy_s3.sh create-build <URL> <AWS_REGION> <AWS_CLI_PROFILE>` (AWS_CLI_PROFILE is optional)
+- The URL should match the domain name you wish to use, not including www prefix e.g. .`react-boilerplate.com`.
+- The website will be deployed at <URL>.s3-website-<AWS_REGION>.amazonaws.com
+- To redeploy after changes, run `npm run build && ./aws/deploy_s3.sh clean-build <URL> <AWS_REGION> <AWS_CLI_PROFILE>`
+### Using AWS console:
 
 _Step 1:_ Run `npm install` to install dependencies, then `npm run build` to create the `./build` folder.
 
