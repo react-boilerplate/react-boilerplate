@@ -1,0 +1,36 @@
+#! /usr/bin/env bash
+#
+# Creates cache artifacts to reuse across jobs in CI.
+#
+# Usage:
+#   {{go}} {{cmd}}
+#
+# GitLab CI/CD can cache things across jobs.
+# This command creates cache artifacts to leverage cache and speed 
+# up the pipeline.
+
+# shellcheck source=scripts/plugins/octobot-docker/lib/checks
+. "$_GO_USE_MODULES" 'octobot-docker/compose'
+
+_restore_ci_cache() {
+
+  @go.log INFO "Leveraging cache artifacts."
+
+  if ! [[ -f "docker-images-cache.tar" ]]; then
+    @go.log WARN "No image cache file found"
+    return 0
+  fi
+
+  docker image load -i docker-images-cache.tar
+
+  if [[ $? -ne 0 ]]; then
+      @go.log ERROR "Failed leveraging cache artifacts."
+      return 1
+  fi
+
+  @go.log INFO "Cache artifacts successfully restored."
+  return 0
+
+}
+
+_restore_ci_cache "$@"

@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+#
+# Demo programs for core framework features
+#
+# Provides an interface to demonstration programs, while itself demonstrating
+# the subcommand architecture and the `subcommands` module of the framework.
+#
+# Note that the subcommands are stored in a directory with the same name as this
+# script, but with `.d` appended. The framework knows how to discover the
+# subcommands, execute them, and include them in the parent command's help text.
+
+. "$_GO_USE_MODULES" 'subcommands'
+
+@go.show_subcommands

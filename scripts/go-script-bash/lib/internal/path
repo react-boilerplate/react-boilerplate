@@ -1,0 +1,76 @@
+#! /bin/bash
+
+. "$_GO_CORE_DIR/lib/internal/set-search-paths"
+
+_@go.list_available_commands() {
+  . "$_GO_CORE_DIR/lib/internal/commands"
+  local __go_command_names
+
+  if ! _@go.find_commands "$@"; then
+    echo "ERROR: No commands available in:" >&2
+    local IFS=$'\n'
+    echo "${@/#/  }" >&2
+    return 1
+  fi
+
+  echo "Available commands are:"
+  local IFS=$'\n'
+  echo "${__go_command_names[*]/#/  }"
+}
+
+_@go.set_command_path_and_argv() {
+  if [[ "$#" -eq '0' || -z "$*" ]]; then
+    return 1
+  fi
+
+  local cmd_args=("$@")
+  local cmd_name="${cmd_args[0]}"
+  local cmd_path
+  local try_path
+
+  unset 'cmd_args[0]'
+
+  for try_path in "${_GO_SEARCH_PATHS[@]}"; do
+    try_path="$try_path/$cmd_name"
+
+    if [[ -f "$try_path" && -x "$try_path" ]]; then
+      cmd_path="$try_path"
+      break
+    elif [[ -e "$try_path" ]]; then
+      @go.printf "$try_path is not an executable script\n" >&2
+      return 1
+    fi
+  done
+
+  if [[ -z "$cmd_path" ]]; then
+    printf "Unknown command: ${cmd_name}\n\n" >&2
+    _@go.list_available_commands "${_GO_SEARCH_PATHS[@]}" >&2
+    return 1
+  fi
+
+  local cmd_arg_index=1
+  __go_cmd_name=("$cmd_name")
+
+  for arg in "${cmd_args[@]}"; do
+    # This is most likely to happen during argument completion.
+    if [[ -z "$arg" ]]; then
+      break
+    fi
+
+    try_path="${cmd_path}.d/$arg"
+
+    if [[ ! -e "$try_path" ]]; then
+      break
+    elif [[ ! (-f "$try_path" && -x "$try_path") ]]; then
+      @go.printf "$try_path is not an executable script\n" >&2
+      return 1
+    fi
+
+    __go_cmd_name+=("$arg")
+    cmd_path="$try_path"
+    unset "cmd_args[$((cmd_arg_index++))]"
+  done
+
+  __go_cmd_path="$cmd_path"
+  __go_argv=("${cmd_args[@]}")
+}

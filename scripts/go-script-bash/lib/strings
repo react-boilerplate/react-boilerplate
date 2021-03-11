@@ -1,0 +1,154 @@
+#! /usr/bin/env bash
+#
+# String maniuplation functions
+#
+# Exports:
+#   @go.split
+#     Splits fields from a delimited string into an array defined by the caller
+#
+#   @go.join
+#     Joins multiple items into a string variable defined by the caller
+#
+#   @go.trim
+#     Trims the leading and trailing whitespace from a string
+#
+#   @go.common_prefix
+#     Determines the common prefix for a set of strings
+#
+#   @go.common_parent_path
+#     Determines the common parent directory path from a set of file paths
+#
+# These functions help avoid `IFS`-related pitfalls as described by:
+#
+#   http://mywiki.wooledge.org/Arguments
+
+. "$_GO_USE_MODULES" 'validation'
+
+# DO NOT EDIT: Number of stack trace levels to skip when validation fails.
+export __GO_STRINGS_VALIDATION_SKIP_CALLERS=2
+
+# Splits fields from a delimited string into an array defined by the caller
+#
+# While `IFS= read -ra array_name <<<"$value"` is idiomatic, this function
+# handles two situations. First, it handles splitting strings whose items
+# themselves contain newline characters.
+#
+# Second, it guards against a bug in Bash 4.2.25 (the version in the Ubuntu
+# Precise image used by Travis CI) and not fixed until 4.2.41 whereby the
+# temporary environment of `IFS= read` isn't honored when running in a process
+# substitution. For details, see the message for commit
+# 99ab7805e6ef0a14568d8a100eec03bb2cb03631.
+#
+# Strangely `while IFS= read` does work as expected. See the message for commit
+# 2297b48e3851323c9bfcb567ad794ec58a846d1b.
+#
+# Note that there is no way to escape the delimiter value to make it appear as a
+# valid character in a field.
+#
+# Arguments:
+#   delimiter:   The character separating individual fields
+#   value:       The string to split into individual fields
+#   array_name:  Name of caller's array variable into which to store fields
+@go.split() {
+  @go.validate_identifier_or_die 'Result array name' "$3"
+  local IFS="$1"
+
+  # There are a few subtle interactions handled here.
+  #
+  # To handle items containing newlines, we set `-d ''` so that `read` will
+  # read the entire `value` string (i.e. `$2`). To avoid an EOF error on what
+  # should be a successful read with `-d ''`, we set `-n "${#2}"` to read
+  # exactly the number of characters in `value`.
+  #
+  # When `value` is the empty string, `<<<` will add a newline which will be
+  # read even with `read -n 0` being in effect. Consequently, we `unset` the
+  # result array explicitly (something normally handled by `read -a`) and only
+  # call `read` when the string is not empty.
+  unset "$3"
+  if [[ "${#2}" -ne '0' ]]; then
+    read -ra "$3" -n "${#2}" -d '' <<<"$2"
+  fi
+}
+
+# Joins multiple items into a string variable defined by the caller
+#
+# Encapsulates the use of `IFS` to avoid polluting other portions of the script,
+# and to avoid the need for saving and restoring the original `IFS` value.
+#
+# Arguments:
+#   delimiter:  The character separating individual fields
+#   var_name:   Name of caller's variable to which to assign the joined string
+#   ...:        Elements to join into a string assigned to `var_name`
+@go.join() {
+  @go.validate_identifier_or_die 'Result variable name' "$2"
+  local IFS="$1"
+  printf -v "$2" -- '%s' "${*:3}"
+}
+
+# Trims the leading and trailing whitespace from a string
+#
+# Arguments:
+#   var_name:  Name of the caller's variable containing the string to trim
+@go.trim() {
+  @go.validate_identifier_or_die 'Input/output variable name' "$1"
+  local __go_trim_input__="${!1}"
+
+  if [[ "$__go_trim_input__" =~ ^[[:space:]]+ ]]; then
+    __go_trim_input__="${__go_trim_input__#${BASH_REMATCH[0]}}"
+  fi
+  if [[ "$__go_trim_input__" =~ [[:space:]]+$ ]]; then
+    __go_trim_input__="${__go_trim_input__%${BASH_REMATCH[0]}}"
+  fi
+  printf -v "$1" -- '%s' "$__go_trim_input__"
+}
+
+# Determines the common prefix for a set of strings
+#
+# Will return the empty string for a single argument. This facilitates prefix
+# removal without requiring that the caller check that there is more than one
+# element in an array of strings to avoid checking for the special case of a
+# single string being its own prefix.
+#
+# Arguments:
+#   var_name:   Name of caller's variable to which to assign the common prefix
+#   ...:        Strings to examine to determine the common prefix
+@go.common_prefix() {
+  @go.validate_identifier_or_die 'Result variable name' "$1" \
+    "${__GO_STRINGS_VALIDATION_SKIP_CALLERS}"
+  local _gcp_prefix="$2"
+  local _gcp_prefix_len="${#_gcp_prefix}"
+  local _gcp_item
+
+  for _gcp_item in "${@:3}"; do
+    while [[ "${_gcp_item:0:$_gcp_prefix_len}" != "$_gcp_prefix" ]]; do
+      ((--_gcp_prefix_len))
+      _gcp_prefix="${_gcp_prefix:0:$_gcp_prefix_len}"
+    done
+    if [[ "$_gcp_prefix_len" -eq '0' ]]; then
+      break
+    fi
+  done
+
+  if [[ "$#" -lt '3' ]]; then
+    _gcp_prefix=''
+  fi
+  printf -v "$1" -- '%s' "$_gcp_prefix"
+}
+
+# Determines the common parent directory path from a set of file paths
+#
+# Arguments:
+#   var_name:  Name of caller's variable to which to assign the parent path
+#   ...:       File paths to examine to determine the common parent directory
+@go.common_parent_path() {
+  ((++__GO_STRINGS_VALIDATION_SKIP_CALLERS))
+  @go.common_prefix "$1" "${@:2}"
+  ((--__GO_STRINGS_VALIDATION_SKIP_CALLERS))
+
+  if [[ "${!1}" =~ / ]]; then
+    printf -v "$1" -- '%s' "${!1%/*}/"
+  else
+    # Bash 3.2 won't perform the assignment if the format is the empty string.
+    printf -v "$1" '%s' ''
+  fi
+}

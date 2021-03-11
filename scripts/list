@@ -1,0 +1,31 @@
+#! /usr/bin/env bash
+#
+# Lists the available services for this project.
+#
+# Usage:
+#   {{go}} {{cmd}}
+#
+# This lists the available services for this project. Keep in mind that services
+# named *-data or *-dvc are Data Volume Containers.
+
+# shellcheck source=scripts/plugins/octobot-docker/lib/checks
+. "$_GO_USE_MODULES" 'octobot-docker/compose'
+
+_list() {
+  case "$1" in
+  --complete)
+    @go.log ERROR "Autocomplete disabled"
+    return 1
+    ;;
+  esac
+
+  @go.log INFO "Listing services"
+
+
+  if ! @obot.compose_list_services; then
+    @go.log ERROR "Something went wrong while listing available services."
+  fi
+
+}
+
+_list "$@"

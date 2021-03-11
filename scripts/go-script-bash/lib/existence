@@ -1,0 +1,88 @@
+#! /usr/bin/env bash
+#
+# Checks for the existence and accessibility of files and commands
+#
+# Many of the actual checks are Bash builtins, but these functions provide
+# standard error messages to make reporting missing or inaccessible files
+# easier. They eliminate a lot of boilerplate from scripts that check for
+# initial conditions before processing files and executing commands.
+#
+# Exports:
+#   @go.check_file_exists
+#     Checks whether a file exists and prints an error if not
+#
+#   @go.check_file_readable
+#     Checks whether a file exists and is readable, and prints an error if not
+#
+#   @go.pick_command
+#     Selects the first installed command from a list of possible commands/names
+#
+#   @go.check_command_installed
+#     Checks whether a required command is installed on the system
+
+# Checks whether a file exists and prints an error if not.
+#
+# Arguments:
+#   label:      Label describing the type of file
+#   file_path:  Path to the file to check
+@go.check_file_exists() {
+  if [[ ! -e "$2" ]]; then
+    @go.printf "%s doesn't exist: %s\n" "$1" "$2" >&2
+    return 1
+  fi
+}
+
+# Checks whether a file exists and is readable, and prints an error if not.
+#
+# Arguments:
+#   label:      Label describing the type of file
+#   file_path:  Path to the file to check
+@go.check_file_readable() {
+  if [[ ! -r "$2" ]]; then
+    @go.printf "%s doesn't exist or isn't readable: %s\n" "$1" "$2" >&2
+    return 1
+  fi
+}
+
+# Selects the first installed command from a list of possible commands/names.
+#
+# This may be used to select from a number of different commands, or to select
+# the correct name for a command whose name may differ from system to system.
+#
+# Arguments:
+#   result_var:  Name of the caller-defined variable for the resulting command
+#   ...:         List of commands from which to select the first available
+#
+# Returns:
+#   Zero if any of the commands are installed, nonzero otherwise
+@go.pick_command() {
+  local __go_pick_cmd
+  for __go_pick_cmd in "${@:2}"; do
+    if command -v "$__go_pick_cmd" >/dev/null; then
+      printf -v "$1" -- '%s' "$__go_pick_cmd"
+      return
+    fi
+  done
+  @go.printf 'None of the following commands were found on the system:\n' >&2
+  printf '  %s\n' "${@:2}" >&2
+  return 1
+}
+
+# Checks whether a required command is installed on the system.
+#
+# If the command isn't installed, prints an error message to standard error
+# instructing the user to install the required command.
+#
+# Arguments:
+#   cmd_name:  Name of the command that must be required on the system
+#   err_msg:   Name of the command or other info to use in the error message
+#
+# Returns:
+#   Zero if the command is installed, nonzero otherwise
+@go.check_command_installed() {
+  if ! command -v "$1" >/dev/null; then
+    @go.printf 'Please install %s on your system and try again.\n' \
+      "${2:-$1}" >&2
+    return 1
+  fi
+}

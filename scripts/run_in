@@ -1,0 +1,36 @@
+#! /usr/bin/env bash
+#
+# Runs a command in a given service.
+#
+# Usage:
+#   {{go}} {{cmd}} <service> <command> [command-args]
+#
+# Arguments:
+#   <service>       The `docker-compose` service to run the command.
+#   <command>       Command to run in the service container.
+#   [command-args]  Arguments for the command.
+
+# shellcheck source=scripts/plugins/octobot-docker/lib/checks
+. "$_GO_USE_MODULES" 'octobot-docker/compose'
+
+_run_in() {
+  if [[ $# -lt 2 ]]; then
+    @go.log ERROR "Missing arguments for run_in. See help to learn about invocation"
+    return 1
+  fi
+
+  local _SERVICE=$1
+  shift
+  local _COMMAND=$1
+  shift
+
+  if ! @obot.compose_run $_SERVICE $_COMMAND "$@"; then
+    @go.log ERROR "Something went wrong in the command invocation"
+    return 2
+  else
+    return 0
+  fi
+
+}
+
+_run_in "$@"

@@ -1,0 +1,60 @@
+#! /bin/bash
+#
+# Prefixes <file-paths> with <project-root> or prints <project-root>
+#
+# Usage:
+#   {{go}} {{cmd}} [--existing] [<path>...]
+#
+# Options:
+#   --existing  Only print the paths that already exist
+
+_@go.fullpath_tab_completion() {
+  local word_index="$1"
+  shift
+  local args=("$@")
+  local word="${args[$word_index]}"
+
+  if [[ "$word_index" -eq '0' ]]; then
+    echo '--existing'
+  fi
+  . "$_GO_USE_MODULES" 'complete'
+  @go.compgen -f -- "$word"
+}
+
+_@go.fullpath() {
+  # Tab completions
+  if [[ "$1" == '--complete' ]]; then
+    shift
+    _@go.fullpath_tab_completion "$@"
+    return
+  fi
+
+  local existing_only
+
+  if [[ "$1" == '--existing' ]]; then
+    existing_only='true'
+    shift
+  fi
+
+  if [[ "$#" -eq '0' ]]; then
+    echo "$_GO_ROOTDIR"
+  fi
+
+  local arg
+  local expanded
+  local IFS=
+
+  for arg in "$@"; do
+    if [[ "${arg:0:1}" != '/' ]]; then
+      arg="$_GO_ROOTDIR/$arg"
+    fi
+
+    for expanded in $arg; do
+      if [[ -z "$existing_only" || -e "$expanded" ]]; then
+        echo $expanded
+      fi
+    done
+  done
+}
+
+_@go.fullpath "$@"

@@ -1,0 +1,28 @@
+#! /usr/bin/env bash
+
+# shellcheck source=scripts/go-script-bash/lib/log
+. "$_GO_USE_MODULES" 'log'
+
+# Creates and pushes a tag with the environment and date on the repository
+# Arguments:
+#   $1    Tag name, usually from `_get_build_name`
+@obot.tag_release () {
+  if [[ $# -ne 1 ]]; then
+    @go.log FATAL "No tag name provided"
+  fi
+  local TAG_NAME="$1"
+  @go.log INFO "Tagging and uploading commit as : $TAG_NAME"
+
+  if ! git tag $TAG_NAME; then
+    @go.log ERROR "Failed to create tag $TAG_NAME in this repository"
+    return 1
+  fi
+
+  if ! git push origin $TAG_NAME; then
+    @go.log ERROR "Failed to upload to origin tag $TAG_NAME"
+    return 1
+  fi
+
+  @go.log INFO "Tag and upload successful"
+
+}

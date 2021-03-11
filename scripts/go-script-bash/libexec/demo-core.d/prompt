@@ -1,0 +1,36 @@
+#! /usr/bin/env bash
+#
+# Demonstration of `lib/prompt` capabilities
+#
+# Usage:
+#   {{go}} {{cmd}}
+#
+# Use this program to get a feel for the core `@go.prompt_for_input` and
+# `@go.prompt_for_yes_or_no` functions, and for examples of how to use them in
+# your own scripts.
+
+. "$_GO_USE_MODULES" 'prompt'
+
+_@go.prompt_demo() {
+  local name
+  local quest='To seek the grail!'
+
+  # No default value; returns error on no input.
+  if ! @go.prompt_for_input 'name' $'What is your name?\n' '' \
+    'Run away, Sir or Madam Not Appearing in this Film! Run away!'; then
+    return 1
+  fi
+  @go.printf 'Nice to meet you, %s!\n' "$name"
+
+  if @go.prompt_for_yes_or_no 'Do you have a quest?' 'yes'; then
+    # Default value applies if input is empty. Since there is a default, this
+    # won't return an error on no input.
+    @go.prompt_for_input 'quest' $'What is your quest?\n' "$quest"
+  elif ! @go.prompt_for_yes_or_no "Might I suggest: $quest" 'yes'; then
+    @go.printf 'OK, no quest. Suit yourself!\n'
+    return 1
+  fi
+  @go.printf 'Your quest is: %s\n' "$quest"
+}
+
+_@go.prompt_demo "$@"

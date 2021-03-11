@@ -1,0 +1,410 @@
+#! /bin/bash
+#
+# List optional Bash modules available for import via `. "$_GO_USE_MODULES"`
+#
+# Usage:
+#   A list of all available modules by class (core, internal, public, plugins):
+#   {{go}} {{cmd}} [--paths|--summaries]
+#
+#   The paths or one-line summaries for all or individual modules:
+#   {{go}} {{cmd}} [--paths|--summaries] <module-glob...>
+#
+#   The modules currently imported by the script and their source paths:
+#   {{go}} {{cmd}} --imported
+#
+#   Detailed help for an individual module:
+#   {{go}} {{cmd}} [-h|-help|--help] <module-name>
+#
+#   Detailed help for the module system itself:
+#   {{go}} {{cmd}} [-h|-help|--help]
+#
+# Options:
+#   -h,-help,--help  Show the help message for a specific module
+#   --paths          List the path of each module
+#   --summaries      List the summary of each module
+#
+# Where:
+#   <module-name>  Name of one of the installed modules
+#   <module-glob>  Module name, plugin package (trailing /), or glob pattern
+#
+# Modules are reusable libraries of Bash code that may be sourced by the
+# top-level `./go` script, by individual Bash command scripts, and individual
+# Bash functions by executing `. "$_GO_USE_MODULES"` followed by one or more
+# module names.
+#
+# It's best to include each `<module-glob>` argument in single-quotes.
+# `<module-glob>` defaults to `*` and will try to match file names by default,
+# to make it easier to find plugin modules. To explicitly try to match plugin
+# names instead, add `/` to the end of `<module-glob>`, followed by an optional
+# file name glob. For example:
+#
+#   '*'      All installed modules
+#   'f*'     All modules whose file name begins with 'f'
+#   'f*/'    All modules in all plugins that begin with 'f'
+#   'f*/b*'  Modules beginning with 'b' in all plugins that begin with 'f'
+#
+# For detailed information about the module system, run `{{go}} {{cmd}} --help`
+# without a `<module-name>` argument.
+
+# Imports the functions from `lib/internal/use`. Since the last line invokes
+# `_@go.use_modules`, this wrapper ensures the argument list is empty to avoid
+# having it attempt to process this command script's argument array.
+_@go.modules_import_use_modules_functions() {
+  . "$_GO_USE_MODULES"
+}
+_@go.modules_import_use_modules_functions
+
+_@go.modules_help() {
+  local __go_module_name="$1"
+  local __go_module_file
+
+  if [[ "$#" -eq '0' ]]; then
+    __go_module_name='$_GO_USE_MODULES'
+    __go_module_file="$_GO_USE_MODULES"
+  elif [[ "$#" -ne '1' ]]; then
+    @go.printf "Please specify only one module name.\n" >&2
+    return 1
+  elif ! _@go.find_module; then
+    @go.printf "Unknown module: $1\n" >&2
+    return 1
+  fi
+
+  local __go_cmd_desc
+
+  . "$_GO_CORE_DIR/lib/internal/command_descriptions"
+
+  if ! _@go.command_description "$__go_module_file"; then
+    @go.printf "ERROR: failed to parse description from %s\n" \
+      "$__go_module_file" >&2
+    return 1
+  fi
+  @go.printf "$__go_module_name - $__go_cmd_desc\n"
+}
+
+_@go.modules_find_all_in_dir() {
+  local module_dir="$1"
+  local glob="${2:-*}"
+  local module_path
+
+  for module_path in "$module_dir"/lib/$glob; do
+    if [[ -f "$module_path" ]]; then
+      __go_modules+=("$module_path")
+    fi
+  done
+}
+
+_@go.modules_summaries() {
+  local module_path
+  local __go_cmd_desc
+
+  . "$_GO_CORE_DIR/lib/internal/command_descriptions"
+
+  for module_path in "${__go_modules[@]}"; do
+    if ! _@go.command_summary "$module_path"; then
+      @go.printf "ERROR: failed to parse summary from %s\n" "$module_path" >&2
+      return 1
+    fi
+    __go_modules_summaries+=("$__go_cmd_desc")
+  done
+}
+
+# Produces a listing of module information
+#
+# Arguments:
+#   $1: the type of listing to produce:
+#     '': standard module names for use by _GO_USE_MODULES
+#     paths: module names to paths relative to _GO_ROOTDIR
+#     summaries: module names to one-line summary descriptions
+#
+# Input:
+#   __go_modules: array of absolute paths to modules
+#
+# Output:
+#   __go_modules_listing: array of listing output
+_@go.modules_produce_listing() {
+  local action="$1"
+  local modules=("${__go_modules[@]#$_GO_CORE_DIR/lib/}")
+  modules=("${modules[@]#$_GO_SCRIPTS_DIR/lib/}")
+  modules=("${modules[@]#$_GO_ROOTDIR/lib/}")
+
+  if [[ -n "$_GO_PLUGINS_DIR" ]]; then
+    modules=("${modules[@]#$_GO_PLUGINS_DIR/}")
+    modules=("${modules[@]/lib\//}")
+  fi
+
+  if [[ -z "$action" ]]; then
+    __go_modules_listing=("${modules[@]}")
+    return
+  fi
+
+  . "$_GO_USE_MODULES" 'format'
+  @go.pad_items modules "${modules[@]}"
+
+  case "$action" in
+  paths)
+    local relative_paths=("${__go_modules[@]#$_GO_ROOTDIR/}")
+    @go.zip_items modules relative_paths '  ' modules
+    ;;
+  summaries)
+    local __go_modules_summaries=()
+    if ! _@go.modules_summaries; then
+      return 1
+    fi
+    @go.zip_items modules __go_modules_summaries '  ' modules
+    ;;
+  *)
+    # Should only happen if _@go.modules is updated and this case statement
+    # isn't.
+    @go.printf 'ERROR: Unknown action: %s\n' "$action" >&2
+    return 1
+  esac
+  __go_modules_listing=("${modules[@]}")
+}
+
+_@go.modules_search_plugins() {
+  for plugin in "$1/"${plugin_glob[0]:-*}; do
+    _@go.modules_find_all_in_dir "$plugin" "${plugin_glob[1]:-*}"
+  done
+}
+
+_@go.modules_search() {
+  local glob="${1:-*}"
+  # Default to matching modules within any plugin.
+  local plugin_glob=("*" "$glob")
+  local plugin
+
+  if [[ "$glob" =~ / ]]; then
+    plugin_glob[0]="${glob%/*}"
+    plugin_glob[1]="${glob#*/}"
+    # Since it's a plugin glob, prevent deep core/lib and project/lib matches.
+    glob='/'
+  fi
+
+  _@go.modules_find_all_in_dir "$_GO_CORE_DIR" "$glob"
+  __go_core_modules_end="${#__go_modules[@]}"
+
+  _@go.modules_find_all_in_dir "$_GO_SCRIPTS_DIR" "$glob"
+  __go_internal_modules_end="${#__go_modules[@]}"
+
+  _@go.modules_find_all_in_dir "$_GO_ROOTDIR" "$glob"
+  __go_public_modules_end="${#__go_modules[@]}"
+
+  @go.search_plugins '_@go.modules_search_plugins'
+  __go_plugin_modules_end="${#__go_modules[@]}"
+}
+
+_@go.modules_emit_class() {
+  local class="$1"
+  local action="$2"
+  local begin="$3"
+  local end="$4"
+  local __go_modules=("${__go_all_modules[@]:$begin:$((end - begin))}")
+  local __go_modules_listing=()
+
+  if [[ "${#__go_modules[@]}" -ne '0' ]] &&
+        _@go.modules_produce_listing "$action"; then
+    printf 'From the %s:\n' "$class"
+    printf '%s\n' "${__go_modules_listing[@]/#/  }" ''
+  fi
+}
+
+_@go.modules_list_by_class() {
+  local action="$1"
+  local __go_modules=()
+  local __go_core_modules_end=0
+  local __go_internal_modules_end=0
+  local __go_public_modules_end=0
+  local __go_plugin_modules_end=0
+  local __go_all_modules
+
+  _@go.modules_search
+  __go_all_modules=("${__go_modules[@]}")
+  _@go.modules_emit_class 'core framework library' "$action" \
+    0 "$__go_core_modules_end"
+  _@go.modules_emit_class 'internal project library' "$action" \
+    "$__go_core_modules_end" "$__go_internal_modules_end"
+  _@go.modules_emit_class 'public project library' "$action" \
+    "$__go_internal_modules_end" "$__go_public_modules_end"
+  _@go.modules_emit_class 'installed plugin libraries' "$action" \
+    "$__go_public_modules_end" "$__go_plugin_modules_end"
+}
+
+_@go.modules_list() {
+  local action="$1"
+  shift
+  local module_specs=("$@")
+  local __go_modules=()
+  local __go_module_name
+  local __go_module_file
+
+  for __go_module_name in "${module_specs[@]}"; do
+    if [[ "$__go_module_name" == '*' ]]; then
+      if [[ "${#module_specs[@]}" -ne 1 ]]; then
+        @go.printf "Do not specify other patterns when '*' is present.\n" >&2
+        return 1
+      fi
+      _@go.modules_search
+    elif [[ "$__go_module_name" =~ \*|/$ ]]; then
+      _@go.modules_search "$__go_module_name"
+    elif ! _@go.find_module; then
+      @go.printf "Unknown module: $__go_module_name\n" >&2
+      return 1
+    else
+      __go_modules+=("$__go_module_file")
+    fi
+  done
+
+  local __go_modules_listing=()
+  if ! _@go.modules_produce_listing "$action"; then
+    return 1
+  fi
+  printf '%s\n' "${__go_modules_listing[@]}"
+}
+
+_@go.modules_tab_completion_plugins() {
+  local plugin
+
+  # `glob` indicates specific plugin module.
+  if [[ "$glob" =~ / ]]; then
+    plugin="${glob%/*}"
+    _@go.modules_find_all_in_dir "$1/$plugin" "${glob#*/}*"
+    return
+  fi
+
+  # Otherwise collect all plugin modules and the names of the plugins to
+  # which they belong. Which set gets returned will be decided at the end.
+  for plugin in "$1"/$glob; do
+    _@go.modules_find_all_in_dir "$plugin"
+    if [[ "${#__go_modules[@]}" -eq '0' ]]; then
+      continue
+    fi
+
+    __go_modules=("${__go_modules[@]#$1/}")
+    __go_modules=("${__go_modules[@]/\/lib\///}")
+    @go.complete_remove_completions_already_present 'args' '__go_modules' \
+      "${#__go_modules[@]}"
+
+    if [[ "${#__go_modules[@]}" -ne '0' ]]; then
+      plugins+=("$plugin/")
+      plugin_modules+=("${__go_modules[@]}")
+      __go_modules=()
+    fi
+  done
+}
+
+_@go.modules_tab_completion() {
+  local word_index="${1:-0}"
+  shift
+  local args=("$@")
+  local first="${args[0]}"
+  local word=("${args[$word_index]}")
+  unset "args[$word_index]"
+  local glob="${word}*"
+  local flags=('-h' '-help' '--help' '--paths' '--summaries' '--imported')
+  local completions=()
+
+  local origIFS="$IFS"
+  local IFS='|'
+  flags_pattern="^(${flags[*]})$"
+  IFS="$origIFS"
+
+  if [[ ( "$word_index" -ne '0' && "${first:0:1}" == '-' ) &&
+        ( ! "$first" =~ $flags_pattern || "$first" == '--imported' ) ]]; then
+    return 1
+  elif [[ "$first" =~ ^(-h|-help|--help)$ && "$word_index" -gt '1' ]]; then
+    return 1
+  fi
+
+  if [[ "$#" -eq '0' || "$word_index" -eq '0' ]]; then
+    completions+=("${flags[@]}")
+  fi
+
+  local __go_modules=()
+  local plugins=()
+  local plugin_modules=()
+
+  . "$_GO_USE_MODULES" 'complete'
+  @go.search_plugins '_@go.modules_tab_completion_plugins'
+
+  # Don't search other dirs if completing a plugin (word contains a '/').
+  if [[ ! "$glob" =~ / ]]; then
+    _@go.modules_find_all_in_dir "$_GO_CORE_DIR" "$glob"
+    _@go.modules_find_all_in_dir "$_GO_SCRIPTS_DIR" "$glob"
+    _@go.modules_find_all_in_dir "$_GO_ROOTDIR" "$glob"
+  fi
+
+  # The trick here is, if only one plugin matches, we want to return all of
+  # its modules so that there is no space completed after the '/'. Otherwise
+  # we want to return plugin names with '/' added.
+  if [[ "${#__go_modules[@]}" -eq '0' && "${#plugins[@]}" -eq '1' ]]; then
+    __go_modules=("${plugin_modules[@]}")
+  else
+    __go_modules+=("${plugins[@]}")
+  fi
+
+  local __go_modules_listing=()
+  if ! _@go.modules_produce_listing; then
+    # Shouldn't happen, since modules_produce_listing isn't parsing summaries.
+    return 1
+  fi
+  completions+=("${__go_modules_listing[@]}")
+  @go.complete_remove_completions_already_present \
+    'args' 'completions' "${#completions[@]}"
+  echo "${completions[@]}"
+}
+
+_@go.modules_list_imported() {
+  if [[ "$#" -ne 0 ]]; then
+    @go.printf 'The --imported option takes no other arguments.\n' >&2
+    return 1
+  fi
+
+  # Collect imported module info before _GO_USE_MODULES imports possibly more.
+  local imported_modules=("${_GO_IMPORTED_MODULES[@]}")
+  local imported_files=("${_GO_IMPORTED_MODULE_FILES[@]#$_GO_ROOTDIR/}")
+  local imported_callers=("${_GO_IMPORTED_MODULE_CALLERS[@]#$_GO_ROOTDIR/}")
+  local caller_pad
+  local imported_listing=()
+
+  . "$_GO_USE_MODULES" 'format'
+  @go.pad_items imported_modules "${imported_modules[@]}"
+  @go.zip_items imported_modules imported_files '  ' imported_listing
+  printf -v 'caller_pad' -- "\n%$((${#imported_modules[0]} + 4))s" ''
+  @go.zip_items imported_listing imported_callers "$caller_pad" imported_listing
+  printf '%s\n' "${imported_listing[@]}"
+}
+
+_@go.modules() {
+  local action="$1"
+  shift
+
+  case "$action" in
+  --complete)
+    # Tab completions
+    _@go.modules_tab_completion "$@"
+    ;;
+  -h|-help|--help)
+    _@go.modules_help "$@"
+    ;;
+  ''|--paths|--summaries)
+    action="${action#--}"
+    if [[ "$#" -eq '0' ]]; then
+      _@go.modules_list_by_class "$action"
+    else
+      _@go.modules_list "$action" "$@"
+    fi
+    ;;
+  --imported)
+    _@go.modules_list_imported "$@"
+    ;;
+  -*)
+    @go.printf "Unknown option: $action\n" >&2
+    return 1
+    ;;
+  *)
+    # Here we treat $action as a potential glob pattern.
+    _@go.modules_list '' "$action" "$@"
+  esac
+}
+
+_@go.modules "$@"

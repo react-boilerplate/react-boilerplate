@@ -1,0 +1,36 @@
+#! /bin/bash
+#
+# Subcommand management
+#
+# Exports:
+#   @go.show_subcommands
+#     Lists the subcommands for the invoking command
+
+# Lists the subcommands for the invoking command
+#
+# If a command script doesn't define any of its own logic, it may call this
+# function to provide a helpful interface to showing subcommands. It also
+# provides an error message when an incorrect subcommand is specified.
+#
+# Globals:
+#   _GO_CMD_NAME:  Specifies the name of the invoking (parent) command script
+#   _GO_CMD_ARGV:  If not empty, the first element is the incorrect subcommand
+#
+# Returns:
+#   zero on success, nonzero on error (when `_GO_CMD_ARGV` is not empty)
+@go.show_subcommands() {
+  local result='0'
+  local out_fd='1'
+  local cmd_name="${_GO_CMD_NAME[*]}"
+
+  if [[ "${#_GO_CMD_ARGV[@]}" -ne 0 ]]; then
+    @go.printf '"%s" is not an available subcommand of "%s".\n\n' \
+      "${_GO_CMD_ARGV[0]}" "$cmd_name" >&2
+    result='1'
+    out_fd='2'
+  fi
+
+  @go.printf 'Available subcommands of "%s" are:\n\n' "$cmd_name" >&"$out_fd"
+  @go 'commands' '--summaries' "$_GO_CMD_NAME" >&"$out_fd"
+  return "$result"
+}

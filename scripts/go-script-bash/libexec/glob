@@ -1,0 +1,309 @@
+#! /bin/bash
+#
+# Recursively find files with a specified suffix matching shell patterns
+#
+# Usage:
+#   {{go}} {{cmd}} [--ignore <patterns>] [--trim]
+#     <root-dir> <suffix> [<glob>...]
+#
+# Options:
+#   --trim    Strip <root-dir>/ prefix and <suffix> from paths
+#   --ignore  Colon-separated list of ignored patterns (sets Bash's GLOBIGNORE)
+#
+# Arguments:
+#   <root-dir>  Directory in which to search for matching files
+#   <suffix>    The file suffix match, usually an extension
+#   <glob>      Pattern to filter files matching <suffix>
+#
+# Without <glob> arguments, lists all files matching <suffix> within <root-dir>.
+# With one or more <glob> arguments, only lists files matching
+# `<root-dir>/<glob><suffix>`.
+#
+# If <glob> contains no shell metacharacters and does not end with a path
+# separator, it will attempt to match a single file or directory, and will
+# prefer the file if both exist. If no such file exists, or if <glob> ends with
+# a path separator, it will match all files within the matching directory.
+#
+# If the <suffix> or one of the <glob> arguments doesn't match any files, the
+# command will return an error.
+#
+# The primary use case is to support the `./go test` command in selecting a
+# subset of tests to run, tests which my occupy a multi-level directory
+# structure. Can be used by other command scripts to provide a better user
+# experience than using full paths or default filename completion by:
+#
+#   - restricting the search directories
+#   - restricting the kinds of files matched
+#   - removing the need to specify the root directory or file suffix
+#
+# NOTE: If a <glob> produces errors, or generally doesn't do as you expect,
+# you may need to include it in quotes so it isn't expanded by the shell
+# _before_ executing the {{cmd}} command.
+#
+# NOTE FOR BASH 4.4: Something changed with GLOBIGNORE behavior such that
+# `GLOBIGNORE` patterns of the form `*ignore-me` no longer match arbitrarily
+# deep subdirectory prefixes. Consequently, you may need to use multiple
+# `--ignore` patterns to achieve the same effect.
+
+_@go.glob_impl() {
+  local pattern="$1"
+
+  # If the pattern contains no shell metacharacters, it matches a single file or
+  # directory (preferring the file if they share the same name).
+  if [[ -f "$pattern$__go_glob_suffix" ]]; then
+    __go_glob_matches+=("$pattern$__go_glob_suffix")
+    return
+  elif [[ -d "$pattern" ]]; then
+    pattern="${pattern%/}/*"
+  fi
+
+  # Setting IFS ensures that matching paths with spaces are handled properly.
+  local IFS=
+  local __go_glob_impl_matches=()
+  _@go.glob_impl_helper "$pattern"
+
+  if [[ "${#__go_glob_impl_matches[@]}" -eq '0' ]]; then
+    return 1
+  fi
+  __go_glob_matches+=("${__go_glob_impl_matches[@]}")
+}
+
+_@go.glob_impl_helper() {
+  local match
+  local corresponding
+
+  for match in $1; do
+    # If a file name without the suffix matches a directory, add the file first.
+    if [[ -d "$match" ]]; then
+      corresponding="$match$__go_glob_suffix"
+      if [[ -f "$corresponding" ]]; then
+        __go_glob_impl_matches+=("$corresponding")
+      fi
+      _@go.glob_impl_helper "$match/*"
+    else
+      corresponding="${match%$__go_glob_suffix}"
+      if [[ "$match" != "$corresponding" && ! -d "$corresponding" ]]; then
+        __go_glob_impl_matches+=("$match")
+      fi
+    fi
+  done
+}
+
+_@go.glob_trim_matches() {
+  __go_glob_matches=("${__go_glob_matches[@]#$__go_glob_rootdir/}")
+  __go_glob_matches=("${__go_glob_matches[@]%$__go_glob_suffix}")
+}
+
+_@go.glob_tab_completion_parse_argv() {
+  local word_index="$1"
+  shift
+  local args=("$@")
+  local flag='^-'
+  local i
+  local arg
+
+  __go_glob_complete_word="${args[$word_index]}"
+  __go_glob_flags=('--trim' '--ignore')
+
+  for ((i=0; i != ${#args[@]}; ++i)); do
+    arg="${args[$i]}"
+
+    case "$arg" in
+    --trim)
+      unset '__go_glob_flags[0]'
+      ;;
+    --ignore)
+      unset '__go_glob_flags[1]'
+      __go_glob_ignore_spec="${args[$((i+1))]}"
+      local shell_quote="[\"\']"
+
+      if [[ "$word_index" -eq "$((i+1))" ]]; then
+        # No completion for the GLOBIGNORE spec.
+        return 1
+      elif [[ "${__go_glob_ignore_spec:0:1}" =~ $shell_quote ]]; then
+        # The shell won't expand arguments or remove quotes during completion.
+        local spec_len="${#__go_glob_ignore_spec}"
+        __go_glob_ignore_spec="${__go_glob_ignore_spec:1:$((spec_len-2))}"
+      fi
+    ;;
+    esac
+
+    if [[ "$word_index" -lt "$i" ]]; then
+      __go_glob_complete_flags_only='true'
+      return
+    elif [[ -d "$arg" ]]; then
+      if [[ "$word_index" -eq "$((i+1))" ]]; then
+        # No completion for the file suffix.
+        return 1
+      elif [[ "$word_index" -ne "$i" ]]; then
+        # Don't set rootdir if rootdir is the completion target argument.
+        __go_glob_rootdir="${arg%/}"
+        __go_glob_suffix="${args[$((i+1))]}"
+      fi
+      return
+    fi
+  done
+}
+
+_@go.glob_emit_completion_matches() {
+  local prefix
+  local suffix
+  local trimmed_suffix
+  local match
+  local prev
+  local results=()
+
+  . "$_GO_USE_MODULES" 'strings'
+  @go.common_prefix 'prefix' "${__go_glob_matches[@]}"
+
+  for match in "${__go_glob_matches[@]}"; do
+    suffix="${match:${#prefix}}"
+    trimmed_suffix="${suffix%%/*}"
+
+    if [[ "$suffix" != "$trimmed_suffix" ]]; then
+      match="${match:0:${#prefix}}${trimmed_suffix}/"
+    fi
+    if [[ "$match" != "$prev" ]]; then
+      echo "$match"
+    fi
+    prev="$match"
+  done
+}
+
+_@go.glob_tab_completion() {
+  local __go_glob_complete_word
+  local __go_glob_flags=()
+  local __go_glob_ignore_spec
+  local __go_glob_rootdir
+  local __go_glob_complete_flags_only
+
+  if ! _@go.glob_tab_completion_parse_argv "$@"; then
+    return 1
+  elif [[ "$__go_glob_complete_flags_only" == 'true' ]]; then
+    echo "${__go_glob_flags[@]}"
+    return
+  elif [[ -z "$__go_glob_rootdir" ]]; then
+    echo "${__go_glob_flags[@]}"
+    . "$_GO_USE_MODULES" 'complete'
+    @go.compgen -d -- "$__go_glob_complete_word"
+    return
+  fi
+
+  local __go_glob_matches=()
+  _@go.glob_set_globignore "$__go_glob_ignore_spec" "$__go_glob_rootdir"
+  _@go.glob_impl "$__go_glob_rootdir/$__go_glob_complete_word*"
+  _@go.glob_trim_matches
+
+  if [[ "${#__go_glob_matches[@]}" -eq '0' ]]; then
+    return 1
+  elif [[ "${#__go_glob_matches[@]}" -eq '1' ]]; then
+    echo "${__go_glob_matches[0]}"
+  else
+    _@go.glob_emit_completion_matches
+  fi
+}
+
+_@go.glob_set_globignore() {
+  local globignore_spec="$1"
+  local rootdir="$2"
+
+  if [[ -z "$rootdir" ]]; then
+    echo "ERROR: root dir not set before setting GLOBIGNORE" >&2
+    return 1
+  elif [[ ! -d "$rootdir" ]]; then
+    echo "ERROR: root dir not valid when setting GLOBIGNORE: $rootdir " >&2
+    return 1
+  fi
+
+  if [[ -n "$globignore_spec" ]]; then
+    local patterns=()
+    local IFS=':'
+    read -ra patterns <<<"$globignore_spec"
+    GLOBIGNORE="${patterns[*]/#/$rootdir/}"
+  fi
+}
+
+_@go.glob_parse_argv() {
+  local globignore
+
+  while [[ "${1:0:1}" == '-' ]]; do
+    case "$1" in
+    --ignore)
+      globignore="$2"
+      shift
+      shift
+      ;;
+    --trim)
+      __go_glob_trim='true'
+      shift
+      ;;
+    *)
+      @go.printf "Unknown flag: $1" >&2
+      return 1
+      ;;
+    esac
+  done
+
+  __go_glob_rootdir="${1%/}"
+  shift
+
+  if [[ -z "$__go_glob_rootdir" ]]; then
+    @go.printf "Root directory argument not specified.\n" >&2
+    return 1
+  elif [[ ! -d "$__go_glob_rootdir" ]]; then
+    @go.printf "Root directory argument %s is not a directory.\n" \
+      "$__go_glob_rootdir" >&2
+    return 1
+  fi
+
+  __go_glob_suffix="$1"
+  shift
+
+  if [[ -z "$__go_glob_suffix" ]]; then
+    @go.printf "File suffix argument not specified.\n" >&2
+    return 1
+  fi
+
+  if ! _@go.glob_set_globignore "$globignore" "$__go_glob_rootdir"; then
+    return 1
+  fi
+  __go_glob_patterns=("${@:-*}")
+}
+
+_@go.glob() {
+  # Tab completions
+  if [[ "$1" == '--complete' ]]; then
+    shift
+    _@go.glob_tab_completion "$@"
+    return
+  fi
+
+  local __go_glob_trim
+  local __go_glob_rootdir
+  local __go_glob_suffix
+  local __go_glob_patterns
+
+  if ! _@go.glob_parse_argv "$@"; then
+    return 1
+  fi
+
+  local pattern
+  local __go_glob_matches=()
+
+  for pattern in "${__go_glob_patterns[@]}"; do
+    if ! _@go.glob_impl "$__go_glob_rootdir/$pattern"; then
+      @go.printf "\"$pattern\" does not match any %s files in %s.\n" \
+        "$__go_glob_suffix" "$__go_glob_rootdir" >&2
+      return 1
+    fi
+  done
+
+  if [[ "$__go_glob_trim" == 'true' ]]; then
+    _@go.glob_trim_matches
+  fi
+
+  local IFS=$'\n'
+  echo "${__go_glob_matches[*]}"
+}
+
+_@go.glob "$@"

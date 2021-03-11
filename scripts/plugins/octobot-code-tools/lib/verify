@@ -1,0 +1,57 @@
+#! /usr/bin/env bash
+
+# shellcheck source=scripts/go-script-bash/lib/log
+. "$_GO_USE_MODULES" 'log'
+
+
+# Runs flake8 on a Python project.
+# Arguments:
+#   $1  Python directory
+@obot.verify_python() {
+  if [[ $# -ne 1 ]]; then
+    @go.log FATAL "Missing parameter for verify_python"
+  fi
+  local _TARGET_DIR=$1
+  if ! [[ -d $_TARGET_DIR ]]; then
+    @go.log FATAL "Parameter is not a directory"
+  fi
+  @go.log INFO "Verifying Python code in : $_TARGET_DIR"
+
+
+  docker pull octobotdev/code-tools
+  docker run --rm -v $_TARGET_DIR:/var/code/ octobotdev/code-tools flake8 --count /var/code
+  if [[ $? -eq 0 ]]; then
+    @go.log INFO "Python check successful"
+    return 0
+  else
+    @go.log WARN "Something happend while checking Python code."
+    return 1
+  fi
+
+}
+
+# Runs eslint on a JS project.
+# Arguments:
+#   $1  WebApp directory
+@obot.verify_js() {
+  if [[ $# -ne 1 ]]; then
+    @go.log FATAL "Missing parameter for verify_js"
+  fi
+  local _TARGET_DIR=$1
+  if ! [[ -d $_TARGET_DIR ]]; then
+    @go.log FATAL "Parameter is not a directory"
+  fi
+  @go.log "Verifying JS code in : $_TARGET_DIR"
+
+
+  docker pull octobotdev/code-tools
+  docker run --rm -v $_TARGET_DIR:/var/code/ octobotdev/code-tools eslint /var/code
+  if [[ $? -eq 0 ]]; then
+    @go.log INFO "JS check successful"
+    return 0
+  else
+    @go.log WARN "Something happend while checking JS code."
+    return 1
+  fi
+
+}

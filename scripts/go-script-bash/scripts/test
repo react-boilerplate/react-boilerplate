@@ -1,0 +1,38 @@
+#! /bin/bash
+#
+# Run automated tests
+#
+# Usage:
+#   {{go}} {{cmd}} [--coverage|--edit|--list] [<glob>...]
+#
+# Options:
+#   --coverage  Collect test coverage data using kcov (Linux only)
+#   --edit      Open matching test files using `{{go}} edit`
+#   --list      List test suite names without executing them
+#
+# Without <glob> arguments, runs (or edits, or lists) all tests. With one or
+# more <glob> arguments, only runs tests matching 'tests/<glob>.bats'.
+#
+# If a <glob> doesn't match any test files, the command will return an error
+# without running any tests. See `{{go}} help glob` for details.
+#
+# NOTE: If the <glob> produces errors, or generally doesn't do as you expect,
+# you may need to include it in quotes so it isn't expanded by the shell
+# _before_ executing the {{cmd}} command.
+#
+# This command script can serve as a template for your own project's test
+# script. Copy it into your project's script directory and customize as needed.
+
+# Passes all arguments through to `@go.bats_main` from `lib/bats-main`.
+_test_main() {
+  local _GO_BATS_COVERAGE_INCLUDE
+  _GO_BATS_COVERAGE_INCLUDE=('go' 'go-core.bash' 'go-template'
+    'lib/' 'libexec/' 'scripts/')
+  local _GO_COVERALLS_URL='https://coveralls.io/github/mbland/go-script-bash'
+
+  . "$_GO_USE_MODULES" 'bats-main'
+  # Tab completions
+  @go.bats_main "$@"
+}
+
+_test_main "$@"

@@ -1,0 +1,79 @@
+#! /bin/bash
+
+# Note that _@go.merge_scripts_into_list uses this mergesort rather than `sort |
+# uniq` not just because it's is more portable (to Windows), but because it's
+# actually faster for the amount of data involved, since it avoids the overhead
+# of launching the `sort | uniq` pipeline. Since the user's expected to invoke
+# this frequently via the 'help' command and tab completion, scraping out this
+# tiny bit of performance potentially matters. (And it keeps the tests fast.)
+_@go.merge_scripts_into_list() {
+  local scripts=("$@")
+  local i=0
+  local j=0
+  local lhs_script
+  local lhs_name
+  local rhs_script
+  local rhs_name
+  local result=()
+
+  while ((i != ${#__go_command_scripts[@]} && j != ${#scripts[@]})); do
+    lhs_script="${__go_command_scripts[$i]}"
+    rhs_script="${scripts[$j]}"
+    lhs_name="${lhs_script##*/}"
+    rhs_name="${rhs_script##*/}"
+
+    if [[ "$lhs_name" == "$rhs_name" ]]; then
+      result+=("$lhs_script")
+      ((++i))
+      ((++j))
+    elif [[ "$lhs_name" < "$rhs_name" ]]; then
+      result+=("$lhs_script")
+      ((++i))
+    else
+      result+=("$rhs_script")
+      ((++j))
+    fi
+  done
+
+  __go_command_scripts=(
+    "${result[@]}" "${__go_command_scripts[@]:$i}" "${scripts[@]:$j}")
+}
+
+_@go.find_commands() {
+  __go_command_scripts=()
+  __go_command_names=()
+  __go_longest_name_len=0
+
+  local scripts_dir
+  local script
+  local scripts
+
+  for scripts_dir in "$@"; do
+    scripts=()
+
+    for script in "$scripts_dir"/*; do
+      if [[ -f "$script" && -x "$script" ]]; then
+        scripts+=("$script")
+      fi
+    done
+    _@go.merge_scripts_into_list "${scripts[@]}"
+  done
+
+  if [[ "${#__go_command_scripts[@]}" -eq '0' ]]; then
+    return 1
+  elif [[ -z "$_GO_STANDALONE" ]]; then
+    __go_command_scripts=("${__go_command_scripts[@]#$_GO_ROOTDIR/}")
+  else
+    __go_command_scripts=("${__go_command_scripts[@]#$PWD/}")
+  fi
+
+  __go_command_names=("${__go_command_scripts[@]##*/}")
+
+  local cmd_name
+
+  for cmd_name in "${__go_command_names[@]}"; do
+    if [[ "$__go_longest_name_len" -lt "${#cmd_name}" ]]; then
+      __go_longest_name_len="${#cmd_name}"
+    fi
+  done
+}

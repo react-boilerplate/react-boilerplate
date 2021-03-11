@@ -1,0 +1,83 @@
+#! /usr/bin/env bash
+#
+# BUILDS AND DEPLOY artifacts for server instances.
+#
+# Usage:
+#   {{go}} {{cmd}} [--all] <ENVIRONMENT>
+#
+# Options:
+#   --all         Deploy all artifacts. If not specified it deploy most
+#                 frequently modified ones.
+# Arguments:
+#   <ENVIRONMENT>   Target environment to deploy artifacts.
+#
+# Some components will be deployed directly, such as webapp distributions that
+# run on AWS instances.
+
+
+# shellcheck source=scripts/lib/build
+. "$_GO_USE_MODULES" 'project-build'
+
+# shellcheck source=scripts/lib/deploy
+. "$_GO_USE_MODULES" 'project-deploy'
+
+# shellcheck source=scripts/plugins/octobot-git/lib/tag
+. "$_GO_USE_MODULES" 'octobot-git/tag'
+
+# shellcheck source=scripts/plugins/octobot-git/lib/checks
+. "$_GO_USE_MODULES" 'octobot-git/checks'
+
+_deploy() {
+  local ALL_TASKS
+  while [[ $# -gt 1 ]]; do
+    case $1 in
+      --all)
+        ALL_TASKS=$1
+        shift
+        ;;
+      *)
+        @go.log ERROR "Bad invocation. See help to learn about invocation."
+        return 1
+        ;;
+    esac
+  done
+
+  local TARGET="$1"
+  if ! elementIn $TARGET "${OBOT_ENVIRONMENT_OPTIONS[@]}"; then
+    @go.log ERROR "Unknown environment: $TARGET. Available options are: " "${OBOT_ENVIRONMENT_OPTIONS[@]}"
+    return 1
+  fi
+
+  if @obot.git_project_has_changes; then
+    @go.log ERROR "Deploy cannot proceed with changes pending to be commited in project"
+    return 1
+  fi
+
+  local DATE_STRING
+  DATE_STRING="$(date +%Y%m%d%H%M)"
+
+  if ! _build_project $ALL_TASKS $TARGET $DATE_STRING; then
+    @go.log ERROR "Failed to build"
+    return 2
+  fi
+
+  local TAG_NAME
+  TAG_NAME="$(_get_build_name $TARGET $DATE_STRING)"
+
+  if ! @obot.tag_release $TAG_NAME; then
+    @go.log WARN "Failed to tag the release in the repository! Not marking it as critical error"
+  else
+    @go.log INFO "Release tagged"
+  fi
+
+  if ! _deploy_project $ALL_TASKS $TARGET $DATE_STRING; then
+    @go.log ERROR "Failed to deploy"
+    return 2
+  else
+    @go.log INFO "Built artifacts deployed"
+    @go.log WARN "Keep in mind that now you must go to the $TARGET servers and run the update procedure"
+  fi
+
+}
+
+_deploy "$@"

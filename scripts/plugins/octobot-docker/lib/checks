@@ -1,0 +1,114 @@
+#! /usr/bin/env bash
+
+# shellcheck source=scripts/go-script-bash/lib/log
+. "$_GO_USE_MODULES" 'log'
+
+# From https://stackoverflow.com/questions/4023830/how-compare-two-strings-in-dot-separated-version-format-in-bash
+__vercomp () {
+    if [[ $1 == $2 ]]
+    then
+        return 0
+    fi
+    local IFS=.
+    local i ver1=($1) ver2=($2)
+    # fill empty fields in ver1 with zeros
+    for ((i=${#ver1[@]}; i<${#ver2[@]}; i++))
+    do
+        ver1[i]=0
+    done
+    for ((i=0; i<${#ver1[@]}; i++))
+    do
+        if [[ -z ${ver2[i]} ]]
+        then
+            # fill empty fields in ver2 with zeros
+            ver2[i]=0
+        fi
+        if ((10#${ver1[i]} > 10#${ver2[i]}))
+        then
+            return 1
+        fi
+        if ((10#${ver1[i]} < 10#${ver2[i]}))
+        then
+            return 2
+        fi
+    done
+    return 0
+}
+
+# Ensures docker engine is present in an acceptable version
+#
+# Arguments:
+#   version:  The minimum version expected.
+# Returns:
+#   0 on success; nonzero on failure
+@obot.is_docker_present() {
+  @go.log INFO "Checking if Docker Engine is installed"
+  local DOCKER_VERSION
+  DOCKER_VERSION=$(docker --version 2>/dev/null)
+  if [[ $? -eq 0 ]]; then
+    @go.log INFO "Docker Engine installed ($DOCKER_VERSION)"
+    local _MINIMUM_VERSION
+    _MINIMUM_VERSION=$1
+    if [ -z _MINIMUM_VERSION ]; then
+      @go.log INFO "Docker Engine installed ($DOCKER_VERSION)"
+    else
+      local _DOCKER_ENGINE_VERSION_NUMBER
+      if [[ $DOCKER_VERSION =~ [[:space:]]([[:digit:]][^,-]*)[,-] ]]; then
+        _DOCKER_ENGINE_VERSION_NUMBER=${BASH_REMATCH[1]}
+        __vercomp $_MINIMUM_VERSION $_DOCKER_ENGINE_VERSION_NUMBER
+        if [[ $? -ne 1 ]]; then
+          @go.log INFO "Docker Engine version acceptable ($_MINIMUM_VERSION <= $_DOCKER_ENGINE_VERSION_NUMBER)"
+          return 0
+        else
+          @go.log WARN "Docker Engine version not acceptable (! $_MINIMUM_VERSION <= $_DOCKER_ENGINE_VERSION_NUMBER)"
+          return 1
+        fi
+      else
+        @go.log ERROR "Could not determine Docker Engine version"
+        return 1
+      fi
+    fi
+  else
+    @go.log ERROR "Docker Engine is not installed in this host"
+    return 1
+  fi
+}
+
+# Ensures docker-compose is present in an acceptable version
+#
+# Arguments:
+#   version:  The minimum version expected.
+# Returns:
+#   0 on success; nonzero on failure
+@obot.is_docker_compose_present() {
+  @go.log INFO "Checking if Docker Compose is installed"
+  local DOCKER_COMPOSE_VERSION
+  DOCKER_COMPOSE_VERSION=$(docker-compose --version  2>/dev/null)
+  if [[ $? -eq 0 ]]; then
+    local _MINIMUM_VERSION
+    _MINIMUM_VERSION=$1
+    if [ -z _MINIMUM_VERSION ]; then
+      @go.log INFO "Docker Compose installed ($DOCKER_COMPOSE_VERSION)"
+    else
+      local _DOCKER_COMPOSE_VERSION_NUMBER
+      if [[ $DOCKER_COMPOSE_VERSION =~ [[:space:]]([[:digit:]].*), ]]; then
+        _DOCKER_COMPOSE_VERSION_NUMBER=${BASH_REMATCH[1]}
+        __vercomp $_MINIMUM_VERSION $_DOCKER_COMPOSE_VERSION_NUMBER
+        if [[ $? -ne 1 ]]; then
+          @go.log INFO "Docker Compose version acceptable ($_MINIMUM_VERSION <= $_DOCKER_COMPOSE_VERSION_NUMBER)"
+          return 0
+        else
+          @go.log WARN "Docker Compose version not acceptable (! $_MINIMUM_VERSION <= $_DOCKER_COMPOSE_VERSION_NUMBER)"
+          return 1
+        fi
+      else
+        @go.log ERROR "Could not determine Docker Compose version"
+        return 1
+      fi
+    fi
+
+  else
+    @go.log ERROR "Docker Compose is not installed in this host"
+    return 1
+  fi
+}

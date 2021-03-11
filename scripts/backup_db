@@ -1,0 +1,65 @@
+#! /usr/bin/env bash
+#
+# Creates a backup for all DBs in the project.
+#
+# Usage:
+#   {{go}} {{cmd}} [<tag>]
+#
+# Options:
+#   <tag>   Tag your backup with some
+# Currently for this project, only Postgres is supported.
+
+# shellcheck source=scripts/lib/project-data
+. "$_GO_USE_MODULES" 'project-data'
+
+_backup_db() {
+  local DATE_STRING
+  DATE_STRING="$(date +%Y%m%d%H%M)"
+
+  local _TAG
+  if [ -z $1 ]; then
+    @go.log INFO "Creating backups for $OBOT_PROJECT_CODE at $DATE_STRING"
+  else
+    _TAG=$1
+    shift
+    @go.log INFO "Creating backups for $OBOT_PROJECT_CODE at $DATE_STRING tagged as $_TAG"
+  fi
+
+  if [[ $# -gt 0 ]]; then
+    @go.log WARN "Ignoring remaining parameters in backup_db"
+  fi
+
+  local _TARGET_DIR
+  if [ -z $_TAG ]; then
+    _TARGET_DIR=$OBOT_BACKUP_DIR/$OBOT_PROJECT_CODE-$DATE_STRING
+  else
+    _TARGET_DIR=$OBOT_BACKUP_DIR/$OBOT_PROJECT_CODE-$DATE_STRING-$_TAG
+  fi
+
+  if ! mkdir -p $_TARGET_DIR; then
+    @go.log ERROR "Failed to create directory for backups"
+    return 1
+  else
+    @go.log INFO "Storing backups at $_TARGET_DIR"
+  fi
+
+  local __BACKUP_FAILED=0
+
+  for service in "${OBOT_BACKUP_SERVICES[@]}"; do
+    @go.log INFO "Launching backup task for: $service"
+    __backup_$service $_TARGET_DIR
+    if [[ $? -ne 0 ]]; then
+      __BACKUP_FAILED=$?
+    fi
+  done
+
+  if [[ $__BACKUP_FAILED -ne 0 ]]; then
+    @go.log ERROR "Be careful! Some part of the backup failed. Please review."
+    return 1
+  else
+    @go.log INFO "Backup done for all services"
+    return 0
+  fi
+}
+
+_backup_db "$@"

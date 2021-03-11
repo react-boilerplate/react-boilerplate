@@ -1,0 +1,37 @@
+#! /usr/bin/env bash
+#
+# Refreshes images and builds. Pulls new base images.
+#
+# Usage:
+#   {{go}} {{cmd}} 
+# 
+# Ideal to add that dependency from `pip install` made by a coworker.
+
+# shellcheck source=scripts/plugins/octobot-docker/lib/checks
+. "$_GO_USE_MODULES" 'octobot-docker/compose'
+
+
+_refresh() {
+  if [[ $# -gt 0 ]]; then
+    @go.log ERROR "Wrong invocation. See help to learn about invocation"
+    return 1
+  fi
+  
+  @go.log INFO "This will pull and update images and rebuild containers."
+
+  if ! @obot.compose_pull; then
+    @go.log ERROR "Failed to pull images from repositories at init"
+    return 1
+  fi
+
+  if ! @obot.compose_build; then
+    @go.log ERROR "Failed while building one of the images"
+    return 2
+  fi
+
+  @go.log INFO "Project successfully refreshed."
+  return 0
+
+}
+
+_refresh "$@"

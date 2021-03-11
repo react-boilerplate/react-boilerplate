@@ -1,0 +1,53 @@
+#! /usr/bin/env bash
+#
+# Removes all execution related elements to this project from this host.
+# It does not remove the repository files nor backups.
+#
+# Usage:
+#   {{go}} {{cmd}}
+#
+# This includes removing media files and databases. You should perform an init
+# `{{go}} init` afterwards to run the project.
+
+# shellcheck source=scripts/plugins/octobot-docker/lib/checks
+. "$_GO_USE_MODULES" 'octobot-docker/compose'
+
+# shellcheck source=scripts/go-script-bash/lib/prompt
+. "$_GO_USE_MODULES" 'prompt'
+
+_reset() {
+  @go.log WARN "Removing all built images, containers, volumes, netowrks for $OBOT_PROJECT_CODE"
+  if ! @go.prompt_for_yes_or_no "Are you sure you want to erase all this?" "no"; then
+    @go.log WARN "Exiting without removing anything."
+    return 0
+  fi
+
+  @go.log WARN "Proceeding. Trying to stop any running services from the project."
+
+  if ! @obot.compose_stop --all; then
+    @go.log ERROR "Failed while stoping containers"
+    return 1
+  fi
+  @go.log INFO "All services stopped."
+
+  if [[ -e development-media/ ]]; then
+    @go.log INFO "Removing development-media/"
+    if ! rm -rf development-media/; then
+      @go.log ERROR "Failed to remove development-media/"
+    else
+      @go.log INFO "Removed"
+    fi
+  else
+    @go.log INFO "Media directory development-media/ not found"
+  fi
+
+  @go.log INFO "Removing containers, netowrks, volumes and images for this project"
+  if ! @obot.compose_down; then
+    @go.log ERROR "Failed while removing docker elements"
+    return 2
+  fi
+  @go.log INFO "Reset successful. All data and running elements have been removed."
+
+}
+
+_reset "$@"

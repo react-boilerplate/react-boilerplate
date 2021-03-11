@@ -1,0 +1,176 @@
+#! /bin/bash
+#
+# List available commands or subcommands for a specified command
+#
+# Usage:
+#   {{go}} {{cmd}} [--paths|--summaries] <command-name|script-paths>
+#
+# Options:
+#   --paths      List the path of each command script
+#   --summaries  List the summary of each command script
+#
+# The precedence for discovering commands executed via `@go` is:
+#
+#   - Command aliases; see `{{go}} help aliases`
+#   - `_GO_INJECT_SEARCH_PATH` for command script stubs injected during testing;
+#     see `lib/testing/stubbing`
+#   - `_GO_CORE_DIR/libexec` for core library command scripts
+#   - `_GO_SCRIPTS_DIR` for project command scripts
+#   - `_GO_SCRIPTS_DIR/plugins/*/bin` for installed plugin command scripts
+#   - Parent plugin dirs up to `_GO_PLUGINS_DIR/*/bin` for plugin command
+#     scripts
+#
+# If no <command-name> or <script-path> is given, lists all top-level builtins,
+# plugins, and user-defined commands discovered via the above algorithm. If
+# <command-name> is given, lists the subcommands for that command. If
+# <script-paths> is given, lists top-level commands within those directories.
+#
+# Only one of <command-name> or <script-paths> may be specified. <command-name>
+# can be a multiple-word subcommand name, in which case its subcommands, if any,
+# will be listed. <script-paths> can be a single directory path or a
+# colon-separated list of paths to search for command scripts.
+#
+# NOTE: This command will not return the names of shell aliases; use `{{go}}
+# aliases` for those.
+#
+# While executing a plugin command script, `_GO_ROOTDIR` and `_GO_SCRIPTS_DIR`
+# are scoped to the top-level directory of the plugin. See `{{go}} help plugins`
+# for more information on plugins and their operating constraints.
+
+_@go.summarize_commands() {
+  . "$_GO_CORE_DIR/lib/internal/command_descriptions"
+
+  local i
+  local cmd_name
+  local cmd_script
+  local __go_cmd_desc
+
+  for ((i=0; i != "${#__go_command_names[@]}"; ++i)); do
+    cmd_name="${__go_command_names[$i]}"
+    cmd_script="${__go_command_scripts[$i]}"
+
+    if ! _@go.command_summary "$cmd_script"; then
+      __go_cmd_desc='error retrieving command summary'
+    fi
+    _@go.format_summary "$cmd_name" "$__go_cmd_desc" $__go_longest_name_len
+  done
+}
+
+_@go.commands_parse_search_paths() {
+  . "$_GO_USE_MODULES" 'strings'
+  @go.split ':' "$1" '__go_commands_search_paths'
+
+  local search_path
+  for search_path in "${__go_commands_search_paths[@]}"; do
+    if [[ ! -d "$search_path" ]]; then
+      @go.printf "Command search path %s does not exist.\n" "$search_path" >&2
+      return 1
+    fi
+  done
+}
+
+_@go.commands_parse_argv() {
+  case "$1" in
+  --paths|--summaries)
+    __go_commands_action="${1#--}"
+    shift
+    ;;
+  -*)
+    echo "Unknown option: $1"
+    return 1
+    ;;
+  esac
+
+  if [[ "$#" -eq 0 ]]; then
+    __go_commands_search_paths=("${_GO_SEARCH_PATHS[@]}")
+  elif [[ "$1" =~ : || -d "$1" ]]; then
+    if [[ "$#" -ne 1 ]]; then
+      @go.printf 'Cannot specify any arguments after search paths.\n' >&2
+      return 1
+    elif ! _@go.commands_parse_search_paths "$1"; then
+      return 1
+    fi
+  else
+    if _@go.source_builtin 'aliases' --exists "$1"; then
+      @go.printf '%s is a shell alias.\n' "$1" >&2
+      return 1
+    fi
+
+    local __go_cmd_path
+    if ! _@go.set_command_path_and_argv "$@"; then
+      return 1
+    fi
+    __go_commands_search_paths=("${__go_cmd_path}.d")
+  fi
+}
+
+_@go.commands_tab_completions() {
+  local word_index="$1"
+  shift
+
+  if [[ "$word_index" -eq '0' ]]; then
+    echo '--paths' '--summaries'
+    if [[ "${1:0:1}" == '-' || "$#" -gt 1 ]]; then
+      return
+    fi
+  fi
+
+  if [[ "${1:0:1}" == '-' ]]; then
+    shift
+    ((--word_index))
+  elif [[ "$1" =~ : || -d "$1" ]]; then
+    return 1
+  fi
+
+  local args=("$@")
+  local last_arg_index="$((${#args[@]} - 1))"
+  if [[ "$word_index" -lt "$last_arg_index" ]]; then
+    return 1
+  fi
+  _@go.commands "${args[@]:0:$word_index}"
+}
+
+_@go.commands() {
+  # Tab completions
+  if [[ "$1" == '--complete' ]]; then
+    shift
+    _@go.commands_tab_completions "$@"
+    return
+  fi
+
+  local __go_commands_action="list"
+  local __go_commands_search_paths=()
+
+  if ! _@go.commands_parse_argv "$@"; then
+    return 1
+  fi
+
+  . "$_GO_CORE_DIR/lib/internal/commands"
+
+  local __go_command_names
+  local __go_command_scripts
+  local __go_longest_name_len
+
+  if ! _@go.find_commands "${__go_commands_search_paths[@]}"; then
+    return 1
+  fi
+
+  case "$__go_commands_action" in
+  list)
+    local IFS=$'\n'
+    echo "${__go_command_names[*]}"
+    ;;
+  paths)
+    local i
+    for ((i=0; i != "${#__go_command_names[@]}"; ++i)); do
+      printf "%-${__go_longest_name_len}s  %s\n" \
+        "${__go_command_names[$i]}" "${__go_command_scripts[$i]}"
+    done
+    ;;
+  summaries)
+    _@go.summarize_commands "$@"
+    ;;
+  esac
+}
+
+_@go.commands "$@"

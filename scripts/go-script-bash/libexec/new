@@ -1,0 +1,299 @@
+#! /usr/bin/env bash
+#
+# Generate a new command script, module, test, or other text file
+#
+# Usage:
+#   To generate an arbitrary text file:
+#   {{go}} {{cmd}} --type <file_type> <file_path> <permissions> [lines...]
+#
+#   To generate a new command script in `_GO_SCRIPTS_DIR`:
+#   {{go}} {{cmd}} --command <command_name> [<subcommand_name>...]
+#
+#   To generate a new internal module in `_GO_SCRIPTS_DIR/lib`:
+#   {{go}} {{cmd}} --internal <module_path>
+#
+#   To generate a new public module in `_GO_ROOTDIR/lib`:
+#   {{go}} {{cmd}} --public <module_path>
+#
+#   To generate a new Bats test file in `_GO_TEST_DIR`:
+#   {{go}} {{cmd}} --test <test_path>
+#
+# Where:
+#
+#   <file_type>        Very brief description of the file type (can be empty)
+#   <file_path>        Path to the new file
+#   [lines...]         Optional list of lines to add to the file
+#   <permissions>      Permissions to set for the new file
+#   <command_name>     Command script name
+#   <subcommand_name>  Subcommand script name
+#   <module_path>      Path to module file relative to `_GO_*DIR/lib`
+#   <test_path>        Path to module file relative to `_GO_TEST_DIR`
+#
+# Any component of the target file path that does not yet exist will be created.
+#
+# If the `EDITOR` environment variable is defined, the newly-generated file (or
+# files, possible with `--command`) will be opened for editing with `--command`,
+# `--internal`, `--public`, or `--test`. It will be opened for other files when
+# the list of `lines...` is empty.
+#
+# When invoking the `--command` form, this command will also generate a new
+# script for any name preceding the final `<subcommand_name>` that does not yet
+# correspond to an existing parent command script. These parent commands will
+# invoke `@go.show_subcommands` from the core `subcommands` module by default.
+
+_@go.new_tab_completions() {
+  local word_index="$1"
+  local mode="$2"
+  shift 2
+
+  if [[ "$word_index" -eq '0' ]]; then
+    printf -- '--command --internal --public --test --type'
+    return
+  fi
+  ((--word_index))
+
+  case "$mode" in
+  --command)
+    if [[ "$word_index" -eq '0' ]]; then
+      _@go.source_builtin 'commands' "$_GO_SCRIPTS_DIR"
+    else
+      . "$_GO_CORE_DIR/lib/internal/complete"
+      _@go.complete_command_path "$word_index" "$@"
+    fi
+    return
+    ;;
+  --internal)
+    if [[ "$word_index" -ne '0' ]] || ! cd "$_GO_SCRIPTS_DIR/lib"; then
+      return 1
+    fi
+    ;;
+  --public)
+    if [[ "$word_index" -ne '0' ]] || ! cd "$_GO_ROOTDIR/lib"; then
+      return 1
+    fi
+    ;;
+  --test)
+    if [[ "$word_index" -ne '0' ]] || ! cd "$_GO_ROOTDIR/$_GO_TEST_DIR"; then
+      return 1
+    fi
+    ;;
+  --type)
+    if [[ "$word_index" -ne '1' ]]; then
+      return 1
+    fi
+    shift
+    ;;
+  *)
+    return 1
+    ;;
+  esac
+  @go.compgen -f -- "$1"
+}
+
+_@go.new_file() {
+  local file_type="$1"
+  local file_path="$2"
+  local permissions="$3"
+  shift 3
+  local relpath="$file_path"
+  local parent_dir
+  local permissions_pattern='([0-7][0-7][0-7]|[ugo]{1,3}[+-][rwx]{1,3})'
+
+  if [[ -z "$_GO_STANDALONE" ]]; then
+    relpath="${relpath#$_GO_ROOTDIR/}"
+  fi
+
+  parent_dir="${relpath%/*}"
+  if [[ "$parent_dir" == "$relpath" ]]; then
+    parent_dir="$PWD"
+  fi
+
+  if [[ -n "$file_type" ]]; then
+    file_type+=' '
+  fi
+
+  if [[ -z "$file_path" ]]; then
+    @go.printf 'No %sfile path specified.\n' "$file_type" >&2
+    return 1
+  elif [[ ! "$permissions" =~ $permissions_pattern ]]; then
+    @go.printf 'Invalid permissions specification "%s" for %sfile: %s\n' \
+      "$permissions" "$file_type" "$relpath" >&2
+      return 1
+  elif [[ ! -d "$parent_dir" ]] && ! mkdir -p "$parent_dir"; then
+    @go.printf "Couldn't create parent directory for new %sfile: %s\n" \
+      "$file_type" "$relpath" >&2
+    return 1
+  elif [[ -f "$file_path" ]]; then
+    @go.printf '%sfile already exists: %s\n' "$file_type" "$relpath" >&2
+    return 1
+  elif ! printf -- '%s\n' "$@" >"$file_path"; then
+    @go.printf 'Failed to create new %sfile: %s\n' "$file_type" "$relpath" >&2
+    return 1
+  elif ! chmod "$permissions" "$file_path"; then
+    @go.printf 'Failed to set permissions for new %sfile to "%s": %s\n' \
+      "$file_type" "$permissions" "$relpath" >&2
+    return 1
+  fi
+}
+
+_@go.new_command_script() {
+  local cmd="$1"
+  local cmd_path="$2"
+  local is_last_cmd="$3"
+  local script_impl=('#! /usr/bin/env bash'
+    '#'
+    '# Short description of the {{cmd}} command' '')
+
+  if [[ -n "$is_last_cmd" ]]; then
+    script_impl+=("_$cmd() {"
+      '  :'
+      '}'
+      ''
+      "_$cmd \"\$@\"")
+  else
+    script_impl+=(". \"\$_GO_USE_MODULES\" 'subcommands'"
+      ''
+      '@go.show_subcommands')
+  fi
+  _@go.new_file "command script" "$cmd_path" '755' "${script_impl[@]}"
+}
+
+_@go.new_command_scripts() {
+  local cmd
+  local cmd_path
+  local parent_dir="$_GO_SCRIPTS_DIR"
+  local new_scripts=()
+  local is_last_cmd
+  local i=0
+
+  if [[ "$#" -eq '0' ]]; then
+    printf 'No command script name specified.\n' >&2
+    return 1
+  fi
+
+  for cmd in "$@"; do
+    cmd_path="$parent_dir/$cmd"
+    parent_dir="$cmd_path.d"
+
+    if [[ "$((++i))" -eq "$#" ]]; then
+      is_last_cmd='true'
+    elif [[ -f "$cmd_path" ]]; then
+      continue
+    fi
+    new_scripts+=("$cmd_path")
+
+    if ! _@go.new_command_script "$cmd" "$cmd_path" "$is_last_cmd"; then
+      return 1
+    fi
+  done
+
+  if command -v "$EDITOR" >/dev/null; then
+    "$EDITOR" "${new_scripts[@]}"
+  fi
+}
+
+_@go.new_module() {
+  local module_path="$1"
+  local module_relpath="${module_path#*/lib/}"
+  local module_type
+  local impl=('#! /usr/bin/env bash'
+    '#'
+    "# Short description of the $module_relpath module"
+    '#'
+    '# Exports:'
+    '#   func_name'
+    '#     Short description of the func_name function')
+
+  case "${module_path%%/lib/*}" in
+  $_GO_SCRIPTS_DIR)
+    module_type='internal module'
+    ;;
+  $_GO_ROOTDIR)
+    module_type='public module'
+    ;;
+  esac
+
+  if ! _@go.new_file "$module_type" "$module_path" '644' "${impl[@]}"; then
+    return 1
+  elif command -v "$EDITOR" >/dev/null; then
+    "$EDITOR" "$module_path"
+  fi
+}
+
+_@go.new_test() {
+  local test_path="${1%.bats}.bats"
+  local test_relpath="${test_path#$_GO_ROOTDIR/$_GO_TEST_DIR/}"
+  local parent_dir="${test_relpath%/*}"
+  local impl
+
+  if [[ "$parent_dir" == "${test_path##*/}" ]]; then
+    parent_dir=''
+  else
+    parent_dir="${parent_dir//[^\/]}/"
+  fi
+
+  impl=('#! /usr/bin/env bats'
+    ''
+    "load ${parent_dir//\//../}environment"
+    ''
+    'setup() {'
+    '  test_filter'
+    '  @go.create_test_go_script'
+    '}'
+    ''
+    'teardown() {'
+    '  @go.remove_test_go_rootdir'
+    '}'
+    ''
+    '@test "$SUITE: short description of your first test case" {'
+    '}')
+
+  if ! _@go.new_file "Bats test" "$test_path" '644' "${impl[@]}"; then
+    return 1
+  elif command -v "$EDITOR" >/dev/null; then
+    "$EDITOR" "$test_path"
+  fi
+}
+
+_@go.new() {
+  local mode="$1"
+
+  if [[ "$#" -eq '0' ]]; then
+    @go 'help' "${_GO_CMD_NAME[@]}" >&2
+    return 1
+  fi
+  shift
+
+  case "$mode" in
+  --complete)
+    # Tab completions
+    _@go.new_tab_completions "$@"
+    return
+    ;;
+  --command)
+    _@go.new_command_scripts "$@"
+    ;;
+  --internal)
+    _@go.new_module "$_GO_SCRIPTS_DIR/lib/$1"
+    ;;
+  --public)
+    _@go.new_module "$_GO_ROOTDIR/lib/$1"
+    ;;
+  --test)
+    _@go.new_test "$_GO_ROOTDIR/$_GO_TEST_DIR/$1"
+    ;;
+  --type)
+    if ! _@go.new_file "$1" "$2" "${@:3}"; then
+      return 1
+    elif [[ "$#" -le '3' ]] && command -v "$EDITOR" >/dev/null; then
+      "$EDITOR" "$2"
+    fi
+    ;;
+  *)
+    printf 'The first argument is "%s", but must be one of:\n  %s\n' \
+      "$mode" '--command --internal --public --test --type' >&2
+    return 1
+  esac
+}
+
+_@go.new "$@"

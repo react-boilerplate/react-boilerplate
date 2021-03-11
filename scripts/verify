@@ -1,0 +1,57 @@
+#! /usr/bin/env bash
+#
+# Verifies code compliance to project standards for one or all component.
+#
+# Usage:
+#   {{go}} {{cmd}} [target-service]
+# 
+# Arguments:
+#   target-service    Optional argument indicating service to verify.
+
+# shellcheck source=scripts/lib/project-test
+. "$_GO_USE_MODULES" 'project-test'
+
+_verify() {
+  if [[ $# -gt 1 ]]; then
+    @go.log ERROR "Bad invocation. See help to learn about invocation."
+  fi
+  
+  local SERVICES_TO_VERIFY
+  
+  if [[ $# -eq 1 ]]; then
+    local TARGET="$1"
+    if ! elementIn $TARGET "${OBOT_TEST_SERVICES[@]}"; then
+      @go.log ERROR "Unknown service to verify: $TARGET. Available options are: " "${OBOT_TEST_SERVICES[@]}"
+      return 1
+    else
+      SERVICES_TO_VERIFY=($TARGET)
+    fi
+  else
+    SERVICES_TO_VERIFY=(${OBOT_TEST_SERVICES[@]})
+  fi
+  @go.log INFO "Launching verification task for services: " "${SERVICES_TO_VERIFY[@]}"
+  
+  local VERIFICATION_FAILED=0
+
+  for service in "${SERVICES_TO_VERIFY[@]}"; do
+    @go.log INFO "Launching verification task for: $service"
+    __verify_$service
+    if [[ $? -ne 0 ]]; then
+      @go.log ERROR "Verification failed for: $service"
+      VERIFICATION_FAILED=$?
+    else
+      @go.log INFO "Verification succeeded for: $service"
+    fi
+  done
+
+  if [[ $VERIFICATION_FAILED -ne 0 ]]; then
+    @go.log ERROR "Be careful! Some part of the verificaiton process failed. Please review."
+    return 1
+  else
+    @go.log INFO "Verification done for services :" "${SERVICES_TO_VERIFY[@]}"
+    return 0
+  fi
+  
+}
+
+_verify "$@"

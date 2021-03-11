@@ -1,0 +1,147 @@
+#! /bin/bash
+#
+# Print the full help message, or help for a specific command
+#
+# Usage: {{go}} {{cmd}} <command>
+#
+# Arguments:
+#   <command>  The command for which to retrieve a help message
+#
+# This command will find the path to the script implementing <command> and parse
+# its header comment to produce a help message on the console.
+#
+# To add help capability to your own scripts:
+#
+# The first line will be parsed as the "summary". This summary is used by the
+# `commands` command and others to provide a quick overview of a set of
+# commands. Subcommand scripts have their summaries automatically appended to
+# the full help message for their parent commands. Keep it short.
+#
+# Blocks of text that are not indented beyond the `# ` prefix are parsed as
+# paragraphs and will be automatically wrapped to the terminal width.
+#
+# Lines that are indented two spaces beyond `# ` and do not contain two or more
+# consecutive spaces are interpreted as preformatted lines and will not be
+# joined into paragraphs.
+#
+# Lines that are indented two spaces beyond `# ` and _do_ contain two or more
+# consecutive spaces are interpreted as tables, with wrapped lines indented two
+# spaces beyond the consecutive spaces on the first line. Only single lines are
+# wrapped, so keep these table items brief as well.
+#
+# The following keywords surrounded by `{{` and `}}` tokens are expanded to:
+#
+#   go    The path to the ./go script or shell function
+#   cmd   The name of the command script itself
+#   root  The $_GO_ROOTDIR containing the ./go script
+#
+# You can implement more substitutions by adding a `# Help filter` comment
+# somewhere in your script and having it handle the `--help-filter` flag. The
+# `{{cmd}}` command will then invoke your script as:
+#
+#   {{go}} <your-script> --help-filter <description>
+#
+# where <description> is the header comment from <your-script> after formatting
+# and keyword substitution. You can perform any substitutions you like, with the
+# following caveats:
+#
+#   - `go`, `cmd`, and `root` will not get expanded within the replacement text.
+#   - You must fold tabular content relative to $COLUMNS.
+#     - With paragraph content, this is unnecessary.
+#
+# This feature is especially handy for dynamically injecting text based on array
+# values, to keep the text in sync automatically. It's good practice to parse
+# tokens within `{{` and `}}` as is common with templating engines, but it's not
+# enforced.
+
+_@go.usage() {
+  local cmd_paths=("$_GO_SCRIPTS_DIR")
+  local summaries
+  local summaries_status=0
+
+  if [[ -z "$_GO_STANDALONE" ]]; then
+    cmd_paths+=("${_GO_PLUGINS_PATHS[@]}")
+  fi
+
+  . "$_GO_USE_MODULES" 'strings'
+  @go.join ':' 'cmd_paths' "${cmd_paths[@]}"
+  summaries="$(_@go.source_builtin 'commands' --summaries "$cmd_paths")"
+
+  if [[ "$?" -ne '0' ]]; then
+    summaries="<No commands found in or error retrieving summaries from: "
+    summaries+="$cmd_paths>"
+    summaries_status=1
+  fi
+
+  @go.printf "%s\n\n%s\n\n%s\n\n%s %s\n\n" \
+    "Usage: $_GO_CMD <command> [arguments...]" \
+    "Where <command> is one of:" \
+    "$summaries" \
+    "Use \"$_GO_CMD help <command>\" for more information about that command," \
+    "if available."
+
+  if [[ -z "$_GO_STANDALONE" ]]; then
+    @go.printf '%s %s\n\n' \
+      "Use \"$_GO_CMD help builtins\" for help on builtin commands," \
+      "and \"$_GO_CMD help aliases\" for information on shell alias commands."
+  fi
+  [[ "$?" -eq '0' && "$summaries_status" -eq '0' ]]
+}
+
+_@go.help_message_for_command() {
+  if _@go.source_builtin 'aliases' --help "$1"; then
+    return
+  fi
+
+  local __go_cmd_path
+  local __go_argv
+
+  if ! _@go.set_command_path_and_argv "$@"; then
+    return 1
+  fi
+
+  local cmd_name="${__go_cmd_path//.d\// }"
+  cmd_name="${cmd_name##*/}"
+
+  . "$_GO_CORE_DIR/lib/internal/command_descriptions"
+  local __go_cmd_desc
+
+  if ! _@go.command_description "$__go_cmd_path"; then
+    # So long as _@go.set_command_path_and_argv returns valid results, this
+    # _shouldn't_ ever happen.
+    @go.printf "ERROR: failed to parse description from %s\n" \
+      "$__go_cmd_path" >&2
+    return 1
+  fi
+
+  local filter_pattern='# [Hh]elp [Ff]ilter['$'\n\r'']'
+
+  if [[ "$(< "$__go_cmd_path")" =~ $filter_pattern ]]; then
+    __go_cmd_desc="$(_@go.run_command_script "$__go_cmd_path" --help-filter \
+      "$__go_cmd_desc")"
+  fi
+
+  if [[ -d "${__go_cmd_path}.d" ]]; then
+    __go_cmd_desc+="$(printf '\nSubcommands:\n\n'; \
+      _@go.source_builtin 'commands' --summaries "${__go_cmd_path}.d")"
+  fi
+  @go.printf "$_GO_CMD $cmd_name - $__go_cmd_desc\n"
+}
+
+_@go.help() {
+  if [[ "$1" == '--complete' ]]; then
+    # Tab completions
+    shift
+    . "$_GO_CORE_DIR/lib/internal/complete"
+    _@go.complete_command_path "$@"
+    return
+  fi
+
+  if [[ "$#" -eq '0' ]]; then
+    _@go.usage
+  else
+    _@go.help_message_for_command "$@"
+  fi
+}
+
+_@go.help "$@"

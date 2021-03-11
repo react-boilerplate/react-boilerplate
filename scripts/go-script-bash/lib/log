@@ -1,0 +1,763 @@
+#! /bin/bash
+#
+# Standard logging
+#
+# Exports:
+#   @go.log
+#     Outputs a log line; supports terminal formatting and format stripping
+#
+#   @go.log_timestamp
+#     Generates a timestamp using _GO_LOG_TIMESTAMP_FORMAT (strftime format)
+#
+#   @go.add_or_update_log_level
+#     Modifies existing log level labels, formatting, and file descriptors
+#
+#   @go.log_add_output_file
+#     Add an additional output file for log messages
+#
+#   @go.log_command
+#     Logs the specified command, its stdout and stderr, and its outcome
+#
+#   @go.critical_section_begin
+#     Causes @go.log_command to log FATAL on error
+#
+#   @go.critical_section_end
+#     Cause @go.log_command to log ERROR on error
+#
+#   @go.setup_project
+#     Runs the project's 'setup' script and logs the result
+#
+# The log level labels are formatted when output to a terminal, and formatting
+# can be forced when writing to a pipe or file by setting `_GO_LOG_FORMATTING`.
+#
+# `@go.log ERROR` will return an error code, so you may use it in conditional
+# statements. `@go.log QUIT` and `@go.log FATAL` will exit the process; the
+# latter will print a stack trace. The intention for each is:
+#
+# - `ERROR`: recoverable errors (except after `@go.critical_section_begin`)
+# - `QUIT`:  nonerror exit conditions (e.g. invalid user input, program finish)
+# - `FATAL`: unrecoverable program errors; prints the stack trace and exits
+#
+# The `_GO_LOG_LEVEL_FILTER` variable sets the minimum priority for logged
+# messages (defaulting to `RUN`), and the `_GO_LOG_CONSOLE_FILTER` variable
+# allows users to set the minimum priority specific to console output without
+# affecting the priority for file output. These variables must be set before `.
+# "$_GO_IMPORT_MODULES" 'log'`, either within a file or on the command line.
+# They cannot be changed once the module is imported.
+#
+# You can pass entire commands to the `@go.log_command` function, which will
+# provide log messages upon startup and completion. Upon error, it will log the
+# status and return an error code, so you may use it in conditional statements.
+# Wrapping blocks of `@go.log_command` invocations in
+# `@go.critical_section_begin` and `@go.critical_section_end` will cause any
+# errors to log `FATAL`. Setting `_GO_DRY_RUN` will log the commands without
+# executing them.
+#
+# The `@go.setup_project` function provides a convenient wrapper for running
+# first-time project setup scripts. It logs the start and finish of the setup
+# script, and provides helpful hints on running the `./go` script upon success.
+#
+# See the function and variable comments from this file for further information.
+# Try the `{{go}} demo-core log` command to get a feel for the mechanisms
+# described above.
+
+# A strftime-compatible date/time format string used to prefix log messages with
+# a timestamp. E.g.: '%Y-%m-%d %H:%M:%S'
+#
+# If left undefined, log messages are not prefixed with timestamps.
+readonly _GO_LOG_TIMESTAMP_FORMAT="$_GO_LOG_TIMESTAMP_FORMAT"
+
+# The lowest level of log messages to send to the console
+#
+# This will override _GO_LOG_LEVEL_FILTER for console outputs, i.e. file
+# descriptors less than 2 or that output to a terminal. The reason for file
+# descriptors less than 2 is to support piping standard output and standard
+# error into another command.
+readonly _GO_LOG_CONSOLE_FILTER="${_GO_LOG_CONSOLE_FILTER}"
+
+# The lowest level of log messages to send to all outputs
+#
+# Overridden by _GO_LOG_CONSOLE_FILTER for console outputs.
+readonly _GO_LOG_LEVEL_FILTER="${_GO_LOG_LEVEL_FILTER:-RUN}"
+
+# Set this if you want to force terminal-formatted output from @go.log.
+#
+# @go.log will remove terminal formatting codes by default when the output file
+# descriptor is not a terminal. Can be set either in the script or on the
+# command line.
+readonly _GO_LOG_FORMATTING="$_GO_LOG_FORMATTING"
+
+# If not empty, @go.log_command will only print the command and not execute it.
+#
+# Can be set either in the script or on the command line.
+readonly _GO_DRY_RUN="$_GO_DRY_RUN"
+
+# Set this to the default log level for `@go.critical_section_begin`. May be
+# overridden by individual `@go.critical_section_begin` calls, the value set by
+# the outermost call always taking precedence.
+readonly _GO_CRITICAL_SECTION_DEFAULT="${_GO_CRITICAL_SECTION_DEFAULT:-FATAL}"
+
+# Default log level labels
+#
+# These are in priority order. The _GO_LOG_CONSOLE_FILTER and
+# _GO_LOG_LEVEL_FILTER variables determine the lowest-priority messages sent to
+# the console or to all outputs, respectively.
+#
+# FATAL messages are always the highest priority, and will always be emitted.
+#
+# DO NOT UPDATE DIRECTLY: Use @go.add_or_update_log_level instead.
+export _GO_LOG_LEVELS
+_GO_LOG_LEVELS=(
+  'DEBUG'
+  'RUN'
+  'START'
+  'FINISH'
+  'INFO'
+  'WARN'
+  'ERROR'
+  'QUIT'
+  'FATAL'
+)
+
+# Default log level terminal format codes
+export __GO_LOG_LEVELS_FORMAT_CODES
+__GO_LOG_LEVELS_FORMAT_CODES=(
+  '\e[1m\e[30;47m'
+  '\e[1m\e[35m'
+  '\e[1m\e[32m'
+  '\e[1m\e[32m'
+  '\e[1m\e[36m'
+  '\e[1m\e[33m'
+  '\e[1m\e[31m'
+  '\e[1m\e[31m'
+  '\e[1m\e[31m'
+)
+
+# Default log level output file descriptors
+#
+# '1' is standard output and '2' is standard error.
+export __GO_LOG_LEVELS_FILE_DESCRIPTORS
+__GO_LOG_LEVELS_FILE_DESCRIPTORS=(
+  '1'
+  '1'
+  '1'
+  '1'
+  '1'
+  '1'
+  '2'
+  '2'
+  '2'
+)
+
+# DO NOT EDIT: Initialized by @go.log
+export __GO_LOG_LEVELS_FORMATTED
+__GO_LOG_LEVELS_FORMATTED=()
+
+# Set by @go.critical_section_{begin,end}
+export __GO_LOG_CRITICAL_SECTION="${__GO_LOG_CRITICAL_SECTION:-0}"
+
+# Set by @go.critical_section_begin
+export __GO_LOG_CRITICAL_SECTION_LEVEL="$__GO_LOG_CRITICAL_SECTION_LEVEL"
+
+# DO NOT EDIT: Determines number of stack trace levels to skip for FATAL logs.
+export __GO_LOG_FATAL_STACK_TRACE_SKIP_CALLERS=1
+
+# DO NOT EDIT: Used by `@go.log FATAL` to emit exit info when running a command
+# under `@go.log_command` and by `_@go.log_command_should_skip_file_descriptor`
+# to determine when to skip emitting a log message.
+export __GO_LOG_COMMAND_DEPTH="${__GO_LOG_COMMAND_DEPTH:-0}"
+
+# DO NOT EDIT: The value for `__GO_LOG_COMMAND_DEPTH` in effect when the current
+# process was started. Used by `@go.log_command` to skip emitting multiple fatal
+# log messages in the same process while allowing separate fatal messages from
+# parent processes.
+readonly __GO_LOG_COMMAND_DEPTH_0="${__GO_LOG_COMMAND_DEPTH}"
+
+# DO NOT EDIT: Every index corresponds to a descriptor for which
+# `_@go.log_command_should_skip_file_descriptor` should return true.
+export __GO_LOG_COMMAND_SKIP_FILE_DESCRIPTORS
+__GO_LOG_COMMAND_SKIP_FILE_DESCRIPTORS=()
+
+# Pattern `@go.log_command` uses to parse exit codes from command invocations.
+readonly __GO_LOG_COMMAND_EXIT_PATTERN='^@go.log_command (exit|fatal):([0-9]+)$'
+
+# Outputs a single log line that may contain terminal control characters.
+#
+# Usage:
+#
+#   @go.log <log-level> args...
+#   @go.log <ERROR|QUIT|FATAL> [exit-status] args...
+#
+# Where:
+#
+#   <log-level>    A label from _GO_LOG_LEVELS
+#   <exit-status>  The exit status to return from an ERROR, QUIT, or FATAL call
+#   args...        Arguments comprising the log record text
+#
+# Will automatically format the '<log-level>' label if writing to the terminal
+# or _GO_LOG_FORMATTING is set. Will automatically strip format codes from the
+# remaining arguments if not writing to the terminal and _GO_LOG_FORMATTING is
+# empty.
+#
+# If the first argument is ERROR, QUIT, or FATAL, the second argument is
+# interpreted as the exit status if an integer or the empty string, and the
+# remainder of the arguments comprise the log record. The exit status will be
+# appended to the log record if it is not the empty string. If the second
+# argument is neither an integer or the empty string, it will provide the first
+# element of the log record.
+#
+# ERROR will cause @go.log to return the exit status; QUIT will exit the process
+# with the exit status; FATAL will print a stack trace and exit the process with
+# the exit status. If the exit status is the empty string, it will default to 1.
+# (Note that QUIT may be used for normal program exit, but you must specify `0`
+# as the first argument.)
+#
+# If you want to add a custom log level, or change an existing log level, do so
+# using @go.add_or_update_log_level before the first call to @go.log, most
+# likely in your ./go script.
+#
+# Arguments:
+#   $1: log level label; will be converted to all-uppercase
+#   $2: exit status if $1 is ERROR, QUIT, or FATAL; first log element otherwise
+#   $3..$#: remainder of the log record
+@go.log() {
+  local args=("$@")
+  local log_level="${args[0]^^}"
+  local exit_status=0
+  local log_msg
+  local stripped_log_msg
+  local level_fd
+
+  unset 'args[0]'
+  _@go.log_init
+
+  local __go_log_level_index=0
+  if ! _@go.log_level_index "$log_level"; then
+    @go.log ERROR "Unknown log level $log_level; defaulting to WARN"
+    @go.log WARN "${args[@]}"
+    return 1
+  fi
+
+  if [[ "$log_level" =~ ERROR|QUIT|FATAL ]]; then
+    exit_status="${args[1]}"
+
+    if [[ -n "$exit_status" && "$exit_status" =~ ^-?[0-9]+$ ]]; then
+      unset 'args[1]'
+      args+=("(exit status $exit_status)")
+    else
+      exit_status=1
+    fi
+  fi
+
+  local __go_log_timestamp
+  if @go.log_timestamp; then
+    __go_log_timestamp+=' '
+  fi
+  printf -v log_msg -- '%s%s %b' "$__go_log_timestamp" \
+    "${__GO_LOG_LEVELS_FORMATTED[$__go_log_level_index]}" "${args[*]}\\e[0m"
+
+  local __go_log_level_file_descriptors=('1')
+  if [[ "$__GO_LOG_COMMAND_DEPTH" == '0' || "$log_level" != 'RUN' ]]; then
+    _@go.log_level_file_descriptors "$__go_log_level_index"
+  fi
+
+  for level_fd in "${__go_log_level_file_descriptors[@]}"; do
+    if ! _@go.log_level_meets_priority "$__go_log_level_index" "$level_fd" ||
+      _@go.log_command_should_skip_file_descriptor "$level_fd"; then
+      continue
+    elif [[ ! -t "$level_fd" && -z "$_GO_LOG_FORMATTING" ]]; then
+      if [[ -z "$stripped_log_msg" ]]; then
+        @go.strip_formatting_codes "$log_msg" 'stripped_log_msg'
+      fi
+      printf '%s\n' "$stripped_log_msg" >&"$level_fd"
+    else
+      printf '%s\n' "$log_msg" >&"$level_fd"
+    fi
+
+    if [[ "$log_level" == 'FATAL' ]]; then
+      @go.print_stack_trace "$__GO_LOG_FATAL_STACK_TRACE_SKIP_CALLERS" \
+        >&"$level_fd"
+    fi
+  done
+
+  if [[ "$log_level" =~ QUIT|FATAL ]]; then
+    if [[ "$__GO_LOG_COMMAND_DEPTH" -ne '0' ]]; then
+      echo "@go.log_command fatal:$exit_status" >&2
+    fi
+    exit "$exit_status"
+  fi
+  return "$exit_status"
+}
+
+# Generates a timestamp using _GO_LOG_TIMESTAMP_FORMAT (strftime format)
+#
+# Generates nothing and returns an error if:
+#   - _GO_LOG_TIMESTAMP_FORMAT isn't set
+#   - _GO_LOG_TIMESTAMP_FORMAT is set, but both the builtin
+#     `printf '%(datefmt)T'` format and `date` command are missing
+#
+# Globals:
+#   _GO_LOG_TIMESTAMP_FORMAT:  A strftime-compatible format string
+#   __go_log_timestamp:        Variable into which timestamp will be stored
+#
+# Returns:
+#   zero if the timestamp was generated, nonzero otherwise
+@go.log_timestamp() {
+  _@go.log_init
+
+  case "$__GO_LOG_TIMESTAMP_IMPL" in
+  printf)
+    printf -v __go_log_timestamp "%($_GO_LOG_TIMESTAMP_FORMAT)T"
+    return "$?"
+    ;;
+  date)
+    __go_log_timestamp="$(date "+$_GO_LOG_TIMESTAMP_FORMAT")"
+    return "$?"
+    ;;
+  esac
+  return 1
+}
+
+# Adds a new log level or updates an existing one.
+#
+# If you wish to keep the existing format code or file descriptor, specify
+# 'keep' as the second argument or third argument, respectively.
+#
+# Arguments:
+#   $1: The log level label
+#   $2: The terminal format code that should precede the label
+#   $3: The file descriptor to which to output level messages (defaults to 1)
+@go.add_or_update_log_level() {
+  local log_level="$1"
+  local format_code="$2"
+  local level_fd="${3:-1}"
+  ((++__GO_LOG_FATAL_STACK_TRACE_SKIP_CALLERS))
+
+  if [[ -n "$__GO_LOG_INIT" ]]; then
+    @go.log FATAL "Can't set logging level $log_level; already initialized"
+  elif [[ "$level_fd" != 'keep' && ! "$level_fd" =~ ^[1-9]+[0-9]*$ ]]; then
+    @go.log FATAL "File descriptor $level_fd for $log_level must be > 0"
+  elif ! echo -n 2>/dev/null >&"$level_fd"; then
+    @go.log FATAL "File descriptor $level_fd for $log_level isn't open"
+  fi
+  ((--__GO_LOG_FATAL_STACK_TRACE_SKIP_CALLERS))
+
+  local __go_log_level_index=0
+  if ! _@go.log_level_index "$log_level"; then
+    if [[ "$format_code" == 'keep' || "$level_fd" == 'keep' ]]; then
+      ((++__GO_LOG_FATAL_STACK_TRACE_SKIP_CALLERS))
+      @go.log FATAL "Can't keep defaults for nonexistent log level $log_level"
+    fi
+    _GO_LOG_LEVELS+=("$log_level")
+    __GO_LOG_LEVELS_FORMAT_CODES+=("$format_code")
+    __GO_LOG_LEVELS_FILE_DESCRIPTORS+=("$level_fd")
+    return
+  fi
+
+  _GO_LOG_LEVELS[$__go_log_level_index]="$log_level"
+
+  if [[ "$format_code" != 'keep' ]]; then
+    __GO_LOG_LEVELS_FORMAT_CODES[$__go_log_level_index]="$format_code"
+  fi
+  if [[ "$level_fd" != 'keep' ]]; then
+    __GO_LOG_LEVELS_FILE_DESCRIPTORS[$__go_log_level_index]="$level_fd"
+  fi
+}
+
+# Add an additional output file for log messages.
+#
+# If `log_levels` is not specified, the file will be opened for all existing log
+# levels. If it is specified:
+#
+#   - any levels not yet in `_GO_LOG_LEVELS` will be created
+#   - each level will write to `output_file` in addition to existing output fds
+#
+# Arguments:
+#   output_file:  Path to the additional log file; will be opened for appending
+#   log_level:    Comma-separated log levels to send output to output_file
+@go.log_add_output_file() {
+  local output_file="$1"
+  local log_level="$2"
+  local output_fd
+  local levels=()
+  local level
+  local __go_log_level_index
+
+  if [[ -n "$__GO_LOG_INIT" ]]; then
+    @go.log FATAL "Can't add new output file $output_file;" \
+      "logging already initialized"
+  fi
+
+  . "$_GO_USE_MODULES" 'file' 'strings'
+  @go.open_file_or_duplicate_fd "$output_file" 'a' 'output_fd'
+
+  if [[ -n "$log_level" ]]; then
+    @go.split ',' "$log_level" 'levels'
+  else
+    levels=("${_GO_LOG_LEVELS[@]}")
+  fi
+
+  for level in "${levels[@]}"; do
+    if _@go.log_level_index "$level"; then
+      __GO_LOG_LEVELS_FILE_DESCRIPTORS[$__go_log_level_index]+=",$output_fd"
+    else
+      @go.add_or_update_log_level "$level" '' "$output_fd"
+    fi
+  done
+}
+
+# Sets @go.log_command to log QUIT or FATAL when a command exits with an error.
+#
+# Note that the `log_level` argument only takes effect when opening the
+# outermost critical section; otherwise the log level of the outermost critical
+# section is used.
+#
+# Arguments:
+#   log_level:  (Optional) Either QUIT or FATAL; defaults to FATAL
+@go.critical_section_begin() {
+  local log_level="${1:-$_GO_CRITICAL_SECTION_DEFAULT}"
+
+  if [[ ! "$log_level" =~ ^(QUIT|FATAL)$ ]]; then
+    ((++__GO_LOG_FATAL_STACK_TRACE_SKIP_CALLERS))
+    @go.log FATAL "$FUNCNAME accepts QUIT or FATAL, not $log_level" >&2
+  elif [[ "$__GO_LOG_CRITICAL_SECTION" -eq '0' ]]; then
+    __GO_LOG_CRITICAL_SECTION_LEVEL="$log_level"
+  fi
+  ((++__GO_LOG_CRITICAL_SECTION))
+}
+
+# Sets @go.log_command to log ERROR when a command exits with an error.
+@go.critical_section_end() {
+  if [[ "$__GO_LOG_CRITICAL_SECTION" -ne '0' ]]; then
+    ((--__GO_LOG_CRITICAL_SECTION))
+    return 0
+  fi
+}
+
+# Logs the specified command, its stdout and stderr, and its outcome.
+#
+# The command string and the command output are logged at the `RUN` level.
+#
+# By default it will log ERROR and return the command's exit status on failure.
+# In between calls to @go.critical_section_begin and @go.critical_section_end,
+# it will instead log FATAL and exit the process with the command's status code.
+#
+# `./go` script commands can be invoked using `@go`. Note that this means all of
+# the logging variables and flags set in parent commands apply directly to `@go`
+# commands written in Bash, but not other languages. Most notably, the state of
+# the critical section flag will be shared between parent and child Bash
+# scripts.
+#
+# Globals:
+#   _GO_DRY_RUN:                 Will log commands without running them
+#   __GO_LOG_CRITICAL_SECTION:   Will log FATAL on error
+#
+# Arguments:
+#   $@: The command and its arguments to log and execute
+@go.log_command() {
+  # STACK TRACES FOR LOGGED COMMANDS will point at the above line, but the real
+  # line is `done < <(_@go.log_command_invoke)` closing the `while` loop below.
+  local __go_log_command_args=("$@")
+  local cmd_string="${__go_log_command_args[*]}"
+  local line
+  local stripped_line
+  local exit_state
+  local exit_status=1
+
+  if [[ "${__go_log_command_args[0]}" == '@go' ]]; then
+    cmd_string="$_GO_CMD ${__go_log_command_args[*]:1}"
+  fi
+
+  @go.log RUN "$cmd_string"
+
+  if [[ -n "$_GO_DRY_RUN" ]]; then
+    return
+  fi
+
+  local __go_log_level_file_descriptors=('1')
+  if [[ "$__GO_LOG_COMMAND_DEPTH" -eq '0' ]]; then
+    local __go_log_level_index
+    _@go.log_level_index 'RUN'
+    _@go.log_level_file_descriptors "$__go_log_level_index"
+  fi
+
+  while IFS= read -r line; do
+    line="${line%$'\r'}"
+    stripped_line=''
+
+    if [[ "$line" =~ $__GO_LOG_COMMAND_EXIT_PATTERN ]]; then
+      # If the line immediately previous was fatal, keep the fatal state.
+      if [[ "$exit_state" != 'fatal' ]]; then
+        exit_state="${BASH_REMATCH[1]}"
+      fi
+      exit_status="${BASH_REMATCH[2]}"
+      continue
+    fi
+
+    # Ensure only the last line of output captures the exit state and status.
+    exit_state=''
+
+    for fd in "${__go_log_level_file_descriptors[@]}"; do
+      if [[ -t "$fd" || -n "$_GO_LOG_FORMATTING" ]]; then
+        printf '%s\n' "$line" >&"$fd"
+      else
+        if [[ -z "$stripped_line" ]]; then
+          @go.strip_formatting_codes "$line" stripped_line
+        fi
+        printf '%s\n' "$stripped_line" >&"$fd"
+      fi
+    done
+  done < <(_@go.log_command_invoke)
+
+  if [[ "$exit_status" -ne '0' ]]; then
+    # If the subprocess logged QUIT or FATAL, don't add a stack trace.
+    if [[ "$exit_state" == 'fatal' ]]; then
+      # Keep emitting the `fatal` marker until we've reached the depth at which
+      # the process was started. This prevents a deeply nested fatal exit from
+      # producing multiple fatal log messages in the same process, while
+      # allowing parent processes to emit their own fatal messages. Relevant
+      # test cases from tests/log/log-command.bats:
+      # - nested critical sections, @go.log FATAL still looks FATAL
+      # - fatal status for subcommand of command in another language
+      if [[ "$__GO_LOG_COMMAND_DEPTH" -ne "$__GO_LOG_COMMAND_DEPTH_0" ]]; then
+        printf '@go.log_command fatal:%s\n' "$exit_status" >&2
+      fi
+      exit "$exit_status"
+    elif [[ "$__GO_LOG_CRITICAL_SECTION" -ne '0' ]]; then
+      ((++__GO_LOG_FATAL_STACK_TRACE_SKIP_CALLERS))
+      @go.log "$__GO_LOG_CRITICAL_SECTION_LEVEL" "$exit_status" "$cmd_string"
+    fi
+    @go.log ERROR "$exit_status" "$cmd_string"
+  fi
+}
+
+# Runs the project's setup script and logs the result.
+#
+# Helps with automating and logging project setup steps upon running the ./go
+# script in a freshly-cloned repository for the first time, and providing the
+# user with useful hints on how to use the ./go script upon success.
+#
+# If the setup script returns an error, the process will exit with the status
+# code returned by the script.
+#
+# For example, in a Node.js project, your ./go script may include the following:
+#
+#   export PATH="node_modules/.bin:$PATH"
+#   if [[ ! -d 'node_modules' ]]; then
+#     @go.setup_project 'setup'
+#   else
+#     @go "$@"
+#   fi
+#
+# And your `$_GO_SCRIPTS_DIR/setup` script may include (assuming your own `test`
+# script as well):
+#
+#   @go.critical_section_begin QUIT
+#   @go.log_command npm install
+#   @go.log_command @go test
+#   @go.critical_section_end
+#
+# Arguments:
+#   $1:   The path of setup script relative to the project scripts directory
+#   ...:  Any arguments to pass through to the 'setup' script
+@go.setup_project() {
+  local setup_script="$_GO_SCRIPTS_DIR/$1"
+  local setup_status
+  shift
+
+  @go.log START Project setup in "$_GO_ROOTDIR"
+
+  ((++__GO_LOG_FATAL_STACK_TRACE_SKIP_CALLERS))
+  if [[ ! -f "$setup_script" ]]; then
+    @go.log FATAL "Create $setup_script before invoking $FUNCNAME."
+  elif  [[ ! -x "$setup_script" ]]; then
+    @go.log FATAL "$setup_script is not executable."
+  fi
+  ((--__GO_LOG_FATAL_STACK_TRACE_SKIP_CALLERS))
+
+  @go.log RUN "${setup_script#$_GO_ROOTDIR/}" "$@"
+  _@go.run_command_script "$setup_script" "$@"
+  setup_status="$?"
+
+  if [[ "$setup_status" -ne '0' ]]; then
+    ((++__GO_LOG_FATAL_STACK_TRACE_SKIP_CALLERS))
+    @go.log FATAL "$setup_status" "Project setup failed"
+  fi
+
+  @go.log FINISH Project setup successful
+  @go.log INFO "Run \`$0 help\` to see the available commands."
+
+  if [[ "$_GO_CMD" == "$0" ]]; then
+    @go.log INFO \
+      "Run \`$0 help env\` to see how to set up your shell environment" \
+      'for this project.'
+  fi
+}
+
+# --------------------------------
+# IMPLEMENTATION - HERE BE DRAGONS
+#
+# None of the functions below this line are part of the public interface.
+# --------------------------------
+
+# Initializes the logging system variables
+#
+# May be called multiple times; initialization will only happen once.
+_@go.log_init() {
+  local run_fd
+
+  if [[ -n "$__GO_LOG_INIT" ]]; then
+    return
+  fi
+
+  readonly __GO_LOG_INIT='done'
+  . "$_GO_USE_MODULES" 'format'
+  ((__GO_LOG_FATAL_STACK_TRACE_SKIP_CALLERS+=2))
+  _@go.log_format_level_labels
+
+  if [[ -z "$_GO_LOG_TIMESTAMP_FORMAT" ]]; then
+    readonly __GO_LOG_TIMESTAMP_IMPL='none'
+  elif printf "%('%Y')T" &>/dev/null; then
+    readonly __GO_LOG_TIMESTAMP_IMPL='printf'
+  elif command -v date >/dev/null; then
+    readonly __GO_LOG_TIMESTAMP_IMPL='date'
+  else
+    readonly __GO_LOG_TIMESTAMP_IMPL='none'
+    @go.log WARN Builtin timestamps not supported and date command not found.
+  fi
+
+  local __go_log_level_index
+  if _@go.log_level_index "$_GO_LOG_LEVEL_FILTER"; then
+    readonly __GO_LOG_PRIORITY="$__go_log_level_index"
+  else
+    @go.log FATAL "Invalid _GO_LOG_LEVEL_FILTER: $_GO_LOG_LEVEL_FILTER"
+  fi
+
+  if [[ -n "$_GO_LOG_CONSOLE_FILTER" ]]; then
+    if _@go.log_level_index "$_GO_LOG_CONSOLE_FILTER"; then
+      readonly __GO_LOG_CONSOLE_PRIORITY="$__go_log_level_index"
+    else
+      @go.log FATAL "Invalid _GO_LOG_CONSOLE_FILTER: $_GO_LOG_CONSOLE_FILTER"
+    fi
+  fi
+
+  if _@go.log_level_index 'RUN'; then
+    while read -rd, run_fd; do
+      # Standard output (fd 1) and error (fd 2) should never be skipped since
+      # `@go.log_command` captures them.
+      if [[ "$run_fd" -gt '2' ]]; then
+        __GO_LOG_COMMAND_SKIP_FILE_DESCRIPTORS["$run_fd"]='true'
+      fi
+    done <<< "${__GO_LOG_LEVELS_FILE_DESCRIPTORS[__go_log_level_index]},"
+  fi
+
+  ((__GO_LOG_FATAL_STACK_TRACE_SKIP_CALLERS-=2))
+}
+
+# Assigns formatted log level labels to __GO_LOG_LEVELS_FORMATTED.
+#
+# Each element of `__GO_LOG_LEVELS_FORMATTED` will also be padded with trailing
+# spaces so that each element will be the same length.
+#
+# Globals:
+#   _GO_LOG_LEVELS:                    List of valid log level labels
+#   __GO_LOG_LEVELS_FORMAT_CODES:      Terminal format codes for each log level
+#   __GO_LOG_LEVELS_FORMATTED:         Formatted labels
+_@go.log_format_level_labels() {
+  __GO_LOG_LEVELS_FORMATTED=("${_GO_LOG_LEVELS[@]/%/\\e[0m}")
+  @go.pad_items __GO_LOG_LEVELS_FORMATTED "${__GO_LOG_LEVELS_FORMATTED[@]}"
+  @go.zip_items __GO_LOG_LEVELS_FORMAT_CODES __GO_LOG_LEVELS_FORMATTED '' \
+    __GO_LOG_LEVELS_FORMATTED
+  @go.array_printf __GO_LOG_LEVELS_FORMATTED '%b' \
+    "${__GO_LOG_LEVELS_FORMATTED[@]}"
+}
+
+# Returns the set of file descriptors for the specified log level index.
+#
+# Globals:
+#   __go_log_level_file_descriptors:  Variable into which fds will be stored
+#
+# Arguments:
+#   log_level_index:  A log level index returned from _@go.log_level_index
+_@go.log_level_file_descriptors() {
+  local IFS=','
+  read -ra __go_log_level_file_descriptors \
+    <<< "${__GO_LOG_LEVELS_FILE_DESCRIPTORS[$1]}"
+}
+
+# Sets the index into the __GO_LOG arrays for the specified label
+#
+#
+# Globals:
+#   __go_log_level_index:  Variable into which the label's index will be stored
+#
+# Arguments:
+#   $1:  The log level label to look up
+#
+# Returns:
+#   zero if the label exists, nonzero otherwise
+_@go.log_level_index() {
+  local i
+  for ((i=0; i != "${#_GO_LOG_LEVELS[@]}"; ++i)); do
+    if [[ "${_GO_LOG_LEVELS[$i]}" == "$1" ]]; then
+      __go_log_level_index="$i"
+      return
+    fi
+  done
+  return 1
+}
+
+# Checks whether the log message is of sufficient priority to emit
+#
+# Arguments:
+#   level:     A log level index returned from _@go.log_level_index
+#   level_fd:  A file descriptor corresponding to the log level
+#
+# Returns:
+#   zero if the log level is of sufficient priority, nonzero otherwise
+_@go.log_level_meets_priority() {
+  local level="$1"
+  local level_fd="$2"
+  local priority="$__GO_LOG_PRIORITY"
+
+  if [[ ( "$level_fd" -le 2 || -t "$level_fd" ) &&
+        -n "$__GO_LOG_CONSOLE_PRIORITY" ]]; then
+    priority="$__GO_LOG_CONSOLE_PRIORITY"
+  fi
+
+  [[ "$level" -ge "$priority" ]]
+}
+
+# Invoked by `@go.log_command` in a process substitution (subshell).
+_@go.log_command_invoke() {
+  ((++__GO_LOG_COMMAND_DEPTH))
+  trap 'echo "@go.log_command exit:$?"' EXIT
+  "${__go_log_command_args[@]}" 2>&1
+  # Bash 3.2 won't set $? in the EXIT trap without the following line.
+  exit "$?"
+}
+
+# Prevents echoing log lines to log files when running under `@go.log_command`
+_@go.log_command_should_skip_file_descriptor() {
+  [[ "$__GO_LOG_COMMAND_DEPTH" -ne '0' &&
+     -n "${__GO_LOG_COMMAND_SKIP_FILE_DESCRIPTORS[$1]}" ]]
+}
+
+# Sanity check that the __GO_LOG arrays are all of the same size
+#
+# Will cause the process to exit with an error message and status if not.
+_@go.log_load() {
+  local num_levels="${#_GO_LOG_LEVELS[@]}"
+
+  if [[ "${#__GO_LOG_LEVELS_FORMAT_CODES[@]}" != "$num_levels" ]]; then
+    echo "Should have $num_levels log level format codes," \
+      "only have ${#__GO_LOG_LEVELS_FORMAT_CODES[@]}" >&2
+    exit 1
+  elif [[ "${#__GO_LOG_LEVELS_FILE_DESCRIPTORS[@]}" != "$num_levels" ]]; then
+    echo "Should have $num_levels log level file descriptors," \
+      "only have ${#__GO_LOG_LEVELS_FILE_DESCRIPTORS[@]}" >&2
+    exit 1
+  fi
+}
+
+_@go.log_load

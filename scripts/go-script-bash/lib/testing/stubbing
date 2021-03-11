@@ -1,0 +1,42 @@
+#! /bin/bash
+#
+# Helper functions for creating test stubs for command and module scripts
+#
+# Useful when you need to model command script or module behavior, but don't
+# want it to do real work or want to avoid a potentially complicated test setup.
+#
+# This will assign and export values for `_GO_INJECT_SEARCH_PATH` and
+# `_GO_INJECT_MODULE_PATH`.
+#
+# You must import `_GO_CORE_DIR/lib/testing/environment` before importing this
+# script, and make sure to call `@go.remove_test_go_rootdir` from `teardown`.
+
+. "$_GO_CORE_DIR/lib/bats/helper-function"
+
+export _GO_INJECT_SEARCH_PATH="$TEST_GO_ROOTDIR/test-bin"
+export _GO_INJECT_MODULE_PATH="$TEST_GO_ROOTDIR/test-lib"
+
+# Creates a stub command script implementation in `_GO_INJECT_SEARCH_PATH`
+#
+# Arguments:
+#   module_name:  Name of the command script to stub
+#   ...:          Lines comprising the stubbed command script implementation
+@go.create_command_script_test_stub() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  local script_path="$_GO_INJECT_SEARCH_PATH/$1"
+  create_bats_test_script "${script_path#$BATS_TEST_ROOTDIR/}" "${@:2}"
+  restore_bats_shell_options "$?"
+}
+
+# Creates a stub module implementation in `_GO_INJECT_MODULE_PATH`
+#
+# Arguments:
+#   module_name:  Name of the module to stub
+#   ...:          Lines comprising the stubbed module implementation
+@go.create_module_test_stub() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  local module_path="$_GO_INJECT_MODULE_PATH/$1"
+  create_bats_test_script "${module_path#$BATS_TEST_ROOTDIR/}" "${@:2}"
+  chmod 600 "$module_path"
+  restore_bats_shell_options "$?"
+}

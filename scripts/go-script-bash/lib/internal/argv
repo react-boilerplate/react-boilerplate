@@ -1,0 +1,31 @@
+#! /bin/bash
+
+_@go.check_flag_has_no_arguments() {
+  local flag="$1"
+  shift
+
+  if [[ "$#" -ne 0 ]]; then
+    echo "ERROR: $flag takes no arguments" >&2
+    return 1
+  fi
+}
+
+_@go.check_flag_has_one_argument() {
+  local flag="$1"
+  shift
+
+  if [[ "$#" -eq 0 ]]; then
+    echo "ERROR: no argument given after $flag" >&2
+    return 1
+  elif [[ "$#" -ne 1 ]]; then
+    echo "ERROR: only one argument should follow $flag" >&2
+    return 1
+  fi
+}
+
+_@go.check_argv_empty_if_no_flags() {
+  if [[ "$#" -ne '0' ]]; then
+    echo 'ERROR: with no flag specified, the argument list should be empty' >&2
+    return 1
+  fi
+}

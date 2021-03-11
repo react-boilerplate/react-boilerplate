@@ -1,0 +1,59 @@
+#! /usr/bin/env bash
+#
+# Template for a Bash program based on the go-script-bash framework
+#
+# You should replace this comment with your own program's high-level
+# description. You may remove any other comments from this template as well.
+#
+# This template automatically checks for the presence of the go-script-bash
+# sources and makes a shallow clone of the the go-script-bash repository if
+# necessary before dispatching commands. (If you prefer, you can change the
+# logic to create a regular clone instead.) This allows users to set up the
+# framework without taking any extra steps when running the command for the
+# first time, without the need to commit the framework to your repository.
+#
+# Alternatively, you can make the `GO_SCRIPT_BASH_REPO_URL` a Git submodule of
+# your project or check in a versioned copy of the sources. See the "How to use
+# this framework" section of `README.md` for details.
+#
+# Make sure the variables within this script are configured as necessary for
+# your program. You can add any other initialization or configuration between:
+#
+#   . "$_GO_SCRIPT_BASH_CORE_DIR/go-core.bash" "$GO_SCRIPTS_DIR"`
+#   `@go "$@"`
+
+# Set to 'true' if your script is a standalone program, i.e. not bound to
+# execute only from the directory in which it resides. See the "Standalone mode"
+# section in README.md.
+export _GO_STANDALONE=
+
+# The path where your command scripts reside
+#
+# For `_GO_STANDALONE` programs and plugins containing command scripts, you may
+# wish to set GO_SCRIPTS_DIR to `bin` and have a separate `./go` script to
+# manage project tasks that finds its command scripts in `scripts`.
+declare GO_SCRIPTS_DIR="${GO_SCRIPTS_DIR:-scripts}"
+
+# The `GO_SCRIPT_BASH_REPO_URL` tag or branch you wish to use
+declare GO_SCRIPT_BASH_VERSION="${GO_SCRIPT_BASH_VERSION:-v1.5.0}"
+
+# The go-script-bash installation directory within your project
+declare GO_SCRIPT_BASH_CORE_DIR="${GO_SCRIPT_BASH_CORE_DIR:-${0%/*}/$GO_SCRIPTS_DIR/go-script-bash}"
+
+# The URL of the go-script-bash framework sources
+declare GO_SCRIPT_BASH_REPO_URL="${GO_SCRIPT_BASH_REPO_URL:-https://github.com/mbland/go-script-bash.git}"
+
+if [[ ! -e "$GO_SCRIPT_BASH_CORE_DIR/go-core.bash" ]]; then
+  printf "Cloning framework from '%s'...\n" "$GO_SCRIPT_BASH_REPO_URL"
+  if ! git clone --depth 1 -c advice.detachedHead=false \
+      -b "$GO_SCRIPT_BASH_VERSION" "$GO_SCRIPT_BASH_REPO_URL" \
+      "$GO_SCRIPT_BASH_CORE_DIR"; then
+    printf "Failed to clone '%s'; aborting.\n" "$GO_SCRIPT_BASH_REPO_URL" >&2
+    exit 1
+  fi
+  printf "Clone of '%s' successful.\n\n" "$GO_SCRIPT_BASH_REPO_URL"
+fi
+
+. "$GO_SCRIPT_BASH_CORE_DIR/go-core.bash" "$GO_SCRIPTS_DIR"
+# Add any other configuration or initialization steps here.
+@go "$@"

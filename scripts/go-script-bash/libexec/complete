@@ -1,0 +1,120 @@
+#! /bin/bash
+#
+# Generate automatic command and argument completions
+#
+# Usage:
+#   For all commands:
+#   {{go}} {{cmd}} <word-index> [arguments]
+#
+#   For command scripts implementing argument completion:
+#   {{go}} <command> --complete <word-index> [arguments]
+#
+# Where:
+#   <word-index>  is the index of the word to be completed within [arguments]
+#   [arguments]   is the current list of command line arguments
+#   <command>     is the command supporting argument completion
+#
+# Aliases and some builtin commands will complete file and directory paths
+# relative to {{root}} (unless `_GO_STANDALONE` is set, in which case they'll be
+# relative to the caller's `PWD`). Other commands may implement their own
+# specific completion schemes.
+#
+# This behavior is normally accessible by using `{{go}} env` to set up your
+# shell environment for argument completion. Running `{{go}} {{cmd}}` or `{{go}}
+# <command> --complete` directly is useful for experimenting with and testing
+# argument completions, but otherwise should prove unnecessary.
+#
+# * Notes on implementing argument completion:
+#
+# - Considering calling `. "$_GO_USE_MODULES" 'complete'` to make use of common
+# helper functions.
+#
+# - If you need to call `compgen -f` or `compgen -d`, you must use `@go.compgen`
+# from `lib/complete` or otherwise ensure that directory names end with `/`.
+#
+# - If you wish to implement custom argument completion in your own command
+# scripts, your script must contain a `# Tab completions` comment and respond to
+# the `--complete` command line interface described above.
+#
+# - The argument list must/will always contain at least one element, even if
+# it is the empty string, which represents the user completing an argument
+# without typing anything first. Take this into account when implementing
+# argument completion.
+#
+# - Subcommand scripts stored in `<parent>.d` directories are automatically
+# added to the argument completions for `{{go}} <parent>` and do not need to be
+# explicitly implemented.
+
+. "$_GO_USE_MODULES" 'complete'
+
+_@go.complete_command() {
+  local __go_complete_word_index
+  local __go_cmd_path
+  local __go_argv
+  local tab_completions_pattern='# [Tt]ab [Cc]ompletions['$'\n\r'']'
+
+  . "$_GO_CORE_DIR/lib/internal/complete"
+  exec 2>/dev/null
+
+  if _@go.complete_command_path "$@" &&
+    [[ "$(< "$__go_cmd_path")" =~ $tab_completions_pattern ]]; then
+    _@go.run_command_script "$__go_cmd_path" --complete \
+      "$__go_complete_word_index" "${__go_argv[@]}"
+  fi
+}
+
+_@go.complete_args() {
+  local word_index="$1"
+  shift
+  local args=("$@")
+  local cmd_name="${args[0]}"
+  local word="${args[$word_index]}"
+
+  . "$_GO_CORE_DIR/lib/internal/complete"
+
+  if [[ "$word_index" -eq '0' ]]; then
+    case "$cmd_name" in
+    -h)
+      printf -- '-h \n'
+      ;;
+    -he*)
+      printf -- '-help \n'
+      ;;
+    -|--*)
+      printf -- '--help \n'
+      ;;
+    *)
+      @go.compgen -W "$(_@go.complete_top_level_commands)" -- "$cmd_name"
+      ;;
+    esac
+    return
+  fi
+
+  case "$cmd_name" in
+  cd|pushd)
+    @go.compgen -d -- "$word"
+    return
+    ;;
+  edit|run)
+    @go.compgen -f -- "$word"
+    return
+    ;;
+  -h|-help|--help)
+    cmd_name='help'
+    ;;
+  -*|unenv)
+    return 1
+    ;;
+  esac
+
+  if _@go.source_builtin 'aliases' --exists "$cmd_name"; then
+    @go.compgen -f -- "$word"
+    return
+  fi
+
+  unset 'args[0]'
+  @go.compgen -W \
+    "$(_@go.complete_command "$word_index" "$cmd_name" "${args[@]}")" -- "$word"
+}
+
+_@go.complete_args "$@"

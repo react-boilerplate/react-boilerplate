@@ -1,0 +1,20 @@
+#! /bin/bash
+#
+# Utilities for downloading remote items
+#
+# For common downloading tasks, this command provides safety, convenience, and
+# portability. It isn't intended for complicated tasks such as recursive
+# fetching or directory syncing.
+#
+# Unlike most other builtin commands, `{{go}} {{cmd}}` subcommands depend on
+# external programs that must be installed on the system already.
+#
+# A NOTE ON TESTING: To test programs that use `{{go}} {{cmd}}`, you can try one
+# of two strategies:
+#
+#   - use local `file://` URLs with the real system `curl`, `git`, etc.
+#   - use `stub_program_in_path` from `lib/bats/helpers` to stub these programs
+
+. "$_GO_USE_MODULES" 'subcommands'
+
+@go.show_subcommands

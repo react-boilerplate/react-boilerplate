@@ -1,0 +1,19 @@
+#! /usr/bin/env bash
+
+# shellcheck source=scripts/go-script-bash/lib/log
+. "$_GO_USE_MODULES" 'log'
+
+# Sets node version required for this project using NVM
+@obot.set_node_version() {
+  if ! . ~/.nvm/nvm.sh; then
+    @go.log ERROR "Failed trying to set Node version using nvm"
+    return 1
+  fi
+  
+  if ! nvm install; then
+    @go.log ERROR "Failed trying to set Node version using nvm"
+    return 1
+  fi
+
+  @go.log INFO "Node version set successfully"
+}

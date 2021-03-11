@@ -1,0 +1,41 @@
+#! /bin/bash
+#
+# Generates changelog notes from git history
+#
+# Usage: {{go}} {{cmd}} <start_ref> <end_ref>
+#
+# Where:
+#   <start_ref>  First commit reference to include (inclusive)
+#   <end_ref>    Last commit reference to include (exclusive)
+#
+# Example:
+#   To compile a list of changes for v1.0.1 since v1.0.0:
+#   {{go}} {{cmd}} v1.0.0 v1.0.1
+
+_changes() {
+  if [[ "$1" == '--complete' ]]; then
+    # Tab completions
+    local word_index="$2"
+    if [[ "$word_index" -gt 1 ]]; then
+      return 1
+    fi
+    git tag
+    return
+  fi
+
+  local start_ref="$1"
+  local end_ref="$2"
+
+  if [[ -z "$start_ref" ]]; then
+    echo "Start ref not specified." >&2
+    return 1
+  elif [[ -z "$end_ref" ]]; then
+    echo "End ref not specified." >&2
+    return 1
+  fi
+
+  git log '--pretty=format:%h %an <%ae>%n        %s%n' \
+    "${start_ref}..${end_ref}"
+}
+
+_changes "$@"

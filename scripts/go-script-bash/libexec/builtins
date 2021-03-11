@@ -1,0 +1,132 @@
+#! /bin/bash
+#
+# Commands built directly into the core ./go script library
+#
+# Usage:
+#   {{go}} {{cmd}} [--exists|--summaries] <command>
+#
+# Options:
+#   --exists     Check whether <command> is a builtin
+#   --summaries  List the summary for the specified builtin <command>
+#
+# To run a builtin command within {{root}}:
+#
+#   {{go}} <command> [...arguments...]
+#
+# where <command> is one of the following built-in commands:
+#
+# {{_GO_BUILTIN_SUMMARIES}}
+#
+# and where the following are defined as:
+#
+#   <project-root>  the project root dir: {{root}}
+#   <command>       a string of command arguments to this script
+#   <word>          a command line argument being tab-completed
+#   <file-paths>    zero or more file paths relative to <project root>
+#
+# Automatic file and command name completion within this directory is available
+# via the "{{go}} env" command.
+#
+# Note that "unenv" is only available after you've used "{{go}} env" to set up
+# your shell environment.
+
+declare __go_builtin_cmds=()
+function __go_glob_builtin_scripts {
+  local c
+  for c in "$_GO_CORE_DIR/libexec/"*; do
+    if [[ -f "$c" && -x "$c" ]]; then
+      __go_builtin_cmds+=("${c##*/}")
+    fi
+  done
+}
+__go_glob_builtin_scripts
+unset __go_glob_builtin_scripts
+
+declare -r _GO_BUILTIN_CMDS=("${__go_builtin_cmds[@]}")
+unset __go_builtin_cmds
+
+_@go.builtin_summaries() {
+  local cmd_name
+  local longest_name_len=0
+
+  for cmd_name in "${_GO_BUILTIN_CMDS[@]}"; do
+    if [[ "$longest_name_len" -lt "${#cmd_name}" ]]; then
+      longest_name_len="${#cmd_name}"
+    fi
+  done
+
+  . "$_GO_CORE_DIR/lib/internal/command_descriptions"
+  local __go_cmd_desc
+
+  for cmd_name in "${_GO_BUILTIN_CMDS[@]}"; do
+    if ! _@go.command_summary "$_GO_CORE_DIR/libexec/$cmd_name"; then
+      return 1
+    fi
+    _@go.format_summary "$cmd_name" "$__go_cmd_desc" $longest_name_len
+  done
+}
+
+_@go.builtins() {
+  if [[ "$#" -eq '0' ]]; then
+    local IFS=$'\n'
+    echo "${_GO_BUILTIN_CMDS[*]}"
+    return
+  elif [[ "$1" == '--complete' ]]; then
+    # Tab completions
+    local word_index="$2"
+    if [[ "$word_index" -eq '0' ]]; then
+      echo '--exists' '--summaries'
+    fi
+    return
+  fi
+
+  . "$_GO_CORE_DIR/lib/internal/argv"
+  local flag
+
+  case "$1" in
+  --summaries)
+    flag="$1"
+    shift
+    if ! _@go.check_flag_has_no_arguments "$flag" "$@"; then
+      return 1
+    fi
+    _@go.builtin_summaries
+    return
+    ;;
+  --exists)
+    flag="$1"
+    shift
+    if ! _@go.check_flag_has_one_argument "$flag" "$@"; then
+      return 1
+    fi
+    for cmd_name in "${_GO_BUILTIN_CMDS[@]}"; do
+      if [[ "$cmd_name" == "$1" ]]; then
+        return
+      fi
+    done
+    return 1
+    ;;
+  --help-filter)
+    flag="$1"
+    shift
+    # Help filter
+    if ! _@go.check_flag_has_one_argument "$flag" "$@"; then
+      return 1
+    fi
+    local pattern='{{_GO_BUILTIN_SUMMARIES}}'
+    local replacement="$(_@go.builtin_summaries)"
+    echo "${1//$pattern/$replacement}"
+    return
+    ;;
+  -*)
+    echo "ERROR: unknown flag: $1"
+    return 1
+    ;;
+  esac
+
+  if ! _@go.check_argv_empty_if_no_flags "$@"; then
+    return 1
+  fi
+}
+
+_@go.builtins "$@"

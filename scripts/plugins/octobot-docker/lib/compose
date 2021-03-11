@@ -1,0 +1,349 @@
+#! /bin/bash
+#
+# Provides utilities to handle docker-compose commands for this project.
+#
+# Exports:
+#   @go.compose_run
+#     Executes a run command with the given arguments.
+#   @obot.compose_exec
+#     Executes an exec command with the given arguments.
+#   @obot.compose_up
+#     Executes an up for the current project or specified service.
+#   @obot.compose_down
+#     Stops and remove all docker elements for this project.
+#   @obot.compose_stop
+#     Executes a stop fro the current project.
+#   @obot.compose_pull
+#     Pulls all images for project or the specified one.
+#   @obot.compose_build
+#     Build all images for the project or the specified one.
+#     It will try to update base images.
+#
+# Variables:
+#   `_OBOT_COMPOSE_FILE_DEV` : Set the filename for the compose file.
+#                              Defaults to `docker-compose-dev.yml`.
+#
+# Commands run and exec require additional arguments. `@obot.compose_run` requires
+# at least a `service` parameter, with an additional command string to.
+# `@obot.compose_exec` requires both the service to run the command, as well as
+# the command to execute.
+
+readonly _OBOT_COMPOSE_FILE_DEV="${_OBOT_COMPOSE_FILE_DEV:-docker-compose-dev.yml}"
+
+# shellcheck source=scripts/go-script-bash/lib/log
+. "$_GO_USE_MODULES" 'log'
+
+# Arguments
+#   $1    Service as indicated in the compose file for development.
+#   $2..  Command to run in the above mentioned service.
+@obot.compose_run() {
+  if [[ $# -eq 0 ]]; then
+    @go.log FATAL "Missing service parameter for @obot.compose_run"
+  fi
+  local _SERVICE=$1
+  shift
+
+  docker-compose -f $_OBOT_COMPOSE_FILE_DEV -p $OBOT_PROJECT_CODE run --rm $_SERVICE "$@"
+
+  local _RESULT=$?
+
+  if [[ $_RESULT -eq 0 ]]; then
+    return 0
+  else
+    return $_RESULT
+  fi
+}
+
+
+# Arguments
+#   $1    Service as indicated in the compose file for development.
+#   $2..  Command to run in the above mentioned service.
+@obot.compose_exec() {
+  local _SERVICE=$1
+  if [ -z $_SERVICE ]; then
+    @go.log FATAL "Missing service parameter for @obot.compose_exec"
+  fi
+  shift
+  if [ -z $1 ]; then
+    @go.log FATAL "Missing command parameters for @obot.compose_exec"
+  else
+    @go.log INFO "Executing in $_SERVICE container the command $@"
+  fi
+
+  docker-compose -f $_OBOT_COMPOSE_FILE_DEV -p $OBOT_PROJECT_CODE "exec"  $_SERVICE "$@"
+
+  local _RESULT=$?
+
+  if [[ $_RESULT -eq 0 ]]; then
+    @go.log INFO "Done without errors"
+    return 0
+  else
+    @go.log WARN "Finished with errors"
+    return $_RESULT
+  fi
+}
+
+@obot.compose_up() {
+  local _DETACHED_MODE=false
+  case "$1" in
+  --detached)
+    _DETACHED_MODE=true
+    shift
+    ;;
+  esac
+  local _TARGET_SERVICE
+  if ! [ -z $1 ]; then
+    _TARGET_SERVICE=$1
+    shift
+    @go.log INFO "Starting up $_TARGET_SERVICE service for $OBOT_PROJECT_CODE"
+  else
+    @go.log INFO "Starting up all services for $OBOT_PROJECT_CODE"
+  fi
+
+  if [[ $# -gt 0 ]]; then
+    @go.log WARN "Ignoring remaining parameters for @obot.compose_up"
+  fi
+
+  if $_DETACHED_MODE; then
+    docker-compose -f $_OBOT_COMPOSE_FILE_DEV -p $OBOT_PROJECT_CODE up -d $_TARGET_SERVICE
+  else
+    # It will stay here until execution is interrupted
+    docker-compose -f $_OBOT_COMPOSE_FILE_DEV -p $OBOT_PROJECT_CODE up $_TARGET_SERVICE
+  fi
+
+  local _COMPOSE_STATUS=$?
+  # We don't check the exit status in non daemon mode, as it will always be a
+  # non-zero return code but once done, make sure it is stopped
+
+  if $_DETACHED_MODE; then
+    if [[ $_COMPOSE_STATUS -eq 0 ]]; then
+      @go.log INFO "Started"
+    else
+      @go.log ERROR "Somthing went wrong while starting the project"
+      return 1
+    fi
+  else
+    @go.log INFO "Exited. Stopping all services."
+    docker-compose -f $_OBOT_COMPOSE_FILE_DEV -p $OBOT_PROJECT_CODE $_SERVICE stop
+    @go.log INFO "All services stopped."
+  fi
+
+  return 0
+
+}
+
+@obot.compose_stop() {
+  local STOP_RUN_CONTAINERS=false
+  case "$1" in
+  --all)
+    STOP_RUN_CONTAINERS=true
+    shift
+    ;;
+  esac
+  if [[ $# -gt 0 ]]; then
+    @go.log WARN "Ignoring remaining parameters for @obot.compose_stop"
+  fi
+
+  @go.log INFO "Stopping services for $OBOT_PROJECT_CODE"
+
+  docker-compose -f $_OBOT_COMPOSE_FILE_DEV -p $OBOT_PROJECT_CODE stop
+
+  local _RESULT=$?
+
+  if [[ $_RESULT -ne 0 ]]; then
+    @go.log WARN "Could not stop services"
+    return $_RESULT
+  else
+    @go.log INFO "Services stopped"
+  fi
+
+  if $STOP_RUN_CONTAINERS; then
+    local _RUNNING_CONTAINERS
+    _RUNNING_CONTAINERS=($(docker ps -q -f "name=${OBOT_PROJECT_CODE}_*"))
+    if [[ ${#_RUNNING_CONTAINERS[@]} -gt 0 ]]; then
+      @go.log INFO "Trying to stop running containers"
+
+      docker stop ${_RUNNING_CONTAINERS[@]} 1>/dev/null
+      _RESULT=$?
+
+      if [[ $_RESULT -ne 0 ]]; then
+        @go.log WARN "Could not stop running containers"
+        return $_RESULT
+      else
+        @go.log INFO "Running containers stopped"
+      fi
+    else
+      @go.log INFO "No running containers to stop"
+    fi
+  fi
+
+
+  @go.log INFO "Stoped without errors"
+  return 0
+
+  # Let's stop all running containers as well
+
+
+
+}
+
+# No Arguments
+@obot.compose_list_services() {
+  @go.log INFO "Services in this project"
+
+  docker-compose -f $_OBOT_COMPOSE_FILE_DEV -p $OBOT_PROJECT_CODE $_SERVICE config --services
+
+  local _RESULT=$?
+
+  if [[ $_RESULT -eq 0 ]]; then
+    @go.log INFO "Done without errors"
+    return 0
+  else
+    @go.log WARN "Finished with errors"
+    return $_RESULT
+  fi
+}
+
+# Arguments
+#   $1    (Optional) Service as indicated in the compose file for development.
+@obot.compose_pull() {
+  if ! [ -z $1 ]; then
+    @go.log INFO "Pulling image for $1"
+  else
+    @go.log INFO "Pulling images for project"
+  fi
+
+  docker-compose -f $_OBOT_COMPOSE_FILE_DEV -p $OBOT_PROJECT_CODE $_SERVICE pull $1
+
+  local _RESULT=$?
+
+  if [[ $_RESULT -eq 0 ]]; then
+    @go.log INFO "Done without errors"
+    return 0
+  else
+    @go.log WARN "Finished with errors"
+    return $_RESULT
+  fi
+}
+
+# Arguments
+#   $1    (Optional) Service as indicated in the compose file for development.
+@obot.compose_build() {
+  if ! [ -z $1 ]; then
+    @go.log INFO "Building image for $1"
+  else
+    @go.log INFO "Building images for project"
+  fi
+
+  docker-compose -f $_OBOT_COMPOSE_FILE_DEV -p $OBOT_PROJECT_CODE $_SERVICE build $1
+
+  local _RESULT=$?
+
+  if [[ $_RESULT -eq 0 ]]; then
+    @go.log INFO "Done without errors"
+    return 0
+  else
+    @go.log WARN "Finished with errors"
+    return $_RESULT
+  fi
+}
+
+# You need at least version 1.6 of docker-compose to use this
+@obot.compose_down() {
+  if [[ $# -gt 0 ]]; then
+    @go.log WARN "Ignoring parameters for @obot.compose_down"
+  fi
+
+  docker-compose -f $_OBOT_COMPOSE_FILE_DEV -p $OBOT_PROJECT_CODE down --rmi local -v
+
+  local _RESULT=$?
+
+  if [[ $_RESULT -eq 0 ]]; then
+    @go.log INFO "Down command successfully performed"
+    return 0
+  else
+    @go.log WARN "Failed to perform the down command"
+    return $_RESULT
+  fi
+}
+
+# Arguments
+#   $1 $2 ..    Services to remove containers.
+@obot.compose_rm() {
+  if [[ $# -eq 0 ]]; then
+    @go.log FATAL "Missing command parameters for @obot.compose_rm"
+  fi
+
+  @go.log INFO "Removing containers for services: $@"
+
+  docker-compose -f $_OBOT_COMPOSE_FILE_DEV -p $OBOT_PROJECT_CODE rm -f "$@"
+
+  local _RESULT=$?
+
+  if [[ $_RESULT -eq 0 ]]; then
+    @go.log INFO "Containers removed without errors"
+    return 0
+  else
+    @go.log WARN "Failed to remove containers"
+    return $_RESULT
+  fi
+}
+
+# Implements the `cp` command for compose. Recieves a file in the host and a
+# route to place the file in the first container for a service.
+# Arguments
+#   $1    Service
+#   $2    Host file
+#   $3    Target in service container
+@obot.compose_cp() {
+  # This is internal, so it will be silent
+  if [[ $# -ne 3 ]]; then
+    @go.log FATAL "Missing command parameters for @obot.compose_cp"
+  fi
+
+  local _TARGET_SERVICE=$1
+  local _HOST_FILE=$2
+  local _TARGET_FILE=$3
+
+  if ! [[ -f $_HOST_FILE ]]; then
+    @go.log FATAL "File $_HOST_FILE not found"
+  fi
+
+  # We will do this without compose
+
+  local _TARGET_CONTAINER_NAME
+  local _TARGET_CONTAINER_ID
+  local __BACKUP_PIPEFAIL=$(shopt -po | grep pipefail )
+  set -o pipefail
+  _TARGET_CONTAINER_NAME=$(docker-compose -f $_OBOT_COMPOSE_FILE_DEV -p $OBOT_PROJECT_CODE ps $_TARGET_SERVICE | tail -n +3 | awk '{print $1}' | sort)
+  local _RESULT=$?
+  $__BACKUP_PIPEFAIL
+  if [[ $_RESULT -ne 0 ]]; then
+    @go.log WARN "Failed to retrieve container name"
+    return $_RESULT
+  fi
+  _TARGET_CONTAINER_ID=$(docker ps -qf "name=$_TARGET_CONTAINER_NAME")
+  local _RESULT=$?
+  $__BACKUP_PIPEFAIL
+  if [[ $_RESULT -ne 0 ]]; then
+    @go.log WARN "Failed to retrieve container name"
+    return $_RESULT
+  fi
+
+  @go.log INFO "Copying $_HOST_FILE to $_TARGET_CONTAINER_NAME ($_TARGET_CONTAINER_ID) as $_TARGET_FILE"
+  if docker exec $_TARGET_CONTAINER_ID test -f $_TARGET_FILE; then
+    @go.log WARN "Removing file already existing"
+    if ! docker exec  $_TARGET_CONTAINER_ID rm -f $_TARGET_FILE; then
+      @go.log ERROR "Failed to remove existing file from container"
+      return 2
+    fi
+  fi
+
+  if ! docker cp $_HOST_FILE $_TARGET_CONTAINER_NAME:$_TARGET_FILE; then
+    @go.log ERROR "Failed to copy file"
+    return 3
+  fi
+
+  @go.log INFO "File copied to container"
+
+}

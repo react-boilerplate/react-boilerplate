@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+# shellcheck source=scripts/go-script-bash/lib/log
+. "$_GO_USE_MODULES" 'log'
+
+@obot.git_project_has_changes () {
+  if git diff-index --quiet HEAD --; then
+    @go.log INFO "No unstaged nor untracked files in repo"
+    return 1
+  else
+    @go.log WARN "Unstaged or untracked files in repo"
+  fi
+}

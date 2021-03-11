@@ -1,0 +1,62 @@
+#! /bin/bash
+#
+# Lists all installed plugin commands
+#
+# Usage: {{go}} {{cmd}} [--paths|--summaries]
+#
+# Options:
+#   --paths      List all plugin command paths relative to the project root
+#   --summaries  List all plugin command summaries
+#
+# To install plugins, first create a subdirectory of your scripts directory
+# called "plugins". Then copy, clone, or add submodules for `./go` script
+# plugins inside this new directory. The `./go get git-repo` command may be used
+# for this purpose.
+#
+# A plugin must have a top-level `bin/` directory for its exported command
+# scripts, a top-level `lib/` directory for its exported library modules, or
+# both.
+#
+# `_GO_ROOTDIR` and `_GO_SCRIPTS_DIR` are scoped to each installed plugin's
+# top-level directory during both command script execution and library module
+# importation. This enables a plugin's code to refer to its own relative paths
+# and to give its own command scripts and library modules priority in these
+# contexts.
+#
+# Note that plugin module code that isn't executed during importation WILL NOT
+# have these variables scoped to its installation directory. If a library module
+# needs to refer to its own relative paths when executed outside of these
+# contexts, it should calculate them based on the `BASH_SOURCE` variable.
+# Alternatively, it might capture them during importation using its own
+# uniquely-named variables, possibly with safety checks to ensure the variables
+# are not yet defined.
+#
+# Also, if a plugin is intended to operate on the files and directories of a
+# project that's installed it, the plugin must provide an interface to receive
+# file paths from the project.
+#
+# See `{{go}} help commands` for more information on command script execution,
+# and `{{go}} modules -h` for more information on library module importation.
+# See the comments for `@go.search_plugins` from `go-core.bash` for details on
+# the plugin search algorithm used by command script execution and library
+# module importation, which is modeled after the `node_modules` search algorithm
+# used by `npm`.
+
+_@go.plugins_pathspec() {
+  local IFS=':'
+  __go_plugins_pathspec="${_GO_PLUGINS_PATHS[*]}"
+}
+
+_@go.plugins() {
+  local __go_plugins_pathspec
+  _@go.plugins_pathspec
+
+  if [[ -n "$__go_plugins_pathspec" ]]; then
+    # Tab completions
+    _@go.source_builtin 'commands' "$@" "$__go_plugins_pathspec"
+  else
+    return 1
+  fi
+}
+
+_@go.plugins "$@"

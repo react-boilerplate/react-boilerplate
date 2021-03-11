@@ -1,0 +1,18 @@
+#! /usr/bin/env bash
+#
+# Start services for this project.
+#
+# Usage:
+#   {{go}} {{cmd}}
+#
+
+_start() {
+  if ! npm start --prefix ./app; then
+    @go.log ERROR "Failed to start App"
+    return 2
+  else
+      @go.log INFO "App started"
+  fi
+}
+
+_start "$@"

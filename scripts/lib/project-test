@@ -1,0 +1,37 @@
+#! /usr/bin/env bash
+#
+# Project specific backup and restore scripts
+# You'll need one function per entry in OBOT_TEST_SERVICES array
+
+# shellcheck source=scripts/plugins/octobot-code-tools/lib/verify
+. "$_GO_USE_MODULES" 'octobot-code-tools/verify'
+
+# shellcheck source=scripts/plugins/octobot-docker/lib/checks
+# . "$_GO_USE_MODULES" 'octobot-docker/compose'
+
+# shellcheck source=scripts/plugins/octobot-nvm/lib/checks
+. "$_GO_USE_MODULES" 'octobot-nvm/set'
+
+__verify_app () {
+  @go.log INFO "Launching verification task for frontend code"
+  @obot.set_node_version
+  if npm run lint; then
+    @go.log INFO "Verification task succeeded."
+    return 0
+  else
+    @go.log ERROR "Something went wrong, exiting."
+    return 1
+  fi
+}
+
+__test_app () {
+  @go.log INFO "Launching tests for frontend code"
+  @obot.set_node_version
+  if npm run test; then
+    @go.log INFO "Tests succeeded."
+    return 0
+  else
+    @go.log ERROR "Something went wrong, exiting."
+    return 1
+  fi
+}

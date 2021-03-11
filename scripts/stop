@@ -1,0 +1,44 @@
+#! /usr/bin/env bash
+#
+# Stops service containers for this project.
+#
+# Usage:
+#   {{go}} {{cmd}} [--all]
+#
+# Options:
+#   --all   Stop ALL containers, including run containers as well.
+
+# shellcheck source=scripts/plugins/octobot-docker/lib/compose
+. "$_GO_USE_MODULES" 'octobot-docker/compose'
+
+
+_stop() {
+  local STOP_RUN_CONTAINERS
+  if [[ $# -gt 0 ]]; then
+    case "$1" in
+    --all)
+      STOP_RUN_CONTAINERS="--all"
+      @go.log INFO "Stopping ALL containers, including run containers as well."
+      shift
+      ;;
+    *)
+      @go.log ERROR "Unknown parameter. See help to learn about invocation."
+      return 1
+      ;;
+    esac
+    if [[ $# -gt 0 ]]; then
+      @go.log ERROR "Unknown parameters"
+      return 1
+    fi
+  fi
+
+  if ! @obot.compose_stop $STOP_RUN_CONTAINERS; then
+    @go.log ERROR "Failed to stop services"
+    return 2
+  else
+    @go.log INFO "Services stopped"
+  fi
+
+}
+
+_stop "$@"

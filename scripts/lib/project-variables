@@ -1,0 +1,45 @@
+#! /usr/bin/env bash
+# Define the following variables according to your project for the scripts
+# to work correctly.
+
+# Which are the target environments for this project?
+# Build and deploy tasks will use this variables to tag and ship accordingly.
+export OBOT_ENVIRONMENT_OPTIONS
+OBOT_ENVIRONMENT_OPTIONS=('production' 'staging')
+
+# Which are the services that need to be built each time any change is made?
+# Usually, this should include any code based componentes for frontend and
+# backend.
+export OBOT_BUILD_TASKS_ALWAYS
+OBOT_BUILD_TASKS_ALWAYS=('app')
+
+# Which are ALL the services that need to be built for a server instance?
+export OBOT_BUILD_TASKS_ALL
+OBOT_BUILD_TASKS_ALL=('app')
+
+# Which is the project code? This is used to show logs, backups and tags.
+export OBOT_PROJECT_CODE
+OBOT_PROJECT_CODE="app"
+
+# Which are the services in this project that should be backed-up or restored?
+export OBOT_BACKUP_SERVICES
+OBOT_BACKUP_SERVICES=()
+
+# Name a directory to send the backups.
+export OBOT_BACKUP_DIR
+OBOT_BACKUP_DIR='backup'
+
+# Which are the test services for this project? This is used both for static
+# analysis and style verification, as well as tests
+export OBOT_TEST_SERVICES
+OBOT_TEST_SERVICES=('app')
+
+# Which services need to be in init and which ones have a schema setup task?
+export OBOT_INIT_SERVICES
+OBOT_INIT_SERVICES=('app')
+
+export OBOT_SCHEMA_SERVICES
+OBOT_SCHEMA_SERVICES=()
+
+export OBOT_DOCKER_IMAGES_CACHE
+OBOT_DOCKER_IMAGES_CACHE=()

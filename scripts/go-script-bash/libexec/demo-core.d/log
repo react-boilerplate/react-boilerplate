@@ -1,0 +1,115 @@
+#! /usr/bin/env bash
+#
+# Demonstration of `@go.log` capabilities
+#
+# Usage:
+#   [<env-var=VALUE>...] {{go}} {{cmd}} [-v|--verbose]...
+#
+# Where:
+#   <env-var=VALUE>  assignments to variables from `log` module or this script
+#   -v,--verbose     print arguments and variable values at beginning of demo
+#
+# This will repeat the args given on the command line, one per second at each
+# successive log level, until the `FATAL` log level is reached.
+#
+# Use this program to get a feel for how the `@go.log` function will work in
+# your application. Prefix the command line with variables from the 'log'
+# module to get a feel for how they influence the output; these variables can be
+# set in your main `./go` script to provide a uniform logging format across your
+# command scripts.
+#
+# Prefix the command line with the following variables specific to this command
+# for various effects:
+#
+#   `_GO_LOG_DEMO_DELAY`        number of seconds between each log message
+#   `_GO_LOG_DEMO_FILE`         append messages to a file in addition to
+#                                 standard output/error
+#   `_GO_LOG_DEMO_EXIT_STATUS`  exit status to use with `ERROR` and `FATAL`
+#                                 levels
+#
+# For the `RUN` log level, the `@go.log_command` will execute `echo` on the
+# command line arguments, unless `_GO_DRY_RUN` is set.
+#
+# Because this command calls `@go.log FATAL`, it will exit with an error status
+# by default. If `_GO_LOG_DEMO_EXIT_STATUS` is set, it will exit with that
+# status instead.
+#
+# As an example, start with the following command line, and edit it in various
+# ways to achieve different effects:
+#
+#   _GO_LOG_DEMO_DELAY=2 \
+#   _GO_LOG_DEMO_FILE='demo.log' \
+#   _GO_LOG_DEMO_EXIT_STATUS='127' \
+#   _GO_LOG_LEVEL_FILTER='DEBUG' \
+#   _GO_LOG_TIMESTAMP_FORMAT='%Y-%m-%d %H:%M:%S' \
+#   _GO_LOG_FORMATTING='true' \
+#   _GO_DRY_RUN='true' \
+#   {{go}} {{cmd}} This is my log message! 2>&1 | cat
+
+readonly _GO_LOG_DEMO_DELAY="${_GO_LOG_DEMO_DELAY:-1}"
+readonly _GO_LOG_DEMO_FILE="$_GO_LOG_DEMO_FILE"
+readonly _GO_LOG_DEMO_EXIT_STATUS="$_GO_LOG_DEMO_EXIT_STATUS"
+
+log_demo_print_environment() {
+  @go.printf "Demonstrating @go.log with message arguments:\n  %s\n\n" "$*"
+  @go.printf "and environment variable settings:\n"
+  declare -p '_GO_DRY_RUN' "${!_GO_LOG_@}"
+  echo
+}
+
+log_demo() {
+  local level
+  local log_args=('Hello,' 'World!')
+  local error_log_args=()
+  local print_env
+
+  if [[ "$1" == '--complete' ]]; then
+    # Tab completions
+    if [[ "$2" -eq 0 ]]; then
+      echo "-v --verbose"
+    fi
+    return
+  fi
+
+  . "$_GO_USE_MODULES" 'log'
+
+  if [[ "$1" =~ ^-v|--verbose$ ]]; then
+    shift
+    print_env='true'
+  fi
+
+  if [[ "$#" -ne '0' ]]; then
+    log_args=("$@")
+  else
+    printf 'Using default log message "%s"; %s\n' \
+      "${log_args[*]}" 'you may supply your own on the command line.'
+  fi
+
+  if [[ -n "$print_env" ]]; then
+    log_demo_print_environment "${log_args[@]}"
+  fi
+
+  if [[ -n "$_GO_LOG_DEMO_FILE" ]]; then
+    @go.log_add_output_file "$_GO_LOG_DEMO_FILE"
+  fi
+
+  if [[ -n "$_GO_LOG_DEMO_EXIT_STATUS" ]]; then
+    error_log_args=("$_GO_LOG_DEMO_EXIT_STATUS")
+  fi
+  error_log_args+=("${log_args[@]}")
+
+  for level in "${_GO_LOG_LEVELS[@]}"; do
+    if [[ "$level" == 'RUN' ]]; then
+      @go.log_command echo "${log_args[@]}"
+    elif [[ "$level" == 'QUIT' ]]; then
+      $(@go.log "$level" "${error_log_args[@]}" '(would normally exit)')
+    elif [[ "$level" =~ ERROR|FATAL ]]; then
+      @go.log "$level" "${error_log_args[@]}"
+    else
+      @go.log "$level" "${log_args[@]}"
+    fi
+    sleep "$_GO_LOG_DEMO_DELAY"
+  done
+}
+
+log_demo "$@"

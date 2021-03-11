@@ -1,0 +1,217 @@
+#! /bin/bash
+#
+# Downloads a single file using `curl`, `fetch`, or `wget`
+#
+# Usage:
+#   {{go}} {{cmd}} [-f <filename>] <url>
+#
+# Flags:
+#   -f <filename>  (Optional) Name of the output file, `-` for stdout
+#
+# Where:
+#   url:  URL of the file to download
+#
+# Globals:
+#   _GO_GET_FILE_DOWNLOAD_COMMAND:  Overrides download program detection
+#
+# This is a basic wrapper over the system `curl`, `fetch` (on FreeBSD), or
+# `wget` for downloading a single file. If `-f <filename>` isn't specified, it
+# will download the target of `url` to the current working directory, using
+# the same file name as that in the URL.
+#
+# If `-f <filename>` is specified:
+#
+#   - `-` will stream the content to standard output;
+#   - otherwise it will be relative to `$PWD` if not absolute, and
+#   - if it specifies an existing directory, the file will be downloaded into it
+#
+# If the target file already exists locally, it will not be overwritten.
+# Instead, this command will print an error message and return nonzero.
+
+# Performs automatic completion of command line arguments
+#
+# Arguments:
+#   word_index:  Index of the item to complete from the command line arg array
+#   ...:         Command line argument array
+_@go.get_file_tab_completions() {
+  local word_index="$1"
+  shift
+
+  case "$word_index" in
+  0)
+    printf -- '-f\n'
+    ;;
+  1)
+    if [[ "$1" == '-f' ]]; then
+      . "$_GO_USE_MODULES" 'complete'
+      @go.compgen -f -- "$2"
+    fi
+    ;;
+  esac
+}
+
+# Determines the download program to use and builds the command line
+#
+# Globals:
+#   _GO_GET_FILE_DOWNLOAD_COMMAND:  Overrides automatic program detection
+#   __go_get_file_download_cmd:     Caller-declared result array
+#
+# Arguments:
+#   filename:  Name of the file to download
+#
+# Returns:
+#   Zero if a suitable program was detected and `__go_get_file_download_cmd`
+#     was successfully built, nonzero otherwise
+_@go.get_file_download_command() {
+  local filename="$1"
+  local dl_cmd="$_GO_GET_FILE_DOWNLOAD_COMMAND"
+  local supported=('curl' 'fetch' 'wget')
+
+  if [[ -z "$dl_cmd" ]]; then
+    for dl_cmd in "${supported[@]}"; do
+      if command -v "$dl_cmd" >/dev/null; then
+        break
+      fi
+      dl_cmd=''
+    done
+  elif ! command -v "$dl_cmd" >/dev/null; then
+    @go.printf 'Download program not found on this system: %s\n' "$dl_cmd" >&2
+    dl_cmd=''
+  fi
+
+  case "${dl_cmd##*/}" in
+  curl)
+    __go_get_file_download_cmd=("$dl_cmd" '-L')
+    if [[ -n "$filename" ]]; then
+      __go_get_file_download_cmd+=('-o' "$filename")
+    fi
+    ;;
+  fetch)
+    __go_get_file_download_cmd=("$dl_cmd" '-o' "${filename:--}")
+    ;;
+  wget)
+    __go_get_file_download_cmd=("$dl_cmd" '-O' "${filename:--}")
+    ;;
+  *)
+    if [[ -n "$dl_cmd" ]]; then
+      @go.printf 'Download program not supported: %s\n' "$dl_cmd" >&2
+    fi
+    @go.printf 'Please install curl or wget before running "%s".\n' \
+      "${_GO_CMD_NAME[*]}" >&2
+    return 1
+    ;;
+  esac
+}
+
+# Implements the script behavior per the top-level description
+#
+# If `filename` is empty, the content will be directed to standard output and
+# `download_dir` will be ignored.
+#
+# Arguments:
+#   download_dir:  Directory into which to download the file, if not stdout
+#   filename:      Name of the file to save to `download_dir`, if not stdout
+#   url:           URL of the file ot download
+_@go.get_file_impl() {
+  local download_dir="$1"
+  local filename="$2"
+  local url="$3"
+  local result='0'
+  local errfile="${url##*/}.get-error"
+  local errmsg
+
+  local __go_get_file_download_cmd=()
+  if ! _@go.get_file_download_command "$filename"; then
+    return 1
+  fi
+
+  if [[ -n "$filename" ]]; then
+    if [[ -f "$filename" ]]; then
+      @go.printf 'File already exists; not overwriting: %s\n' "$filename" >&2
+      return 1
+    elif [[ ! -d "$download_dir" ]] && ! mkdir -p "$download_dir"; then
+      @go.printf "Download dir doesn't exist and can't be created: %s\n" \
+        "$download_dir" >&2
+      return 1
+    elif [[ ! -w "$download_dir" ]]; then
+      @go.printf "You don't have permission to write to download dir: %s\n" \
+        "$download_dir" >&2
+      return 1
+    fi
+    errfile="${filename}.get-error"
+  fi
+
+  if ! "${__go_get_file_download_cmd[@]}" "$url" 2>"$errfile"; then
+    errmsg="$(< "$errfile")"
+    printf '%s\n' "$errmsg" >&2
+    @go.printf 'Failed to download using %s: %s\n' \
+      "${__go_get_file_download_cmd[0]}" "$url" >&2
+
+    if [[ "${__go_get_file_download_cmd[0]}" != 'curl' ]]; then
+      @go.printf 'Consider installing `curl` and trying again.\n' >&2
+    fi
+
+    if [[ -f "$filename" ]]; then
+      rm "$filename"
+    fi
+    result='1'
+
+  elif [[ -n "$filename" ]]; then
+    @go.printf 'Downloaded "%s" as: %s\n' "$url" "$filename"
+  fi
+
+  rm -f "$errfile"
+  return "$result"
+}
+
+# Parses the command line flags before invoking _@go.get_file_impl
+#
+# The arguments are the same as in the script description.
+_@go.get_file() {
+  local url
+  local download_dir
+  local filename
+  local dl_cmd=()
+
+  case "$1" in
+  --complete)
+    # Tab completions
+    _@go.get_file_tab_completions "${@:2}"
+    return
+    ;;
+  -f)
+    filename="$2"
+    shift 2
+  esac
+
+  if [[ "$#" -ne '1' ]]; then
+    @go help "${_GO_CMD_NAME[@]}" >&2
+    return 1
+  fi
+
+  url="$1"
+  if [[ "$filename" == '-' ]]; then
+    filename=''
+  elif [[ -z "$filename" ]]; then
+    filename="${url##*/}"
+  elif [[ -d "$filename" ]]; then
+    download_dir="${filename%/}"
+    filename="$download_dir/${url##*/}"
+  else
+    download_dir="${filename%/*}"
+  fi
+  download_dir="${download_dir:-$PWD}"
+
+  if [[ -f "$url" ]]; then
+    if [[ "${url:0:1}" != '/' ]]; then
+      url="${PWD}/${url}"
+    fi
+    if [[ "$url" =~ ^/[^/]+ && -d "$BASH_REMATCH/Windows" ]]; then
+      url="${BASH_REMATCH}:/${url#$BASH_REMATCH/}"
+    fi
+    url="file://${url}"
+  fi
+  _@go.get_file_impl "$download_dir" "$filename" "$url"
+}
+
+_@go.get_file "$@"

@@ -1,0 +1,17 @@
+language: bash
+os:
+- linux
+- osx
+
+addons:
+  apt:
+    packages:
+    - binutils-dev
+    - cmake
+    - libcurl4-openssl-dev
+    - libdw-dev
+    - libelf-dev
+    - zlib1g-dev
+
+script:
+- bash ./go test

@@ -1,0 +1,188 @@
+#! /bin/bash
+#
+# Functions for parsing summaries and help text from command files.
+#
+# Note that we don't use grep, sed, awk, fold, and the like. This is not just
+# because it makes the library more portable (to Windows), but given that this
+# library only needs to parse a few lines of text from several small times,
+# these bash-only implementations are _more_ efficient than invoking external
+# commands multiple times (seen using the 'time' builtin on different
+# implementations; these functions originally used these external tools). Since
+# the user's expected to run the ./go script often, especially for help, this is
+# a legitimate concern. (Plus it helps keep the tests fast.)
+
+_@go.format_summary() {
+  local cmd_name="$1"
+  local summary="$2"
+  local longest_name_len="$3"
+
+  printf -v summary "  %-${longest_name_len}s  %s\n" "$cmd_name" "$summary"
+
+  if [[ "${#summary}" -le "$COLUMNS" ]]; then
+    printf "$summary"
+    return
+  fi
+
+  # Pad 4 spaces from first format string, plus 2 more to indent wrapped lines.
+  # If the padding takes up most of the line, abandon formatting.
+  local padding_size="$((longest_name_len + 6))"
+  local padding
+
+  if [[ "$padding_size" -ge "$((COLUMNS/2))" ]]; then
+    printf "$summary"
+    return
+  fi
+  printf -v padding "%-${padding_size}s" ''
+
+  local i
+  local columns="$COLUMNS"
+  local last_space
+
+  while [[ -n "$summary" ]]; do
+    last_space=-1
+
+    for ((i=columns - 1; i != -1; --i)); do
+      if [[ "${summary:$i:1}" =~ [[:space:]] ]]; then
+        last_space="$i"
+        break
+      fi
+    done
+
+    if [[ "$columns" -ne "$COLUMNS" ]]; then
+      printf "$padding"
+    fi
+
+    if [[ "$last_space" -ne '-1' ]]; then
+      printf -- "${summary:0:$last_space}\n"
+      summary="${summary:$((last_space+1))}"
+    else
+      printf -- "${summary:0:$columns}"
+      summary="${summary:$columns}"
+    fi
+
+    if [[ "$columns" -eq "$COLUMNS" ]]; then
+      ((columns-=padding_size))
+    fi
+  done
+}
+
+_@go.command_summary() {
+  local cmd_path="$1"
+  local __go_cmd_name
+  __go_cmd_desc=''
+
+  if ! _@go.check_command_path_and_parse_command_name "$cmd_path"; then
+    return 1
+  fi
+
+  local line
+  local summary=''
+  local summary_pattern='^# [[:alnum:]]'
+
+  while read -r line; do
+    line="${line%$'\r'}"
+    if [[ "$line" =~ $summary_pattern ]]; then
+      _@go.filter_description_line
+      __go_cmd_desc="${line:2}"
+      break
+    elif [[ "${line:0:1}" != '#' ]]; then
+      break
+    fi
+  done < "$cmd_path"
+
+  if [[ "$?" -ne '0' ]]; then
+    echo "ERROR: problem reading $cmd_path" >&2
+    return 1
+  elif [[ -z "$__go_cmd_desc" ]]; then
+    __go_cmd_desc='No description available'
+  fi
+}
+
+# This implementation is not only faster than the original `sed` version, but
+# way less hacky/more readable.
+_@go.command_description() {
+  local cmd_path="$1"
+  local __go_cmd_name
+  __go_cmd_desc=''
+
+  if ! _@go.check_command_path_and_parse_command_name "$cmd_path"; then
+    return 1
+  fi
+
+  local line
+  local paragraph_pattern='^# [[:graph:]]'
+  local end_paragraph_pattern=' $'
+  local summary_pattern='^#   [[:graph:]].*  '
+  local preformatted_pattern='^#    *[[:graph:]]'
+  local summary_item
+  local summary
+
+  while read -r line; do
+    line="${line%$'\r'}"
+    _@go.filter_description_line
+
+    if [[ "$line" =~ $paragraph_pattern ]]; then
+      __go_cmd_desc+="${line:2} "
+      continue
+    elif [[ "$__go_cmd_desc" =~ $end_paragraph_pattern ]]; then
+      __go_cmd_desc="${__go_cmd_desc% }"$'\n'
+    fi
+
+    # Auto-format indented lines that look like summary tables, i.e. contain a
+    # string of two spaces. Subtract the leading '# ' from the length.
+    if [[ "$line" =~ $summary_pattern && \
+      "$COLUMNS" -lt "$((${#line} - 2))" ]]; then
+      line="${line:4}"
+      summary_item="${line%%  *}"
+      summary="${line##*  }"
+
+      # The "longest_name_len" is what's left of the line length after
+      # subtracting the summary length and the two spaces before the summary.
+      __go_cmd_desc+="$(_@go.format_summary \
+        "$summary_item" "$summary" "$((${#line} - ${#summary} - 2))")"$'\n'
+
+    # Other indented lines are considered preformatted, not summaries.
+    elif [[ "$line" =~ $preformatted_pattern ]]; then
+      __go_cmd_desc="${__go_cmd_desc% }"
+      __go_cmd_desc+="${line:2}"$'\n'
+
+    elif [[ "$line" == '#' && -n "$__go_cmd_desc" ]]; then
+      __go_cmd_desc+=$'\n'
+
+    elif [[ "${line:0:1}" != '#' ]]; then
+      break
+    fi
+  done < "$cmd_path"
+
+  if [[ "$?" -ne '0' ]]; then
+    echo "ERROR: problem reading $cmd_path" >&2
+    return 1
+  elif [[ -z "$__go_cmd_desc" ]]; then
+    __go_cmd_desc='No description available'
+  else
+    __go_cmd_desc="${__go_cmd_desc%% }"
+  fi
+}
+
+_@go.filter_description_line() {
+  line="${line//\{\{go\}\}/$_GO_CMD}"
+  line="${line//\{\{cmd\}\}/${__go_cmd_name}}"
+  line="${line//\{\{root\}\}/$_GO_ROOTDIR}"
+}
+
+_@go.check_command_path_and_parse_command_name() {
+  local cmd_path="$1"
+  local subcommand_pattern='/([^/]+\.d/.*)'
+
+  if [[ -z "$cmd_path" ]]; then
+    echo "ERROR: no command script specified" >&2
+    return 1
+  elif [[ ! -e "$cmd_path" ]]; then
+    echo "ERROR: command script \"$cmd_path\" does not exist" >&2
+    return 1
+  elif [[ "$cmd_path" =~ $subcommand_pattern ]]; then
+    __go_cmd_name="${BASH_REMATCH[1]//.d\// }"
+  else
+    __go_cmd_name="${cmd_path##*/}"
+  fi
+}

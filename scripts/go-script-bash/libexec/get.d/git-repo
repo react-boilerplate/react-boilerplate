@@ -1,0 +1,75 @@
+#! /bin/bash
+#
+# Creates a shallow clone of a git repository at a specified version
+#
+# Usage:
+#   {{go}} {{cmd}} <repo_url> <git_ref> <clone_dir>
+#
+# Where:
+#   repo_url:   URL of the repository to clone
+#   git_ref:    Tag, branch, or commit to clone
+#   clone_dir:  Directory into which to clone the repo
+#
+# Useful for fetching a specific version of a project repository without its
+# entire history. A project may use this to install dependencies instead of a
+# git submodule.
+#
+# Will not clone the repository and will return an error if `clone_dir` exists.
+#
+# If you want to create a clone with the full history, either use `git clone`
+# directly or add the repository to your own repository as a submodule.
+
+# Implements the script behavior per the top-level description
+#
+# The arguments are the same as in the script description.
+_@go.get_git_repo_impl() {
+  local repo_url="$1"
+  local git_ref="$2"
+  local clone_dir="$3"
+  local git_clone=(git clone -q -c advice.detachedHead=false --depth 1)
+  local repo_msg="\"$repo_url\" reference \"$git_ref\" into \"$clone_dir\""
+
+  if ! command -v git >/dev/null; then
+    @go.printf 'Please install git before running "%s".\n' \
+      "${_GO_CMD_NAME[*]}" >&2
+    return 1
+  elif [[ -e "$clone_dir" ]]; then
+    @go.printf '"%s" already exists; not updating.\n' "$clone_dir"
+    return 1
+  elif ! "${git_clone[@]}" -b "$git_ref" "$repo_url" "$clone_dir"; then
+    @go.printf 'Failed to clone %s.\n' "$repo_msg" >&2
+    return 1
+  fi
+  @go.printf 'Successfully cloned %s.\n' "$repo_msg"
+}
+
+# Parses the command line flags before invoking _@go.get_git_repo_impl
+#
+# The arguments are the same as in the script description.
+_@go.get_git_repo() {
+  local repo_url="$1"
+  local git_ref="$2"
+  local clone_dir="$3"
+
+  if [[ "$1" == '--complete' ]]; then
+    # Tab completions
+    if [[ "$2" -eq '2' ]]; then
+      . "$_GO_USE_MODULES" 'complete'
+      @go.compgen -f -- "$3"
+    fi
+    return
+  fi
+
+  if [[ "$#" -ne '3' ]]; then
+    @go help "${_GO_CMD_NAME[@]}" >&2
+    return 1
+  fi
+
+  if [[ -e "$repo_url" ]]; then
+    repo_url="file://$repo_url"
+  fi
+
+  _@go.get_git_repo_impl "$repo_url" "$git_ref" "$clone_dir"
+}
+
+_@go.get_git_repo "$@"

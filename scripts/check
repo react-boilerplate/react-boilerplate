@@ -1,0 +1,45 @@
+#! /usr/bin/env bash
+#
+# Check if this host will be able to run this project.
+#
+# Usage:
+#   {{go}} {{cmd}}
+#
+#
+# This command will show what this project requires to run, and check that
+# all the tools are available.
+# Failure will return a non-zero error code.
+# Autocomplete is not implemented as it is not supported (yet) by ZSH.
+
+# shellcheck source=scripts/go-script-bash/lib/log
+. "$_GO_USE_MODULES" 'log'
+
+# shellcheck source=scripts/plugins/octobot-docker/lib/checks
+# . "$_GO_USE_MODULES" 'octobot-docker/checks'
+
+# shellcheck source=scripts/plugins/octobot-nvm/lib/checks
+. "$_GO_USE_MODULES" 'octobot-nvm/checks'
+
+_check() {
+
+  case "$1" in
+  --complete)
+    @go.log ERROR "Autocomplete disabled"
+    return 1
+    ;;
+  esac
+
+  @go.log INFO "Checking missing system dependencies to run"
+
+  local SOMETHING_MISSING=false
+  if ! @obot.is_nvm_present 0.35.3; then SOMETHING_MISSING=true; fi
+
+  if ! $SOMETHING_MISSING; then
+    @go.log INFO "All dependencies are available. This system can run $OBOT_PROJECT_CODE"
+  else
+    @go.log ERROR "This system is missing some dependencies. Please review and setup."
+  fi
+
+}
+
+_check "$@"

@@ -1,0 +1,246 @@
+#! /bin/bash
+#
+# Tools for generating expected stack trace output
+#
+# You must source `_GO_CORE_DIR/lib/testing/environment` before this file.
+
+. "$_GO_CORE_DIR/lib/bats/helper-function"
+
+# Get the stack trace of a line from a file or function as it would appear in
+# `@go.print_stack_trace` output.
+#
+# Arguments:
+#   filepath:       Path to the file containing the line
+#   function_name:  Function in which the line appears, 'main', or 'source'
+#   target_line:    Line for which to produce a stack trace line
+@go.stack_trace_item() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  __@go.check_file_path_specified_and_present "$1"
+  __@go.stack_trace_item "$@"
+  restore_bats_shell_options "$?"
+}
+
+# Creates `GO_CORE_STACK_TRACE_COMPONENTS` to help validate stack trace output.
+#
+# Call this before using "${GO_CORE_STACK_TRACE_COMPONENTS[@]}" to inject
+# entries from `go-core.bash` into your expected stack trace output. In this way
+# you can compare stack trace output with your command script items at the top,
+# `GO_CORE_STACK_TRACE_COMPONENTS` somewhere in the middle, and `TEST_GO_SCRIPT`
+# items at the bottom.
+#
+# Using this mechanism ensures that your stack trace validation stays up-to-date
+# even when the internal structure of `go-core.bash` changes.
+#
+# Globals:
+#   GO_CORE_STACK_TRACE_COMPONENTS:
+#     Stack trace lines from `go-core.bash` comprising the command script
+#     dispatch mechanism
+@go.set_go_core_stack_trace_components() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  __@go.set_go_core_stack_trace_components
+  restore_bats_shell_options "$?"
+}
+
+# Creates a stack trace line using an offset from the last line of `filename`.
+#
+# Helpful in test cases that can specify exactly which line it needs without
+# reading the file.
+#
+# Arguments:
+#   filepath:  Path to the file used to generate the stack trace item
+#   offset:    Offset from the last line to get the line number (default 0)
+#   funcname:  Name of the function expected in the stack trace (default 'main')
+@go.stack_trace_item_from_offset() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  local filepath="${1}"
+  local offset="${2:-0}"
+  local funcname="${3:-main}"
+  local num_lines='0'
+  local lineno
+
+  __@go.check_file_path_specified_and_present "$filepath"
+  @go.count_lines "$filepath" 'num_lines'
+  lineno="$((num_lines - offset))"
+  printf '  %s:%d %s\n' "$filepath" "$lineno" "$funcname"
+  restore_bats_shell_options "$?"
+}
+
+# Counts the number of lines in a file.
+#
+# Arguments:
+#   filepath:     Path to the file
+#   result_name:  Name of the caller's variable in which to store the result
+@go.count_lines() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  __@go.check_file_path_specified_and_present "$1"
+  __@go.count_lines "$@"
+  restore_bats_shell_options "$?"
+}
+
+# --------------------------------
+# IMPLEMENTATION - HERE BE DRAGONS
+#
+# None of the functions below this line are part of the public interface.
+# --------------------------------
+
+# Implementation for `@go.stack_trace_item`, extracted for efficiency
+#
+# Arguments:
+#   filepath:       Path to the file containing the line
+#   function_name:  Function in which the line appears, 'main', or 'source'
+#   target_line:    Line for which to produce a stack trace line
+__@go.stack_trace_item() {
+  local filepath="$1"
+  local function_name="$2"
+  local target_line="$3"
+  local initial_state='FUNCTION'
+  local state
+  local lineno=0
+  local line
+
+  # Granted, this will match an illegal line like 'foo {' that has neither
+  # 'function' nor '()', but it's probably not worth splitting hairs here.
+  local function_opening='^(function )? *([[:alnum:]_.@-]+) *(\(\))? *\{'
+
+  if [[ -z "$function_name" ]]; then
+    printf 'No function name specified for `%s`.\n' "${FUNCNAME[1]}" >&2
+    exit 1
+  elif [[ "$function_name" =~ ^(main|source)$ && -z "$target_line" ]]; then
+    printf 'No target line from `%s` specified for `%s`.\n'  \
+      "$function_name" "${FUNCNAME[1]}" >&2
+    exit 1
+  fi
+
+  if [[ "$function_name" == 'main' || "$function_name" == 'source' ]]; then
+    initial_state='MAIN'
+  fi
+  state="$initial_state"
+
+  # We have to set `IFS=` to preserve leading spaces, and then for Windows
+  # compatibility, strip off the trailing carriage return (the newline is
+  # already chomped off).
+  while IFS= read -r line; do
+    line="${line%$'\r'}"
+    ((++lineno))
+
+    case "$state" in
+    MAIN)
+      if [[ "$line" == "$target_line" ]]; then
+        state='SUCCESS'
+        break
+      elif [[ "$line" =~ $function_opening ]]; then
+        state='SKIP_FUNCTION'
+      fi
+      ;;
+    FUNCTION)
+      if [[ "$line" =~ $function_opening ]]; then
+        if [[ "${BASH_REMATCH[2]}" != "$function_name" ]]; then
+          state='SKIP_FUNCTION'
+        elif [[ -z "$target_line" ]]; then
+          state='SUCCESS'
+          break
+        else
+          state='INSIDE_TARGET_FUNCTION'
+        fi
+      fi
+      ;;
+    INSIDE_TARGET_FUNCTION)
+      if [[ "$line" == "$target_line" ]]; then
+        state='SUCCESS'
+        break
+      elif [[ "$line" == '}' ]]; then
+        state='FOUND_FUNCTION'
+        break
+      fi
+      ;;
+    SKIP_FUNCTION)
+      if [[ "$line" == '}' ]]; then
+        state="$initial_state"
+      fi
+      ;;
+    esac
+  done <"$filepath"
+
+  case "$state" in
+  SUCCESS)
+    printf '  %s:%d %s\n' "$filepath" "$lineno" "$function_name"
+    return
+    ;;
+  MAIN|FOUND_FUNCTION)
+    printf 'Line not found in `%s` from "%s": "%s"\n' \
+      "$function_name" "$filepath" "$target_line" >&2
+    ;;
+  *)
+    printf 'Function `%s` not found in "%s".\n' "$function_name" "$filepath" >&2
+    ;;
+  esac
+  return '1'
+}
+
+# Implementation for `@go.set_go_core_stack_trace_components`
+#
+# Globals:
+#   GO_CORE_STACK_TRACE_COMPONENTS:
+#     Stack trace lines from `go-core.bash` comprising the command script
+#     dispatch mechanism
+__@go.set_go_core_stack_trace_components() {
+  local go_core_file="$_GO_CORE_DIR/go-core.bash"
+  local stack_item
+  local script="$TEST_GO_ROOTDIR/generate-go-core-stack-trace"
+  local IFS=$'\n'
+
+  if [[ "${#GO_CORE_STACK_TRACE_COMPONENTS[@]}" -eq '0' ]]; then
+    create_bats_test_script "${script#$TEST_GO_ROOTDIR}" \
+      ". '$_GO_CORE_DIR/go-core.bash' '$TEST_GO_SCRIPTS_RELATIVE_DIR'" \
+      '@go "$@"'
+    @go.create_test_command_script 'print-stack-trace' '@go.print_stack_trace'
+
+    for stack_item in $("$script" 'print-stack-trace'); do
+      if [[ "$stack_item" =~ $go_core_file ]]; then
+        GO_CORE_STACK_TRACE_COMPONENTS+=("$stack_item")
+      elif [[ "${#_GO_CORE_STACK_TRACE_COMPONENTS[@]}" -ne '0' ]]; then
+        return
+      fi
+    done
+    rm "$script" "$TEST_GO_SCRIPTS_DIR/print-stack-trace"
+    export GO_CORE_STACK_TRACE_COMPONENTS
+  fi
+}
+
+# Implementation for @go.count_lines, extracted for efficiency
+#
+# Arguments:
+#   filepath:     Path to the file
+#   result_name:  Name of the caller's variable in which to store the result
+__@go.count_lines() {
+  local filepath="$1"
+  local result_name="$2"
+  local line
+  local i='0'
+
+  if [[ -z "$result_name" ]]; then
+    printf 'No result variable specified for `%s`.\n' "${FUNCNAME[1]}" >&2
+    exit 1
+  fi
+
+  while read line; do
+    ((++i))
+  done < "$filepath"
+  printf -v "$result_name" '%d' "$i"
+}
+
+# Confirms that a file name is specified and the file exists.
+#
+# Will print a message to standard error and exit on error.
+#
+# Arguments:
+#   filepath:  File path value to confirm
+__@go.check_file_path_specified_and_present() {
+  if [[ -z "$1" ]]; then
+    printf 'No file specified for `%s`.\n' "${FUNCNAME[1]}" >&2
+    exit 1
+  elif [[ ! -e "$1" ]]; then
+    printf 'Create "%s" before calling `%s`.\n' "$1" "${FUNCNAME[1]}" >&2
+    exit 1
+  fi
+}

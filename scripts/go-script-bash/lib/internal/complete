@@ -1,0 +1,56 @@
+#! /bin/bash
+
+_@go.complete_top_level_commands() {
+  if [[ -z "$_GO_STANDALONE" ]]; then
+    _@go.source_builtin 'aliases'
+    _@go.source_builtin 'commands'
+  else
+    printf 'help\n'
+    _@go.source_builtin 'commands' "$_GO_SCRIPTS_DIR"
+  fi
+}
+
+# A successful return status from this function is a signal that __go_cmd_path
+# is set and that the caller should run the following to produce more
+# completion values (provided it contains a '# Tab completions' comment):
+#
+#   "$__go_cmd_path" --complete "$__go_complete_word_index" "${__go_argv[@]}"
+#
+# An error return status indicates that argument completion is finished.
+#
+# It may emit potential completion values to standard output regardless of the
+# return status.
+_@go.complete_command_path() {
+  if [[ "$#" -eq 0 ]]; then
+    return 1
+  fi
+
+  __go_complete_word_index="$1"
+  shift
+  . "$_GO_CORE_DIR/lib/internal/path"
+
+  if [[ "$#" -le 1 || "$__go_complete_word_index" -eq '0' ]]; then
+    _@go.complete_top_level_commands
+    return 1
+  elif ! _@go.set_command_path_and_argv "$@"; then
+    return 1
+  fi
+  (( __go_complete_word_index -= ($# - ${#__go_argv[@]}) ))
+
+  if [[ "$__go_complete_word_index" -lt '0' ]]; then
+    # This (sub)command itself is the completion target.
+    echo "${__go_cmd_path##*/}"
+    return 1
+
+  elif [[ "$__go_complete_word_index" -eq '0' ]]; then
+    # Complete subcommand scripts.
+    local c
+    local subcommands=()
+    for c in "${__go_cmd_path}.d"/*; do
+      if [[ -f "$c" && -x "$c" ]]; then
+        subcommands+=("${c##*/}")
+      fi
+    done
+    echo "${subcommands[@]}"
+  fi
+}

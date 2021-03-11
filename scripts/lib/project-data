@@ -1,0 +1,25 @@
+#! /usr/bin/env bash
+#
+# Project specific backup and restore scripts
+# You'll need one function per entry in OBOT_BACKUP_SERVICES array
+
+# shellcheck source=scripts/plugins/octobot-docker/lib/checks
+# . "$_GO_USE_MODULES" 'octobot-docker/compose'
+
+# shellcheck source=scripts/plugins/octobot-nvm/lib/checks
+. "$_GO_USE_MODULES" 'octobot-nvm/set'
+
+# shellcheck source=scripts/go-script-bash/lib/prompt
+. "$_GO_USE_MODULES" 'prompt'
+
+
+__init_app () {
+  @go.log INFO "Init for Frontend App"
+  @obot.set_node_version
+  if ! npm install; then
+    @go.log ERROR "Failed while doing npm install for Frontend App"
+    return 1
+  fi
+  @go.log INFO "Frontend App initialized correctly"
+}
+

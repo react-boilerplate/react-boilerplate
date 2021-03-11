@@ -1,0 +1,96 @@
+#! /bin/bash
+#
+# Print shell commands to set up your environment for this project
+#
+# Usage:
+#   To view the generated shell commands:
+#   {{go}} {{cmd}}
+#
+#   To apply the commands to your shell environment (bash version):
+#   eval "$({{go}} {{cmd}} -)"
+#
+# This command defines a shell function with argument completion that may be
+# used in place of running the script directly.
+#
+# For information on how to make your own command scripts implement argument
+# completion, run `{{go}} help complete`.
+
+_@go.has_spaces() {
+  [[ "$1" != "${1//[[:space:]]/}" ]]
+}
+
+_@go.env() {
+  # Tab completions
+  if [[ "$1" == '--complete' ]]; then
+    local word_index="$2"
+    if [[ "$word_index" -eq '0' ]]; then
+      echo '-'
+    fi
+    return
+  fi
+
+  local go_func="$1"
+  local default_name="${_GO_SCRIPT##*/}"
+  local shell="${SHELL##*/}"
+  local shell_impl="$_GO_CORE_DIR/lib/internal/env/$shell"
+
+  if [[ ! -e "$shell_impl" ]]; then
+    @go.printf "%s\n\n" "The $shell shell currently isn't supported." >&2
+    @go.printf "%s%s\n" \
+      "Check $_GO_CORE_URL/tree/master/lib/env to see if an implementation " \
+      "has been added, or feel free to send a pull request to add it." >&2
+    return 1
+  fi
+
+  local spaces_error=('ERROR: %s must not contain spaces in order'
+    'for it to be compatible with the "env" command.\n')
+
+  if _@go.has_spaces "$default_name"; then
+    @go.printf "${spaces_error[*]}" "the \"$default_name\" script" >&2
+    return 1
+  fi
+
+  if [[ -z "$go_func" ]]; then
+    local help_msg
+    local line
+    local eval_cmd
+    local eval_pattern='# .*%s env -'
+
+    while read -r line; do
+      if [[ "$line" =~ $eval_pattern ]]; then
+        eval_cmd="${line#\# }"
+        break
+      fi
+    done < "$shell_impl"
+
+    if [[ -z "$eval_cmd" ]]; then
+      @go.printf 'ERROR: %s must contain a line of the form "%s" %s%s\n' \
+        "$shell_impl" "$eval_pattern" "illustrating the command used to " \
+        "evaluate the generated shell commands." >&2
+      return 1
+    fi
+
+    read -r -d '' help_msg <<END_OF_HELP
+# Define the "$default_name" function by running the following command.
+# Replace '-' to use a different name instead of "$default_name".
+
+${eval_cmd//%s/$0}
+END_OF_HELP
+    @go.printf "$help_msg\n"
+    return
+  elif [[ "$go_func" == '-' ]]; then
+    go_func="$default_name"
+  fi
+
+  if _@go.has_spaces "$go_func"; then
+    @go.printf "${spaces_error[*]}" "\"$go_func\"" >&2
+    return 1
+  fi
+
+  read -r -d '' env_script < "$shell_impl"
+  env_script="${env_script//_go_func/$go_func}"
+  env_script="${env_script//\$_GO_ROOTDIR/$_GO_ROOTDIR}"
+  echo "${env_script//\$_GO_SCRIPT/$_GO_SCRIPT}"
+}
+
+_@go.env "$@"

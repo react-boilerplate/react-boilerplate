@@ -1,0 +1,124 @@
+#! /usr/bin/env bash
+#
+# Utilities for writing helper functions for Bats tests
+#
+# These utilities serve two purposes:
+#
+# - Writing Bats assertion functions
+# - Writing efficient Bats helper functions
+#
+# For details on writing Bats assertions, see the header comment from
+# `lib/bats/assertions`.
+#
+# For other Bats helper functions that contain `for` or `while` loops, or
+# otherwise contain a lot of commands, write the following as the first line:
+#
+#   set "$DISABLE_BATS_SHELL_OPTIONS"
+#
+# and then make sure every return path ends with a direct call to the following
+# (not delegated to a helper function, and followed by a `return` statement if
+# not explicitly passed an error status and not at the end of the function):
+#
+#   restore_bats_shell_options "$return_status"
+#
+# Rationale:
+# ---------
+# Bats uses a `DEBUG` trap to capture stack trace information on every command
+# or function call within a test case (except those executed with `run`). It
+# uses `ERR` and `EXIT` traps to process and report this information when a test
+# case fails, and uses `set -eET` to ensure that functions, command
+# substitutions, and subshells inherit these traps.
+#
+# However, at present, the `DEBUG` trap function, `bats_print_stack_trace`,
+# invokes several command substitutions to process the call stack. This means
+# every command and function call in your test can spawn dozens, potentially
+# hundreds of other processes, especially if any function call contains a `for`
+# or `while` loop.
+#
+# On Windows, the penalty for extra subprocesses is especially severe; a test
+# suite that takes less than ten minutes on Linux or macOS can take close to an
+# hour on Windows. Even the Windows 10 Ubuntu port (Windows Subsystem for Linux)
+# is greatly affected. For more background, see:
+#
+#   https://rufflewind.com/2014-08-23/windows-bash-slow
+#
+# Even if Bats is ever updated to eliminate the subshells, it's still a
+# substantial amount of work that gets done for every command or function call
+# in your test suite.
+#
+# Also, pinpointing the location of an error condition with stack information is
+# almost always the desired behavior, especially when the failing command or
+# condition resides in the test case itself. When it comes to test assertions,
+# however, we want the stack trace to point to the assertion call, not the line
+# within its implementation that triggered a failure condition. Otherwise, it
+# produces a bit of mental strain when reviewing test failures to identify the
+# location of the failing assertion in the test case itself.
+#
+# This mechanism disables trap inheritance—and consequently, Bats stack trace
+# collection—for all commands and functions called between `set
+# "$DISABLE_BATS_SHELL_OPTIONS"` and `restore_bats_shell_options`. This makes
+# assertion and helper functions run much faster.
+#
+# For example, between commit abe6a549a1fc27ae353dd20dca8709fbb3e6bb1d and
+# commit b79c24552134ca31660ba3711d4b769c7de35eb7, macOS and Linux builds on a
+# MacBook Pro with a 2.9GHz Intel Core i5 CPU and 8GB 1867MHz DDR3 RAM went from
+# O(6-8min) to O(3-4min), and Windows 10 builds on the same machine running with
+# 4GB RAM under VMware Fusion 8.5.3 went from O(50-60-min) to O(20min).
+#
+# Also, though the caller's `DEBUG` trap will still fire for every command and
+# function it calls, pushing its own line information onto the stack,
+# `restore_bats_shell_options` will ensure that its information is removed
+# before Bats gets a chance to report it, keeping test output lean and readable.
+
+# The first line of a Bats helper function must call `set` with this argument.
+export DISABLE_BATS_SHELL_OPTIONS='+eET'
+
+# Restore shell options disabled with `set "$DISABLE_BATS_SHELL_OPTIONS"`.
+#
+# It also returns its `result` argument, triggering an exit when it's nonzero.
+# It ensures that the resulting Bats test failure points to the location where
+# the caller was invoked, not the location inside the caller that returned an
+# error. This is critical for writing Bats assertion functions, so that users
+# only see the location of the failing assertion in the test failure output.
+#
+# You must ensure that `set "$DISABLE_BATS_SHELL_OPTIONS"` is in effect prior to
+# calling this function, and that your Bats helper function calls this function
+# directly through every return path (i.e. you can't delegate the call to
+# another helper function). See the comments at the top of this file and at the
+# top of `lib/bats/assertions` for usage instructions and patterns.
+#
+# Starting an funtion with `set "$DISABLE_BATS_SHELL_OPTIONS"` (i.e. `set
+# +eET`) disables the `set -e`, `set -E`, and `set -T` shell options, which
+# prevents the functions and commands it calls from updating the Bats stack
+# traces. However, by itself, this still leaves the function, file, and line
+# number where the function was defined in the Bats stack traces. It's also
+# important to reinstate `set -eET` upon returning, but we want to make it easy
+# to write new assertions composed from existing assertions by reinstating these
+# options only when returning from the outermost assertion.
+#
+# This function solves both aspects of the problem by removing the immediate
+# caller from the Bats stack traces and reinstating `set -eET` when it's the
+# outermost function that called `set "$DISABLE_BATS_SHELL_OPTIONS"`, which will
+# be the only function that gets pushed onto the Bats stacks after that.
+#
+# Arguments:
+#   result:  Return value of the calling assertion; defaults to 0
+restore_bats_shell_options() {
+  local result="${1:-0}"
+  local target_stack_item_pattern=" ${FUNCNAME[1]} ${BASH_SOURCE[1]}$"
+
+  if [[ "${BATS_CURRENT_STACK_TRACE[0]}" =~ $target_stack_item_pattern ]]; then
+    # After removing our caller from `BATS_CURRENT_STACK_TRACE` and restoring
+    # the Bats shell options, the `return` call at the end of the function will
+    # fire `bats_debug_trap`, which assigns `BATS_CURRENT_STACK_TRACE` to
+    # `BATS_PREVIOUS_STACK_TRACE`.
+    #
+    # Then, if `result` is nonzero, `return` will fire `bats_error_trap`, which
+    # assigns `BATS_PREVIOUS_STACK_TRACE` to `BATS_ERROR_STACK_TRACE`. The error
+    # response will fail the test, and Bats will show `BATS_ERROR_STACK_TRACE`.
+    unset 'BATS_CURRENT_STACK_TRACE[0]'
+    set -eET
+  fi
+  return "$result"
+}
+export -f restore_bats_shell_options

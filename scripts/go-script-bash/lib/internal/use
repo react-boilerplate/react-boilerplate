@@ -1,0 +1,184 @@
+#! /bin/bash
+#
+# Imports optional Bash library modules
+#
+# Usage:
+#   .  "$_GO_USE_MODULES" <module> [<module>...]
+#
+# NOTE: It's important to wrap `$_GO_USE_MODULES` in double-quotes to ensure the
+# statement is portable to environments in which the file paths may contain
+# spaces. It's good practice to wrap each `<module>` in single-quotes as well.
+#
+# Where:
+#   <module>  The name of an optional Bash library module
+#
+# After sourcing `go-core.bash`, you can source the `_GO_USE_MODULES` script
+# to import optional library code from the core framework, from plugins, or
+# from your scripts directory. You can do so in your `./go` script, making the
+# module code available to all your Bash command scripts, or use it in specfic
+# Bash command scripts or Bash functions.
+#
+# This aims to be a convenient, flexible, standard, and self-documenting means
+# of reusing Bash library code that incurs no overhead if such functionality
+# isn't required by a project, just like other modern programming languages. In
+# so doing, it aims to promote the development of modular, robust, and
+# well-tested core framework extensions and other plugins without bloating
+# project scripts that have no use for the extra functionality.
+#
+# For example, the core framework logging module `lib/log` is not sourced
+# automatically by `go-core.bash`, so that scripts that don't make use of it
+# will not incur the penalty of loading that code.  However, scripts that do
+# make use of it need only invoke the following command in the `./go` script
+# immediately after sourcing `go-core.bash`, and the core logging interface is
+# then available to the rest of the `./go` script and any command scripts also
+# written in Bash:
+#
+#   . "$_GO_USE_MODULES" 'log'
+#
+# Alternatively, specific command scripts or individual Bash functions that
+# require the functionality can use `_GO_CORE_MODULES` on an as-needed basis,
+# rather than using it in the top-level `./go` script.
+#
+# The precedence for discovering modules is similar to that for discovering
+# command scripts:
+#
+#   - `_GO_INJECT_MODULE_PATH` for module stubs injected during testing;
+#     see `lib/testing/stubbing`
+#   - `_GO_CORE_DIR/lib/` for core library modules
+#   - `_GO_SCRIPTS_DIR/lib` for project-internal modules
+#   - `_GO_ROOTDIR/lib` for publicly-exported modules (`./go` script plugins)
+#   - `_GO_SCRIPTS_DIR/plugins/*/lib` for installed plugin modules
+#   - Parent plugin dirs up to `_GO_PLUGINS_DIR/*/lib` for plugin modules
+#     installed in parent directories
+#
+# To import a module exported from an installed plugin, you must specify the
+# path as `<plugin-name>/<module-name>`. There is no need to include the `lib/`
+# component.  For example, if you have a plugin called `foo` and it contains a
+# module file `lib/bar` (installed as `scripts/plugins/foo/lib/bar` in your
+# project repository), you could import the module via:
+#
+#   . "$_GO_USE_MODULES" 'foo/bar'
+#
+# Note that if there is a module with the relative path `foo/bar` in one of the
+# other directories, such as `_GO_ROOTDIR/lib/foo/bar`, it will take precedence
+# over the plugin `scripts/plugins/foo/lib/bar`. See `{{go}} help plugins` for
+# more information on plugins and their operating constraints.
+#
+# Module loading is idempotent, as the names of imported modules are added to
+# the `_GO_IMPORTED_MODULES` array and are not sourced again if their names are
+# already in the array. If a potential collision between installed module names
+# is detected (possible with installed plugins), a verbose warning pinpointing
+# the collision points will be printed to standard error, but execution will
+# continue.
+#
+# To see what modules are currently imported and their corresponding files, use:
+#
+#   for modules imported by the top-level `./go` script:
+#   {{go}} modules --imported
+#
+#   for modules imported within a Bash command script or function:
+#   @go modules --imported
+
+_@go.find_plugin_module() {
+  [[ -f "$1/$__go_module_file" ]] && __go_module_file="$1/$__go_module_file"
+}
+
+_@go.find_module() {
+  if [[ -n "$_GO_INJECT_MODULE_PATH" ]]; then
+    __go_module_file="$_GO_INJECT_MODULE_PATH/$__go_module_name"
+    if [[ -f "$__go_module_file" ]]; then
+      return
+    fi
+  fi
+  __go_module_file="$_GO_CORE_DIR/lib/$__go_module_name"
+
+  if [[ ! -f "$__go_module_file" ]]; then
+    __go_module_file="$_GO_SCRIPTS_DIR/lib/$__go_module_name"
+
+    if [[ ! -f "$__go_module_file" ]]; then
+      __go_module_file="$_GO_ROOTDIR/lib/$__go_module_name"
+
+      if [[ ! -f "$__go_module_file" ]]; then
+        # Convert <plugin>/<module> to plugins/<plugin>/lib/<module>
+        __go_module_file="${__go_module_name/\///lib/}"
+        @go.search_plugins '_@go.find_plugin_module'
+      fi
+    fi
+  fi
+}
+
+_@go.import_module() {
+  if [[ "${__go_module_file#$_GO_SCRIPTS_DIR}" =~ /plugins/[^/]+/lib/ ]]; then
+    local _GO_SCRIPTS_DIR="${__go_module_file%/lib/*}/bin"
+    local _GO_ROOTDIR="${_GO_SCRIPTS_DIR%/bin}"
+    local _GO_PLUGINS_PATHS=()
+    local _GO_SEARCH_PATHS=()
+  fi
+
+  # Prevent self- and circular importing by registering info before sourcing.
+  _GO_IMPORTED_MODULES+=("$__go_module_name")
+  _GO_IMPORTED_MODULE_FILES+=("$__go_module_file")
+  _GO_IMPORTED_MODULE_CALLERS+=("$current_caller")
+  . "$__go_module_file"
+}
+
+_@go.use_modules() {
+  local __go_module_name
+  local __go_module_file
+  local loaded_module
+  local loaded_file
+  local module_index
+  local current_caller="${BASH_SOURCE[2]}:${BASH_LINENO[1]} ${FUNCNAME[2]}"
+  local prev_caller
+
+  for __go_module_name in "$@"; do
+    if ! _@go.find_module; then
+      @go.printf 'ERROR: Module %s not found at:\n' "$__go_module_name" >&2
+      @go.print_stack_trace 1 >&2
+      exit 1
+    fi
+
+    # If we found the module in our project, but we're installed as a plugin,
+    # change the loaded module name to reflect that.
+    #
+    # Using `##` to trim the string instead of `#` flattens the module name
+    # namespace. We could use `#` to keep it hierarchical, but since the Bash
+    # namespace itself is flat, this might lead to hard-to-debug collisions if
+    # functions and variables get redefined. Keeping a flat module name
+    # namespace allows us to detect such potential collisions and issue a
+    # warning below.
+    if [[ "$__go_module_file" =~ ^$_GO_PLUGINS_DIR/ ]]; then
+      __go_module_name="${__go_module_file##*/plugins/}"
+      __go_module_name="${__go_module_name/\/bin\///}"
+      __go_module_name="${__go_module_name/\/lib\///}"
+    fi
+
+    module_index=0
+    for loaded_module in "${_GO_IMPORTED_MODULES[@]}"; do
+      if [[ "$__go_module_name" == "$loaded_module" ]]; then
+        loaded_file="${_GO_IMPORTED_MODULE_FILES[$module_index]}"
+        prev_caller="${_GO_IMPORTED_MODULE_CALLERS[$module_index]}"
+
+        # This may happen if a plugin appears more than once in a project tree.
+        if [[ "$__go_module_file" != "$loaded_file" ]]; then
+          @go.printf '%s\n' "WARNING: Module: $__go_module_name" \
+            "imported at: $current_caller" \
+            "from file: $__go_module_file" \
+            "previously imported at: $prev_caller" \
+            "from file: $loaded_file" >&2
+        fi
+        continue 2
+      fi
+      ((++module_index))
+    done
+
+    if ! _@go.import_module; then
+      @go.printf 'ERROR: Failed to import %s module from %s at:\n' \
+        "$__go_module_name" "$__go_module_file" >&2
+      @go.print_stack_trace 1 >&2
+      exit 1
+    fi
+  done
+}
+
+_@go.use_modules "$@"

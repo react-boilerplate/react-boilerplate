@@ -1,0 +1,39 @@
+#! /usr/bin/env bash
+#
+# Clears and reinitializes databases.
+# It does not remove the repository files nor backups.
+#
+# Usage:
+#   {{go}} {{cmd}}
+#
+# This performs something alike a drop db and reinitializes it without data.
+# If you want to initialize databases with data, please use `{{go}} restore_db`
+
+# shellcheck source=scripts/lib/project-data
+. "$_GO_USE_MODULES" 'project-data'
+
+_clear_db() {
+  if [[ $# -gt 0 ]]; then
+    @go.log WARN "Ignoring parameters for clear_db"
+  fi
+
+  local __CLEAR_FAILED=0
+
+  for service in "${OBOT_BACKUP_SERVICES[@]}"; do
+    @go.log INFO "Launching clear task for: $service"
+    __clear_$service
+    if [[ $? -ne 0 ]]; then
+      __CLEAR_FAILED=$?
+    fi
+  done
+
+  if [[ $__CLEAR_FAILED -ne 0 ]]; then
+    @go.log ERROR "Be careful! Some part of the clear process failed. Please review."
+    return 1
+  else
+    @go.log INFO "Databases cleared"
+    return 0
+  fi
+}
+
+_clear_db "$@"

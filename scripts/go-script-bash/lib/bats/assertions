@@ -1,0 +1,587 @@
+#! /bin/bash
+#
+# Assertions for Bats tests
+#
+# These functions provide detailed output for assertion failures, which is
+# especially helpful when running as part of a continuous integration suite.
+# Compare the output from the typical `[ "$output" == 'bar' ]` statement:
+#
+#   ✗ actual output matches expected
+#     (in test file test.bats, line 7)
+#       `[ "$output" == 'bar' ]' failed
+#
+# with that from `assert_output 'bar'`, which shows the `$output` that failed:
+#
+#   ✗ actual output matches expected
+#     (in test file test.bats, line 7)
+#       `assert_output 'bar'' failed
+#     output not equal to expected value:
+#       expected: 'bar'
+#       actual:   'foo'
+#
+# These assertions borrow inspiration from rbenv/test/test_helper.bash.
+#
+# Usage:
+# -----
+# The recommended way to make these assertions available is to create an
+# 'environment.bash' file in the top-level test directory containing the
+# following line:
+#
+#   . "path/to/bats/assertions"
+#
+# Then have each Bats test file load the environment file. This environment file
+# can contain any other custom helper functions or assertions to fit your
+# project.
+#
+# If none of the assertions suit your needs (including their negations provided
+# by `fail_if`), you can use the `fail` function to provide a custom error
+# message.
+#
+# Defining new assertions:
+# -----------------------
+# Alternatively, write your own assertion function with the following as the
+# first line:
+#
+#   set "$DISABLE_BATS_SHELL_OPTIONS"
+#
+# and then make sure every return path ends with a direct call to the following
+# (not delegated to a helper function, and followed by a `return` statement if
+# not explicitly passed an error status and not at the end of the function):
+#
+#   restore_bats_shell_options "$return_status"
+#
+# These two steps ensure that your assertion will pinpoint the line in the test
+# case at which it was called, and that it may be reused to compose new
+# assertions. For the deep technical details, see the function comment for
+# `restore_bats_shell_options` from `lib/bats/helper-function`.
+#
+# Assertions should generally follow the pattern:
+#
+#   assert_some_condition() {
+#     set "$DISABLE_BATS_SHELL_OPTIONS"
+#     if [[ "$actual" != "$expected" ]]; then
+#       printf "Something's wrong:\n  expected: '%s'\n  actual:   '%s'\n" \
+#         "$expected" "$actual" >&2
+#       restore_bats_shell_options '1'
+#     else
+#       restore_bats_shell_options
+#     fi
+#   }
+#
+# Assertions that wrap a single existing assertion should follow the pattern:
+#
+#   assert_with_more_context() {
+#     set "$DISABLE_BATS_SHELL_OPTIONS"
+#     # ...set up context...
+#     assert_using_an_existing_assertion "$with_more_context"
+#     restore_bats_shell_options "$?"
+#   }
+#
+# For assertions that check multiple error conditions before exiting:
+#
+#   assert_some_stuff() {
+#     set "$DISABLE_BATS_SHELL_OPTIONS"
+#     local num_errors=0
+#
+#     # ...check conditions, print errors, increment num_errors...
+#
+#     if [[ "$num_errors" -ne '0' ]]; then
+#       restore_bats_shell_options '1'
+#     else
+#       restore_bats_shell_options
+#     fi
+#   }
+#
+# Also, if your assertion contains a `for` or `while` loop, you may wish to
+# delegate to a helper function for efficiency; see the header comments from
+# `lib/bats/helper-function` for an explanation:
+#
+#   assert_something_involving_a_file() {
+#     set "$DISABLE_BATS_SHELL_OPTIONS"
+#     __assert_something_involving_a_file "$@"
+#     restore_bats_shell_options "$?"
+#   }
+#
+#   __assert_something_involving_a_file() {
+#     local filename="$1"
+#     local line
+#     while IFS= read -r line; do
+#       line="${line%$'\r'}"
+#       assert_something_on_a_file_line "$filename" "$line"
+#     done <"$filename"
+#   }
+
+. "${BASH_SOURCE%/*}/helper-function"
+
+# Unconditionally returns a failing status
+#
+# Will print an optional failure reason, the Bats 'run' command exit status, and
+# the output from the 'run' command, all to standard error.
+#
+# Globals:
+#   bats_fail_no_output:  If nonempty, will not print `status` and `output`
+#
+# Arguments:
+#   $1:  (optional) Reason to include in the failure output
+fail() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  local reason="$1"
+
+  if [[ -n "$reason" ]]; then
+    printf '%b\n' "$reason" >&2
+  fi
+  if [[ -z "$bats_fail_no_output" ]]; then
+    printf 'STATUS: %d\nOUTPUT:\n%b\n' "$status" "$output" >&2
+  fi
+  restore_bats_shell_options '1'
+}
+
+# Negates the expected outcome of an assertion from this file.
+#
+# The first argument should be the name of an assertion from this file _without_
+# the `assert_` prefix. For example:
+#
+#   fail_if equal 'foo' 'bar' "Some values we don't expect to be equal"
+#
+# This is essentially the same as the following, but `fail_if` provides more
+# context for the failure:
+#
+#   ! assert_equal 'foo' 'bar' "Some values we don't expect to be equal"
+#
+# Arguments:
+#   assertion:  The name of the assertion to negate minus the `_assert_` prefix
+#   ...:        The arguments to the assertion being negated
+fail_if() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  local assertion="assert_${1}"
+  shift
+  local label
+  local value
+  local operation='equal'
+  local constraints=()
+  local constraint
+  local i
+  local bats_fail_no_output=''
+
+  if [[ "$assertion" =~ _match ]]; then
+    operation='match'
+  fi
+
+  case "$assertion" in
+  assert_equal|assert_matches)
+    bats_fail_no_output='true'
+    label="${3:-value}"
+    constraints=("$1")
+    value="$2"
+    ;;
+  assert_output*|assert_status)
+    bats_fail_no_output='true'
+    label="${assertion#assert_}"
+    label="${label%_*}"
+    constraints=("$@")
+    value="$output"
+    ;;
+  assert_line_*)
+    label="line $1"
+    constraints=("$2")
+    value="${lines[$1]}"
+    ;;
+  assert_lines_*)
+    label="lines"
+    constraints=("${@}")
+    ;;
+  assert_file_*)
+    label="'$1'"
+    constraints=("${@:2}")
+    ;;
+  *)
+    printf "Unknown assertion: '%s'\n" "$assertion" >&2
+    restore_bats_shell_options '1'
+    return
+  esac
+
+  if ! "$assertion" "$@" &>/dev/null; then
+    restore_bats_shell_options
+    return
+  fi
+
+  for ((i=0; i != ${#constraints[@]}; ++i)); do
+    constraint+=$'\n'"  '${constraints[$i]}'"
+  done
+
+  if [[ "$operation" == 'match' && -n "$value" ]]; then
+    value=$'\nValue:\n'"  '$value'"
+  else
+    value=
+  fi
+
+  fail "Expected $label not to $operation:$constraint$value"
+  restore_bats_shell_options "$?"
+}
+
+# Compares two values for equality
+#
+# Arguments:
+#   expected:  The expected value
+#   actual:    The actual value to evaluate
+#   label:     (Optional) A label explaining the value being evaluated
+assert_equal() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  local expected="$1"
+  local actual="$2"
+  local label="${3:-Actual value}"
+
+  if [[ "$expected" != "$actual" ]]; then
+    printf '%s not equal to expected value:\n  %s\n  %s\n' \
+      "$label" "expected: '$expected'" "actual:   '$actual'" >&2
+    restore_bats_shell_options '1'
+  else
+    restore_bats_shell_options
+  fi
+}
+
+# Validates whether a value matches a regular expression
+#
+# Arguments:
+#   pattern:  The regular expression to match against the value
+#   value:    The value to match
+#   label:    (Optional) A label explaining the value being matched
+assert_matches() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  local pattern="$1"
+  local value="$2"
+  local label="${3:-Value}"
+
+  if [[ ! "$value" =~ $pattern ]]; then
+    printf '%s does not match expected pattern:\n  %s\n  %s\n' \
+      "$label" "pattern: '$pattern'" "value:   '$value'" >&2
+    restore_bats_shell_options '1'
+  else
+    restore_bats_shell_options
+  fi
+}
+
+# Validates that the Bats `output` value is equal to the expected value
+#
+# Will join multiple arguments using a newline character to check a multiline
+# value for equality. This is suggested only for short `output` values, however.
+# For longer values, use `assert_lines_equal` or `assert_lines_match`, possibly
+# in combination with `split_bats_output_into_lines` from `lib/bats/helpers`.
+#
+# Arguments:
+#   ...:  Lines comprising the expected value for `output`
+assert_output() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  local expected
+  local origIFS="$IFS"
+  local IFS=$'\n'
+
+  printf -v 'expected' -- '%s' "$*"
+  origIFS="$IFS"
+  assert_equal "$expected" "$output" 'output'
+  restore_bats_shell_options "$?"
+}
+
+# Validates that the Bats $output value matches a regular expression
+#
+# Arguments:
+#   $1: The regular expression to match against $output
+assert_output_matches() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  local pattern="$1"
+
+  if [[ "$#" -ne 1 ]]; then
+    printf 'ERROR: %s takes exactly one argument\n' "${FUNCNAME[0]}" >&2
+    restore_bats_shell_options '1'
+  else
+    assert_matches "$pattern" "$output" 'output'
+    restore_bats_shell_options "$?"
+  fi
+}
+
+# Validates that the Bats $status value is equal to the expected value
+#
+# Arguments:
+#   $1: The expected value for $status
+assert_status() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  assert_equal "$1" "$status" "exit status"
+  restore_bats_shell_options "$?"
+}
+
+# Validates that `run` returned success and `output` equals the expected value
+#
+# Arguments:
+#   ...:  (Optional) Lines comprising the expected value for `output`
+assert_success() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+
+  if [[ "$status" -ne '0' ]]; then
+    printf 'expected success, but command failed\n' >&2
+    fail
+  elif [[ "$#" -ne 0 ]]; then
+    assert_output "$@"
+  fi
+  restore_bats_shell_options "$?"
+}
+
+# Validates that `run` returned an error and `output` equals the expected value
+#
+# Arguments:
+#   ...:  (Optional) Lines comprising the expected value for `output`
+assert_failure() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+
+  if [[ "$status" -eq '0' ]]; then
+    printf 'expected failure, but command succeeded\n' >&2
+    fail
+  elif [[ "$#" -ne 0 ]]; then
+    assert_output "$@"
+  fi
+  restore_bats_shell_options "$?"
+}
+
+# Validates that a specific line from $line equals the expected value
+#
+# Arguments:
+#   $1: The index into $line identifying the line to evaluate
+#   $2: The expected value for ${line[$1]}
+assert_line_equals() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  __assert_line 'assert_equal' "$@"
+  restore_bats_shell_options "$?"
+}
+
+# Validates that a specific line from $line matches the expected value
+#
+# Arguments:
+#   $1: The index into $line identifying the line to match
+#   $2: The regular expression to match against ${line[$1]}
+assert_line_matches() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  __assert_line 'assert_matches' "$@"
+  restore_bats_shell_options "$?"
+}
+
+# Validates that each output line equals each corresponding argument
+#
+# Also ensures there are no more and no fewer lines of output than expected. If
+# `output` should contain blank lines, call `split_bats_output_into_lines` from
+# `lib/bats/helpers` before this.
+#
+# If you expect zero lines, then don't supply any arguments.
+#
+# Arguments:
+#   $@: Values to compare to each element of `${lines[@]}` for equality
+assert_lines_equal() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  __assert_lines 'assert_equal' "$@"
+  restore_bats_shell_options "$?"
+}
+
+# Validates that each output line matches each corresponding argument
+#
+# Also ensures there are no more and no fewer lines of output than expected. If
+# `output` should contain blank lines, call `split_bats_output_into_lines` from
+# `lib/bats/helpers` before this.
+#
+# Arguments:
+#   $@: Values to compare to each element of `${lines[@]}` for equality
+assert_lines_match() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  __assert_lines 'assert_matches' "$@"
+  restore_bats_shell_options "$?"
+}
+
+# Validates that a file contains exactly the specified output
+#
+# NOTE: If the file doesn't end with a newline, the last line will not be
+# present. To check that a file is completely empty, supply only the `file_path`
+# argument.
+#
+# Arguments:
+#   file_path:  Path to file to evaluate
+#    ...:       Exact lines expected to appear in the file
+assert_file_equals() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  __assert_file 'assert_lines_equal' "$@"
+  restore_bats_shell_options "$?"
+}
+
+# Validates that a file matches a single regular expression
+#
+# Arguments:
+#   file_path:  Path to the file to examine
+#   pattern:    Regular expression used to validate the contents of the file
+assert_file_matches() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  __assert_file 'assert_matches' "$@"
+  restore_bats_shell_options "$?"
+}
+
+# Validates that every line in a file matches a corresponding regular expression
+#
+# Arguments:
+#   file_path:  Path to the file to examine
+#   ...:        Regular expressions used to validate each line of the file
+assert_file_lines_match() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  __assert_file 'assert_lines_match' "$@"
+  restore_bats_shell_options "$?"
+}
+
+# Sets the `output` and `lines` variables to the contents of a file.
+#
+# This differs from `run cat $file` or similar in that it automatically strips
+# `\r` characters from files produced on Windows systems and preserves empty
+# lines.
+#
+# Normally you should use one of the `assert_file_*` assertions, which rely on
+# this function; but if you wish to examine specific output lines without the
+# regard to the rest (such as the first or last lines), or search for several
+# regular expressions in no particular order, this function may help.
+#
+# NOTE: If the file doesn't end with a newline, the last line will not be
+# present. If the file is completely empty, `lines` will contain zero elements.
+#
+# Arguments:
+#   file_path:  Path to file from which `output` and `lines` will be filled
+set_bats_output_and_lines_from_file() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  __set_bats_output_and_lines_from_file "$@"
+  restore_bats_shell_options "$?"
+}
+
+# --------------------------------
+# IMPLEMENTATION - HERE BE DRAGONS
+#
+# None of the functions below this line are part of the public interface.
+# --------------------------------
+
+# Common implementation for assertions that evaluate a single `$lines` element
+#
+# Arguments:
+#   assertion:   The assertion to execute
+#   lineno:      The index into $lines identifying the line to evaluate
+#   constraint:  The assertion constraint used to evaluate ${lines[$lineno]}
+__assert_line() {
+  local assertion="$1"
+  local lineno="$2"
+  local constraint="$3"
+
+  # Implement negative indices for Bash 3.x.
+  if [[ "${lineno:0:1}" == '-' ]]; then
+    lineno="$((${#lines[@]} - ${lineno:1}))"
+  fi
+
+  if ! "$assertion" "$constraint" "${lines[$lineno]}" "line $lineno"; then
+    if [[ -z "$__bats_assert_line_suppress_output" ]]; then
+      printf 'OUTPUT:\n%s\n' "$output" >&2
+    fi
+    return '1'
+  fi
+}
+
+# Common implementation for assertions that evaluate every element of `$lines`
+#
+# Arguments:
+#   assertion:  The assertion to execute
+#   ...:        Assertion constraints for each corresponding element of $lines
+__assert_lines() {
+  local assertion="$1"
+  shift
+  local expected=("$@")
+  local num_lines="${#expected[@]}"
+  local lines_diff="$((${#lines[@]} - num_lines))"
+  local __bats_assert_line_suppress_output='true'
+  local num_errors=0
+  local i
+
+  for ((i=0; i != ${#expected[@]}; ++i)); do
+    if ! __assert_line "$assertion" "$i" "${expected[$i]}"; then
+      ((++num_errors))
+    fi
+  done
+
+  if [[ "$lines_diff" -gt '0' ]]; then
+    if [[ "$lines_diff" -eq '1' ]]; then
+      printf 'There is one more line of output than expected:\n' >&2
+    else
+      printf 'There are %d more lines of output than expected:\n' \
+        "$lines_diff" >&2
+    fi
+    printf '%s\n' "${lines[@]:$num_lines}" >&2
+    ((++num_errors))
+
+  elif [[ "$lines_diff" -lt '0' ]]; then
+    lines_diff="$((-lines_diff))"
+    if [[ "$lines_diff" -eq '1' ]]; then
+      printf 'There is one fewer line of output than expected.\n' >&2
+    else
+      printf 'There are %d fewer lines of output than expected.\n' \
+        "$lines_diff" >&2
+    fi
+    ((++num_errors))
+  fi
+
+  if [[ "$num_errors" -ne '0' ]]; then
+    printf 'OUTPUT:\n%s\n' "$output" >&2
+    return '1'
+  fi
+}
+
+# Common implementation for assertions that evaluate a file's contents
+#
+# Arguments:
+#   assertion:  The assertion to execute
+#   file_path:  Path to file to evaluate
+#   ...:        Assertion constraints for the contents of `file_path`
+__assert_file() {
+  local assertion="$1"
+  local file_path="$2"
+  shift 2
+  local constraints=("$@")
+
+  if ! set_bats_output_and_lines_from_file "$file_path"; then
+    return '1'
+  fi
+
+  if [[ "$assertion" == 'assert_matches' ]]; then
+    if [[ "$#" -ne '1' ]]; then
+      printf 'ERROR: %s takes exactly two arguments\n' "${FUNCNAME[1]}" >&2
+      return '1'
+    fi
+    constraints=("$1" "$output" "The content of '$file_path'")
+  fi
+
+  "$assertion" "${constraints[@]}"
+}
+
+# Implementation for `set_bats_output_and_lines_from_file`
+#
+# Arguments:
+#   file_path:  Path to file from which `output` and `lines` will be filled
+__set_bats_output_and_lines_from_file() {
+  local file_path="$1"
+
+  if [[ ! -f "$file_path" ]]; then
+    printf "'%s' doesn't exist or isn't a regular file.\n" "$file_path" >&2
+    return 1
+  elif [[ ! -r "$file_path" ]]; then
+    printf "You don't have permission to access '%s'.\n" "$file_path" >&2
+    return 1
+  fi
+  lines=()
+  output=''
+
+  # This loop preserves leading and trailing blank lines. We need to chomp the
+  # last newline off of `output` though, to make it consistent with the
+  # conventional `output` format.
+  while IFS= read -r line; do
+    line="${line%$'\r'}"
+    lines+=("$line")
+    output+="$line"$'\n'
+  done <"$file_path"
+  output="${output%$'\n'}"
+  restore_bats_shell_options
+}

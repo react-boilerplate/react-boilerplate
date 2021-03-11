@@ -1,0 +1,35 @@
+#! /bin/bash
+
+_@go.set_search_paths_add_plugin_paths() {
+  local plugin_paths=("$1"/*/bin)
+  local plugin_path
+
+  if [[ "${plugin_paths[0]}" != "$1/*/bin" ]]; then
+    # Ensure a plugin's _GO_SCRIPTS_DIR isn't duplicated in _GO_PLUGINS_PATHS.
+    for plugin_path in "${plugin_paths[@]}"; do
+      if [[ "$plugin_path" != "$_GO_SCRIPTS_DIR" ]]; then
+        _GO_PLUGINS_PATHS+=("$plugin_path")
+      fi
+    done
+  fi
+  return 1
+}
+
+_@go.set_search_paths() {
+  local plugin_path
+
+  if [[ -n "$_GO_INJECT_SEARCH_PATH" ]]; then
+    _GO_SEARCH_PATHS+=("$_GO_INJECT_SEARCH_PATH")
+  fi
+  _GO_SEARCH_PATHS+=("$_GO_CORE_DIR/libexec" "$_GO_SCRIPTS_DIR")
+
+  # A plugin's own local plugin paths will appear before inherited ones. If
+  # there is a version incompatibility issue with other installed plugins, this
+  # allows a plugin's preferred version to take precedence.
+  @go.search_plugins '_@go.set_search_paths_add_plugin_paths'
+  _GO_SEARCH_PATHS+=("${_GO_PLUGINS_PATHS[@]}")
+}
+
+if [[ "${#_GO_SEARCH_PATHS[@]}" -eq 0 ]]; then
+  _@go.set_search_paths
+fi

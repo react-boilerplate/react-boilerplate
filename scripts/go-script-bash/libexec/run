@@ -1,0 +1,7 @@
+#! /bin/bash
+#
+# Runs the specified command within <project-root>
+
+@go.printf 'ERROR: "%s" is implemented directly within the @go function.\n' \
+  "$_GO_CMD ${BASH_SOURCE[0]##*/}" >&2
+exit 1

@@ -1,0 +1,39 @@
+#! /bin/bash
+#
+# Prints the path to the <command> script, [alias] or [builtin]
+#
+# Usage:
+#   {{go}} {{cmd}} <command>
+#
+# Will parse the command path out of a complete argument list and return the
+# path to the script relative to {{root}}. Aliases are identifed by a path of
+# `[alias]`. Builtin command paths are prefixed with `[builtin] `.
+
+_@go.path() {
+  if [[ "$1" == '--complete' ]]; then
+    # Tab completions
+    shift
+    . "$_GO_CORE_DIR/lib/internal/complete"
+    _@go.complete_command_path "$@"
+    return
+  fi
+
+  if [[ "$#" -ne '0' ]]; then
+    if _@go.source_builtin 'aliases' --exists "$1"; then
+      echo '[alias]'
+      return
+    elif _@go.source_builtin 'builtins' --exists "$1"; then
+      echo -n '[builtin] '
+    fi
+
+    local __go_cmd_path
+
+    if _@go.set_command_path_and_argv "$@"; then
+      echo "${__go_cmd_path#$_GO_ROOTDIR/}"
+    else
+      return 1
+    fi
+  fi
+}
+
+_@go.path "$@"

@@ -1,0 +1,41 @@
+#! /bin/bash
+#
+# Show all `_GO_*` variables and their values
+#
+# All of the variables are documented in `$_GO_CORE_DIR/go-core.bash`.
+#
+# The exported variables (i.e. those marked with the `-x` flag) are part of the
+# public `./go` script API and are available to command scripts written in other
+# languages.
+#
+# None of the variables should be modified directly by a command script. Most
+# reflect the project's directory structure, and `_GO_IMPORTED_MODULES` is
+# updated indirectly via calls to `. "$_GO_USE_MODULES"`. (See `{{go}} help
+# modules` and `{{go}} modules help`.)
+#
+# To see the state of the variables within the context of a command script,
+# invoke this builtin command as `@go vars` in Bash, or `$_GO_SCRIPT vars` in
+# other languages.
+#
+# Exported array variables (marked with `-ax`) are converted to strings with the
+# ASCII NUL byte between each array element when executing a command script in a
+# language other than Bash.
+#
+# Of special note are the `_GO_SCRIPT` variable and the `_GO_CMD_NAME` and
+# `_GO_CMD_ARGV` array variables, which enable command scripts and modules to
+# re-invoke the original `./go` script command line in a new context, or as
+# arguments to another program. For example, in Bash command scripts (in which
+# you can use `@go` instead of `$_GO_SCRIPT`):
+#
+#   local SOME_CONTEXT_VARIABLE="new-value-that-influences-execution"
+#   @go "${_GO_CMD_NAME[@]}" "${_GO_CMD_ARGV[@]}"
+#
+# In command scripts written in other languages, you will need to use
+# `$_GO_SCRIPT` in place of `@go` and parse the elements from `_GO_CMD_NAME` and
+# `_GO_CMD_ARGV` using the ASCII NUL byte as a delimiter as described above.
+
+_@go.vars() {
+  declare -p "${!_GO_@}"
+}
+
+_@go.vars "$@"

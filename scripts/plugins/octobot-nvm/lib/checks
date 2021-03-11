@@ -1,0 +1,78 @@
+#! /usr/bin/env bash
+
+# shellcheck source=scripts/go-script-bash/lib/log
+. "$_GO_USE_MODULES" 'log'
+
+# From https://stackoverflow.com/questions/4023830/how-compare-two-strings-in-dot-separated-version-format-in-bash
+__vercomp () {
+    if [[ $1 == $2 ]]
+    then
+        return 0
+    fi
+    local IFS=.
+    local i ver1=($1) ver2=($2)
+    # fill empty fields in ver1 with zeros
+    for ((i=${#ver1[@]}; i<${#ver2[@]}; i++))
+    do
+        ver1[i]=0
+    done
+    for ((i=0; i<${#ver1[@]}; i++))
+    do
+        if [[ -z ${ver2[i]} ]]
+        then
+            # fill empty fields in ver2 with zeros
+            ver2[i]=0
+        fi
+        if ((10#${ver1[i]} > 10#${ver2[i]}))
+        then
+            return 1
+        fi
+        if ((10#${ver1[i]} < 10#${ver2[i]}))
+        then
+            return 2
+        fi
+    done
+    return 0
+}
+
+# Ensures NVM is present
+#
+# Arguments:
+#   version: The minimum version expected.
+# Returns:
+#   0 on success; nonzero on failure
+@obot.is_nvm_present() {  
+  @go.log INFO "Checking if NVM is installed"
+  if ! . ~/.nvm/nvm.sh; then
+    @go.log ERROR "Could not determine NVM version"
+    return 1
+  fi
+  local NVM_VERSION
+  NVM_VERSION=$(nvm --version 2>/dev/null)
+  if [[ $? -eq 0 ]]; then
+    @go.log INFO "NVM installed ($NVM_VERSION)"
+    local _MINIMUM_VERSION
+    _MINIMUM_VERSION=$1
+    if [ -z _MINIMUM_VERSION ]; then
+      @go.log INFO "NVM installed ($NVM_VERSION)"
+    else
+      local _DOCKER_ENGINE_VERSION_NUMBER
+      if [ $NVM_VERSION ]; then
+        __vercomp $_MINIMUM_VERSION $NVM_VERSION
+        if [[ $? -ne 1 ]]; then
+          @go.log INFO "NVM version acceptable ($_MINIMUM_VERSION <= $NVM_VERSION)"
+          return 0
+        else
+          @go.log WARN "NVM version not acceptable (! $_MINIMUM_VERSION <= $NVM_VERSION)"
+          return 1
+        fi
+      else
+        @go.log ERROR "Could not determine NVM version"
+        return 1
+      fi
+    fi
+  else
+    @go.log ERROR "NVM is not installed in this host"
+    return 1
+  fi
+}

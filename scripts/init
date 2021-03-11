@@ -1,0 +1,86 @@
+#! /usr/bin/env bash
+#
+# Performs the initial tasks to run this project.
+#
+# Usage:
+#   {{go}} {{cmd}} [--include-schemas]
+#
+# Options:
+#   --include-schemas     Perform schema initialization and configuration data load.
+#
+# This includes database bootstrap, dependencies installation and building development
+# images.
+# It DOES NOT load initial data. Please use `{{go}} restore_db`.
+# Unless specified with `--include-schemas` it will not run schema configuration
+# in the databases nor loading configuration data. Useful if you are not planning 
+# on loading any data later.
+
+# shellcheck source=scripts/plugins/octobot-docker/lib/checks
+# . "$_GO_USE_MODULES" 'octobot-docker/compose'
+
+# shellcheck source=scripts/lib/project-data
+. "$_GO_USE_MODULES" 'project-data'
+
+_init() {
+  local INIT_INCLUDE_SCHEMAS=false
+  case "$1" in
+  --complete)
+    @go.log ERROR "Autocomplete disabled"
+    return 1
+    ;;
+  --include-schemas)
+    INIT_INCLUDE_SCHEMAS=true
+    ;;
+  esac
+
+  @go.log INFO "This will execute all the initial tasks to run $OBOT_PROJECT_CODE after"
+  @go.log WARN "This does not load any data for this project. Use restore_db for this."
+
+  # if $INIT_INCLUDE_SCHEMAS; then
+  #   @go.log INFO "Given the include-schemas option, DB will be configured to latest schema and configuration data loaded"
+  #   @go.log WARN "restore_db might fail if a schema is already configured"
+  # else
+  #   @go.log WARN "Schemas are not going to be configured. You should do a restore_db"
+  # fi
+
+  # if ! @obot.compose_pull; then
+  #   @go.log ERROR "Failed to pull images from repositories at init"
+  #   return 1
+  # fi
+
+  # if ! @obot.compose_build; then
+  #   @go.log ERROR "Failed while building one of the images"
+  #   return 2
+  # fi
+  
+  for service in "${OBOT_INIT_SERVICES[@]}"; do
+    @go.log INFO "Launching init task for: $service"
+    __init_$service
+    if [[ $? -ne 0 ]]; then
+      @go.log ERROR "Init failed for: $service"
+      return 1
+    else
+      @go.log INFO "Init succeeded for: $service"
+    fi
+  done
+  
+  if $INIT_INCLUDE_SCHEMAS; then
+    for service in "${OBOT_SCHEMA_SERVICES[@]}"; do
+      @go.log INFO "Launching schema init task for: $service"
+      __init_schema_$service
+      if [[ $? -ne 0 ]]; then
+        @go.log ERROR "Schema init failed for: $service"
+        return 1
+      else
+        @go.log INFO "Schema init succeeded for: $service"
+      fi
+    done
+    
+  fi
+
+  @go.log INFO "Project successfully initialized."
+  return 0
+
+}
+
+_init "$@"

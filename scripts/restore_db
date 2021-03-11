@@ -1,0 +1,71 @@
+#! /usr/bin/env bash
+#
+# Restores backup data from a given directory.
+#
+# Usage:
+#   {{go}} {{cmd}} [--clear] <backup directory>
+#
+# This restores a backup, usually from a directory created by a `backup_db`
+# command.
+# 
+# Options:
+#   --clear   Clear before loading data
+
+# shellcheck source=scripts/lib/project-data
+. "$_GO_USE_MODULES" 'project-data'
+
+_restore_db() {
+  local __CLEAR_BEFORE=false
+  case "$1" in
+  --clear)
+    __CLEAR_BEFORE=true
+    shift
+    ;;
+  esac
+
+  local _SOURCE_DIR=$1
+  shift
+
+  if [ -z $_SOURCE_DIR ]; then
+    @go.log ERROR "Missing directory. See help for invocation options."
+    return 1
+  fi
+
+  if ! [ -d "$_SOURCE_DIR" ]; then
+    @go.log ERROR "Source directory to restore not found : $_SOURCE_DIR"
+    return 1
+  fi
+
+  if [[ $# -gt 0 ]]; then
+    @go.log ERROR "Unknown arguments:" "$@"
+    return 1
+  fi
+
+
+  if $__CLEAR_BEFORE; then
+    @go.log INFO "Clear and restore databases from directory : $_SOURCE_DIR"
+  else
+    @go.log INFO "Restore databases from directory : $_SOURCE_DIR"
+  fi
+
+  local __RESTORE_FAILED=0
+
+  for service in "${OBOT_BACKUP_SERVICES[@]}"; do
+    @go.log INFO "Launching restore task for: $service"
+    __restore_$service $__CLEAR_BEFORE $_SOURCE_DIR
+    if [[ $? -ne 0 ]]; then
+      __RESTORE_FAILED=$?
+    fi
+  done
+
+  if [[ $__RESTORE_FAILED -ne 0 ]]; then
+    @go.log ERROR "Be careful! Some part of the restore procedure failed. Please review."
+    return 1
+  else
+    @go.log INFO "Restore done for all services"
+    return 0
+  fi
+
+}
+
+_restore_db "$@"

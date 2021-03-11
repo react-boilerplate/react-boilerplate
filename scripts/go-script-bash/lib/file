@@ -1,0 +1,170 @@
+#! /usr/bin/env bash
+#
+# File I/O
+#
+# Exports:
+#   @go.open_file_or_duplicate_fd
+#     Opens a file or duplicates an existing descriptor, returns the new fd
+#
+#   @go.fds_printf
+#     Calls `printf` on its arguments for each of a list of file descriptors
+#
+#   @go.close_fds
+#     Closes one or more file descriptors
+
+# Maximum number of file descriptors to attempt opening. May be overridden by
+# the user.
+readonly _GO_MAX_FILE_DESCRIPTORS="${_GO_MAX_FILE_DESCRIPTORS:-256}"
+
+# DO NOT EDIT: First file descriptor attempted by @go.open_file_or_duplicate_fd
+readonly __GO_START_FD='3'
+
+# DO NOT EDIT: Pattern used to validate file descriptor parameters
+readonly __GO_FILE_DESCRIPTOR_PATTERN='^[1-9][0-9]*$'
+
+if [[ ! "$_GO_MAX_FILE_DESCRIPTORS" =~ $__GO_FILE_DESCRIPTOR_PATTERN ||
+  "$_GO_MAX_FILE_DESCRIPTORS" -le "$__GO_START_FD" ]]; then
+  printf "_GO_MAX_FILE_DESCRIPTORS is %s, must be a number greater than %d.\n" \
+    "\"$_GO_MAX_FILE_DESCRIPTORS\"" "$__GO_START_FD" >&2
+  @go.print_stack_trace '2' >&2
+  exit 1
+fi
+
+. "$_GO_USE_MODULES" 'strings' 'validation'
+
+# Opens a file or duplicates an existing descriptor, and returns the new fd.
+#
+# The newly-opened file descriptor will be assigned to the variable specified
+# by the `fd_var_reference` argument.
+#
+# Principle of least surprise:
+#
+# Rather than supply a separate function to return an unused file descriptor,
+# this interface ensures that unused descriptors are allocated in one step. This
+# avoids the situation where the user makes multiple calls to discover unused
+# descriptors and doesn't realize that, unless each call is followed by an
+# `exec` to open the descriptor, each call will return the same value.
+#
+# Arguments:
+#   file_path_or_fd:   Path to the file to open, or an existing file descriptor
+#   mode:              File operation mode: r, w, a, or rw
+#   fd_var_reference:  Name of variable to which to assign new fd value
+@go.open_file_or_duplicate_fd() {
+  @go.validate_input_or_die 'file_path_or_fd' "$1"
+  @go.validate_identifier_or_die 'fd_var_reference' "$3"
+  local file_path_or_fd="$1"
+  local mode="$2"
+  local fd_var_reference="$3"
+  local bash_mode
+  local i
+
+  if [[ "$file_path_or_fd" =~ $__GO_FILE_DESCRIPTOR_PATTERN ]]; then
+    file_path_or_fd="&$file_path_or_fd"
+  else
+    file_path_or_fd="\"$file_path_or_fd\""
+  fi
+
+  case "$mode" in
+  r)
+    bash_mode='<'
+    ;;
+  w)
+    bash_mode='>'
+    ;;
+  a)
+    bash_mode='>>'
+    ;;
+  rw)
+    bash_mode='<>'
+    ;;
+  *)
+    echo "Unknown mode: $mode" >&2
+    @go.print_stack_trace '1' >&2
+    exit 1
+    ;;
+  esac
+
+  for ((i=_GO_START_FD; i != _GO_MAX_FILE_DESCRIPTORS; ++i)); do
+    if [[ ! -e "/dev/fd/$i" ]]; then
+      if ! eval "exec ${i}${bash_mode}${file_path_or_fd}"; then
+        echo "Failed to open fd $i for $file_path_or_fd in mode '$mode' at:" >&2
+        @go.print_stack_trace '1' >&2
+        exit 1
+      fi
+      printf -v "$fd_var_reference" -- '%s' "$i"
+      return
+    fi
+  done
+  echo "No file descriptors < $_GO_MAX_FILE_DESCRIPTORS available; failed at:" \
+    >&2
+  @go.print_stack_trace '1' >&2
+  exit 1
+}
+
+# Calls `printf` on its arguments for each of a list of file descriptors.
+#
+# These file descriptors should already be created manually using
+# `@go.open_file_or_duplicate_fd` or by using `exec FD` manually.
+#
+# Note that standard output is NOT automatically included in the list of file
+# descriptors.
+#
+# Also note that the `$COLUMNS` environment variable has no influence, as it
+# does with `@go.printf`; output will not be folded to the terminal width.
+#
+# Arguments:
+#   output_fds:  Comma-separated list of output file descriptors
+#   ...:         Arguments to pass to the `printf` builtin
+@go.fds_printf() {
+  local output_fds=()
+  local result=0
+
+  @go.split ',' "$1" 'output_fds'
+  shift
+
+  for output_fd in "${output_fds[@]}"; do
+    if [[ ! "$output_fd" =~ $__GO_FILE_DESCRIPTOR_PATTERN ]]; then
+      echo "Invalid file descriptor value \"$output_fd\" for $FUNCNAME at:" >&2
+      @go.print_stack_trace '1' >&2
+      exit 1
+    fi
+  done
+
+  for output_fd in "${output_fds[@]}"; do
+    if ! printf "$@" >&"$output_fd"; then
+      echo "Failed to print to fd $output_fd at:" >&2
+      @go.print_stack_trace '1' >&2
+      result=1
+    fi
+  done
+  return "$result"
+}
+
+# Closes one or more file descriptors.
+#
+# Arguments:
+#   $@:  One or more file descriptors
+@go.close_fds() {
+  local close_fd_strings=()
+  local fd
+
+  if [[ "$#" -eq 0 ]]; then
+    echo "No file descriptors to close specified at:" >&2
+    @go.print_stack_trace '1' >&2
+    return 1
+  fi
+
+  for fd in "$@"; do
+    if [[ ! "$fd" =~ $__GO_FILE_DESCRIPTOR_PATTERN ]]; then
+      echo "Bad file descriptor \"$fd\" at:" >&2
+      @go.print_stack_trace '1' >&2
+      return 1
+    elif ! eval "exec $fd>&-"; then
+      # Believe it or not, this case seems impossible to trigger given the $fd
+      # check above. Keeping it despite not being able to cover it with a test.
+      echo "Failed to close file descriptor \"$fd\" at:" >&2
+      @go.print_stack_trace '1' >&2
+      return 1
+    fi
+  done
+}

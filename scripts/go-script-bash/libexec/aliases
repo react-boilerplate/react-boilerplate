@@ -1,0 +1,93 @@
+#! /bin/bash
+#
+# Shell aliases that will run in the project root directory
+#
+# Usage:
+#   To list all aliases or check if an alias exists:
+#   {{go}} {{cmd}} [--exists <alias>]
+#
+#   To run an alias in {{root}}:
+#   {{go}} <alias> [...arguments...]
+#
+# where <alias> is one of:
+#
+#   {{_GO_ALIAS_CMDS}}
+#
+# Automatic file name completion within this directory is available via the
+# "{{go}} env" command.
+#
+# If an alias doesn't exist, you can also pass a program as an argument to
+# {{go}} run <command> and it will execute within {{root}}.
+#
+# Note that "cd" and "pushd" are only available after you've used "{{go}} env"
+# to set up your shell environment.
+
+declare -r _GO_ALIAS_CMDS=('awk' 'cat' 'cd' 'find' 'grep' 'ls' 'pushd' 'sed')
+
+_@go.aliases() {
+  local c
+
+  if [[ "$#" -eq '0' ]]; then
+    for c in "${_GO_ALIAS_CMDS[@]}"; do
+      echo "$c"
+    done
+    return
+  elif [[ "$1" == '--complete' ]]; then
+    # Tab completions
+    local word_index="$2"
+    if [[ "$word_index" -eq 0 ]]; then
+      echo "--exists"
+    fi
+    return
+  fi
+
+  . "$_GO_CORE_DIR/lib/internal/argv"
+  local flag
+
+  case "$1" in
+  --exists|--help|--help-filter)
+    flag="${1#--}"
+    shift
+    if ! _@go.check_flag_has_one_argument "--$flag" "$@"; then
+      return 1
+    fi
+    ;;
+  -*)
+    @go.printf "ERROR: unknown flag: $1\n" >&2
+    return 1
+    ;;
+  esac
+
+  if [[ -z "$flag" ]] && ! _@go.check_argv_empty_if_no_flags "$@"; then
+    return 1
+  fi
+
+  # Help filter
+  if [[ "$flag" == 'help-filter' ]]; then
+    local pattern='{{_GO_ALIAS_CMDS}}'
+    local replacement="${_GO_ALIAS_CMDS[@]}"
+    echo "${1//$pattern/$replacement}"
+    return
+  fi
+
+  for c in "${_GO_ALIAS_CMDS[@]}"; do
+    if [[ "$1" != "$c" ]]; then
+      continue
+    elif [[ "$flag" == 'help' ]]; then
+      @go.printf "$_GO_CMD $c - %s\n\n%s\n\n" \
+        "Shell alias that will execute in $_GO_ROOTDIR" \
+        "Filename completion is available via the \"$_GO_CMD env\" command."
+
+      if [[ ("$1" == 'cd' || "$1" == 'pushd') && "$_GO_CMD" == "$0" ]]; then
+        @go.printf "%s%s\n\n" \
+          "NOTE: The \"$1\" alias will only be available after using "\
+          "\"$_GO_CMD env\" to set up your shell environment."
+      fi
+    fi
+    return
+  done
+
+  return 1
+}
+
+_@go.aliases "$@"

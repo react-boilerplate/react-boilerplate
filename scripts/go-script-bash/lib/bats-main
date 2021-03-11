@@ -1,0 +1,221 @@
+#! /bin/bash
+#
+# Run automated tests written using Bats
+#
+# Exports:
+#   @go.bats_main
+#     Parses command-line flags and arguments and executes Bats and Kcov
+#
+#   @go.bats_clone
+#     Creates a shallow clone of the Bats repository at `_GO_BATS_DIR`
+#
+#   @go.bats_tab_completion
+#     Provides command line argument completion
+#
+#   @go.bats_coverage
+#     Reinvokes the test command script using kcov to collect test coverage data
+#
+# If a project keeps all of its bats tests in `$_GO_ROOTDIR/tests`, test
+# commands need contain at a minimum:
+#
+#   . "$_GO_USE_MODULES" 'bats-main'
+#   @go.bats_main "$@"
+#
+# As a more realistic example, to enable tab completion and automatic coverage
+# collection on Travis CI that gets sent to Coveralls:
+#
+#   declare _GO_COVERAGE_INCLUDE
+#   _GO_COVERAGE_INCLUDE=('go' 'bin/' 'lib/' 'scripts/')
+#   declare _GO_COVERALLS_URL='https://coveralls.io/github/USER/PROJECT'
+#
+#   . "$_GO_USE_MODULES" 'bats-main'
+#   # Tab completions
+#   @go.bats_main "$@"
+#
+# There are many other variables that are available for fine-tuning, but
+# sticking to the above should cover most cases.
+#
+# Note that `@go.bats_main` will call `@go.bats_clone` to clone the Bats
+# repository if `_GO_BATS_DIR` doesn't yet exist. This means there's no need to
+# make the Bats repository a submodule if so desired. The Bats version so cloned
+# may be set by overriding `_GO_BATS_VERSION`.
+
+# Directory in which kcov will be built
+export _GO_KCOV_DIR="${_GO_KCOV_DIR:-$_GO_TEST_DIR/kcov}"
+
+# Directory in which coverage results are written
+export _GO_BATS_COVERAGE_DIR="${_GO_BATS_COVERAGE_DIR:-$_GO_TEST_DIR/coverage}"
+
+# Directory containing the Bats testing framework sources
+export _GO_BATS_DIR="${_GO_BATS_DIR:-$_GO_TEST_DIR/bats}"
+
+# Path to the main Bats executable
+export _GO_BATS_PATH="$_GO_BATS_DIR/libexec/bats"
+
+# Version of Bats to fetch if `_GO_BATS_DIR` is missing
+export _GO_BATS_VERSION="${_GO_BATS_VERSION:-optimized-20170317}"
+
+# URL of the Bats git repository to clone to `_GO_BATS_DIR`
+export _GO_BATS_URL="${_GO_BATS_URL:-https://github.com/mbland/bats.git}"
+
+# Set this to nonempty if you wish to collect coverage using kcov by default
+export _GO_COLLECT_BATS_COVERAGE="$_GO_COLLECT_BATS_COVERAGE"
+
+# Array of patterns identifying sources to include in the coverage report
+export _GO_BATS_COVERAGE_INCLUDE
+_GO_BATS_COVERAGE_INCLUDE=("${_GO_BATS_COVERAGE_INCLUDE[@]}")
+
+# Array of patterns identifying sources to exclude from the coverage report
+export _GO_BATS_COVERAGE_EXCLUDE
+_GO_BATS_COVERAGE_EXCLUDE=('/tmp/' "${_GO_BATS_COVERAGE_EXCLUDE[@]}")
+
+# URL of the project's coverage statistics on Coveralls.io
+export _GO_COVERALLS_URL="${_GO_COVERALLS_URL}"
+
+# Collect coverage on Travis. Doesn't seem to slow anything down substantially.
+if [[ -n "$_GO_COVERALLS_URL" && "$TRAVIS_OS_NAME" == 'linux' ]]; then
+  _GO_COLLECT_BATS_COVERAGE='true'
+fi
+
+# Array of `./go glob` arguments to select Bats test files in `_GO_TEST_DIR`
+export _GO_BATS_GLOB_ARGS
+_GO_BATS_GLOB_ARGS=("${_GO_BATS_GLOB_ARGS[@]}")
+
+# Set _GO_BATS_GLOB_ARGS if the caller hasn't already done so. There should be
+# little need for the caller ever to do so, so long as the conventions encoded
+# in the above variables are followed.
+if [[ "${#_GO_BATS_GLOB_ARGS[@]}" -eq '0' ]]; then
+  _GO_BATS_GLOB_ARGS+=("$_GO_TEST_DIR" '.bats')
+
+  declare __go_bats_d="${_GO_BATS_DIR#$_GO_TEST_DIR/}"
+  if [[ "$__go_bats_d" != "$_GO_BATS_DIR" ]]; then
+    _GO_BATS_GLOB_ARGS=('--ignore' "${__go_bats_d}" "${_GO_BATS_GLOB_ARGS[@]}")
+    _GO_BATS_COVERAGE_EXCLUDE+=("${_GO_BATS_DIR}/")
+  fi
+  unset '__go_bats_d'
+fi
+
+# Parses command-line flags and arguments and executes Bats and Kcov
+#
+# The first argument can be one of the following flags:
+#
+#   --complete  Perform tab completion; see `{{go}} help complete` for details
+#   --coverage  Collect test coverage data using kcov (Linux only)
+#   --edit      Open matching test files using `{{go}} edit`
+#   --list      List test suite names without executing them
+#
+# If the argument list following is empty, or if it is only one of the flags
+# above (aside from `--complete`), all Bats test files are matched.
+#
+# Globals:
+#   _GO_BATS_GLOB_ARGS:  Array of arguments to '@go glob' to select Bats tests
+#   _GO_BATS_PATH:       The path to your project's Bats installation
+#   _GO_COLLECT_BATS_COVERAGE:  If set, collect coverage using kcov if available
+#   Also see `@go.bats_clone` and `@go.bats_coverage`
+#
+# Arguments:
+#   $1:   One of the flags defined above, or the first test glob pattern
+#   ...:  Remaining test glob patterns
+@go.bats_main() {
+  if [[ "$1" == '--complete' ]]; then
+    shift
+    @go.bats_tab_completion "$@"
+    return
+  fi
+  @go.bats_clone
+
+  if [[ "$1" == '--coverage' && -z "$__GO_COVERAGE_RUN" ]]; then
+    shift
+    export __GO_COVERAGE_RUN='true'
+    @go.bats_coverage "$@"
+  elif [[ "$1" == '--edit' ]]; then
+    shift
+    local tests=($(@go 'glob' "${_GO_BATS_GLOB_ARGS[@]}" "$@"))
+    @go 'edit' "${tests[@]}"
+  elif [[ "$1" == '--list' ]]; then
+    shift
+    @go 'glob' '--trim' "${_GO_BATS_GLOB_ARGS[@]}" "$@"
+  elif [[ -z "$__GO_COVERAGE_RUN" && -n "$_GO_COLLECT_BATS_COVERAGE" ]]; then
+    @go.bats_main '--coverage' "$@"
+  else
+    local tests=($(@go 'glob' "${_GO_BATS_GLOB_ARGS[@]}" "$@"))
+    time "$BASH" "$_GO_BATS_PATH" "${tests[@]}"
+  fi
+}
+
+# Creates a shallow clone of the Bats repository at `_GO_BATS_DIR`
+#
+# Does nothing if `_GO_BATS_DIR` is already present.
+#
+# Globals:
+#   _GO_BATS_DIR:      Location of the Bats sources
+#   _GO_BATS_URL:      URL of the Bats git repository to clone
+#   _GO_BATS_VERSION:  Tag or branch to clone from _GO_BATS_URL
+@go.bats_clone() {
+  if [[ ! -d "$_GO_BATS_DIR" ]]; then
+    @go get git-repo "$_GO_BATS_URL" "$_GO_BATS_VERSION" "$_GO_BATS_DIR"
+  fi
+}
+
+# Provides command line argument completion
+#
+# Emits the standard --coverage, --edit, and --list flags and uses '@go glob' to
+# produce a list of test name completions based on test file names.
+#
+# See './go help complete' for information on the argument completion protocol.
+#
+# Globals:
+#   _GO_BATS_GLOB_ARGS:  Array of arguments to '@go glob' to select Bats tests
+#
+# Arguments:
+#   word_index:  Zero-based index of the command line argument to be completed
+#   ...:         Array of remaining command line arguments
+@go.bats_tab_completion() {
+  local word_index="$1"
+  shift
+
+  # Skip over completing the initial `@go glob` args themselves.
+  local test_word_index="$((word_index + ${#_GO_BATS_GLOB_ARGS[@]}))"
+
+  if [[ "$word_index" -eq '0' ]]; then
+    echo '--coverage' '--edit' '--list'
+    if [[ "${1:0:1}" == '-' ]]; then
+      return
+    fi
+  fi
+  @go 'glob' '--complete' "$test_word_index" "${_GO_BATS_GLOB_ARGS[@]}" "$@"
+}
+
+# Reinvokes the test command script using kcov to collect test coverage data
+#
+# Currently only supported on Ubuntu Linux, via the core lib/kcov-ubuntu module.
+#
+# If the test suite passes and results are sent to Coveralls,
+# `_GO_COVERALLS_URL` is output to the console.
+#
+# Globals:
+#   _GO_KCOV_DIR:           Directory in which kcov will be built
+#   _GO_BATS_COVERAGE_DIR:  Directory in which coverage results are written
+#   _GO_COVERAGE_INCLUDE:   Patterns of files to include in the coverage report
+#   _GO_COVERAGE_EXCLUDE:   Patterns of files to include in the coverage report
+#   _GO_COVERALLS_URL:      The project's Coveralls URL
+#   _GO_SCRIPT:             Path to the `./go` script
+#   _GO_CMD_NAME:           Array comprising the `./go` command name
+#
+# Arguments:
+#   ...: Command line arguments for the command script run under kcov
+@go.bats_coverage() {
+  local include_paths
+  local exclude_paths
+
+  . "$_GO_USE_MODULES" 'kcov-ubuntu'
+  printf -v include_paths '%s,' "${_GO_BATS_COVERAGE_INCLUDE[@]}"
+  printf -v exclude_paths '%s,' "${_GO_BATS_COVERAGE_EXCLUDE[@]}"
+
+  time run_kcov "$_GO_KCOV_DIR" \
+    "$_GO_BATS_COVERAGE_DIR" \
+    "${include_paths%,}" \
+    "${exclude_paths%,}" \
+    "$_GO_COVERALLS_URL" \
+    "$_GO_SCRIPT" "${_GO_CMD_NAME[@]}" "$@"
+}

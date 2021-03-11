@@ -1,0 +1,103 @@
+#! /usr/bin/env bash
+#
+# Input validation for `eval`, `declare`, etc. arguments
+#
+# Exports:
+#   @go.validate_input
+#     Ensures an input value does not contain control or metacharacters
+#
+#   @go.validate_input_or_die
+#     Wraps `@go.validate_input` to print an error and exit on failure
+#
+#   @go.validate_identifier
+#     Ensures the value is a valid identifier name
+#
+#   @go.validate_identifier_or_die
+#     Wraps `@go.validate_identifier` to print an error and exit on failure
+#
+# These functions should be used to validate function parameters or other input
+# values before using them as arguments to `eval`, `declare`, `local`, `global`,
+# or `readonly`, to prevent them from either throwing errors or executing code
+# from malicious input values.
+
+# Set of characters that must be escaped to be considered valid input
+readonly __GO_DANGEROUS_INPUT_CHARACTERS=$'`";$()&|<>\n\r'
+
+# Pattern used to validate input values to ensure they're safe
+readonly __GO_VALIDATE_INPUT_PATTERN=$'[^\]'"[$__GO_DANGEROUS_INPUT_CHARACTERS]"
+
+# Pattern used to validate identifier names passed as function arguments
+readonly __GO_VALID_IDENTIFIER_PATTERN='^[[:alpha:]_][[:alnum:]_]*$'
+
+# Ensures an input value does not contain control or metacharacters
+#
+# Arguments:
+#   value:  The value to examine for invalid characters
+# Returns:
+#   0 on success; nonzero on failure
+@go.validate_input() {
+  [[ ! "$1" =~ $__GO_VALIDATE_INPUT_PATTERN ]]
+}
+
+# Wraps `@go.validate_input` to print an error and exit on failure
+#
+# Arguments:
+#   description:   Description of the value to use in the error message
+#   value:         The value to examine for invalid characters
+#   skip_callers:  The number of callers to skip over when printing the stack;
+#                    defaults to 2 (to show the caller's caller at the top)
+@go.validate_input_or_die() {
+  local description="$1"
+  local value="$2"
+  local skip_callers="${3:-2}"
+
+  if ! @go.validate_input "$value"; then
+    printf '%s "%s" for %s contains %s at:\n' \
+      "$description" "$value" "${FUNCNAME[$((skip_callers - 1))]}" \
+      'unescaped shell metacharacters or control operators' >&2
+    @go.print_stack_trace "$skip_callers" >&2
+    exit 1
+  fi
+}
+
+# Ensures the value is a valid identifier name
+#
+# Specifically useful for implementing functions that return values using a
+# caller-specified variable, using `eval "$variable=\$value"` to assign to it.
+#
+# Arguments:
+#   value:  The value to examine for invalid identifier characters
+# Returns:
+#   0 on success; nonzero on failure
+@go.validate_identifier() {
+  [[ "$1" =~ $__GO_VALID_IDENTIFIER_PATTERN ]]
+}
+
+# Wraps `@go.validate_identifier` to print an error and exit on failure
+#
+# Arguments:
+#   description:   Description of the value to use in the error message
+#   value:         The value to examine for invalid identifier characters
+#   skip_callers:  The number of callers to skip over when printing the stack;
+#                    defaults to 2 (to show the caller's caller at the top)
+@go.validate_identifier_or_die() {
+  local description="$1"
+  local value="$2"
+  local skip_callers="${3:-2}"
+  local err_msg
+  local called_func="${FUNCNAME[$((skip_callers - 1))]}"
+
+  if ! @go.validate_identifier "$value"; then
+    if [[ -z "$value" ]]; then
+      err_msg='must not be empty'
+    elif [[ "$value" =~ ^[0-9] ]]; then
+      err_msg='must not start with a number'
+    else
+      err_msg='contains invalid identifier characters'
+    fi
+    printf '%s "%s" for %s %s at:\n' \
+      "$description" "$value" "$called_func" "$err_msg" >&2
+    @go.print_stack_trace "$skip_callers" >&2
+    exit 1
+  fi
+}

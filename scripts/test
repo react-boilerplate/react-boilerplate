@@ -1,0 +1,56 @@
+#! /usr/bin/env bash
+#
+# Run tests for one or all components.
+#
+# Usage:
+#   {{go}} {{cmd}} [target-service]
+# 
+# Arguments:
+#   target-service    Optional argument indicating service to test.
+
+# shellcheck source=scripts/lib/project-test
+. "$_GO_USE_MODULES" 'project-test'
+
+_test() {
+  if [[ $# -gt 1 ]]; then
+    @go.log ERROR "Bad invocation. See help to learn about invocation."
+  fi
+  
+  local SERVICES_TO_TEST
+  
+  if [[ $# -eq 1 ]]; then
+    local TARGET="$1"
+    if ! elementIn $TARGET "${OBOT_TEST_SERVICES[@]}"; then
+      @go.log ERROR "Unknown service to test: $TARGET. Available options are: " "${OBOT_TEST_SERVICES[@]}"
+      return 1
+    else
+      SERVICES_TO_TEST=($TARGET)
+    fi
+  else
+    SERVICES_TO_TEST=(${OBOT_TEST_SERVICES[@]})
+  fi
+  @go.log INFO "Launching testing task for services: " "${SERVICES_TO_TEST[@]}"
+  
+  local TESTING_FAILED=0
+
+  for service in "${SERVICES_TO_TEST[@]}"; do
+    @go.log INFO "Launching testing task for: $service"
+    __test_$service
+    if [[ $? -ne 0 ]]; then
+      @go.log ERROR "Testing failed for: $service"
+      TESTING_FAILED=$?
+    else
+      @go.log INFO "Testing succeeded for: $service"
+    fi
+  done
+
+  if [[ $TESTING_FAILED -ne 0 ]]; then
+    @go.log ERROR "Be careful! Some test failed. Please review."
+    return 1
+  else
+    @go.log INFO "Tests passed :" "${SERVICES_TO_TEST[@]}"
+    return 0
+  fi
+}
+
+_test "$@"

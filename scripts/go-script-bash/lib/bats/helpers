@@ -1,0 +1,423 @@
+#! /bin/bash
+#
+# Variables and functions for writing Bats tests
+#
+# The recommended way to make these helpers available is to create an
+# 'environment.bash' file in the top-level test directory containing the
+# following lines:
+#
+#   . "path/to/bats/helpers"
+#   set_bats_suite_name "${BASH_SOURCE[0]%/*}"
+#   remove_bats_test_dirs
+#
+# Then have each Bats test file load the environment file and start each of
+# its test cases with "$SUITE":
+#
+#   load environment
+#
+#   @test "$SUITE: test some condition" {
+#     # ...
+#   }
+#
+# It's recommended you use BATS_TEST_ROOTDIR as the root directory for all
+# temporary files, as it contains a space to help ensure that most shell
+# variables are quoted correctly. The create_bats_test_dirs() and
+# create_bats_test_script() functions will create this directory automatically,
+# but you may also want to create it manually in setup():
+#
+#   setup() {
+#     mkdir "$BATS_TEST_ROOTDIR"
+#   }
+#
+# If you create BATS_TEST_ROOTDIR directly or use one of the functions mentioned
+# above, make sure your Bats teardown() function calls remove_bats_test_dirs(),
+# as Bats will not cleanup BATS_TEST_ROOTDIR automatically (even though it's a
+# subdirectory of BATS_TMPDIR):
+#
+#   teardown() {
+#     remove_bats_test_dirs
+#   }
+#
+# This is good practice even if you call `remove_bats_test_dirs` in your
+# `environment.bash` file.
+
+. "${BASH_SOURCE%/*}/helper-function"
+
+# A subdirectory of BATS_TMPDIR that contains a space.
+#
+# Using this path instead of BATS_TMPDIR directly helps ensure that shell
+# variables are quoted properly in most places.
+BATS_TEST_ROOTDIR="$BATS_TMPDIR/test rootdir"
+
+# Created by `stub_program_in_path` and exported to `PATH`
+BATS_TEST_BINDIR="$BATS_TEST_ROOTDIR/bin"
+
+# Sets the global SUITE variable based on the path of the test file.
+#
+# To make Bats output easier to follow, call this function from your shared
+# environment file thus, ans and ensure that each @test declaration starts with
+# "$SUITE: ":
+#
+#   set_bats_test_suite_name "${BASH_SOURCE%/*}"
+#
+# Arguments:
+#   $1:  Path to the project's top-level test directory
+set_bats_test_suite_name() {
+  cd "$1"
+  local relative_filename="${BATS_TEST_FILENAME#$PWD/}"
+  cd - &>/dev/null
+  readonly SUITE="${relative_filename%.bats}"
+}
+
+# Creates BATS_TEST_ROOTDIR and subdirectories
+#
+# When using this function, make sure to call remove_bats_test_dirs() from
+# teardown().
+#
+# Arguments:
+#   $@:  Paths of subdirectories relative to BATS_TEST_ROOTDIR
+create_bats_test_dirs() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  __create_bats_test_dirs "$@"
+  restore_bats_shell_options "$?"
+}
+
+# Creates a test script relative to BATS_TEST_ROOTDIR
+#
+# If the first line of the script does not start with '#!', the first line of
+# the resulting script will be '#! /usr/bin/env bash'
+#
+# When using this function, make sure to call remove_bats_test_dirs() from
+# teardown().
+#
+# Arguments:
+#   $1:   Path of the script relative to BATS_TEST_ROOTDIR
+#   ...:  Lines comprising the script
+create_bats_test_script() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  __create_bats_test_script "$@"
+  restore_bats_shell_options "$?"
+}
+
+# Recursively removes `BATS_TEST_ROOTDIR` and its subdirectories
+#
+# Call this from `teardown`, as Bats will not remove `BATS_TMPDIR` and
+# everything in it automatically.
+#
+# Calling this from `environment.bash` helps prevent spurious failures if
+# previous `bats` invocations failed to clean up `BATS_TEST_ROOTDIR`. It's still
+# recommended to call it from `teardown` where applicable regardless.
+remove_bats_test_dirs() {
+  if [[ -d "$BATS_TEST_ROOTDIR" ]]; then
+    chmod -R u+rwx "$BATS_TEST_ROOTDIR"
+    rm -rf "$BATS_TEST_ROOTDIR"
+  fi
+}
+
+# Determine if the host file system supports Unix file permissions
+#
+# The FS_MISSING_PERM_SUPPORT variable provides a generic means of determining
+# whether or not to skip certain tests, since the lack of permission support
+# prevents some code paths from ever getting executed.
+#
+# On Windows, MINGW64- and MSYS2-based file systems are mounted with the 'noacl'
+# attribute, which prevents chmod from having any effect. These file systems
+# do automatically mark files beginning with '#!' as executable, however,
+# which is why certain test scripts may contain only those characters when
+# testing permission conditions.
+#
+# Also, directories on these file systems are always readable and executable.
+fs_missing_permission_support() {
+  if [[ -z "$FS_MISSING_PERMISSION_SUPPORT" ]]; then
+    local check_perms_file="$BATS_TMPDIR/fs-missing-permission-support-test"
+    touch "$check_perms_file"
+    chmod 700 "$check_perms_file"
+    if [[ ! -x "$check_perms_file" ]]; then
+      export FS_MISSING_PERMISSION_SUPPORT="true"
+    else
+      export FS_MISSING_PERMISSION_SUPPORT="false"
+    fi
+    rm "$check_perms_file"
+  fi
+
+  [[ "$FS_MISSING_PERMISSION_SUPPORT" == 'true' ]]
+}
+
+# Skip a test that depends on triggering file permission failures
+#
+# Will skip a test on a system where file permissions do not exist (at least not
+# in the traditional Unix sense), or when the test is run as the superuser.
+skip_if_cannot_trigger_file_permission_failure() {
+  if fs_missing_permission_support; then
+    skip "Can't trigger condition on this file system"
+  elif [[ "$EUID" -eq '0' ]]; then
+    skip "Can't trigger condition when run by superuser"
+  fi
+}
+
+# Skips the current test if any of the listed system programs are not installed
+#
+# Arguments:
+#   ...:  System programs that must be present for the test case to proceed
+skip_if_system_missing() {
+  local __missing=()
+
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  __search_for_missing_programs "$@"
+  restore_bats_shell_options "$?"
+
+  if [[ "${#__missing[@]}" -ne '0' ]]; then
+    printf -v __missing '%s, ' "${__missing[@]}"
+    skip "${__missing%, } not installed on the system"
+  fi
+}
+
+# Joins lines using a delimiter into a user-defined variable
+#
+# Just like `@go.join` from `lib/strings`, except that it doesn't depend on any
+# core framework features. Returns the result in a variable to avoid a subshell,
+# as subshells can add substantially to a test suite's running time.
+#
+# Arguments:
+#   delimiter:  The character separating individual fields
+#   var_name:   Name of caller's variable to which to assign the joined string
+#   ...:        Elements to join into a string assigned to `var_name`
+test_join() {
+  if [[ ! "$2" =~ ^[[:alpha:]_][[:alnum:]_]*$ ]]; then
+    printf '"%s" is not a valid variable identifier.\n' "$2" >&2
+    return 1
+  fi
+
+  local IFS="$1"
+  printf -v "$2" -- '%s' "${*:3}"
+}
+
+# Prints its arguments to standard error whenever `TEST_DEBUG` is set
+#
+# When debugging a piece of code, you may wish to source this file and
+# temporarily include `test_printf` to trace values in your program.
+#
+# Globals:
+#   TEST_DEBUG:  prints to stderr when not null, disables printing otherwise
+#
+# Arguments:
+#    ...:  Arguments to `printf`
+test_printf() {
+  if [[ -n "$TEST_DEBUG" ]]; then
+    printf "$@" >&2
+  fi
+}
+export -f test_printf
+
+# Breaks execution after a number of iterations and prints context to stderr
+#
+# After reaching the number of iterations, this function prints to standard
+# error the caller's stack trace, prints the names and values of any variables
+# specified in the argument list (one per line), and exits the program with an
+# error.
+#
+# Add this to a point in your program to determine how a program reached a
+# certain line of execution and to examine its context.
+#
+# Globals:
+#   TEST_DEBUG:  enables breaking when not null, disables breaking otherwise
+#
+# Arguments:
+#   num_iterations:  The number of iterations after which execution will break
+#   ...:             Names of variables to print to standard error on break
+#
+# Returns:
+#   Nonzero if `TEST_DEBUG` is set and `num_iterations` has been reached,
+#     zero otherwise
+test_break_after_num_iterations() {
+  local __tbani_num_iterations="$1"
+
+  # In Bash versions earlier than 4.4, `BASH_SOURCE` isn't set properly for the
+  # main script, so it will be empty. So we use $0 in that case instead.
+  local __tbani_id="${BASH_SOURCE[1]:-$0}_${BASH_LINENO[0]}_${FUNCNAME[1]}"
+
+  local __tbani_var="__tbani_current_iteration_${__tbani_id//[^[:alnum:]]/_}"
+  local __tbani_caller_var
+  local __tbani_do_exit
+  local __tbani_i
+
+  if [[ ! "$__tbani_num_iterations" =~ ^[1-9][0-9]*$ ]]; then
+    printf 'The argument to %s must be a positive integer at:\n' "$FUNCNAME" >&2
+    __tbani_do_exit='true'
+  elif [[ -z "$TEST_DEBUG" ]]; then
+    return
+  else
+    printf -v "$__tbani_var" -- '%d' "$((${!__tbani_var} + 1))"
+    if [[ "${!__tbani_var}" -eq "$__tbani_num_iterations" ]]; then
+      printf 'Breaking after iteration %d at:\n' "$__tbani_num_iterations" >&2
+      __tbani_do_exit='true'
+    fi
+  fi
+
+  if [[ -n "$__tbani_do_exit" ]]; then
+    for ((__tbani_i=1; __tbani_i != "${#FUNCNAME[@]}"; ++__tbani_i)); do
+      # Again notice the use of $0 to cover the case when BASH_SOURCE isn't set.
+      printf '  %s:%s %s\n' "${BASH_SOURCE[$__tbani_i]:-$0}" \
+        "${BASH_LINENO[$((__tbani_i-1))]}" "${FUNCNAME[$__tbani_i]}" >&2
+    done
+
+    for __tbani_caller_var in "${@:2}"; do
+      printf -- '%s: %s\n' "$__tbani_caller_var" "${!__tbani_caller_var}" >&2
+    done
+    exit 1
+  fi
+}
+export -f test_break_after_num_iterations
+
+# Skips a test if `TEST_FILTER` is set but doesn't match `BATS_TEST_DESCRIPTION`
+#
+# Call this from the `setup` function of your test suite if you'd like to
+# quickly execute a subset of test cases within the suite.
+test_filter() {
+  if [[ -n "$TEST_FILTER" && ! "$BATS_TEST_DESCRIPTION" =~ $TEST_FILTER ]]; then
+    skip
+  fi
+}
+
+# Replaces `lines` with the split content of `output`, including blank lines
+#
+# Blank lines are eliminated from `lines` by default. This makes it easier to
+# compare the exact lines of `output` using `assert_lines_equal` and other
+# `lines`-based assertions.
+split_bats_output_into_lines() {
+  set "$DISABLE_BATS_SHELL_OPTIONS"
+  __split_bats_output_into_lines
+  restore_bats_shell_options "$?"
+}
+
+# Creates a stub program in PATH for testing purposes
+#
+# The script is written as `$BATS_TEST_BINDIR/$cmd_name`. `$BATS_TEST_BINDIR` is
+# added to `PATH` and exported if it isn't already present.
+#
+# You may need to call `restore_program_in_path` immediately after `run` to
+# avoid side-effects in the rest of your test program, especially when using the
+# `--in-process` option.
+#
+# Options:
+#   --in-process  Set this when calling `run` on an in-process function
+#
+# Arguments:
+#   cmd_name:  Name of the command from PATH to stub
+#   ...:       Lines comprising the stub script
+stub_program_in_path() {
+  local bindir_pattern="^${BATS_TEST_BINDIR}:"
+  local in_process
+
+  if [[ "$1" == '--in-process' ]]; then
+    in_process='true'
+    shift
+  fi
+  create_bats_test_script "${BATS_TEST_BINDIR#$BATS_TEST_ROOTDIR/}/$1" "${@:2}"
+
+  if [[ ! "$PATH" =~ $bindir_pattern ]]; then
+    export PATH="$BATS_TEST_BINDIR:$PATH"
+  fi
+
+  if [[ -n "$in_process" ]]; then
+    hash "$1"
+  fi
+}
+
+# Removes a stub program from `PATH`
+#
+# This will return an error if the stub doesn't exist, to help avoid errors
+# when the `cmd_name` arguments to `stub_program_in_path` and this function
+# don't match.
+#
+# Arguments:
+#   cmd_name:  Name of the command from PATH to stub
+#
+# Returns:
+#   Zero if the stub program exists and is removed, nonzero otherwise
+restore_program_in_path() {
+  if [[ -e "$BATS_TEST_BINDIR/$1" ]]; then
+    rm -f "$BATS_TEST_BINDIR/$1"
+    hash "$1"
+  else
+    printf "Bats test stub program doesn't exist: %s\n" "$1"
+    return 1
+  fi
+}
+
+# --------------------------------
+# IMPLEMENTATION - HERE BE DRAGONS
+#
+# None of the functions below this line are part of the public interface.
+# --------------------------------
+
+# Implementation for `create_bats_test_dirs`
+#
+# Arguments:
+#   $@:  Paths of subdirectories relative to BATS_TEST_ROOTDIR
+__create_bats_test_dirs() {
+  local dirs_to_create=()
+  local test_dir
+
+  for test_dir in "${@/#/$BATS_TEST_ROOTDIR/}"; do
+    if [[ ! -d "$test_dir" ]]; then
+      dirs_to_create+=("$test_dir")
+    fi
+  done
+
+  if [[ "${#dirs_to_create[@]}" -ne '0' ]]; then
+    mkdir -p "${dirs_to_create[@]}"
+  fi
+}
+
+# Implementation for `create_bats_test_script`
+#
+# Arguments:
+#   $1:   Path of the script relative to BATS_TEST_ROOTDIR
+#   ...:  Lines comprising the script
+__create_bats_test_script() {
+  local script="$1"
+  shift
+  local script_dir="${script%/*}"
+
+  if [[ -z "$script" ]]; then
+    echo "No test script specified" >&2
+    exit 1
+  elif [[ "$script_dir" == "$script" ]]; then
+    script_dir=''
+  fi
+
+  create_bats_test_dirs "$script_dir"
+  script="$BATS_TEST_ROOTDIR/$script"
+  rm -f "$script"
+
+  if [[ "${1:0:2}" != '#!' ]]; then
+    echo "#! /usr/bin/env bash" >"$script"
+  fi
+  printf '%s\n' "$@" >>"$script"
+  chmod 700 "$script"
+}
+
+# Enumerates programs not installed on the system for `skip_if_system_missing`
+#
+# Arguments:
+#   ...:  System programs that must be present for the test case to proceed
+__search_for_missing_programs() {
+  local program
+
+  for program in "$@"; do
+    if ! command -v "$program" >/dev/null; then
+      __missing+=("$program")
+    fi
+  done
+}
+
+# Implementation for `split_bats_output_into_lines`
+__split_bats_output_into_lines() {
+  local line
+  lines=()
+
+  while IFS= read -r line; do
+    lines+=("${line%$'\r'}")
+  done <<<"$output"
+}
