@@ -1,23 +1,25 @@
-## React Boilerplate
+# Pull Request Template
 
-Thank you for contributing! Please take a moment to review our [**contributing guidelines**](https://github.com/react-boilerplate/react-boilerplate/blob/master/CONTRIBUTING.md)
-to make the process easy and effective for everyone involved.
+## Description
 
-**Please open an issue** before embarking on any significant pull request, especially those that
-add a new library or change existing tests, otherwise you risk spending a lot of time working
-on something that might not end up being merged into the project.
+Please include a summary of the change and which issue is fixed.
 
-Before opening a pull request, please ensure:
+## Story
 
-- [ ] You have followed our [**contributing guidelines**](https://github.com/react-boilerplate/react-boilerplate/blob/master/CONTRIBUTING.md)
-- [ ] Double-check your branch is based on `dev` and targets `dev` 
-- [ ] Pull request has tests (we are going for 100% coverage!)
-- [ ] Code is well-commented, linted and follows project conventions
-- [ ] Documentation is updated (if necessary)
-- [ ] Internal code generators and templates are updated (if necessary)
-- [ ] Description explains the issue/use-case resolved and auto-closes related issues
+[#PIVOTAL_TRACKER_ID](https://www.pivotaltracker.com/story/show/PIVOTAL_TRACKER_ID)
 
-Be kind to code reviewers, please try to keep pull requests as small and focused as possible :)
+## Storybook link or Screenshot
 
-**IMPORTANT**: By submitting a patch, you agree to allow the project
-owners to license your work under the terms of the [MIT License](https://github.com/react-boilerplate/react-boilerplate/blob/master/LICENSE.md).
+## How Has This Been Tested?
+
+Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration
+
+- [ ] Test A
+- [ ] Test B
+
+## Checklist
+
+- [ ] I've added a line explaining my change in CHANGELOG.md
+- [ ] I've reviewed that styles are working in Chrome, Safari and Firefox
+- [ ] I've updated translations files. If added a new message, in `app` run `npm run extract-intl`,
+this will add the new texts in the English file and empty strings in the other translations files.
