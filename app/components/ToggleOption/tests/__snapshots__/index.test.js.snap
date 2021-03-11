@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<ToggleOption /> should render default language messages 1`] = `
-<option
-  value="en"
->
-  someContent
-</option>
-`;

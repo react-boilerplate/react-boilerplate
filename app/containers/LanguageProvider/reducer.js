@@ -3,7 +3,6 @@
  * LanguageProvider reducer
  *
  */
-
 import produce from 'immer';
 
 import { CHANGE_LOCALE } from './constants';
