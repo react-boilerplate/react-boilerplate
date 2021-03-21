@@ -64,7 +64,6 @@ of your application will determine the point at which you need to introduce it.
 
 Here are a couple of great resources for taking a minimal approach:
 
-- [Misconceptions of Tooling in JavaScript](http://javascriptplayground.com/blog/2016/02/the-react-webpack-tooling-problem)
 - [Learn Raw React — no JSX, no Flux, no ES6, no Webpack…](http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/)
 
 ### It's overkill for my project!
