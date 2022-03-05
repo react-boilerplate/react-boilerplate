@@ -1,4 +1,19 @@
 module.exports = {
+  globals: {
+    'ts-jest': {
+      // Tell ts-jest about our typescript config.
+      // You can specify a path to your tsconfig.json file,
+      // but since we're compiling specifically for node here,
+      // this works too.
+      tsConfig: {
+        target: 'es2019',
+      },
+    },
+  },
+  transform: {
+    '^.+\\.jsx?$': 'babel-jest',
+    '^.+\\.tsx?$': 'ts-jest',
+  },
   collectCoverageFrom: [
     'app/**/*.{js,jsx}',
     '!app/**/*.test.{js,jsx}',
