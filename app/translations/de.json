@@ -25,8 +25,8 @@
     "boilerplate.containers.HomePage.tryme.atPrefix": "",
     "boilerplate.containers.HomePage.tryme.header": "Probiere mich!",
     "boilerplate.containers.HomePage.tryme.message": "Zeige die Github Repositories von",
-    "boilerplate.containers.LocaleToggle.de": "",
-    "boilerplate.containers.LocaleToggle.en": "",
+    "boilerplate.containers.LocaleToggle.de": "de",
+    "boilerplate.containers.LocaleToggle.en": "en",
     "boilerplate.containers.LocaleToggle.zh": "zh",
     "boilerplate.containers.NotFoundPage.header": "Seite nicht gefunden."
 }
