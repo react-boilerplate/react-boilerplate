@@ -78,7 +78,7 @@
     "invariant": "2.2.4",
     "ip": "1.1.5",
     "lodash": "4.17.11",
-    "minimist": "1.2.0",
+    "minimist": "1.2.6",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
