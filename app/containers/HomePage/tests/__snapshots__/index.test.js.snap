@@ -15,7 +15,7 @@ exports[`<HomePage /> should render and match the snapshot 1`] = `
       </h2>
       <p>
         <span>
-          A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices
+          A highly scalable boilerplate foundation with the best DX and a focus on performance and best practices
         </span>
       </p>
     </section>
@@ -29,6 +29,20 @@ exports[`<HomePage /> should render and match the snapshot 1`] = `
           Try me!
         </span>
       </h2>
+      <section
+        class="BtnSection-sc-1a7om89-0 cGibdx"
+      >
+        <button
+          class="buttonStyles__Button-sc-32r3g2-0 cJczLp"
+        >
+          Login
+        </button>
+        <button
+          class="buttonStyles__Button-sc-32r3g2-0 cJczLp"
+        >
+          Register
+        </button>
+      </section>
       <form
         class="Form-dmhz4x-0 ZClLh"
       >
@@ -48,7 +62,7 @@ exports[`<HomePage /> should render and match the snapshot 1`] = `
           <input
             class="Input-sc-19rkjmi-0 gyJaEd"
             id="username"
-            placeholder="mxstbr"
+            placeholder="typicode"
             type="text"
             value=""
           />

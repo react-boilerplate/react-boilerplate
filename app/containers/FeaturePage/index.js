@@ -56,15 +56,6 @@ export default function FeaturePage() {
 
         <ListItem>
           <ListItemTitle>
-            <FormattedMessage {...messages.networkHeader} />
-          </ListItemTitle>
-          <p>
-            <FormattedMessage {...messages.networkMessage} />
-          </p>
-        </ListItem>
-
-        <ListItem>
-          <ListItemTitle>
             <FormattedMessage {...messages.intlHeader} />
           </ListItemTitle>
           <p>

@@ -2,13 +2,11 @@
 
 ## Apache
 
-This boilerplate includes an `app/.htaccess` file that does three things:
+This boilerplate includes an `app/.htaccess` file that does two things:
 
-1.  Redirect all traffic to HTTPS because ServiceWorker only works for encrypted
-    traffic.
+1.  Redirect all traffic to HTTPS.
 2.  Rewrite all pages (e.g. `yourdomain.com/subpage`) to `yourdomain.com/index.html`
     to let `react-router` take care of presenting the correct page.
-3.  Ensure that sw.js is not cached. This is required for updates to be downloaded in offline-first mode.
 
 > Note: For performance reasons you should probably adapt this to run as a static
 > `.conf` file (typically under `/etc/apache2/sites-enabled` or similar) so that

@@ -15,7 +15,18 @@
  *    }
  */
 
-import { LOAD_REPOS, LOAD_REPOS_SUCCESS, LOAD_REPOS_ERROR } from './constants';
+/** ----  Vault Vision changed code block ---- */
+import {
+  LOAD_REPOS,
+  LOAD_REPOS_SUCCESS,
+  LOAD_REPOS_ERROR,
+  AUTH_SUCCESS,
+  VALIDATE_AUTH_CALLBACK,
+  VALIDATE_AUTH_ERROR,
+  LOAD_USER,
+  LOAD_USER_SUCCESS,
+} from './constants';
+/** ---- end block ----  */
 
 /**
  * Load the repositories, this action starts the request saga
@@ -55,5 +66,66 @@ export function repoLoadingError(error) {
   return {
     type: LOAD_REPOS_ERROR,
     error,
+  };
+}
+
+/**
+ * Vault Vision added action for when a user gets a login token
+ * Dispatched when the callback page is loaded to trigger the saga
+ *
+ *
+ * @return {object}      An action object with the user data
+ */
+export function authSuccess(user) {
+  return {
+    type: AUTH_SUCCESS,
+    user,
+  };
+}
+
+/**
+ * Vault Vision added action for when the auth token has bee processed and validated
+ * Dispatched by the oidc/callback to initiate validation of the token returned by
+ * the Vault Vision authentication platform
+ *
+ *
+ */
+export function validateAuthCallback() {
+  return {
+    type: VALIDATE_AUTH_CALLBACK,
+  };
+}
+
+export function validateAuthError(error) {
+  return {
+    type: VALIDATE_AUTH_ERROR,
+    error,
+  };
+}
+
+/**
+ * Vault Vision added action for when the application loads for the first time
+ * and the application needs to check the local session state to see if a user
+ * has already authenicated and is still in local session.
+ *
+ */
+export function loadUser() {
+  return {
+    type: LOAD_USER,
+  };
+}
+
+/**
+ * Vault Vision added action for when a user gets returned by the loadUser
+ * action.  This is the Success action to trigger the saving of the user
+ * back into the global state
+ *
+ *
+ * @return {object}      An action object with the user data
+ */
+export function userLoaded(user) {
+  return {
+    type: LOAD_USER_SUCCESS,
+    user,
   };
 }

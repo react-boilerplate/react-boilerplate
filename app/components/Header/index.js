@@ -21,6 +21,15 @@ function Header() {
         <HeaderLink to="/features">
           <FormattedMessage {...messages.features} />
         </HeaderLink>
+        {/** ---- Vault Vision added buttons for authenticated pages ----  */}
+        <HeaderLink to="/dashboard">
+          <FormattedMessage {...messages.dashboard} />
+        </HeaderLink>
+
+        <HeaderLink to="/profile">
+          <FormattedMessage {...messages.profile} />
+        </HeaderLink>
+        {/** ---- end block ----  */}
       </NavBar>
     </div>
   );

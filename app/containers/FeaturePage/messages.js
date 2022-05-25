@@ -75,17 +75,6 @@ export default defineMessages({
     styles that are on the page for the best performance.
     `,
   },
-  networkHeader: {
-    id: `${scope}.network.header`,
-    defaultMessage: 'Offline-first',
-  },
-  networkMessage: {
-    id: `${scope}.network.message`,
-    defaultMessage: `
-      The next frontier in performant web apps: availability without a
-      network connection from the instant your users load the app.
-    `,
-  },
   intlHeader: {
     id: `${scope}.internationalization.header`,
     defaultMessage:

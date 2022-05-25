@@ -48,5 +48,7 @@ module.exports = require('./webpack.base.babel')({
 
   performance: {
     hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
   },
 });

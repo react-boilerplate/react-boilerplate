@@ -8,3 +8,7 @@ stats.json
 .DS_Store
 npm-debug.log
 .idea
+.env
+
+#npm files not appropriate for boilerplate
+package-lock.json

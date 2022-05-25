@@ -15,7 +15,7 @@ export default defineMessages({
   startProjectMessage: {
     id: `${scope}.start_project.message`,
     defaultMessage:
-      'A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices',
+      'A highly scalable boilerplate foundation with the best DX and a focus on performance and best practices',
   },
   trymeHeader: {
     id: `${scope}.tryme.header`,

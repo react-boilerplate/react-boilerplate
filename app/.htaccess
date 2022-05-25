@@ -42,11 +42,3 @@
   RewriteRule ^(.*) /
 
 </ifModule>
-
-<IfModule mod_headers.c>
-  # Do not cache sw.js, required for offline-first updates.
-  <FilesMatch "sw\.js$">
-    Header set Cache-Control "private, no-cache, no-store, proxy-revalidate, no-transform"
-    Header set Pragma "no-cache"
-  </FilesMatch>
-</IfModule>

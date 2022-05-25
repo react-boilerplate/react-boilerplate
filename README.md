@@ -3,7 +3,7 @@
 <br />
 
 <div align="center"><strong>Start your next react project in seconds</strong></div>
-<div align="center">A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices</div>
+<div align="center">A highly scalable boilerplate foundation with the best DX and a focus on performance and best practices</div>
 
 <br />
 
@@ -73,9 +73,6 @@
   <dt>Industry-standard i18n internationalization support</dt>
   <dd>Scalable apps need to support multiple languages, easily add and support multiple languages with `react-intl`.</dd>
 
-  <dt>Offline-first</dt>
-  <dd>The next frontier in performant web apps: availability without a network connection from the instant your users load the app.</dd>
-
   <dt>Static code analysis</dt>
   <dd>Focus on writing new features without worrying about formatting or code quality. With the right editor setup, your code will automatically be formatted and linted as you work.</dd>
 
@@ -96,7 +93,7 @@ But wait... there's more!
 
 There’s also a <a href="https://vimeo.com/168648012">fantastic video</a> on how to structure your React.js apps with scalability in mind. It provides rationale for the majority of boilerplate's design decisions.
 
-<sub><i>Keywords: React.js, Redux, Hot Reloading, ESNext, Babel, react-router, Offline First, ServiceWorker, `styled-components`, redux-saga, FontFaceObserver</i></sub>
+<sub><i>Keywords: React.js, Redux, Hot Reloading, ESNext, Babel, react-router, `styled-components`, redux-saga, FontFaceObserver</i></sub>
 
 ## Quick start
 
@@ -167,3 +164,4 @@ This project would not be possible without the support of these amazing folks. [
 
 This project is licensed under the MIT license, Copyright (c) 2019 Maximilian
 Stoiber. For more information see `LICENSE.md`.
+

@@ -5,6 +5,37 @@
 const path = require('path');
 const webpack = require('webpack');
 
+/** ---- Vault Vision added block for auth ---- */
+const dotenv = require('dotenv');
+
+/**
+ * Call dotenv and load the key value pairs from the .env file for the Vault Vision auth environment
+ * This file can be directly download from the Vault Vision management control panel:
+ * https://manage.vaultvision.com/go#applications
+ */
+const env = dotenv.config().parsed;
+
+/**
+ * Iterate through all of the environment keys and use a reduce/stringify flow
+ * to return them as an object for the webpack.DefinePlugin that will add them
+ * to the application space as environment variables after the build
+ * NOTE: if you get an error here, you need to create an .env file first,
+ * use the .env-example file in the root as a template
+ */
+let envKeys;
+
+if (env) {
+  envKeys = Object.keys(env).reduce((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(env[next]); //eslint-disable-line
+    return prev;
+  }, {});
+} else {
+  throw new Error(
+    '.env file is missing kindly add one by making a copy of the .env-example file as saving as .env',
+  );
+}
+/** ---- end block ---- */
+
 module.exports = options => ({
   mode: options.mode,
   entry: options.entry,
@@ -114,6 +145,8 @@ module.exports = options => ({
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
     }),
+    // Vault Vision added line for auth environment variables
+    new webpack.DefinePlugin(envKeys),
   ]),
   resolve: {
     modules: ['node_modules', 'app'],
@@ -122,5 +155,9 @@ module.exports = options => ({
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
-  performance: options.performance || {},
+  performance: options.performance || {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
+  },
 });

@@ -12,3 +12,13 @@
 export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
 export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
 export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
+
+/** ----  Vault Vision added code block ---- */
+// Added action for the login callback and the initial local session user load
+export const AUTH_SUCCESS = 'boilerplate/App/AUTH_SUCCESS';
+export const VALIDATE_AUTH_CALLBACK = 'boilerplate/App/VALIDATE_AUTH_CALLBACK';
+export const VALIDATE_AUTH_ERROR = 'boilerplate/App/VALIDATE_AUTH_ERROR';
+
+export const LOAD_USER = 'boilerplate/App/LOAD_USER';
+export const LOAD_USER_SUCCESS = 'boilerplate/App/LOAD_USER_SUCCESS';
+/** ---- end block ----  */

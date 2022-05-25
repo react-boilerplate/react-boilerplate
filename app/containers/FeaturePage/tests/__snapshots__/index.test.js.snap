@@ -78,25 +78,6 @@ exports[`<FeaturePage /> should render its heading 1`] = `
         class="ListItemTitle-sc-1t4skn3-0 fWjsMZ"
       >
         <span>
-          Offline-first
-        </span>
-      </p>
-      <p>
-        <span>
-          
-      The next frontier in performant web apps: availability without a
-      network connection from the instant your users load the app.
-    
-        </span>
-      </p>
-    </li>
-    <li
-      class="ListItem-sc-27v6xc-0 fixMwZ"
-    >
-      <p
-        class="ListItemTitle-sc-1t4skn3-0 fWjsMZ"
-      >
-        <span>
           Complete i18n Standard Internationalization & Pluralization
         </span>
       </p>

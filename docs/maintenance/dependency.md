@@ -61,7 +61,6 @@ Most of the errors/warnings would go away once you roll back the problemetic dep
   - Browse NotFound page
 - Browse example app on dev tunnel
 - Browse example app on Production server
-- Browse example app offline
 
 Identify problems that occur and try to resolve them by rolling back the respective dependencies. Update the `Update Log`.
 
@@ -123,7 +122,6 @@ import TestPage from 'containers/TestPage/Loadable';
  imports-loader                          0.7.0  →    0.7.1
  lint-staged                             3.3.0  →    3.3.2
  ngrok                                   2.2.6  →    2.2.9
- offline-plugin                          4.6.1  →    4.6.2
  shelljs                                 0.7.6  →    0.7.7
  sinon                             2.0.0-pre.5  →    2.0.0
  style-loader                           0.13.1  →   0.13.2
@@ -165,7 +163,6 @@ import TestPage from 'containers/TestPage/Loadable';
  jest-cli                                         18.1.0  →  18.5.0-alpha.7da3df39
  lint-staged                                       3.3.2  →                  3.5.1
  node-plop                                         0.5.5  →                  0.7.0
- offline-plugin                                    4.6.2  →                  4.8.1
  plop                                              1.7.4  →                  1.8.0
  react-addons-test-utils                          15.4.2  →                 15.5.1
  rimraf                                            2.5.4  →                  2.6.1

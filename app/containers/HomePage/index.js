@@ -21,10 +21,14 @@ import {
 } from 'containers/App/selectors';
 import H2 from 'components/H2';
 import ReposList from 'components/ReposList';
-import AtPrefix from './AtPrefix';
+
+/** ---- vault vision added code block for auth ---- */
+/**
+ * useAuth oidc-react hook
+ */
+
 import CenteredSection from './CenteredSection';
 import Form from './Form';
-import Input from './Input';
 import Section from './Section';
 import messages from './messages';
 import { loadRepos } from '../App/actions';
@@ -32,6 +36,11 @@ import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import SignInButton from '../../components/AuthButton/signin';
+import AtPrefix from './AtPrefix';
+import Input from './Input';
+import SignUpButton from '../../components/AuthButton/signup';
+import BtnSection from './BtnSection';
 
 const key = 'home';
 
@@ -79,6 +88,13 @@ export function HomePage({
           <H2>
             <FormattedMessage {...messages.trymeHeader} />
           </H2>
+          <BtnSection>
+            {/** vault vision added code block for auth */}
+            {/*  // ----  Designed signIn button component */}
+            <SignInButton>Login</SignInButton>
+            <SignUpButton>Register</SignUpButton>
+            {/** ---- end block ---- */}
+          </BtnSection>
           <Form onSubmit={onSubmitForm}>
             <label htmlFor="username">
               <FormattedMessage {...messages.trymeMessage} />
@@ -88,7 +104,7 @@ export function HomePage({
               <Input
                 id="username"
                 type="text"
-                placeholder="mxstbr"
+                placeholder="typicode"
                 value={username}
                 onChange={onChangeUsername}
               />

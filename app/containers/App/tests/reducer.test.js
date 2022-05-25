@@ -11,6 +11,8 @@ describe('appReducer', () => {
       loading: false,
       error: false,
       currentUser: false,
+      user: null,
+      userLoading: false,
       userData: {
         repositories: false,
       },

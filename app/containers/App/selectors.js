@@ -39,6 +39,20 @@ const makeSelectLocation = () =>
     routerState => routerState.location,
   );
 
+/** ----  Vault Vision changed code block ---- */
+
+const makeSelectUser = () =>
+  createSelector(
+    selectGlobal,
+    globalState => globalState.user,
+  );
+
+const makeSelectUserLoading = () =>
+  createSelector(
+    selectGlobal,
+    globalState => globalState.userLoading,
+  );
+
 export {
   selectGlobal,
   makeSelectCurrentUser,
@@ -46,4 +60,7 @@ export {
   makeSelectError,
   makeSelectRepos,
   makeSelectLocation,
+  makeSelectUser,
+  makeSelectUserLoading,
 };
+/** ---- end block ----  */
