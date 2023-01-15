@@ -54,7 +54,7 @@ We hope you enjoy this release and welcome any feedback, bug reports or feature 
 - Fix setup script for Windows environments (**@mensae**)
 - Generate passing tests for components/containers (**@mjhost**)
 - Rewrite generators code (**@mensae**)
-- Complete rewrite or `generate-templates-for-linting.js` (**@mensae**)
+- Complete rewrite of `generate-templates-for-linting.js` (**@mensae**)
 - `webpack.DefinePlugin` => `webpack.EnvironmentPlugin` (**@nshimiye**)
 - New Webpack code splitting config (**@julienben**)
 - Remove `process.noDeprecation = true` (**@spawnia**)

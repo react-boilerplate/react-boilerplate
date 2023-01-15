@@ -21,26 +21,25 @@ export const initialState = {
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const appReducer = (state = initialState, action) =>
-  produce(state, draft => {
-    switch (action.type) {
-      case LOAD_REPOS:
-        draft.loading = true;
-        draft.error = false;
-        draft.userData.repositories = false;
-        break;
+const appReducer = produce((draft, action) => {
+  switch (action.type) {
+    case LOAD_REPOS:
+      draft.loading = true;
+      draft.error = false;
+      draft.userData.repositories = false;
+      break;
 
-      case LOAD_REPOS_SUCCESS:
-        draft.userData.repositories = action.repos;
-        draft.loading = false;
-        draft.currentUser = action.username;
-        break;
+    case LOAD_REPOS_SUCCESS:
+      draft.userData.repositories = action.repos;
+      draft.loading = false;
+      draft.currentUser = action.username;
+      break;
 
-      case LOAD_REPOS_ERROR:
-        draft.error = action.error;
-        draft.loading = false;
-        break;
-    }
-  });
+    case LOAD_REPOS_ERROR:
+      draft.error = action.error;
+      draft.loading = false;
+      break;
+  }
+}, initialState);
 
 export default appReducer;

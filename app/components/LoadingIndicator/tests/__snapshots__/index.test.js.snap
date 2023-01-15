@@ -337,43 +337,43 @@ exports[`<LoadingIndicator /> should match the snapshot 1`] = `
 }
 
 <div
-  className="c0"
+  class="c0"
 >
   <div
-    className="c1"
+    class="c1"
   />
   <div
-    className="c2"
+    class="c2"
   />
   <div
-    className="c3"
+    class="c3"
   />
   <div
-    className="c4"
+    class="c4"
   />
   <div
-    className="c5"
+    class="c5"
   />
   <div
-    className="c6"
+    class="c6"
   />
   <div
-    className="c7"
+    class="c7"
   />
   <div
-    className="c8"
+    class="c8"
   />
   <div
-    className="c9"
+    class="c9"
   />
   <div
-    className="c10"
+    class="c10"
   />
   <div
-    className="c11"
+    class="c11"
   />
   <div
-    className="c12"
+    class="c12"
   />
 </div>
 `;

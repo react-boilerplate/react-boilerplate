@@ -89,7 +89,7 @@ manually, and you cannot do anything that needs the DOM.
 ## react-testing-library
 
 In order to write more maintainable tests which also resemble more closely the way
-our component is used in real life, we have included [react-testing-library](https://github.com/kentcdodds/react-testing-library).
+our component is used in real life, we have included [react-testing-library](https://github.com/testing-library/react-testing-library).
 This library renders our component within an actual DOM and provides utilities for querying it.
 
 Let's give it a go with our `<Button />` component, shall we? First, let's check that it renders our component with its
@@ -99,7 +99,7 @@ This is our test setup:
 
 ```javascript
 import React from 'react';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 import Button from '../Button';
 
 describe('<Button />', () => {
@@ -117,7 +117,7 @@ successfully tested.
 We will do so by rendering it and creating a _[snapshot](https://jestjs.io/docs/en/snapshot-testing)_
 which can be compared with a previously committed snapshot. If no snapshot exists, a new one is created.
 
-For this, we first call `render`. This will render our `<Button />` component into a _container_, by default a 
+For this, we first call `render`. This will render our `<Button />` component into a _container_, by default a
 `<div>`, which is appended to `document.body`. We then create a snapshot and `expect` that this snapshot is the same as
 the existing snapshot, taken in a previous run of this test and committed to the repository.
 
@@ -146,24 +146,25 @@ changed.
 Onwards to our last and most advanced test: checking that our `<Button />` handles clicks correctly.
 
 We'll use a [mock function](https://jestjs.io/docs/en/mock-functions) for this. A mock function is a function that
-keeps track of _if_, _how often_, and _with what arguments_ it has been called. We pass this function as the `onClick` handler to our component, 
+keeps track of _if_, _how often_, and _with what arguments_ it has been called. We pass this function as the `onClick` handler to our component,
 simulate a click and, lastly, check that our mock function was called:
 
 ```javascript
 it('handles clicks', () => {
-  const onClickMock = jest.fn();
+  const onClickSpy = jest.fn();
   const text = 'Click me!';
-  const { getByText } = render(<Button onClick={onClickMock}>{text}</Button>);
+  const { getByText } = render(<Button onClick={onClickSpy}>{text}</Button>);
 
   fireEvent.click(getByText(text));
   expect(onClickSpy).toHaveBeenCalledTimes(1);
 });
 ```
+
 Our finished test file looks like this:
 
 ```javascript
 import React from 'react';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 import Button from '../Button';
 
 describe('<Button />', () => {
@@ -175,9 +176,9 @@ describe('<Button />', () => {
   });
 
   it('handles clicks', () => {
-    const onClickMock = jest.fn();
+    const onClickSpy = jest.fn();
     const text = 'Click me!';
-    const { getByText } = render(<Button onClick={onClickMock}>{text}</Button>);
+    const { getByText } = render(<Button onClick={onClickSpy}>{text}</Button>);
   
     fireEvent.click(getByText(text));
     expect(onClickSpy).toHaveBeenCalledTimes(1);

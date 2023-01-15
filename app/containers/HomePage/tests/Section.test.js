@@ -1,27 +1,34 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 
 import Section from '../Section';
 
+const renderComponent = (props = {}) => {
+  const utils = render(<Section {...props} />);
+  const element = utils.container.firstChild;
+  return { ...utils, element };
+};
+
 describe('<Section />', () => {
-  it('should render an <section> tag', () => {
-    const { container } = render(<Section />);
-    expect(container.firstChild.tagName).toEqual('SECTION');
+  it('should render a <section> tag', () => {
+    const { element } = renderComponent();
+    expect(element).toBeInTheDocument();
+    expect(element.tagName).toEqual('SECTION');
   });
 
   it('should have a class attribute', () => {
-    const { container } = render(<Section />);
-    expect(container.firstChild.hasAttribute('class')).toBe(true);
+    const { element } = renderComponent();
+    expect(element).toHaveAttribute('class');
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const { container } = render(<Section id={id} />);
-    expect(container.firstChild.id).toEqual(id);
+    const { element } = renderComponent({ id });
+    expect(element).toHaveAttribute('id', id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const { container } = render(<Section attribute="test" />);
-    expect(container.firstChild.hasAttribute('attribute')).toBe(false);
+    const { element } = renderComponent({ attribute: 'test' });
+    expect(element).not.toHaveAttribute('attribute');
   });
 });

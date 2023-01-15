@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { IntlProvider, defineMessages } from 'react-intl';
 
 import Toggle from '../index';
@@ -30,6 +30,6 @@ describe('<Toggle />', () => {
     const { container } = render(<Toggle />);
     const elements = container.querySelectorAll('option');
     expect(elements).toHaveLength(1);
-    expect(container.firstChild.value).toEqual('--');
+    expect(container.firstChild).toHaveTextContent('--');
   });
 });

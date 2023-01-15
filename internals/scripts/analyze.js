@@ -9,7 +9,7 @@ const progress = animateProgress('Generating stats');
 
 // Generate stats.json file with webpack
 shelljs.exec(
-  'webpack --config internals/webpack/webpack.prod.babel.js --profile --json > stats.json',
+  'cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --json > stats.json',
   addCheckMark.bind(null, callback), // Output a checkmark on completion
 );
 
@@ -17,11 +17,10 @@ shelljs.exec(
 function callback() {
   clearInterval(progress);
   process.stdout.write(
-    '\n\nOpen ' +
-      chalk.magenta('http://webpack.github.io/analyse/') +
-      ' in your browser and upload the stats.json file!' +
-      chalk.blue(
-        '\n(Tip: ' + chalk.italic('CMD + double-click') + ' the link!)\n\n',
-      ),
+    `\n\nOpen ${chalk.magenta(
+      'http://webpack.github.io/analyse/',
+    )} in your browser and upload the stats.json file!${chalk.blue(
+      `\n(Tip: ${chalk.italic('CMD + double-click')} the link!)\n\n`,
+    )}`,
   );
 }

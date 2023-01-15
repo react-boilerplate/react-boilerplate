@@ -8,14 +8,14 @@ const webpack = require('webpack');
 module.exports = options => ({
   mode: options.mode,
   entry: options.entry,
-  output: Object.assign(
-    {
-      // Compile into js/build.js
-      path: path.resolve(process.cwd(), 'build'),
-      publicPath: '/',
-    },
-    options.output,
-  ), // Merge with env dependent settings
+  output: {
+    // Compile into js/build.js
+    path: path.resolve(process.cwd(), 'build'),
+    publicPath: '/',
+
+    // Merge with env dependent settings
+    ...options.output,
+  },
   optimization: options.optimization,
   module: {
     rules: [
@@ -24,7 +24,6 @@ module.exports = options => ({
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: options.babelQuery,
         },
       },
       {
@@ -53,7 +52,6 @@ module.exports = options => ({
             options: {
               // Inline files smaller than 10 kB
               limit: 10 * 1024,
-              noquotes: true,
             },
           },
         ],
@@ -85,7 +83,7 @@ module.exports = options => ({
                 optimizationLevel: 7,
               },
               pngquant: {
-                quality: '65-90',
+                quality: [0.65, 0.9],
                 speed: 4,
               },
             },
@@ -118,7 +116,9 @@ module.exports = options => ({
   resolve: {
     modules: ['node_modules', 'app'],
     extensions: ['.js', '.jsx', '.react.js'],
-    mainFields: ['browser', 'jsnext:main', 'main'],
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window

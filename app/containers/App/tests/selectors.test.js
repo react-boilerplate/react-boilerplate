@@ -18,8 +18,8 @@ describe('selectGlobal', () => {
 });
 
 describe('makeSelectCurrentUser', () => {
-  const currentUserSelector = makeSelectCurrentUser();
   it('should select the current user', () => {
+    const currentUserSelector = makeSelectCurrentUser();
     const username = 'mxstbr';
     const mockedState = {
       global: {
@@ -31,8 +31,8 @@ describe('makeSelectCurrentUser', () => {
 });
 
 describe('makeSelectLoading', () => {
-  const loadingSelector = makeSelectLoading();
   it('should select the loading', () => {
+    const loadingSelector = makeSelectLoading();
     const loading = false;
     const mockedState = {
       global: {
@@ -44,8 +44,8 @@ describe('makeSelectLoading', () => {
 });
 
 describe('makeSelectError', () => {
-  const errorSelector = makeSelectError();
   it('should select the error', () => {
+    const errorSelector = makeSelectError();
     const error = 404;
     const mockedState = {
       global: {
@@ -57,8 +57,8 @@ describe('makeSelectError', () => {
 });
 
 describe('makeSelectRepos', () => {
-  const reposSelector = makeSelectRepos();
   it('should select the repos', () => {
+    const reposSelector = makeSelectRepos();
     const repositories = [];
     const mockedState = {
       global: {
@@ -72,8 +72,8 @@ describe('makeSelectRepos', () => {
 });
 
 describe('makeSelectLocation', () => {
-  const locationStateSelector = makeSelectLocation();
   it('should select the location', () => {
+    const locationStateSelector = makeSelectLocation();
     const router = {
       location: { pathname: '/foo' },
     };

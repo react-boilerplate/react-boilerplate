@@ -35,6 +35,7 @@ experience the problem? What would you expect to be the outcome? All these detai
 Example:
 
 > ## Description
+>
 > A clear and concise description of what the bug is.
 >
 > Any other information you want to share that is relevant to the issue being
@@ -43,6 +44,7 @@ Example:
 > merits).
 >
 > ## Steps to reproduce
+>
 > Steps to reproduce the behavior:
 >
 > 1.  This is the first step

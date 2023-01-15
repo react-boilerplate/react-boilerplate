@@ -21,6 +21,8 @@ exports[`<RepoLink /> should match the snapshot 1`] = `
 }
 
 <a
-  className="c0"
-/>
+  class="c0"
+>
+  Test
+</a>
 `;

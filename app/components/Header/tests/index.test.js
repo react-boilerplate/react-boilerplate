@@ -1,8 +1,8 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
-import { ConnectedRouter } from 'connected-react-router/immutable';
+import { ConnectedRouter } from 'connected-react-router';
 import { createMemoryHistory } from 'history';
 
 import Header from '../index';
