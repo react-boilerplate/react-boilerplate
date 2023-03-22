@@ -1,16 +1,19 @@
 /*
- * HomePage
+ * AddStringPage
  *
- * This is the first thing users see of our App, at the '/' route
+ * This is the first thing users see of our App, at the '/AddStringPage' route
  */
 
-import React, { useEffect, memo } from 'react';
+// /Use dev tool from https://fb.me/react-devtools
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+
 import {
+  makeSelectNewString,
   makeSelectRepos,
   makeSelectLoading,
   makeSelectError,
@@ -18,17 +21,19 @@ import {
 import H2 from 'components/H2';
 import StringList from 'components/StringList';
 import CenteredSection from './CenteredSection';
+import Input from './Input';
+import Button from './Button';
 import Section from './Section';
-import { loadStrings } from '../App/actions';
+import { addNewString, changeNewString } from '../App/actions';
 
-// Main body of a function component, React’s render phase
-export function HomePage({ loading, error, repos, onLoadStringList }) {
-  // useEffect hook to run after the render is committed to the screen
-  useEffect(() => {
-    repos === false && onLoadStringList();
-  }, []);
-
-  // For passing props to children
+export function AddStringPage({
+  newstr,
+  loading,
+  error,
+  repos,
+  onAddNewString,
+  onChangeNewString,
+}) {
   const reposListProps = {
     loading,
     error,
@@ -38,7 +43,7 @@ export function HomePage({ loading, error, repos, onLoadStringList }) {
   return (
     <article>
       <Helmet>
-        <title>Home Page</title>
+        <title>Add String Page</title>
         <meta
           name="description"
           content="A React.js Boilerplate application homepage"
@@ -50,10 +55,26 @@ export function HomePage({ loading, error, repos, onLoadStringList }) {
           <p />
         </CenteredSection>
         <Section>
-          <b>String List</b>
-          <p>
-            List of strings from &apos;/db/json.data&apos; file on server via          API call
-          </p>
+          <b>Add New String</b>
+          <p />
+
+          <label htmlFor="newstring">
+            Enter new string:
+            <Input
+              id="newstring"
+              type="text"
+              placeholder=""
+              value={newstr}
+              onChange={onChangeNewString}
+            />
+          </label>
+          <p />
+          {newstr.trim().length > 0 && (
+            <Button type="button" onClick={onAddNewString}>
+              Add New String
+            </Button>
+          )}
+          <p />
           <StringList {...reposListProps} />
         </Section>
       </div>
@@ -61,25 +82,27 @@ export function HomePage({ loading, error, repos, onLoadStringList }) {
   );
 }
 
-HomePage.propTypes = {
+AddStringPage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  onLoadStringList: PropTypes.func,
+  onAddNewString: PropTypes.func,
+  newstr: PropTypes.string,
+  onChangeUsername: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   repos: makeSelectRepos(),
+  newstr: makeSelectNewString(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
 });
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onLoadStringList: evt => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadStrings());
-    },
+    onChangeNewString: evt => dispatch(changeNewString(evt.target.value)),
+
+    onAddNewString: evt => dispatch(addNewString()),
   };
 }
 
@@ -91,4 +114,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(HomePage);
+)(AddStringPage);

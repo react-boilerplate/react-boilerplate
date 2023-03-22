@@ -11,16 +11,16 @@ describe('<List />', () => {
   });
 
   it('should pass all items props to rendered component', () => {
-    const items = [{ id: 1, name: 'Hello' }, { id: 2, name: 'World' }];
+    const items = [{ id: 1, text: 'Hello' }, { id: 2, text: 'World' }];
 
-    const component = ({ item }) => <li>{item.name}</li>; // eslint-disable-line react/prop-types
+    const component = ({ item }) => <li>{item.text}</li>; // eslint-disable-line react/prop-types
 
     const { container, getByText } = render(
       <List items={items} component={component} />,
     );
     const elements = container.querySelectorAll('li');
     expect(elements).toHaveLength(2);
-    expect(getByText(items[0].name)).not.toBeNull();
-    expect(getByText(items[1].name)).not.toBeNull();
+    expect(getByText(items[0].text)).not.toBeNull();
+    expect(getByText(items[1].text)).not.toBeNull();
   });
 });
