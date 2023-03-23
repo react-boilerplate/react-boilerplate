@@ -9,6 +9,8 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
-export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
-export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
+export const LOAD_STR = 'REACT-BOILERPLATE/App/LOAD_REPOS';
+export const LOAD_STR_SUCCESS = 'REACT-BOILERPLATE/App/LOAD_STR_SUCCESS';
+export const LOAD_STR_ERROR = 'REACT-BOILERPLATE/App/LOAD_STR_ERROR';
+export const ADD_NEW_STR = 'REACT-BOILERPLATE/App/ADD_NEW_STR';
+export const CHANGE_STRING = 'REACT-BOILERPLATE/App/CHANGE_STRING';

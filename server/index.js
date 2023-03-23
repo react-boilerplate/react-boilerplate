@@ -16,6 +16,19 @@ const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
+app.get('/api/strlist', (req, res) => {
+  const fs = require('fs');
+  res.setHeader('Content-Type', 'application/json');
+
+  fs.readFile('./db/data.json', 'utf8', (err, jsonString) => {
+    if (err) {
+      res.json({ error: err.message });
+      return;
+    }
+    res.json(JSON.parse(jsonString));
+    // res.json(jsonString);
+  });
+});
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
