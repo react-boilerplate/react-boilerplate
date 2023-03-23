@@ -7,15 +7,23 @@
  *
  */
 
+// produce function of Immer library simplifies
+// the process of writing immutable update logic, produce helps to avoid unknowingly change the state; takes two arguments first the current state and callback function,
 import produce from 'immer';
-import { LOAD_REPOS_SUCCESS, LOAD_REPOS, LOAD_REPOS_ERROR } from './constants';
+import {
+  LOAD_STR_SUCCESS,
+  LOAD_STR,
+  LOAD_STR_ERROR,
+  ADD_NEW_STR,
+  CHANGE_STRING,
+} from './constants';
 
 // The initial state of the App
 export const initialState = {
   loading: false,
   error: false,
-  currentUser: false,
-  userData: {
+  newStr: '',
+  strData: {
     repositories: false,
   },
 };
@@ -24,21 +32,36 @@ export const initialState = {
 const appReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case LOAD_REPOS:
+      case LOAD_STR:
         draft.loading = true;
         draft.error = false;
-        draft.userData.repositories = false;
+        draft.strData.repositories = false;
         break;
 
-      case LOAD_REPOS_SUCCESS:
-        draft.userData.repositories = action.repos;
+      case LOAD_STR_SUCCESS:
+        draft.strData.repositories = action.strlist;
         draft.loading = false;
-        draft.currentUser = action.username;
         break;
 
-      case LOAD_REPOS_ERROR:
+      case LOAD_STR_ERROR:
         draft.error = action.error;
         draft.loading = false;
+        break;
+
+      case ADD_NEW_STR:
+        draft.strData.repositories = [
+          {
+            id:
+              Math.max(...state.strData.repositories.map(item => item.id)) + 1,
+            text: state.newStr,
+          },
+          ...state.strData.repositories,
+        ];
+        draft.newStr = '';
+        break;
+
+      case CHANGE_STRING:
+        draft.newStr = action.newStr;
         break;
     }
   });

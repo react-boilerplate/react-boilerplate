@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default styled(Link)`
+const Button = styled.button`
   display: inline-flex;
   padding: 0.25em 2em;
   margin: 1em;
@@ -14,12 +13,15 @@ export default styled(Link)`
   outline: 0;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   border: 2px solid #63d471;
   color: #41addd;
+  background: #fff;
 
   &:active {
     background: #41addd;
     color: #fff;
   }
 `;
+
+export default Button;

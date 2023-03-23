@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import ListItem from '../ListItem';
 import Ul from './Ul';
 import Wrapper from './Wrapper';
 
 function List(props) {
   const ComponentToRender = props.component;
   let content = <div />;
-
-  // If we have items, render them
   if (props.items) {
     content = props.items.map(item => (
-      <ComponentToRender key={`item-${item.id}`} item={item} />
+      <ListItem key={`repo-list-item-${item.id}`} item={item.text} />
     ));
   } else {
     // Otherwise render a single component

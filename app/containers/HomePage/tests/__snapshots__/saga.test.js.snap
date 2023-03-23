@@ -1,24 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getRepos Saga should call the repoLoadingError action if the response errors 1`] = `
-Object {
-  "@@redux-saga/IO": true,
-  "combinator": false,
-  "payload": Object {
-    "args": Array [],
-    "selector": [Function],
-  },
-  "type": "SELECT",
-}
-`;
-
-exports[`getRepos Saga should call the repoLoadingError action if the response errors 2`] = `
+exports[`getRepos Saga should call the stringLoadingError action if the response errors 1`] = `
 Object {
   "@@redux-saga/IO": true,
   "combinator": false,
   "payload": Object {
     "args": Array [
-      "https://api.github.com/users/mxstbr/repos?type=all&sort=updated",
+      "http://localhost:3000/api/strlist",
     ],
     "context": null,
     "fn": [Function],
@@ -27,25 +15,13 @@ Object {
 }
 `;
 
-exports[`getRepos Saga should dispatch the reposLoaded action if it requests the data successfully 1`] = `
-Object {
-  "@@redux-saga/IO": true,
-  "combinator": false,
-  "payload": Object {
-    "args": Array [],
-    "selector": [Function],
-  },
-  "type": "SELECT",
-}
-`;
-
-exports[`getRepos Saga should dispatch the reposLoaded action if it requests the data successfully 2`] = `
+exports[`getRepos Saga should dispatch the stringsLoaded action if it requests the data successfully 1`] = `
 Object {
   "@@redux-saga/IO": true,
   "combinator": false,
   "payload": Object {
     "args": Array [
-      "https://api.github.com/users/mxstbr/repos?type=all&sort=updated",
+      "http://localhost:3000/api/strlist",
     ],
     "context": null,
     "fn": [Function],

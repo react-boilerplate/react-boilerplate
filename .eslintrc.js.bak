@@ -23,7 +23,7 @@ module.exports = {
     },
   },
   rules: {
-    'prettier/prettier': 'off',
+    'prettier/prettier': ['error', prettierOptions],
     'arrow-body-style': [2, 'as-needed'],
     'class-methods-use-this': 0,
     'import/imports-first': 0,
@@ -60,7 +60,7 @@ module.exports = {
     'newline-per-chained-call': 0,
     'no-confusing-arrow': 0,
     'no-console': 1,
-    'no-unused-vars':  "off",
+    'no-unused-vars': 2,
     'no-use-before-define': 0,
     'prefer-template': 2,
     'react/destructuring-assignment': 0,
@@ -78,9 +78,6 @@ module.exports = {
     'redux-saga/no-yield-in-race': 2,
     'redux-saga/yield-effects': 2,
     'require-yield': 0,
-    'react/prop-types': 'off',
-    'no-unused-expressions' : 'off',
-    'global-require' : 'off',
   },
   settings: {
     'import/resolver': {

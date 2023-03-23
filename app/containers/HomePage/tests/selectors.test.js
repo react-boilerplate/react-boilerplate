@@ -1,26 +1,31 @@
-import { selectHome, makeSelectUsername } from '../selectors';
+import { selectGlobal, makeSelectNewString } from '../../App/selectors';
 
-describe('selectHome', () => {
-  it('should select the home state', () => {
-    const homeState = {
-      userData: {},
+describe('selectGlobal', () => {
+  it('should select the global state', () => {
+    const globalState = {
+      loading: false,
+      error: false,
+      newStr: '',
+      strData: {
+        repositories: false,
+      },
     };
     const mockedState = {
-      home: homeState,
+      home: globalState,
     };
-    expect(selectHome(mockedState)).toEqual(homeState);
+    expect(selectGlobal(mockedState)).toEqual(globalState);
   });
 });
 
-describe('makeSelectUsername', () => {
-  const usernameSelector = makeSelectUsername();
-  it('should select the username', () => {
-    const username = 'mxstbr';
+describe('makeSelectNewString', () => {
+  const newstrSelector = makeSelectNewString();
+  it('should select the newstr', () => {
+    const newstr = '';
     const mockedState = {
       home: {
-        username,
+        newstr,
       },
     };
-    expect(usernameSelector(mockedState)).toEqual(username);
+    expect(newstrSelector(mockedState)).toEqual(newstr);
   });
 });

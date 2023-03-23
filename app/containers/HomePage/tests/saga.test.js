@@ -4,10 +4,9 @@
 
 import { put, takeLatest } from 'redux-saga/effects';
 
-import { LOAD_REPOS } from 'containers/App/constants';
-import { reposLoaded, repoLoadingError } from 'containers/App/actions';
-
-import githubData, { getRepos } from '../saga';
+import { LOAD_STR } from 'containers/App/constants';
+import { stringsLoaded, stringLoadingError } from 'containers/App/actions';
+import stringListData, { getRepos } from '../../App/saga';
 
 const username = 'mxstbr';
 
@@ -23,11 +22,9 @@ describe('getRepos Saga', () => {
     const selectDescriptor = getReposGenerator.next().value;
     expect(selectDescriptor).toMatchSnapshot();
 
-    const callDescriptor = getReposGenerator.next(username).value;
-    expect(callDescriptor).toMatchSnapshot();
   });
 
-  it('should dispatch the reposLoaded action if it requests the data successfully', () => {
+  it('should dispatch the stringsLoaded action if it requests the data successfully', () => {
     const response = [
       {
         name: 'First repo',
@@ -37,21 +34,21 @@ describe('getRepos Saga', () => {
       },
     ];
     const putDescriptor = getReposGenerator.next(response).value;
-    expect(putDescriptor).toEqual(put(reposLoaded(response, username)));
+    expect(putDescriptor).toEqual(put(stringsLoaded(response)));
   });
 
-  it('should call the repoLoadingError action if the response errors', () => {
+  it('should call the stringLoadingError action if the response errors', () => {
     const response = new Error('Some error');
     const putDescriptor = getReposGenerator.throw(response).value;
-    expect(putDescriptor).toEqual(put(repoLoadingError(response)));
+    expect(putDescriptor).toEqual(put(stringLoadingError(response)));
   });
 });
 
-describe('githubDataSaga Saga', () => {
-  const githubDataSaga = githubData();
+describe('stringListDataSaga Saga', () => {
+  const stringListDataSaga = stringListData();
 
   it('should start task to watch for LOAD_REPOS action', () => {
-    const takeLatestDescriptor = githubDataSaga.next().value;
-    expect(takeLatestDescriptor).toEqual(takeLatest(LOAD_REPOS, getRepos));
+    const takeLatestDescriptor = stringListDataSaga.next().value;
+    expect(takeLatestDescriptor).toEqual(takeLatest(LOAD_STR, getRepos));
   });
 });
