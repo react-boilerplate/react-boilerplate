@@ -16,10 +16,20 @@ const buttonStyles = css`
   font-size: 16px;
   border: 2px solid #41addd;
   color: #41addd;
+  background-color: white;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #41addd;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(65, 173, 221, 0.6);
+  }
 
   &:active {
-    background: #41addd;
-    color: #fff;
+    background: #1e90ff;
+    color: white;
+    transform: scale(0.98);
   }
 `;
 
